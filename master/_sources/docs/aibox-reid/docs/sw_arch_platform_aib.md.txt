@@ -60,7 +60,7 @@ At a high level it consists of the following layers from top to bottom:
 
 The Video Codec Unit (VCU) core supports multi-standard video encoding and decoding of H.264 and H.265 standards. A software stack on the CPU controls various functions of Encoder and Decoder blocks. The VCU software stack consists of a custom kernel module and a custom user space library known as Control Software (CtrlSW). The OpenMAX™ (OMX) integration layer (IL) is integrated on top of CtrlSW, and the GStreamer framework is used to integrate the OMX IL component and other multimedia elements. OpenMAX (Open Media Acceleration) is a cross-platform API that provides a comprehensive streaming media codec and application portability by enabling accelerated multimedia  components. GStreamer is the cross-platform/open source multimedia framework. Its core function is to provide a framework for plug-ins, data flow, and media type handling and negotiation. It also provides an API to write applications using the various plug-ins.
 
-<img src="../../media/VCU_stack.png" height="57%" width="32%"/>
+![VCU stack](../../media/VCU_stack.png)
 
 In the capture-decode side, The macb driver allocates buffer to the gst-omx plug-in. The GStreamer elements rtpsrc and rthp264depay import and depacketise rtsp stream from ip cameras. The gst-omx plug-in passes the file descriptor to the decoder driver. The decoder driver uses the DMA_BUF framework and reads the kernel buffer for decoding.
 

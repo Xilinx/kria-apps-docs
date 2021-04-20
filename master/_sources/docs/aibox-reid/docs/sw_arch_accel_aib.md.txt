@@ -22,10 +22,9 @@ To access DPU and other PL hardware accelerator functions from GStreamer, Xilinx
 
 # GStreamer Pipeline
 
-<figure class="image">
-  <img src="../../media/aibox-sw-data-flow.png">
-  <figcaption>Overall video data flow</figcaption>
-</figure>
+
+![Overall video data flow](../../media/aibox-sw-data-flow.png)
+
 
 The AIBox-ReID application accepts up to 4 channels of RTSP streams (**1080p, H264/H265**), decodes them to NV12 frame buffers, then performs pedestrian detection on all four streams using the AI inference accelerator (DPU). Next, ReID and tracking are performed to give the detected pedestrians a unique ID. Finally, bounding boxes and ID text are rendered over the original video frames and displayed on a **4K** monitor in a 2x2 grid.
 
@@ -33,10 +32,8 @@ Following the datapath in the figure above, decoded NV12 buffers are first pre-p
 
 The figure below shows the GStreamer pipeline used in this application. There are 5 main components described below: Pedestrian Pre-processing, Pedestrian Detection, ReID Pre-Processing, ReID and Tracking, and Rendering.
 
-<figure class="image">
-  <img src="../../media/gstreamer-pipeline.png"">
-  <figcaption>Gstreamer pipeline of the application</figcaption>
-</figure>
+
+![Gstreamer pipeline of the application](../../media/gstreamer-pipeline.png)
 
 
 * Pedestrian Preprocess

@@ -330,7 +330,7 @@
             
               <p class="caption"><span class="caption-text">Home</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/index.html">Kria Starter Kit Applications</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/index.html">SOM</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Smart Camera</span></p>
 <ul>
@@ -447,16 +447,12 @@
 </div>
 <div class="section" id="gstreamer-pipeline">
 <h1>GStreamer Pipeline<a class="headerlink" href="#gstreamer-pipeline" title="Permalink to this headline">¶</a></h1>
-<figure class="image">
-  <img src="../../media/aibox-sw-data-flow.png">
-  <figcaption>Overall video data flow</figcaption>
-</figure><p>The AIBox-ReID application accepts up to 4 channels of RTSP streams (<strong>1080p, H264/H265</strong>), decodes them to NV12 frame buffers, then performs pedestrian detection on all four streams using the AI inference accelerator (DPU). Next, ReID and tracking are performed to give the detected pedestrians a unique ID. Finally, bounding boxes and ID text are rendered over the original video frames and displayed on a <strong>4K</strong> monitor in a 2x2 grid.</p>
+<p><img alt="Overall video data flow" src="../../../_images/aibox-sw-data-flow.png" /></p>
+<p>The AIBox-ReID application accepts up to 4 channels of RTSP streams (<strong>1080p, H264/H265</strong>), decodes them to NV12 frame buffers, then performs pedestrian detection on all four streams using the AI inference accelerator (DPU). Next, ReID and tracking are performed to give the detected pedestrians a unique ID. Finally, bounding boxes and ID text are rendered over the original video frames and displayed on a <strong>4K</strong> monitor in a 2x2 grid.</p>
 <p>Following the datapath in the figure above, decoded NV12 buffers are first pre-processed to prepare the buffer for ingestion by the pedestrian detection model in DPU. This includes color space conversion and resize operations. The DPU then performs the inferencing whose results are post-processed to determine the size and location of the bounding box around each pedestrian. The bounding box information is then used to crop the region of interest for the detected person and again pre-processed for use by the ReID model in DPU. The DPU then outputs the ReID features and coordinates for each detected person. Matching and tracking are performed to give each person the final ID.</p>
 <p>The figure below shows the GStreamer pipeline used in this application. There are 5 main components described below: Pedestrian Pre-processing, Pedestrian Detection, ReID Pre-Processing, ReID and Tracking, and Rendering.</p>
-<figure class="image">
-  <img src="../../media/gstreamer-pipeline.png"">
-  <figcaption>Gstreamer pipeline of the application</figcaption>
-</figure><ul>
+<p><img alt="Gstreamer pipeline of the application" src="../../../_images/gstreamer-pipeline.png" /></p>
+<ul>
 <li><p>Pedestrian Preprocess</p>
 <p>The pedestrian detection model requires downscaled BGR frames so the received decoded NV12 frames need to be pre-processed to do color space conversion and resizing. For best performance, these steps are performed using a dedicated pre-processing hardware accelerator IP, as described in the <a class="reference internal" href="hw_arch_accel_aib.html"><span class="doc">Hardware Accelerator Architecture</span></a></p>
 <p>NV12 to BGR conversion and image resizing, are to meet the requirement of the DPU AI inference engine. These steps are done in one dedicate preprocessing IP, which is detailed in the Accelerator IP Modules, to achieve the optimal framerate and latency.</p>

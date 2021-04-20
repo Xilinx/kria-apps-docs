@@ -330,7 +330,7 @@
             
               <p class="caption"><span class="caption-text">Home</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/index.html">Kria Starter Kit Applications</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/index.html">SOM</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Smart Camera</span></p>
 <ul>
@@ -438,7 +438,8 @@
 </table><div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>This section describes the design implemented in Programmable Logic (PL). The following figure shows the top level hardware architecture of the reference design.</p>
-<img src="../../media/hw_arch.png" width="90%"/><p>At a high level, the design comprises of four pipelines</p>
+<p><img alt="../../../_images/hw_arch.png" src="../../../_images/hw_arch.png" /></p>
+<p>At a high level, the design comprises of four pipelines</p>
 <p>Capture/Input pipeline: This comprises of pipelines through which audio/video data are captured.</p>
 <ul class="simple">
 <li><p>USB capture pipeline (PS)</p></li>
@@ -473,10 +474,12 @@ configured statically.</p>
 <li><p>The MIPI CSI-2 receiver subsystem (CSI Rx) includes a MIPI D-PHY core that connects four data lanes and one clock lane to the ISP.  It implements a CSI-2 receive interface according to the MIPI CSI-2 standard v2.0 with underlying MIPI D-PHY standard v1.2. The subsystem captures images from the ISP in YUV 4:2:0 format and outputs AXI4-Stream video data.  At two pixels per clock (ppc) and 8 bits per pixel, the AXIS width is 32 bits. For more information see the MIPI CSI-2 Receiver Subsystem Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/mipi_csi2_rx_subsystem/v5_0/pg232-mipi-csi2-rx.pdf">PG232</a>.</p></li>
 <li><p>The AXI subset converter, see AXI4-Stream Infrastructure IP Suite LogiCORE IP Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/axis_infrastructure_ip_suite/v1_1/pg085-axi4stream-infrastructure.pdf">PG085</a>, is a statically-configured IP core that converts the 32 bit AXI4-Stream input data to 48 bit AXI4-Stream output data by adding zeros to the MSB of each data word. At two ppc,  the AXIS width is 48 bits.  The format on the AXI4-Stream is shown below for the even and odd lines.</p></li>
 </ul>
-<img src="../../media/fmt_axis.png" alt="Format on AXI4-Stream Interface" width="50%"><ul class="simple">
+<p><img alt="Format on AXI4-Stream Interface" src="../../../_images/fmt_axis.png" /></p>
+<ul class="simple">
 <li><p>The video frame buffer takes YUV 4:2:0 AXI4-Stream input data and converts it to AXI4-MM format which is written to memory in semi-planar YUV 4:2:0 format. The Y and UV are stored in separate planes as shown below. The AXI-MM interface is connected to the S_AXI port of the PS.</p></li>
 </ul>
-<img src="../../media/fmt_aximm.png" alt="Format on AXI4-Stream Interface" width="35%"><p>For each video frame transfer, an interrupt is generated. A GPIO is used to reset the IP between resolution changes.  For more information see Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/v_frmbuf/v1_0/pg278-v-frmbuf.pdf">PG278</a></p>
+<p><img alt="Format on AXI4-Stream Interface" src="../../../_images/fmt_aximm.png" /></p>
+<p>For each video frame transfer, an interrupt is generated. A GPIO is used to reset the IP between resolution changes.  For more information see Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/v_frmbuf/v1_0/pg278-v-frmbuf.pdf">PG278</a></p>
 <p>All the IPs in this pipeline are configured to transport 2ppc &#64; 300 MHz, enabling up to 3840x2160 resolution at 60 frames per second (fps). But the MIPI line rate of 896 Mbps doesn’t support 60 fps. Maximum throughput requirement is 3840x2160 resolution at 30 fps so the set MIPI line rate should be adequate.</p>
 <p>Note: MIPI video clock requirement for NV12 (YUV420) at line rate 896 Mbps is 221 MHz &#64; 2ppc, so we could run all the IPs at 221 MHz &#64; 2ppc.  For more information see the MIPI CSI-2 Receiver Subsystem Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/mipi_csi2_rx_subsystem/v5_0/pg232-mipi-csi2-rx.pdf">PG232</a>.</p>
 </div>
@@ -487,8 +490,8 @@ configured statically.</p>
 </div>
 <div class="section" id="audio-transmit-and-receive">
 <h1>Audio Transmit and Receive<a class="headerlink" href="#audio-transmit-and-receive" title="Permalink to this headline">¶</a></h1>
-<p>This platform also supports capture and replay of audio. The I2S audio RX-to-TX pipeline is shown in the following figure. This pipeline consists of three components, all of which are controlled by the APU through an AXI4-Lite base register interface.
-<img src="../../media/aud_pp.png" alt="Audio pipeline" width="80%"></p>
+<p>This platform also supports capture and replay of audio. The I2S audio RX-to-TX pipeline is shown in the following figure. This pipeline consists of three components, all of which are controlled by the APU through an AXI4-Lite base register interface.</p>
+<p><img alt="Audio pipeline" src="../../../_images/aud_pp.png" /></p>
 <ul class="simple">
 <li><p>The I2S Receiver/Transmitter IP can be connected to audio devices for receiving and transmitting PCM audio. The I2S IPs typically interface with the external ADC/DAC which facilitates the playback of audio. The IPs are configured to have two audio channels. The IPs supports any sampling rate and can be configure registers via the AXI Lite Salve interface. For more information refer to LogiCORE IP Product Guide for I2S Transmitter and I2S Receiver <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/i2s/v1_0/pg308-i2s.pdf">PG308</a>. In this reference design no acceleration function is run on the Audio data and it is in pass through mode.</p></li>
 <li><p>The audio formatter provides high-bandwidth direct memory access between memory and AXI4-Stream target peripherals. Initialization, status, and management registers are accessed  through an AXI4-Lite slave interface. It is configured with both read and write interface enabled for a maximum of two audio channels and  interleaved memory packing mode with memory data format configured as AES to PCM. The IP receives audio input from the I2S RX IP and writes the data to memory. It reads audio data from memory and sends  it out to the I2S TX IP, which forwards it to the output device. See the Audio Formatter Product Guide (PG330) for more information.</p></li>

@@ -330,7 +330,7 @@
             
               <p class="caption"><span class="caption-text">Home</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/index.html">Kria Starter Kit Applications</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/index.html">SOM</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Smart Camera</span></p>
 <ul>
@@ -447,15 +447,11 @@
 </div>
 <div class="section" id="gstreamer-pipeline">
 <h1>GStreamer Pipeline<a class="headerlink" href="#gstreamer-pipeline" title="Permalink to this headline">¶</a></h1>
-<figure class="image">
-  <img src="../../media/software-overall-data-flow.png">
-  <figcaption>Overall video data flow</figcaption>
-</figure><p>Smart Camera Accelerated Application supports three types of inputs including MIPI, video file and USB camera.</p>
+<p><img alt="../../../_images/software-overall-data-flow.png" src="../../../_images/software-overall-data-flow.png" /></p>
+<p>Smart Camera Accelerated Application supports three types of inputs including MIPI, video file and USB camera.</p>
 <p>For MIPI source the ISP will output frames with NV12 format directly, and for other sources, there are mature plugins in GStreamer serving to perform the conversion too.</p>
-<figure class="image">
-  <img src="../../media/gstreamer-pipeline.png"">
-  <figcaption>Gstreamer pipeline of the application</figcaption>
-</figure><p>Three AI tasks are supported: Facedetect, Refinedet, SSD. We use ${AI_TASK} to refer to either of them in following part of this document.</p>
+<p><img alt="../../../_images/gstreamer-pipeline1.png" src="../../../_images/gstreamer-pipeline1.png" /></p>
+<p>Three AI tasks are supported: Facedetect, Refinedet, SSD. We use ${AI_TASK} to refer to either of them in following part of this document.</p>
 <ul>
 <li><p>AI Preprocess</p>
 <p>NV12 to BGR conversion, image resizing, and input quantizing blocks are to meet the requirement of the DPU AI inference engine. These 3 steps are done in one dedicate preprocessing IP, which is detailed in the Accelerator IP Modules, to achieve the optimal framerate and latency.</p>

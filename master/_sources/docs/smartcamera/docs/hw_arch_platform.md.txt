@@ -13,7 +13,7 @@
 # Introduction
  This section describes the design implemented in Programmable Logic (PL). The following figure shows the top level hardware architecture of the reference design.
 
-<img src="../../media/hw_arch.png" width="90%"/>
+![](../../media/hw_arch.png)
 
  At a high level, the design comprises of four pipelines
 
@@ -56,11 +56,11 @@ configured statically.
 
 * The AXI subset converter, see AXI4-Stream Infrastructure IP Suite LogiCORE IP Product Guide [PG085](https://www.xilinx.com/support/documentation/ip_documentation/axis_infrastructure_ip_suite/v1_1/pg085-axi4stream-infrastructure.pdf), is a statically-configured IP core that converts the 32 bit AXI4-Stream input data to 48 bit AXI4-Stream output data by adding zeros to the MSB of each data word. At two ppc,  the AXIS width is 48 bits.  The format on the AXI4-Stream is shown below for the even and odd lines.
 
-<img src="../../media/fmt_axis.png" alt="Format on AXI4-Stream Interface" width="50%">
+![Format on AXI4-Stream Interface](../../media/fmt_axis.png)
 
 * The video frame buffer takes YUV 4:2:0 AXI4-Stream input data and converts it to AXI4-MM format which is written to memory in semi-planar YUV 4:2:0 format. The Y and UV are stored in separate planes as shown below. The AXI-MM interface is connected to the S_AXI port of the PS.  
 
-<img src="../../media/fmt_aximm.png" alt="Format on AXI4-Stream Interface" width="35%">
+![Format on AXI4-Stream Interface](../../media/fmt_aximm.png)
 
 
 For each video frame transfer, an interrupt is generated. A GPIO is used to reset the IP between resolution changes.  For more information see Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide [PG278](https://www.xilinx.com/support/documentation/ip_documentation/v_frmbuf/v1_0/pg278-v-frmbuf.pdf)
@@ -76,7 +76,8 @@ The Video output pipelines and Video Processing pipelines are not covered in thi
 # Audio Transmit and Receive
 
 This platform also supports capture and replay of audio. The I2S audio RX-to-TX pipeline is shown in the following figure. This pipeline consists of three components, all of which are controlled by the APU through an AXI4-Lite base register interface.
-<img src="../../media/aud_pp.png" alt="Audio pipeline" width="80%">
+
+![Audio pipeline](../../media/aud_pp.png)
 
 * The I2S Receiver/Transmitter IP can be connected to audio devices for receiving and transmitting PCM audio. The I2S IPs typically interface with the external ADC/DAC which facilitates the playback of audio. The IPs are configured to have two audio channels. The IPs supports any sampling rate and can be configure registers via the AXI Lite Salve interface. For more information refer to LogiCORE IP Product Guide for I2S Transmitter and I2S Receiver [PG308](https://www.xilinx.com/support/documentation/ip_documentation/i2s/v1_0/pg308-i2s.pdf). In this reference design no acceleration function is run on the Audio data and it is in pass through mode.
 
