@@ -446,68 +446,71 @@
 <p>As the downloaded images are in JPG format, you need to convert them to GRAY 8 (Y8) format using the following steps.</p>
 <ol>
 <li><p>Unzip the rar file that you downloaded.</p></li>
-<li><p>Go to <em>DB_mango</em> folder in the Linux PC</p></li>
+<li><p>In the Linux PC, go to <code class="docutils literal notranslate"><span class="pre">DB_mango</span></code>.</p></li>
 <li><p>Copy and save the following script as <strong>convert_jpeg_y8.sh</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for file in ./*; do       
-  f=$(echo &quot;${file##*/}&quot;);
-    filename=$(echo $f| cut  -d&#39;.&#39; -f 1); #file has extension, it return only filename
-      echo $filename
-        gst-launch-1.0 filesrc location=$file ! jpegdec  ! videoconvert  ! videoscale ! video/x-raw, width=1280, height=800, format=GRAY8 ! filesink location=$filename.y8
-  done
+f=$(echo &quot;${file##*/}&quot;);
+  filename=$(echo $f| cut  -d&#39;.&#39; -f 1); #file has extension, it return only filename
+    echo $filename
+      gst-launch-1.0 filesrc location=$file ! jpegdec  ! videoconvert  ! videoscale ! video/x-raw, width=1280, height=800, format=GRAY8 ! filesink location=$filename.y8
+done
 cat Mango_*.y8 &gt; input_video.y8
 </pre></div>
 </div>
 </li>
 <li><p>Make the script executable: <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">convert_jpeg_y8.sh</span></code></p></li>
-<li><p>Run the script <code class="docutils literal notranslate"><span class="pre">convert_jpeg_y8.sh</span></code> as follows:
-<code class="docutils literal notranslate"><span class="pre">./convert_jpeg_y8.sh</span> <span class="pre">&gt;&amp;</span> <span class="pre">file.txt</span></code>
-The script when complete, produces <code class="docutils literal notranslate"><span class="pre">input_video.y8</span></code> as input to the Defect Detect application.</p></li>
-<li><p>Copy <code class="docutils literal notranslate"><span class="pre">input_video.y8</span></code> from the Linux PC to the SOM board <code class="docutils literal notranslate"><span class="pre">rootfs</span> <span class="pre">path=/home/petalinux</span></code></p></li>
-</ol>
+<li><p>Run the script <code class="docutils literal notranslate"><span class="pre">convert_jpeg_y8.sh</span></code> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">convert_jpeg_y8</span><span class="o">.</span><span class="n">sh</span> <span class="o">&gt;&amp;</span> <span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>When complete, the script produces <code class="docutils literal notranslate"><span class="pre">input_video.y8</span></code> as input to the Defect Detect application.</p>
+</li>
+<li><p>Copy <code class="docutils literal notranslate"><span class="pre">input_video.y8</span></code> from the Linux PC to the SOM board <code class="docutils literal notranslate"><span class="pre">rootfs</span> <span class="pre">path=/home/petalinux</span></code>.</p>
 <blockquote>
-<div><p><strong>NOTE</strong>: If you wish, you can delete all other files except <code class="docutils literal notranslate"><span class="pre">input_video.y8</span></code>.</p>
+<div><p><strong>NOTE</strong>: You can delete all files <em>except</em> <code class="docutils literal notranslate"><span class="pre">input_video.y8</span></code>.</p>
 </div></blockquote>
 <p>You can also perform the preceding conversion on the SOM board, but will need to do a <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">gstreamer1.0-plugins-good-jpeg.aarch64</span></code> first, and use <strong>sudo</strong> with all the commands.</p>
 <blockquote>
 <div><p><strong>NOTE</strong>: For setups without access to the internet, it is possible to download and use the packages locally. Refer to the <a class="reference internal" href="../../local_package_feed.html"><span class="doc">Install from a local package feed</span></a> for instructions.</p>
 </div></blockquote>
+</li>
+</ol>
 <p>The Defect Detection application’s design processes these images and sends the results and the processed images on to the monitor.</p>
-<p>See <a class="reference internal" href="known_issues_dd.html"><span class="doc">Known Issues</span></a> for known issues with the Defect Detect application.</p>
+<p>See <a class="reference internal" href="known_issues_dd.html"><span class="doc">Known Issues</span></a> with the Defect Detect application.</p>
 </div>
 <div class="section" id="setting-up-the-som-board">
 <h1>Setting up the SOM Board<a class="headerlink" href="#setting-up-the-som-board" title="Permalink to this headline">¶</a></h1>
 <blockquote>
-<div><p>Note: Skip Step 1, if you have already flashed the SD Card with the KV260 Vision AI Starter Kit Image (kv260-sdcard.img.wic)</p>
+<div><p><strong>Note</strong>: Skip Step 1, if you have already flashed the SD Card with the KV260 Vision AI Starter Kit Image (kv260-sdcard.img.wic)</p>
 </div></blockquote>
-<ol class="simple">
-<li><p><strong>Flash the SD Card</strong>:</p></li>
-</ol>
+<ol>
+<li><p>Flash the SD Card</p>
 <ul>
 <li><p>Download  the <a class="reference external" href="https://www.xilinx.com/member/forms/download/xef.html?filename=petalinux-sdimage_0415.wic.gz">SD Card Image</a> and save it on your computer.</p></li>
 <li><p>Connect the microSD to your computer.</p></li>
-<li><p>Download the <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher tool</a> (recommended; available for Windows, Linux, and
+<li><p>Download the <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher tool</a> (recommended; available for Window, Linux, and
 macOS) required to flash the SD card.</p></li>
 <li><p>Follow the instructions in the tool and select the downloaded image to flash onto your microSD card.</p>
 <p><img alt="Balena Etcher" src="../../../_images/balena1.png" /></p>
 </li>
 <li><p>Eject the SD card from your computer.</p>
-<p>If you are looking for other OS specific tools to write the image to the SD card refer to <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/setting-up-the-sd-card-image.html">KV260 Getting Started Page</a></p>
+<p>If you are looking for other OS specific tools to write the image to the SD card, refer to <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/setting-up-the-sd-card-image.html">KV260 Getting Started Page</a></p>
 </li>
 </ul>
-<ol class="simple">
-<li><p><strong>Hardware Setup</strong>:
-<img alt="../../../_images/som-board1.png" src="../../../_images/som-board1.png" /></p></li>
-</ol>
+</li>
+<li><p><strong>Hardware Setup</strong>:</p>
+<p><img alt="SOM board" src="../../../_images/som-board1.png" /></p>
 <ul class="simple">
 <li><p><strong>microSD</strong>: Insert the SD card into slot at J11.</p></li>
 <li><p><strong>Monitor</strong>: Before booting, connect the 4k monitor to the board using either DP or HDMI port.</p></li>
 <li><p><strong>UART/JTAG Interface</strong>: For interacting and viewing boot-time information, connect the micro-USB cable to J4.</p></li>
 <li><p><strong>Network Connection</strong>: Connect the Ethernet cable from J10 on SOM board to your local network that is DHCP enabled, and ensure that you have Internet access as otherwise the package feed will not be accessible.</p></li>
 </ul>
-<ol class="simple">
-<li><p>To boot the Linux starter image, see the following instructions. Perform this step ONLY if this is first time that you are booting the Starter kit. Else, login with the PetaLinux username and the previously set password.</p></li>
-</ol>
-<p><strong>Boot the Linux Image</strong>:</p>
+</li>
+<li><p><strong>Boot the Linux Image</strong>:</p>
+<blockquote>
+<div><p><strong>NOTE</strong>: Only perform this step if you are booting the Starter kit for the first time. Otherwise, log in with the PetaLinux username and the password that was previously set.</p>
+</div></blockquote>
 <p>The Linux image will boot into the following login prompt:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xilinx</span><span class="o">-</span><span class="n">k26</span><span class="o">-</span><span class="n">starterkit</span><span class="o">-</span><span class="mi">2020_2</span> <span class="n">login</span><span class="p">:</span>
 </pre></div>
@@ -520,11 +523,7 @@ macOS) required to flash the SD card.</p></li>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">petalinux</span></code> user does not have root privileges. Most commands used in subsequent tutorials must be run using <code class="docutils literal notranslate"><span class="pre">sudo</span></code> and you may be prompted to enter your password.</p>
-<p><strong>Note:</strong> The root user is disabled by default due to security reasons. If you
-want to login as root user, perform the following steps. Use the <code class="docutils literal notranslate"><span class="pre">petalinux</span></code>
-user’s password on the first password prompt, then set a new password
-for the root user. You can now login as root user using the newly set
-root user password.</p>
+<p><strong>Note:</strong> For security, by default, the root user is disabled. If you want to login as root user, perform the following steps. Use the <code class="docutils literal notranslate"><span class="pre">petalinux</span></code> user’s password on the first password prompt, then set a new password for the root user. You can now login as root user using the newly set root user password.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>xilinx-k26-starterkit-2020_2:~$ sudo su -l root
 
 We trust you have received the usual lecture from the local System Administrator. It usually boils down to these three things:
@@ -540,11 +539,12 @@ Retype new password:
 passwd: password updated successfully
 </pre></div>
 </div>
+</li>
+</ol>
 </div>
 <div class="section" id="installing-the-defect-detect-package">
 <h1>Installing the Defect Detect package<a class="headerlink" href="#installing-the-defect-detect-package" title="Permalink to this headline">¶</a></h1>
-<ol>
-<li><p>Install the latest application packages.</p>
+<p>Install the latest application packages.</p>
 <ol>
 <li><p>Get the list of available packages in the feed:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xmutil</span> <span class="n">getpkgs</span>
@@ -560,8 +560,6 @@ passwd: password updated successfully
 <blockquote>
 <div><p><strong>NOTE</strong>: For setups without access to the internet, it is possible to download and use the packages locally. Refer to the <a class="reference internal" href="../../local_package_feed.html"><span class="doc">Install from a local package feed</span></a> for instructions.</p>
 </div></blockquote>
-</li>
-</ol>
 </div>
 <div class="section" id="firmware-loading">
 <h1>Firmware Loading<a class="headerlink" href="#firmware-loading" title="Permalink to this headline">¶</a></h1>
@@ -571,16 +569,17 @@ passwd: password updated successfully
 </pre></div>
 </div>
 <p>You should see similar output to this:</p>
-<pre>
- Accelerator                   Type           Active
- kv260-smartcam                XRT_FLAT         0
- base                          XRT_FLAT         0
- kv260-aibox-reid              XRT_FLAT         0
- kv260-defect-detect           XRT_FLAT         0
-</pre><blockquote>
-<div><p><em><strong>Note</strong></em>: The Active column shows the accelerator application that is currently loaded in the system. The value is changed to 1 after the firmware is loaded.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accelerator</span>                   <span class="n">Type</span>           <span class="n">Active</span>
+<span class="n">kv260</span><span class="o">-</span><span class="n">smartcam</span>                <span class="n">XRT_FLAT</span>         <span class="mi">0</span>
+<span class="n">base</span>                          <span class="n">XRT_FLAT</span>         <span class="mi">0</span>
+<span class="n">kv260</span><span class="o">-</span><span class="n">aibox</span><span class="o">-</span><span class="n">reid</span>              <span class="n">XRT_FLAT</span>         <span class="mi">0</span>
+<span class="n">kv260</span><span class="o">-</span><span class="n">defect</span><span class="o">-</span><span class="n">detect</span>           <span class="n">XRT_FLAT</span>         <span class="mi">0</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note</strong>: The Active column shows the accelerator application that is currently loaded in the system. The value is changed to 1 after the firmware is loaded.</p>
 </div></blockquote>
-<p>To load the Defect Detection application firmware consisting of PL bitstream, device tree overlay, and the <em>xclbin</em> file, run the following command:</p>
+<p>To load the Defect Detection application firmware consisting of PL bitstream, device tree overlay, and the <code class="docutils literal notranslate"><span class="pre">xclbin</span></code> file, run the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xmutil</span> <span class="n">loadapp</span> <span class="n">kv260</span><span class="o">-</span><span class="n">defect</span><span class="o">-</span><span class="n">detect</span>
 </pre></div>
 </div>
@@ -591,7 +590,16 @@ passwd: password updated successfully
 <div class="section" id="jupyter-notebook">
 <h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h2>
 <p>Jupyter notebook works as an example to show the capability of the <strong>defect-detect</strong> application for specific configurations.</p>
-<p>Jupter Notebook Defect Detect application supports File Source &amp; File Sink</p>
+<p>Jupter Notebook Defect Detect application supports File Source &amp; File Sink.</p>
+<p>Jupyter Notebook requires an IP address. If an IP address is not assigned by default, then perform steps 1-2.</p>
+<ol>
+<li><p>If using a direct connection (no DHCP), see public documentation on how to configure your PC with a static IP on the same subnet.</p></li>
+<li><p>For the SOM target, set the desired IP address within the same subnet using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code>, like the following example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ifconfig</span> <span class="n">eth0</span> <span class="o">&lt;</span><span class="n">user</span> <span class="n">defined</span> <span class="n">IP</span><span class="o">&gt;</span> <span class="n">netmask</span> <span class="o">&lt;</span><span class="n">user</span> <span class="n">defined</span> <span class="n">netmask</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
 <p>To launch Jupyter notebook on the target, run the following command. Use Chrome web-browser to interact with the platform.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ jupyter-lab --ip=ip-address &amp;
 // fill in ip-address from ifconfig
@@ -609,37 +617,28 @@ xilinx-SOM-multi-cc-2020_2:~$ [W 15:31:44.879 LabApp] JupyterLab server extensio
 [I 15:31:44.928 LabApp]  or http://127.0.0.1:8888/?token=635db1d645eeccc6a72bf1bb9c125164b1d689696348c97f
 [I 15:31:44.928 LabApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 [C 15:31:44.952 LabApp]
-
-    To access the notebook, open this file in a browser:
-        file:///home/root/.local/share/jupyter/runtime/nbserver-1531-open.html
-    Or copy and paste one of these URLs:
-        http://xxx.xx.x.xxx:8888/?token=635db1d645eeccc6a72bf1bb9c125164b1d689696348c97f
-     or http://127.0.0.1:8888/?token=635db1d645eeccc6a72bf1bb9c125164b1d689696348c97f
 </pre></div>
 </div>
+<p>To access the notebook, open this file in a browser:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">file</span><span class="p">:</span><span class="o">///</span><span class="n">home</span><span class="o">/</span><span class="n">root</span><span class="o">/.</span><span class="n">local</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">jupyter</span><span class="o">/</span><span class="n">runtime</span><span class="o">/</span><span class="n">nbserver</span><span class="o">-</span><span class="mi">1531</span><span class="o">-</span><span class="nb">open</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>Or, copy and paste one of these URLs:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://xxx.xx.x.xxx:8888/?token=635db1d645eeccc6a72bf1bb9c125164b1d689696348c97f">http://xxx.xx.x.xxx:8888/?token=635db1d645eeccc6a72bf1bb9c125164b1d689696348c97f</a></p></li>
+<li><p><a class="reference external" href="http://127.0.0.1:8888/?token=635db1d645eeccc6a72bf1bb9c125164b1d689696348c97f">http://127.0.0.1:8888/?token=635db1d645eeccc6a72bf1bb9c125164b1d689696348c97f</a></p></li>
+</ul>
 <p>If you have started Jupyter-lab by running another Application supported on KV260 Vision AI Starter kit, you may skip the preceding step and do not need to restart.
 If you close the Chrome browser and then need to find the URL for Jupyter lab, run the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="nb">list</span>
 </pre></div>
 </div>
 <p>Output example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    Currently running servers:
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Currently running servers:
 
-    http://ip:port/?token=xxxxxxxxxxxxxxxxxx :: /opt/xilinx/share/notebooks
+http://ip:port/?token=xxxxxxxxxxxxxxxxxx :: /opt/xilinx/share/notebooks
 </pre></div>
 </div>
-<p>If an IP address is not assigned by default, then perform steps 1-3.</p>
-<ol class="simple">
-<li><p>If using a direct connection (no DHCP), see public documentation on how to configure your PC with a static IP on the same subnet.</p></li>
-<li><p>For the SOM target, set the desired IP address within the same subnet using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code>.</p></li>
-</ol>
-<p>Example: <code class="docutils literal notranslate"><span class="pre">ifconfig</span> <span class="pre">eth0</span> <span class="pre">&lt;user</span> <span class="pre">defined</span> <span class="pre">IP&gt;</span> <span class="pre">netmask</span> <span class="pre">&lt;user</span> <span class="pre">defined</span> <span class="pre">netmask&gt;</span></code></p>
-<ol>
-<li><p>Start the Jupyter lab by running the command:</p>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">jupyter</span> <span class="pre">lab</span> <span class="pre">--ip=&lt;user</span> <span class="pre">defined</span> <span class="pre">IP&gt;</span></code>.</p>
-</li>
-<li><p>The notebook defect detection will be available at <code class="docutils literal notranslate"><span class="pre">http://&lt;User</span> <span class="pre">defined</span> <span class="pre">IP</span> <span class="pre">addr&gt;:8888/?token=xxx</span></code>. You can get the URL from the output of the command: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">jupyter</span> <span class="pre">notebook</span> <span class="pre">list</span></code>.</p></li>
-</ol>
 <p>A Jupyter notebook user can run cell by cell or run the defect detection full pipeline in Jupyter Notebook. To do this, go to defect-detect.ipynb, then from the menu bar, select <strong>Kernel</strong>, and then select <strong>Restart Kernel &amp; Run All Cells</strong>. The notebook by default expects file source location to be /home/petalinux/input_video.y8 - you can make changes in the notebook if needed.</p>
 <p>When using a file source, data is dumped in the <strong>rootfs (/home/petalinux)</strong>. You will need to offload the output files to your PC and play using a YUV player.</p>
 </div>
@@ -694,7 +693,8 @@ If you close the Chrome browser and then need to find the URL for Jupyter lab, r
 <div class="section" id="example-commands-to-run-the-defect-detection-pipeline-in-various-modes">
 <h2>Example Commands to Run the Defect Detection Pipeline in Various Modes<a class="headerlink" href="#example-commands-to-run-the-defect-detection-pipeline-in-various-modes" title="Permalink to this headline">¶</a></h2>
 <p>Examples of supported combinations sorted by input are as follows. If using the command line to invoke the <strong>defect-detect</strong> application, stop the process using CTRL-C prior to starting the next instance.</p>
-<p>For File-In and File-Out playback:</p>
+<div class="section" id="file-in-and-file-out-playback">
+<h3>File-In and File-Out playback:<a class="headerlink" href="#file-in-and-file-out-playback" title="Permalink to this headline">¶</a></h3>
 <p>This pipeline uses the input Y8 (GRAY8) file as an input source and a file as output. It dumps the output of the three stages to the file. Therefore, there are three out file options.</p>
 <p>It is mandatory to specify all the three output files, as otherwise the pipeline does not work.</p>
 <p>The Y8 (GRAY8) file can be played back using a YUV player by specifying the proper size (width=1280, height=800), and color format (Y).</p>
@@ -704,59 +704,105 @@ If you close the Chrome browser and then need to find the URL for Jupyter lab, r
 <blockquote>
 <div><p><strong>Note</strong>: You must update the command to the specific file desired as the input source.</p>
 </div></blockquote>
-<p>For File-In and Display-Out playback, run the following command.</p>
+</div>
+<div class="section" id="file-in-and-display-out-playback-run-the-following-command">
+<h3>File-In and Display-Out playback, run the following command.<a class="headerlink" href="#file-in-and-display-out-playback-run-the-following-command" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="mf">01.</span><span class="n">file</span><span class="o">-</span><span class="n">defect</span><span class="o">-</span><span class="n">detect</span><span class="o">-</span><span class="n">display</span><span class="o">.</span><span class="n">sh</span> <span class="o">./</span><span class="n">input_video</span><span class="o">.</span><span class="n">y8</span>
 </pre></div>
 </div>
 <blockquote>
-<div><p><strong>Note</strong>: For File-In and Display-Out playback, all three stage outputs will be displayed on DP/HDMI. The preceding command has a sample input file path. You need to
-change this path as per your requirement. The script <code class="docutils literal notranslate"><span class="pre">01.file-defect-detect-display.sh</span></code> contains the Gstreamer pipeline command. For improved latency, modify the <strong>gst-launch</strong> command that is mentioned in <a class="reference internal" href="debug_dd.html"><span class="doc">Debugging</span></a>.</p>
+<div><p><strong>Note</strong>: For File-In and Display-Out playback, all three stage outputs will be displayed on DP/HDMI. The preceding command has a sample input file path. You need to change this path as per your requirement. The script <code class="docutils literal notranslate"><span class="pre">01.file-defect-detect-display.sh</span></code> contains the Gstreamer pipeline command. For improved latency, modify the <strong>gst-launch</strong> command that is mentioned in <a class="reference internal" href="debug_dd.html"><span class="doc">Debugging</span></a>.</p>
 </div></blockquote>
 <p>Once you are done with the Defect Detection application and to switch to another accelerator application, you can unload the currently loaded accelerator application firmware by running:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xmutil</span> <span class="n">unloadapp</span> <span class="n">kv260</span><span class="o">-</span><span class="n">defect</span><span class="o">-</span><span class="n">detect</span>
 </pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="file-structure-of-the-application">
 <h2>File Structure of the Application<a class="headerlink" href="#file-structure-of-the-application" title="Permalink to this headline">¶</a></h2>
 <details>
- <summary><b>Click here to view details</b></summary><p>The application comprises the following files:</p>
+<summary><b>To view details, click here.</b></summary><p>The application is comprised of the following files:</p>
 <ul class="simple">
-<li><p>The application is installed as:</p>
-<ul>
 <li><p>Binary File: =&gt; <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/bin</span></code></p></li>
 </ul>
-</li>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>filename</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>defect-detect</td>
+<td>main app</td>
+</tr>
+<tr>
+<td><strong><em>_</em></strong><strong><em>_</em></strong></td>
+<td></td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>Script File: =&gt; <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/bin/</span></code></p></li>
 </ul>
-<pre><code>  | filename | description |
-  |----------|-------------|
-  |defect-detect| main app|
-  ______________
-</code></pre><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>* Script File: =&gt; ```/opt/xilinx/bin/```
-</pre></div>
-</div>
-<pre><code>  | filename | description |
-  |----------|-------------|
-  |`01.file-defect-detect-display.sh` | Invoke GStreamer pipeline to detect the defects and display outputs on DP/HDMI.|
-  _________
-</code></pre><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>* Configuration Files: =&gt; ```/opt/xilinx/share/ivas/defect-detect/```
-</pre></div>
-</div>
-<pre><code>  | filename | description |
-  |----------|-------------|
-  |```canny-accelarator.json```|Configuration of canny accelerator|
-  |```defect-calculation.json```|Configuration of defect calculation |
-  |```edge-tracer.json```| Configuration of edge tracer accelerator |
-  |```pre-process.json```|Configuration of pre-process accelerator|
-  ____________________
-</code></pre><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Jupyter</span> <span class="n">notebook</span> <span class="n">file</span><span class="p">:</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">notebooks</span><span class="o">/</span><span class="n">defect</span><span class="o">-</span><span class="n">detect</span>
-</pre></div>
-</div>
-<pre><code>  | filename | description |
-  |----------|-------------|
-  |```defect-detect.ipynb``` | Jupyter notebook file to run the Defect Defection pipeline (File Source).|
-  __________________
-</code></pre></details></div>
+<pre><code>| filename | description |
+|----------|-------------|
+|`01.file-defect-detect-display.sh` | Invoke GStreamer pipeline to detect the defects and display outputs on DP/HDMI.|
+_________
+</code></pre><ul class="simple">
+<li><p>Configuration Files: =&gt; <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/share/ivas/defect-detect/</span></code></p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>filename</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>canny-accelarator.json</code></td>
+<td>Configuration of canny accelerator</td>
+</tr>
+<tr>
+<td><code>defect-calculation.json</code></td>
+<td>Configuration of defect calculation</td>
+</tr>
+<tr>
+<td><code>edge-tracer.json</code></td>
+<td>Configuration of edge tracer accelerator</td>
+</tr>
+<tr>
+<td><code>pre-process.json</code></td>
+<td>Configuration of pre-process accelerator</td>
+</tr>
+<tr>
+<td><strong><em>_</em></strong><strong><em>_</em></strong>______</td>
+<td></td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>Jupyter notebook file: =&gt; <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/share/notebooks/defect-detect</span></code></p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>filename</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defect-detect.ipynb</code></td>
+<td>Jupyter notebook file to run the Defect Defection pipeline (File Source).</td>
+</tr>
+<tr>
+<td><strong><em>_</em></strong><strong><em>_</em></strong>____</td>
+<td></td>
+</tr>
+</tbody>
+</table></details></div>
 </div>
 <div class="section" id="next-steps">
 <h1>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h1>
@@ -770,7 +816,7 @@ change this path as per your requirement. The script <code class="docutils liter
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p></div>
 </div>
 
 
@@ -793,7 +839,7 @@ change this path as per your requirement. The script <code class="docutils liter
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on April 22, 2021.
+        Last updated on April 26, 2021.
       </span>
 
     </p>

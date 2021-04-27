@@ -442,30 +442,31 @@
 <div class="section" id="setting-up-the-board">
 <h1>Setting up the Board<a class="headerlink" href="#setting-up-the-board" title="Permalink to this headline">¶</a></h1>
 <blockquote>
-<div><p>Note: Skip Step 1, if you have already flashed the SD Card with the KV260 Vision AI Starter Kit Image (kv260-sdcard.img.wic)</p>
+<div><p><strong>Note</strong>: If you have already flashed the SD Card with the KV260 Vision AI Starter Kit Image (kv260-sdcard.img.wic), then skip the first step below.</p>
 </div></blockquote>
 <ol>
 <li><p>Flash the SD Card</p>
-<ul class="simple">
+<ul>
 <li><p>Download  the <a class="reference external" href="https://www.xilinx.com/member/forms/download/xef.html?filename=petalinux-sdimage_0415.wic.gz">SD Card Image</a> and save it on your computer.</p></li>
 <li><p>Connect the microSD to your computer.</p></li>
 <li><p>Download the <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher tool</a> (recommended; available for Window, Linux, and
 macOS) required to flash the SD card.</p></li>
-<li><p>Follow the instructions in the tool and select the downloaded image to flash onto your microSD card.</p></li>
-</ul>
+<li><p>Follow the instructions in the tool and select the downloaded image to flash onto your microSD card.</p>
 <p><img alt="Balena Etcher" src="../../../_images/balena.png" /></p>
-<ul class="simple">
-<li><p>Eject the SD card from your computer.</p></li>
-</ul>
-<p>If you are looking for other OS specific tools to write the image to the SD card refer to <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/setting-up-the-sd-card-image.html">KV260 Getting Started Page</a></p>
 </li>
-<li><p>Hardware Setup:</p>
+<li><p>Eject the SD card from your computer.</p>
+<p>If you are looking for other OS specific tools to write the image to the SD card, refer to <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/setting-up-the-sd-card-image.html">KV260 Getting Started Page</a></p>
+</li>
+</ul>
+</li>
+<li><p>Set up the hardware.</p>
 <p><img alt="GitHub Logo" src="../../../_images/som-board.png" /></p>
 <ul>
-<li><p>microSD:
-Insert the SD card into slot at J11.</p></li>
+<li><p>microSD:</p>
+<p>Insert the SD card into slot at J11.</p>
+</li>
 <li><p>Monitor:</p>
-<p>This application requires <strong>4K</strong> monitor, so that up to 4 channels of 1080p video could be displayed.</p>
+<p>To display up to 4 channels of 1080p video, this application requires 4K monitor.</p>
 <p>Before booting the board, please connect the monitor to the board via either DP or HDMI port.</p>
 </li>
 <li><p>UART/JTAG interface:</p>
@@ -479,8 +480,7 @@ Insert the SD card into slot at J11.</p></li>
 <li><p>Power on the board, and boot the Linux image.</p>
 <p>The Linux image will boot into the following login prompt:</p>
 <p><code class="docutils literal notranslate"><span class="pre">xilinx-k26-starterkit-2020_2</span> <span class="pre">login:</span></code></p>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">petalinux</span></code> user for login. You will be prompted to set a new password
-on the first login.</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">petalinux</span></code> user for login. You will be prompted to set a new password on the first login.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xilinx</span><span class="o">-</span><span class="n">k26</span><span class="o">-</span><span class="n">starterkit</span><span class="o">-</span><span class="mi">2020_2</span> <span class="n">login</span><span class="p">:</span> <span class="n">petalinux</span>
 <span class="n">You</span> <span class="n">are</span> <span class="n">required</span> <span class="n">to</span> <span class="n">change</span> <span class="n">your</span> <span class="n">password</span> <span class="n">immediately</span> <span class="p">(</span><span class="n">administrator</span> <span class="n">enforced</span><span class="p">)</span>
 <span class="n">New</span> <span class="n">password</span><span class="p">:</span>
@@ -518,9 +518,9 @@ passwd: password updated successfully
 </pre></div>
 </div>
 <p>System will ask “Is this ok [y/N]:” to download the packages, please type “y” to proceed.</p>
+<p>Note: For setups without access to the internet, it is possible to download and use the package locally. Please refer to the <a class="reference internal" href="../../local_package_feed.html"><span class="doc">Install from a local package feed</span></a> for instructions.</p>
 </li>
 </ol>
-<p>Note: For setups without access to the internet, it is possible to download and use the package locally. Please refer to the <a class="reference internal" href="../../local_package_feed.html"><span class="doc">Install from a local package feed</span></a> for instructions.</p>
 </li>
 <li><p>Dynamically load the application package.</p>
 <p>The firmware consist of bitstream, device tree overlay (dtbo) and xclbin file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.</p>
@@ -550,29 +550,39 @@ passwd: password updated successfully
 </ol>
 </div>
 <div class="section" id="how-to-run-the-application">
-<h1>How to run the application<a class="headerlink" href="#how-to-run-the-application" title="Permalink to this headline">¶</a></h1>
+<h1>How to run the application:<a class="headerlink" href="#how-to-run-the-application" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="two-types-of-input-sources">
 <h2>Two types of input sources<a class="headerlink" href="#two-types-of-input-sources" title="Permalink to this headline">¶</a></h2>
 <p>The AIBOX application is targeted to run with RTSP streams as input source, but for convienience, we also support video files as input.</p>
 <p>We assume the RTSP or video file to be <strong>1080P H264/H265</strong></p>
 <ul>
 <li><p>RTSP source <a name="rtsp-source"> </a></p>
+<ul>
+<li><p>IP Camera</p>
 <p>IP cameras normally have a configuration page to configure the RTSP stream related parameters. Please refer to the manual of your camera, and configure it to <strong>1080P H264/H265</strong>, and get the RTSP URL to be used as input parameter for the AIBox application. The URL is in the form of “rtsp://user:passwd&#64;ip-address:port/name”</p>
+</li>
+<li><p>VLC player</p>
+<p>Alternatively, you can use VLC in windows to setup RTSP Streaming server. You must first turn off any firewalls (McAfee, etc) and VPN, and make sure your windows machine is on the same subnet as SOM board. In the folder with vlc.exe (typically C:\Program Files\VideoLAN\VLC), do a shift-rightclick and select “Open PowerShell window here”. In PowerShell window, enter</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="o">.</span>\<span class="n">vlc</span><span class="o">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">vvv</span> <span class="n">path_to_a_mp4_file</span> <span class="o">--</span><span class="n">sout</span> <span class="s1">&#39;#rtp{dst=windows_ip_address,port=1234,sdp=rtsp://windows_ip_address/test.sdp}&#39;</span> <span class="o">--</span><span class="n">loop</span>
+</pre></div>
+</div>
+</li>
+</ul>
 </li>
 <li><p>File source</p>
 <p>To demonstrate the application in the case where no IP camera is available, a video source may be played from a file on the SD card instead.</p>
 <p>You can download video files from the following links, which is of MP4 format.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://pixabay.com/videos/liverpool-people-couple-pier-head-46090/">https://pixabay.com/videos/liverpool-people-couple-pier-head-46090/</a></p></li>
+<li><p>https://pixabay.com/videos/liverpool-people-couple-pier-head-46090/</p></li>
 <li><p>https://pixabay.com/videos/liverpool-pier-head-england-uk-46098/</p></li>
 <li><p>https://pixabay.com/videos/spring-walk-park-trees-flowers-15252/</p></li>
 <li><p>https://pixabay.com/videos/walking-people-city-bucharest-6099/</p></li>
 </ul>
-<p>Then, you need to transcode it to H264 file which is the supported input format.</p>
+<p>Then you need to transcode it to H264 file which is the supported input format.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ffmpeg</span> <span class="o">-</span><span class="n">i</span> <span class="nb">input</span><span class="o">-</span><span class="n">video</span><span class="o">.</span><span class="n">mp4</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">libx264</span> <span class="o">-</span><span class="n">pix_fmt</span> <span class="n">nv12</span> <span class="o">-</span><span class="n">vf</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1920</span><span class="p">:</span><span class="mi">1080</span> <span class="o">-</span><span class="n">r</span> <span class="mi">30</span> <span class="n">output</span><span class="o">.</span><span class="n">nv12</span><span class="o">.</span><span class="n">h264</span>
 </pre></div>
 </div>
-<p>Finally, please upload or copy these transcoded H264 files to the board, place it to somewhere under /home/petalinux, which is the home directory of the user you login as.</p>
+<p>Finally, upload or copy these transcoded H264 files to the board, place it to somewhere under /home/petalinux, which is the home directory of the user you login as.</p>
 </li>
 </ul>
 </div>
@@ -627,9 +637,15 @@ In case user closes Chrome browser and need to find URL for Jupyter lab, run bel
 <ul>
 <li><p>Run one channel RTSP stream</p>
 <blockquote>
-<div><p>sudo aibox-reid -s <a class="reference external" href="#rtsp-source">rtsp://username:passwd&#64;ip_address:port/name</a> -t rtsp -p 0
-or
-sudo aibox-reid -s <a class="reference external" href="#rtsp-source">rtsp://username:passwd&#64;ip_address:port</a> -t rtsp -p 0</p>
+<div><p>sudo aibox-reid -s <a class="reference external" href="#rtsp-source">rtsp://username:passwd&#64;ip_address:port/name</a> -t rtsp -p 0</p>
+</div></blockquote>
+<p>or</p>
+<blockquote>
+<div><p>sudo aibox-reid -s <a class="reference external" href="#rtsp-source">rtsp://username:passwd&#64;ip_address:port</a> -t rtsp -p 0</p>
+</div></blockquote>
+<p>or (for windows VLC server setup):</p>
+<blockquote>
+<div><p>sudo aibox-reid -s rtsp://windows_ip_address:1234/test.sdp -t rtsp -p 0</p>
 </div></blockquote>
 </li>
 <li><p>Run one channel video file</p>
@@ -643,7 +659,7 @@ sudo aibox-reid -s <a class="reference external" href="#rtsp-source">rtsp://user
 </div></blockquote>
 </li>
 </ul>
-<p><strong>Note</strong> Only one instance of aibox-reid application can run at a time because it requires exclusive access to a DPU engine and there is only one instance of DPU that exists in the aibox-reid platform.</p>
+<p><strong>Note</strong>: Only one instance of aibox-reid application can run at a time because it requires exclusive access to a DPU engine and there is only one instance of DPU that exists in the aibox-reid platform.</p>
 </div>
 <div class="section" id="command-options">
 <h4>Command Options:<a class="headerlink" href="#command-options" title="Permalink to this headline">¶</a></h4>
@@ -753,7 +769,7 @@ sudo aibox-reid -s <a class="reference external" href="#rtsp-source">rtsp://user
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p></div>
 </div>
 
 
@@ -776,7 +792,7 @@ sudo aibox-reid -s <a class="reference external" href="#rtsp-source">rtsp://user
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on April 22, 2021.
+        Last updated on April 26, 2021.
       </span>
 
     </p>
