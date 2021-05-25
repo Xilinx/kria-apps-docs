@@ -448,55 +448,57 @@
 <blockquote>
 <div><p>Note: Skip Step 1, if you have already flashed the SD Card with the KV260 Vision AI Starter Kit Image (kv260-sdcard.img.wic)</p>
 </div></blockquote>
-<ol class="simple">
-<li><p>Flash the SD Card</p></li>
-</ol>
-<ul>
+<ol>
+<li><p>Flash the SD Card</p>
+<ul class="simple">
 <li><p>Download  the <a class="reference external" href="https://www.xilinx.com/member/forms/download/xef.html?filename=petalinux-sdimage_0415.wic.gz">SD Card Image</a> and save it on your computer.</p></li>
 <li><p>Connect the microSD to your computer.</p></li>
 <li><p>Download the <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher tool</a> (recommended; available for Window, Linux, and
 macOS) required to flash the SD card.</p></li>
-<li><p>Follow the instructions in the tool and select the downloaded image to flash onto your microSD card.</p>
+<li><p>Follow the instructions in the tool and select the downloaded image to flash onto your microSD card.</p></li>
+</ul>
 <p><img alt="Balena Etcher" src="../../../_images/balena3.png" /></p>
-</li>
-<li><p>Eject the SD card from your computer.</p>
+<ul class="simple">
+<li><p>Eject the SD card from your computer.</p></li>
+</ul>
 <p>If you are looking for other OS specific tools to write the image to the SD card refer to <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/setting-up-the-sd-card-image.html">KV260 Getting Started Page</a></p>
 </li>
-</ul>
-<ol>
 <li><p>Hardware Setup:</p>
 <p><img alt="GitHub Logo" src="../../../_images/som-board3.png" /></p>
-</li>
-</ol>
-<ul>
-<li><p>microSD:</p>
+<ul class="simple">
+<li><p>microSD:</p></li>
+</ul>
 <p>Insert the SD card into slot at J11.</p>
-</li>
-<li><p>Monitor:</p>
+<ul class="simple">
+<li><p>Monitor:</p></li>
+</ul>
 <p>Before booting, connect a 1080P/4K monitor to the board via either DP or HDMI port.</p>
 <p>4K monitor is preferred to demonstrate at the maximum supported resolution.</p>
-</li>
-<li><p>IAS sensor:</p>
+<ul class="simple">
+<li><p>IAS sensor:</p></li>
+</ul>
 <p>Before power on, install an AR1335 sensor module in J7.</p>
-</li>
-<li><p>UART/JTAG interface:</p>
+<ul class="simple">
+<li><p>UART/JTAG interface:</p></li>
+</ul>
 <p>For interacting and seeing boot-time information, connect a USB debugger to the J4.</p>
-</li>
-<li><p>You may also use a USB webcam as an input device.</p>
+<ul class="simple">
+<li><p>You may also use a USB webcam as an input device.</p></li>
+</ul>
 <p>The webcam is optional video input device supported in the application.</p>
 <p>Recommended webcam is the <a class="reference external" href="https://www.logitech.com/en-in/products/webcams/brio-4k-hdr-webcam.960-001105.html">Logitech BRIO</a>.</p>
-</li>
-<li><p>Network connection:</p>
+<ul class="simple">
+<li><p>Network connection:</p></li>
+</ul>
 <p>Connect the Ethernet cable to your local network with DHCP enabled to install packages and run Jupyter Notebooks</p>
-</li>
-<li><p>Audio Pmod setup as RTSP audio input:</p>
+<ul class="simple">
+<li><p>Audio Pmod setup as RTSP audio input:</p></li>
+</ul>
 <p>Audio Pmod is optional audio input and output device.</p>
 <p>In the Smart camera application only RTSP mode <a class="reference external" href="#rtsp-audio">uses the audio input function</a> to capture audio. Audio is then sent together with the images as RTSP stream and can be received at the client side.</p>
 <p>To set it up, first install the Pmod to J2, then connect a microphone or any other sound input device to the <a class="reference external" href="https://store.digilentinc.com/pmod-i2s2-stereo-audio-input-and-output/">line input port</a>. A headphone with a microphone will not work - device needs to be a dedicated input.</p>
 <p>Smartcam application does not yet support speakers.</p>
 </li>
-</ul>
-<ol>
 <li><p>Software Preparation:</p>
 <p>You will use a PC having network access to the board as the RTSP client machine.</p>
 <p>Make sure that the PC and the KV260 Vision AI Starter Kit are on the same subnet mask.</p>
@@ -528,7 +530,7 @@ Administrator. It usually boils down to these three things:
     #3) With great power comes great responsibility.
 
 Password:
-root@xilinx-k26-starterkit-2020_2:~## passwd
+root@xilinx-k26-starterkit-2020_2:~# passwd
 New password:
 Retype new password:
 passwd: password updated successfully
@@ -576,33 +578,26 @@ passwd: password updated successfully
 </li>
 </ol>
 </li>
-<li><p>Getting demo video files suitable for the application:</p></li>
-</ol>
-<p>To be able to demostrate the function of the application in case you have no MIPI and USB camera in hand, we support the file video source too.</p>
+<li><p>Getting demo video files suitable for the application:</p>
+<p>To be able to demonstrate the function of the application in case you have no MIPI and USB camera in hand, we support the file video source too.</p>
 <p>You can download video files from the following links, which is of MP4 format.</p>
 <ul class="simple">
-<li><p>Facedet / RefineDet AI Task:</p>
-<ul>
-<li><p>https://pixabay.com/videos/alley-people-walk-street-ukraine-39837/</p></li>
+<li><p><a class="reference external" href="https://pixabay.com/videos/alley-people-walk-street-ukraine-39837/">Facedet / RefineDet AI Task</a></p></li>
+<li><p><a class="reference external" href="https://pixabay.com/videos/freeway-traffic-cars-rainy-truck-8358/">ADAS SSD AI Task</a></p></li>
 </ul>
-</li>
-<li><p>ADAS SSD AI Task:</p>
-<ul>
-<li><p>https://pixabay.com/videos/freeway-traffic-cars-rainy-truck-8358/</p></li>
-</ul>
-</li>
-</ul>
-<p>Then you need to transcode it to H264 file which is one supported input format.</p>
+<p>Then, you need to transcode it to H264 file which is one supported input format.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ffmpeg</span> <span class="o">-</span><span class="n">i</span> <span class="nb">input</span><span class="o">-</span><span class="n">video</span><span class="o">.</span><span class="n">mp4</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">libx264</span> <span class="o">-</span><span class="n">pix_fmt</span> <span class="n">nv12</span> <span class="o">-</span><span class="n">vf</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1920</span><span class="p">:</span><span class="mi">1080</span> <span class="o">-</span><span class="n">r</span> <span class="mi">30</span> <span class="n">output</span><span class="o">.</span><span class="n">nv12</span><span class="o">.</span><span class="n">h264</span>
 </pre></div>
 </div>
 <p>Finally, please upload or copy these transcoded H264 files to the board (by using scp, ftp, or copy onto SD card and finding them in /media/sd-mmcblk0p1/), place it to somewhere under /home/petalinux, which is the home directory of the user you login as.</p>
+</li>
+</ol>
 </div>
 <div class="section" id="run-the-application">
 <h2>Run the Application<a class="headerlink" href="#run-the-application" title="Permalink to this headline">¶</a></h2>
 <p>There are two ways to interact with the application.</p>
 <div class="section" id="jupyter-notebook">
-<h3>Jupyter notebook.<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h3>
+<h3>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h3>
 <p>To launch Jupyter notebook on the target, run below command. Use Chrome web-browser to interact with the platform.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ jupyter-lab --ip=ip-address &amp; 
 // fill in ip-address from ifconfig 
@@ -628,8 +623,8 @@ xilinx-SOM-multi-cc-2020_2:~$ [W 15:31:44.879 LabApp] JupyterLab server extensio
      or http://127.0.0.1:8888/?token=635db1d645eeccc6a72bf1bb9c125164b1d689696348c97f
 </pre></div>
 </div>
-<p>In case user has started Jupyter-lab by running another Application supported on KV260 Vision AI Starter kit, user may skip the above step and does not need to restart.
-In case user closes Chrome browser and need to find URL for Jupyter lab, run below command</p>
+<p>In case user has started Jupyter-lab by running another application supported on KV260 Vision AI Starter kit, user may skip the above step and does not need to restart.</p>
+<p>In case user closes Chrome browser and need to find URL for Jupyter lab, run below command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo jupyter notebook list 
 </pre></div>
 </div>
@@ -703,10 +698,10 @@ In case user closes Chrome browser and need to find URL for Jupyter lab, run bel
 </ul>
 </details></div>
 <div class="section" id="additional-configuration-options-for-smartcam-invocation">
-<h4>Additional configuration options for smartcam invocation:<a class="headerlink" href="#additional-configuration-options-for-smartcam-invocation" title="Permalink to this headline">¶</a></h4>
+<h4>Additional configuration options for <code class="docutils literal notranslate"><span class="pre">smartcam</span></code> invocation<a class="headerlink" href="#additional-configuration-options-for-smartcam-invocation" title="Permalink to this headline">¶</a></h4>
 <p>The example scripts and Jupyter notebook work as examples to show the capability of the smartcam for specific configurations. More combinations could be made based on the options provided by smartcam. User can get detailed application options as following by invoking <code class="docutils literal notranslate"><span class="pre">smartcam</span> <span class="pre">--help</span></code>.</p>
 <div class="section" id="usage">
-<h5>Usage:<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h5>
+<h5>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> smartcam [OPTION?] - Application for face detection on SOM board of Xilinx.
 
  Help Options:
@@ -755,22 +750,28 @@ In case user closes Chrome browser and need to find URL for Jupyter lab, run bel
 </div>
 </div>
 <div class="section" id="examples-of-supported-combinations-sorted-by-input-are-outlined-below">
-<h5>Examples of supported combinations sorted by input are outlined below.<a class="headerlink" href="#examples-of-supported-combinations-sorted-by-input-are-outlined-below" title="Permalink to this headline">¶</a></h5>
+<h5>Examples of supported combinations sorted by input are outlined below<a class="headerlink" href="#examples-of-supported-combinations-sorted-by-input-are-outlined-below" title="Permalink to this headline">¶</a></h5>
 <p>If using the command line to invoke the smartcam, stop the process via CTRL-C prior to starting the next instance.</p>
 <ul>
 <li><p>MIPI Input (IAS sensor input):</p>
 <ul>
 <li><p>output: RTSP</p>
-<p>sudo smartcam –mipi -W 1920 -H 1080 –target rtsp</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">smartcam</span> <span class="o">--</span><span class="n">mipi</span> <span class="o">-</span><span class="n">W</span> <span class="mi">1920</span> <span class="o">-</span><span class="n">H</span> <span class="mi">1080</span> <span class="o">--</span><span class="n">target</span> <span class="n">rtsp</span>
+</pre></div>
+</div>
 </li>
 <li><p>output: RTSP with audio <a name="rtsp-audio"> </a></p>
 <p>sudo smartcam –mipi -W 1920 -H 1080 –target rtsp –audio</p>
 </li>
 <li><p>output: DP</p>
-<p>sudo smartcam –mipi -W 1920 -H 1080 –target dp</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">smartcam</span> <span class="o">--</span><span class="n">mipi</span> <span class="o">-</span><span class="n">W</span> <span class="mi">1920</span> <span class="o">-</span><span class="n">H</span> <span class="mi">1080</span> <span class="o">--</span><span class="n">target</span> <span class="n">dp</span>
+</pre></div>
+</div>
 </li>
 <li><p>output: file</p>
-<p>sudo smartcam –mipi -W 1920 -H 1080 –target file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">smartcam</span> <span class="o">--</span><span class="n">mipi</span> <span class="o">-</span><span class="n">W</span> <span class="mi">1920</span> <span class="o">-</span><span class="n">H</span> <span class="mi">1080</span> <span class="o">--</span><span class="n">target</span> <span class="n">file</span>
+</pre></div>
+</div>
 </li>
 </ul>
 </li>
@@ -778,13 +779,19 @@ In case user closes Chrome browser and need to find URL for Jupyter lab, run bel
 <p><strong>Note</strong> You must update the command to the specific file desired as the input source.</p>
 <ul>
 <li><p>output: RTSP</p>
-<p>sudo smartcam –file ./test.h264 -i h264 -W 1920 -H 1080 -r 30 –target rtsp</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">smartcam</span> <span class="o">--</span><span class="n">file</span> <span class="o">./</span><span class="n">test</span><span class="o">.</span><span class="n">h264</span> <span class="o">-</span><span class="n">i</span> <span class="n">h264</span> <span class="o">-</span><span class="n">W</span> <span class="mi">1920</span> <span class="o">-</span><span class="n">H</span> <span class="mi">1080</span> <span class="o">-</span><span class="n">r</span> <span class="mi">30</span> <span class="o">--</span><span class="n">target</span> <span class="n">rtsp</span>
+</pre></div>
+</div>
 </li>
 <li><p>output: DP</p>
-<p>sudo smartcam –file ./test.h264 -i h264 -W 1920 -H 1080 -r 30 –target dp</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">smartcam</span> <span class="o">--</span><span class="n">file</span> <span class="o">./</span><span class="n">test</span><span class="o">.</span><span class="n">h264</span> <span class="o">-</span><span class="n">i</span> <span class="n">h264</span> <span class="o">-</span><span class="n">W</span> <span class="mi">1920</span> <span class="o">-</span><span class="n">H</span> <span class="mi">1080</span> <span class="o">-</span><span class="n">r</span> <span class="mi">30</span> <span class="o">--</span><span class="n">target</span> <span class="n">dp</span>
+</pre></div>
+</div>
 </li>
 <li><p>output: file</p>
-<p>sudo smartcam –file ./test.h264 -i h264 -W 1920 -H 1080 -r 30 –target file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">smartcam</span> <span class="o">--</span><span class="n">file</span> <span class="o">./</span><span class="n">test</span><span class="o">.</span><span class="n">h264</span> <span class="o">-</span><span class="n">i</span> <span class="n">h264</span> <span class="o">-</span><span class="n">W</span> <span class="mi">1920</span> <span class="o">-</span><span class="n">H</span> <span class="mi">1080</span> <span class="o">-</span><span class="n">r</span> <span class="mi">30</span> <span class="o">--</span><span class="n">target</span> <span class="n">file</span>
+</pre></div>
+</div>
 </li>
 </ul>
 </li>
