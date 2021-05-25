@@ -10,11 +10,13 @@
  </tr>
 </table>
 
-# Introduction
+# Setting up the Board and Application Deployment
+
+## Introduction
 
 This document shows how to set up the board and run the aibox-reid application.
 
-# Setting up the Board
+## Setting up the Board
 
 > **Note**: If you have already flashed the SD Card with the KV260 Vision AI Starter Kit Image (kv260-sdcard.img.wic), then skip the first step below.
 
@@ -87,7 +89,7 @@ This document shows how to set up the board and run the aibox-reid application.
         #3) With great power comes great responsibility.
 
     Password:
-    root@xilinx-k26-starterkit-2020_2:~# passwd
+    root@xilinx-k26-starterkit-2020_2:~## passwd
     New password:
     Retype new password:
     passwd: password updated successfully
@@ -136,19 +138,19 @@ This document shows how to set up the board and run the aibox-reid application.
          sudo xmutil      loadapp kv260-aibox-reid
          ```
 
-# How to run the application:
+## How to run the application:
 
-## Two types of input sources
+### Two types of input sources
 
 The AIBOX application is targeted to run with RTSP streams as input source, but for convienience, we also support video files as input.
 
-We assume the RTSP or video file to be **1080P H264/H265**
+We assume the RTSP or video file to be **1080P H264/H265 30FPS**. AIBOX application can adjust for other FPS with -r flag, but resolution must be 1080p. 
 
 * RTSP source <a name="rtsp-source"> </a>
 
   * IP Camera
 
-    IP cameras normally have a configuration page to configure the RTSP stream related parameters. Please refer to the manual of your camera, and configure it to **1080P H264/H265**, and get the RTSP URL to be used as input parameter for the AIBox application. The URL is in the form of "rtsp://user:passwd@ip-address:port/name"
+    IP cameras normally have a configuration page to configure the RTSP stream related parameters. Please refer to the manual of your camera, and configure it to **1080P H264/H265 30FPS**, and get the RTSP URL to be used as input parameter for the AIBox application. The URL is in the form of "rtsp://user:passwd@ip-address:port/name"
 
   * VLC player
 
@@ -177,11 +179,11 @@ We assume the RTSP or video file to be **1080P H264/H265**
 
   Finally, upload or copy these transcoded H264 files to the board, place it to somewhere under /home/petalinux, which is the home directory of the user you login as.
 
-## Interacting with the application
+### Interacting with the application
 
 There are two ways to interact with application, via Jupyuter notebook or Command line
 
-### Jupyter notebook
+#### Jupyter notebook
 
 To launch Jupyter notebook on the target, run below command. Use Chrome web-browser to interact with the platform.
 
@@ -229,11 +231,11 @@ In the notebook, we will construct the GStreamer pipeline string, you can get it
 
 **Note** [Known limitation](issue-aib.md#notebook-one-channel)
 
-### Command Line
+#### Command Line
 
 **Note** The application needs to be run with ***sudo*** .
 
-#### Examples:
+##### Examples:
 
 * Run one channel RTSP stream
 
@@ -257,7 +259,7 @@ In the notebook, we will construct the GStreamer pipeline string, you can get it
 
 **Note**: Only one instance of aibox-reid application can run at a time because it requires exclusive access to a DPU engine and there is only one instance of DPU that exists in the aibox-reid platform.
 
-#### Command Options:
+##### Command Options:
 
 The examples show the capability of the aibox-reid for specific configurations. User can get more and detailed application options as following by invoking
 
@@ -282,10 +284,11 @@ The examples show the capability of the aibox-reid for specific configurations. 
         -e, --srcenc=[h264|h265]                         Encoding type of the input source. Optional and defaults to h264. Can set up to 4 times.
         -p, --pos=[0|1|2|3]                              Location of the display in the 4 grids of 4k monitor. Optional.
                                                          0: top left, 1: top right, 2: bottom left, 3: bottom right. Optional. Can set up to 4 times.
+        -r, --framerate                                  Framerate of the input. Optional. Can set up to 4 times.
         -R, --report                                     Report fps
 ```
 
-# Files structure
+## Files structure
 
 The application is installed as:
 
@@ -311,11 +314,11 @@ The application is installed as:
   |----------|-------------|
   |aibox-reid.ipynb | Jupyter notebook file for aibox-reid.|
 
-# Next Steps
+## Next Steps
 
-* Go back to the [KV260 SOM AIBox-ReID design start page](../aibox_landing.md)
+* Go back to the [KV260 SOM AIBox-ReID design start page](../aibox_landing)
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

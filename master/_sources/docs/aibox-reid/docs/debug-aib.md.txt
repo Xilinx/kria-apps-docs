@@ -10,7 +10,9 @@
  </tr>
 </table>
 
-# This section list some debugging tips for the application.
+# Debugging
+
+## This section list some debugging tips for the application.
 
 * Make sure you use: 
 
@@ -18,9 +20,9 @@
 
     to load the firmware properly, otherwise many drivers including will not be loaded and many errors will pop up when you run the application.
 
-# This section list some debugging tips for platform peripherals.
+## This section list some debugging tips for platform peripherals.
 
-## Monitor
+### Monitor
 
 <details>
  <summary>Click here to view details</summary>
@@ -32,7 +34,7 @@ Modetest is a test tool which can be found as part of the libdrm suite of test t
 
 	Note: Prints shown below is an example from a 4k monitor. Use for reference only.
 
-### Ensure status of monitor is connected 
+#### Ensure status of monitor is connected 
 
 `modetest -M xlnx -D 80000000.v_mix`
 
@@ -45,7 +47,7 @@ id      encoder status          name            size (mm)       modes   encoders
 52      51      connected       DP-1            610x350         43      51
 ```
 
-### Display modes supported by your display
+#### Display modes supported by your display
 
 `modetest -M xlnx -D 80000000.v_mix`
 
@@ -62,7 +64,7 @@ id      encoder status          name            size (mm)       modes   encoders
 
 Ensure display is capable of supporting user requested resolution and refresh rates to the application.
 
-### Current mode 
+#### Current mode 
 
 `modetest -M xlnx -D 80000000.v_mix`
 
@@ -75,7 +77,7 @@ id      fb      pos     size
   props:
 ```
 
-### Test to determine if display is OK
+#### Test to determine if display is OK
 
 `modetest -M xlnx -D 80000000.v_mix -s 52@40:3840x2160@NV16`
 
@@ -85,7 +87,7 @@ The  above command sets a mode, blue screen appears on the display.
 
 </details>
 
-# Known Benign Error messages
+## Known Benign Error messages
 
 <details>
  <summary>Click here to view details</summary>
@@ -100,7 +102,7 @@ User does not have to worry about Errors logged by the linux kernl while excutin
 ```
 </details>
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
@@ -109,4 +111,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p>

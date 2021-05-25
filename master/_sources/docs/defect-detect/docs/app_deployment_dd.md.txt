@@ -10,11 +10,13 @@
  </tr>
 </table>
 
-# Introduction
+# Setting up the Board and Application Deployment
+
+## Introduction
 
 This document shows how to set up the board and run the **defect-detect** application.
 
-# Introduction to the Test Environment
+## Introduction to the Test Environment
 
 *Note*: Ensure that you have the [Gstreamer packages](https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c) installed on your Linux PC. If you are using Ubuntu as your Linux distribution, ensure that the Ubuntu version is atleast **16.04**.
 
@@ -60,7 +62,7 @@ The Defect Detection application's design processes these images and sends the r
 
 See [Known Issues](known_issues_dd.md) with the Defect Detect application.
 
-# Setting up the SOM Board
+## Setting up the SOM Board
 
 > **Note**: Skip Step 1, if you have already flashed the SD Card with the KV260 Vision AI Starter Kit Image (kv260-sdcard.img.wic)
 
@@ -126,13 +128,13 @@ See [Known Issues](known_issues_dd.md) with the Defect Detect application.
       #3) With great power comes great responsibility.
 
       Password:
-      root@xilinx-k26-starterkit-2020_2:~# passwd
+      root@xilinx-k26-starterkit-2020_2:~## passwd
       New password:
       Retype new password:
       passwd: password updated successfully
       ```
 
-# Installing the Defect Detect package
+## Installing the Defect Detect package
 
 Install the latest application packages.
 
@@ -150,7 +152,7 @@ Install the latest application packages.
 
 > **NOTE**: For setups without access to the internet, it is possible to download and use the packages locally. Refer to the [Install from a local package feed](../../local_package_feed.md) for instructions.
 
-# Firmware Loading
+## Firmware Loading
 
 The Defect Detection application firmware consist of bitstream, device tree overlay (*dtbo*) and the *xclbin* file. The Defect Detection firmware is loaded dynamically on user request once Linux is fully booted. Use the *xmutil* utility to list and load the firmware.
 
@@ -178,11 +180,11 @@ To load the Defect Detection application firmware consisting of PL bitstream, de
    sudo xmutil loadapp kv260-defect-detect
    ```
 
-# Running the Defect Detect Application
+## Running the Defect Detect Application
 
 There are two ways to invoke the Defect Detection application: Jupyter Notebook or command line.
 
-## Jupyter Notebook
+### Jupyter Notebook
 
 Jupyter notebook works as an example to show the capability of the **defect-detect** application for specific configurations.
 
@@ -252,7 +254,7 @@ A Jupyter notebook user can run cell by cell or run the defect detection full pi
   
 When using a file source, data is dumped in the **rootfs (/home/petalinux)**. You will need to offload the output files to your PC and play using a YUV player. 
 
-## Command line
+### Command line
 
 Use the command line to set the resolution, media type, configuration file path and more, using the **defect-detect** application.
 
@@ -312,11 +314,11 @@ Xilinx assumes that the file to support is in **GRAY8 (Y8)** format with a resol
 
 Defect Detect application supports File Source & File Sink.
 
-## Example Commands to Run the Defect Detection Pipeline in Various Modes
+### Example Commands to Run the Defect Detection Pipeline in Various Modes
 
 Examples of supported combinations sorted by input are as follows. If using the command line to invoke the **defect-detect** application, stop the process using CTRL-C prior to starting the next instance.
 
-### File-In and File-Out playback:  
+#### File-In and File-Out playback:  
 
 This pipeline uses the input Y8 (GRAY8) file as an input source and a file as output. It dumps the output of the three stages to the file. Therefore, there are three out file options.
 
@@ -330,13 +332,13 @@ sudo defect-detect -w 1280 -h 800 -r 60 -f 1 -i input.y8 -x raw.y8 -y pre_pros.y
 
 > **Note**: You must update the command to the specific file desired as the input source.
 
-### File-In and Display-Out playback, run the following command.
+#### File-In and Display-Out playback, run the following command.
 
 ```
 sudo 01.file-defect-detect-display.sh ./input_video.y8
 ```
 
-> **Note**: For File-In and Display-Out playback, all three stage outputs will be displayed on DP/HDMI. The preceding command has a sample input file path. You need to change this path as per your requirement. The script `01.file-defect-detect-display.sh` contains the Gstreamer pipeline command. For improved latency, modify the **gst-launch** command that is mentioned in [Debugging](debug_dd.md).
+> **Note**: For File-In and Display-Out playback, all three stage outputs will be displayed on DP/HDMI. The preceding command has a sample input file path. You need to change this path as per your requirement. The script `01.file-defect-detect-display.sh` contains the Gstreamer pipeline command. 
 
 Once you are done with the Defect Detection application and to switch to another accelerator application, you can unload the currently loaded accelerator application firmware by running:
 
@@ -344,7 +346,7 @@ Once you are done with the Defect Detection application and to switch to another
 sudo xmutil unloadapp kv260-defect-detect
 ```
 
-## File Structure of the Application
+### File Structure of the Application
 
 <details>
 <summary><b>To view details, click here.</b></summary>
@@ -356,14 +358,12 @@ The application is comprised of the following files:
    | filename | description |
    |----------|-------------|
    |defect-detect| main app|
-   ______________
 
 * Script File: => `/opt/xilinx/bin/`
 
-    | filename | description |
-    |----------|-------------|
-    |`01.file-defect-detect-display.sh` | Invoke GStreamer pipeline to detect the defects and display outputs on DP/HDMI.|
-    _________
+   | filename | description |
+   |----------|-------------|
+   |`01.file-defect-detect-display.sh`| Invoke GStreamer pipeline to detect the defects and display outputs on DP/HDMI.|
 
 * Configuration Files: => `/opt/xilinx/share/ivas/defect-detect/`
 
@@ -373,23 +373,21 @@ The application is comprised of the following files:
    |`defect-calculation.json`|Configuration of defect calculation |
    |`edge-tracer.json`| Configuration of edge tracer accelerator |
    |`pre-process.json`|Configuration of pre-process accelerator|
-   ____________________
 
 * Jupyter notebook file: => `/opt/xilinx/share/notebooks/defect-detect`
 
    | filename | description |
    |----------|-------------|
-   |`defect-detect.ipynb` | Jupyter notebook file to run the Defect Defection pipeline (File Source).|
-   __________________
+   |`defect-detect.ipynb`| Jupyter notebook file to run the Defect Defection pipeline (File Source).|
 
 </details>
 
-# Next Steps
+## Next Steps
 
 * ![right arrow button](../../media/defect-detect/next.jpg) [Software Architecture](sw_arch_platform_dd.md)
-* Go back to the [KV260 SOM Defect detect design start page](../defectdetect_landing.md)
+* Go back to the [KV260 SOM Defect detect design start page](../defectdetect_landing)
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

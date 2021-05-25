@@ -10,7 +10,9 @@
  </tr>
 </table>
 
-# Introduction
+# Hardware Architecture of the Platform
+
+## Introduction
  This section describes the design implemented in Programmable Logic (PL). The following figure shows the top level hardware architecture of the reference design.
 
 ![](../../media/hw_arch.png)
@@ -38,8 +40,8 @@ Accelerator pipeline : This comprises of overlay accelerator functions integrate
 
 **Note:**  The PS interconnects in the figure are conceptual.
 
-# Capture
-## Single Sensor MIPI Capture
+## Capture
+### Single Sensor MIPI Capture
 
 A capture pipeline receives video frames from an external source and writes it into memory. The single sensor MIPI CSI-2 receiver capture pipeline is shown in the following figure.
 
@@ -69,11 +71,11 @@ All the IPs in this pipeline are configured to transport 2ppc @ 300 MHz, enablin
 
 Note: MIPI video clock requirement for NV12 (YUV420) at line rate 896 Mbps is 221 MHz @ 2ppc, so we could run all the IPs at 221 MHz @ 2ppc.  For more information see the MIPI CSI-2 Receiver Subsystem Product Guide [PG232](https://www.xilinx.com/support/documentation/ip_documentation/mipi_csi2_rx_subsystem/v5_0/pg232-mipi-csi2-rx.pdf).
 
-# Display
+## Display
 
 The Video output pipelines and Video Processing pipelines are not covered in this section as they are not PL components. For more information refer to DisplayPort Controller and GEM Ethernet chapters in the Zynq UltraScale+ Device Technical Reference Manual [UG1085](https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf). For more information on Video Processing pipelines refer to Video Codec Unit LogiCORE IP Product Guide [PG252](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/pg252-vcu.pdf).
 
-# Audio Transmit and Receive
+## Audio Transmit and Receive
 
 This platform also supports capture and replay of audio. The I2S audio RX-to-TX pipeline is shown in the following figure. This pipeline consists of three components, all of which are controlled by the APU through an AXI4-Lite base register interface.
 
@@ -83,9 +85,9 @@ This platform also supports capture and replay of audio. The I2S audio RX-to-TX 
 
 * The audio formatter provides high-bandwidth direct memory access between memory and AXI4-Stream target peripherals. Initialization, status, and management registers are accessed  through an AXI4-Lite slave interface. It is configured with both read and write interface enabled for a maximum of two audio channels and  interleaved memory packing mode with memory data format configured as AES to PCM. The IP receives audio input from the I2S RX IP and writes the data to memory. It reads audio data from memory and sends  it out to the I2S TX IP, which forwards it to the output device. See the Audio Formatter Product Guide (PG330) for more information.
 
-# Clocks, Resets and Interrupts
+## Clocks, Resets and Interrupts
 
-## Clocks
+### Clocks
 The following table identifies the main clocks of the PL design, their source, their clock frequency, and their function.
 
 | Clock      | Clock Source  | Clock Frequency     | Funtion |
@@ -104,7 +106,7 @@ The following table identifies the main clocks of the PL design, their source, t
 
 \*Clocks exposed as a Platform interface and can be used by an accelerator
 
-## Resets
+### Resets
 The following table summarizes the resets used in this design.
 
 | Reset Source | Function  |
@@ -120,7 +122,7 @@ The following table summarizes the resets used in this design.
 |emio_gpio_o[1]		|AP1302 ISP Reset										 |
 |emio_gpio_o[2]		|VCU reset											 |
 
-## Interrupts
+### Interrupts
 The following table lists the PL-to-PS interrupts used in this design.
 
 | Inerrupt ID | Instance  |
@@ -135,7 +137,7 @@ The following table lists the PL-to-PS interrupts used in this design.
 |pl_ps_irq1[7]	| Audio formatter IP - Memory Map to Stream			    |
 |pl_ps_irq0	| Exposed as a Platform interface and can be used by an accelerator |
 
-# Resource Utilization
+## Resource Utilization
 The resource utilization numbers on this platform post implementation is reported in the table below.
 
 | Resource  | Utilization  | Avaialble  | Utilization %  |
@@ -151,12 +153,12 @@ The resource utilization numbers on this platform post implementation is reporte
 |MMCM	|2	|4	|50.0	|
 |PLL	|1	|8	|12.5	|
 
-# Next Steps
+## Next Steps
 
 * [Hardware Architecture of the Accelerator](hw_arch_accel.md)
-* Go back to the [KV260 SOM Smart camera design start page](../smartcamera_landing.md)
+* Go back to the [KV260 SOM Smart camera design start page](../smartcamera_landing)
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
@@ -166,4 +168,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p>

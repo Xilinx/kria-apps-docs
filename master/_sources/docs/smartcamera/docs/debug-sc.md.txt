@@ -10,62 +10,72 @@
  </tr>
 </table>
 
-# This section list some debugging tips for the application.
+# Debugging
 
-* Make sure you use 
+## Debugging Tips
 
-    `xmutil      loadapp kv260-smartcam`
+* Use the following command to load the firmware. If you do not, many drivers (including the MIPI and VCU) will not load, and when you run the application, you will have errors.
 
-    to load the firmware properly, otherwise many drivers including the MIPI and VCU will not loaded, so there will be many errors pops up when you run the application.
+   ```cpp
+   xmutil      loadapp kv260-smartcam
+   ```
 
-* The smartcam application has an option "--usb" to choose the USB media devices. You can list the media devices by
+* The smartcam application has an option `--usb` to choose the USB media devices. You can list the media devices by
 
-    ` ls /dev/media* `
+   ```cpp
+   ls /dev/media*
+   ```
 
-* When you give the wrong media index, the application will give errors such as 
-    * > ERROR: Device x is not ready.
-    * > ERROR: MIPI device x is not ready.
-    * > ERROR: Device x is not USB cam.
+* When you give the wrong media index, the application will give errors (for example):
 
-* When you give the width/height the device doesn't support, the application will give the info:
+  * > ERROR: Device x is not ready.
+  * > ERROR: MIPI device x is not ready.
+  * > ERROR: Device x is not USB cam.
+
+* When you give a width/height not supported by the device, the application shows this error:
+
     >Error: USB camera doesn't support resolution xxx
-    > 
+    >
     >All supported resolution:
 
-  Please  choose from the supported resolutions.
+  Choose from the supported resolutions.
 
-# This section list some debugging tips for platform peripherals.
+## Platform Peripheral Debug Tips
 
-## Monitor
+### Monitor
+
 <details>
- <summary>Click here to view details</summary>
+ <summary>Click here to view the details.</summary>
 
-Ensure to use certified cables for DP and HDMI, recommended specs are HDMI 2.0 and DP 1.2 above.
-If cables are faulty, they could cause distortions or disable display.
+Use certified cables for DP and HDMI. The recommended specifications are listed for HDMI 2.0 and or higher and DP 1.2. If the cables are faulty, they could cause distortions or disable the display.
 
-Modetest is a test tool which can be found as part of the libdrm suite of test tools.
+Modetest is a test tool that is part of the libdrm suite of test tools.
 
-	Note: Prints shown below is an example from a 4k monitor. Use for reference only.
+**Note**: The following print is an example from a 4k monitor. Use this for reference only.
 
-### Ensure status of monitor is connected 
+#### Status of Monitor
 
-`modetest -M xlnx`
-
-The above command would read out the monitors EDID information. 
-
+```cpp
+modetest -M xlnx
 ```
+
+This command reads the monitors EDID information to ensure the monitor is connected:
+
+```cpp
 Connectors:
 id      encoder status          name            size (mm)       modes   encoders
 43      42      connected       DP-1            610x350         43      42
 ```
 
-### Display modes supported by your display
+#### Display Modes Supported by Your Display
 
-`modetest -M xlnx`
-
- Below are the modes that are supported by your display. 
-
+```cpp
+modetest -M xlnx
 ```
+
+The following modes are supported by your display.
+
+```cpp
   modes:
         name refresh (Hz) hdisp hss hse htot vdisp vss vse vtot)
   3840x2160 30.00 3840 4016 4104 4400 2160 2168 2178 2250 297000 flags: phsync, pvsync; type: driver
@@ -76,12 +86,15 @@ id      encoder status          name            size (mm)       modes   encoders
 
 Ensure display is capable of supporting user requested resolution and refresh rates to the application.
 
-### Current mode 
+#### Current Mode
 
-`modetest -M xlnx`
-
- CRTC indicates the current mode that is set.
+```cpp
+modetest -M xlnx
 ```
+
+CRTC indicates the current mode that is set.
+
+```cpp
 CRTCs:
 id      fb      pos     size
 41      47      (0,0)   (3840x2160)
@@ -89,64 +102,71 @@ id      fb      pos     size
   props:
 ```
 
-### Test to determine if display is OK
+#### Test to Determine if the Display is OK
 
-`modetest -M xlnx -s 43:1920x1080-60@AR24`
+```bash
+modetest -M xlnx -s 43:1920x1080-60@AR24
+```
 
-The  above command sets a mode, SMPTE Color Bars appears on the display.
+This command sets a mode, SMPTE color bars appear on the display.
 
 <img src="../../media/SMPTE_Color_Bars.svg" alt="SMPTE color bars" width="150" height="100">
 
 </details>
 
-## I2S Audio 
+### I2S Audio 
 
 <details>
- <summary>Click here to view details</summary>
-### Determine the enumeration for I2S audio card
+ <summary>Click here to view the details.</summary>
+#### Determine the Enumeration for an I2S Audio Card
 
-`cat /proc/asound/cards`
-
+```cpp
+cat /proc/asound/cards
 ```
+
+```cpp
  2 [xlnxi2ssndcard0]: xlnx-i2s-snd-ca - xlnx-i2s-snd-card-0
                       xlnx-i2s-snd-card-0
 ```
-In the above example, enumeration of I2S audio card is 2.
 
+In the previous example, the enumeration of I2S audio card is 2.
 
-### Determine capture and playback device number 
+#### Determine Capture and Playback Device Number
 
-` cat /proc/asound/devices`
-```
+```cpp
+cat /proc/asound/devices
  80: [ 2- 0]: digital audio playback
  89: [ 2- 1]: digital audio capture
 ```
-In the above example [2- X]: 2- is card, X is device.
 
-### Sample record and playback 
+In this example, [2- X]: the 2- is the card and the X is the device.
+
+#### Sample Record and Playback
 
 1. `dnf install alsa-utils.aarch64`
-2. ensure an active source is connected at the Pmod LINE IN.
+2. Ensure an active source is connected at the Pmod LINE IN.
 
-#### Sample record  
+##### Sample Record  
 `aplay -D hw:2,0 -fS24_LE -r 48000 -c 2  -d 30 -t raw file.raw`
 
-#### Sample playback 
+##### Sample Playback 
 `arecord -D hw:2,1  -fS24_LE -r 48000 -c 2  -d 30 -t raw file.raw`
 
-#### Sample Pass-through 
+##### Sample Pass-through 
 `arecord -D hw:2,1 -f S24_LE -r 48000 -c 2 -t raw | aplay -D hw:2,0 -c 2 -f S24_LE -r 48000 -t raw`
 
 </details>
 
-## Detect USB 3.0
+### Detect USB 3.0
 
 <details>
- <summary>Click here to view details</summary>
+ <summary>Click here to view the details.</summary>
 
-`lsusb `
-
+```cpp
+lsusb
 ```
+
+```cpp
 Bus 002 Device 003: ID 046d:085e Logitech, Inc. USB5744
 Bus 002 Device 002: ID 0424:5744 Standard Microsystems Corp. USB5744
 Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
@@ -154,22 +174,31 @@ Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 
 </details>
 
-## Obtain Media device information
+### Obtain Media device information
 
 <details>
- <summary>Click here to view details</summary>
-`ls /dev/media*`
 
-lists all media enumerations 
+ <summary>Click here to view the details.</summary>
 
-`media-ctl -d /dev/mediaX -p `
-
-where X in media is the enumerated value. the above command will print the Device topology and help user identify the media device.
-Here is an example for capture path of 'ar1335 sensor'.
-
-`media-ctl -d /dev/media1 -p`
-
+```cpp
+ls /dev/media*
 ```
+
+Lists all media enumerations:
+
+```cpp
+media-ctl -d /dev/mediaX -p
+```
+
+Where the X in media is the enumerated value. This command prints the device topology and helps you identify the media device.
+
+Example for capture path of `ar1335 sensor`.
+
+```cpp
+media-ctl -d /dev/media1 -p
+```
+
+```cpp
 Media controller API version 5.4.0
 
 Media device information
@@ -222,33 +251,38 @@ Device topology
         pad0: Source
                 [fmt:SGRBG10_1X10/4208x3120 field:none colorspace:srgb]
                 -> "ap1302.4-003c":0 [ENABLED,IMMUTABLE]
-``` 
+```
+
 </details>
 
-# Known Benign Error messages
+## Known Benign Error Messages
 
 <details>
- <summary>Click here to view details</summary>
+ <summary>Click here to view details:</summary>
 
-User does not have to worry about Errors logged by the linux kernl while excuting the specified commands below, they are benign and can be ignored.
+You do not have to worry about errors logged by the Linux kernel while executing the following specified commands, they are benign and can be ignored.
 
-`xmutil unloadapp`
-
+```cpp
+xmutil unloadapp
 ```
+
+```cpp
 [ 4125.507273] OF: ERROR: memory leak, expected refcount 1 instead of 2, ...... ... 
 [ 4125.507293] OF: ERROR: memory leak, expected refcount 1 instead of 2, ...... ... 
 ```
 
-`xmutil loadapp kv260-smartcam`
-
+```cpp
+xmutil loadapp kv260-smartcam
 ```
+
+```cpp
 [ 4183.694299] xlnx_snd_card xlnx_snd_card.1.auto: ASoC: failed to init link xilinx-i2s_playback: -517
 [ 4183.703363] xlnx_snd_card xlnx_snd_card.1.auto: xlnx-i2s-snd-card-0 registration failed
 ```
 
 </details>
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
@@ -258,4 +292,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p>

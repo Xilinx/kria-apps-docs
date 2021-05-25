@@ -10,7 +10,9 @@
  </tr>
 </table>
 
-# Introduction
+# Hardware Architecture of the Platform
+
+## Introduction
  This section describes the design implemented in Programmable Logic (PL). The following figure shows the top level hardware architecture of the reference design.
 
 ![Hardware Architecture: Top Level Diagram](../../media/hw_arch_aib.png)
@@ -34,11 +36,11 @@
 
 **Note:**  The PS interconnects in the figure are conceptual.
 
-# Capture
+## Capture
 
 The Video inout pipelines and Video Processing pipelines are not covered in this section as they are not PL components. For more information refer to  GEM Ethernet chapters in the *Zynq UltraScale+ Device Technical Reference Manual* ([UG1085](https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf)). For more information on Video Processing pipelines, refer to the *Video Codec Unit LogiCORE IP Product Guide* ([PG252](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/pg252-vcu.pdf)).
 
-# Display
+## Display
 
 An output pipeline reads video frames from memory and sends the frames to a sink. In this case the sink is a display port in the  PS.  The display pipeline is shown in the following figure.
 
@@ -57,9 +59,9 @@ display. The other layers, whatever their resolution, is blended with this layer
 
 * The output  from the AXI4-Stream to Video Out Converter goes through some slices and concat blocks to drive the DisplayPort Live signals on the PS. The slices and concat are required to the adhere to the Live Video data format.  For more information on DisplayPort Controller in Live mode refer to the *Zynq UltraScale+ Device Technical Reference Manual* ([UG1085](https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf)).
 
-# Clocks, Resets and Interrupts
+## Clocks, Resets and Interrupts
 
-## Clocks
+### Clocks
 The following table identifies the main clocks of the PL design, their source, their clock frequency, and their function.
 
 | Clock      | Clock Source  | Clock Frequency     | Funtion |
@@ -73,7 +75,7 @@ The following table identifies the main clocks of the PL design, their source, t
 \*Clocks exposed as a Platform interface and can be used by an accelerator.
 
 
-## Resets
+### Resets
 The following table summarizes the resets used in this design.
 
 | Reset Source | Function  |
@@ -86,7 +88,7 @@ The following table summarizes the resets used in this design.
 |emio_gpio_o[0]		|Video Mixer IP									 |
 |emio_gpio_o[1]		|VCU reset									 |
 
-## Interrupts
+### Interrupts
 The following table lists the PL-to-PS interrupts used in this design.
 
 | Inerrupt ID | Instance  |
@@ -97,7 +99,7 @@ The following table lists the PL-to-PS interrupts used in this design.
 |pl_ps_irq0	| Exposed as a Platform interface and can be used by an accelerator |
 
 
-# Resource Utilization
+## Resource Utilization
 The resource utilization numbers on this platform post implementation is reported in the table below.
 
 | Resource  | Utilization  | Avaialble  | Utilization %  |
@@ -112,13 +114,13 @@ The resource utilization numbers on this platform post implementation is reporte
 |MMCM	|2	|4	|50.0	 |  
  
 
-# Next Steps
+## Next Steps
 
 You can choose any of the following next steps:
 * Read [Hardware Architecture of the Accelerator](hw_arch_accel_aib.md)
-* Go back to the [KV260 AI Box design start page](../aibox_landing.md)
+* Go back to the [KV260 AI Box design start page](../aibox_landing)
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
@@ -127,4 +129,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p>

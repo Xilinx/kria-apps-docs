@@ -10,11 +10,13 @@
  </tr>
 </table>
 
-# Introduction
+# Setting up the Board and Application Deployment
+
+## Introduction
 
 This document shows how to set up the board and run the smartcam application.
 
-# Setting up the Board
+## Setting up the Board
 
 > Note: Skip Step 1, if you have already flashed the SD Card with the KV260 Vision AI Starter Kit Image (kv260-sdcard.img.wic)
 
@@ -121,7 +123,7 @@ This document shows how to set up the board and run the smartcam application.
         #3) With great power comes great responsibility.
 
     Password:
-    root@xilinx-k26-starterkit-2020_2:~# passwd
+    root@xilinx-k26-starterkit-2020_2:~## passwd
     New password:
     Retype new password:
     passwd: password updated successfully
@@ -189,11 +191,11 @@ This document shows how to set up the board and run the smartcam application.
 
   Finally, please upload or copy these transcoded H264 files to the board (by using scp, ftp, or copy onto SD card and finding them in /media/sd-mmcblk0p1/), place it to somewhere under /home/petalinux, which is the home directory of the user you login as.
 
-# Run the Application
+## Run the Application
 
 There are two ways to interact with the application.
 
-## Jupyter notebook.
+### Jupyter notebook.
 
   To launch Jupyter notebook on the target, run below command. Use Chrome web-browser to interact with the platform. 
 ``` 
@@ -236,12 +238,12 @@ Output example:
 
 In the notebook, we will construct the GStreamer pipeline string, you can get it by adding simple python code to print it out, and played with gst-launch-1.0 command in the console, and there are some user options variables that can be changed and run with. For other parts of the pipeline, you can also change and play to see the effect easily.
 
-## Command line
+### Command line
 These allow the user to define different video input and output device targets using the "smartcam" application. These are to be executed using the UART/debug interface.
 
 **Notice** The application need to be ran with ***sudo*** .
 
-### Example scripts
+#### Example scripts
 
 Example scripts and options definitions are provided below.
 
@@ -301,11 +303,11 @@ Refer to [File Structure](#script-loc) to find the files location.
         You should be able to see a video of highway driving, with the detection of vehicles in a bounding box.
 </details>
 
-### Additional configuration options for smartcam invocation:
+#### Additional configuration options for smartcam invocation:
 
 The example scripts and Jupyter notebook work as examples to show the capability of the smartcam for specific configurations. More combinations could be made based on the options provided by smartcam. User can get detailed application options as following by invoking `smartcam --help`.
 
-#### Usage:
+##### Usage:
 
 ```
  smartcam [OPTION?] - Application for face detection on SOM board of Xilinx.
@@ -355,7 +357,7 @@ The example scripts and Jupyter notebook work as examples to show the capability
 ```
 
 
-#### Examples of supported combinations sorted by input are outlined below.
+##### Examples of supported combinations sorted by input are outlined below.
 If using the command line to invoke the smartcam, stop the process via CTRL-C prior to starting the next instance.
 
 * MIPI Input (IAS sensor input):
@@ -408,7 +410,7 @@ If using the command line to invoke the smartcam, stop the process via CTRL-C pr
 
       sudo smartcam --usb 1 -W 1920 -H 1080 -r 30 --target file
 
-# Files structure of the application
+## Files structure of the application
 
 The application is installed as:
 
@@ -442,10 +444,10 @@ The application is installed as:
   |----------|-------------|
   |smartcam.ipynb | Jupyter notebook file for MIPI --> DP/RTSP demo.|
 
-# Next Steps
-* Go back to the [KV260 SOM Smart camera design start page](../smartcamera_landing.md)
+## Next Steps
+* Go back to the [KV260 SOM Smart camera design start page](../smartcamera_landing)
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
@@ -454,4 +456,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p>

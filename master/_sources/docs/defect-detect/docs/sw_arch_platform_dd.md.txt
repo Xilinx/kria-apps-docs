@@ -10,7 +10,9 @@
  </tr>
 </table>
 
-# Architecture Diagram
+# System Architecture of the Platform
+
+## Architecture Diagram
 
 
 The following figure illustrates the system architecture of the SOM Defect Detection application.
@@ -19,11 +21,11 @@ The following figure illustrates the system architecture of the SOM Defect Detec
 
 
 
-# GStreamer Pipeline Changes
+## GStreamer Pipeline Changes
 
 Gstreamer provides a simple and effective method to construct media pipelines. Since this example design leverages Gstreamer, the designer can easily modify the provided pipeline to tailor it to the needs of their specific application.
 
-# Deployment
+## Deployment
 
 This reference design includes a pre-packaged SD card image to provide user-friendly out-of-box experience for the Vision Defect Detection Starter Kit. This image should be used first to verify hardware setup and also to demonstrate the capabilities of the SOM. Each of the application examples provided with the kit are delivered as an RPM package group for ease of installation and deployment.
 
@@ -43,7 +45,7 @@ ____
 
 
 
-# Display Pipeline
+## Display Pipeline
 
 To support multiple video streams to be displayed on a 4k monitor, the following solution is explored. The three images from various stages are of size 1280 x 800. These images are mixed with a background image of 4k. The PS print the display results on the background image. The following figure shows an example background and layout. This is the sample output display for defect detection on a monitor.
 
@@ -81,9 +83,9 @@ The video mixer IP workflow is as follows.
 
 ![](../../media/defect-detect/video_mixer_ip_workflow.png)
 
-# Platform
+## Platform
 
-## DP Tx Display
+### DP Tx Display
 
 <details>
  <summary><b>Click here to view details</b></summary>
@@ -97,23 +99,23 @@ kernel side, the display and graphics portions are split with each having their 
 </details>
 
 
-## Direct Rendering Manager
+### Direct Rendering Manager
 
 
 The Direct Rendering Manager (DRM) is a subsystem of the Linux kernel responsible for interfacing with a GPU. DRM exposes an API that user space programs can use to send
 commands and data to the GPU. The ARM Mali driver uses a proprietary driver stack that is discussed in the next section. Therefore, this section focuses on the common infrastructure portion around memory allocation and management that is shared with the KMS API.
 
 
-## Driver Features
+### Driver Features
 
 The Xilinx DRM driver uses the GEM memory manager and implements DRM PRIME buffer sharing. PRIME is the cross-device buffer sharing framework in DRM. To user-space, PRIME buffers are DMABUF-based file descriptors. The DRM GEM/CMA helpers use the CMA allocator as a means to provide buffer objects that are physically contiguous in memory. This is useful for display drivers that are unable to map scattered buffers via an IOMMU. Frame buffers are abstract memory objects that provide a source of pixels to scan out to a CRTC. Applications explicitly request the creation of frame buffers through the DRM_IOCTL_MODE_ADDFB(2) ioctls and receive an opaque handle that can be passed to the KMS CRTC control, plane configuration and page flip functions.
 
 
-## Kernel Mode Setting
+### Kernel Mode Setting
 
 Mode setting is an operation that sets the display mode including video resolution and refresh rate. It was traditionally done in user-space by the X-server that caused several issues due to accessing low-level hardware from user-space, which if done wrong, can lead to system instabilities. The mode setting API was added to the kernel DRM framework, hence the name Kernel Mode Setting. The KMS API is responsible for handling the frame buffer and planes, setting the mode, and performing page-flips (switching between buffers). The KMS device is modeled as a set of planes, CRTCs, encoders, and connectors as shown in the top half of the DP Tx display. The bottom half of that figure shows how the driver model maps to the physical hardware components inside the PS DP Tx display pipeline.
 
-## CRTC
+### CRTC
 
 <details>
  <summary><b>Click here to view details</b></summary>
@@ -128,7 +130,7 @@ out and the flip typically happens during vertical blanking to avoid image teari
 
 </details>
 
-## Plane
+### Plane
 
 <details>
  <summary><b>Click here to view details</b></summary>
@@ -141,24 +143,24 @@ framework. The DPDMA is a 6-channel DMA engine that supports a (up to) 3-channel
 
 </details>
 
-## Encoder
+### Encoder
 
 An encoder takes pixel data from a CRTC and converts it to a format suitable for any attached connectors. There are many different display protocols defined, such as HDMI or DisplayPort. The PS display pipeline has a DisplayPort transmitter built in. The encoded video data is then sent to the serial I/O unit (SIOU) which serializes the data using the gigabit transceivers (PS GTRs) before it goes out via the physical DP connector to the display. The PL display pipeline uses a HDMI transmitter which sends the encoded video data to the Video PHY. The Video PHY serializes the data using the GTH transceivers in the PL before it goes out via the HDMI Tx connector.
 
-## Connector
+### Connector
 
 The connector models the physical interface to the display. Both DisplayPort and HDMI protocols use a query mechanism to receive data about the monitor resolution, and refresh rate by reading the extended display identification data (EDID) (see VESA Standard) stored inside the monitor. This data can then be used to correctly set the CRTC mode. The DisplayPort supports hot-plug events to detect if a cable has been connected or disconnected as well as handling display power management signaling (DPMS) power modes.
 
-## Libdrm
+### Libdrm
 
 The framework exposes two device nodes per display pipeline to user space: the ```/dev/dri/card*``` device node and an emulated ```/dev/fb*``` device node for backward compatibility with the legacy *fbdev* Linux framework. The latter is not used in this design. *libdrm* was created to facilitate the interface of user space programs with the DRM subsystem. This library is merely a wrapper that provides a function written in C for every ioctl of the DRM API, as well as constants, structures and other helper elements. The use of *libdrm* not only avoids exposing the kernel interface directly to user space but presents the usual advantages of reusing and sharing code between programs.
 
-# Next Steps
+## Next Steps
 
 * ![right arrow](../../media/defect-detect/next.jpg) [Software Accelerator](sw_arch_accel_dd.md)
 
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

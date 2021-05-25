@@ -10,6 +10,8 @@
  </tr>
 </table>
 
+# Debugging
+
 This document lists some debugging tips for the Defect Detection application.
 
 * Make sure you that you use:
@@ -20,28 +22,11 @@ This document lists some debugging tips for the Defect Detection application.
 
 * Always unload existing firmware before loading the **defect-detect** firmware.
 
-* The script file `01.file-defect-detect-display.sh` that resides at location `/opt/xilinx/bin/` has one GStreamer pipeline to support File-In and Display-Out. To improve latency, Xilinx suggests to modify the pipeline as follows:
-
-```
-gst-launch-1.0 -v filesrc location=${file} blocksize=1024000 \
-! "video/x-raw, width=1280, height=800, format=GRAY8, framerate=60/1" \
-! tee name=t_src t_src. ! queue max-size-buffers=1 \
-! ivas_xfilter kernels-config=/opt/xilinx/share/ivas/defect-detect/pre-process.json \
-! tee name=t_pre t_pre. ! queue max-size-buffers=1 \
-! ivas_xfilter kernels-config=/opt/xilinx/share/ivas/defect-detect/canny-accelarator.json \
-! ivas_xfilter kernels-config=/opt/xilinx/share/ivas/defect-detect/edge-tracer.json \
-! ivas_xfilter kernels-config=/opt/xilinx/share/ivas/defect-detect/defect-calculation.json \
-! perf ! kmssink bus-id=B0010000.v_mix plane-id=34 render-rectangle="<2560,680,1280,800>" t_src. \
-! queue max-size-buffers=1 ! perf ! kmssink bus-id=B0010000.v_mix plane-id=35 render-rectangle="<0, 680,1280,800>" async=false t_pre. \
-! queue max-size-buffers=1 ! perf ! kmssink bus-id=B0010000.v_mix plane-id=36 render-rectangle="<1280,680,1280,800>" async=false
-
-```
-         
- # Next Steps
+## Next Steps
 
 * ![right arrow](../../media/defect-detect/next.jpg) [Known Issues](known_issues_dd.md)
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

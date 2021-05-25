@@ -10,7 +10,9 @@
  </tr>
 </table>
 
-# Introduction
+# Hardware Architecture of the Platform
+
+## Introduction
 
 This section describes the design implemented in Programmable Logic (PL). The following figure shows the top-level hardware architecture of the reference design.
 
@@ -35,13 +37,13 @@ At a high level, the design comprises of three pipelines:
 
 > **Note**: The PS interconnects in the figure are conceptual.
 
-# Capture
+## Capture
 
 The captured image from a file is provided to the accelerator. For more information how images on the SD card are accessible from the PS refer to the SD controller section of the Zynq UltraScale+ Device Technical Reference Manual [UG1085](https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf).
 
 > Note: The vivado platform design includes PL components which enable capture from a MIPI sensor, but this feature will only be supported in the next release.  
 
-# Display
+## Display
 
 An output pipeline reads video frames from memory and sends the frames to a sink. In this case, the sink is a display port in the PS. The display pipeline is shown in the following figure.
 
@@ -59,9 +61,9 @@ This PL pipeline consists of four components, two of which are controlled by the
 
   * The output from the AXI4-Stream to Video Out Converter goes through SOM slices and concat blocks to drive the DisplayPort Live signals on the PS. The slices and concat are required to the adhere to the Live Video data format.  For more information on DisplayPort Controller in Live mode, refer to the Zynq UltraScale+ Device Technical Reference Manual [UG1085](https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf).
 
-# Clocks, Resets and Interrupts
+## Clocks, Resets and Interrupts
 
-## Clocks
+### Clocks
 
 The following table identifies the main clocks of the PL design, their source, their clock frequency, and their function.
 
@@ -77,7 +79,7 @@ The following table identifies the main clocks of the PL design, their source, t
 > \*Clocks that are exposed as a Platform interface and can be used by an accelerator.
 ____
 
-## Resets
+### Resets
 
 
 The following table summarizes the resets used in this design.
@@ -95,7 +97,7 @@ The following table summarizes the resets used in this design.
 |emio_gpio_o[2]		|AP1302 ISP Reset										 |
 ____
 
-## Interrupts
+### Interrupts
 
 The following table lists the PL-to-PS interrupts used in this design.
 
@@ -109,7 +111,7 @@ The following table lists the PL-to-PS interrupts used in this design.
 
 ____
 
-# Resource Utilization
+## Resource Utilization
 The resource utilization numbers on this platform post implementation is reported in the table below.
 
 | Resource  | Utilization  | Avaialble  | Utilization %  |
@@ -126,12 +128,12 @@ The resource utilization numbers on this platform post implementation is reporte
 |PLL	|1	|8	|12.50	 |
 <br />
 
-# Next Steps
+## Next Steps
 
 * ![right arrow](../../media/defect-detect/next.jpg) [Hardware Accelerator Architecture](hw_arch_accel_dd.md)
-* Go back to the [KV260 Defect detect design start page](../defectdetect_landing.md)
+* Go back to the [KV260 Defect detect design start page](../defectdetect_landing)
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
@@ -141,4 +143,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p>
