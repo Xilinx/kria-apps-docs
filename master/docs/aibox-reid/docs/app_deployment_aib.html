@@ -512,17 +512,27 @@ passwd: password updated successfully
 </li>
 <li><p>Get the latest application package.</p>
 <ol>
+<li><p>Check the package feed for new updates.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf update
+</pre></div>
+</div>
+<p>Confirm with “Y” when prompted to install new or updated packages.</p>
+<p>Sometimes it is needed to clean the local dnf cache first. To do so, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf clean all
+</pre></div>
+</div>
+</li>
 <li><p>Get the list of available packages in the feed.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xmutil</span> <span class="n">getpkgs</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil getpkgs
 </pre></div>
 </div>
 </li>
 <li><p>Install the package with dnf install:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">packagegroup</span><span class="o">-</span><span class="n">kv260</span><span class="o">-</span><span class="n">aibox</span><span class="o">-</span><span class="n">reid</span><span class="o">.</span><span class="n">noarch</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install packagegroup-kv260-aibox-reid.noarch
 </pre></div>
 </div>
 <p>System will ask “Is this ok [y/N]:” to download the packages, please type “y” to proceed.</p>
-<p>Note: For setups without access to the internet, it is possible to download and use the package locally. Please refer to the <a class="reference internal" href="../../local_package_feed.html"><span class="doc">Install from a local package feed</span></a> for instructions.</p>
+<p><strong>Note:</strong> For setups without access to the internet, it is possible to download and use the package locally. Please refer to the <a class="reference internal" href="../../local_package_feed.html"><span class="doc">Install from a local package feed</span></a> for instructions.</p>
 </li>
 </ol>
 </li>

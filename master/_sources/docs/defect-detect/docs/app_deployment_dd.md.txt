@@ -138,15 +138,29 @@ See [Known Issues](known_issues_dd.md) with the Defect Detect application.
 
 Install the latest application packages.
 
-1. Get the list of available packages in the feed:
+1. Check the package feed for new updates.
 
-   ```
+   ```bash
+   sudo dnf update
+   ````
+
+   Confirm with "Y" when prompted to install new or updated packages.
+
+   Sometimes it is needed to clean the local dnf cache first. To do so, run:
+
+   ```bash
+   sudo dnf clean all
+   ````
+
+2. Get the list of available packages in the feed:
+
+   ```bash
    sudo xmutil getpkgs
    ```
 
-2. Install each package:
+3. Install each package:
 
-   ```
+   ```bash
    sudo dnf install packagegroup-kv260-defect-detect.noarch
    ```
 

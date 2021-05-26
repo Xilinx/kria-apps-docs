@@ -552,13 +552,23 @@ passwd: password updated successfully
 <h2>Installing the Defect Detect package<a class="headerlink" href="#installing-the-defect-detect-package" title="Permalink to this headline">¶</a></h2>
 <p>Install the latest application packages.</p>
 <ol>
+<li><p>Check the package feed for new updates.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf update
+</pre></div>
+</div>
+<p>Confirm with “Y” when prompted to install new or updated packages.</p>
+<p>Sometimes it is needed to clean the local dnf cache first. To do so, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf clean all
+</pre></div>
+</div>
+</li>
 <li><p>Get the list of available packages in the feed:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xmutil</span> <span class="n">getpkgs</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil getpkgs
 </pre></div>
 </div>
 </li>
 <li><p>Install each package:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">packagegroup</span><span class="o">-</span><span class="n">kv260</span><span class="o">-</span><span class="n">defect</span><span class="o">-</span><span class="n">detect</span><span class="o">.</span><span class="n">noarch</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install packagegroup-kv260-defect-detect.noarch
 </pre></div>
 </div>
 </li>
