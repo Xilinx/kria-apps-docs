@@ -6,7 +6,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
+		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -40,6 +41,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -54,6 +56,8 @@
   <link rel="stylesheet" href="../_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/pro.min.css" media="all" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Software Architecture of the Platform" href="smartcamera/docs/sw_arch_platform.html" />
@@ -305,7 +309,7 @@
             
             
               <div class="version">
-                1.0
+                1.1
               </div>
             
           
@@ -349,6 +353,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enable-xilinx-application-packages">Enable Xilinx Application Packages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#build-the-sdk">Build the SDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-the-esdk">Update the eSDK</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#add-new-fpga-firmware">Add New FPGA Firmware</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-step">Next Step</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
@@ -443,9 +448,9 @@
  <tr>
  <td align="center"><h1>Building Petalinux</h1> </td>
  </tr>
-</table><div class="section" id="building-petalinux">
+</table><section id="building-petalinux">
 <h1>Building Petalinux<a class="headerlink" href="#building-petalinux" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial walks through the typical steps of creating and customizing a
 bootable Linux image for the K26 SOM and the KV260 Vision AI Starter Kit. The Linux
@@ -461,7 +466,7 @@ for the KV260 AI starter kit.</p></li>
 <li><p>Learn how to add your own Vivado or Vitis generated bitstream/xclbin firmware
 components.</p></li>
 </ol>
-<div class="section" id="prerequisites">
+<section id="prerequisites">
 <h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>PetaLinux 2020.2.2 tools installation</p></li>
@@ -471,17 +476,17 @@ components.</p></li>
 </ul>
 </li>
 </ol>
-</div>
-<div class="section" id="create-the-project">
+</section>
+<section id="create-the-project">
 <h3>Create the Project<a class="headerlink" href="#create-the-project" title="Permalink to this headline">¶</a></h3>
 <p>Run the following command to create a new Petalinux project from the provided
 K26 SOM bsp file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">petalinux</span><span class="o">-</span><span class="n">create</span> <span class="o">-</span><span class="n">t</span> <span class="n">project</span> <span class="o">-</span><span class="n">s</span> <span class="n">xilinx</span><span class="o">-</span><span class="n">k26</span><span class="o">-</span><span class="n">starterkit</span><span class="o">-</span><span class="mf">2020.2</span><span class="o">.</span><span class="mi">2</span><span class="o">-</span><span class="n">final</span><span class="o">.</span><span class="n">bsp</span>
-<span class="n">cd</span> <span class="n">xilinx</span><span class="o">-</span><span class="n">k26</span><span class="o">-</span><span class="n">starterkit</span><span class="o">-</span><span class="mf">2020.2</span><span class="o">.</span><span class="mi">2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">petalinux</span><span class="o">-</span><span class="n">create</span> <span class="o">-</span><span class="n">t</span> <span class="n">project</span> <span class="o">-</span><span class="n">s</span> <span class="n">xilinx</span><span class="o">-</span><span class="n">k26</span><span class="o">-</span><span class="n">starterkit</span><span class="o">-</span><span class="mf">2020.2.2</span><span class="o">-</span><span class="n">final</span><span class="o">.</span><span class="n">bsp</span>
+<span class="n">cd</span> <span class="n">xilinx</span><span class="o">-</span><span class="n">k26</span><span class="o">-</span><span class="n">starterkit</span><span class="o">-</span><span class="mf">2020.2.2</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="build-the-image">
+</section>
+<section id="build-the-image">
 <h3>Build the Image<a class="headerlink" href="#build-the-image" title="Permalink to this headline">¶</a></h3>
 <p>Run the below commands to build and package the wic image:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">petalinux</span><span class="o">-</span><span class="n">build</span>
@@ -501,9 +506,9 @@ using gzip:</p>
 <code class="docutils literal notranslate"><span class="pre">images/linux/petalinux-sdimage.wic.gz</span></code> with a file size of 265M.</p>
 <p>Flash the image on an SD card using Balena Etcher. This image is functionally
 equivalent to the prebuilt wic image inside the bsp.</p>
-</div>
-</div>
-<div class="section" id="enable-xilinx-application-packages">
+</section>
+</section>
+<section id="enable-xilinx-application-packages">
 <h2>Enable Xilinx Application Packages<a class="headerlink" href="#enable-xilinx-application-packages" title="Permalink to this headline">¶</a></h2>
 <p>The stock Petalinux BSP is configured for the K26 SOM but it is carrier card and
 starter kit agnostic. To include KV260 starter kit specific packages on the
@@ -539,8 +544,8 @@ selection should look like this:</p>
 <p>Then save and exit the configuration.</p>
 <p>Continue with the build and image packaging instructions from above to build
 a new image.</p>
-</div>
-<div class="section" id="build-the-sdk">
+</section>
+<section id="build-the-sdk">
 <h2>Build the SDK<a class="headerlink" href="#build-the-sdk" title="Permalink to this headline">¶</a></h2>
 <p>A cross-compilation SDK is useful for application development on a host machine
 for a specific target architecture e.g. X86 host and ARM 64-bit target. Run the
@@ -564,16 +569,41 @@ You are about to install the SDK to &quot;/opt/petalinux/xilinx-k26-starterkit-2
 <p>Once the SDK is installed, source the file
 <code class="docutils literal notranslate"><span class="pre">images/linux/sdk/environment-setup-aarch64-xilinx-linux</span></code>
 to set up the cross-development environment.</p>
+</section>
+<section id="update-the-esdk">
+<h2>Update the eSDK<a class="headerlink" href="#update-the-esdk" title="Permalink to this headline">¶</a></h2>
+<p>Xilinx publishes package feed and eSDK updates. The package feed can be used to
+install updated packages into the root file system. The eSDK can be used to
+update the petalinux tool for creating new images or SDKs. The eSDK updates are
+published at http://petalinux.xilinx.com/sswreleases/rel-v2020.2.2/sdkupdate.</p>
+<p>To update the eSDK, extract the petalinux installer, accept the license and
+source the tool’s settings script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-v2020.2.2-final-installer.run
+<span class="nb">source</span> settings.sh
+</pre></div>
 </div>
-<div class="section" id="add-new-fpga-firmware">
+<p>Remove the existing aarch64 folder.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -rf components/yocto/source/aarch64
+</pre></div>
+</div>
+<p>Upgrade the tool with the new eSDK and source the tool’s settings script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-upgrade -u <span class="s1">&#39;http://petalinux.xilinx.com/sswreleases/rel-v2020.2.2/sdkupdate/update1/&#39;</span> -p <span class="s1">&#39;aarch64&#39;</span>
+<span class="nb">source</span> settings.sh
+</pre></div>
+</div>
+<p>The petalinux tool is now updated with the latest Yocto eSDK. Continue as usual
+by creating a new project from a .bsp file. The build will now include the
+latest meta-layer and recipe updates.</p>
+</section>
+<section id="add-new-fpga-firmware">
 <h2>Add New FPGA Firmware<a class="headerlink" href="#add-new-fpga-firmware" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="create-firmware-recipe-for-custom-hardware">
+<section id="create-firmware-recipe-for-custom-hardware">
 <h3>Create firmware recipe for custom hardware<a class="headerlink" href="#create-firmware-recipe-for-custom-hardware" title="Permalink to this headline">¶</a></h3>
 <p>After you have evaluated the Xilinx provided applications, you may want to
 deploy your own custom hardware design. Petalinux provides a helper command to
 create a new firmware recipe.</p>
-</div>
-<div class="section" id="fpgamanger-custom-bbclass">
+</section>
+<section id="fpgamanger-custom-bbclass">
 <h3>fpgamanger_custom bbclass<a class="headerlink" href="#fpgamanger-custom-bbclass" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">fpgamanager_custom</span></code> bitbake class is a helper class to generate a set of
 FPGA firmware binaries. The following hardware design hand-off artifacts are
@@ -636,8 +666,8 @@ for an example snippet:</p>
 </div>
 <p>The recipe contains the minimum required elements but can be further customized
 by the user for their needs.</p>
-</div>
-<div class="section" id="fpgamanger-dtg-bbclass">
+</section>
+<section id="fpgamanger-dtg-bbclass">
 <h3>fpgamanger_dtg bbclass<a class="headerlink" href="#fpgamanger-dtg-bbclass" title="Permalink to this headline">¶</a></h3>
 <p>Alternatively, you can use the <code class="docutils literal notranslate"><span class="pre">fpgamanager_dtg</span></code> bitbake class which uses the
 Xilinx device tree genrator (dtg) to generate a device tree overlay from a
@@ -688,8 +718,8 @@ an example <code class="docutils literal notranslate"><span class="pre">user.dts
 <span class="p">};</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="firmware-installation-directory">
+</section>
+<section id="firmware-installation-directory">
 <h3>Firmware Installation Directory<a class="headerlink" href="#firmware-installation-directory" title="Permalink to this headline">¶</a></h3>
 <p>Regardless of whether the <code class="docutils literal notranslate"><span class="pre">fpgamanger_custom</span></code> or <code class="docutils literal notranslate"><span class="pre">fpgamanger_dtg</span></code> bbclass is
 used, the resulting output products are installed into the
@@ -702,9 +732,9 @@ products are:</p>
 </ol>
 <p>At run-time, the FPGA firmware can be loaded using the <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span></code> utility
 which is explained in more detail in the getting started guide.</p>
-</div>
-</div>
-<div class="section" id="next-step">
+</section>
+</section>
+<section id="next-step">
 <h2>Next Step<a class="headerlink" href="#next-step" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Setting up the Board and Application Deployment Tutorials</p>
@@ -717,21 +747,21 @@ which is explained in more detail in the getting started guide.</p>
 </li>
 <li><p>Go back to the <a class="reference internal" href="../index.html"><span class="doc">KV260 SOM designs start page</span></a></p></li>
 </ul>
-</div>
-<div class="section" id="references">
+</section>
+<section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Petalinux user guide <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1144-petalinux-tools-reference-guide.pdf">UG1144</a></p></li>
 </ul>
-<div class="section" id="license">
+<section id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
-</div>
-</div>
+<p align="center">Copyright&copy; 2021 Xilinx</p></section>
+</section>
+</section>
 
 
            </div>
@@ -762,7 +792,7 @@ which is explained in more detail in the getting started guide.</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 24, 2021.
+        Last updated on May 27, 2021.
       </span>
 
     </p>

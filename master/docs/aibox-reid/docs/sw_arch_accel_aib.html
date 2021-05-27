@@ -6,7 +6,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
+		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -40,6 +41,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -54,6 +56,8 @@
   <link rel="stylesheet" href="../../../_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/pro.min.css" media="all" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Hardware Architecture of the Platform" href="hw_arch_platform_aib.html" />
@@ -305,7 +309,7 @@
             
             
               <div class="version">
-                1.0
+                1.1
               </div>
             
           
@@ -440,19 +444,19 @@
  <tr>
  <td align="center"><h1> Software Architecture of the Accelerator </h1> </td>
  </tr>
-</table><div class="section" id="software-architecture-of-the-accelerator">
+</table><section id="software-architecture-of-the-accelerator">
 <h1>Software Architecture of the Accelerator<a class="headerlink" href="#software-architecture-of-the-accelerator" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This document describes the software architecture of the AiBox-ReID application.</p>
-</div>
-<div class="section" id="software-platform-and-dependencies">
+</section>
+<section id="software-platform-and-dependencies">
 <h2>Software Platform and Dependencies<a class="headerlink" href="#software-platform-and-dependencies" title="Permalink to this headline">¶</a></h2>
 <p>We leverage the GStreamer multi-media orchestration platform for application software development. As described in following sections about GStreamer pipeline, all the processing units in the stream pipeline are presented to the user as easily pluggable and changeable plugins, enabling a “low touch” customer adaptation of the reference design pipeline within the context of an open-source and non-vendor specific implementation.</p>
 <p><strong>Vitis AI 1.3.0</strong> is the core underlying component to access the AI inference capability provided by Xilinx DPU.</p>
 <p>To access DPU and other PL hardware accelerator functions from GStreamer, Xilinx developed Intelligent Video Analysis SDK (IVAS) to provide convinient and customizable GStreamer plugins for it.</p>
-</div>
-<div class="section" id="gstreamer-pipeline">
+</section>
+<section id="gstreamer-pipeline">
 <h2>GStreamer Pipeline<a class="headerlink" href="#gstreamer-pipeline" title="Permalink to this headline">¶</a></h2>
 <p><img alt="Overall video data flow" src="../../../_images/aibox-sw-data-flow.png" /></p>
 <p>The AIBox-ReID application accepts up to 4 channels of RTSP streams (<strong>1080p, H264/H265</strong>), decodes them to NV12 frame buffers, then performs pedestrian detection on all four streams using the AI inference accelerator (DPU). Next, ReID and tracking are performed to give the detected pedestrians a unique ID. Finally, bounding boxes and ID text are rendered over the original video frames and displayed on a <strong>4K</strong> monitor in a 2x2 grid.</p>
@@ -513,27 +517,27 @@
 <p>Configuration file: /opt/xilinx/share/ivas/aibox-reid/draw_reid.json.</p>
 </li>
 </ul>
-</div>
-<div class="section" id="additional-gstreamer-component-used">
+</section>
+<section id="additional-gstreamer-component-used">
 <h2>Additional GStreamer component used:<a class="headerlink" href="#additional-gstreamer-component-used" title="Permalink to this headline">¶</a></h2>
 <p>The rtspsrc and omxh264dec are the standard GStreamer plugin which accept the RTSP stream and decode to NV12.</p>
-</div>
-<div class="section" id="next-step">
+</section>
+<section id="next-step">
 <h2>Next Step<a class="headerlink" href="#next-step" title="Permalink to this headline">¶</a></h2>
 <p>You can choose any of the following next steps:</p>
 <ul class="simple">
 <li><p>Read <a class="reference internal" href="hw_arch_platform_aib.html"><span class="doc">Hardware Architecture of the Platform</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="../aibox_landing.html"><span class="doc">KV260 AI Box design start page</span></a></p></li>
 </ul>
-<div class="section" id="license">
+<section id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
-</div>
-</div>
+<p align="center">Copyright&copy; 2021 Xilinx</p></section>
+</section>
+</section>
 
 
            </div>
@@ -564,7 +568,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 24, 2021.
+        Last updated on May 27, 2021.
       </span>
 
     </p>

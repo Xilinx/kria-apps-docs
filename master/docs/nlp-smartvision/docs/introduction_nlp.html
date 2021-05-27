@@ -6,7 +6,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
+		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -40,6 +41,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -54,6 +56,8 @@
   <link rel="stylesheet" href="../../../_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/pro.min.css" media="all" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Setting up the Board and Application Deployment" href="app_deployment_nlp.html" />
@@ -305,7 +309,7 @@
             
             
               <div class="version">
-                1.0
+                1.1
               </div>
             
           
@@ -437,9 +441,9 @@
  <tr>
  <td align="center"><h1> Design Overview </h1> </td>
  </tr>
-</table><div class="section" id="design-overview">
+</table><section id="design-overview">
 <h1>Design Overview<a class="headerlink" href="#design-overview" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The NLP SmartVision design built on KV260 Vision AI Starter Kit provides a framework for building and customizing audio &amp; video platforms that consist of four pipeline stages:</p>
 <ul class="simple">
@@ -479,8 +483,8 @@
 <p>The following figure shows an example end-to-end pipeline which could be a USB microphone as an audio source and a single image sensor as the video source. Audio source writes to DDR, followed by Voice Activity Detection (VAD) and Keyword Spotting Inference. Task of VAD is to keep monitoring the input audio data and whenever there is an activity (increase in input energies w.r.to audio input) create a 1 second audio frame and pass it to KWS for inference.
 Similarly video capture is followed by pre-process and DPU IPs for application NN Inference. The inferred keyword and vision task are post processed and output video frames are displayed via DP splitter onto a DP display, as the video sink. The figure also shows the image preprocessing and postprocessing block in the capture and acceleration path. The preprocessing block scales down the video whereas the postprocessing block does several actions based on spoken audio command.  The video format in the figure is the output format on each block. Details are described in the <a class="reference internal" href="hw_arch_platform_nlp.html"><span class="doc">Hardware Architecture document</span></a>.</p>
 <p><img alt="End to end example pipelines" src="../../../_images/end_to_end_pp.png" /></p>
-</div>
-<div class="section" id="design-components">
+</section>
+<section id="design-components">
 <h2>Design Components<a class="headerlink" href="#design-components" title="Permalink to this headline">¶</a></h2>
 <details>
  <summary><b>Hardware components</b></summary><ul class="simple">
@@ -576,16 +580,16 @@ Similarly video capture is followed by pre-process and DPU IPs for application N
 </li>
 </ul>
  </details>
-&nbsp;</div>
-<div class="section" id="next-steps">
+&nbsp;</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <p>The user can choose any of the following next steps:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="app_deployment_nlp.html"><span class="doc">Setting up the Board and Application Deployment Tutorial</span></a></p></li>
 <li><p><a class="reference internal" href="../../building_the_design.html"><span class="doc">Building the Design Tutorial</span></a></p></li>
 </ul>
-</div>
-<div class="section" id="references">
+</section>
+<section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p>For more information refer to the documents below</p>
 <ul class="simple">
@@ -594,15 +598,15 @@ Similarly video capture is followed by pre-process and DPU IPs for application N
 <li><p>Kria KV260 Vision AI Starter Kit Data Sheet(<a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/ndoc?t=data_sheets%3Bd=ds986-kv260-starter-kit.pdf">DS986</a>)</p></li>
 <li><p>Kria K26 SOM Data Sheet(<a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/ndoc?t=data_sheets%3Bd=ds987-k26-som.pdf">DS987</a>)</p></li>
 </ul>
-<div class="section" id="license">
+<section id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
-</div>
-</div>
+<p align="center">Copyright&copy; 2021 Xilinx</p></section>
+</section>
+</section>
 
 
            </div>
@@ -633,7 +637,7 @@ Similarly video capture is followed by pre-process and DPU IPs for application N
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 24, 2021.
+        Last updated on May 27, 2021.
       </span>
 
     </p>

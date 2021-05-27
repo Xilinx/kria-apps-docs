@@ -6,7 +6,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
+		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -40,6 +41,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -54,6 +56,8 @@
   <link rel="stylesheet" href="../../../_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/pro.min.css" media="all" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Software Architecture of the Accelerator" href="sw_arch_accel_dd.html" />
@@ -305,7 +309,7 @@
             
             
               <div class="version">
-                1.0
+                1.1
               </div>
             
           
@@ -441,18 +445,18 @@
  <tr>
  <td align="center"><h1>System Architecture of the Platform</h1> </td>
  </tr>
-</table><div class="section" id="system-architecture-of-the-platform">
+</table><section id="system-architecture-of-the-platform">
 <h1>System Architecture of the Platform<a class="headerlink" href="#system-architecture-of-the-platform" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="architecture-diagram">
+<section id="architecture-diagram">
 <h2>Architecture Diagram<a class="headerlink" href="#architecture-diagram" title="Permalink to this headline">¶</a></h2>
 <p>The following figure illustrates the system architecture of the SOM Defect Detection application.</p>
 <p><img alt="../../../_images/defect-detection-arch-dia.png" src="../../../_images/defect-detection-arch-dia.png" /></p>
-</div>
-<div class="section" id="gstreamer-pipeline-changes">
+</section>
+<section id="gstreamer-pipeline-changes">
 <h2>GStreamer Pipeline Changes<a class="headerlink" href="#gstreamer-pipeline-changes" title="Permalink to this headline">¶</a></h2>
 <p>Gstreamer provides a simple and effective method to construct media pipelines. Since this example design leverages Gstreamer, the designer can easily modify the provided pipeline to tailor it to the needs of their specific application.</p>
-</div>
-<div class="section" id="deployment">
+</section>
+<section id="deployment">
 <h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
 <p>This reference design includes a pre-packaged SD card image to provide user-friendly out-of-box experience for the Vision Defect Detection Starter Kit. This image should be used first to verify hardware setup and also to demonstrate the capabilities of the SOM. Each of the application examples provided with the kit are delivered as an RPM package group for ease of installation and deployment.</p>
 <p>In addition to pre-build SD card image, the design source files are also provided to allow customization. The <a class="reference internal" href="../../building_the_design.html"><span class="doc">Building the Design components</span></a> page documents in detail all the different design sources and steps to re-build the SD card image from scratch, including the Vivado block design, Vitis platform, and the PetaLinux project.</p>
@@ -497,8 +501,8 @@
 <td></td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="display-pipeline">
+</table></section>
+<section id="display-pipeline">
 <h2>Display Pipeline<a class="headerlink" href="#display-pipeline" title="Permalink to this headline">¶</a></h2>
 <p>To support multiple video streams to be displayed on a 4k monitor, the following solution is explored. The three images from various stages are of size 1280 x 800. These images are mixed with a background image of 4k. The PS print the display results on the background image. The following figure shows an example background and layout. This is the sample output display for defect detection on a monitor.</p>
 <p>The 4K Monitor displays the following outputs:</p>
@@ -528,72 +532,72 @@
 <p>In the PL, the video mixer IP reads the video streams (three images + base layer) from memory and streams it into the DP/HDMI port. AXI-Stream conversion to native video is done using AXI4-Stream to Video IP and Video Timing controller IP.</p>
 <p>The video mixer IP workflow is as follows.</p>
 <p><img alt="../../../_images/video_mixer_ip_workflow.png" src="../../../_images/video_mixer_ip_workflow.png" /></p>
-</div>
-<div class="section" id="platform">
+</section>
+<section id="platform">
 <h2>Platform<a class="headerlink" href="#platform" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="dp-tx-display">
+<section id="dp-tx-display">
 <h3>DP Tx Display<a class="headerlink" href="#dp-tx-display" title="Permalink to this headline">¶</a></h3>
 <details>
  <summary><b>Click here to view details</b></summary><p>Linux kernel and user-space frameworks for display and graphics are intertwined and the software stack can be quite complex with many layers and different standards/APIs. On the
 kernel side, the display and graphics portions are split with each having their own APIs. However, both are commonly referred to as a single framework, namely DRM/KMS. This split is advantageous, especially for SoCs that often have dedicated hardware blocks for display and graphics. The display pipeline driver responsible for interfacing with the display uses the kernel mode setting (KMS) API and the GPU responsible for drawing objects into memory uses the direct rendering manager (DRM) API. Both APIs are accessed from user-space through a single device node.</p>
 <p><img alt="../../../_images/DP-TX-Display.png" src="../../../_images/DP-TX-Display.png" /></p>
-</details></div>
-<div class="section" id="direct-rendering-manager">
+</details></section>
+<section id="direct-rendering-manager">
 <h3>Direct Rendering Manager<a class="headerlink" href="#direct-rendering-manager" title="Permalink to this headline">¶</a></h3>
 <p>The Direct Rendering Manager (DRM) is a subsystem of the Linux kernel responsible for interfacing with a GPU. DRM exposes an API that user space programs can use to send
 commands and data to the GPU. The ARM Mali driver uses a proprietary driver stack that is discussed in the next section. Therefore, this section focuses on the common infrastructure portion around memory allocation and management that is shared with the KMS API.</p>
-</div>
-<div class="section" id="driver-features">
+</section>
+<section id="driver-features">
 <h3>Driver Features<a class="headerlink" href="#driver-features" title="Permalink to this headline">¶</a></h3>
 <p>The Xilinx DRM driver uses the GEM memory manager and implements DRM PRIME buffer sharing. PRIME is the cross-device buffer sharing framework in DRM. To user-space, PRIME buffers are DMABUF-based file descriptors. The DRM GEM/CMA helpers use the CMA allocator as a means to provide buffer objects that are physically contiguous in memory. This is useful for display drivers that are unable to map scattered buffers via an IOMMU. Frame buffers are abstract memory objects that provide a source of pixels to scan out to a CRTC. Applications explicitly request the creation of frame buffers through the DRM_IOCTL_MODE_ADDFB(2) ioctls and receive an opaque handle that can be passed to the KMS CRTC control, plane configuration and page flip functions.</p>
-</div>
-<div class="section" id="kernel-mode-setting">
+</section>
+<section id="kernel-mode-setting">
 <h3>Kernel Mode Setting<a class="headerlink" href="#kernel-mode-setting" title="Permalink to this headline">¶</a></h3>
 <p>Mode setting is an operation that sets the display mode including video resolution and refresh rate. It was traditionally done in user-space by the X-server that caused several issues due to accessing low-level hardware from user-space, which if done wrong, can lead to system instabilities. The mode setting API was added to the kernel DRM framework, hence the name Kernel Mode Setting. The KMS API is responsible for handling the frame buffer and planes, setting the mode, and performing page-flips (switching between buffers). The KMS device is modeled as a set of planes, CRTCs, encoders, and connectors as shown in the top half of the DP Tx display. The bottom half of that figure shows how the driver model maps to the physical hardware components inside the PS DP Tx display pipeline.</p>
-</div>
-<div class="section" id="crtc">
+</section>
+<section id="crtc">
 <h3>CRTC<a class="headerlink" href="#crtc" title="Permalink to this headline">¶</a></h3>
 <details>
  <summary><b>Click here to view details</b></summary><p>CRTC is an antiquated term that stands for Cathode Ray Tube Controller, which today would be simply named display controller as CRT monitors have disappeared and many other display types are available. The CRTC is an abstraction that is responsible for composing the frame to be scanned out to the display and setting the mode of the display. In the Xilinx DRM driver, the CRTC is represented by the buffer manager and blender hardware blocks. The frame buffer (primary plane) to be scanned out can be overlayed and/or alpha-blended with a second plane inside the blender. The DP Tx hardware supports up to two planes, one for video and one for graphics. The z-order (foreground or background position) of the planes and the alpha mode (global or pixel-alpha) can be configured through the driver via custom properties.</p>
 <p>The pixel formats of the video and graphics planes can be configured individually at run-time and a variety of formats are supported. The default pixel formats for each plane are set statically in the device tree. Pixel unpacking and format conversions are handled by the buffer manager and blender. The DRM driver configures the hardware accordingly, so this is transparent to the user.</p>
 <p>A page-flip is the operation that configures a plane with the new buffer index to be selected for the next scan-out. The new buffer is prepared while the current buffer is being scanned
 out and the flip typically happens during vertical blanking to avoid image tearing.</p>
-</details></div>
-<div class="section" id="plane">
+</details></section>
+<section id="plane">
 <h3>Plane<a class="headerlink" href="#plane" title="Permalink to this headline">¶</a></h3>
 <details>
  <summary><b>Click here to view details</b></summary><p>A plane represents an image source that can be blended with or overlayed on top of a CRTC frame buffer during the scan-out process. Planes are associated with a frame buffer to
 optionally crop a portion of the image memory (source) and scale it to a destination size. The DP Tx display pipeline does not support cropping or scaling, therefore both video and graphics plane dimensions must match the CRTC mode (that is, the resolution set on the display). The Xilinx DRM driver supports the universal plane feature, therefore the primary plane and overlay planes can be configured through the same API. The primary plane on the video mixer is configurable and set to the top-most plane to match the DP Tx pipeline.
 As planes are modeled inside KMS, the physical hardware device that reads the data from memory is typically a DMA whose driver is implemented using the DMA engine Linux
 framework. The DPDMA is a 6-channel DMA engine that supports a (up to) 3-channel video stream, a 1-channel graphics stream, and two channels for audio (not used in this design). The video mixer uses built-in AXI master interfaces to fetch video frames from memory.</p>
-</details></div>
-<div class="section" id="encoder">
+</details></section>
+<section id="encoder">
 <h3>Encoder<a class="headerlink" href="#encoder" title="Permalink to this headline">¶</a></h3>
 <p>An encoder takes pixel data from a CRTC and converts it to a format suitable for any attached connectors. There are many different display protocols defined, such as HDMI or DisplayPort. The PS display pipeline has a DisplayPort transmitter built in. The encoded video data is then sent to the serial I/O unit (SIOU) which serializes the data using the gigabit transceivers (PS GTRs) before it goes out via the physical DP connector to the display. The PL display pipeline uses a HDMI transmitter which sends the encoded video data to the Video PHY. The Video PHY serializes the data using the GTH transceivers in the PL before it goes out via the HDMI Tx connector.</p>
-</div>
-<div class="section" id="connector">
+</section>
+<section id="connector">
 <h3>Connector<a class="headerlink" href="#connector" title="Permalink to this headline">¶</a></h3>
 <p>The connector models the physical interface to the display. Both DisplayPort and HDMI protocols use a query mechanism to receive data about the monitor resolution, and refresh rate by reading the extended display identification data (EDID) (see VESA Standard) stored inside the monitor. This data can then be used to correctly set the CRTC mode. The DisplayPort supports hot-plug events to detect if a cable has been connected or disconnected as well as handling display power management signaling (DPMS) power modes.</p>
-</div>
-<div class="section" id="libdrm">
+</section>
+<section id="libdrm">
 <h3>Libdrm<a class="headerlink" href="#libdrm" title="Permalink to this headline">¶</a></h3>
 <p>The framework exposes two device nodes per display pipeline to user space: the <code class="docutils literal notranslate"><span class="pre">/dev/dri/card*</span></code> device node and an emulated <code class="docutils literal notranslate"><span class="pre">/dev/fb*</span></code> device node for backward compatibility with the legacy <em>fbdev</em> Linux framework. The latter is not used in this design. <em>libdrm</em> was created to facilitate the interface of user space programs with the DRM subsystem. This library is merely a wrapper that provides a function written in C for every ioctl of the DRM API, as well as constants, structures and other helper elements. The use of <em>libdrm</em> not only avoids exposing the kernel interface directly to user space but presents the usual advantages of reusing and sharing code between programs.</p>
-</div>
-</div>
-<div class="section" id="next-steps">
+</section>
+</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><img alt="right arrow" src="../../../_images/next.jpg" /> <a class="reference internal" href="sw_arch_accel_dd.html"><span class="doc">Software Accelerator</span></a></p></li>
 </ul>
-<div class="section" id="license">
+<section id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center"><sup>Copyright&copy; 2021 Xilinx</sup></p></div>
-</div>
-</div>
+<p align="center"><sup>Copyright&copy; 2021 Xilinx</sup></p></section>
+</section>
+</section>
 
 
            </div>
@@ -624,7 +628,7 @@ framework. The DPDMA is a 6-channel DMA engine that supports a (up to) 3-channel
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 24, 2021.
+        Last updated on May 27, 2021.
       </span>
 
     </p>

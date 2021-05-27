@@ -152,6 +152,38 @@ Once the SDK is installed, source the file
 `images/linux/sdk/environment-setup-aarch64-xilinx-linux`
 to set up the cross-development environment.
 
+## Update the eSDK
+
+Xilinx publishes package feed and eSDK updates. The package feed can be used to
+install updated packages into the root file system. The eSDK can be used to
+update the petalinux tool for creating new images or SDKs. The eSDK updates are
+published at http://petalinux.xilinx.com/sswreleases/rel-v2020.2.2/sdkupdate.
+
+To update the eSDK, extract the petalinux installer, accept the license and
+source the tool's settings script.
+
+```bash
+petalinux-v2020.2.2-final-installer.run
+source settings.sh
+```
+
+Remove the existing aarch64 folder.
+
+```bash
+rm -rf components/yocto/source/aarch64
+```
+
+Upgrade the tool with the new eSDK and source the tool's settings script.
+
+```bash
+petalinux-upgrade -u 'http://petalinux.xilinx.com/sswreleases/rel-v2020.2.2/sdkupdate/update1/' -p 'aarch64'
+source settings.sh
+```
+
+The petalinux tool is now updated with the latest Yocto eSDK. Continue as usual
+by creating a new project from a .bsp file. The build will now include the
+latest meta-layer and recipe updates.
+
 ## Add New FPGA Firmware
 
 ### Create firmware recipe for custom hardware

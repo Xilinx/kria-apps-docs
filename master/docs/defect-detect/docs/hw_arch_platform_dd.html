@@ -6,7 +6,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
+		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -40,6 +41,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -54,6 +56,8 @@
   <link rel="stylesheet" href="../../../_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/pro.min.css" media="all" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Hardware Architecture of the Accelerator" href="hw_arch_accel_dd.html" />
@@ -305,7 +309,7 @@
             
             
               <div class="version">
-                1.0
+                1.1
               </div>
             
           
@@ -441,9 +445,9 @@
  <tr>
  <td align="center"><h1>Hardware Architecture of the Platform</h1> </td>
  </tr>
-</table><div class="section" id="hardware-architecture-of-the-platform">
+</table><section id="hardware-architecture-of-the-platform">
 <h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This section describes the design implemented in Programmable Logic (PL). The following figure shows the top-level hardware architecture of the reference design.</p>
 <p><img alt="Hardware Block Diagram" src="../../../_images/hw_arch_dia.png" /></p>
@@ -471,15 +475,15 @@
 <blockquote>
 <div><p><strong>Note</strong>: The PS interconnects in the figure are conceptual.</p>
 </div></blockquote>
-</div>
-<div class="section" id="capture">
+</section>
+<section id="capture">
 <h2>Capture<a class="headerlink" href="#capture" title="Permalink to this headline">¶</a></h2>
 <p>The captured image from a file is provided to the accelerator. For more information how images on the SD card are accessible from the PS refer to the SD controller section of the Zynq UltraScale+ Device Technical Reference Manual <a class="reference external" href="https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf">UG1085</a>.</p>
 <blockquote>
 <div><p>Note: The vivado platform design includes PL components which enable capture from a MIPI sensor, but this feature will only be supported in the next release.</p>
 </div></blockquote>
-</div>
-<div class="section" id="display">
+</section>
+<section id="display">
 <h2>Display<a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h2>
 <p>An output pipeline reads video frames from memory and sends the frames to a sink. In this case, the sink is a display port in the PS. The display pipeline is shown in the following figure.</p>
 <p><img alt="Display Pipeline" src="../../../_images/display-pipeline.png" /></p>
@@ -491,10 +495,10 @@
 <li><p>AXI4-Stream to Video Out core provides a bridge between video processing cores with AXI4-Stream interfaces and native video output (parallel video data, video syncs, and blanks). The core works with the Xilinx Video Timing Controller (VTC) core. The synchronizer section of the core synchronizes timing from the VTC to the video data from the AXI4-Stream Bus. For more information, refer to AXI4-Stream to Video Out LogiCORE IP Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/v_axi4s_vid_out/v4_0/pg044_v_axis_vid_out.pdf">PG044</a>.</p></li>
 <li><p>The output from the AXI4-Stream to Video Out Converter goes through SOM slices and concat blocks to drive the DisplayPort Live signals on the PS. The slices and concat are required to the adhere to the Live Video data format.  For more information on DisplayPort Controller in Live mode, refer to the Zynq UltraScale+ Device Technical Reference Manual <a class="reference external" href="https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf">UG1085</a>.</p></li>
 </ul>
-</div>
-<div class="section" id="clocks-resets-and-interrupts">
+</section>
+<section id="clocks-resets-and-interrupts">
 <h2>Clocks, Resets and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="clocks">
+<section id="clocks">
 <h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this headline">¶</a></h3>
 <p>The following table identifies the main clocks of the PL design, their source, their clock frequency, and their function.</p>
 <table border="1" class="docutils">
@@ -547,9 +551,9 @@
 </table><blockquote>
 <div><p>*Clocks that are exposed as a Platform interface and can be used by an accelerator.</p>
 </div></blockquote>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="resets">
+<section id="resets">
 <h3>Resets<a class="headerlink" href="#resets" title="Permalink to this headline">¶</a></h3>
 <p>The following table summarizes the resets used in this design.</p>
 <table border="1" class="docutils">
@@ -601,8 +605,8 @@
 <td align="left"></td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="interrupts">
+</table></section>
+<section id="interrupts">
 <h3>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this headline">¶</a></h3>
 <p>The following table lists the PL-to-PS interrupts used in this design.</p>
 <table border="1" class="docutils">
@@ -634,10 +638,10 @@
 <td align="left">Exposed as a Platform interface and can be used by an Accelerator</td>
 </tr>
 </tbody>
-</table></div>
-</div>
+</table></section>
+</section>
 <hr class="docutils" />
-<div class="section" id="resource-utilization">
+<section id="resource-utilization">
 <h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this headline">¶</a></h2>
 <p>The resource utilization numbers on this platform post implementation is reported in the table below.</p>
 <table border="1" class="docutils">
@@ -717,22 +721,22 @@
 <td align="left"></td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="next-steps">
+</table></section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><img alt="right arrow" src="../../../_images/next.jpg" /> <a class="reference internal" href="hw_arch_accel_dd.html"><span class="doc">Hardware Accelerator Architecture</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="../defectdetect_landing.html"><span class="doc">KV260 Defect detect design start page</span></a></p></li>
 </ul>
-<div class="section" id="license">
+<section id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
-</div>
-</div>
+<p align="center">Copyright&copy; 2021 Xilinx</p></section>
+</section>
+</section>
 
 
            </div>
@@ -763,7 +767,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 24, 2021.
+        Last updated on May 27, 2021.
       </span>
 
     </p>

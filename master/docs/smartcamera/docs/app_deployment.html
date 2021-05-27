@@ -6,7 +6,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
+		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -40,6 +41,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -54,6 +56,8 @@
   <link rel="stylesheet" href="../../../_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/pro.min.css" media="all" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Customizing the AI Models used in the application" href="customize_ai_models.html" />
@@ -305,7 +309,7 @@
             
             
               <div class="version">
-                1.0
+                1.1
               </div>
             
           
@@ -437,13 +441,13 @@
  <tr>
  <td align="center"><h1>Setting up the Board and Application Deployment</h1> </td>
  </tr>
-</table><div class="section" id="setting-up-the-board-and-application-deployment">
+</table><section id="setting-up-the-board-and-application-deployment">
 <h1>Setting up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This document shows how to set up the board and run the smartcam application.</p>
-</div>
-<div class="section" id="setting-up-the-board">
+</section>
+<section id="setting-up-the-board">
 <h2>Setting up the Board<a class="headerlink" href="#setting-up-the-board" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p>Note: Skip Step 1, if you have already flashed the SD Card with the KV260 Vision AI Starter Kit Image (kv260-sdcard.img.wic)</p>
@@ -457,14 +461,14 @@
 macOS) required to flash the SD card.</p></li>
 <li><p>Follow the instructions in the tool and select the downloaded image to flash onto your microSD card.</p></li>
 </ul>
-<p><img alt="Balena Etcher" src="../../../_images/balena3.png" /></p>
+<p><img alt="Balena Etcher" src="../../../_images/balena.png" /></p>
 <ul class="simple">
 <li><p>Eject the SD card from your computer.</p></li>
 </ul>
 <p>If you are looking for other OS specific tools to write the image to the SD card refer to <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/setting-up-the-sd-card-image.html">KV260 Getting Started Page</a></p>
 </li>
 <li><p>Hardware Setup:</p>
-<p><img alt="GitHub Logo" src="../../../_images/som-board3.png" /></p>
+<p><img alt="GitHub Logo" src="../../../_images/som-board.png" /></p>
 <ul class="simple">
 <li><p>microSD:</p></li>
 </ul>
@@ -602,11 +606,11 @@ passwd: password updated successfully
 <p>Finally, please upload or copy these transcoded H264 files to the board (by using scp, ftp, or copy onto SD card and finding them in /media/sd-mmcblk0p1/), place it to somewhere under /home/petalinux, which is the home directory of the user you login as.</p>
 </li>
 </ol>
-</div>
-<div class="section" id="run-the-application">
+</section>
+<section id="run-the-application">
 <h2>Run the Application<a class="headerlink" href="#run-the-application" title="Permalink to this headline">¶</a></h2>
 <p>There are two ways to interact with the application.</p>
-<div class="section" id="jupyter-notebook">
+<section id="jupyter-notebook">
 <h3>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h3>
 <p>To launch Jupyter notebook on the target, run below command. Use Chrome web-browser to interact with the platform.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ jupyter-lab --ip=ip-address &amp; 
@@ -644,12 +648,12 @@ xilinx-SOM-multi-cc-2020_2:~$ [W 15:31:44.879 LabApp] JupyterLab server extensio
 <p><code class="docutils literal notranslate"><span class="pre">http://ip:port/?token=xxxxxxxxxxxxxxxxxx</span></code>  :: /opt/xilinx/share/notebooks</p>
 </div></blockquote>
 <p>In the notebook, we will construct the GStreamer pipeline string, you can get it by adding simple python code to print it out, and played with gst-launch-1.0 command in the console, and there are some user options variables that can be changed and run with. For other parts of the pipeline, you can also change and play to see the effect easily.</p>
-</div>
-<div class="section" id="command-line">
+</section>
+<section id="command-line">
 <h3>Command line<a class="headerlink" href="#command-line" title="Permalink to this headline">¶</a></h3>
 <p>These allow the user to define different video input and output device targets using the “smartcam” application. These are to be executed using the UART/debug interface.</p>
 <p><strong>Notice</strong> The application need to be ran with <em><strong>sudo</strong></em> .</p>
-<div class="section" id="example-scripts">
+<section id="example-scripts">
 <h4>Example scripts<a class="headerlink" href="#example-scripts" title="Permalink to this headline">¶</a></h4>
 <p>Example scripts and options definitions are provided below.</p>
 <p>Refer to <a class="reference external" href="#script-loc">File Structure</a> to find the files location.</p>
@@ -706,11 +710,11 @@ xilinx-SOM-multi-cc-2020_2:~$ [W 15:31:44.879 LabApp] JupyterLab server extensio
 </ol>
 </li>
 </ul>
-</details></div>
-<div class="section" id="additional-configuration-options-for-smartcam-invocation">
+</details></section>
+<section id="additional-configuration-options-for-smartcam-invocation">
 <h4>Additional configuration options for <code class="docutils literal notranslate"><span class="pre">smartcam</span></code> invocation<a class="headerlink" href="#additional-configuration-options-for-smartcam-invocation" title="Permalink to this headline">¶</a></h4>
 <p>The example scripts and Jupyter notebook work as examples to show the capability of the smartcam for specific configurations. More combinations could be made based on the options provided by smartcam. User can get detailed application options as following by invoking <code class="docutils literal notranslate"><span class="pre">smartcam</span> <span class="pre">--help</span></code>.</p>
-<div class="section" id="usage">
+<section id="usage">
 <h5>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> smartcam [OPTION?] - Application for face detection on SOM board of Xilinx.
 
@@ -758,8 +762,8 @@ xilinx-SOM-multi-cc-2020_2:~$ [W 15:31:44.879 LabApp] JupyterLab server extensio
  --ROI-off                  turn off ROI (Region-of-Interest)
 </pre></div>
 </div>
-</div>
-<div class="section" id="examples-of-supported-combinations-sorted-by-input-are-outlined-below">
+</section>
+<section id="examples-of-supported-combinations-sorted-by-input-are-outlined-below">
 <h5>Examples of supported combinations sorted by input are outlined below<a class="headerlink" href="#examples-of-supported-combinations-sorted-by-input-are-outlined-below" title="Permalink to this headline">¶</a></h5>
 <p>If using the command line to invoke the smartcam, stop the process via CTRL-C prior to starting the next instance.</p>
 <ul>
@@ -820,11 +824,11 @@ xilinx-SOM-multi-cc-2020_2:~$ [W 15:31:44.879 LabApp] JupyterLab server extensio
 </ul>
 </li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="files-structure-of-the-application">
+</section>
+</section>
+</section>
+</section>
+<section id="files-structure-of-the-application">
 <h2>Files structure of the application<a class="headerlink" href="#files-structure-of-the-application" title="Permalink to this headline">¶</a></h2>
 <p>The application is installed as:</p>
 <ul class="simple">
@@ -909,21 +913,21 @@ xilinx-SOM-multi-cc-2020_2:~$ [W 15:31:44.879 LabApp] JupyterLab server extensio
 <td>Jupyter notebook file for MIPI --&gt; DP/RTSP demo.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="next-steps">
+</table></section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 SOM Smart camera design start page</span></a></p></li>
 </ul>
-<div class="section" id="license">
+<section id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
-</div>
-</div>
+<p align="center">Copyright&copy; 2021 Xilinx</p></section>
+</section>
+</section>
 
 
            </div>
@@ -954,7 +958,7 @@ xilinx-SOM-multi-cc-2020_2:~$ [W 15:31:44.879 LabApp] JupyterLab server extensio
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 24, 2021.
+        Last updated on May 27, 2021.
       </span>
 
     </p>

@@ -1,6 +1,6 @@
 <table class="sphinxhide">
  <tr>
-   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit <br>NLP SmartVision Tutorial</h1>
+   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit<br>NLP SmartVision Tutorial</h1>
    </td>
  </tr>
  <tr>
@@ -19,14 +19,13 @@
     `sudo xmutil      loadapp kv260-nlp-smartvision`
 
     to load the firmware properly, otherwise many drivers including the MIPI will not loaded, so there will be many errors pops up when you run the application.
-    
+
 * Application run without input audio device:
 
     The application will still run if no audio input device is connected, but only facedetect application will run.
     If you do not get the below message on terminal after launching the application (apx. after 3 seconds), please check the audio device connection.
-    
+
    `Noise Threshold is set. You can start speaking the keywords now..`
-    
 
 ## This section list some debugging tips for platform peripherals
 
@@ -60,7 +59,7 @@ id      encoder status          name            size (mm)       modes   encoders
 
  Below are the modes that are supported by your display.
 
-```
+```bash
   modes:
         name refresh (Hz) hdisp hss hse htot vdisp vss vse vtot)
   ...
@@ -78,7 +77,7 @@ Ensure display is capable of supporting user requested resolution and refresh ra
 
  CRTC indicates the current mode that is set.
 
-```
+```bash
 CRTCs:
 id      fb      pos     size
 41      47      (0,0)   (3840x2160)
@@ -92,7 +91,7 @@ id      fb      pos     size
 
 The  above command sets a mode, SMPTE Color Bars appears on the display.
 
-<img src="../../media/SMPTE_Color_Bars.svg" alt="SMPTE color bars" width="150" height="100">
+![SMPTE color bars](../../media/SMPTE_Color_Bars.svg)
 
 </details>
 
@@ -105,7 +104,7 @@ The  above command sets a mode, SMPTE Color Bars appears on the display.
 
 `cat /proc/asound/cards`
 
-```
+```bash
  2 [xlnxi2ssndcard0]: xlnx-i2s-snd-ca - xlnx-i2s-snd-card-0
                       xlnx-i2s-snd-card-0
 ```
@@ -116,7 +115,7 @@ In the above example, enumeration of audio card is 2.
 
 `cat /proc/asound/devices`
 
-```
+```bash
  80: [ 2- 0]: digital audio playback
  89: [ 2- 1]: digital audio capture
 ```
@@ -137,7 +136,7 @@ In the above example [2- X]: 2- is card, X is device.
 
 `lsusb`
 
-```
+```bash
 Bus 002 Device 003: ID 046d:085e Logitech, Inc. USB5744
 Bus 002 Device 002: ID 0424:5744 Standard Microsystems Corp. USB5744
 Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
@@ -160,7 +159,7 @@ Here is an example for capture path of 'ar1335 sensor'.
 
 `media-ctl -d /dev/media0 -p`
 
-```
+```bash
 Media controller API version 5.4.0
 
 Media device information
@@ -232,20 +231,21 @@ Device topology
 ## Known Benign Error messages
 
 <details>
+
  <summary>Click here to view details</summary>
 
 User does not have to worry about Errors logged by the linux kernl while excuting the specified commands below, they are benign and can be ignored.
 
 `sudo xmutil unloadapp`
 
-```
+```bash
 [ 4125.507273] OF: ERROR: memory leak, expected refcount 1 instead of 2, ...... ... 
 [ 4125.507293] OF: ERROR: memory leak, expected refcount 1 instead of 2, ...... ... 
 ```
 
 `sudo xmutil loadapp kv260-nlp-smartvision`
 
-```
+```bash
 [ 4183.694299] xlnx_snd_card xlnx_snd_card.1.auto: ASoC: failed to init link xilinx-i2s_playback: -517
 [ 4183.703363] xlnx_snd_card xlnx_snd_card.1.auto: xlnx-i2s-snd-card-0 registration failed
 ```

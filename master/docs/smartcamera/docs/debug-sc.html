@@ -6,7 +6,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
+		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -40,6 +41,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -54,6 +56,8 @@
   <link rel="stylesheet" href="../../../_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/pro.min.css" media="all" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Known Issues" href="issue-sc.html" />
@@ -305,7 +309,7 @@
             
             
               <div class="version">
-                1.0
+                1.1
               </div>
             
           
@@ -437,9 +441,9 @@
  <tr>
  <td align="center"><h1>Debugging</h1> </td>
  </tr>
-</table><div class="section" id="debugging">
+</table><section id="debugging">
 <h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="debugging-tips">
+<section id="debugging-tips">
 <h2>Debugging Tips<a class="headerlink" href="#debugging-tips" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>Use the following command to load the firmware. If you do not, many drivers (including the MIPI and VCU) will not load, and when you run the application, you will have errors.</p>
@@ -476,16 +480,16 @@
 <p>Choose from the supported resolutions.</p>
 </li>
 </ul>
-</div>
-<div class="section" id="platform-peripheral-debug-tips">
+</section>
+<section id="platform-peripheral-debug-tips">
 <h2>Platform Peripheral Debug Tips<a class="headerlink" href="#platform-peripheral-debug-tips" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="monitor">
+<section id="monitor">
 <h3>Monitor<a class="headerlink" href="#monitor" title="Permalink to this headline">¶</a></h3>
 <details>
  <summary>Click here to view the details.</summary><p>Use certified cables for DP and HDMI. The recommended specifications are listed for HDMI 2.0 and or higher and DP 1.2. If the cables are faulty, they could cause distortions or disable the display.</p>
 <p>Modetest is a test tool that is part of the libdrm suite of test tools.</p>
 <p><strong>Note</strong>: The following print is an example from a 4k monitor. Use this for reference only.</p>
-<div class="section" id="status-of-monitor">
+<section id="status-of-monitor">
 <h4>Status of Monitor<a class="headerlink" href="#status-of-monitor" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span> <span class="o">-</span><span class="n">M</span> <span class="n">xlnx</span>
 </pre></div>
@@ -496,8 +500,8 @@
 <span class="mi">43</span>      <span class="mi">42</span>      <span class="n">connected</span>       <span class="n">DP</span><span class="mi">-1</span>            <span class="mi">610</span><span class="n">x350</span>         <span class="mi">43</span>      <span class="mi">42</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="display-modes-supported-by-your-display">
+</section>
+<section id="display-modes-supported-by-your-display">
 <h4>Display Modes Supported by Your Display<a class="headerlink" href="#display-modes-supported-by-your-display" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span> <span class="o">-</span><span class="n">M</span> <span class="n">xlnx</span>
 </pre></div>
@@ -512,8 +516,8 @@
 </pre></div>
 </div>
 <p>Ensure display is capable of supporting user requested resolution and refresh rates to the application.</p>
-</div>
-<div class="section" id="current-mode">
+</section>
+<section id="current-mode">
 <h4>Current Mode<a class="headerlink" href="#current-mode" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span> <span class="o">-</span><span class="n">M</span> <span class="n">xlnx</span>
 </pre></div>
@@ -526,16 +530,16 @@
   <span class="nl">props</span><span class="p">:</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="test-to-determine-if-the-display-is-ok">
+</section>
+<section id="test-to-determine-if-the-display-is-ok">
 <h4>Test to Determine if the Display is OK<a class="headerlink" href="#test-to-determine-if-the-display-is-ok" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>modetest -M xlnx -s <span class="m">43</span>:1920x1080-60@AR24
 </pre></div>
 </div>
 <p>This command sets a mode, SMPTE color bars appear on the display.</p>
-<img src="../../media/SMPTE_Color_Bars.svg" alt="SMPTE color bars" width="150" height="100"></details></div>
-</div>
-<div class="section" id="i2s-audio">
+<img src="../../media/SMPTE_Color_Bars.svg" alt="SMPTE color bars" width="150" height="100"></details></section>
+</section>
+<section id="i2s-audio">
 <h3>I2S Audio<a class="headerlink" href="#i2s-audio" title="Permalink to this headline">¶</a></h3>
 <details>
  <summary>Click here to view the details.</summary>
@@ -547,7 +551,7 @@
 </pre></div>
 </div>
 <p>In the previous example, the enumeration of I2S audio card is 2.</p>
-<div class="section" id="determine-capture-and-playback-device-number">
+<section id="determine-capture-and-playback-device-number">
 <h4>Determine Capture and Playback Device Number<a class="headerlink" href="#determine-capture-and-playback-device-number" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">asound</span><span class="o">/</span><span class="n">devices</span>
  <span class="mi">80</span><span class="o">:</span> <span class="p">[</span> <span class="mi">2</span><span class="o">-</span> <span class="mi">0</span><span class="p">]</span><span class="o">:</span> <span class="n">digital</span> <span class="n">audio</span> <span class="n">playback</span>
@@ -555,28 +559,28 @@
 </pre></div>
 </div>
 <p>In this example, [2- X]: the 2- is the card and the X is the device.</p>
-</div>
-<div class="section" id="sample-record-and-playback">
+</section>
+<section id="sample-record-and-playback">
 <h4>Sample Record and Playback<a class="headerlink" href="#sample-record-and-playback" title="Permalink to this headline">¶</a></h4>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">alsa-utils.aarch64</span></code></p></li>
 <li><p>Ensure an active source is connected at the Pmod LINE IN.</p></li>
 </ol>
-<div class="section" id="sample-record">
+<section id="sample-record">
 <h5>Sample Record<a class="headerlink" href="#sample-record" title="Permalink to this headline">¶</a></h5>
 <p><code class="docutils literal notranslate"><span class="pre">aplay</span> <span class="pre">-D</span> <span class="pre">hw:2,0</span> <span class="pre">-fS24_LE</span> <span class="pre">-r</span> <span class="pre">48000</span> <span class="pre">-c</span> <span class="pre">2</span>&#160; <span class="pre">-d</span> <span class="pre">30</span> <span class="pre">-t</span> <span class="pre">raw</span> <span class="pre">file.raw</span></code></p>
-</div>
-<div class="section" id="sample-playback">
+</section>
+<section id="sample-playback">
 <h5>Sample Playback<a class="headerlink" href="#sample-playback" title="Permalink to this headline">¶</a></h5>
 <p><code class="docutils literal notranslate"><span class="pre">arecord</span> <span class="pre">-D</span> <span class="pre">hw:2,1</span>&#160; <span class="pre">-fS24_LE</span> <span class="pre">-r</span> <span class="pre">48000</span> <span class="pre">-c</span> <span class="pre">2</span>&#160; <span class="pre">-d</span> <span class="pre">30</span> <span class="pre">-t</span> <span class="pre">raw</span> <span class="pre">file.raw</span></code></p>
-</div>
-<div class="section" id="sample-pass-through">
+</section>
+<section id="sample-pass-through">
 <h5>Sample Pass-through<a class="headerlink" href="#sample-pass-through" title="Permalink to this headline">¶</a></h5>
 <p><code class="docutils literal notranslate"><span class="pre">arecord</span> <span class="pre">-D</span> <span class="pre">hw:2,1</span> <span class="pre">-f</span> <span class="pre">S24_LE</span> <span class="pre">-r</span> <span class="pre">48000</span> <span class="pre">-c</span> <span class="pre">2</span> <span class="pre">-t</span> <span class="pre">raw</span> <span class="pre">|</span> <span class="pre">aplay</span> <span class="pre">-D</span> <span class="pre">hw:2,0</span> <span class="pre">-c</span> <span class="pre">2</span> <span class="pre">-f</span> <span class="pre">S24_LE</span> <span class="pre">-r</span> <span class="pre">48000</span> <span class="pre">-t</span> <span class="pre">raw</span></code></p>
-</details></div>
-</div>
-</div>
-<div class="section" id="detect-usb-3-0">
+</details></section>
+</section>
+</section>
+<section id="detect-usb-3-0">
 <h3>Detect USB 3.0<a class="headerlink" href="#detect-usb-3-0" title="Permalink to this headline">¶</a></h3>
 <details>
  <summary>Click here to view the details.</summary><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">lsusb</span>
@@ -587,8 +591,8 @@
 <span class="n">Bus</span> <span class="mo">002</span> <span class="n">Device</span> <span class="mo">001</span><span class="o">:</span> <span class="n">ID</span> <span class="mi">1</span><span class="nl">d6b</span><span class="p">:</span><span class="mo">0003</span> <span class="n">Linux</span> <span class="n">Foundation</span> <span class="mf">3.0</span> <span class="n">root</span> <span class="n">hub</span>
 </pre></div>
 </div>
-</details></div>
-<div class="section" id="obtain-media-device-information">
+</details></section>
+<section id="obtain-media-device-information">
 <h3>Obtain Media device information<a class="headerlink" href="#obtain-media-device-information" title="Permalink to this headline">¶</a></h3>
 <details> <summary>Click here to view the details.</summary><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">media</span><span class="o">*</span>
 </pre></div>
@@ -656,9 +660,9 @@
                 <span class="o">-&gt;</span> <span class="s">&quot;ap1302.4-003c&quot;</span><span class="o">:</span><span class="mi">0</span> <span class="p">[</span><span class="n">ENABLED</span><span class="p">,</span><span class="n">IMMUTABLE</span><span class="p">]</span>
 </pre></div>
 </div>
-</details></div>
-</div>
-<div class="section" id="known-benign-error-messages">
+</details></section>
+</section>
+<section id="known-benign-error-messages">
 <h2>Known Benign Error Messages<a class="headerlink" href="#known-benign-error-messages" title="Permalink to this headline">¶</a></h2>
 <details>
  <summary>Click here to view details:</summary><p>You do not have to worry about errors logged by the Linux kernel while executing the following specified commands, they are benign and can be ignored.</p>
@@ -676,15 +680,15 @@
 <span class="p">[</span> <span class="mf">4183.703363</span><span class="p">]</span> <span class="n">xlnx_snd_card</span> <span class="n">xlnx_snd_card</span><span class="mf">.1</span><span class="p">.</span><span class="k">auto</span><span class="o">:</span> <span class="n">xlnx</span><span class="o">-</span><span class="n">i2s</span><span class="o">-</span><span class="n">snd</span><span class="o">-</span><span class="n">card</span><span class="mi">-0</span> <span class="n">registration</span> <span class="n">failed</span>
 </pre></div>
 </div>
-</details><div class="section" id="license">
+</details><section id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
-</div>
-</div>
+<p align="center">Copyright&copy; 2021 Xilinx</p></section>
+</section>
+</section>
 
 
            </div>
@@ -715,7 +719,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 24, 2021.
+        Last updated on May 27, 2021.
       </span>
 
     </p>
