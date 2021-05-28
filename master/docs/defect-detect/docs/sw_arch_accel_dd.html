@@ -6,8 +6,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+		
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -41,7 +40,6 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -56,8 +54,6 @@
   <link rel="stylesheet" href="../../../_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/pro.min.css" media="all" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Hardware Architecture of the Platform" href="hw_arch_platform_dd.html" />
@@ -81,7 +77,7 @@
 															<div class="logo-column">
 																<div class="logo">
 																	<a href="https://www.xilinx.com/">
-																	<img src="https://www.xilinx.com/etc.clientlibs/site/clientlibs/xilinx/all/resources/imgs/header/xilinx-header-logo.svg" title="Xilinx Inc"/>
+																	<img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-header-logo.svg" title="Xilinx Inc"/>
 																	</a>
 																</div>
 															</div>
@@ -309,7 +305,7 @@
             
             
               <div class="version">
-                1.1
+                1.0
               </div>
             
           
@@ -442,12 +438,12 @@
  <tr>
  <td align="center"><h1>Software Architecture of the Accelerator</h1> </td>
  </tr>
-</table><section id="software-architecture-of-the-accelerator">
+</table><div class="section" id="software-architecture-of-the-accelerator">
 <h1>Software Architecture of the Accelerator<a class="headerlink" href="#software-architecture-of-the-accelerator" title="Permalink to this headline">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This document describes the software architecture of the Defect Detection accelerator application.</p>
-<section id="software-architecture">
+<div class="section" id="software-architecture">
 <h3>Software Architecture<a class="headerlink" href="#software-architecture" title="Permalink to this headline">¶</a></h3>
 <p>In the Defect Detection application, the Computer Vision Starter Kit can take video inputs from a file. As shown in the following figure, the video inputs will be in the Luma(Y) format, processed and displayed. Vitis overlay includes Vitis Vision libraries that process the frames and try to detect defects in mangoes.</p>
 <p>In this reference design, the resolution on the input frames is 1280 x 800, and the outputs are 3x1280x800 on a 4K display.</p>
@@ -551,11 +547,11 @@
 </tr>
 </tbody>
 </table><hr class="docutils" />
-</details></section>
-<section id="in-house-plugins">
+</details></div>
+<div class="section" id="in-house-plugins">
 <h3>In-House Plugins<a class="headerlink" href="#in-house-plugins" title="Permalink to this headline">¶</a></h3>
 <p>The following are the in-house plugins:</p>
-<section id="pre-process">
+<div class="section" id="pre-process">
 <h4>Pre-process<a class="headerlink" href="#pre-process" title="Permalink to this headline">¶</a></h4>
 <details>
  <summary><b>Click here to view details</b></summary><p>The pre-process pipeline is shown in the following image:</p>
@@ -568,8 +564,8 @@
 <p>The following figure depicts the Pre-Process plugin data flow.</p>
 <p><img alt="../../../_images/preprocess-plugin-data-flow.png" src="../../../_images/preprocess-plugin-data-flow.png" /></p>
 <p>Threshold and Median Blur kernels are connected together using AXI Stream interface.</p>
-</details></section>
-<section id="canny">
+</details></div>
+<div class="section" id="canny">
 <h4>Canny<a class="headerlink" href="#canny" title="Permalink to this headline">¶</a></h4>
 <details>
  <summary><b>Click here to view details</b></summary><p>The Canny edge detector finds the edges in the video frame. In this algorithm, the noise in the image is reduced first by applying a Gaussian mask. The Gaussian mask used here is the average mask of size 3x3. Thereafter, gradients along <em>x</em> and <em>y</em> directions are computed using the Sobel gradient function. The gradients are used to compute the magnitude and phase of the pixels. The phase is quantized, and the pixels are binned accordingly. Non-maximal suppression is applied on the pixels to remove the weaker edges.</p>
@@ -583,8 +579,8 @@
 <p><img alt="../../../_images/canny-plugin-sw-stack.png" src="../../../_images/canny-plugin-sw-stack.png" /></p>
 <p>The following figure depicts the Canny plugin data flow.</p>
 <p><img alt="../../../_images/canny-plugin-dataflow.png" src="../../../_images/canny-plugin-dataflow.png" /></p>
-</details></section>
-<section id="edge-tracer">
+</details></div>
+<div class="section" id="edge-tracer">
 <h4>Edge Tracer<a class="headerlink" href="#edge-tracer" title="Permalink to this headline">¶</a></h4>
 <details>
  <summary><b>Click here to view details</b></summary><p>The Edge Tracer is applied on the remaining pixels to draw the edges on the image. In this algorithm, the Canny up to non-maximal suppression is in one kernel, and the edge linking module is in another kernel.   The Contour Filling function, which is the final function required to detect defects in the mango, is done in the PS. After non-maxima suppression, the output is represented as 2-bits per pixel, where:</p>
@@ -599,8 +595,8 @@
 <p><img alt="../../../_images/edge-tracer-plugin-sw-stack.png" src="../../../_images/edge-tracer-plugin-sw-stack.png" /></p>
 <p>The following figure depicts the Edge Tracer plugin data flow.</p>
 <p><img alt="../../../_images/edge-tracer-plugin-dataflow.png" src="../../../_images/edge-tracer-plugin-dataflow.png" /></p>
-</details></section>
-<section id="defect-calculation">
+</details></div>
+<div class="section" id="defect-calculation">
 <h4>Defect Calculation<a class="headerlink" href="#defect-calculation" title="Permalink to this headline">¶</a></h4>
 <details>
  <summary><b>Click here to view details</b></summary><p>The output of the Edge Tracer plugin is fed into the Defect Calculation block which calculates the defect density and decides the quality of the mango. The block performs the following main operations:</p>
@@ -613,10 +609,10 @@
 <p><img alt="../../../_images/defect-calculation-plugin-sw-stack.png" src="../../../_images/defect-calculation-plugin-sw-stack.png" /></p>
 <p>The following figure depicts the Defect Calulation plugin data flow.</p>
 <p><img alt="../../../_images/defect-calculation-plugin-dataflow.png" src="../../../_images/defect-calculation-plugin-dataflow.png" /></p>
-</details></section>
-</section>
-</section>
-<section id="configuration-files">
+</details></div>
+</div>
+</div>
+<div class="section" id="configuration-files">
 <h2>Configuration Files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">¶</a></h2>
 <details>
  <summary><b>Click here to view details</b></summary><p>The <strong>defect-detect</strong> application uses the following configuration files.</p>
@@ -735,22 +731,22 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
 </pre></div>
 </div>
-</details></section>
-<section id="next-steps">
+</details></div>
+<div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><img alt="right arrow" src="../../../_images/next.jpg" /> <a class="reference internal" href="hw_arch_platform_dd.html"><span class="doc">Hardware Architecture</span></a></p></li>
 <li><p><a class="reference internal" href="hw_arch_accel_dd.html"><span class="doc">Hardware Accelerator</span></a></p></li>
 </ul>
-<section id="license">
+<div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></section>
-</section>
-</section>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+</div>
 
 
            </div>
@@ -781,7 +777,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 27, 2021.
+        Last updated on May 24, 2021.
       </span>
 
     </p>

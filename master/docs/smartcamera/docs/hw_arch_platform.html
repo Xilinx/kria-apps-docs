@@ -6,8 +6,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+		
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -41,7 +40,6 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -56,8 +54,6 @@
   <link rel="stylesheet" href="../../../_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/pro.min.css" media="all" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Hardware Architecture of the Accelerator" href="hw_arch_accel.html" />
@@ -81,7 +77,7 @@
 															<div class="logo-column">
 																<div class="logo">
 																	<a href="https://www.xilinx.com/">
-																	<img src="https://www.xilinx.com/etc.clientlibs/site/clientlibs/xilinx/all/resources/imgs/header/xilinx-header-logo.svg" title="Xilinx Inc"/>
+																	<img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-header-logo.svg" title="Xilinx Inc"/>
 																	</a>
 																</div>
 															</div>
@@ -309,7 +305,7 @@
             
             
               <div class="version">
-                1.1
+                1.0
               </div>
             
           
@@ -446,9 +442,9 @@
  <tr>
  <td align="center"><h1> Hardware Architecture of the Platform </h1> </td>
  </tr>
-</table><section id="hardware-architecture-of-the-platform">
+</table><div class="section" id="hardware-architecture-of-the-platform">
 <h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this headline">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This section describes the design implemented in Programmable Logic (PL). The following figure shows the top level hardware architecture of the reference design.</p>
 <p><img alt="../../../_images/hw_arch1.png" src="../../../_images/hw_arch1.png" /></p>
@@ -472,10 +468,10 @@
 <li><p>The Pre-Processing block modifies the input data as required by the Network (PL)</p></li>
 </ul>
 <p><strong>Note:</strong>  The PS interconnects in the figure are conceptual.</p>
-</section>
-<section id="capture">
+</div>
+<div class="section" id="capture">
 <h2>Capture<a class="headerlink" href="#capture" title="Permalink to this headline">¶</a></h2>
-<section id="single-sensor-mipi-capture">
+<div class="section" id="single-sensor-mipi-capture">
 <h3>Single Sensor MIPI Capture<a class="headerlink" href="#single-sensor-mipi-capture" title="Permalink to this headline">¶</a></h3>
 <p>A capture pipeline receives video frames from an external source and writes it into memory. The single sensor MIPI CSI-2 receiver capture pipeline is shown in the following figure.</p>
 <p><img alt="Capture Pipeline" src="../../../_images/hw_cap_pp1.png" /></p>
@@ -495,13 +491,13 @@ configured statically.</p>
 <p>For each video frame transfer, an interrupt is generated. A GPIO is used to reset the IP between resolution changes.  For more information see Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/v_frmbuf/v1_0/pg278-v-frmbuf.pdf">PG278</a></p>
 <p>All the IPs in this pipeline are configured to transport 2ppc &#64; 300 MHz, enabling up to 3840x2160 resolution at 60 frames per second (fps). But the MIPI line rate of 896 Mbps doesn’t support 60 fps. Maximum throughput requirement is 3840x2160 resolution at 30 fps so the set MIPI line rate should be adequate.</p>
 <p>Note: MIPI video clock requirement for NV12 (YUV420) at line rate 896 Mbps is 221 MHz &#64; 2ppc, so we could run all the IPs at 221 MHz &#64; 2ppc.  For more information see the MIPI CSI-2 Receiver Subsystem Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/mipi_csi2_rx_subsystem/v5_0/pg232-mipi-csi2-rx.pdf">PG232</a>.</p>
-</section>
-</section>
-<section id="display">
+</div>
+</div>
+<div class="section" id="display">
 <h2>Display<a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h2>
 <p>The Video output pipelines and Video Processing pipelines are not covered in this section as they are not PL components. For more information refer to DisplayPort Controller and GEM Ethernet chapters in the Zynq UltraScale+ Device Technical Reference Manual <a class="reference external" href="https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf">UG1085</a>. For more information on Video Processing pipelines refer to Video Codec Unit LogiCORE IP Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/pg252-vcu.pdf">PG252</a>.</p>
-</section>
-<section id="audio-transmit-and-receive">
+</div>
+<div class="section" id="audio-transmit-and-receive">
 <h2>Audio Transmit and Receive<a class="headerlink" href="#audio-transmit-and-receive" title="Permalink to this headline">¶</a></h2>
 <p>This platform also supports capture and replay of audio. The I2S audio RX-to-TX pipeline is shown in the following figure. This pipeline consists of three components, all of which are controlled by the APU through an AXI4-Lite base register interface.</p>
 <p><img alt="Audio pipeline" src="../../../_images/aud_pp.png" /></p>
@@ -509,10 +505,10 @@ configured statically.</p>
 <li><p>The I2S Receiver/Transmitter IP can be connected to audio devices for receiving and transmitting PCM audio. The I2S IPs typically interface with the external ADC/DAC which facilitates the playback of audio. The IPs are configured to have two audio channels. The IPs supports any sampling rate and can be configure registers via the AXI Lite Salve interface. For more information refer to LogiCORE IP Product Guide for I2S Transmitter and I2S Receiver <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/i2s/v1_0/pg308-i2s.pdf">PG308</a>. In this reference design no acceleration function is run on the Audio data and it is in pass through mode.</p></li>
 <li><p>The audio formatter provides high-bandwidth direct memory access between memory and AXI4-Stream target peripherals. Initialization, status, and management registers are accessed  through an AXI4-Lite slave interface. It is configured with both read and write interface enabled for a maximum of two audio channels and  interleaved memory packing mode with memory data format configured as AES to PCM. The IP receives audio input from the I2S RX IP and writes the data to memory. It reads audio data from memory and sends  it out to the I2S TX IP, which forwards it to the output device. See the Audio Formatter Product Guide (PG330) for more information.</p></li>
 </ul>
-</section>
-<section id="clocks-resets-and-interrupts">
+</div>
+<div class="section" id="clocks-resets-and-interrupts">
 <h2>Clocks, Resets and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Permalink to this headline">¶</a></h2>
-<section id="clocks">
+<div class="section" id="clocks">
 <h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this headline">¶</a></h3>
 <p>The following table identifies the main clocks of the PL design, their source, their clock frequency, and their function.</p>
 <table border="1" class="docutils">
@@ -593,8 +589,8 @@ configured statically.</p>
 </tr>
 </tbody>
 </table><p>*Clocks exposed as a Platform interface and can be used by an accelerator</p>
-</section>
-<section id="resets">
+</div>
+<div class="section" id="resets">
 <h3>Resets<a class="headerlink" href="#resets" title="Permalink to this headline">¶</a></h3>
 <p>The following table summarizes the resets used in this design.</p>
 <table border="1" class="docutils">
@@ -646,8 +642,8 @@ configured statically.</p>
 <td align="left">VCU reset</td>
 </tr>
 </tbody>
-</table></section>
-<section id="interrupts">
+</table></div>
+<div class="section" id="interrupts">
 <h3>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this headline">¶</a></h3>
 <p>The following table lists the PL-to-PS interrupts used in this design.</p>
 <table border="1" class="docutils">
@@ -695,9 +691,9 @@ configured statically.</p>
 <td align="left">Exposed as a Platform interface and can be used by an accelerator</td>
 </tr>
 </tbody>
-</table></section>
-</section>
-<section id="resource-utilization">
+</table></div>
+</div>
+<div class="section" id="resource-utilization">
 <h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this headline">¶</a></h2>
 <p>The resource utilization numbers on this platform post implementation is reported in the table below.</p>
 <table border="1" class="docutils">
@@ -771,22 +767,22 @@ configured statically.</p>
 <td align="left">12.5</td>
 </tr>
 </tbody>
-</table></section>
-<section id="next-steps">
+</table></div>
+<div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="hw_arch_accel.html"><span class="doc">Hardware Architecture of the Accelerator</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 SOM Smart camera design start page</span></a></p></li>
 </ul>
-<section id="license">
+<div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></section>
-</section>
-</section>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+</div>
 
 
            </div>
@@ -817,7 +813,7 @@ configured statically.</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 27, 2021.
+        Last updated on May 24, 2021.
       </span>
 
     </p>
