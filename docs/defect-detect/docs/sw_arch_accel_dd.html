@@ -309,7 +309,7 @@
             
             
               <div class="version">
-                1.0.1
+                1.0.2
               </div>
             
           
@@ -490,12 +490,12 @@
 </tr>
 <tr>
 <td>IVAS xfilter</td>
-<td>Kernel Library: <em>pre-process</em>. Linking Vitis Vision library to do color space conversion and perform filtering to remove the salt and pepper noise for defect detection.</td>
+<td>Kernel Library: <em>canny_edge</em>. Linking Vitis Vision library to the Gaussian + OTSU CCA detector is an edge detection operator that uses a multi-stage algorithm to detect a wide range of edges in images.</td>
 <td>Xilinx Plugin</td>
 </tr>
 <tr>
 <td>IVAS xfilter</td>
-<td>Kernel Library: <em>canny_edge</em>. Linking Vitis Vision library to the Canny edge detector is an edge detection operator that uses a multi-stage algorithm to detect a wide range of edges in images.</td>
+<td>Kernel Library: <em>pre-process</em>. Linking Vitis Vision library to do color space conversion and perform filtering to remove the salt and pepper noise for defect detection.</td>
 <td>Xilinx Plugin</td>
 </tr>
 <tr>
@@ -578,27 +578,39 @@
 <p><img alt="../../../_images/canny-plugin-sw-stack.png" src="../../../_images/canny-plugin-sw-stack.png" /></p>
 <p>The following figure depicts the Canny plugin data flow.</p>
 <p><img alt="../../../_images/canny-plugin-dataflow.png" src="../../../_images/canny-plugin-dataflow.png" /></p>
-</details></section>
-<section id="edge-tracer">
-<h4>Edge Tracer<a class="headerlink" href="#edge-tracer" title="Permalink to this headline">¶</a></h4>
+</details><!---
+
+#### CCA
+
 <details>
- <summary><b>Click here to view details</b></summary><p>The Edge Tracer is applied on the remaining pixels to draw the edges on the image. In this algorithm, the Canny up to non-maximal suppression is in one kernel, and the edge linking module is in another kernel.   The Contour Filling function, which is the final function required to detect defects in the mango, is done in the PS. After non-maxima suppression, the output is represented as 2-bits per pixel, where:</p>
-<ul class="simple">
-<li><p>00 - represents the background</p></li>
-<li><p>01 - represents the weaker edge</p></li>
-<li><p>11 - represents the strong edge</p></li>
-</ul>
-<p>The output is packed as 8-bit (four 2-bit pixels) in 1 pixel per cycle operation and packed as 16-bit (eight 2-bit pixels) in 8 pixel per cycle operation. For the edge linking module, the input is 64-bit, in which 32 pixels of 2-bit are packed into a 64-bit image. The Edge Tracer is applied on the pixels and returns the edges in the image.</p>
-<p>Canny, Edge Tracer HLS’ IP works in memory mapped fashion and generates only one output.</p>
-<p>The following figure depicts the Edge Tracer plugin software stack.</p>
-<p><img alt="../../../_images/edge-tracer-plugin-sw-stack.png" src="../../../_images/edge-tracer-plugin-sw-stack.png" /></p>
-<p>The following figure depicts the Edge Tracer plugin data flow.</p>
-<p><img alt="../../../_images/edge-tracer-plugin-dataflow.png" src="../../../_images/edge-tracer-plugin-dataflow.png" /></p>
-</details></section>
+ <summary><b>Click here to view details</b></summary>
+
+The CCA is applied on the remaining pixels to draw the edges on the image. In this algorithm, the Gaussian + OTSU up to non-maximal suppression is in one kernel, and the edge linking module is in another kernel.   The Contour Filling function, which is the final function required to detect defects in the mango, is done in the PS. After non-maxima suppression, the output is represented as 2-bits per pixel, where:
+
+* 00 - represents the background
+* 01 - represents the weaker edge
+* 11 - represents the strong edge
+
+The output is packed as 8-bit (four 2-bit pixels) in 1 pixel per cycle operation and packed as 16-bit (eight 2-bit pixels) in 8 pixel per cycle operation. For the edge linking module, the input is 64-bit, in which 32 pixels of 2-bit are packed into a 64-bit image. The Edge Tracer is applied on the pixels and returns the edges in the image.
+
+Canny, Edge Tracer HLS' IP works in memory mapped fashion and generates only one output.
+
+
+The following figure depicts the Edge Tracer plugin software stack.
+
+![](../../media/defect-detect/edge-tracer-plugin-sw-stack.png)
+
+The following figure depicts the Edge Tracer plugin data flow.
+
+![](../../media/defect-detect/edge-tracer-plugin-dataflow.png)
+
+</details>
+
+--></section>
 <section id="defect-calculation">
 <h4>Defect Calculation<a class="headerlink" href="#defect-calculation" title="Permalink to this headline">¶</a></h4>
 <details>
- <summary><b>Click here to view details</b></summary><p>The output of the Edge Tracer plugin is fed into the Defect Calculation block which calculates the defect density and decides the quality of the mango. The block performs the following main operations:</p>
+ <summary><b>Click here to view details</b></summary><p>The output of the CCA plugin is fed into the Defect Calculation block which calculates the defect density and decides the quality of the mango. The block performs the following main operations:</p>
 <ul class="simple">
 <li><p>The contours delineate regions of the mango that are blemished. Blemished pixels are marked with white color in the binary image.</p></li>
 <li><p>The ratio of blemished pixels to total image pixels is calculated to determine how much of the mango’s surface area is covered with blemishes.</p></li>
@@ -750,7 +762,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on June 15, 2021.
+        Last updated on June 22, 2021.
       </span>
 
     </p>

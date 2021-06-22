@@ -48,8 +48,8 @@ The core acceleration tasks are performed by the Pre-Process, Canny, and Edge Tr
 | Kmssink  | For the display        |Upstream GStreamer|
 |Queue | Simple data queue | Upstream GStreamer|
 |Tee|1-to-N pipe fitting|Upstream GStreamer|
+|IVAS xfilter|Kernel Library: *canny_edge*. Linking Vitis Vision library to the Gaussian + OTSU CCA detector is an edge detection operator that uses a multi-stage algorithm to detect a wide range of edges in images.|Xilinx Plugin|
 |IVAS xfilter|Kernel Library: *pre-process*. Linking Vitis Vision library to do color space conversion and perform filtering to remove the salt and pepper noise for defect detection.|Xilinx Plugin|
-|IVAS xfilter|Kernel Library: *canny_edge*. Linking Vitis Vision library to the Canny edge detector is an edge detection operator that uses a multi-stage algorithm to detect a wide range of edges in images.|Xilinx Plugin|
 |IVAS xfilter|Kernel Library: *edge_tracer*. Linking Vitis Vision library to trace the edge for defect calculation.|Xilinx Plugin|
 |IVAS xfilter|Kernel Library: *defectcalc*. Linking *OpenCV* software library to find the contour, fill the contour, and embed text as result into output images.|Xilinx Plugin|
 ____
@@ -129,12 +129,14 @@ The following figure depicts the Canny plugin data flow.
 
 </details>
 
-#### Edge Tracer
+<!---
+
+#### CCA
 
 <details>
  <summary><b>Click here to view details</b></summary>
 
-The Edge Tracer is applied on the remaining pixels to draw the edges on the image. In this algorithm, the Canny up to non-maximal suppression is in one kernel, and the edge linking module is in another kernel.   The Contour Filling function, which is the final function required to detect defects in the mango, is done in the PS. After non-maxima suppression, the output is represented as 2-bits per pixel, where:
+The CCA is applied on the remaining pixels to draw the edges on the image. In this algorithm, the Gaussian + OTSU up to non-maximal suppression is in one kernel, and the edge linking module is in another kernel.   The Contour Filling function, which is the final function required to detect defects in the mango, is done in the PS. After non-maxima suppression, the output is represented as 2-bits per pixel, where:
 
 * 00 - represents the background
 * 01 - represents the weaker edge
@@ -155,13 +157,15 @@ The following figure depicts the Edge Tracer plugin data flow.
 
 </details>
 
+-->
+
 #### Defect Calculation
 
 <details>
  <summary><b>Click here to view details</b></summary>
 
 
-The output of the Edge Tracer plugin is fed into the Defect Calculation block which calculates the defect density and decides the quality of the mango. The block performs the following main operations:
+The output of the CCA plugin is fed into the Defect Calculation block which calculates the defect density and decides the quality of the mango. The block performs the following main operations:
 
 * The contours delineate regions of the mango that are blemished. Blemished pixels are marked with white color in the binary image.
 

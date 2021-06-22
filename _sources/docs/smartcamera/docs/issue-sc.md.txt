@@ -24,22 +24,22 @@
 
 * The KR260 carrier card does not power the AR1335 sensor module auto-focus feature. This is due to cross-sensor pin compatibility allowing the board to support other IAS Sensor modules. The result is that the AR1335 sensor module will not have a dynamic focus and depending on positioning of the objects to the lens the images may appear blurry.
 
-* When exercising the I2S Audio path in pass through mode the audio may have noise. This is because the clock frequency received by the audio clock is incorrect. To fix this issue update to the latest firmware (bin file) from the [KV260 wiki Page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513). Instructions on how to update the firmware is also provided on the wiki page.
+* When exercising the I2S Audio path in pass through mode the audio may have noise. This is because the clock frequency received by the audio clock is incorrect. To fix this issue update to the latest firmware (bin file) from the [KV260 wiki Page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513). Instructions on how to update the firmware is also provided on the wiki page. 
 
-   The other option is overwrite the clock setting before testing the Audio path. Note: This needs to be done everytime you boot into Linux.  
+  The other option is overwrite the clock setting before testing the Audio path. Note: This needs to be done everytime you boot into Linux  
 
-   `devmem 0xFF5E00C4 32 0x01010F00`
+  > devmem 0xFF5E00C4 32 0x01010F00
 
 * Jupyter notebook only supports MIPI/USB input, and DP/RTSP output.
 
 * Jupyter lab does not have permission to write checkpoints into /opt/xilinx/share/notebooks
 
-```bash
+```
 [W 18:12:44.164 LabApp] 403 GET /api/contents/smartcam/smartcam.ipynb/checkpoints?1618362763975 (192.168.1.39): Permission denied: smartcam/.ipynb_checkpoints
 [W 18:12:44.165 LabApp] Permission denied: smartcam/.ipynb_checkpoints
 ```
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
