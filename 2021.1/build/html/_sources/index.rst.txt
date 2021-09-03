@@ -6,22 +6,22 @@ Kria™ KV260 Vision AI Starter Kit Applications
 .. image:: docs/media/sc_rdme.png
    :width: 200
    :alt: Smart Camera
-   :target: https://xilinx.github.io/kria-apps-docs/master/docs/smartcamera/smartcamera_landing.html
+   :target: https://xilinx.github.io/kria-apps-docs/2021.1/build/html/docs/smartcamera/smartcamera_landing.html
 
 .. image:: docs/media/aib_rdme.png
    :width: 200
    :alt: AIBox-ReID
-   :target: https://xilinx.github.io/kria-apps-docs/master/docs/aibox-reid/aibox_landing.html
+   :target: https://xilinx.github.io/kria-apps-docs/2021.1/build/html/docs/aibox-reid/aibox_landing.html
 
 .. image:: docs/media/dd_rdme.png
    :width: 200
    :alt:  Defect Detect
-   :target: https://xilinx.github.io/kria-apps-docs/master/docs/defect-detect/defectdetect_landing.html
+   :target: https://xilinx.github.io/kria-apps-docs/2021.1/build/html/docs/defect-detect/defectdetect_landing.html
 
 .. image:: docs/media/nlp_rdme.png
    :width: 200
    :alt:  NLP SmartVision
-   :target: https://xilinx.github.io/kria-apps-docs/master/docs/nlp-smartvision/nlp_smartvision_landing.html
+   :target: https://xilinx.github.io/kria-apps-docs/2021.1/build/html/docs/nlp-smartvision/nlp_smartvision_landing.html
 
 
 
