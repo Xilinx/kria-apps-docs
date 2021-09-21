@@ -20,7 +20,7 @@ This document shows how to set up the board and run the nlp-smartvision applicat
 
 1. Flash the SD Card
 
-   * Download  the [SD Card Image](https://www.xilinx.com/member/forms/download/xef.html?filename=petalinux-sdimage_0415.wic.gz) and save it on your computer.
+   * Download  the [SD Card Image](https://www.xilinx.com/member/forms/download/xef.html?filename=petalinux-sdimage-2021.1-update1.wic.xz) and save it on your computer.
    
    * Connect the microSD to your computer.
 

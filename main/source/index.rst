@@ -6,22 +6,22 @@ Kria™ KV260 Vision AI Starter Kit Applications
 .. image:: docs/media/sc_rdme.png
    :width: 200
    :alt: Smart Camera
-   :target: https://xilinx.github.io/kria-apps-docs/main/build/html/docs/smartcamera/smartcamera_landing.html
+   :target: ./docs/smartcamera/smartcamera_landing.html
 
 .. image:: docs/media/aib_rdme.png
    :width: 200
    :alt: AIBox-ReID
-   :target: https://xilinx.github.io/kria-apps-docs/main/build/html/docs/aibox-reid/aibox_landing.html
+   :target: ./docs/aibox-reid/aibox_landing.html
 
 .. image:: docs/media/dd_rdme.png
    :width: 200
    :alt:  Defect Detect
-   :target: https://xilinx.github.io/kria-apps-docs/main/build/html/docs/defect-detect/defectdetect_landing.html
+   :target: ./docs/defect-detect/defectdetect_landing.html
 
 .. image:: docs/media/nlp_rdme.png
    :width: 200
    :alt:  NLP SmartVision
-   :target: https://xilinx.github.io/kria-apps-docs/main/build/html/docs/nlp-smartvision/nlp_smartvision_landing.html
+   :target: ./docs/nlp-smartvision/nlp_smartvision_landing.html
 
 
 
@@ -49,10 +49,12 @@ With both hardware and software development requirements simplified, the KV260 V
 
 .. toctree::
    :maxdepth: 3
-   :caption: Home
+   :caption: SOM
    :hidden:
 
-   SOM <https://xilinx.github.io/kria-apps-docs/index.html>
+   Home <https://xilinx.github.io/kria-apps-docs/index.html>
+   KRS <https://xilinx.github.io/KRS/>
+
 
 .. toctree::
    :maxdepth: 3
@@ -63,6 +65,14 @@ With both hardware and software development requirements simplified, the KV260 V
    AIBox-ReID <docs/aibox-reid/aibox_landing>
    Defect Detect <docs/defect-detect/defectdetect_landing>
    NLP SmartVision <docs/nlp-smartvision/nlp_smartvision_landing>
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Previous Releases
+   :hidden:
+
+   2020.2 <https://xilinx.github.io/kria-apps-docs/2020.2/build/html/index.html>
 
 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,

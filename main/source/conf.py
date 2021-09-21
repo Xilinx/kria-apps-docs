@@ -28,10 +28,10 @@ copyright = '2021, Xilinx, Inc.'
 author = 'Xilinx, Inc.'
 
 # The short X.Y version
-version = '1.1.1'
+version = '1.2.1'
 # The full version, including alpha/beta/rc tags
-release = '1.1.1'
-html_last_updated_fmt = 'September 3, 2021'
+release = '1.2.1'
+html_last_updated_fmt = 'September 21, 2021'
 
 # -- General configuration ---------------------------------------------------
 

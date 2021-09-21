@@ -6,22 +6,22 @@ Kria™ KV260 Vision AI Starter Kit Applications
 .. image:: docs/media/sc_rdme.png
    :width: 200
    :alt: Smart Camera
-   :target: https://xilinx.github.io/kria-apps-docs/2020.2/build/html/docs/smartcamera/smartcamera_landing.html
+   :target: ./docs/smartcamera/smartcamera_landing.html
 
 .. image:: docs/media/aib_rdme.png
    :width: 200
    :alt: AIBox-ReID
-   :target: https://xilinx.github.io/kria-apps-docs/2020.2/build/html/docs/aibox-reid/aibox_landing.html
+   :target: ./docs/aibox-reid/aibox_landing.html
 
 .. image:: docs/media/dd_rdme.png
    :width: 200
    :alt:  Defect Detect
-   :target: https://xilinx.github.io/kria-apps-docs/2020.2/build/html/docs/defect-detect/defectdetect_landing.html
+   :target: ./docs/defect-detect/defectdetect_landing.html
 
 .. image:: docs/media/nlp_rdme.png
    :width: 200
    :alt:  NLP SmartVision
-   :target: https://xilinx.github.io/kria-apps-docs/2020.2/build/html/docs/nlp-smartvision/nlp_smartvision_landing.html
+   :target: ./docs/nlp-smartvision/nlp_smartvision_landing.html
 
 
 
@@ -55,6 +55,7 @@ With both hardware and software development requirements simplified, the KV260 V
    SOM <https://xilinx.github.io/kria-apps-docs/index.html>
 
 
+
 .. toctree::
    :maxdepth: 3
    :caption: KV260 Applications
@@ -66,6 +67,12 @@ With both hardware and software development requirements simplified, the KV260 V
    NLP SmartVision <docs/nlp-smartvision/nlp_smartvision_landing>
 
 
+.. toctree::
+   :maxdepth: 3
+   :caption: Current Release
+   :hidden:
+
+   Kria KV260 <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
 
 
 
