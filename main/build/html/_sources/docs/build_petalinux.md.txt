@@ -32,8 +32,32 @@ In the follwing sections, you will:
 
 ### Prerequisites
 1. PetaLinux 2021.1 tools installation
+	  * Download PetaLinux Tools Installer 2021.1 [PetaLinux Download page](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html)
+	  * 2021.1 tools eSDK update 1 [here](#Install-PetaLinux-and-update-the-eSDK)
 2. Petalinux SOM StarterKit BSP: xilinx-k26-starterkit-v2021.1-final.bsp
-      * Download the SOM Starter Kit BSP from the [Petalinux Download page](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html)
+      * Download the Kria K26 Starter Kit 2021.1 Update 1 BSP from the [PetaLinux Download link](https://www.xilinx.com/member/forms/download/xef.html?filename=xilinx-k26-starterkit-v2021.1-final.bsp)
+
+### Install PetaLinux and update the eSDK
+
+To install PetaLinux, extract the petalinux installer, accept the license and source the tool's settings script.
+
+```bash
+petalinux-v2021.1-final-installer.run
+source settings.sh
+```
+
+The eSDK can be used to update the petalinux tool for creating new images or SDKs. The eSDK updates are
+published at http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2021.1_update1/
+Upgrade the tool with new eSDK for '2021.1 update1' release and source the tool's settings script.
+
+```bash
+petalinux-upgrade -u 'http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2021.1_update1/' -p 'aarch64'
+source settings.sh
+```
+
+The petalinux tool is now updated with '2021.1 update1' Yocto eSDK. Continue as usual
+by creating a new project from a .bsp file. The build will now include the
+latest meta-layer and recipe updates.
 
 ### Create the Project
 
@@ -148,32 +172,6 @@ You are about to install the SDK to "/opt/petalinux/xilinx-k26-starterkit-2021.1
 Once the SDK is installed, source the file
 `images/linux/sdk/environment-setup-aarch64-xilinx-linux`
 to set up the cross-development environment.
-
-## Update the eSDK
-
-Xilinx publishes package feed and eSDK updates. The package feed can be used to
-install updated packages into the root file system. The eSDK can be used to
-update the petalinux tool for creating new images or SDKs. The eSDK updates are
-published at http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2021.1_update1/
-
-To update the eSDK, extract the petalinux installer, accept the license and
-source the tool's settings script.
-
-```bash
-petalinux-v2021.1-final-installer.run
-source settings.sh
-```
-
-Upgrade the tool with the new eSDK and source the tool's settings script.
-
-```bash
-petalinux-upgrade -u 'http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2021.1_update1/' -p 'aarch64'
-source settings.sh
-```
-
-The petalinux tool is now updated with the latest Yocto eSDK. Continue as usual
-by creating a new project from a .bsp file. The build will now include the
-latest meta-layer and recipe updates.
 
 ## Add New FPGA Firmware
 

@@ -18,7 +18,7 @@ This tutorial shows how to build a Platform for applications running on KV260 Vi
 
 ## Prerequisites
 
-* Vitis Unified Software Platform 2020.2.2
+* Vitis Unified Software Platform of the appropiate version
 
 ### Accessing the Tutorial Reference Files
 

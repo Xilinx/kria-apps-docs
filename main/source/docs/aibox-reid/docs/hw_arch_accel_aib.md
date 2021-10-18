@@ -22,7 +22,6 @@ The pre-processing block as shown in the figure below includes the following fun
 
 * Cvtcolor: Reads an NV12 video frame and converts the color format to BGR
 * Resizing: Scales down the original 4K/1080p frame to at most 720x720
-* Crop: Extracts the region of interest (ROI) from the input image.
 * Quantizing: Performs linear transformation (scaling and shifting) to each pixel of BGR frame to satisfy DPU input requirement
 
 The desgin uses Vitis Vision Library functions to build the pre-processing block. The Vitis functions used are, cvtcolor, resize, and blobfromimage.

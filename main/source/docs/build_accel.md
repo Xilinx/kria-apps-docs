@@ -17,7 +17,7 @@ This document provides the steps to integrate the overlay consisting of accelera
 
 ## Prerequisites:
 
-* Vitis Unified Software Platform 2020.2.2
+* Vitis Unified Software Platform 2021.1
 
 ### Accessing the Tutorial Reference Files
 

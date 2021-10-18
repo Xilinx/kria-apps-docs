@@ -305,7 +305,7 @@
             
             
               <div class="version">
-                1.2.1
+                1.2.2
               </div>
             
           
@@ -344,6 +344,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Customizing AI Models used in the Application</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
 </ul>
@@ -537,6 +538,308 @@ name : &quot;refinedet_480x360_5G&quot;
 <p><strong>Notice</strong> the channels sequence in the Vitis AI model prototxt file is B, G, R, not R, G, B, as the above samples show.</p>
 </div>
 </div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Take Vitis AI model ssd_mobilenet_v2 as example, we provide the detailed steps to add an AI task for smartcam application.</p>
+<ol>
+<li><p>Create folder <code class="docutils literal notranslate"><span class="pre">ssd_mobilenet_v2</span></code> under <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/share/ivas/smartcam/</span></code>, so that <code class="docutils literal notranslate"><span class="pre">ssd_mobilenet_v2</span></code> can be used as the value for argument –AItask.</p></li>
+<li><p>Download model file for GPU from the link provided by <a class="reference external" href="https://github.com/Xilinx/Vitis-AI/blob/master/models/AI-Model-Zoo/model-list/cf_ssdmobilenetv2_bdd_360_480_6.57G_1.4/model.yaml">https://github.com/Xilinx/Vitis-AI/blob/master/models/AI-Model-Zoo/model-list/cf_ssdmobilenetv2_bdd_360_480_6.57G_1.4/model.yaml</a></p>
+<p>After extraction, we get such file sturcture:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── README.md
+├── code
+│   ├── gen_data
+│   │   └── gen_quantize_data_list.py
+│   ├── test
+│   │   ├── demo.sh
+│   │   ├── demo_list.txt
+│   │   ├── demo_quantized.sh
+│   │   ├── evaluation.py
+│   │   ├── gt_labels.txt
+│   │   ├── images.txt
+│   │   ├── quantize.sh
+│   │   └── result.txt
+│   └── train
+│       ├── solver.prototxt
+│       └── trainval.sh
+├── data
+│   ├── convert_jsonTotxt.py
+│   └── data_preprocess.sh
+├── float
+│   ├── quantize.prototxt
+│   ├── test.prototxt
+│   ├── trainval.caffemodel
+│   └── trainval.prototxt
+├── labelmap_voc.prototxt
+└── quantized
+    ├── deploy.caffemodel
+    ├── deploy.prototxt
+    ├── quantized_test.prototxt
+    ├── quantized_train_test.caffemodel
+    └── quantized_train_test.protot
+</pre></div>
+</div>
+</li>
+<li><p>Prepare ssd_mobilenet_v2 Model <code class="docutils literal notranslate"><span class="pre">ssd_mobilenet_v2.xmodel</span></code> for DPU 3136 and put generated xmodel files together with the prototxt file to:</p>
+<p><code class="docutils literal notranslate"><span class="pre">/opt/xilinx/share/vitis_ai_library/models/kv260-smartcam/ssd_mobilenet_v2/</span></code>
+ssd_mobilenet_v2.prototxt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  opt
+  └── xilinx
+      └── share
+          └── vitis_ai_library
+              └── models
+                  └── kv260-smartcam
+                      └── ssd_mobilenet_v2
+                          ├── ssd_mobilenet_v2.prototxt
+                          └── ssd_mobilenet_v2.xmodel
+</pre></div>
+</div>
+</li>
+<li><p>Create configuration files for ssd_mobilenet_v2.</p></li>
+</ol>
+<ul>
+<li><p>preprocess.json</p>
+<p>The mean and scale of B, G, R channel is taken from the deploy.protxt of the model.</p>
+<div class="highlight-prototxt notranslate"><div class="highlight"><pre><span></span>layer {
+  name: &quot;data&quot;
+  type: &quot;Input&quot;
+  top: &quot;data&quot;
+  transform_param {
+    mean_value: 104
+    mean_value: 117
+    mean_value: 123
+    resize_param {
+      prob: 1
+      resize_mode: WARP
+      height: 360
+      width: 480
+      interp_mode: LINEAR
+    }
+  }
+  input_param {
+    shape {
+      dim: 1
+      dim: 3
+      dim: 360
+      dim: 480
+    }
+  }
+}
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+ <span class="nt">&quot;xclbin-location&quot;</span><span class="p">:</span><span class="s2">&quot;/lib/firmware/xilinx/kv260-smartcam/kv260-smartcam.xclbin&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;ivas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/lib&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;kernels&quot;</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+     <span class="nt">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;pp_pipeline_accel:pp_pipeline_accel_1&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;library-name&quot;</span><span class="p">:</span> <span class="s2">&quot;libivas_xpp.so&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+       <span class="nt">&quot;mean_r&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+       <span class="nt">&quot;mean_g&quot;</span><span class="p">:</span> <span class="mi">117</span><span class="p">,</span>
+       <span class="nt">&quot;mean_b&quot;</span><span class="p">:</span> <span class="mi">104</span><span class="p">,</span>
+       <span class="nt">&quot;scale_r&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+       <span class="nt">&quot;scale_g&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+       <span class="nt">&quot;scale_b&quot;</span><span class="p">:</span> <span class="mi">1</span>
+     <span class="p">}</span>
+   <span class="p">}</span>
+ <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>aiinference.json:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+ <span class="nt">&quot;xclbin-location&quot;</span><span class="p">:</span><span class="s2">&quot;/lib/firmware/xilinx/kv260-smartcam/kv260-smartcam.xclbin&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;ivas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/usr/lib/&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;element-mode&quot;</span><span class="p">:</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;kernels&quot;</span> <span class="p">:[</span>
+   <span class="p">{</span>
+     <span class="nt">&quot;library-name&quot;</span><span class="p">:</span><span class="s2">&quot;libivas_xdpuinfer.so&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">&quot;model-name&quot;</span> <span class="p">:</span> <span class="s2">&quot;ssd_mobilenet_v2&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;model-class&quot;</span> <span class="p">:</span> <span class="s2">&quot;SSD&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;model-path&quot;</span> <span class="p">:</span> <span class="s2">&quot;/opt/xilinx/share/vitis_ai_library/models/kv260-smartcam&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;run_time_model&quot;</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+       <span class="nt">&quot;need_preprocess&quot;</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+       <span class="nt">&quot;performance_test&quot;</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+       <span class="nt">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">0</span>
+     <span class="p">}</span>
+   <span class="p">}</span>
+ <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>lable.json:</p>
+<p>SSD model privdes predictation of multiple classes in file <code class="docutils literal notranslate"><span class="pre">labelmap_voc.prototxt</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>item <span class="o">{</span>
+  name: <span class="s2">&quot;none_of_the_above&quot;</span>
+  label: <span class="m">0</span>
+  display_name: <span class="s2">&quot;background&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;person&quot;</span>
+  label: <span class="m">1</span>
+  display_name: <span class="s2">&quot;person&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;rider&quot;</span>
+  label: <span class="m">2</span>
+  display_name: <span class="s2">&quot;rider&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;car&quot;</span>
+  label: <span class="m">3</span>
+  display_name: <span class="s2">&quot;car&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;truck&quot;</span>
+  label: <span class="m">4</span>
+  display_name: <span class="s2">&quot;truck&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;bus&quot;</span>
+  label: <span class="m">5</span>
+  display_name: <span class="s2">&quot;bus&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;train&quot;</span>
+  label: <span class="m">6</span>
+  display_name: <span class="s2">&quot;train&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;motor&quot;</span>
+  label: <span class="m">7</span>
+  display_name: <span class="s2">&quot;motor&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;bike&quot;</span>
+  label: <span class="m">8</span>
+  display_name: <span class="s2">&quot;bike&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;sign&quot;</span>
+  label: <span class="m">9</span>
+  display_name: <span class="s2">&quot;sign&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;light&quot;</span>
+  label: <span class="m">10</span>
+  display_name: <span class="s2">&quot;light&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>We need to convert the above lable info to json file as requested by VVAS framework as bellow.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;model-name&quot;</span><span class="p">:</span><span class="s2">&quot;ssd_mobilenet_v2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;num-labels&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="nt">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;background&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;background&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;person&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;person&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;rider&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;rider&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;car&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;car&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;truck&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;tr&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;bus&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;bus&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;train&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;motor&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;motor&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;bike&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;bike&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sign&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;sign&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;light&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>drawresult.json</p>
+<p>Here we pick up 3 classes to be shown: car, person, bicycle; and also customize the color for each class as bellow.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;xclbin-location&quot;</span><span class="p">:</span><span class="s2">&quot;/usr/lib/dpu.xclbin&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;ivas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/lib&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;element-mode&quot;</span><span class="p">:</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;kernels&quot;</span> <span class="p">:[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;library-name&quot;</span><span class="p">:</span><span class="s2">&quot;libivas_airender.so&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;fps_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="nt">&quot;font_size&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nt">&quot;font&quot;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="nt">&quot;thickness&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nt">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;label_color&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;blue&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nt">&quot;green&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nt">&quot;red&quot;</span> <span class="p">:</span> <span class="mi">255</span> <span class="p">},</span>
+        <span class="nt">&quot;label_filter&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;probability&quot;</span> <span class="p">],</span>
+        <span class="nt">&quot;classes&quot;</span> <span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;car&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;blue&quot;</span> <span class="p">:</span> <span class="mi">255</span><span class="p">,</span>
+                <span class="nt">&quot;green&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&quot;red&quot;</span> <span class="p">:</span> <span class="mi">0</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;person&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;blue&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&quot;green&quot;</span> <span class="p">:</span> <span class="mi">255</span><span class="p">,</span>
+                <span class="nt">&quot;red&quot;</span> <span class="p">:</span> <span class="mi">0</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;bicycle&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;blue&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&quot;green&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&quot;red&quot;</span> <span class="p">:</span> <span class="mi">255</span>
+                <span class="p">}]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -587,7 +890,7 @@ name : &quot;refinedet_480x360_5G&quot;
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 21, 2021.
+        Last updated on October 18, 2021.
       </span>
 
     </p>

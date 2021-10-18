@@ -305,7 +305,7 @@
             
             
               <div class="version">
-                1.2.1
+                1.2.2
               </div>
             
           
@@ -350,7 +350,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enable-xilinx-application-packages">Enable Xilinx Application Packages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#build-the-sdk">Build the SDK</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#update-the-esdk">Update the eSDK</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#add-new-fpga-firmware">Add New FPGA Firmware</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-step">Next Step</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
@@ -471,13 +470,36 @@ components.</p></li>
 <div class="section" id="prerequisites">
 <h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
-<li><p>PetaLinux 2021.1 tools installation</p></li>
+<li><p>PetaLinux 2021.1 tools installation</p>
+<ul class="simple">
+<li><p>Download PetaLinux Tools Installer 2021.1 <a class="reference external" href="https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html">PetaLinux Download page</a></p></li>
+<li><p>2021.1 tools eSDK update 1 <a class="reference external" href="#Install-PetaLinux-and-update-the-eSDK">here</a></p></li>
+</ul>
+</li>
 <li><p>Petalinux SOM StarterKit BSP: xilinx-k26-starterkit-v2021.1-final.bsp</p>
 <ul class="simple">
-<li><p>Download the SOM Starter Kit BSP from the <a class="reference external" href="https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html">Petalinux Download page</a></p></li>
+<li><p>Download the Kria K26 Starter Kit 2021.1 Update 1 BSP from the <a class="reference external" href="https://www.xilinx.com/member/forms/download/xef.html?filename=xilinx-k26-starterkit-v2021.1-final.bsp">PetaLinux Download link</a></p></li>
 </ul>
 </li>
 </ol>
+</div>
+<div class="section" id="install-petalinux-and-update-the-esdk">
+<h3>Install PetaLinux and update the eSDK<a class="headerlink" href="#install-petalinux-and-update-the-esdk" title="Permalink to this headline">¶</a></h3>
+<p>To install PetaLinux, extract the petalinux installer, accept the license and source the tool’s settings script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-v2021.1-final-installer.run
+<span class="nb">source</span> settings.sh
+</pre></div>
+</div>
+<p>The eSDK can be used to update the petalinux tool for creating new images or SDKs. The eSDK updates are
+published at http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2021.1_update1/
+Upgrade the tool with new eSDK for ‘2021.1 update1’ release and source the tool’s settings script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-upgrade -u <span class="s1">&#39;http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2021.1_update1/&#39;</span> -p <span class="s1">&#39;aarch64&#39;</span>
+<span class="nb">source</span> settings.sh
+</pre></div>
+</div>
+<p>The petalinux tool is now updated with ‘2021.1 update1’ Yocto eSDK. Continue as usual
+by creating a new project from a .bsp file. The build will now include the
+latest meta-layer and recipe updates.</p>
 </div>
 <div class="section" id="create-the-project">
 <h3>Create the Project<a class="headerlink" href="#create-the-project" title="Permalink to this headline">¶</a></h3>
@@ -569,27 +591,6 @@ You are about to install the SDK to &quot;/opt/petalinux/xilinx-k26-starterkit-2
 <p>Once the SDK is installed, source the file
 <code class="docutils literal notranslate"><span class="pre">images/linux/sdk/environment-setup-aarch64-xilinx-linux</span></code>
 to set up the cross-development environment.</p>
-</div>
-<div class="section" id="update-the-esdk">
-<h2>Update the eSDK<a class="headerlink" href="#update-the-esdk" title="Permalink to this headline">¶</a></h2>
-<p>Xilinx publishes package feed and eSDK updates. The package feed can be used to
-install updated packages into the root file system. The eSDK can be used to
-update the petalinux tool for creating new images or SDKs. The eSDK updates are
-published at http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2021.1_update1/</p>
-<p>To update the eSDK, extract the petalinux installer, accept the license and
-source the tool’s settings script.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-v2021.1-final-installer.run
-<span class="nb">source</span> settings.sh
-</pre></div>
-</div>
-<p>Upgrade the tool with the new eSDK and source the tool’s settings script.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-upgrade -u <span class="s1">&#39;http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2021.1_update1/&#39;</span> -p <span class="s1">&#39;aarch64&#39;</span>
-<span class="nb">source</span> settings.sh
-</pre></div>
-</div>
-<p>The petalinux tool is now updated with the latest Yocto eSDK. Continue as usual
-by creating a new project from a .bsp file. The build will now include the
-latest meta-layer and recipe updates.</p>
 </div>
 <div class="section" id="add-new-fpga-firmware">
 <h2>Add New FPGA Firmware<a class="headerlink" href="#add-new-fpga-firmware" title="Permalink to this headline">¶</a></h2>
@@ -766,7 +767,7 @@ which is explained in more detail in the getting started guide.</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 21, 2021.
+        Last updated on October 18, 2021.
       </span>
 
     </p>

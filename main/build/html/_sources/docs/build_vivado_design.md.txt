@@ -18,7 +18,7 @@ This tutorial shows how to build the hardware design for applications running on
 
 ## Prerequisites
 
-* Vivado Design Suite 2020.2.2
+* Vivado Design Suite of the appropiate version
 
 ### Accessing the Tutorial Reference Files
 
