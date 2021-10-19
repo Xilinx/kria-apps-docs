@@ -435,15 +435,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <table class="sphinxhide">
- <tr>
-   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit Defect Detection Tutorial</h1>
-   </td>
- </tr>
- <tr>
- <td align="center"><h1>Software Architecture of the Accelerator</h1> </td>
- </tr>
-</table><div class="section" id="software-architecture-of-the-accelerator">
+  <div class="section" id="software-architecture-of-the-accelerator">
 <h1>Software Architecture of the Accelerator<a class="headerlink" href="#software-architecture-of-the-accelerator" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
@@ -458,7 +450,7 @@
 <hr class="docutils" />
 <p><img alt="../../../_images/defect-detection-process.png" src="../../../_images/defect-detection-process.png" /></p>
 <p>The parts before pre-process plugin and after mixer for data source and sink respectively, use purely official GStreamer plugins, such as <em>filesrc</em> for file input, and <em>Kmssink</em> for the display. Refer to the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/tutorials/index.html?gi-language=c">GStreamer documentation</a> for detailed usage.</p>
-<p>The core acceleration tasks are performed by the Pre-Process, CCA, and Defect Calculation plugins, which are developed by XILINX.</p>
+<p>The core acceleration tasks are performed by the Pre-Process, Canny, and Edge Tracer plugins, which are developed by XILINX.</p>
 <details>
  <summary><b>The following table lists the GStreamer plugins used in the application.</b></summary><table border="1" class="docutils">
 <thead>
@@ -491,12 +483,12 @@
 </tr>
 <tr>
 <td>IVAS xfilter</td>
-<td>Kernel Library: <em>canny_edge</em>. Linking Vitis Vision library to the Gaussian + OTSU CCA detector is an edge detection operator that uses a multi-stage algorithm to detect a wide range of edges in images.</td>
+<td>Kernel Library: <em>pre-process</em>. Linking Vitis Vision library to do color space conversion and perform filtering to remove the salt and pepper noise for defect detection.</td>
 <td>Xilinx Plugin</td>
 </tr>
 <tr>
 <td>IVAS xfilter</td>
-<td>Kernel Library: <em>pre-process</em>. Linking Vitis Vision library to do color space conversion and perform filtering to remove the salt and pepper noise for defect detection.</td>
+<td>Kernel Library: <em>canny_edge</em>. Linking Vitis Vision library to the Canny edge detector is an edge detection operator that uses a multi-stage algorithm to detect a wide range of edges in images.</td>
 <td>Xilinx Plugin</td>
 </tr>
 <tr>
@@ -527,22 +519,27 @@
 <tbody>
 <tr>
 <td>Pre-Process</td>
-<td>Gaussian + OTSU</td>
+<td>Threshold Binary</td>
 <td>PL</td>
 </tr>
 <tr>
 <td></td>
-<td>Threshold + Median Filter</td>
+<td>Median Filter</td>
 <td>PL</td>
 </tr>
 <tr>
 <td>Defectdetection</td>
-<td>CCA</td>
+<td>Canny Accelerator</td>
 <td>PL</td>
 </tr>
 <tr>
 <td></td>
-<td>Text Overlay + Defect Detection</td>
+<td>Edge Tracer Accelerator</td>
+<td>PL</td>
+</tr>
+<tr>
+<td></td>
+<td>Defect Calculation</td>
 <td>SW</td>
 </tr>
 </tbody>
@@ -556,26 +553,6 @@
 <details>
  <summary><b>Click here to view details</b></summary><p>The pre-process pipeline is shown in the following image:</p>
 <p><img alt="../../../_images/preprocessing_pipeline.png" src="../../../_images/preprocessing_pipeline.png" /></p>
-<div class="section" id="gaussian-otsu-accelerator">
-<h5>Gaussian_OTSU Accelerator<a class="headerlink" href="#gaussian-otsu-accelerator" title="Permalink to this headline">¶</a></h5>
-<p>This accelerator has two kernels - Gaussian &amp; OTSU, stitched in streaming fashion.
-In general, any smoothing filter smoothens the image and will affect the edges of the image. To
-preserve the edges while smoothing, you can use a bilateral filter. In an analogous way as the
-Gaussian filter, the bilateral filter also considers the neighboring pixels with weights assigned to each of them.</p>
-<p>These weights have two components, the first of which is the same weighing used
-by the Gaussian filter. The second component takes into account the difference in the intensity
-between the neighboring pixels and the evaluated one.</p>
-<p>OTSU threshold is used to automatically perform clustering-based image thresholding or the
-reduction of a gray-level image to a binary image. The algorithm assumes that the image contains
-two classes of pixels following bi-modal histogram (foreground pixels and background pixels), it
-then calculates the optimum threshold separating the two classes.</p>
-<p>The following figure depicts the Gaussian + OSTSU plugin software stack.</p>
-<p><img alt="../../../_images/gaussian-plugin-sw-stack.png" src="../../../_images/gaussian-plugin-sw-stack.png" /></p>
-<p>The following figure depicts the Gaussian + OTSU plugin data flow.</p>
-<p><img alt="../../../_images/gaussian-plugin-dataflow.png" src="../../../_images/gaussian-plugin-dataflow.png" /></p>
-</div>
-<div class="section" id="threshold-median-accelerator">
-<h5>Threshold_Median Accelerator<a class="headerlink" href="#threshold-median-accelerator" title="Permalink to this headline">¶</a></h5>
 <p>The grey-scale image should be converted to a binary image with an appropriate threshold value. The threshold function in the Vitis Vision library can perform the thresholding operation on the input image. This should yield an image that has a black background with the mango area in white.</p>
 <p>The median blur filter acts as a non-linear digital filter that reduces noise. A filter size of N outputs the median of the NxN neighborhood pixel values, for each pixel. In this design, N is 3.</p>
 <p>This plugin accepts the 1280x800 Y8 image as input. The plugin applies the threshold binary algorithm to convert the Y8 image to binary image by using the threshold value of the pixel. Later, it applies the Median filter to remove salt and pepper noise.</p>
@@ -585,26 +562,41 @@ then calculates the optimum threshold separating the two classes.</p>
 <p><img alt="../../../_images/preprocess-plugin-data-flow.png" src="../../../_images/preprocess-plugin-data-flow.png" /></p>
 <p>Threshold and Median Blur kernels are connected together using AXI Stream interface.</p>
 </details></div>
-</div>
-<div class="section" id="cca">
-<h4>CCA<a class="headerlink" href="#cca" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="canny">
+<h4>Canny<a class="headerlink" href="#canny" title="Permalink to this headline">¶</a></h4>
 <details>
- <summary><b>Click here to view details</b></summary><p>The implemented Connected Component Analysis (CCA), is a custom solution to find the defective pixels in the problem object. This algorithm considers few assumptions that the background must be easily separable from the foreground object.</p>
-<p>The custom CCA effectively analyses the components that are connected to the background pixels, and removed the background from the object and defective pixels. The aim is to send the following output information from the function:</p>
+ <summary><b>Click here to view details</b></summary><p>The Canny edge detector finds the edges in the video frame. In this algorithm, the noise in the image is reduced first by applying a Gaussian mask. The Gaussian mask used here is the average mask of size 3x3. Thereafter, gradients along <em>x</em> and <em>y</em> directions are computed using the Sobel gradient function. The gradients are used to compute the magnitude and phase of the pixels. The phase is quantized, and the pixels are binned accordingly. Non-maximal suppression is applied on the pixels to remove the weaker edges.</p>
+<p>Canny algorithm aims to satisfy three main criteria:</p>
+<ol class="simple">
+<li><p>Low error rate: Good detection of only existent edges.</p></li>
+<li><p>Good localization: The distance between edge pixels detected and real edge pixels must be minimized.</p></li>
+<li><p>Minimal response: Only one detector response per edge</p></li>
+</ol>
+<p>The following figure depicts the Canny plugin software stack.</p>
+<p><img alt="docs/media/defect-detect/canny-plugin-sw-stack.png" src="docs/media/defect-detect/canny-plugin-sw-stack.png" /></p>
+<p>The following figure depicts the Canny plugin data flow.</p>
+<p><img alt="docs/media/defect-detect/canny-plugin-dataflow.png" src="docs/media/defect-detect/canny-plugin-dataflow.png" /></p>
+</details></div>
+<div class="section" id="edge-tracer">
+<h4>Edge Tracer<a class="headerlink" href="#edge-tracer" title="Permalink to this headline">¶</a></h4>
+<details>
+ <summary><b>Click here to view details</b></summary><p>The Edge Tracer is applied on the remaining pixels to draw the edges on the image. In this algorithm, the Canny up to non-maximal suppression is in one kernel, and the edge linking module is in another kernel.   The Contour Filling function, which is the final function required to detect defects in the mango, is done in the PS. After non-maxima suppression, the output is represented as 2-bits per pixel, where:</p>
 <ul class="simple">
-<li><p>defect image: image with only defect pixels marked as ‘255’ and both object pixels and background as ‘0’</p></li>
-<li><p>object_pixels: total non-defective pixels of the object</p></li>
-<li><p>defect_pixels: total defective pixels</p></li>
+<li><p>00 - represents the background</p></li>
+<li><p>01 - represents the weaker edge</p></li>
+<li><p>11 - represents the strong edge</p></li>
 </ul>
-<p>The following figure depicts the CCA plugin software stack.</p>
-<p><img alt="../../../_images/cca-plugin-sw-stack.png" src="../../../_images/cca-plugin-sw-stack.png" /></p>
-<p>The following figure depicts the CCA plugin data flow.</p>
-<p><img alt="../../../_images/cca-plugin-dataflow.png" src="../../../_images/cca-plugin-dataflow.png" /></p>
+<p>The output is packed as 8-bit (four 2-bit pixels) in 1 pixel per cycle operation and packed as 16-bit (eight 2-bit pixels) in 8 pixel per cycle operation. For the edge linking module, the input is 64-bit, in which 32 pixels of 2-bit are packed into a 64-bit image. The Edge Tracer is applied on the pixels and returns the edges in the image.</p>
+<p>Canny, Edge Tracer HLS’ IP works in memory mapped fashion and generates only one output.</p>
+<p>The following figure depicts the Edge Tracer plugin software stack.</p>
+<p><img alt="docs/media/defect-detect/edge-tracer-plugin-sw-stack.png" src="docs/media/defect-detect/edge-tracer-plugin-sw-stack.png" /></p>
+<p>The following figure depicts the Edge Tracer plugin data flow.</p>
+<p><img alt="docs/media/defect-detect/edge-tracer-plugin-dataflow.png" src="docs/media/defect-detect/edge-tracer-plugin-dataflow.png" /></p>
 </details></div>
 <div class="section" id="defect-calculation">
 <h4>Defect Calculation<a class="headerlink" href="#defect-calculation" title="Permalink to this headline">¶</a></h4>
 <details>
- <summary><b>Click here to view details</b></summary><p>The output of the CCA plugin is fed into the Defect Calculation block which calculates the defect density and decides the quality of the mango. The block performs the following main operations:</p>
+ <summary><b>Click here to view details</b></summary><p>The output of the Edge Tracer plugin is fed into the Defect Calculation block which calculates the defect density and decides the quality of the mango. The block performs the following main operations:</p>
 <ul class="simple">
 <li><p>The contours delineate regions of the mango that are blemished. Blemished pixels are marked with white color in the binary image.</p></li>
 <li><p>The ratio of blemished pixels to total image pixels is calculated to determine how much of the mango’s surface area is covered with blemishes.</p></li>
@@ -622,50 +614,9 @@ then calculates the optimum threshold separating the two classes.</p>
 <details>
  <summary><b>Click here to view details</b></summary><p>The <strong>defect-detect</strong> application uses the following configuration files.</p>
 <ul class="simple">
-<li><p>CCA Accelerator</p></li>
+<li><p>Pre-Process</p></li>
 </ul>
-<p>The <em>cca-accelarator.json</em> file is as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;ivas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/lib&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span> <span class="s2">&quot;transform&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;kernels&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;cca_custom_accel:cca_custom_accel_1&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;library-name&quot;</span><span class="p">:</span> <span class="s2">&quot;libivas_cca.so&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">1</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>OTSU Accelerator</p></li>
-</ul>
-<p>The <em>otsu-accelerator.json</em> file is as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;ivas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/lib&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span> <span class="s2">&quot;transform&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;kernels&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;gaussian_otsu_accel:gaussian_otsu_accel_1&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;library-name&quot;</span><span class="p">:</span> <span class="s2">&quot;libivas_otsu.so&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">1</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Preprocess Accelerator</p></li>
-</ul>
-<p>The <em>preprocess-accelerator.json</em> file is as follows:</p>
+<p>The <em>pre-process.json</em> file is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
   <span class="s2">&quot;ivas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/lib&quot;</span><span class="p">,</span>
@@ -676,38 +627,105 @@ then calculates the optimum threshold separating the two classes.</p>
       <span class="s2">&quot;library-name&quot;</span><span class="p">:</span> <span class="s2">&quot;libivas_preprocess.so&quot;</span><span class="p">,</span>
       <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;threshold&quot;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
         <span class="s2">&quot;max_value&quot;</span><span class="p">:</span> <span class="mi">255</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
-
-
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">threshold</span><span class="p">:</span> <span class="n">Threshold</span> <span class="n">value</span>
+<span class="o">*</span> <span class="n">max_value</span><span class="p">:</span> <span class="n">Maximum</span> <span class="n">value</span> <span class="n">to</span> <span class="n">use</span> <span class="k">with</span> <span class="n">the</span> <span class="n">THRESH_BINARY</span> <span class="n">thresholding</span> <span class="n">types</span><span class="o">.</span>
+<span class="n">For</span> <span class="n">more</span> <span class="n">information</span><span class="p">,</span> <span class="n">see</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">opencv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">d7</span><span class="o">/</span><span class="n">d1b</span><span class="o">/</span><span class="n">group__imgproc__misc</span><span class="o">.</span><span class="n">html</span><span class="c1">#gae8a4a146d1ca78c626a53577199e9c57</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Text2Overlay</p></li>
+<li><p>Canny Accelerator</p></li>
 </ul>
-<p>The <em>text2overlay.json</em> file is as follows:</p>
+<p>The <em>canny-accelerator.json</em> file is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
   <span class="s2">&quot;ivas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/lib&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span> <span class="s2">&quot;transform&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;kernels&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;canny_accel:canny_accel_1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;library-name&quot;</span><span class="p">:</span> <span class="s2">&quot;libivas_canny_edge.so&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;thr1&quot;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
+        <span class="s2">&quot;thr2&quot;</span><span class="p">:</span> <span class="mi">255</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">thr1</span><span class="p">:</span> <span class="n">First</span> <span class="n">threshold</span> <span class="k">for</span> <span class="n">the</span> <span class="n">hysteresis</span> <span class="n">procedure</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">thr2</span><span class="p">:</span> <span class="n">Second</span> <span class="n">threshold</span> <span class="k">for</span> <span class="n">the</span> <span class="n">hysteresis</span> <span class="n">procedure</span><span class="o">.</span>
+<span class="n">For</span> <span class="n">more</span> <span class="n">info</span><span class="p">,</span> <span class="n">see</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">opencv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mf">3.4</span><span class="o">/</span><span class="n">dd</span><span class="o">/</span><span class="n">d1a</span><span class="o">/</span><span class="n">group__imgproc__feature</span><span class="o">.</span><span class="n">html</span><span class="c1">#ga04723e007ed888ddf11d9ba04e2232de</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Defect Calculation</p></li>
+</ul>
+<p>The <em>defect-caclulation.json</em> file is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;ivas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/lib&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span>
   <span class="s2">&quot;kernels&quot;</span> <span class="p">:[</span>
     <span class="p">{</span>
-      <span class="s2">&quot;library-name&quot;</span><span class="p">:</span><span class="s2">&quot;libivas_text2overlay.so&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;library-name&quot;</span><span class="p">:</span><span class="s2">&quot;libivas_defectcalc.so&quot;</span><span class="p">,</span>
       <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s2">&quot;font_size&quot;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="s2">&quot;font&quot;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
         <span class="s2">&quot;x_offset&quot;</span> <span class="p">:</span> <span class="mi">750</span><span class="p">,</span>
         <span class="s2">&quot;y_offset&quot;</span> <span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
-        <span class="s2">&quot;defect_threshold&quot;</span> <span class="p">:</span> <span class="mf">0.16</span><span class="p">,</span>
+        <span class="s2">&quot;defect_threshold&quot;</span> <span class="p">:</span> <span class="mf">0.08</span><span class="p">,</span>
         <span class="s2">&quot;is_acc_result&quot;</span> <span class="p">:</span> <span class="mi">1</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
+
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">font_size</span><span class="p">:</span> <span class="n">User</span> <span class="n">configuration</span> <span class="n">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">font</span> <span class="n">size</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">font</span><span class="p">:</span> <span class="n">User</span> <span class="n">configuration</span> <span class="n">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">supported</span> <span class="n">font</span> <span class="nb">type</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">x_offset</span><span class="p">:</span> <span class="n">The</span> <span class="n">X</span> <span class="n">co</span><span class="o">-</span><span class="n">ordinate</span> <span class="kn">from</span> <span class="nn">where</span> <span class="n">the</span> <span class="n">text</span> <span class="n">starts</span> <span class="n">writing</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">Y_offset</span><span class="p">:</span> <span class="n">The</span> <span class="n">Y</span> <span class="n">co</span><span class="o">-</span><span class="n">ordinate</span> <span class="kn">from</span> <span class="nn">where</span> <span class="n">the</span> <span class="n">text</span> <span class="n">starts</span> <span class="n">writing</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">defect_threshold</span><span class="p">:</span> <span class="n">The</span> <span class="n">defect</span> <span class="n">density</span> <span class="n">threshold</span> <span class="n">to</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">defect</span><span class="o">.</span> <span class="n">If</span> <span class="n">the</span> <span class="n">defect</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">more</span> <span class="n">than</span> <span class="n">the</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">it</span> <span class="n">falls</span> <span class="n">under</span> <span class="n">defect</span> <span class="n">category</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">is_acc_result</span><span class="p">:</span> <span class="n">Flag</span> <span class="n">to</span> <span class="n">display</span> <span class="n">the</span> <span class="n">accumulated</span> <span class="n">result</span><span class="o">.</span> <span class="n">If</span> <span class="n">the</span> <span class="n">value</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">accumulated</span> <span class="n">result</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">displayed</span><span class="o">.</span>
+<span class="n">For</span> <span class="n">more</span> <span class="n">information</span> <span class="n">see</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">opencv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mf">3.4</span><span class="o">/</span><span class="n">d0</span><span class="o">/</span><span class="n">de1</span><span class="o">/</span><span class="n">group__core</span><span class="o">.</span><span class="n">html</span><span class="c1">#ga0f9314ea6e35f99bb23f29567fc16e11.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Edge Tracer</p></li>
+</ul>
+<p>The <em>edge-tracer.json</em> file is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;ivas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/lib&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span> <span class="s2">&quot;transform&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;kernels&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;edgetracing_accel:edgetracing_accel_1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;library-name&quot;</span><span class="p">:</span> <span class="s2">&quot;libivas_edge_tracer.so&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">1</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
 </pre></div>
 </div>
 </details></div>

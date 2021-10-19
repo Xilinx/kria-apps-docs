@@ -1,15 +1,3 @@
-<table class="sphinxhide">
- <tr>
-   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit Defect Detection Tutorial</h1>
-   </td>
- </tr>
- <tr>
- <td align="center"><h1>Software Architecture of the Accelerator</h1>
-
- </td>
- </tr>
-</table>
-
 # Software Architecture of the Accelerator
 
 
@@ -36,7 +24,7 @@ In this reference design, the resolution on the input frames is 1280 x 800, and 
 
 The parts before pre-process plugin and after mixer for data source and sink respectively, use purely official GStreamer plugins, such as *filesrc* for file input, and *Kmssink* for the display. Refer to the [GStreamer documentation](https://gstreamer.freedesktop.org/documentation/tutorials/index.html?gi-language=c) for detailed usage.
 
-The core acceleration tasks are performed by the Pre-Process, CCA, and Defect Calculation plugins, which are developed by XILINX.
+The core acceleration tasks are performed by the Pre-Process, Canny, and Edge Tracer plugins, which are developed by XILINX.
 
 <details>
  <summary><b>The following table lists the GStreamer plugins used in the application.</b></summary>
@@ -48,8 +36,8 @@ The core acceleration tasks are performed by the Pre-Process, CCA, and Defect Ca
 | Kmssink  | For the display        |Upstream GStreamer|
 |Queue | Simple data queue | Upstream GStreamer|
 |Tee|1-to-N pipe fitting|Upstream GStreamer|
-|IVAS xfilter|Kernel Library: *canny_edge*. Linking Vitis Vision library to the Gaussian + OTSU CCA detector is an edge detection operator that uses a multi-stage algorithm to detect a wide range of edges in images.|Xilinx Plugin|
 |IVAS xfilter|Kernel Library: *pre-process*. Linking Vitis Vision library to do color space conversion and perform filtering to remove the salt and pepper noise for defect detection.|Xilinx Plugin|
+|IVAS xfilter|Kernel Library: *canny_edge*. Linking Vitis Vision library to the Canny edge detector is an edge detection operator that uses a multi-stage algorithm to detect a wide range of edges in images.|Xilinx Plugin|
 |IVAS xfilter|Kernel Library: *edge_tracer*. Linking Vitis Vision library to trace the edge for defect calculation.|Xilinx Plugin|
 |IVAS xfilter|Kernel Library: *defectcalc*. Linking *OpenCV* software library to find the contour, fill the contour, and embed text as result into output images.|Xilinx Plugin|
 ____
@@ -62,10 +50,11 @@ ____
 
 | Pipeline| Component|Component Type|
 | ----------- | ----------- |------ |
-| Pre-Process  | Gaussian + OTSU |PL|
-|  |Threshold + Median Filter |PL |
-|Defectdetection | CCA | PL
-| |Text Overlay + Defect Detection|SW|
+| Pre-Process  | Threshold Binary |PL|
+|  | Median Filter |PL |
+|Defectdetection | Canny Accelerator | PL
+| |Edge Tracer Accelerator|PL|
+| |Defect Calculation|SW|
 
 ____
 
@@ -86,31 +75,6 @@ The pre-process pipeline is shown in the following image:
 
 ![](../../media/defect-detect/preprocessing_pipeline.png)
 
-##### Gaussian_OTSU Accelerator
-
-This accelerator has two kernels - Gaussian & OTSU, stitched in streaming fashion.
-In general, any smoothing filter smoothens the image and will affect the edges of the image. To
-preserve the edges while smoothing, you can use a bilateral filter. In an analogous way as the
-Gaussian filter, the bilateral filter also considers the neighboring pixels with weights assigned to each of them. 
-
-These weights have two components, the first of which is the same weighing used
-by the Gaussian filter. The second component takes into account the difference in the intensity
-between the neighboring pixels and the evaluated one.
-
-OTSU threshold is used to automatically perform clustering-based image thresholding or the
-reduction of a gray-level image to a binary image. The algorithm assumes that the image contains
-two classes of pixels following bi-modal histogram (foreground pixels and background pixels), it
-then calculates the optimum threshold separating the two classes.
-
-The following figure depicts the Gaussian + OSTSU plugin software stack.
-
-![](../../media/defect-detect/gaussian-plugin-sw-stack.png)
-
-The following figure depicts the Gaussian + OTSU plugin data flow.
-
-![](../../media/defect-detect/gaussian-plugin-dataflow.png)
-
-##### Threshold_Median Accelerator
 The grey-scale image should be converted to a binary image with an appropriate threshold value. The threshold function in the Vitis Vision library can perform the thresholding operation on the input image. This should yield an image that has a black background with the mango area in white.
 
 The median blur filter acts as a non-linear digital filter that reduces noise. A filter size of N outputs the median of the NxN neighborhood pixel values, for each pixel. In this design, N is 3.
@@ -129,32 +93,56 @@ Threshold and Median Blur kernels are connected together using AXI Stream interf
 
 </details>
 
-
-#### CCA
+#### Canny
 
 <details>
  <summary><b>Click here to view details</b></summary>
 
-The implemented Connected Component Analysis (CCA), is a custom solution to find the defective pixels in the problem object. This algorithm considers few assumptions that the background must be easily separable from the foreground object.
+The Canny edge detector finds the edges in the video frame. In this algorithm, the noise in the image is reduced first by applying a Gaussian mask. The Gaussian mask used here is the average mask of size 3x3. Thereafter, gradients along *x* and *y* directions are computed using the Sobel gradient function. The gradients are used to compute the magnitude and phase of the pixels. The phase is quantized, and the pixels are binned accordingly. Non-maximal suppression is applied on the pixels to remove the weaker edges.
 
-The custom CCA effectively analyses the components that are connected to the background pixels, and removed the background from the object and defective pixels. The aim is to send the following output information from the function:
+Canny algorithm aims to satisfy three main criteria:
 
-* defect image: image with only defect pixels marked as ‘255’ and both object pixels and background as ‘0’ 
-* object_pixels: total non-defective pixels of the object
-* defect_pixels: total defective pixels
+1. Low error rate: Good detection of only existent edges.
 
+2. Good localization: The distance between edge pixels detected and real edge pixels must be minimized.
 
-The following figure depicts the CCA plugin software stack.
+3. Minimal response: Only one detector response per edge
 
-![](../../media/defect-detect/cca-plugin-sw-stack.png)
+The following figure depicts the Canny plugin software stack.
 
-The following figure depicts the CCA plugin data flow.
+![](../../media/defect-detect/canny-plugin-sw-stack.png)
 
-![](../../media/defect-detect/cca-plugin-dataflow.png)
+The following figure depicts the Canny plugin data flow.
+
+![](../../media/defect-detect/canny-plugin-dataflow.png)
 
 </details>
 
+#### Edge Tracer
 
+<details>
+ <summary><b>Click here to view details</b></summary>
+
+The Edge Tracer is applied on the remaining pixels to draw the edges on the image. In this algorithm, the Canny up to non-maximal suppression is in one kernel, and the edge linking module is in another kernel.   The Contour Filling function, which is the final function required to detect defects in the mango, is done in the PS. After non-maxima suppression, the output is represented as 2-bits per pixel, where:
+
+* 00 - represents the background
+* 01 - represents the weaker edge
+* 11 - represents the strong edge
+
+The output is packed as 8-bit (four 2-bit pixels) in 1 pixel per cycle operation and packed as 16-bit (eight 2-bit pixels) in 8 pixel per cycle operation. For the edge linking module, the input is 64-bit, in which 32 pixels of 2-bit are packed into a 64-bit image. The Edge Tracer is applied on the pixels and returns the edges in the image.
+
+Canny, Edge Tracer HLS' IP works in memory mapped fashion and generates only one output.
+
+
+The following figure depicts the Edge Tracer plugin software stack.
+
+![](../../media/defect-detect/edge-tracer-plugin-sw-stack.png)
+
+The following figure depicts the Edge Tracer plugin data flow.
+
+![](../../media/defect-detect/edge-tracer-plugin-dataflow.png)
+
+</details>
 
 #### Defect Calculation
 
@@ -162,7 +150,7 @@ The following figure depicts the CCA plugin data flow.
  <summary><b>Click here to view details</b></summary>
 
 
-The output of the CCA plugin is fed into the Defect Calculation block which calculates the defect density and decides the quality of the mango. The block performs the following main operations:
+The output of the Edge Tracer plugin is fed into the Defect Calculation block which calculates the defect density and decides the quality of the mango. The block performs the following main operations:
 
 * The contours delineate regions of the mango that are blemished. Blemished pixels are marked with white color in the binary image.
 
@@ -189,55 +177,9 @@ The following figure depicts the Defect Calulation plugin data flow.
 
 The **defect-detect** application uses the following configuration files.
 
-* CCA Accelerator
+* Pre-Process
 
-The *cca-accelarator.json* file is as follows:
-
-```
-{
-  "xclbin-location": "/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin",
-  "ivas-library-repo": "/opt/xilinx/lib",
-  "element-mode": "transform",
-  "kernels": [
-    {
-      "kernel-name": "cca_custom_accel:cca_custom_accel_1",
-      "library-name": "libivas_cca.so",
-      "config": {
-        "debug_level" : 1
-      }
-    }
-  ]
-}
-
-
-```
-  
-* OTSU Accelerator
-
-The *otsu-accelerator.json* file is as follows:
-
-```
-{
-  "xclbin-location": "/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin",
-  "ivas-library-repo": "/opt/xilinx/lib",
-  "element-mode": "transform",
-  "kernels": [
-    {
-      "kernel-name": "gaussian_otsu_accel:gaussian_otsu_accel_1",
-      "library-name": "libivas_otsu.so",
-      "config": {
-        "debug_level" : 1
-      }
-    }
-  ]
-}
-
-```
-  
-
-* Preprocess Accelerator
-
-The *preprocess-accelerator.json* file is as follows:
+The *pre-process.json* file is as follows:
 
 ```
 {
@@ -250,43 +192,104 @@ The *preprocess-accelerator.json* file is as follows:
       "library-name": "libivas_preprocess.so",
       "config": {
         "debug_level" : 1,
+        "threshold": 35,
         "max_value": 255
       }
     }
   ]
 }
 
-
-
 ```
-  
-* Text2Overlay
+    * debug_level: Enable or disable debug log for the Kernel library.
+    * threshold: Threshold value
+    * max_value: Maximum value to use with the THRESH_BINARY thresholding types.
+    For more information, see https://docs.opencv.org/master/d7/d1b/group__imgproc__misc.html#gae8a4a146d1ca78c626a53577199e9c57
 
-The *text2overlay.json* file is as follows:
+* Canny Accelerator
+
+The *canny-accelerator.json* file is as follows:
 
 ```
 {
   "xclbin-location": "/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin",
   "ivas-library-repo": "/opt/xilinx/lib",
-  "element-mode":"inplace",
-  "kernels" :[
+  "element-mode": "transform",
+  "kernels": [
     {
-      "library-name":"libivas_text2overlay.so",
+      "kernel-name": "canny_accel:canny_accel_1",
+      "library-name": "libivas_canny_edge.so",
       "config": {
         "debug_level" : 1,
-        "font_size" : 1.0,
-        "font" : 3,
-        "x_offset" : 750,
-        "y_offset" : 50,
-        "defect_threshold" : 0.16,
-        "is_acc_result" : 1
+        "thr1": 35,
+        "thr2": 255
       }
     }
   ]
 }
 
 ```
+    * debug_level: Enable or disable debug log for the Kernel library.
+    * thr1: First threshold for the hysteresis procedure.
+    * thr2: Second threshold for the hysteresis procedure.
+    For more info, see https://docs.opencv.org/3.4/dd/d1a/group__imgproc__feature.html#ga04723e007ed888ddf11d9ba04e2232de
 
+* Defect Calculation
+
+The *defect-caclulation.json* file is as follows:
+
+```
+{
+  "xclbin-location": "/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin",
+  "ivas-library-repo": "/opt/xilinx/lib",
+  "element-mode":"transform",
+  "kernels" :[
+    {
+      "library-name":"libivas_defectcalc.so",
+      "config": {
+        "debug_level" : 1,
+        "font_size" : 1.0,
+        "font" : 3,
+        "x_offset" : 750,
+        "y_offset" : 50,
+        "defect_threshold" : 0.08,
+        "is_acc_result" : 1
+      }
+    }
+  ]
+}
+
+
+```
+    * debug_level: Enable or disable debug log for the Kernel library.
+    * font_size: User configuration to change the font size.
+    * font: User configuration to change the supported font type.
+    * x_offset: The X co-ordinate from where the text starts writing.
+    * Y_offset: The Y co-ordinate from where the text starts writing.
+    * defect_threshold: The defect density threshold to calculate the defect. If the defect value is more than the threshold, it falls under defect category.
+    * is_acc_result: Flag to display the accumulated result. If the value is 0, then the accumulated result will not be displayed.
+    For more information see https://docs.opencv.org/3.4/d0/de1/group__core.html#ga0f9314ea6e35f99bb23f29567fc16e11.
+
+* Edge Tracer
+
+The *edge-tracer.json* file is as follows:
+
+```
+{
+  "xclbin-location": "/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin",
+  "ivas-library-repo": "/opt/xilinx/lib",
+  "element-mode": "transform",
+  "kernels": [
+    {
+      "kernel-name": "edgetracing_accel:edgetracing_accel_1",
+      "library-name": "libivas_edge_tracer.so",
+      "config": {
+        "debug_level" : 1
+      }
+    }
+  ]
+}
+```
+    * debug_level: Enable or disable debug log for the Kernel library.
 
 </details>
 
