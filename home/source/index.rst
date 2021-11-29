@@ -3,8 +3,32 @@ SOM
 ###############################################################################################################
 
 
+
 **********************************************************************************************************************************************************************************************
-`Kria™ KV260 Vision AI Starter Kit Applications <../../../main/build/html/index.html>`__
+`Kria™ SOM Application Development <../../../creating_applications/1.0/build/html/index.html>`__
+**********************************************************************************************************************************************************************************************
+
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Kria SOM
+   :hidden:
+
+   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>
+
+
+
+
+With Kria SOMs, you can create and test your own custom applications and programmable logic (PL) functions. Use one or more of the Xilinx development tools (such as Vivado™, Vitis™, and PetaLinux) and open source tools (such as Linux Device Tree Generator/Compiler) to build your applications.
+
+
+
+
+
+
+**********************************************************************************************************************************************************************************************
+`Kria™ KV260 Vision AI Starter Kit Applications <../../../2021.1/build/html/index.html>`__
 **********************************************************************************************************************************************************************************************
 
 
@@ -14,7 +38,7 @@ SOM
    :caption: Kria KV260
    :hidden:
 
-   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
+   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html>
 
 
 

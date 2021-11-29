@@ -53,6 +53,7 @@ With both hardware and software development requirements simplified, the KV260 V
    :hidden:
 
    Home <https://xilinx.github.io/kria-apps-docs/index.html>
+   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>>
    KRS <https://xilinx.github.io/KRS/>
 
 
