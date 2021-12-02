@@ -28,7 +28,7 @@ With Kria SOMs, you can create and test your own custom applications and program
 
 
 **********************************************************************************************************************************************************************************************
-`Kria™ KV260 Vision AI Starter Kit Applications <../../../2021.1/build/html/index.html>`__
+`Kria™ KV260 Vision AI Starter Kit Applications <../../../main/build/html/index.html>`__
 **********************************************************************************************************************************************************************************************
 
 
@@ -38,7 +38,7 @@ With Kria SOMs, you can create and test your own custom applications and program
    :caption: Kria KV260
    :hidden:
 
-   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html>
+   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
 
 
 
