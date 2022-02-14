@@ -10,7 +10,7 @@ Kria™ SOM Ubuntu Support
    :hidden:
 
    Home <https://xilinx.github.io/kria-apps-docs/>
-   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html>
+   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>
    Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
 
