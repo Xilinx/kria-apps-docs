@@ -54,7 +54,7 @@ With both hardware and software development requirements simplified, the KV260 V
 
    Home <https://xilinx.github.io/kria-apps-docs/index.html>
    Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>
-   KRS <https://xilinx.github.io/KRS/>
+   Kria Robotics Stack <https://xilinx.github.io/KRS/>
 
 
 .. toctree::
