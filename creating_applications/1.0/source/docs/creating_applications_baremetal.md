@@ -1,5 +1,4 @@
-# Bare-metal Flow Example
-
+##  Bare-metal Flow Example
 Developers who wish to use SOM without Linux will be creating a bare-metal(also called standalone) application. This example flow will detail the process of creating a simple 
 PL design with a BRAM connected to the PS, running on the Vision AI Starter Kit. The flow will then create a standalone software in Vitis to read and write from BRAM. Lastly, the flow will suggest two ways to load 
 and test the application on SOM.
@@ -9,14 +8,12 @@ and test the application on SOM.
 * Output: <pl>.bit, fsbl.elf, pmufw.elf, <application>.elf, and boot.bin
 
 
-## Prerequisites and Assumptions
-
+## Prerequisites and Assumptions	
 This document assumes that developers will use 2021.1 or later tools and SOM content releases. The tool versions should match - e.g. use the same tool versions for Vivado, Vitis, Bootgen, XSDB
 
-1. Vivis tools installation	- which will include Vivado, Bootgen, and XSDB
+1. Vitis tools installation	- which will include Vivado, Bootgen, and XSDB
 
-## Step 1: Generate PL design in Vivado
-
+### Step 1: Generate PL design in Vivado
 Start Vivado. Choose File -> Project -> New. Then choose RTL project:
 
 ![Tool Flow](./media/baremetal_example/01_vivado.png)
@@ -93,8 +90,7 @@ Launch Vitis by selecting ```Tools -> Layunch Vitis IDE```:
 
 ![Tool Flow](./media/baremetal_example/18_vivado.png)
 
-## Step 2: Generate Standalone Software in Vitis
-
+### Step 2: Generate Standalone Software in Vitis
 In Vitis, select Project -> Create Application Project:
 
 ![Tool Flow](./media/baremetal_example/19_vitis.png)
@@ -123,12 +119,10 @@ vitis_workspace/add_bram_wrapper/export/add_bram_wrapper/sw/add_bram_wrapper/boo
 vitis_workspace/hello_world/Debug/hello_world.elf
 ```
 
-## Step 3: Boot Baremetal Applications
-
+### Step 3: Boot Baremetal Applications
 There are two ways to boot baremetal applications - using JTAG to download files and start the application, and programming boot files into boot image sectors of QSPI so that the application boots up upon power up without needing XSDB. JTAG booting is ideal for development and debugging, while QSPI booting is ideal for deployment.
 
-### Option 1: Boot using JTAG
-
+#### Option 1: Boot using JTAG
 Developers can boot using JTAG using the 4 files generated: fsbl.elf, pmufw.elf, hello_world.elf, add_bram_wrapper.bit using the following XSDB script:
 
 ```
@@ -173,9 +167,7 @@ dow hello_world.elf
 after 500
 con
 ```
-
 #### Option 2: Boot Using boot.bin
-
 Alternatively, developers can generate a boot.bin file to be programmed into the A/B image update section. 
 
 Developers first need to create a <test>.bif file containing the following:
@@ -202,16 +194,14 @@ to update the boot firmware. In this example, we have decided to write boot.bin 
 
 ![Tool Flow](./media/baremetal_example/25_img_recovery.png)
 
-## Step 4: Observe UART Output
-
+### Step 4: Observe UART Output
 After step 3, .bit file and the .elf files will be programmed, and developers should observe printouts from uart indicating the ability to write and read from BRAM. 
 
-## Optional: Restoring Linux booting image
-
+### Optional: Restoring Linux booting image
 Developers may need to restore Starter Kit back to its default, Linux-booting setting after one of the image sectors had been overwriten with baremetal boot file. In that case, they can download the released Linux booting BOOT.bin from [SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates) and program it into one of the image sectors. They will then mark that image sector as bootable and requested image.
 
 
-#### License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

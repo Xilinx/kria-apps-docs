@@ -10,7 +10,7 @@
 
 ## Introduction
 
-The scope of this document is to guide developers using Kria SOMs to create and test their own custom applications and programmable logic (PL) functions. Depending on the scope of development and selected workflow developers will use one or more of the Xilinx development tools (Vivado, Vitis, PetaLinux) and open source tools (e.g. Linux Device Tree Generator/Compiler) to build their applications.
+The scope of this document is to guide developers using Kria SOMs to create and test their own custom applications and programmable logic (PL) functions. Depending on the scope of development and selected workflow developers will use one or more of the Xilinx development tools (Vivado, Vitis, PetaLinux) and open source tools (e.g. Linux Device Tree Generator/Compiler) to build their applications. This document focuses on the overall concept of the different PL hardware generation flows. Whenever available, this document also points to detailed step by step tutorials.
 
 The Kria SOM hardware design consist of the SOM (K26) and a carrier card. The carrier card (CC) can be a Xilinx carrier card (e.g. KV260), or a custom carrier card. The Kria K26 SOM uses the XCK26 Zynq MPSoC chip containing both the Processor Subsystem (PS) and Programmable Logic (PL). The Kria Starter Kit reference designs have a Linux operating system running in PS, which then runs applications that utilize HW accelerators implemented in PL. The PL design or bitstream is generated using Vivado and/or Vitis, and is integrated with Linux software components using PetaLinux. 
 
@@ -63,12 +63,22 @@ Depending on the scope of customization and selected workflow, different tools w
 1. PetaLinux tools installation 
 2. Vitis tools installation (this will include Vivado)
 3. Vivado tools installation (if Vitis is not required and installed)
+      * Please apply [Y2K22 patch](https://support.xilinx.com/s/article/76960?language=en_US) for 21.2 and earlier
 4. Device Tree Generator (DTG) and Device Tree Compiler (DTC) installation, refer to [Build Device Tree Blob](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob) 
 5. [XSCT](https://www.xilinx.com/html_docs/xilinx2021_1/vitis_doc/XSCT.html) (will be installed as part of Vivado or Vitis) 
 6. PetaLinux SOM StarterKit BSP (e.g. xilinx-k26-starterkit-2021.1-final.bsp)
       * Download the latest SOM Starter Kit BSP from the [SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages)
-7. Kv260-vitis [git repository](https://github.com/Xilinx/kv260-vitis)
+7. Kv260-vitis [git repository](https://github.com/Xilinx/kv260-vitis) containing KV260 Vitis platforms, Vitis overlay projects and their associated Makefiles
 
+After developers have understood the SOM developer flow chapter below, they can refer to this table for tool requirements to generate PL portion of their applications. Please Note that more than one flow can be involved dependent on developers' decision. (Please refer to the decision tree in the next chapter).
+
+|                                 |     Vitis         |     PetaLinux     |     Vivado        |     Tools for DTBO                   |
+|---------------------------------|-------------------|-------------------|-------------------|--------------------------------------|
+|     Vitis Accelerator Flow      |     Required      |     Optional      |     Not Needed    |     Not Needed                       |
+|     Vitis Platform Flow         |     Required      |     Optional      |     Required      |     (XSTC, DTG, DTC) or Petalinux    |
+|     Vivado Accelerator Flow     |     Not Needed    |     Optional      |     Required      |     (XSTC, DTG, DTC) or Petalinux    |
+|     Custom Carrier Card Flow    |     Not Needed    |     Required      |     Required      |     Not Needed                       |
+|     Baremetal Flow              |     Required      |     Not Needed    |     Required      |     Not Needed                       |
 
 ## SOM Developer Flow
 Developers may only need to touch parts of the flow to put their own applications on SOM. Based on the scope of hardware and design change there are four different flows developers can leverage when developing a custom application. The choice of flow depends on HW target definition, where the target design intersects with Xilinx's released reference designs, and tool preference. The following is a decision tree to help guide developers through appropriate workflows:

@@ -42,7 +42,7 @@ hsi set_property CONFIG.dt_overlay true [hsi::get_os]
 hsi generate_target -dir <desired_dts_filename>
 hsi close_hw_design [current_hw_design]
 ```
-[current_hw_design] name can be found in output of hsi open_hw_design <design_name.xsa>. 
+[current_hw_design] name can be found in output of hsi open_hw_design <design_name.xsa>. An example script for above can be found in the linked example from Vitis Platform Flow [here](https://github.com/Xilinx/Vitis-Tutorials/blob/2021.1/Vitis_Platform_Creation/Design_Tutorials/01-Edge-KV260/ref_files/step2_petalinux/gen_dt.tcl).
 
 A folder <desired_dts_filename> will be created, pl.dtsi is the overlay .dtsi file to be used to compile into .dtbo file. 
 
@@ -51,7 +51,7 @@ This step takes the human readable defined Linux HW description (dtsi file) gene
 ```
 dtc -@ -O dtb -o pl.dtbo pl.dtsi
 ```
-Rename the pl.dtbo to the appropiiate name. 
+Rename the pl.dtbo to the appropriate name. 
 
 
 ### Using fpgamanger_custom bbclass in PetaLinux

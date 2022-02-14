@@ -1,13 +1,11 @@
-# Vivado Accelerator Flow Example
-
+## Vivado Accelerator Flow Example
 This page will walk you through an example adding a simple accelerator (in this case, a simple BRAM) application into the SOM infrastructure in the Vivado Accelerator Flow. Please first read [Vivado Accelerator Flow](./creating_applications_vivado_accel_flow.md) before trying this example. 
 
 This example was created with 21.1 tools and BSP. You will need Vivado, XSTC, DTG and DTC. Please refer to [Generating DTSI and DTBO Overlay Files](./creating_applications_dtsi_dtbo_generation.md) for how to install DTG and DTC.
 
 You will need to generate 3 files - .bit.bin (PL bitstream), .dtbo (device tree overlay), and shell.json to load onto SOM. 
 
-## Generate .bit.bin
-
+### Generate .bit.bin
 There are two ways to start the Vivado project for SOM starterkits. Since the [baremetal example](./creating_applications_baremetal.md) has an example for generating PL design in Vivado using board files, this example will use the Vivado design provided in [Starter Kit SOM BSP](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages). 
 
 Download the BSP from above link. Then create the project using starter kit BSP:
@@ -75,15 +73,13 @@ Copy the generated .bin file to top level, we will use the name ```bram``` for t
 cp xilinx-k26-starterkit-2021.1.runs/impl_1/project_1_wrapper.bin bram.bit.bin
 ```
 
-## Generate .xsa file
-
+### Generate .xsa file
 A .xsa file is needed for generation of .dtbo device tree overlay file in the next step. This is also generated in Vivado by  using ```File -> Export -> Export Hardware``` , make sure to select "include bitstream" in the generation.
 
 ![Board Files](./media/tool_flow_xsa_gen.PNG)
 
 
-## Generate .dtbo file
-
+### Generate .dtbo file
 In this example, we will use the first method in [Generating DTSI and DTBO Overlay Files](./creating_applications_dtsi_dtbo_generation.md) to generate the .dtbo file needed. 
 
 In XSCT, generate the dts files needed using ```project_1_wrapper.xsa``` created in previous step:
@@ -104,12 +100,10 @@ cd ../
 cp bram_dts/pl.dtbo bram.dtbo
 ```
 
-## Create shell.json file
-
+### Create shell.json file
 Create a shell.json XRT_FLAT file by referring to [On-target Utilities and Firmware](./creating_applications_target.md). 
 
-## Test on SOM Target
-
+### Test on SOM Target
 Now you have bram.bit.bin, bram.dtbo, shell.json files, you are ready to move them to SOM Starter Kit and test them. We assume that you have already booted to Linux using the prebuilt .wic images provided [here](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Starter-Kit-Pre-Built-Binaries).
 
 Move the files over using your preferred method, this example uses scp to move over the files to target. 
@@ -141,7 +135,7 @@ sudo devmem 0xa0000000 32
 
  
 
-#### License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

@@ -9,26 +9,29 @@ SOM
 **********************************************************************************************************************************************************************************************
 
 
-
 .. toctree::
    :maxdepth: 3
    :caption: Kria SOM
    :hidden:
 
    Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>
+   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html>
 
-
-
+.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs/
 
 With Kria SOMs, you can create and test your own custom applications and programmable logic (PL) functions. Use one or more of the Xilinx development tools (such as Vivado™, Vitis™, and PetaLinux) and open source tools (such as Linux Device Tree Generator/Compiler) to build your applications.
 
 
+**********************************************************************************************************************************************************************************************
+`Kria SOM Ubuntu Support <../../../kria_som_ubuntu_support/build/html/index.html>`__
+**********************************************************************************************************************************************************************************************
 
+Kria SOM has official Ubuntu support with a certified Ubuntu image. Currently there is one application (NLP-smartvision) ported for out-of-box support in the Ubuntu image. Kria SOM also has PYNQ support, bringing Python productivity to the embedded platform.
 
 
 
 **********************************************************************************************************************************************************************************************
-`Kria™ KV260 Vision AI Starter Kit Applications <../../../main/build/html/index.html>`__
+`Kria KV260 Vision AI Starter Kit Applications <../../../main/build/html/index.html>`__
 **********************************************************************************************************************************************************************************************
 
 
@@ -63,7 +66,7 @@ Enabled by a growing ecosystem of accelerated applications from the Xilinx App S
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
 
 
-The Kria Robotics Stack (KRS) is an a ROS 2 superset for industry, an integrated set of robot libraries and utilities to accelerate the development, maintenance and commercialization of industrial-grade robotic solutions while using `adaptive computing <https://www.xilinx.com/applications/adaptive-computing.html>`_ and currently targeting the K26 and KV260.
+The Kria Robotics Stack (KRS) is an ROS 2 superset for industry, an integrated set of robot libraries and utilities to accelerate the development, maintenance and commercialization of industrial-grade robotic solutions while using `adaptive computing <https://www.xilinx.com/applications/adaptive-computing.html>`_ and currently targeting the K26 and KV260.
 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
 

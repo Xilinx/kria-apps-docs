@@ -4,11 +4,11 @@ Kria™ SOM Accelerator and Custom Carrier Card Firmware Development
 
 
 
-With Kria SOMs, you can create and test your own custom applications and programmable logic (PL) functions. Use one or more of the Xilinx development tools (such as Vivado™, Vitis™, and PetaLinux) and open source tools (such as Linux Device Tree Generator/Compiler) to build your applications.
+With Kria SOMs, you can create and test your own custom applications and programmable logic (PL) functions. Use one or more of the Xilinx development tools (such as Vivado™, Vitis™, and PetaLinux) and open source tools (such as Linux Device Tree Generator/Compiler) to build your applications. This document focuses on the overall concept of the different PL hardware generation flows. Whenever available, this document also points to detailed step-by-step tutorials.
 
-The Kria SOM hardware design consist of the SOM (K26) and a carrier card. The carrier card (CC) can be a Xilinx carrier card (e.g. KV260), or a custom carrier card. The Kria K26 SOM uses the XCK26 Zynq MPSoC chip containing both the Processor Subsystem (PS) and Programmable Logic (PL). The Kria Starter Kit reference designs have a Linux operating system running in PS, which then runs applications that utilize HW accelerators implemented in PL. Vivado and/or Vitis generates the PL design or bitstream it is integrated with Linux software components using PetaLinux.
+The Kria SOM hardware design consist of the SOM (K26) and a carrier card. The carrier card (CC) can be a Xilinx carrier card (e.g. KV260), or a custom carrier card. The Kria K26 SOM uses the XCK26 Zynq MPSoC chip containing both the Processor Subsystem (PS) and Programmable Logic (PL). The Kria Starter Kit reference designs have a Linux operating system running in PS, which then runs applications that utilize HW accelerators implemented in PL. The PL design or bitstream is generated using Vivado and/or Vitis, and it is integrated with Linux software components using PetaLinux.
 
-The SOM board files in Vivado captures the hardware configuration of K26 SOM and maps connectivity to Xilinx provided carrier card peripherals. Developers can use Vivado to generate a custom HW design which may include a different peripheral configuration set than pre-built Xilinx reference designs. Vitis provides a design abstraction for provided "Vitis platforms" in which a subset of CC physical interface peripherals is defined, and developers can focus on generating an acceleration "overlay" within the context of that platform. Developers can leverage Xilinx provided Kria Vitis platforms that align to a given CC or they can create their own Vitis platform. Developers can use the same generalized flows when creating platforms and designs for their own custom carrier card. Below is the tool flow that Xilinx uses to generate reference designs for Kria SOM.
+The SOM board files in Vivado captures the hardware configuration of K26 SOM and maps connectivity to Xilinx provided carrier card peripherals. Developers can use Vivado to generate a custom HW design which may include a different peripheral configuration set than pre-built Xilinx reference designs. Vitis provides a design abstraction for provided "Vitis platforms" in which a subset of CC physical interface peripherals is defined and developers can focus on generating an acceleration "overlay" within the context of that platform. Developers can leverage Xilinx provided Kria Vitis platforms that align to a given CC or they can create their own Vitis platform. Developers can use the same generalized flows when creating platforms and designs for their own custom carrier card. Below is the tool flow that Xilinx uses to generate reference designs for Kria SOM.
 
 
 
@@ -22,10 +22,11 @@ The SOM board files in Vivado captures the hardware configuration of K26 SOM and
    :hidden:
 
    Home <https://xilinx.github.io/kria-apps-docs/>
-   Kria KV260 <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
-   KRS <https://xilinx.github.io/KRS/>
+   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html>
+   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
+   Kria Robotics Stack <https://xilinx.github.io/KRS/>
 
-
+.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs/
 
 .. toctree::
    :maxdepth: 3
@@ -108,7 +109,7 @@ For Kria Starter Kits, the SD card secondary device contains:
 Build Application PL HW Design
 =============================================
 
-The PL design defines the configuration of the PL domain of the MPSoC device on SOM, containing the PL accelerator(s). The user design defines the PL configuration, which can be captured in Vivado or Vitis based workflows at distinct levels of abstraction. The design artifact captured from any of the workflows for designing a PL configuration is a bitstream (``.bit``, often required in ``.bit.bin`` form). This bitstream can be loaded at boot as part of the device boot firmware, or after the OS boot via a runtime library.
+The PL design defines the configuration of the PL domain of the MPSoC device on SOM, containing the PL accelerator(s). The PL configuration is defined by the user design and can be captured in Vivado or Vitis based workflows at different levels of abstraction. The design artifact captured from any of the workflows for designing a PL configuration is a bitstream (``.bit``, often required in ``.bit.bin`` form). This bitstream can be loaded at boot as part of the device boot firmware, or after the OS boot via a runtime library.
 
 If using a Xilinx Kria Starter Kit reference application, the bitstream is provided pre-built and always loaded after Linux boot.
 
@@ -147,12 +148,58 @@ Depending on the scope of customization and selected workflow, different tools w
 1. PetaLinux tools installation
 2. Vitis tools installation (this will include Vivado)
 3. Vivado tools installation (if Vitis is not required and installed)
+   - For versions 21.2 and lower, apply the `Y2K22 patch <https://support.xilinx.com/s/article/76960>`_
+
 4. Device Tree Generator (DTG) and Device Tree Compiler (DTC) installation, refer to `Build Device Tree Blob <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob>`_
 5. `XSCT <https://www.xilinx.com/html_docs/xilinx2021_1/vitis_doc/XSCT.html>`_ (will be installed as part of Vivado or Vitis)
 6. PetaLinux SOM StarterKit BSP (e.g. ``xilinx-k26-starterkit-2021.1-final.bsp``)
    - Download the latest SOM Starter Kit BSP from the `SOM Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages>`_
 
-7. Kv260-vitis `git repository <https://github.com/Xilinx/kv260-vitis>`_
+7. Kv260-vitis `git repository <https://github.com/Xilinx/kv260-vitis>`_, which contains KV260 Vitis platforms, Vitis overlay projects, and their associated Makefiles.
+
+
+
+.. list-table:: Tool Requirements to Generate PL Portion of Application
+   :widths: 22 18 18 18 24
+   :header-rows: 1
+
+   * - Flows
+     - Vitis
+     - PetaLinux
+     - Vivado
+     - Tools for DTBO
+   * - Vitis Accelerator Flow
+     - Required
+     - Optional
+     - Not Needed
+     - Not Needed
+   * - Vitis Platform Flow
+     - Required
+     - Optional
+     - Required
+     - (XSTC, DTG, DTC) or Petalinux 
+   * - Vivado Accelerator Flow
+     - Not Needed
+     - Optional
+     - Required
+     - (XSTC, DTG, DTC) or Petalinux 
+   * - Custom Carrier Card Flow
+     - Not Needed
+     - Required
+     - Required
+     - Not Needed
+   * - Baremetal Flow
+     - Required
+     - Not Needed
+     - Required
+     - Not Needed
+
+
+After you understand the SOM developer flow (shown below), you can refer to the following table for tool requirements to generate PL portion of your applications. Please 
+
+.. note::
+   Depending on your decisions, more than one flow can be involved. Refer to the decision tree shown below.
+
 
 
 .. _som-dev-flow:
@@ -268,7 +315,11 @@ While the Kria Starter Kits examples are Linux centric, they can be used for bar
 - To load custom BOOT.BIN to A/B partitions, use the Linux based xmutil image update utility or use the platform recovery tool. See the `Kria Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates>`_ or `UG1089 <https://www.xilinx.com/support/documentation/user_guides/som/1_0/ug1089-kv260-starter-kit.pdf>`_ for details on loading a BOOT.BIN to the user A/B partitions.
 - For setting JTAG boot via XSDB, see :doc:`docs/creating_applications_bootmodes`.
 
-A detailed example of creating a simple baremetal application can be in :doc:`docs/creating_applications_baremetal`.
+
+.. note::
+   For a detailed example of creating a simple baremetal application, see :doc:`docs/creating_applications_baremetal`.
+
+
 
 
 
