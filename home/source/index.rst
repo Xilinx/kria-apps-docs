@@ -14,8 +14,9 @@ SOM Landing Page
    :caption: Kria SOM
    :hidden:
 
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>
-   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html>
+   Application Development <https://https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>
+   Ubuntu Support <https://https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html>
+   Boot Firmware <https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html>
 
 
 
@@ -30,6 +31,15 @@ Kria SOM has official Ubuntu support with a certified Ubuntu image. Currently th
 
 
 
+
+**********************************************************************************************************************************************************************************************
+`Kria SOM boot firmware <../../../kria_som_ubuntu_support/build/html/docs/bootfw_overview.html>`__
+**********************************************************************************************************************************************************************************************
+
+Gives an overview to various components in the Kria SOM boot firmware, and points to source code available for customers to get started with their implementations for their Kria SOM  custom carrier card.
+
+
+
 **********************************************************************************************************************************************************************************************
 `Kria KV260 Vision AI Starter Kit Applications <../../../main/build/html/index.html>`__
 **********************************************************************************************************************************************************************************************
@@ -41,7 +51,7 @@ Kria SOM has official Ubuntu support with a certified Ubuntu image. Currently th
    :caption: Kria KV260
    :hidden:
 
-   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
+   Vision AI Starter Kit Applications <https://https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
 
 
 
@@ -63,7 +73,7 @@ Enabled by a growing ecosystem of accelerated applications from the Xilinx App S
    :caption: Kria KR260
    :hidden:
 
-   Robotics Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kr260/build/html/index.html>
+   Robotics Starter Kit Applications <https://https://xilinx.github.io/kria-apps-docs/kr260/build/html/index.html>
 
 
 The Kria KR260 Robotics Starter Kit is the latest out-of-the box ready evaluation/development platform in the Xilinx `Kria <https://www.xilinx.com/products/som/kria.html>`_ portfolio of products. The Starter Kit is the platform of choice for development of robotics, machine vision, industrial communication & control target applications. It consists of a non-production K26 SOM plugged into a robotics carrier card and equipped with an active thermal solution of fan and heatsink. The SOM on the Starter Kit is based on `Zynq UltraScale+ MPSoC <https://www.xilinx.com/products/silicon-devices/soc/zynq-ultrascale-mpsoc.html>`_ EV architecture that is paired with 4 GB of DDR4 memory.
