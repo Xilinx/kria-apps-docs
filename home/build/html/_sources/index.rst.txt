@@ -16,7 +16,7 @@ SOM Landing Page
 
    Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>
    Ubuntu Support <https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html>
-   Boot Firmware <https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html>
+   Boot Firmware <https://https://xilinx.github.io/kria-apps-docs/bootfw.html>
 
 
 
