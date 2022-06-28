@@ -14,7 +14,7 @@ SOM Landing Page
    :caption: Kria SOM
    :hidden:
 
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>
+   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/latest/build/html/index.html>
    Ubuntu Support <https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html>
    Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
 
@@ -33,7 +33,7 @@ Kria SOM has official Ubuntu support with a certified Ubuntu image. Currently th
 
 
 **********************************************************************************************************************************************************************************************
-`Kria SOM boot firmware <../../../kria_som_ubuntu_support/build/html/docs/bootfw_overview.html>`__
+`Kria SOM Boot Firmware <../../../kria_som_ubuntu_support/build/html/docs/bootfw_overview.html>`__
 **********************************************************************************************************************************************************************************************
 
 Gives an overview to various components in the Kria SOM boot firmware, and points to source code available for customers to get started with their implementations for their Kria SOM  custom carrier card.
@@ -55,7 +55,7 @@ Gives an overview to various components in the Kria SOM boot firmware, and point
 
 
 
-The Kria KV260 Vision AI Starter Kit is the first out-of-the box ready evaluation/development platform in the Xilinx® Kria portfolio of system-on-modules (SOMs). Beginning with the KV260 Vision AI Starter Kit and transitioning to the Kria™ K26 SOM is the fastest path to achieving Xilinx-based volume deployment. Optimized for Vision AI, Machine Vision, Robotics, Industrial communication and control, and Healthcare applications, the K26 SOM combines high performance processing boosted by hardware acceleration along with the adaptability necessary to keep up with evolving standards and requirements. 
+The Kria KV260 Vision AI Starter Kit is the first out-of-the box ready evaluation/development platform in the Xilinx® Kria portfolio of system-on-modules (SOMs). Beginning with the KV260 Vision AI Starter Kit and transitioning to the Kria K26 SOM is the fastest path to achieving Xilinx-based volume deployment. Optimized for Vision AI, Machine Vision, Robotics, Industrial communication and control, and Healthcare applications, the K26 SOM combines high performance processing boosted by hardware acceleration along with the adaptability necessary to keep up with evolving standards and requirements. 
 
 Enabled by a growing ecosystem of accelerated applications from the Xilinx App Store, developers of all types can get applications up and running in under 1 hour, with no FPGA experience needed. From there, customization and differentiation can be added via preferred design environments, at any level of abstraction—from application software to AI model to FPGA design.
 
