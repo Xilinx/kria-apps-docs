@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+  <title>Board Setup and Application Deployment &mdash; Kria™ KR260 2022.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Software Architecture of the Platform" href="sw_arch_platform.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/index.html">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/latest/build/html/index.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/main/build/html/index.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KR260 Applications</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../10gige_vision_camera/10gige_vision_camera_landing.html">10GigE Vision Camera</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications via TSN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html#overview">Overview</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html#quick-start">Quick Start</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Setting up the Board and Application deployment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pre-requisite">Pre-requisite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-out-of-box-applications">Run Out Of Box Applications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html#architecture">Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://www.xilinx.com/products/app-store/kria/ros-2-perception-node.html">ROS 2 Perception Node</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KR260 Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Building the Design components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware design using Vivado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Creating a Vitis Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generating Custom Firmware</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Kria™ KR260</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../ros2_multinode_communication_via_tsn_landing.html">TSN ROS Pub Sub</a> &raquo;</li>
+      <li>Board Setup and Application Deployment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/ros2_multinode_communication_via_tsn/docs/app_deployment.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide">
+ <tr>
+   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KR260 Robotics Starter Kit <br>ROS 2 Multi-Node Communications via TSN Tutorial</h1>
+   </td>
+ </tr>
+ <tr>
+ <td align="center"><h1>Setting up the Board and Application Deployment</h1> </td>
+ </tr>
+</table><div class="section" id="board-setup-and-application-deployment">
+<h1>Board Setup and Application Deployment<a class="headerlink" href="#board-setup-and-application-deployment" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This document shows how to set up the board and run TSN ROS application.</p>
+</div>
+<div class="section" id="pre-requisite">
+<h2>Pre-requisite<a class="headerlink" href="#pre-requisite" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="hardware-requirements">
+<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p>KR260 Robotics Starter Kit</p></li>
+<li><p>KR260 Power Supply &amp; Adapter (Included with KR260 Robotics Starter Kit)</p></li>
+<li><p>Cat 5e Ethernet Cable (Included with KR260 Robotics Starter Kit)</p></li>
+<li><p>USB-A to micro-B Cable (Included with KR260 Robotics Starter Kit)</p></li>
+<li><p>16GB MicroSD Cards (Included with KR260 Robotics Starter Kit)</p></li>
+<li><p>Digilent TPH2 Pmod - 12-pin Test Point Header - Optional (Sold Separately)</p>
+<p>https://digilent.com/shop/pmod-tph2-12-pin-test-point-header/</p>
+</li>
+<li><p>I210-T1 Network Adapter installed on a PC host machine - Optional (Sold Separately)</p>
+<p>https://www.amazon.com/gp/product/B00ESFF2JC/</p>
+</li>
+<li><p>Oscilloscope or Analog Discovery 2 – Minimum 100MS/s USB Oscilloscope - Optional (Sold Separately)</p>
+<p>https://digilent.com/reference/test-and-measurement/analog-discovery-2/start</p>
+</li>
+<li><p>RS485 Modbus Temperature Humidity Sensor - Optional (Sold Separately)</p>
+<p>https://www.aliexpress.com/item/33054683552.html</p>
+<p>https://www.amazon.com/Temperature-Humidity-Sensor-Display-Modbus/dp/B078NRYBVZ</p>
+</li>
+<li><p>12VDC Power Supply with Prototyping or Bare Terminals – Optional (Sold Separately)</p>
+<p>https://digilent.com/shop/12v-3a-power-supply/</p>
+</li>
+<li><p>Wireshark tools installed on host machine (Ubuntu 20.04 Linux used for documentation)</p></li>
+</ul>
+</div>
+<div class="section" id="initial-setup">
+<h3>Initial Setup<a class="headerlink" href="#initial-setup" title="Permalink to this heading">¶</a></h3>
+<ol>
+<li><p>Setting up the SD Card Image (Ubuntu)</p>
+<ul class="simple">
+<li><p>Follow the instruction from the page below to obtain Ubuntu image and flash SD card</p></li>
+</ul>
+<p>https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/setting-up-the-sd-card-image.html</p>
+</li>
+<li><p>KR260 Board and Interface:</p>
+<p><img alt="../../../_images/board_interfaces1.png" src="../../../_images/board_interfaces1.png" /></p>
+<p><img alt="../../../_images/usb_slot1.png" src="../../../_images/usb_slot1.png" /></p>
+<ul class="simple">
+<li><p>Connecting Everything: Follow the instruction from the page below for initial Board setup</p></li>
+</ul>
+<p>https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/connecting-everything.html</p>
+</li>
+<li><p>Booting your Starter Kit (Ubuntu):</p>
+<ul class="simple">
+<li><p>Follow the instruction from the page below to boot linux</p></li>
+</ul>
+<p>https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/booting-your-starter-kit.html</p>
+</li>
+</ol>
+<blockquote>
+<div><p><strong>Note:</strong> Steps under the section “Set up the Xilinx Development &amp; Demonstration Environment for Ubuntu 22.04 LTS” may not be needed for TSN-ROS demo.</p>
+</div></blockquote>
+<ol>
+<li><p>Set System Timezone and locale:</p>
+<ul>
+<li><p>Set timezone</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo timedatectl set-ntp <span class="nb">true</span>
+ $ sudo timedatectl set-timezone America/Los_Angeles
+ $ timedatectl
+</pre></div>
+</div>
+</li>
+<li><p>Set locale</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo locale-gen en_US en_US.UTF-8
+ $ sudo update-locale <span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8 <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+ $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+ $ locale
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Update Bootfirmware</p>
+<p>The SOM Starter Kits have factory pre-programmed boot firmware that is installed and maintained in the SOM QSPI device. Update the Boot firmware in the SOM QSPI device to ‘2022.1 Boot FW’ Image.
+follow the link below to obtain Boot firmware binary and instructions to update QSPI image using xmutil, after linux boot.</p>
+<p>https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates</p>
+</li>
+<li><p>Get the latest TSN-ROS application &amp; firmware package:</p>
+<ul>
+<li><p>Add archive for the Xilinx Apps demo</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo add-apt-repository ppa:xilinx-apps
+$ sudo apt update
+$ sudo apt upgrade
+</pre></div>
+</div>
+</li>
+<li><p>Search package feed for packages compatible with KR260</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo xmutil getpkgs
+</pre></div>
+</div>
+<p>An example output is show below</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> Searching package feed <span class="k">for</span> packages compatible with: kr260
+
+ xlnx-app-kr260-mv-defect-detect/jammy <span class="m">0</span>.0.20220621.4729324-0xlnx3 arm64 demo application <span class="k">for</span> Xilinx boards - kr260 mv-defect-detect application
+ xlnx-app-kr260-pmod-rs485-test/jammy <span class="m">0</span>.1-0xlnx1 arm64  demo application <span class="k">for</span> Xilinx boards - kr260 pmod-rs485-test application
+ xlnx-app-kr260-tsn-examples/jammy <span class="m">0</span>.1-0xlnx1 arm64
+</pre></div>
+</div>
+</li>
+<li><p>Install Xilinx demo application packages and dependencies for ROS-TSN</p>
+<ul>
+<li><p>Install firmware binaries and restart dfx-mgr</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo apt install xlnx-firmware-kr260-tsn-rs485pmod
+ $ sudo systemctl restart dfx-mgr.service
+</pre></div>
+</div>
+</li>
+</ul>
+<blockquote>
+<div><p>Note : Installing firmware binaries (xlnx-firmware-kr260-tsn-pmod) causes dfx-mgr to crash and a restart is needed, which is listed in the known issues section. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed.</p>
+</div></blockquote>
+<ul>
+<li><p>Install dependencies and apps</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install TSN applications below</span>
+$ sudo apt install xlnx-app-kr260-pmod-rs485-test
+$ sudo apt install xlnx-app-kr260-tsn-examples
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Confirm with “Y” when prompted to install new or updated packages.</p>
+<blockquote>
+<div><p>Note: <code class="docutils literal notranslate"><span class="pre">linuxptp</span></code>, <code class="docutils literal notranslate"><span class="pre">xlnx-tsn-utils</span></code>, <code class="docutils literal notranslate"><span class="pre">libmodbus5</span></code> are dependencies to TSN applications that are installed automtically with above commands.</p>
+</div></blockquote>
+</li>
+<li><p>Add following path in environment variable for Xilinx demo application</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>:/opt/xilinx/pmod-rs485-test/bin/
+$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>:/opt/xilinx/tsn-examples/bin/
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong> consider adding the above commands to ~/.bashrc to avoid executing on every new shell created.</p>
+</div></blockquote>
+</li>
+<li><p>Install ROS 2  humble</p>
+<p>Refer <a class="reference external" href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">ROS 2 Documentation</a> for the installation steps. Here is the snippet of what is needed for this application:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+$ <span class="nb">echo</span> <span class="s2">&quot;deb [arch=arm64 signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2-testing/ubuntu jammy main&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/ros2.list &gt; /dev/null
+$ sudo apt update
+$ sudo apt upgrade
+$ sudo apt install ros-humble-ros-base	
+</pre></div>
+</div>
+<p>Confirm with “Y” when prompted to install new or updated packages.</p>
+</li>
+<li><p>Install ROS 2 application</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ mkdir -p ~/Downloads
+ $ wget https://github.com/Xilinx/ros-tsn-pubsub/releases/download/v0.1/ros-humble-xlnx-pubsub_0.1.0-0jammy_arm64.deb -P ~/Downloads/
+ $ sudo apt install ~/Downloads/ros-humble-xlnx-pubsub_0.1.0-0jammy_arm64.deb
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Dynamically load the application package:</p>
+<p>The firmware consist of bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.</p>
+<ul>
+<li><p>Show the list and status of available acceleration platforms :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo xmutil listapps
+</pre></div>
+</div>
+</li>
+<li><p>Switch to a different platform for different Application:</p>
+<p>When there’s already another accelerator/firmware being activated apart from xlnx-app-kr260-pmod-rs485-test, unload it first, then switch to xlnx-app-kr260-pmod-rs485-test.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo xmutil unloadapp
+ $ sudo xmutil loadapp kr260-tsn-rs485pmod
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="run-out-of-box-applications">
+<h2>Run Out Of Box Applications<a class="headerlink" href="#run-out-of-box-applications" title="Permalink to this heading">¶</a></h2>
+<p>The TSN example applications will demonstrate Network Time Synchronization &amp; Network Time Shaper Function that can be achieved through TSN based network infrastructure across a distributed system, which are two key features of the FPGA based TSN capabilities.</p>
+<p>Two different configurations are shown below for deterministic communication. After completing the initial setup from above, users can navigate to the following subsectins to evaluate desired features</p>
+<ul class="simple">
+<li><p>Master - Slave deterministic communication with 2 KR260 boards : Network Configuration 1</p></li>
+<li><p>KRS based DDS implementation on ROS 2 pub/sub definition : Network Configuration 1</p></li>
+<li><p>Master - Slave deterministic communication with I210 card 	 : Network Configuration 2</p></li>
+<li><p>RS485 Temperature/humidity sensor demo 						 : Communicating using RS485</p></li>
+</ul>
+<div class="section" id="network-configuration-1-two-kr260-boards">
+<h3>Network Configuration 1 : Two KR260 boards<a class="headerlink" href="#network-configuration-1-two-kr260-boards" title="Permalink to this heading">¶</a></h3>
+<p>This configuration requires two KR260 units, TSN subsystem are connected to form a network where one of the units is configured to be master, while the other as slave. Image below represent this configuration:</p>
+<p><img alt="../../../_images/2board-osc.png" src="../../../_images/2board-osc.png" /></p>
+<div class="section" id="board-setup">
+<h4>Board setup<a class="headerlink" href="#board-setup" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>Connect Ethernet cable from PL ETH1 of Board1 (J10 top) to PL ETH1 of  Board2 (J10 top)</p></li>
+<li><p>Connect Ethernet cable from PL ETH2 of Board1 (J10 bottom) to PL ETH2 of Board2  (J10 bottom)</p></li>
+<li><p>Connect JTAG/UART ports of both boards to your PC</p></li>
+<li><p>Connect Digilent TPH2 Pmod into the PMOD2 connector on the KR260 board</p></li>
+<li><p>The Analog Discovery 2  or Oscilloscope can be connected to Board1 and Board2 for observing the PTP clock synchronization, Qbv scheduling and measuring latency.</p></li>
+<li><p>power on both the boards with the prebuilt wic image in the sd_card that was prepared in prerequisite section</p>
+<p><img alt="../../../_images/2board-live.png" src="../../../_images/2board-live.png" /></p>
+</li>
+</ul>
+</div>
+<div class="section" id="run-tsn-ros-out-of-box-applications">
+<h4>Run TSN-ROS Out of Box Applications<a class="headerlink" href="#run-tsn-ros-out-of-box-applications" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>Ensure to load the TSN accelerator/firmware (refer to step-7 ‘dynamically load the application package’ from initial setup) using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">kr260-tsn-rs485pmod</span></code> before testing example application. If the firmware is already loaded, ignore this step and proceed.</p></li>
+<li><p>Setup Ethernet ports by running the following commands on the serial terminal. This sets the MAC/IP/VLAN on the EP and ETH ports of the TSN switch IP</p>
+<ul>
+<li><p><em>KR260 Board1 interface setup</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/usr/bin/net_setup.sh</span> <span class="pre">-b1</span></code></p>
+</li>
+<li><p><em>KR260 Board2 interface setup</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/usr/bin/net_setup.sh</span> <span class="pre">-b2</span></code></p>
+</li>
+<li><p><em>Setup ros env on both KR260 Board 1 &amp; Board2</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/ros/humble/setup.sh</span></code></p>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>Note:</strong> Set MAC filters when using both TSN ethernet ports in loopback mode, refer to net_setup.sh script for setting MAC filters.</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="section" id="network-time-synchronization-ptp-demo">
+<h5>Network Time Synchronization (PTP Demo)<a class="headerlink" href="#network-time-synchronization-ptp-demo" title="Permalink to this heading">¶</a></h5>
+<p>In this demo Board1 will set its clock as master. Board2 will be the slave. Board2 clock will sync with Board1 clock after a brief synchronization period.
+Oscilloscope or Analog Discovery 2 Setup (optional)</p>
+<ul>
+<li><p>Connect P1 on the Test Pmod of Board1 to Channel1 of the oscilloscope - Monitors PTP clock on Board1</p></li>
+<li><p>Connect P1 on the Test Pmod of Board2 to Channel2 of the oscilloscope - Monitors PTP clock on Board2</p></li>
+<li><p>There are also additional signals exposed to the test Pmod if you wish to observe them with additional oscilloscope channels:</p>
+<p><img alt="../../../_images/ptp-pmod.png" src="../../../_images/ptp-pmod.png" /></p>
+<ul>
+<li><p><em>Start ptp on Board1 in master mode</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/usr/bin/start_ptp.sh</span> <span class="pre">-m</span></code></p>
+</li>
+<li><p><em>Start ptp on Board2 in slave mode</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/usr/bin/start_ptp.sh</span> <span class="pre">-s</span></code></p>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>Note:</strong>  Ensure to run ptp master before starting ptp slave as slave will fail to sync when grandmaster clock is not set. The sync takes about 30 seconds to complete.</p>
+</div></blockquote>
+<p><strong>Observe Results:</strong></p>
+<ul>
+<li><p>The file ptplog saves the ptp4l output on Board2. The rms value starts out high and goes down to a single digit value showing the clocks are now in sync.</p>
+<p><img alt="../../../_images/ptp-sync.png" src="../../../_images/ptp-sync.png" /></p>
+</li>
+<li><p>To see the current status of PTP run the following command</p>
+<p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-f</span> <span class="pre">.local/log/ptplog</span></code></p>
+</li>
+<li><p>Using an Oscilloscope, or the Analog Discovery 2 and the WaveForms application, the clocks will start out not in sync and will begin to sync to each other and this can be observed by the phase alignment between Channel1 and Channel2.</p>
+<p><img alt="../../../_images/b2p-algdis.png" src="../../../_images/b2p-algdis.png" /></p>
+<p><img alt="../../../_images/ptp-osc-sync.png" src="../../../_images/ptp-osc-sync.png" /></p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="ros-publisher-and-subscriber-demo">
+<h5>ROS Publisher and Subscriber Demo<a class="headerlink" href="#ros-publisher-and-subscriber-demo" title="Permalink to this heading">¶</a></h5>
+<ul>
+<li><p>Start Subscriber (listener) first on Board2 so that it is ready to receive messages from the Publisher once it has begun sending messages.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/xilinx/ros-tsn-example/bin/start_ros_test.sh</span> <span class="pre">-l</span></code></p>
+</li>
+<li><p>Start Publisher (talker) next on Board1 to begin sending messages to boards that are Subscribed to the topic.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span>&#160; <span class="pre">/opt/xilinx/ros-tsn-example/bin/start_ros_test.sh</span> <span class="pre">-t</span></code></p>
+</li>
+</ul>
+<p><strong>Observe Results</strong></p>
+<ul>
+<li><p>The xlnx-pubsub talker generates a packet of schedule traffic type every second.</p></li>
+<li><p>The xlnx-pubsub listener prints a message when it receives a packet.</p>
+<p><img alt="../../../_images/ros-pubsub.png" src="../../../_images/ros-pubsub.png" /></p>
+</li>
+</ul>
+</div>
+<div class="section" id="latency-measurement-demo">
+<h5>Latency measurement Demo<a class="headerlink" href="#latency-measurement-demo" title="Permalink to this heading">¶</a></h5>
+<p>To measure latency you will need an oscilloscope or Analog Discovery 2 device. This demo will measure the latency between packet transmitted from Board1 and received on Board2. It will include the latency of the software stack as well.</p>
+</div>
+</div>
+<div class="section" id="oscilloscope-or-analog-discovery-2-setup">
+<h4>Oscilloscope or Analog Discovery 2 Setup<a class="headerlink" href="#oscilloscope-or-analog-discovery-2-setup" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>Connect P7 on the Test PMOD of Board1 to Channel1 of the oscilloscope - Monitors TX packet from Publisher1. Publisher1 can transmit a Scheduled Traffic (ST) packet or a Best effort (BE) packet.</p></li>
+<li><p>Connect P8 on the Test PMOD of Board2 to Channel2 of the oscilloscope - Monitors RX packet from Listener1. Listener 1 will receive a ST packet or BE packet.</p></li>
+<li><p>Set up triggers on Channel1 and Channel2 with an OR condition and set the time scale interval to 50us.</p>
+<p><img alt="../../../_images/ros-pmod.png" src="../../../_images/ros-pmod.png" /></p>
+<p>Figure: Test PMOD pins when MUX is set to SW trigger</p>
+<p>The talker application will generate a packet which will trigger the Publisher1 pin in the figure above. When the packet is received on Board2 the listener application will trigger the Listner1 pin. Measure the time difference between Channel1 and Channel2 of the scope to find out the latency. It is ideally found to be between 80us to 160us.</p>
+<ul>
+<li><p><em>Start listener on Board2</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/xilinx/tsn-examples/bin/start_latency_test.sh</span> <span class="pre">-l</span></code></p>
+</li>
+<li><p><em>Start talker on Board1 with best effort traffic class</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/xilinx/tsn-examples/bin/start_latency_test.sh</span> <span class="pre">-b</span></code></p>
+</li>
+<li><p><em>Start talker on Board1 with scheduled traffic class</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/xilinx/tsn-examples/bin/start_latency_test.sh</span> <span class="pre">-s</span></code></p>
+</li>
+<li><p>Press Enter key on Board2 to exit out of Listener mode.</p></li>
+</ul>
+<p><strong>Observe Results</strong></p>
+<ul>
+<li><p>The next steps will measure the time difference between Channel1 and Channel2 of the scope to find out the latency. It is ideally found to be between 80us to 160us. The latency numbers will be the similar between Best Effort and Scheduled Traffic. If you set Qbv priority, the latency may increase depending on the order of the slot (BE first or ST first) and Time allotted for each slot.</p>
+<p><img alt="../../../_images/latency.png" src="../../../_images/latency.png" /></p>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>Note:</strong> The latency  measurment on the oscilloscope is from a software trigger, this includes the processing time of the processor to read the packet received over the network stack and initiate a trigger signal to the PMOD. When work load on the processor is high, latency measurments could reflect a higher value.</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="section" id="network-time-shaper-function-802-1qbv-demo">
+<h5>Network Time Shaper Function (802.1Qbv Demo)<a class="headerlink" href="#network-time-shaper-function-802-1qbv-demo" title="Permalink to this heading">¶</a></h5>
+<p>This demo allots a time slot for scheduled traffic and best effort and it can be visualized on a oscilloscope. For a cycle time period of 1ms, ST traffic will be sent for 700us and BE traffic for 300us.</p>
+<p><strong>Oscilloscope or Analog Discovery 2 Setup</strong></p>
+<ul>
+<li><p>Connect P8 on the Test PMOD of <strong>Board2</strong> to Channel1 of the oscilloscope - ST packet Rx</p></li>
+<li><p>Connect P10 on the Test PMOD of <strong>Board2</strong> to Channel2 of the oscilloscope - BE packet Rx</p></li>
+<li><p>Set up triggers on Channel1 and Channel2 with an OR condition and set the time scale interval to 1 millisecond.</p>
+<p><img alt="../../../_images/qbv_pmod.png" src="../../../_images/qbv_pmod.png" /></p>
+</li>
+</ul>
+<p><strong>Board2</strong> will listen for packets. On Board1, the application will set up time slots for the traffic classes.  It  will generate packets in continuous mode for both traffic types. The oscilloscope will monitor the tlast signal of scheduled packets and best effort packets exposed by the TSN IP.</p>
+<ul>
+<li><p><em>Start Receive on Board2</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/xilinx/tsn-examples/bin/start_qbv_test.sh</span> <span class="pre">-rx</span></code></p>
+</li>
+<li><p><em>Start Transmit on Board1</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/xilinx/tsn-examples/bin/start_qbv_test.sh</span> <span class="pre">-tx</span></code></p>
+<p>The talker on Board1 will run for 30sec and exit.</p>
+</li>
+</ul>
+<p><strong>Observe Results</strong></p>
+<p>The scope shot will show a 70% Scheduled traffic 30 % Best Effort traffic distribution.</p>
+<p><img alt="../../../_images/qbv_osc.png" src="../../../_images/qbv_osc.png" /></p>
+<blockquote>
+<div><p><strong>Note:</strong> You can also monitor Tlast TX ST (P7) and  Tlast TX BE (P9) on Board1, but the distribution is not as clean as the RX, because we are monitoring the data going into the TSN IP before it is scheduled to go out on the Ethernet MAC.</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="network-configuration-2-kr260-and-pc-workstation">
+<h3>Network Configuration 2 : KR260 and PC Workstation<a class="headerlink" href="#network-configuration-2-kr260-and-pc-workstation" title="Permalink to this heading">¶</a></h3>
+<p>A single KR260 board communicating with a PC workstation capable of TSN networking.  The PC workstation is using an I210 Ethernet Controller interface card to demonstrate functionality and features of TSN.</p>
+<div class="section" id="id1">
+<h4>Board Setup<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>Insert the microSD card containing the boot image into the microSD card slot (J11) on the Starter Kit</p></li>
+<li><p>Connect JTAG/UART port (J4) of the KR260 carrier board to the development PC</p></li>
+<li><p>Connect the TPH2 Pmod to the PMOD2 expansion connector (J18) of the KR260 carrier board</p></li>
+<li><p>Connect Ethernet cable from PL ETH1 of KR260 Carrier Board (J10 top port) to Intel I210 NIC Ethernet port of the Linux host machine</p></li>
+<li><p>Connect Power Supply to the 12V PWR DC barrel jack (J12) on the KR260 carrier board.</p>
+<p><img alt="../../../_images/i210-setup.png" src="../../../_images/i210-setup.png" /></p>
+</li>
+<li><p>Ensure to load the TSN accelerator/firmware (refer to step-7 ‘dynamically load the application package’ from initial setup) using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">kr260-tsn-rs485pmod</span></code> before testing example application. If the firmware is already loaded, ignore this step and proceed.</p></li>
+<li><p>Setup Ethernet port on the target KR260 board by running the following commands within the USB-UART connected serial terminal, this sets the MAC/IP/VLAN on the EP and ETH port of the TSN switch IP</p>
+<ul>
+<li><p><em>Setup KR260 Board Interfaces</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/usr/bin/net_setup.sh</span> <span class="pre">-b2</span> </code></p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Workstation Configuration</strong></p>
+<ul>
+<li><p>The TSN networking interface (I210 interface) on the Linux host workstation  must be brought up and linuxptp needs to be installed to demonstrate PTP. To do this, On the Linux workstation use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">&lt;i210</span> <span class="pre">interface&gt;</span> <span class="pre">up</span></code> command as shown in this example usage:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">enp2s0</span> <span class="pre">up</span> </code></p>
+</li>
+<li><p><em>Install ptpt4l on Workstation</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">linuxptp</span></code></p>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h4>Network Time Synchronization (PTP Demo)<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<p>In this demo KR260 will set its clock as slave and the Linux host workstation will serve as the clock master. The KR260 clock will sync with the Linux host workstation clock after a brief synchronization period.</p>
+<p>Using a text editor on the Linux TSN host workstation, create a new ptp4l configuration file with the following settings needed to launch ptp4l as the network clock master</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">[</span><span class="k">global</span><span class="p">]</span> 
+
+    <span class="n">transportSpecific</span>       <span class="mi">1</span> 
+    <span class="n">priority1</span>               <span class="mi">248</span> 
+    <span class="n">priority2</span>               <span class="mi">249</span> 
+    <span class="n">ptp_dst_mac</span>             <span class="mi">01</span><span class="p">:</span><span class="mi">80</span><span class="p">:</span><span class="n">C2</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">E</span> 
+    <span class="n">p2p_dst_mac</span>             <span class="mi">01</span><span class="p">:</span><span class="mi">80</span><span class="p">:</span><span class="n">C2</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">E</span> 
+    <span class="n">logAnnounceInterval</span>     <span class="mi">1</span> 
+    <span class="n">logSyncInterval</span>         <span class="o">-</span><span class="mi">3</span> 
+    <span class="n">follow_up_info</span>          <span class="mi">1</span> 
+    <span class="n">announceReceiptTimeout</span>  <span class="mi">3</span> 
+    <span class="n">syncReceiptTimeout</span>      <span class="mi">3</span> 
+    <span class="n">neighborPropDelayThresh</span> <span class="mi">800</span> 
+    <span class="n">min_neighbor_prop_delay</span> <span class="o">-</span><span class="mi">20000000</span> 
+    <span class="n">network_transport</span>       <span class="n">L2</span> 
+    <span class="n">delay_mechanism</span>         <span class="n">P2P</span> 
+    <span class="n">tx_timestamp_timeout</span>    <span class="mi">10</span> 
+</pre></div>
+</div>
+<ul>
+<li><p><em>Start ptp4l on the Linux TSN host workstation and specify</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">ptp4l</span> <span class="pre">-P</span> <span class="pre">-2</span> <span class="pre">-H</span> <span class="pre">-i</span> <span class="pre">&lt;i210</span> <span class="pre">interface&gt;</span> <span class="pre">-m</span> <span class="pre">-f</span> <span class="pre">ptp4l_master.conf</span> <span class="pre">&gt;&amp;</span> <span class="pre">ptplog</span> <span class="pre">&amp;</span> </code></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">ptp4l</span> <span class="pre">-P</span> <span class="pre">-2</span> <span class="pre">-H</span> <span class="pre">-i</span> <span class="pre">enp2s0</span> <span class="pre">-p</span> <span class="pre">/dev/ptp1</span> <span class="pre">-m</span> <span class="pre">-f</span> <span class="pre">ptp4l_master.conf</span> <span class="pre">&gt;&amp;</span> <span class="pre">ptplog</span> <span class="pre">&amp;</span> </code></p>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>Note:</strong> In the case where there is more than one ptp device available, specify which one is to be used with the -p argument as shown in the following example usage:</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><em>Start ptp on KR260 in slave clock mode</em>
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/usr/bin/start_ptp.sh</span> <span class="pre">-s</span> </code></p></li>
+</ul>
+<blockquote>
+<div><p><strong>Note:</strong> Ensure to run ptp master before starting ptp slave as slave will fail to sync when grandmaster clock is not set. The sync takes about 30 seconds to complete.</p>
+</div></blockquote>
+<p><strong>Observe Results</strong></p>
+<ul>
+<li><p>The file ptplog contains the saved ptp4l output to the file system on KR260. The rms value will start out high and trend downward to a single digit value showing that the clocks are now in sync.</p>
+<p><img alt="../../../_images/i210-ptp.png" src="../../../_images/i210-ptp.png" /></p>
+</li>
+<li><p>To see the current status of PTP run the following command, to exit log view when finished</p>
+<p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-f</span> <span class="pre">.local/log/ptplog</span> </code></p>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h4>Network Time Shaper Function (802.1Qbv Demo)<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<p>This demo allots a time slot for Scheduled Traffic (ST) and Best Effort (BE) traffic and it can be visualized on an oscilloscope.  For a cycle time period of 1ms, ST traffic will be sent for 700us and BE traffic for 300us.  Wireshark on the Linux host workstation will listen for packets.  On the KR260 board, the application will set up time slots for the traffic classes.  Packets are generated in continuous mode for both traffic types.  Wireshark will monitor the incoming packets for scheduled and best-effort traffic exposed by the TSN IP.</p>
+<p>An oscilloscope or Analog Discovery 2 device can also be used to monitor Tlast Tx ST (P7) and Tlast Tx EP (P9) on KR260 board to view the distribution.<br />Oscilloscope Setup (optional)</p>
+<ul>
+<li><p>Connect P7 on the Test Pmod of KR260 to Channel1 of the oscilloscope - Tlast Tx ST</p></li>
+<li><p>Connect P9 on the Test Pmod of KR260 to Channel2 of the oscilloscope - Tlast Tx EP</p></li>
+<li><p>Set up triggers on Channel1 and Channel2 with an OR condition and set the time scale interval to 1 millisecond:</p>
+<p><img alt="../../../_images/i210-qbv.png" src="../../../_images/i210-qbv.png" /></p>
+</li>
+<li><p>The Analog Discovery 2 can be connected to KR260 using these connections for observing the scheduled traffic:</p>
+<p><img alt="../../../_images/i210-osc.png" src="../../../_images/i210-osc.png" /></p>
+</li>
+<li><p>Start Wireshark on the Linux host machine and select I210 interface to see traffic data</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">wireshark</span> <span class="pre">&amp;</span></code></p>
+</li>
+<li><p>Start transmitting packets from the KR260 board</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/xilinx/tsn-examples/bin/start_qbv_test.sh</span> <span class="pre">-tx</span></code></p>
+</li>
+<li><p>The talker on KR260 will run for 30 seconds and exit automatically</p></li>
+</ul>
+<p><strong>Observe Results</strong></p>
+<ul>
+<li><p>The scope shot will show an approximate Scheduled traffic (Channel 1 yellow) and Best Effort traffic (Channel 2 green) distribution.</p>
+<p><img alt="../../../_images/i210-osc-results.png" src="../../../_images/i210-osc-results.png" /></p>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>Note:</strong>  The distribution will not be clean, because this is monitoring the data going into the TSN IP before it is scheduled to go out on the Ethernet MAC.</p>
+</div></blockquote>
+<ul>
+<li><p>Observe there are two sets of packets within the capture, one set with packet length=900, another set with packet length=800</p>
+<p><img alt="../../../_images/i210-wireshark.png" src="../../../_images/i210-wireshark.png" /></p>
+</li>
+<li><p>Click on a packet with length=900 bytes and observe the vlan ID=10, Priority (PCP/PRI=4) where a packet with PCP=4 indicates it is Scheduled traffic</p>
+<p><img alt="../../../_images/i210-wsn1.png" src="../../../_images/i210-wsn1.png" /></p>
+</li>
+<li><p>Click on a packet with length=800 bytes and observe the vlan ID=20, Priority (PCP/PRI=1) where a packet with PCP=1 indicates it is Best Effort traffic</p>
+<p><img alt="../../../_images/i210-wsn2.png" src="../../../_images/i210-wsn2.png" /></p>
+<p>Wireshark trace shows a traffic distribution of 70% Scheduled traffic and 30% Best Effort traffic</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="communication-using-rs485">
+<h3>Communication using RS485<a class="headerlink" href="#communication-using-rs485" title="Permalink to this heading">¶</a></h3>
+<p>The K26 SOM has capability to perform as an advanced and highly integrated gateway for legacy industrial networking protocols (those using RS485/Modbus) to more modern industrial networking infrastructure (such as TSN) and this application serves as an example of how to interface to a remote temperature sensor for capturing data.  This is analogous to integrating in legacy, but still functional, capital equipment in order to reduce total replacement costs within factory retrofits and technology upgrades.</p>
+<div class="section" id="id4">
+<h4>Board Setup<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>Connect the Pmod RS485 to the PMOD1 expansion connector (J2) of the KR260 carrier board, be sure to connect this to the bottom row of pins (ones labeled 2,4,6,8,10, and 12) since the module is a 1x6 header connecting to a 2x6 connector on KR260</p>
+<p><img alt="../../../_images/pmod-temp.png" src="../../../_images/pmod-temp.png" /></p>
+</li>
+<li><p>Connect the Temperature sensor and PMOD RS485 using prototyping wire (18 AWG works well) as shown in the figure below:</p>
+<p><img alt="../../../_images/pmod-temp-sch.png" src="../../../_images/pmod-temp-sch.png" /></p>
+</li>
+<li><p>Connect a 12 VDC supply to power the RS485 temperature sensor using GND and VIN terminals.</p>
+<p><img alt="../../../_images/pmo-temp-disp.png" src="../../../_images/pmo-temp-disp.png" /></p>
+</li>
+<li><p>Connect Power Supply to the 12V PWR DC barrel jack (J12) on the KR260 carrier board.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="rs485-temperature-humidity-sensor-demo">
+<h3>RS485 Temperature/Humidity Sensor Demo<a class="headerlink" href="#rs485-temperature-humidity-sensor-demo" title="Permalink to this heading">¶</a></h3>
+<p>In this demo the pmod-test application probes the temperature sensor connected to Pmod RS485 and displays the captured values on the serial terminal.</p>
+<ul class="simple">
+<li><p>Ensure to load the TSN accelerator/firmware (refer to step-7 ‘Dynamically load the application package’ from Initial setup) using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">kr260-tsn-rs485pmod</span></code> before testing example application. If the firmware is already loaded, ignore this step and proceed.</p></li>
+<li><p>Probe sensor via RS485 interface</p></li>
+</ul>
+<p>Execute binary</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pmod-rs485-test
+</pre></div>
+</div>
+<p><strong>Observe Results</strong></p>
+<p>The output on the serial terminal should match the value displayed on the seven-segment LED display of the sensor.</p>
+<p><img alt="../../../_images/temp-term.png" src="../../../_images/temp-term.png" /></p>
+<blockquote>
+<div><p><strong>Note:</strong>  Occasionally, erroneous values (for example 3276.8) are reported for temperature/humidity sensor data and this is due to error in the sensor itself which can be ignored and the test rerun to clear the error.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">32768</span> <span class="p">(</span><span class="mh">0x8000</span><span class="p">)</span>
+<span class="n">reg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">32768</span> <span class="p">(</span><span class="mh">0x8000</span><span class="p">)</span>
+<span class="n">Temperature</span><span class="p">:</span> <span class="mf">3276.8</span> <span class="n">Deg</span> <span class="n">C</span>
+<span class="n">Humidity</span><span class="p">:</span> <span class="mf">3276.8</span> <span class="o">%</span> 
+</pre></div>
+</div>
+<p>For reference, here is the register map of the sensor:
+<img alt="../../../_images/tmp-ref.png" src="../../../_images/tmp-ref.png" /></p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+<p>Following known issues and their remedies that can be encountered and implemented while testing the above application.</p>
+<ul class="simple">
+<li><p>Repeated broadcast on ping</p></li>
+<li><p>PTP timeouts with heavy traffic</p></li>
+</ul>
+<p>For the above two issues refer to the documentation provided under the section “Known issues and troubleshooting” from the Xilinx TSN solution wiki page <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/25034864/Xilinx+TSN+Solution">here</a></p>
+<ul class="simple">
+<li><p>DFX-Manager-Daemon crash</p></li>
+</ul>
+<p>dfx-manager daemon fails to load app after a fresh install or an upgrade of any accelerator/firmware package (xlnx-app-kr260-pmod-rs485-test) .If you see the below failure by xmutil after intall or upgrade of any package, make sure to restart the dfx-manger daemon and try again.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">dfx-mgr.service</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:$ sudo xmutil loadapp kr260-tsn-rs485pmod
+DFX-MGRD&gt; ERROR: initSocket:connect failed
+   
+error sending message from client
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>kernel crash when unloading <code class="docutils literal notranslate"><span class="pre">kr260-tsn-rs485pmod</span></code> firmware binaries using kernel version 5.15.0-1010-xilinx-zynqmp</p></li>
+</ul>
+<p>The default kernel patch version for the Ubuntu image is <code class="docutils literal notranslate"><span class="pre">5.15.0-1010-xilinx-zynqmp</span></code>,to avoid a kernel crash when unloading the TSN firmware upgrade the kernel to patch version <code class="docutils literal notranslate"><span class="pre">5.15.0-1011-xilinx-zynqmp</span></code>.</p>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="sw_arch_platform.html"><span class="doc">Software Architecture of the Platform</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html"><span class="doc">KR260 design start page</span></a></p></li>
+</ul>
+<!---
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
+
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+--><p class="sphinxhide" align="center">Copyright&copy; 2022 Xilinx</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sw_arch_platform.html" class="btn btn-neutral float-right" title="Software Architecture of the Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Xilinx, Inc. Xilinx is now a part of AMD.
+      <span class="lastupdated">Last updated on July 26, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="https://pages.gitenterprise.xilinx.com/techdocs/Test/vvas/build/html/index.html#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

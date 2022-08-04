@@ -1,0 +1,92 @@
+##################################################
+10GigE Vision Camera
+##################################################
+
+
+*******************************
+Overview
+*******************************
+
+.. toctree::
+  :maxdepth: 1
+  
+  Overview <docs/overview>
+
+*******************************
+Introduction
+*******************************
+
+.. toctree::
+  :maxdepth: 1
+  
+  Introduction <docs/introduction>
+
+Features
+================================
+
+* Raw image from a live camera source (SONY IMX547).
+
+* Sphinx GE Viewer to display the live streaming data through 10 GigE pipeline.
+
+
+*******************************
+Quick Start
+*******************************
+
+.. toctree::
+  :maxdepth: 1
+  
+  Setting up the Board and Application deployment <docs/app_deployment>
+
+
+***************************
+Tutorials
+***************************
+
+.. toctree::
+  :maxdepth: 1
+  
+  Building the Design components <../building_the_design>
+  Building the Hardware design using Vivado <../build_vivado_design>
+  Creating a Vitis Platform <../build_vitis_platform>
+  Generate Custom Firmware <../generating_custom_firmware>
+
+
+******************
+Architecture
+******************
+
+
+.. toctree::
+  :maxdepth: 1
+
+  Framos Sensors <docs/sensor>
+  Sensor to Image 10GigE Vision Pipeline <docs/10gige>
+
+
+******
+Other
+******
+
+.. toctree::
+  :maxdepth: 1
+  
+  Debugging <docs/debug>
+  Known Issues & Limitations <docs/known_issues>
+
+
+
+Xilinx Support
+====================================
+
+GitHub issues will be used for tracking requests and bugs. For questions, go to `forums.xilinx.com <http://forums.xilinx.com/>`_.
+
+
+
+.. 
+   License
+   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+
+   You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
+
+   Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
