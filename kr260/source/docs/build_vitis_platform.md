@@ -1,14 +1,4 @@
-﻿<table class="sphinxhide">
- <tr>
-   <td align="center"><img src="/docs/media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KR260 Robotics Starter Kit Tutorial</h1>
-   </td>
- </tr>
- <tr>
- <td align="center"><h1>Creating a Vitis Platform</h1>
-
- </td>
- </tr>
-</table>
+﻿# Creating a Vitis Platform
 
 ## Introduction
 
@@ -24,7 +14,7 @@ This tutorial shows how to build a Platform for applications running on KR260 Ro
 
 1. To access the reference files, type the following into a terminal:
 
-   ```
+   ```shell
    git clone --recursive https://github.com/Xilinx/kria-vitis-platforms
    ```
 
@@ -34,13 +24,13 @@ This tutorial shows how to build a Platform for applications running on KR260 Ro
 
 1. Go to the working directory
 
-   ```
+   ```shell
    cd $working_dir/
    ```
 
 2. To build the platform, run the following command. The Makefile calls a lower level Makefile to generate a platform. If an XSA is not already available it builds that as well.
 
-   ```
+   ```shell
    make platform PFM=<platform_name>
    ```
 
@@ -49,11 +39,10 @@ This tutorial shows how to build a Platform for applications running on KR260 Ro
    |Application |Platform|
    |----|----|
    |ROS 2 Multi-Node Communications via TSN |kr260_tsn_rs485pmod|
- 
 
 3. The generated platform will be located at
 
-   ```
+   ```shell
    $working_dir/platforms/xilinx_<platform_name>_<version_number>
    ```
 
@@ -61,18 +50,20 @@ This tutorial shows how to build a Platform for applications running on KR260 Ro
 
 > **Note**: The software components (boot, smp_linux etc) in this platform are empty. The software components will be generated later when building Petalinux.
 
-
 ## Next Step
 
-* Go back to the [KR260 SOM designs start page](fix ../index)
+* Go back to the [KR260 SOM designs start page](../index.html)
 
-### License
+
+
+<!---
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+-->
+
+<p class="sphinxhide" align="center">Copyright&copy; 2022 Xilinx</p>

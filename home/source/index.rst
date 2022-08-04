@@ -5,7 +5,7 @@ SOM Landing Page
 .. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM/ with xilinx.github.io/kria-apps-docs/
 
 **********************************************************************************************************************************************************************************************
-`Kria™ SOM Application Development <../../../creating_applications/1.0/build/html/index.html>`__
+`Kria™ SOM Application Development <../../../creating_applications/latest/build/html/index.html>`__
 **********************************************************************************************************************************************************************************************
 
 
@@ -33,7 +33,7 @@ Kria SOM has official Ubuntu support with a certified Ubuntu image. Currently th
 
 
 **********************************************************************************************************************************************************************************************
-`Kria SOM Boot Firmware <../../../kria_som_ubuntu_support/build/html/docs/bootfw_overview.html>`__
+`Kria SOM Boot Firmware <../../../bootfw/build/html/docs/bootfw_overview.html>`__
 **********************************************************************************************************************************************************************************************
 
 Gives an overview to various components in the Kria SOM boot firmware, and points to source code available for customers to get started with their implementations for their Kria SOM  custom carrier card.
