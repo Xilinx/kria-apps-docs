@@ -11,13 +11,14 @@ Boot Firmware
    :hidden:
 
    Landing Page <https://xilinx.github.io/kria-apps-docs/index.html>
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>
+   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/latest/build/html/index.html>
    Ubuntu Support <https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html>
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
    Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260/build/html/index.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
 
 
+.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs/
 
 .. toctree::
    :maxdepth: 3

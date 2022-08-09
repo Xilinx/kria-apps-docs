@@ -199,7 +199,7 @@ In Starter kit flow, U-Boot dynamically create , use and destroy the overlay con
 
 U-boot will perform IPI (inter-processor interrupt) call to PMU with run time API to enable the object overlay. The ```SET_CONFIGURATION``` API is documented in [ug1200](https://docs.xilinx.com/v/u/en-US/ug1200-eemi-api ) and an example call can be found [here](https://github.com/Xilinx/u-boot-xlnx/blob/master/drivers/firmware/firmware-zynqmp.c) as well.
 
-### License
+## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

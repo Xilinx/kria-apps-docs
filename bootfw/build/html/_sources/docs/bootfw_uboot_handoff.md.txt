@@ -133,7 +133,7 @@ The [source code for U-Boot](github.com/Xilinx/u-boot-xlnx.git) is on Xilinx git
 
 boot.scr is compiled using mkimage, and more information can be found [here](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/749142017/Using+Distro+Boot+With+Xilinx+U-Boot)
 
-### License
+## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

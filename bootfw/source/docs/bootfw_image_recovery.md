@@ -35,7 +35,7 @@ make clean all
 
 Source code for Image Recovery can be browsed at [github](https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/img_rcvry/src).
 
-### License
+## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

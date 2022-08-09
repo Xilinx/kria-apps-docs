@@ -105,6 +105,8 @@ Xilinx adopted the V4L2 framework for most of its video IP portfolio. The curren
 | Xilinx Video Pipeline (XVIPP) <br> | - Configures video pipeline and register media, video and sub-device nodes.  <br> - Configures all entities in the pipeline and validate links.  <br> - Configures and controls DMA engines (Xilinx Video Framebuffer Write).  <br> - Starts/stops video stream. |
 | MIPI CSI-2 Rx      | - Sets media bus format and resolution on input pad. <br> - Sets media bus format and resolution on output pad. |
 | AP1302 Image Signal Processing (ISP) <br> | - Loads the firmware blob on to ap1302 ISP for enabling sensor and ISP functionality.  <br> - Sets the media bus format and resolution for the sensor output pad. <br> - Set the media bus format and resolution for ISP input and output pads. <br> - Provides ISP control parameters for setting: white balance, scene mode , zoom , test pattern.|
+| IMX219 <br> | - Loads the driver for IMX219 for enabling sensor.  <br> |
+| Xilinx ISP <br> | - Loads the driver for Xilinx ISP.   <br> - Sets the media bus format and resolution for the sensor output pad. <br> - Provides ISP control parameters for setting: white balance, Gain control etc...  |
 
 ### DP Tx Display
 

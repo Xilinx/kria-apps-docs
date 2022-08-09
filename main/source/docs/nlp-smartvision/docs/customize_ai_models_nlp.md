@@ -19,7 +19,7 @@ This document provide an overview of how to customize the NLP SmartVision applic
 
 Other than the 3 models provided via keywords "up" & "down" as documented [here](./app_deployment_nlp.md),
 
-* facedetect (densebox_320_320)
+* facedetect (densebox_640_360)
 * object Detect (yolov2_voc_pruned_0_77)
 * plate Detect (plate_detect)
 
@@ -27,7 +27,7 @@ customization can be made to use other Vitis AI models or retrained model by the
 
 ### Model Preparation
 
-**Note** The design currently only supports **Vitis AI 1.4.0**
+**Note** The design currently only supports **Vitis AI 2.5.0**
 
 **Note** As described in the Hardware Accelerator section, the DPU integrated in the platform uses the **B3136** configuration.
 
@@ -47,7 +47,7 @@ For detailed instructions on obtaining an alternative model from the Xilinx mode
 
 ## References
 
-* Vitis AI User Guide [UG1414](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_4/ug1414-vitis-ai.pdf)
+* Vitis AI User Guide [UG1414](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/2_5/ug1414-vitis-ai.pdf)
 
 ### License
 

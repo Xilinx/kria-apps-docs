@@ -16,7 +16,7 @@
 
 The Vitis&trade; software platform overlay includes DPU, as shown in the following figure.
 
-![IP_overlay_and_connection_block_diagram](../../media/nlp_smartvision/IP_overlay_and_connection_block_diagram.svg)
+![IP_overlay_and_connection_block_diagram](../../media/nlp_smartvision/IP_overlay_and_connection_block_diagram.png)
 
 The DPU IP can be configured, and for this design, the following features should be enabled:
 

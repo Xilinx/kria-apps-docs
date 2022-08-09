@@ -1,5 +1,5 @@
 ###############################################################################################################
-Kria™ KV260 Vision AI Starter Kit Applications
+Kria KV260 Vision AI Starter Kit Applications
 ###############################################################################################################
 
 
@@ -69,10 +69,17 @@ With both hardware and software development requirements simplified, the KV260 V
 
 .. toctree::
    :maxdepth: 3
-   :caption: Current Release
+   :caption: Other Releases
    :hidden:
 
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Other Releases
+   :hidden:
+
+   2021.2 <https://pages.gitenterprise.xilinx.com/SOM/kv260-docs/2020.2/build/html/index.html>
 
 
 

@@ -26,7 +26,7 @@ As the AIBox-ReID application is using two kinds of models listed below, customi
 
 ### Model Preparation
 
-**Note** The design currently only supports  **Vitis AI 1.4.0**
+**Note** The design currently only supports  **Vitis AI 2.5.0**
 
 The arch.json used to compile the xmodel for B3136 DPU can be obtained by build the accelerator, but if you won't build all from the start, you can just save following code as arch.json file.
 
@@ -36,7 +36,7 @@ The arch.json used to compile the xmodel for B3136 DPU can be obtained by build 
 }
 ```
 
-For detailed instructions on obtaining an alternative model from the Xilinx model zoo or training, pruning, quantizing, and compiling a new model, please refer to the [Vitis AI 1.4.0 documentation](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_4/ug1414-vitis-ai.pdf)
+For detailed instructions on obtaining an alternative model from the Xilinx model zoo or training, pruning, quantizing, and compiling a new model, please refer to the [Vitis AI 2.5.0 documentation](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/2_5/ug1414-vitis-ai.pdf)
 
 **Note** As described in the [Hardware Accelerator section](hw_arch_accel_aib.md), the DPU integrated in the platform uses the B3136 configuration.
 
@@ -75,7 +75,7 @@ To integrate a different .xmodel into the AIBox application, the following confi
 * Go back to the [KV260 SOM AIBox-ReID design start page](../aibox_landing)
 
 ## References
-* *Vitis AI User Guide* ([UG1414](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_4/ug1414-vitis-ai.pdf))
+* *Vitis AI User Guide* ([UG1414](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/2_5/ug1414-vitis-ai.pdf))
 
 ### License
 

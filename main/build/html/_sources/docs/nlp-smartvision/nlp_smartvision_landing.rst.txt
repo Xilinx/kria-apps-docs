@@ -26,8 +26,9 @@ Overview
 Features
 ===============================
 
-* Live audio capture from USB Microphone
-* 1024x768 resolution images from a sensor
+* Live video capture from Raspberry pi camera and USB webcam along with ar1335 
+* Live audio capture from USB Microphone 
+* 1024x768 resolution images 
 * DisplayPort and HDMI out
 * User programmable Deep Learning models
 

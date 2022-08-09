@@ -58,7 +58,7 @@ The Image Selector source code can be found in [github](https://github.com/Xilin
 Image Selector configuration can be changed in the [xis_config.h](https://github.com/Xilinx/embeddedsw/blob/master/lib/sw_apps/imgsel/src/xis_config.h) to select selection mechanism, I2C parameters and debug prints.
 The Makefile Flow above automatically updates the correct parameters for som with BOARD=```som```.
 
-### License
+## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

@@ -20,7 +20,7 @@
 
 We leverage the GStreamer multi-media orchestration platform for application software development. As described in following sections about GStreamer pipeline, all the processing units in the stream pipeline are presented to the user as easily pluggable and changeable plugins, enabling a “low touch” customer adaptation of the reference design pipeline within the context of an open-source and non-vendor specific implementation.
 
-**Vitis AI 1.4.0** is the core underlying component to access the AI inference capability provided by Xilinx DPU.
+**Vitis AI 2.5.0** is the core underlying component to access the AI inference capability provided by Xilinx DPU.
 
 To access DPU and other PL hardware accelerator functions from GStreamer, Xilinx developed Vitis Video Analysis SDK (VVAS) to provide convinient and customizable GStreamer plugins for it.
 
@@ -46,7 +46,7 @@ The figure below shows the GStreamer pipeline used in this application. There ar
 
     ivas_xmultisrc GStreamer plugin from VVAS with customized kernel /opt/xilinx/lib/libivas_pedpp.so are used to integrate the accelerator IP functionality into the pipeline.
 
-    Configuration file: /opt/xilinx/share/ivas/aibox-reid/ped_pp.json, contains the PL kernel and software kernel library info, which will do the colour coversion and resize.
+    Configuration file: /opt/xilinx/share/ivas/aibox-reid/ped_pp.json, contains the PL kernel and software kernel library info, which will do the colour conversion and resize.
 
 ```json
     {
@@ -66,7 +66,7 @@ The figure below shows the GStreamer pipeline used in this application. There ar
 
 * Pedestrian Detection
 
-    ivas_xfilter GStreamer plugin with kernel library /usr/lib/libivas_dpuinfer.so works as middleware between the application which interfaces with user and underlying Vitis AI library which interfaces with DPU to do the actual AI inference tasks.
+    ivas_xfilter GStreamer plugin with kernel library /usr/lib/libivas_dpuinfer.so works as middleware between the application which interfaces with user and underlying Vitis AI library. The Vits AI library then interfaces with DPU to feed the actual AI inference tasks.
 
     Configuration file: /opt/xilinx/share/ivas/aibox-reid/refinedet.json, contains the actual model info we will run in this plugin.
 

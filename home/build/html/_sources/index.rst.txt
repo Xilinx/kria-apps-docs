@@ -1,11 +1,11 @@
-###############################################################################################################
+﻿###############################################################################################################
 SOM Landing Page
 ###############################################################################################################
 
 .. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM/ with xilinx.github.io/kria-apps-docs/
 
 **********************************************************************************************************************************************************************************************
-`Kria™ SOM Application Development <../../../creating_applications/latest/build/html/index.html>`__
+`Kria™ SOM Application Development <../../../creating_applications/2021.1/build/html/index.html>`__
 **********************************************************************************************************************************************************************************************
 
 
@@ -14,7 +14,7 @@ SOM Landing Page
    :caption: Kria SOM
    :hidden:
 
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/latest/build/html/index.html>
+   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/2021.1/build/html/index.html>
    Ubuntu Support <https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html>
    Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
 

@@ -42,9 +42,14 @@ This document shows how to set up the board and run the nlp-smartvision applicat
     * Monitor:
 
       Before booting, connect the monitor which supports 1024x768 resolution to the board via DP/HDMI port.
-    * IAS sensor:
+    * Camera sensors:
 
-      Before power on, install an AR1335 sensor module in J7. Make sure there is no other camera interface connected to the setup.
+      This application supports the below 3 camera modules
+      * AR1335 sensor module in J7
+      * Raspberry pi sensor module in J9
+      * USB webcam in any of the avaliable USB ports.
+
+      Install the required sensor modules in respective locations.
 
     * UART/JTAG interface:
 
@@ -52,92 +57,112 @@ This document shows how to set up the board and run the nlp-smartvision applicat
 
     * USB Microphone:
 
-      Connect the microphone to any of the USB ports.
+      Connect the microphone to any of the USB ports. If you USB webcam has a buildin microphone , it will also acts as the USB microphone
 
     * Network connection:
 
       Connect the Ethernet cable to your local network with DHCP enabled.
 
-3. Power on the board, and boot the Linux image.
+3. Power on the board, and booting your Starter Kit (Ubuntu): 
+   
+   * Follow the instruction from the page below to boot linux
 
-    The Linux image will boot into the following login prompt:
+	https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/booting-your-starter-kit.html
 
-    `xilinx-k26-starterkit-2020_2 login:`
+> **Note:** Steps under the section "Set up the Xilinx Development & Demonstration Environment for Ubuntu 22.04 LTS" may not be needed for TSN-ROS demo.
 
-    Use the `petalinux` user for login. You will be prompted to set a new password
-    on the first login.
+4. Set System Timezone and locale: 
 
-    ```bash
-    xilinx-k26-starterkit-2020_2 login: petalinux
-    You are required to change your password immediately (administrator enforced)
-    New password:
-    Retype new password:
-    ```
-
-    The `petalinux` user does not have root privileges. Most commands used in subsequent tutorials have to be run using `sudo` and you may be prompted to enter your password.
-
-    **Note:** The root user is disabled by default due to security reasons. If you want to login as root user, follow the below steps. Use the petalinux user's password on the first password prompt, then set a new password for the root user. You can now login as root user using the newly set root user password.
-
-    ```bash
-    xilinx-k26-starterkit-2020_2:~$ sudo su -l root
-
-    We trust you have received the usual lecture from the local System
-    Administrator. It usually boils down to these three things:
-
-        #1) Respect the privacy of others.
-        #2) Think before you type.
-        #3) With great power comes great responsibility.
-
-    Password:
-    root@xilinx-k26-starterkit-2020_2:~# passwd
-    New password:
-    Retype new password:
-    passwd: password updated successfully
-    ```
-
-4. Get the latest application package.
-
-    1. Check the package feed for new updates.
+    * Set timezone
+     
+       ```bash
+		sudo timedatectl set-ntp true
+		sudo timedatectl set-timezone America/Los_Angeles
+		timedatectl
+       ```
+	
+	* Set locale
 
        ```bash
-       sudo dnf update
-       ````
+		sudo locale-gen en_US en_US.UTF-8
+		sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+		export LANG=en_US.UTF-8
+		locale
+       ```
+5. Update Bootfirmware 
+	
+	The SOM Starter Kits have factory pre-programmed boot firmware that is installed and maintained in the SOM QSPI device. Update the Boot firmware in the SOM QSPI device to '2022.1 Boot FW' Image.
+	follow the link below to obtain Boot firmware binary and instructions to update QSPI image using xmutil, after linux boot.  
 
+	https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates
+
+6. Get the latest NLP application & firmware package:
+
+	* Add archive for the Xilinx Apps demo
+
+       ```bash
+	   sudo add-apt-repository ppa:xilinx-apps
+	   sudo apt update
+	   sudo apt upgrade
+       ```
+
+	* Search package feed for packages compatible with KR260
+
+       ```bash
+		sudo xmutil getpkgs
+       ```
+		An example output is show below
+       ```bash
+        Searching package feed for packages compatible with: kv260
+
+        xlnx-app-kv260-nlp-smartvision/jammy 0.0.20220621.4729324-0xlnx3 arm64 demo application for Xilinx boards - kv260 nlp-smartvision application
+		xlnx-app-kv260-nlp-smartvision/jammy 0.1-0xlnx1 arm64
+       ```
+
+	* Install Xilinx demo application packages and dependencies for kv260
+
+		* Install firmware binaries and restart dfx-mgr
+
+       		```bash
+			 sudo apt install xlnx-firmware-kv260-nlp-smartvision
+	   	 sudo systemctl restart dfx-mgr.service
+	   		```
+
+		> Note : Installing firmware binaries (xlnx-firmware-kv260-nlp-smartvision) causes dfx-mgr to crash and a restart is needed, which is listed in the known issues section. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed.
+
+		* Install dependencies and apps 
+
+       		```bash
+			# Install TSN applications below
+	   		sudo apt install xlnx-app-kv260-nlp-smartvision
+    	    ```
        Confirm with "Y" when prompted to install new or updated packages.
+  
+	* Add following path in environment variable for Xilinx demo application 
 
-       Sometimes it is needed to clean the local dnf cache first. To do so, run:
+		```bash 	
+		export PATH=${PATH}:/opt/xilinx/nlp-smartvision/bin/
+		```
+    	> **Note:** consider adding the above commands to ~/.bashrc to avoid executing on every new shell created.
+
+7. Dynamically load the application package:
+
+    The firmware consist of bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.
+
+    * Show the list and status of available acceleration platforms :
 
        ```bash
-       sudo dnf clean all
-       ````
+      sudo xmutil listapps
+        ```
 
-    2. Get the list of available packages in the feed.
+    * Switch to a different platform for different Application:
 
-        `sudo xmutil getpkgs`
+       When there's already another accelerator/firmware being activated apart from xlnx-app-kv260-pmod-rs485-test, unload it first, then switch to xlnx-app-kv260-nlp-smartvision.
 
-    3. Install the package with dnf install:
-
-        `sudo dnf install packagegroup-kv260-nlp-smartvision.noarch`
-
-    Note: For setups without access to the internet, it is possible to download and use the package locally. Please refer to the [Install from a local package feed](../../local_package_feed.md) for instructions.
-
-5. Dynamically load the application package.
-
-    1. Show the list and status of available acceleration platforms and AI Applications:
-
-        `sudo xmutil listapps`
-
-    2. Switch to a different platform for different AI Application:
-
-        * When there is no active accelerator by inspecting with xmutil listapps, just activate the one you want to switch.
-
-            `sudo xmutil loadapp kv260-nlp-smartvision`
-
-        * When there's already an accelerator being activated, unload it first, then switch to the one you want.
-
-            `sudo xmutil unloadapp`
-
-            `sudo xmutil loadapp kv260-nlp-smartvision`
+       ```bash
+      sudo xmutil unloadapp
+      sudo xmutil loadapp kv260-nlp-smartvision
+        ```
 
 ## Run the Application
 
@@ -215,31 +240,17 @@ Output example:
 
 This allow the user to run "nlp-smartvision" application on CLI. These are to be executed using the UART/debug interface.
 
----
-
-**NOTE**
-
-Before running any of the commandline applications, we need to initialize the board to set media nodes and library path. Current application supports frames at 1024x768 resolution and RGB format
-
-* Set media nodes configurations by running the below command. It will intialize the MIPI capture and DP/HDMI display pipeline. It will exit automatically after 10 sec.
-
-```bash
-init-nlp-smartvision.sh
-```
-
----
-
 Run the following command to launch the application for live audio input via USB microphone. 
 The user needs to be silent for the first few seconds (2.5s apx.) for the application to dynamically decide the noise threshold value as per user's input device and enviornment. Once you see the following message "*Noise Threshold is set. You can start speaking the keywords now..*" you are ready to start pronouncing any of the ten keywords (Yes, No, Off, On, Up, Down, Left, Right, Stop, Go).
 
 ```bash
-sudo LD_LIBRARY_PATH=/opt/xilinx/lib nlp-smartvision -l
+sudo nlp-smartvision -m
 ```
 
 <p align="center"> (or) </p>
 
 ```bash
-sudo LD_LIBRARY_PATH=/opt/xilinx/lib nlp-smartvision --live-audio
+sudo nlp-smartvision --mipi
 ```
 
 The detected keyword will be displayed on the terminal and the corresponding action on the input video stream will be displayed on the monitor, which is connected to the board through DP/HDMI cable.
@@ -247,7 +258,7 @@ The detected keyword will be displayed on the terminal and the corresponding act
 To print FPS along with the above application use -v or --verbose flag shown in the below command. The FPS is measured as average over 90 consecutive frames. Also the latency of keywords spotting + action is printed while the keyword is detected.
 
 ```bash
-sudo LD_LIBRARY_PATH=/opt/xilinx/lib nlp-smartvision -l -v
+sudo nlp-smartvision -m -v
 ```
 
 > You should be able to see the video the camera is capturing on the monitor connected to the board
@@ -268,13 +279,13 @@ The following command tests the audio files listed in the testing_list.txt file.
 
 ```bash
 ## Change your dircetory to the dircetory where you have the testing_list.txt file having proper paths to the audio files.
-sudo LD_LIBRARY_PATH=/opt/xilinx/lib nlp-smartvision -f testing_list.txt
+sudo nlp-smartvision -f testing_list.txt
 ```
 
 <p align="center"> (or) </p>
 
 ```bash
-sudo LD_LIBRARY_PATH=/opt/xilinx/lib nlp-smartvision --file-audio testing_list.txt
+sudo nlp-smartvision --file-audio testing_list.txt
 ```
 
 ### Testing Accuracy on Google Command Dataset
@@ -330,7 +341,7 @@ NLP SmartVision provides a mode which is dedicated for testing the Vision models
 The following command tests the image files.
 
 ```bash
-sudo LD_LIBRARY_PATH=/opt/xilinx/lib nlp-smartvision -t <image.jpg/image.png> <model>
+sudo nlp-smartvision -t <image.jpg/image.png> <model>
 ```
 
 The command returns the metadata along with a jpg fine containing bounding box on the input image
@@ -349,7 +360,9 @@ The application is installed as:
 
   | filename | description |
   |----------|-------------|
-  | init-nlp-smartvision.sh | Configures media nodes to run RGB - MIPI DP/HDMI Pipeline |
+  | init-isp-smartvision.sh | Configures ISP media nodes to run 1024.768@RGB  |
+  | init-imx-smartvision.sh | Configures RPI media nodes to run 1024.768@RGB  |
+  | nlp-smartvision.app | Application executable  |
 
 * Jupyter notebook file: => /opt/xilinx/share/notebooks/nlp-smartvision
 

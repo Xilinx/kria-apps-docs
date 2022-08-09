@@ -20,7 +20,7 @@
 
 We leverage the GStreamer multi-media orchestration platform for application software development. As described in following sections about GStreamer pipeline, all the processing units in the stream pipeline are presented to the user as easily pluggable and changeable plugins, enabling a “low touch” customer adaptation of the reference design pipeline within the context of an open-source and non-vendor specific implementation.
 
-**Vitis AI 1.4.0** is the core underlying component to access the AI inference capability provides by Xilinx DPU.
+**Vitis AI 2.5.0** is the core underlying component to access the AI inference capability provides by Xilinx DPU.
 
 To access DPU and other PL hardware accelerator functions from GStreamer, Xilinx developed Vitis Video Analysis SDK (VVAS) to provide convinient and customizable GStreamer plugins for it.
 
