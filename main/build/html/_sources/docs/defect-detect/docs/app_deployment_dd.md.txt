@@ -22,15 +22,15 @@ This document shows how to set up the board and run the **defect-detect** applic
 
 When setting up the SOM Board for the live camera source, adhere to the following guidelines:
 
-   * Keep the board firmly held in a static position.
-   * The board should be opposite directly the monitor (180 deg). 
-   * Keep the board at an appropriate distance from the monitor. In the test environment, the appropriate distance was 31 cm.
-   * In the test environment, the brightness was set to 45, and the contrast to 17. Set the brightness and contrast of the monitor appropriately based on the model of your monitor. 
-   * Ensure that the room is closed. Only natural light should pass through the glass windows at daytime. At night, use artificial lighting but ensure that the lights are not opposite the monitor.
-   * To avoid over exposure of light, do NOT place the monitor opposite an open door or window.
-   * Ensure that the mango is completely captured by the live source.
-   * The camera should be focused ONLY on the mango image that is displayed.
-   * In the test environment, the light intensity was ~08 LUX.
+* Keep the board firmly held in a static position.
+* The board should be opposite directly the monitor (180 deg).
+* Keep the board at an appropriate distance from the monitor. In the test environment, the appropriate distance was 31 cm.
+* In the test environment, the brightness was set to 45, and the contrast to 17. Set the brightness and contrast of the monitor appropriately based on the model of your monitor.
+* Ensure that the room is closed. Only natural light should pass through the glass windows at daytime. At night, use artificial lighting but ensure that the lights are not opposite the monitor.
+* To avoid over exposure of light, do NOT place the monitor opposite an open door or window.
+* Ensure that the mango is completely captured by the live source.
+* The camera should be focused ONLY on the mango image that is displayed.
+* In the test environment, the light intensity was ~08 LUX.
 
    **Note**: If the preview image is not satisfactory, accordingly adjust the parameters mentioned above.
 
@@ -171,9 +171,9 @@ Install the latest application packages.
 
    Sometimes it is needed to clean the local dnf cache first. To do so, run:
 
-   ```bash
+   ```
    sudo dnf clean all
-   ````
+   ```
 
 2. Get the list of available packages in the feed:
 
@@ -236,34 +236,38 @@ Jupter Notebook Defect Detect application supports the following modes:
 
 The default mode is Live source and display out (mode 1). Use the playback variable to change the mode.
 
+**Note**:
+Like other applications, by default, the defect-detection Jupyter notebook application is launched under the `petalinux` user.
 
-**Note**: 
-> Like other applications, by default, the defect-detection Jupyter notebook application is launched under the `petalinux` user. 
-> For defect-detection, the defect-detection Jupyter notebook application must be run with `root` privilege. 
+For defect-detection, the defect-detection Jupyter notebook application must be run with `root` privilege.
 
-> To start the defect-detection Jupyter notebook application with `root` privilege, perform the following steps:
+To start the defect-detection Jupyter notebook application with `root` privilege, perform the following steps:
 
-> 1. Get the list of running Jupyter servers, with the following command:
+1. Get the list of running Jupyter servers, with the following command:
 
-> ```jupyter-server list```
+   ```
+   jupyter-server list
+   ```
 
-> 2. Stop the default Jupyter notebook using the following command:
+2. Stop the default Jupyter notebook using the following command:
 
-> ```jupyter-server stop 8888```
+   ```
+   jupyter-server stop 8888
+   ```
 
-> 3. By default, the Defect Detection Jupyter Notebook is in `/home/petalinux/notebook`. To change the path, run the Python script to install the Defect Detection Jupyter Notebook at the specified path.
+3. By default, the Defect Detection Jupyter Notebook is in `/home/petalinux/notebook`. To change the path, run the Python script to install the Defect Detection Jupyter Notebook at the specified path.
 
-  Run the Python installer script.
+   Run the Python installer script.
 
-  Example: `defect-detect-install.py -d /home/petalinux/`
+   Example: `defect-detect-install.py -d /home/petalinux/`
 
-  **Note**: `/home/petalinux` is the only accessible path for the `petalinux` user. You could have any specified path under this folder as the path for the Python script.
+   **Note**: `/home/petalinux` is the only accessible path for the `petalinux` user. You could have any specified path under this folder as the path for the Python script.
 
+4. Launch the Jupyter notebook with `root` privilege using the following command:
 
-> 4. Launch the Jupyter notebook with `root` privilege using the following command:
-
-> ```sudo jupyter lab --allow-root --notebook-dir=/home/petalinux/defect-detect --ip=<ip address> &```**
-
+   ```
+   sudo jupyter lab --allow-root --notebook-dir=/home/petalinux/defect-detect --ip=<ip address> &
+   ```
 
 Jupyter Notebook requires an IP address. If an IP address is not assigned by default, then perform the following steps 1-2.
 
@@ -278,22 +282,21 @@ Jupyter Notebook requires an IP address. If an IP address is not assigned by def
 Output example:
 
    ```
-[I 2021-07-28 07:54:34.076 ServerApp] jupyterlab | extension was successfully linked.
-[I 2021-07-28 07:54:34.236 LabApp] JupyterLab extension loaded from /usr/lib/python3.8/site-packages/jupyterlab
-[I 2021-07-28 07:54:34.236 LabApp] JupyterLab application directory is /usr/share/jupyter/lab
-[I 2021-07-28 07:54:34.261 ServerApp] jupyterlab | extension was successfully loaded.
-[I 2021-07-28 07:54:34.263 ServerApp] Serving notebooks from local directory: /home/petalinux/notebooks/defect-detect
-[I 2021-07-28 07:54:34.263 ServerApp] Jupyter Server 1.2.1 is running at:
-[I 2021-07-28 07:54:34.263 ServerApp] http://xxx.yyy.yyy.yyy:8888/lab?token=7db9bce8f3d64e072de222d17419eb3dc8aa66f98853bb26
-[I 2021-07-28 07:54:34.264 ServerApp]  or http://xxx.yyy.yyy.yyy:8888/lab?token=7db9bce8f3d64e072de222d17419eb3dc8aa66f98853bb26
-[I 2021-07-28 07:54:34.264 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-[W 2021-07-28 07:54:34.288 ServerApp] No web browser found: could not locate runnable browser.
-
+   [I 2021-07-28 07:54:34.076 ServerApp] jupyterlab | extension was successfully linked.
+   [I 2021-07-28 07:54:34.236 LabApp] JupyterLab extension loaded from /usr/lib/python3.8/site-packages/jupyterlab
+   [I 2021-07-28 07:54:34.236 LabApp] JupyterLab application directory is /usr/share/jupyter/lab
+   [I 2021-07-28 07:54:34.261 ServerApp] jupyterlab | extension was successfully loaded.
+   [I 2021-07-28 07:54:34.263 ServerApp] Serving notebooks from local directory: /home/petalinux/notebooks/defect-detect
+   [I 2021-07-28 07:54:34.263 ServerApp] Jupyter Server 1.2.1 is running at:
+   [I 2021-07-28 07:54:34.263 ServerApp] http://xxx.yyy.yyy.yyy:8888/lab?token=7db9bce8f3d64e072de222d17419eb3dc8aa66f98853bb26
+   [I 2021-07-28 07:54:34.264 ServerApp]  or http://xxx.yyy.yyy.yyy:8888/lab?token=7db9bce8f3d64e072de222d17419eb3dc8aa66f98853bb26
+   [I 2021-07-28 07:54:34.264 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+   [W 2021-07-28 07:54:34.288 ServerApp] No web browser found: could not locate runnable browser.
    ```
 
 To access the Defect Detection Jupyter Notebook, use the path returned by the ```jupyter-server list``` command.
   
-A Jupyter notebook user can run cell by cell or run the defect detection full pipeline in Jupyter Notebook. To do this, go to defect-detect.ipynb, then from the menu bar, select **Kernel**, and then select **Restart Kernel & Run All Cells**. The notebook by default expects file source location to be /home/petalinux/input_video.y8 - you can make changes in the notebook if needed. 
+A Jupyter notebook user can run cell by cell or run the defect detection full pipeline in Jupyter Notebook. To do this, go to defect-detect.ipynb, then from the menu bar, select **Kernel**, and then select **Restart Kernel & Run All Cells**. The notebook by default expects file source location to be /home/petalinux/input_video.y8 - you can make changes in the notebook if needed.
   
 When using a file sink, data is dumped in the **rootfs (/home/petalinux)**. You will need to offload the output files to your PC and play using a YUV player. In the YUV player select the color as **Y** and the custom size as **1280x800**.
 
@@ -305,40 +308,53 @@ Examples:
 
 **Note**: Only one instance of the application can run at a time.
 
-    * For File-In and File-Out playback, run the following command.
+* For File-In and Display-Out playback in demo mode, run the following command.
 
-        `sudo defect-detect -i input_video.y8 -x raw.y8 -y pre_pros.y8 -z final.y8`
+  ```
+  sudo defect-detect -i input_video.y8 -d 1
+  ```
 
-         **Note** : The 3-stage outputs will be dumped into the files. It is mandatory to specify all the three output file names.
+  **Note**: The 3-stage outputs will be displayed on DP/HDMI with 4 fps rate. This mode is enabled to run the pipeline with a slower rate for the user to analyze the different outputs.
 
-    * For File-In and Display-Out playback, run the following command.
+* For File-In and File-Out playback, run the following command.
 
-        `sudo defect-detect -i input_video.y8`
+  ```
+  sudo defect-detect -i input_video.y8 -x raw.y8 -y pre_pros.y8 -z final.y8
+  ```
 
-         **Note**: The 3-stage outputs will be displayed on DP/HDMI. Change the input file path as appropriate.
+  **Note**: The 3-stage outputs will be dumped into the files. It is mandatory to specify all the three output file names.
 
-    * For Live-In and File-Out playback, run the following command.
+* For File-In and Display-Out playback, run the following command.
 
-        `sudo defect-detect -x raw.y8 -y pre_pros.y8 -z final.y8`
+  ```
+  sudo defect-detect -i input_video.y8
+  ```
 
-         **Note**: The 3-stage outputs will be dumped into the files. It is mandatory to specify all the three output file names.
+  **Note**: The 3-stage outputs will be displayed on DP/HDMI. Change the input file path as appropriate.
 
-    * For Live-In and Display-Out playback, run the following command.
+* For Live-In and File-Out playback, run the following command.
 
-        `sudo defect-detect`
+  ```
+  sudo defect-detect -x raw.y8 -y pre_pros.y8 -z final.y8
+  ```
 
-         **Note**:The 3-stage outputs will be displayed on DP/HDMI.
+  **Note**: The 3-stage outputs will be dumped into the files. It is mandatory to specify all the three output file names.
 
-    * For Live-In and Display-Out playback in demo mode, run the following command.
+* For Live-In and Display-Out playback, run the following command.
 
-        `sudo defect-detect -d 1`
+  `sudo defect-detect`
 
-      The 3-stage outputs will be displayed on DP/HDMI with 4 fps rate. This mode is enabled to run the pipeline with a slower rate for the user to analyze the different outputs.
+  **Note**:The 3-stage outputs will be displayed on DP/HDMI.
 
-   **Note**: The File In Display Out Demo Mode is not supported in the command line application. You can run this mode using **Jupyter Notebook** (See the section named *Jupyter Notebook* in this document) or by using the [**gst-launch command**](debug_dd.md).
-     
+* For Live-In and Display-Out playback in demo mode, run the following command.
 
- ### Command Line        
+  ```
+  sudo defect-detect -d 1
+  ```
+
+The 3-stage outputs will be displayed on DP/HDMI with 4 fps rate. This mode is enabled to run the pipeline with a slower rate for the user to analyze the different outputs.
+
+### Command Line
 
 Use the command line to set the resolution, configuration file path and more, using the **defect-detect** application.
 
@@ -347,13 +363,13 @@ More combinations could be made based on the options provided by the **defect-de
 Defect Detection Application Usage
 
 ```
- sudo defect-detect --help
+sudo defect-detect --help
 ```
 
 Usage:
 
 ```
-defect-detect [OPTION?] - Application for defect detction on SoM board of Xilinx.
+defect-detect [OPTION?] - Application for defect detection on SoM board of Xilinx.
 ```
 
 Help Options:
@@ -369,24 +385,27 @@ Help Options:
 Application Options:
 
 ```
--i, --infile=file path                                  location of input file
--x, --rawout=file path                                  location of capture raw output file
--y, --preprocessout=file path                           location of pre-processed output file
--z, --finalout=file path                                location of final output file
--w, --width=1280                                        resolution width of the input
--h, --height=800                                        resolution height of the input
--r, --framerate=60                                      framerate of the input source
+-i, --infile=file path                                  Location of input file
+-x, --rawout=file path                                  Location of capture raw output file
+-y, --preprocessout=file path                           Location of pre-processed output file
+-z, --finalout=file path                                Location of final output file
+-w, --width=1280                                        Resolution width of the input
+-h, --height=800                                        Resolution height of the input
+-r, --framerate=60                                      Framerate of the input source
 -d, --demomode=0                                        For Demo mode value must be 1
 -c, --cfgpath=/opt/xilinx/share/ivas/defect-detect/     JSON config file path
 ```
 
-The application is targeted to run an input source that supports GRAY8 (Y8) format with a resolution of **1280x800**. 
+[//]: # (Check /opt/xilinx/share/ivas/defect-detect/ and ensure that it is not /opt/xilinx/share/vvas/defect-detect/  with VVAS instead of IVAS)
+
+The application is targeted to run an input source that supports GRAY8 (Y8) format with a resolution of **1280x800**.
 
 Once you are done with the Defect Detection application, to switch to another accelerator application, you can unload the currently loaded accelerator application firmware by running:
 
 ```
 sudo xmutil unloadapp kv260-defect-detect
 ```
+
 ### Sensor Calibration for the Live Source
 
 While running the Defect Detection application through the command line or the Jupyter Notebook, by default the `ar0144-sensor-calib.sh` is called to perform the sensor calibration.
@@ -428,7 +447,6 @@ The application is comprised of the following files:
    |----------|-------------|
    |defect-detect-install.py| Script to copy Jupyter notebook to user directory|
    |ar0144-sensor-calib.sh|Script to calibrate sensor for user test environment|
-
 
 * Configuration Files: => `/opt/xilinx/share/ivas/defect-detect/`
 

@@ -65,9 +65,11 @@ Similarly video capture is followed by pre-process and DPU IPs for application N
 
 * KV260 Vision AI Starter Kit including
   * USB Microphone
+  * USB Camera
   * On Semi AP1302 Image Signal Processor (<https://www.onsemi.com/products/sensors/image-sensors-processors/image-processors/ap1302>) on the carrier card
   * HDMI-DP splitter on the carrier card
   * On Semi AR1335 CMOS Image sensor (<https://www.onsemi.com/products/sensors/image-sensors-processors/image-sensors/ar1335>)
+  * Raspberry pi camera module <https://www.raspberrypi.com/products/camera-module-v2/>
 
 </details>
 
@@ -87,6 +89,7 @@ Similarly video capture is followed by pre-process and DPU IPs for application N
   * HDMI
 * Video processing
   * Accelerator functions on DPU
+  * Xilinx ISP
   * PS based pre and post processing specific to a accelerator function
 * Auxiliary Peripherals
   * QSPI

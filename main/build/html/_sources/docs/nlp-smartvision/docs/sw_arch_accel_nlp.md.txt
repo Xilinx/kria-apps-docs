@@ -22,7 +22,7 @@ We leverage the OpenCV multi-media orchestration platform for application softwa
 
 ARM CMSIS for implementing Keyword spotting.
 
-**Vitis AI 1.4.0** is the core underlying component to access the AI inference capability provides by Xilinx DPU.
+**Vitis AI 2.5.0** is the core underlying component to access the AI inference capability provides by Xilinx DPU.
 
 ## Video Pipeline
 

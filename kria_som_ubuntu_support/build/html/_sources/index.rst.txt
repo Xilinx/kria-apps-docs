@@ -1,5 +1,5 @@
-########################################################################################################################
-Kria™ SOM Ubuntu Support
+﻿########################################################################################################################
+Kria SOM Ubuntu Support
 ########################################################################################################################
 
 
@@ -9,10 +9,13 @@ Kria™ SOM Ubuntu Support
    :caption: SOM
    :hidden:
 
-   Home <https://xilinx.github.io/kria-apps-docs/>
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>
-   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
+   Landing Page <https://xilinx.github.io/kria-apps-docs/>
+   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/latest/build/html/index.html>
+   Boot Firmware <https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html>
+   Kria KV260 <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
+   Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260/build/html/index.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
+
 
 
 .. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs/

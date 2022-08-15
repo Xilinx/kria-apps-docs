@@ -28,7 +28,7 @@ customization can be made to use other Vitis AI models or retrained model by the
 
 ### Model Preparation
 
-**Note** The design currently only supports **Vitis AI 1.4.0**
+**Note** The design currently only supports **Vitis AI 2.5.0**
 
 **Note** As described in the Hardware Accelerator section, the DPU integrated in the platform uses the **B3136** configuration.
 
@@ -40,7 +40,7 @@ The arch.json used to compile the xmodel for B3136 DPU can be obtained by build 
 }
 ```
 
-For detailed instructions on obtaining an alternative model from the Xilinx model zoo or training, pruning, quantizing, and compiling a new model, please refer to the [Vitis AI documentation](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_3/ug1414-vitis-ai.pdf).
+For detailed instructions on obtaining an alternative model from the Xilinx model zoo or training, pruning, quantizing, and compiling a new model, please refer to the [Vitis AI documentation](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/2_5/ug1414-vitis-ai.pdf).
 
 ### Configuration files
 

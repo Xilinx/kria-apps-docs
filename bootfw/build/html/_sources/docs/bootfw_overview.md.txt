@@ -20,6 +20,7 @@ The primary boot device is a QSPI device physically located on the Kria SOM. The
 
 - FSBL: First-stage boot-loader firmware
   - [Source code](https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/zynqmp_fsbl)
+  - FSBL is generated in [PetaLinux](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/First-Stage-Boot-Loader-for-Zynq-UltraScale-and-Zynq-7000-Devices), the flow is not unique to Kria SOM. Released SOM BSP generates FSBL by default when executing ```petalinux-build```.
 - PMU: Platform management unit firmware
   - [Source code](https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/zynqmp_pmufw)
   - SOM specific PMU guidance can be found on [SOM wiki page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#MPSoC-PMU-FW)
@@ -99,7 +100,7 @@ Below table shows contents of image selector registers at offset 0x100000
 | 0x4    | Version                   | 0x1                                                                                  | 0x00000001                                |
 | 0x8    | Length                    | 4 – No of registers present (not including the first 4)                              | 0x00000004                                |
 | 0xC    | Checksum                  | SUM of all words excluding checksum                                                  | 0xAEB1BDB9                                |
-| 0x10   | Persistent State register | See [table below](#persistent-register)                                                                      | 0x01010000                                |
+| 0x10   | Persistent State register | See [table below](#persistent-register)                                              | 0x01010000                                |
 | 0x14   | Image A offset            | CSU multi-boot address offset of "Image A". Must correspond to 32KB boundary.        | 0x00200000                                |
 | 0x18   | Image B offset            | CSU multi-boot address offset of "Image B". Must correspond to 32KB boundary         | 0x00F80000                                |
 | 0x1C   | Recovery offset           | CSU multi-boot address offset of "Recovery Image". Must correspond to 32KB boundary. | 0x01E00000                                |
@@ -107,8 +108,8 @@ Below table shows contents of image selector registers at offset 0x100000
 ## Persistent Register
 
 Below table shows the encoding for persistent register. Default value for SOM manufacturing image: 0x01010000
-| Bit width | Field                | Type | Description                   |
-|-----------|----------------------|------|-------------------------------|
+| Bit width | Field                | Type | Description                    |
+|-----------|----------------------|------|--------------------------------|
 | 7:0       | Last Image Booted    | R    | 0 - Image A, 1 - Image B       |
 | 15:8      | Requested Boot Image | RW   | 0 - Image A, 1 - Image B       |
 | 23:16     | Image B Bootable     | RW   | 0 - Not bootable, 1 - Bootable |
@@ -129,7 +130,7 @@ Read the [Image Selector](./bootfw_image_selector.md) page for more details on t
 
 The Image Update Linux application is a function being called by xmutil that updates image A or image B at run time. It is included in the Kria Starter Kit Linux root file system. When it is called to update image A or image B, it will also update the persistent register.
 
-Read [Boot FW via xmutil section of Krai SOM wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-via-xmutil) for information on how to use Image Update. Visit the [linux image update repository](https://github.com/Xilinx/linux-image_update/tree/master) to see its source code.
+Read [Boot FW via xmutil section of Kria SOM wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-via-xmutil) for information on how to use Image Update. Visit the [linux image update repository](https://github.com/Xilinx/linux-image_update/tree/master) to see its source code.
 
 ### Image Recovery Application
 
@@ -151,7 +152,7 @@ If developers are developing on Xilinx released starter kits, QSPI image is lock
 
 However, if developers are developing their own carrier cards, the production SOM's QSPI section is not locked. The entire QSPI can be customized by customers to meet their boot firmware requirements for their production designs.
 
-### License
+## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

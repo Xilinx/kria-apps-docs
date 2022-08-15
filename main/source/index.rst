@@ -1,4 +1,4 @@
-###############################################################################################################
+﻿###############################################################################################################
 Kria™ KV260 Vision AI Starter Kit Applications
 ###############################################################################################################
 
@@ -6,22 +6,22 @@ Kria™ KV260 Vision AI Starter Kit Applications
 .. image:: docs/media/sc_rdme.png
    :width: 200
    :alt: Smart Camera
-   :target: ./docs/smartcamera/smartcamera_landing.html
+   :target: https://xilinx.github.io/kria-apps-docs/master/docs/smartcamera/smartcamera_landing.html
 
 .. image:: docs/media/aib_rdme.png
    :width: 200
    :alt: AIBox-ReID
-   :target: ./docs/aibox-reid/aibox_landing.html
+   :target: https://xilinx.github.io/kria-apps-docs/master/docs/aibox-reid/aibox_landing.html
 
 .. image:: docs/media/dd_rdme.png
    :width: 200
    :alt:  Defect Detect
-   :target: ./docs/defect-detect/defectdetect_landing.html
+   :target: https://xilinx.github.io/kria-apps-docs/master/docs/defect-detect/defectdetect_landing.html
 
 .. image:: docs/media/nlp_rdme.png
    :width: 200
    :alt:  NLP SmartVision
-   :target: ./docs/nlp-smartvision/nlp_smartvision_landing.html
+   :target: https://xilinx.github.io/kria-apps-docs/master/docs/nlp-smartvision/nlp_smartvision_landing.html
 
 
 
@@ -52,10 +52,14 @@ With both hardware and software development requirements simplified, the KV260 V
    :caption: SOM
    :hidden:
 
-   Home <https://xilinx.github.io/kria-apps-docs/index.html>
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/1.0/build/html/index.html>
-   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html>
+   Landing Page <https://xilinx.github.io/kria-apps-docs/>
+   Application Development <https://pages.gitenterprise.xilinx.com/techdocs/SOM/creating_applications/latest/build/html/index.html>
+   Ubuntu Support <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kria_som_ubuntu_support/build/html/index.html>
+   Boot Firmware <https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html>
+   Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260/build/html/index.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
+
+
 
 
 .. toctree::
@@ -71,10 +75,10 @@ With both hardware and software development requirements simplified, the KV260 V
 
 .. toctree::
    :maxdepth: 3
-   :caption: Previous Releases
+   :caption: Other Releases
    :hidden:
 
-   2020.2 <https://xilinx.github.io/kria-apps-docs/2020.2/build/html/index.html>
+   2020.2 <https://pages.gitenterprise.xilinx.com/SOM/kv260-docs/2020.2/build/html/index.html>
 
 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
