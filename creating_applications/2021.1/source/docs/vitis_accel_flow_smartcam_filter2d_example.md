@@ -12,9 +12,8 @@ This example will generate 2 files - .bit.bin (PL bitstream) and .xclbin file fo
 Since we are altering smartcam application only and not the platform, we will first need to get the platform smartcam is based on - kv260_ispMipiRx_vcu_DP. Detailed tutorial is at [Creating Vitis Platform](https://xilinx.github.io/kria-apps-docs/main/build/html/docs/build_vitis_platform.html). Here are the specific commands to use to generate the platform:
 
 ```shell
-git clone --recursive https://github.com/Xilinx/kv260-vitis.git
+git clone --branch release-2021.1 --recursive https://github.com/Xilinx/kv260-vitis.git
 cd $workdir/kv260-vitis
-git checkout release-2021.1
 source <vitis path>/settings64.sh
 make platform PFM=kv260_ispMipiRx_vcu_DP
 ```
@@ -23,12 +22,12 @@ The platform will be available now in ```kv260-vitis/platforms/xilinx_kv260_ispM
 
 ## Obtaining filter2d
 
-Filter2d RTL kernel can be found [here](https://gitenterprise.xilinx.com/PAEG/spa_accel/tree/2021.1/examples/filter2d_pl). in a seperate folder, please download and extract the filter2d_pl and copy it to smartcam folder:
+Filter2d RTL kernel can be found [here](https://github.com/Xilinx/vck190-base-trd/tree/2021.1/overlays/filter2d/kernels/filter2d_pl). in a seperate folder, please download and extract the filter2d_pl and copy it to smartcam folder:
 
 ```shell
 cd $workdir
-git clone https://gitenterprise.xilinx.com/PAEG/spa_accel
-cp spa_accel/examples/filter2d_pl/ kv260-vitis/overlays/examples/smartcam/ -r
+git clone --branch 2021.1 https://github.com/Xilinx/vck190-base-trd.git
+cp overlays/filter2d/kernels/filter2d_pl kv260-vitis/overlays/examples/smartcam/ -r
 ```
 
 You may need to update ```$workdir/kv260-vitis/overlays/examples/smartcam/filter2d_pl/kernel/Makefile``` so that it is pointing to the right include directory:

@@ -124,9 +124,8 @@ with a simple accelerator (in this case, filter2d) in the Vitis Accelerator Flow
 <div class="section" id="obtaining-platform">
 <h2>Obtaining Platform<a class="headerlink" href="#obtaining-platform" title="Permalink to this heading">¶</a></h2>
 <p>Since we are altering smartcam application only and not the platform, we will first need to get the platform smartcam is based on - kv260_ispMipiRx_vcu_DP. Detailed tutorial is at <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/main/build/html/docs/build_vitis_platform.html">Creating Vitis Platform</a>. Here are the specific commands to use to generate the platform:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --recursive https://github.com/Xilinx/kv260-vitis.git
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch release-2021.1 --recursive https://github.com/Xilinx/kv260-vitis.git
 <span class="nb">cd</span> <span class="nv">$workdir</span>/kv260-vitis
-git checkout release-2021.1
 <span class="nb">source</span> &lt;vitis path&gt;/settings64.sh
 make platform <span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx_vcu_DP
 </pre></div>
@@ -135,10 +134,10 @@ make platform <span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx
 </div>
 <div class="section" id="obtaining-filter2d">
 <h2>Obtaining filter2d<a class="headerlink" href="#obtaining-filter2d" title="Permalink to this heading">¶</a></h2>
-<p>Filter2d RTL kernel can be found <a class="reference external" href="https://gitenterprise.xilinx.com/PAEG/spa_accel/tree/2021.1/examples/filter2d_pl">here</a>. in a seperate folder, please download and extract the filter2d_pl and copy it to smartcam folder:</p>
+<p>Filter2d RTL kernel can be found <a class="reference external" href="https://github.com/Xilinx/vck190-base-trd/tree/2021.1/overlays/filter2d/kernels/filter2d_pl">here</a>. in a seperate folder, please download and extract the filter2d_pl and copy it to smartcam folder:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$workdir</span>
-git clone https://gitenterprise.xilinx.com/PAEG/spa_accel
-cp spa_accel/examples/filter2d_pl/ kv260-vitis/overlays/examples/smartcam/ -r
+git clone --branch <span class="m">2021</span>.1 https://github.com/Xilinx/vck190-base-trd.git
+cp overlays/filter2d/kernels/filter2d_pl kv260-vitis/overlays/examples/smartcam/ -r
 </pre></div>
 </div>
 <p>You may need to update <code class="docutils literal notranslate"><span class="pre">$workdir/kv260-vitis/overlays/examples/smartcam/filter2d_pl/kernel/Makefile</span></code> so that it is pointing to the right include directory:</p>
@@ -380,7 +379,7 @@ sudo xmutil loadapp filter2d
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="https://pages.gitenterprise.xilinx.com/techdocs/Test/vvas/build/html/index.html#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

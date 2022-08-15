@@ -129,12 +129,11 @@ If using a Xilinx Kria Starter Kit reference designs, applications are provided 
 Deploy & Test On-Target
 =====================================
 
-
 Once applications and custom HW designs are generated the user needs to move them to target.
 
-If using the Kria Starter Kit with the Linux reference design, developers can also use `on-target utilities <./target>`_ to move their applications over and test. 
+If using the Kria Starter Kit with the Linux reference design, developers can also use :doc:`on-target utilities <./docs/target>` to move their applications over and test. 
 
-If using the Kria Starter Kit a user can use various boot-modes to test monolithic boot of application software using `these TCL scripts <./bootmodes>`_ to override the Starter Kit hardware defined QSPI32 boot mode.
+If using the Kria Starter Kit a user can use various boot-modes to test monolithic boot of application software using :doc:`these TCL scripts <./docs/bootmodes>` to override the Starter Kit hardware defined QSPI32 boot mode.
 
 
 ****************************************************
