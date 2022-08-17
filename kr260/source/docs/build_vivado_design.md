@@ -19,10 +19,13 @@ This tutorial shows how to build the hardware design for applications running on
 ## Prerequisites
 
 * Vivado Design Suite of the appropiate version
+* TSN Subsytem IP evaluation license when building the kr260_tsn_rs485pmod platform
+
+> **Info**: To request TSN Subsystem IP evaluation license, send an email to [1gtsn_eval_request@amd.com](1gtsn_eval_request@amd.com).
 
 ### Accessing the Tutorial Reference Files
 
->**Note**: Skip the following steps if the design files have already been cloned and extracted to a working repository
+> **Note**: Skip the following steps if the design files have already been cloned and extracted to a working repository
 
 1. To access the reference files, type the following into a terminal:
 
