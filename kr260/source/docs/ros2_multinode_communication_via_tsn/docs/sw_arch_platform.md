@@ -54,7 +54,7 @@ Topics are the elements of ROS2 that acts as bus for nodes to exchange messages.
 
 A node may publish data to any number of topics and simultaneously have subscriptions to any number of topics.
 
-~[TopicMultiNodes](../media/Topic-MultiplePublisherandMultipleSubscriber.gif)
+![TopicMultiNodes](../media/Topic-MultiplePublisherandMultipleSubscriber.gif)
 
 These nodes can be on the same system or distributed across systems. The biggest improvement ROS2 provides over ROS1 is the how the communication is handled across various systems. ROS2 adopts the decentralized (as opposed to centralized in ROS1) DDS middleware. Instead of implementing its own DDS layer, ROS2 provides a middleware abstraction layer (rmw), which can be plugged on any standard DDS implementation.
 

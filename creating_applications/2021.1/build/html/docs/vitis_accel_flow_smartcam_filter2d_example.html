@@ -88,6 +88,7 @@ function OptanonWrapper() { }
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 </ul>
 
         </div>
@@ -120,7 +121,7 @@ function OptanonWrapper() { }
 <p>This page will walk you through an example of replacing pre-processing and DPU in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/main/build/html/docs/smartcamera/smartcamera_landing.html">Smart Camera application</a>
 with a simple accelerator (in this case, filter2d) in the Vitis Accelerator Flow. This particular example make use of the Makefile environment provided with <a class="reference external" href="https://github.com/Xilinx/kv260-vitis">kv260_vitis repository</a>. Please first read <a class="reference internal" href="vitis_accel_flow.html"><span class="doc">Vitis Accelerator Flow</span></a> before trying this example.</p>
 <p>This example was created with 21.1 tools and BSP. You will need Vitis. This application assumes that you are familiar with Smart Camera application, and have already booted Linux with a Smartcamera application running. If you have not yet done that, please go through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/main/build/html/docs/smartcamera/smartcamera_landing.html">smartcam application deployment</a>.</p>
-<p>This example will generate 2 files - .bit.bin (PL bitstream) and .xclbin file for the specific accelerator. You will re-use .dtbo (device tree overlay), and shell.json file from smartcam platform because we are using the same platform.</p>
+<p>This example will generate 2 files - <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code> (PL bitstream) and <code class="docutils literal notranslate"><span class="pre">.xclbin</span></code> file for the specific accelerator. You will re-use <code class="docutils literal notranslate"><span class="pre">.dtbo</span></code> (device tree overlay), and <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> file from smartcam platform because we are using the same platform.</p>
 <div class="section" id="obtaining-platform">
 <h2>Obtaining Platform<a class="headerlink" href="#obtaining-platform" title="Permalink to this heading">¶</a></h2>
 <p>Since we are altering smartcam application only and not the platform, we will first need to get the platform smartcam is based on - kv260_ispMipiRx_vcu_DP. Detailed tutorial is at <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/main/build/html/docs/build_vitis_platform.html">Creating Vitis Platform</a>. Here are the specific commands to use to generate the platform:</p>
@@ -134,7 +135,7 @@ make platform <span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx
 </div>
 <div class="section" id="obtaining-filter2d">
 <h2>Obtaining filter2d<a class="headerlink" href="#obtaining-filter2d" title="Permalink to this heading">¶</a></h2>
-<p>Filter2d RTL kernel can be found <a class="reference external" href="https://github.com/Xilinx/vck190-base-trd/tree/2021.1/overlays/filter2d/kernels/filter2d_pl">here</a>. in a seperate folder, please download and extract the filter2d_pl and copy it to smartcam folder:</p>
+<p>Filter2d RTL kernel can be found <a class="reference external" href="https://github.com/Xilinx/vck190-base-trd/tree/2021.1/overlays/filter2d/kernels/filter2d_pl">here</a>. The repository was targeted for VCK190 (board containing a Versal device), but it can also be used for Zynq MPSoC because it is a soft IP. In a separate folder, download and extract <code class="docutils literal notranslate"><span class="pre">filter2d_pl</span></code>, and then copy it to the <code class="docutils literal notranslate"><span class="pre">smartcam</span></code> folder:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$workdir</span>
 git clone --branch <span class="m">2021</span>.1 https://github.com/Xilinx/vck190-base-trd.git
 cp overlays/filter2d/kernels/filter2d_pl kv260-vitis/overlays/examples/smartcam/ -r
@@ -249,7 +250,7 @@ sp=filter2d_pl_accel_0.kernel:HP1
 make overlay <span class="nv">OVERLAY</span><span class="o">=</span>smartcam
 </pre></div>
 </div>
-<p>The generated vivado project will be located at:</p>
+<p>The generated Vivado project will be located at:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$working_dir</span>/kv260-vitis/overlays/examples/smartcam/binary_container_1/link/vivado/vpl/prj
 </pre></div>
 </div>
@@ -260,14 +261,14 @@ make overlay <span class="nv">OVERLAY</span><span class="o">=</span>smartcam
 </pre></div>
 </div>
 <p>rename .xclbin file to <code class="docutils literal notranslate"><span class="pre">filter2d.xclbin</span></code></p>
-<p>Now you will need to convert system.bit to a .bit.bin file:</p>
+<p>Now you will need to convert system.bit to a <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code> file:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> overlays/examples/smartcam/binary_container_1/link/int/
 <span class="nb">echo</span> <span class="s1">&#39;all:{system.bit}&#39;</span>&gt;bootgen.bif
 bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
 mv system.bit.bin filter2d.bit.bin
 </pre></div>
 </div>
-<p>now you have a <code class="docutils literal notranslate"><span class="pre">filter2d.xclbin</span></code> and <code class="docutils literal notranslate"><span class="pre">filter2d.bit.bin</span></code></p>
+<p>Now, you have a <code class="docutils literal notranslate"><span class="pre">filter2d.xclbin</span></code> and <code class="docutils literal notranslate"><span class="pre">filter2d.bit.bin</span></code>.</p>
 </div>
 <div class="section" id="modify-petalinux-to-include-sw-stack-for-filter2d">
 <h2>Modify PetaLinux to include SW stack for filter2d<a class="headerlink" href="#modify-petalinux-to-include-sw-stack-for-filter2d" title="Permalink to this heading">¶</a></h2>
@@ -367,7 +368,7 @@ sudo xmutil loadapp filter2d
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on August 1, 2022.
+      <span class="lastupdated">Last updated on August 25, 2022.
       </span></p>
   </div>
 
@@ -379,7 +380,7 @@ sudo xmutil loadapp filter2d
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="https://pages.gitenterprise.xilinx.com/techdocs/Test/vvas/build/html/index.html#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

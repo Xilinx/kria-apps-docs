@@ -11,7 +11,7 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>Setting Bootmodes &mdash; Kria™ SOM 2021.2 documentation</title>
+  <title>Bitstream Management on Kria SOM &mdash; Kria™ SOM 2021.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -27,8 +27,7 @@ function OptanonWrapper() { }
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Generating DTSI and DTBO Overlay Files" href="dtsi_dtbo_generation.html" />
-    <link rel="prev" title="On-target Utilities and Firmware" href="target.html" /> 
+    <link rel="prev" title="Generating DTSI and DTBO Overlay Files" href="dtsi_dtbo_generation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,12 +70,12 @@ function OptanonWrapper() { }
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting Bootmodes</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Bitstream Management on Kria SOM</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 </ul>
 
         </div>
@@ -93,9 +92,9 @@ function OptanonWrapper() { }
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Setting Bootmodes</li>
+      <li>Bitstream Management on Kria SOM</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/docs/bootmodes.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/docs/bitstream_management.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -103,103 +102,42 @@ function OptanonWrapper() { }
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="setting-bootmodes">
-<h1>Setting Bootmodes<a class="headerlink" href="#setting-bootmodes" title="Permalink to this heading">¶</a></h1>
-<p>Once applications and custom HW designs are generated, developers need to move them to target. If using the Kria Starter Kit, developers can use various boot-modes to test monolithic boot to application software using the following TCL scripts to set the preferred development boot process. Developers will first put the functions in a <code class="docutils literal notranslate"><span class="pre">&lt;boot&gt;.tcl</span></code> script. Then, with the host machine connected with their SOM kit, they use the following commands in XSDB or XSCT:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">connect</span>
-<span class="n">source</span> <span class="o">&lt;</span><span class="n">boot</span><span class="o">&gt;.</span><span class="n">tcl</span>
-<span class="n">boot_</span><span class="o">&lt;</span><span class="n">mode</span><span class="o">&gt;</span>
-</pre></div>
-</div>
-<p>To set K26 to JTAG bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">boot_jtag</span> <span class="p">{</span> <span class="p">}</span> <span class="p">{</span>
-<span class="c1">############################</span>
-<span class="c1"># Switch to JTAG boot mode #</span>
-<span class="c1">############################</span>
-<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
-<span class="c1"># update multiboot to ZERO</span>
-<span class="n">mwr</span> <span class="mh">0xffca0010</span> <span class="mh">0x0</span>
-<span class="c1"># change boot mode to JTAG</span>
-<span class="n">mwr</span> <span class="mh">0xff5e0200</span> <span class="mh">0x0100</span>
-<span class="c1"># reset</span>
-<span class="n">rst</span> <span class="o">-</span><span class="n">system</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>To set K26 to SD bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">boot_sd</span> <span class="p">{</span> <span class="p">}</span> <span class="p">{</span>
-<span class="c1">############################</span>
-<span class="c1"># Switch to SD boot mode #</span>
-<span class="c1">############################</span>
-<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
-<span class="c1"># update multiboot to ZERO</span>
-<span class="n">mwr</span> <span class="mh">0xffca0010</span> <span class="mh">0x0</span>
-<span class="c1"># change boot mode to SD</span>
-<span class="n">mwr</span> <span class="mh">0xff5e0200</span> <span class="mh">0xE100</span>
-<span class="c1"># reset</span>
-<span class="n">rst</span> <span class="o">-</span><span class="n">system</span>
-<span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-<span class="n">after</span> <span class="mi">2000</span>
-<span class="n">con</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>To set K26 to QSPI bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">boot_qspi</span> <span class="p">{</span> <span class="p">}</span> <span class="p">{</span>
-<span class="c1">############################</span>
-<span class="c1"># Switch to QSPI boot mode #</span>
-<span class="c1">############################</span>
-<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
-<span class="c1"># update multiboot to ZERO</span>
-<span class="n">mwr</span> <span class="mh">0xffca0010</span> <span class="mh">0x0</span>
-<span class="c1"># change boot mode to QSPI</span>
-<span class="n">mwr</span> <span class="mh">0xff5e0200</span> <span class="mh">0x2100</span>
-<span class="c1"># reset</span>
-<span class="n">rst</span> <span class="o">-</span><span class="n">system</span>
-<span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-<span class="n">after</span> <span class="mi">2000</span>
-<span class="n">con</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>To set K26 to eMMC bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">boot_emmc</span> <span class="p">{</span> <span class="p">}</span> <span class="p">{</span>
-<span class="c1">############################</span>
-<span class="c1"># Switch to emmc boot mode #</span>
-<span class="c1">############################</span>
-<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="n">nocase</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
-<span class="n">stop</span>
-<span class="c1"># update multiboot to ZERO</span>
-<span class="n">mwr</span> <span class="mh">0xffca0010</span> <span class="mh">0x0</span>
-<span class="c1"># change boot mode to EMMC</span>
-<span class="n">mwr</span> <span class="mh">0xff5e0200</span> <span class="mh">0x6100</span>
-<span class="c1"># reset</span>
-<span class="n">rst</span> <span class="o">-</span><span class="n">system</span>
-<span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-<span class="n">after</span> <span class="mi">2000</span>
-<span class="n">con</span>
-<span class="p">}</span> 
-</pre></div>
-</div>
-<p>To set K26 to USB bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">boot_usb</span> <span class="p">{</span> <span class="p">}</span> <span class="p">{</span>
-<span class="c1">############################</span>
-<span class="c1"># Switch to usb0 boot mode #</span>
-<span class="c1">############################</span>
-<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="n">nocase</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
-<span class="n">stop</span>
-<span class="c1"># update multiboot to ZERO</span>
-<span class="n">mwr</span> <span class="mh">0xffca0010</span> <span class="mh">0x0</span>
-<span class="c1"># change boot mode to EMMC</span>
-<span class="n">mwr</span> <span class="mh">0xff5e0200</span> <span class="mh">0x7100</span>
-<span class="c1"># reset</span>
-<span class="n">rst</span> <span class="o">-</span><span class="n">system</span>
-<span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-<span class="n">after</span> <span class="mi">2000</span>
-<span class="n">con</span>
-<span class="p">}</span> 
-</pre></div>
-</div>
+  <div class="section" id="bitstream-management-on-kria-som">
+<h1>Bitstream Management on Kria SOM<a class="headerlink" href="#bitstream-management-on-kria-som" title="Permalink to this heading">¶</a></h1>
+<p>The Kria Starter Ktis are deployed with primary and secondary boot devices to isolate core boot FW and the operating system. In Kria multiple application bitstreams are enabled without forceing OS reboots by managing bitstreams as a dynamic SW component within the Linux OS. This approach is different from Xilinx legacy MPSoC evaluation platforms that have used a monolithic boot device and managing the bitstream as a boot time component. This page provides a comparison of the dynamic bitstream management in Kria Starter Kit Linux to the legacy MPSoC evaluation board flow.</p>
+<p>The following diagram summarizes the difference, and the table that follows details the difference.</p>
+<p><img alt="bitstream management" src="../_images/bitstream_management.PNG" /></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Topic</th>
+<th>Legacy MPSoC Flow</th>
+<th>Kria SOM Flow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitstream Management</td>
+<td>The majority of previous MPSoC examples focused on bitstream being loaded prior to the boot of the operating system and maintaining a static HW/SW interface for all application within that booted OS. This means that the bistream is loaded prior to Linux booting and its device tree was loaded as part of the Linux boot device tree.</td>
+<td>The Kria Starter Kit focuses on dynamic post-Linux boot bitstream management. This enables an application-agnostic boot FW that does not include any bitstream. The bitstream is instead managed within the Linux file system and swapped dynamically at runtime using xmutil/dfx-mgr. The loading of the bitstream needs to be accompanied by its HW/SW interface definition which is appended to the booted Linux device tree (DT) through a Linux DT-overlay.  Thus bitstreams being managed dynamically require both the bitstream (<code>*.bit.bin</code>) and DT-overlay (<code>*.dtbo</code>) files. The <a href="./target.md">on target utility</a> has information and pointers to bitstream management by xmutil/dfx-mgr</td>
+</tr>
+<tr>
+<td>Bitstream Generation</td>
+<td>Majority of MPSoC legacy examples focused on generation of the MPSoC device configuration (e.g. PCW MIO configs) and the PL bitstream as a monolithic configuration generation. This was then used to generate entire set of boot FW artifacts (FSBL, PL, PMU, ...) with every build.</td>
+<td>Kria Starter Kit focuses on an incremental HW configuration. This means that at the time of a new PL design, the user only needs to generate the new bitstream (within the constraints of not changing other device configurations such as MIO assignments) and do not need to re-generate a new BOOT.BIN since the bitstream is managed outside the BOOT.BIN container. The user will use the resulting bitstream file and generate a corresponding DT overlay, both of which are later copied to the Linux file system to be loaded by xmutil/dfx-mgr. This <a href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/index.html">series of doc</a> details the process to generate the overlay design, and <a href="./target.md">On-target Utilities</a> have more information on xmutil/dfx-mgr.</td>
+</tr>
+<tr>
+<td>Boot Segmentation</td>
+<td>Legacy MPSoC examples focus on a monolithic boot device (e.g. QSPI or SD card or eMMC). In this flow all FW content is managed and searched by CSU ROM within the same physical device.</td>
+<td>Kria Starter Kit uses a primary/secondary boot architecture to functionally segment the core boot FW from the OS image. They are detailed in <a href="https://xilinx.github.io/kria-apps-docs/bootfw/build/html/docs/bootfw_overview.html">BootFW</a> page. The QSPI device serves as the primary boot device containing the platform BOOT.BIN which contains FSBL, PMU FW, and U-Boot. The SD card device serves as the secondary boot device containing the Linux OS artifacts include the kernel and rootfs. This allows for the platform to boot multiple Linux OS images without a user having to build or modify the core boot FW. A user can update the boot FW of QSPI with their own custom BOOT.BIN, and do this using the xmutil boot image update utility. U-Boot is used to support the hand-off between QSPI and the SD card based secondary boot device.  (See K26 SOM XSA &amp; BSP Overview for reference)</td>
+</tr>
+<tr>
+<td>Dynamic MIO</td>
+<td>Legacy MPSoC designs used a static MIO configuration which locks in the configuration of the PS subsystem physical I/O at device boot time.</td>
+<td>The Kria Starter Kit references use an incremental HW configuration capability of PMU in order to support dynamic configuration of carrier card specific MIO (KV260 vs. KR260). This allows for a common boot FW which identifies the carrier card via the BoardID EEPROM and then U-Boot incrementally configures the corresponding CC card specific MIOs. Read more in <a href="https://xilinx.github.io/kria-apps-docs/bootfw/build/html/docs/bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></td>
+</tr>
+</tbody>
+</table><p>Note that the dynamic bitstream managment described here is how AMD-Xilinx is deploying and managing the Kria Starter Kit pre-built OS and application designs. For production Kria SOM developers, they have full freedom to use the combination of boot partitioning and bitstream managment that matches their application requirements.</p>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
@@ -223,8 +161,7 @@ function OptanonWrapper() { }
                   </style>
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="target.html" class="btn btn-neutral float-left" title="On-target Utilities and Firmware" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dtsi_dtbo_generation.html" class="btn btn-neutral float-right" title="Generating DTSI and DTBO Overlay Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dtsi_dtbo_generation.html" class="btn btn-neutral float-left" title="Generating DTSI and DTBO Overlay Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
