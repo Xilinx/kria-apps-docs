@@ -5,7 +5,7 @@ with a simple accelerator (in this case, filter2d) in the Vitis Accelerator Flow
 
 This example was created with 21.1 tools and BSP. You will need Vitis. This application assumes that you are familiar with Smart Camera application, and have already booted Linux with a Smartcamera application running. If you have not yet done that, please go through [smartcam application deployment](https://xilinx.github.io/kria-apps-docs/main/build/html/docs/smartcamera/smartcamera_landing.html).
 
-This example will generate 2 files - .bit.bin (PL bitstream) and .xclbin file for the specific accelerator. You will re-use .dtbo (device tree overlay), and shell.json file from smartcam platform because we are using the same platform.
+This example will generate 2 files - `.bit.bin` (PL bitstream) and `.xclbin` file for the specific accelerator. You will re-use `.dtbo` (device tree overlay), and `shell.json` file from smartcam platform because we are using the same platform.
 
 ## Obtaining Platform
 
@@ -18,11 +18,11 @@ source <vitis path>/settings64.sh
 make platform PFM=kv260_ispMipiRx_vcu_DP
 ```
 
-The platform will be available now in ```kv260-vitis/platforms/xilinx_kv260_ispMipiRx_vcu_DP_202110_1/```.
+The platform will be available now in `kv260-vitis/platforms/xilinx_kv260_ispMipiRx_vcu_DP_202110_1/`.
 
 ## Obtaining filter2d
 
-Filter2d RTL kernel can be found [here](https://github.com/Xilinx/vck190-base-trd/tree/2021.1/overlays/filter2d/kernels/filter2d_pl). in a seperate folder, please download and extract the filter2d_pl and copy it to smartcam folder:
+Filter2d RTL kernel can be found [here](https://github.com/Xilinx/vck190-base-trd/tree/2021.1/overlays/filter2d/kernels/filter2d_pl). The repository was targeted for VCK190 (board containing a Versal device), but it can also be used for Zynq MPSoC because it is a soft IP. In a separate folder, download and extract `filter2d_pl`, and then copy it to the `smartcam` folder:
 
 ```shell
 cd $workdir
@@ -119,12 +119,12 @@ $(filter2d_xo):
  ```
 
  Replace the 2 kernels with filter2d kernel:
- remove ```dpu_pp_xo = $(KERNEL_XO) $(dpu_xo)```
- add ```dpu_pp_xo =  $(filter2d_xo)```
+ remove `dpu_pp_xo = $(KERNEL_XO) $(dpu_xo)`
+ add `dpu_pp_xo =  $(filter2d_xo)`
 
 The resulting Makefile can be found in [example Makefile](./example_src/vitis_accel_example_smartcam_filter2d_makefile) you can compare it with the original Makefile [here](https://github.com/Xilinx/kv260-vitis/blob/release-2021.1/overlays/examples/smartcam/Makefile)
 
-Next, we need to connect the filter2d accelerator to the processor subsystem. Open ```prj_conf/prj_config_1dpu```, remove DPUCZDX8G and pp_pipeline_accel_1 clocks and connectivity, and connect filter2d to HP1:
+Next, we need to connect the filter2d accelerator to the processor subsystem. Open `prj_conf/prj_config_1dpu`, remove DPUCZDX8G and pp_pipeline_accel_1 clocks and connectivity, and connect filter2d to HP1:
 
 ```text
 [clock]
@@ -158,7 +158,7 @@ cd ../../../
 make overlay OVERLAY=smartcam
 ```
 
-The generated vivado project will be located at:
+The generated Vivado project will be located at:
 
 ```shell
 $working_dir/kv260-vitis/overlays/examples/smartcam/binary_container_1/link/vivado/vpl/prj
@@ -175,7 +175,7 @@ $working_dir/kv260-vitis/overlays/examples/smartcam/binary_container_1/*.xclbin
 
 rename .xclbin file to ```filter2d.xclbin```
 
-Now you will need to convert system.bit to a .bit.bin file:
+Now you will need to convert system.bit to a `.bit.bin` file:
 
 ```shell
 cd overlays/examples/smartcam/binary_container_1/link/int/
@@ -184,7 +184,7 @@ bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
 mv system.bit.bin filter2d.bit.bin
 ```
 
-now you have a ```filter2d.xclbin``` and ```filter2d.bit.bin```
+Now, you have a `filter2d.xclbin` and `filter2d.bit.bin`.
 
 ## Modify PetaLinux to include SW stack for filter2d
 
