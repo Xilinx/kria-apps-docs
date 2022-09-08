@@ -11,10 +11,9 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>Boot Firmware Overview &mdash; Boot SOM Firmware 2022.1 documentation</title>
+  <title>Boot Firmware Overview &mdash; Boot SOM Firmware 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -37,10 +36,9 @@ function OptanonWrapper() { }
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Boot SOM Firmware
-            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2022.1
+                1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -52,11 +50,11 @@ function OptanonWrapper() { }
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/index.html">Landing Page</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/latest/build/html/index.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/main/build/html/index.html">Kria KV260</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/index.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Boot Firmware</span></p>
@@ -89,7 +87,7 @@ function OptanonWrapper() { }
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Boot SOM Firmware</a>
       </nav>
@@ -315,28 +313,106 @@ function OptanonWrapper() { }
 </div>
 <div class="section" id="image-selector-registers">
 <h2>Image Selector Registers<a class="headerlink" href="#image-selector-registers" title="Permalink to this heading">¶</a></h2>
-<p>Below table shows contents of image selector registers at offset 0x100000
-| Offset | Register                  | Description                                                                          | Default Value for SOM Manufacturing Image |
-|——–|—————————|————————————————————————————–|——————————————-|
-| 0x0    | Identification String     | “ABUM” – A/B Update Mechanism                                                        | 0x4D554241                                |
-| 0x4    | Version                   | 0x1                                                                                  | 0x00000001                                |
-| 0x8    | Length                    | 4 – No of registers present (not including the first 4)                              | 0x00000004                                |
-| 0xC    | Checksum                  | SUM of all words excluding checksum                                                  | 0xAEB1BDB9                                |
-| 0x10   | Persistent State register | See <a class="reference external" href="#persistent-register">table below</a>                                              | 0x01010000                                |
-| 0x14   | Image A offset            | CSU multi-boot address offset of “Image A”. Must correspond to 32KB boundary.        | 0x00200000                                |
-| 0x18   | Image B offset            | CSU multi-boot address offset of “Image B”. Must correspond to 32KB boundary         | 0x00F80000                                |
-| 0x1C   | Recovery offset           | CSU multi-boot address offset of “Recovery Image”. Must correspond to 32KB boundary. | 0x01E00000                                |</p>
-</div>
+<p>Below table shows contents of image selector registers at offset 0x100000</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Offset</th>
+<th>Register</th>
+<th>Description</th>
+<th>Default Value for SOM Manufacturing Image</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x0</td>
+<td>Identification String</td>
+<td>“ABUM” – A/B Update Mechanism</td>
+<td>0x4D554241</td>
+</tr>
+<tr>
+<td>0x4</td>
+<td>Version</td>
+<td>0x1</td>
+<td>0x00000001</td>
+</tr>
+<tr>
+<td>0x8</td>
+<td>Length</td>
+<td>4 – No of registers present (not including the first 4)</td>
+<td>0x00000004</td>
+</tr>
+<tr>
+<td>0xC</td>
+<td>Checksum</td>
+<td>SUM of all words excluding checksum</td>
+<td>0xAEB1BDB9</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>Persistent State register</td>
+<td>See <a href="#persistent-register">table below</a></td>
+<td>0x01010000</td>
+</tr>
+<tr>
+<td>0x14</td>
+<td>Image A offset</td>
+<td>CSU multi-boot address offset of "Image A". Must correspond to 32KB boundary.</td>
+<td>0x00200000</td>
+</tr>
+<tr>
+<td>0x18</td>
+<td>Image B offset</td>
+<td>CSU multi-boot address offset of "Image B". Must correspond to 32KB boundary</td>
+<td>0x00F80000</td>
+</tr>
+<tr>
+<td>0x1C</td>
+<td>Recovery offset</td>
+<td>CSU multi-boot address offset of "Recovery Image". Must correspond to 32KB boundary.</td>
+<td>0x01E00000</td>
+</tr>
+</tbody>
+</table></div>
 <div class="section" id="persistent-register">
 <h2>Persistent Register<a class="headerlink" href="#persistent-register" title="Permalink to this heading">¶</a></h2>
-<p>Below table shows the encoding for persistent register. Default value for SOM manufacturing image: 0x01010000
-| Bit width | Field                | Type | Description                    |
-|———–|———————-|——|——————————–|
-| 7:0       | Last Image Booted    | R    | 0 - Image A, 1 - Image B       |
-| 15:8      | Requested Boot Image | RW   | 0 - Image A, 1 - Image B       |
-| 23:16     | Image B Bootable     | RW   | 0 - Not bootable, 1 - Bootable |
-| 31:24     | Image A Bootable     | RW   | 0 - Not bootable, 1 - Bootable |</p>
-</div>
+<p>Below table shows the encoding for persistent register. Default value for SOM manufacturing image: 0x01010000</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Bit width</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7:0</td>
+<td>Last Image Booted</td>
+<td>R</td>
+<td>0 - Image A, 1 - Image B</td>
+</tr>
+<tr>
+<td>15:8</td>
+<td>Requested Boot Image</td>
+<td>RW</td>
+<td>0 - Image A, 1 - Image B</td>
+</tr>
+<tr>
+<td>23:16</td>
+<td>Image B Bootable</td>
+<td>RW</td>
+<td>0 - Not bootable, 1 - Bootable</td>
+</tr>
+<tr>
+<td>31:24</td>
+<td>Image A Bootable</td>
+<td>RW</td>
+<td>0 - Not bootable, 1 - Bootable</td>
+</tr>
+</tbody>
+</table></div>
 <div class="section" id="boot-image-applications">
 <h2>Boot Image Applications<a class="headerlink" href="#boot-image-applications" title="Permalink to this heading">¶</a></h2>
 <p>The following applications uses or update Image A/B and/or persistent registers. All three applications are independent and can work standalone with no dependencies across the three applications.
@@ -361,7 +437,7 @@ For more information on how to uses the three applications, please refer to <a c
 <h2>U-Boot<a class="headerlink" href="#u-boot" title="Permalink to this heading">¶</a></h2>
 <p>U-Boot provides the functionality for the hand-off between the primary boot device and the secondary boot device. It will select the appropriate boot devices, load the Linux kernel, select Linux device tree based on detected HW configuration, and then boot Linux.</p>
 <p>U-Boot is an open source Universal Boot Loader that is frequently used in the Linux community. Xilinx provides a Git tree located at <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx">github</a> which includes <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842223/U-boot">U-Boot to run on Xilinx boards</a>. U-Boot for SOM has been configured to support dynamic booting on different starter kits using MPSoC PMU configuration objects.</p>
-<p>Read the [PMU configuration objects(./bootfw_pmu_config_obj.md) and <a class="reference internal" href="bootfw_uboot_handoff.html"><span class="doc">U-Boot handoff</span></a> for more details on dynamic carrier card configuration in Kria StarterKits.</p>
+<p>Read the <a class="reference internal" href="bootfw_pmu_config_obj.html"><span class="doc">PMU configuration objects</span></a> and <a class="reference internal" href="bootfw_uboot_handoff.html"><span class="doc">U-Boot handoff</span></a> for more details on dynamic carrier card configuration in Kria StarterKits.</p>
 </div>
 <div class="section" id="qspi-update">
 <h2>QSPI update<a class="headerlink" href="#qspi-update" title="Permalink to this heading">¶</a></h2>
@@ -398,8 +474,8 @@ For more information on how to uses the three applications, please refer to <a c
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on August 1, 2022.
+    <p>&#169; Copyright 2022, Xilinx, Inc..
+      <span class="lastupdated">Last updated on May 17, 2022.
       </span></p>
   </div>
 
@@ -411,7 +487,7 @@ For more information on how to uses the three applications, please refer to <a c
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="https://pages.gitenterprise.xilinx.com/techdocs/Test/vvas/build/html/index.html#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

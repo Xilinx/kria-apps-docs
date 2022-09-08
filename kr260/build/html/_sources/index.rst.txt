@@ -24,17 +24,22 @@ Kria KR260 Robotics Starter Kit Applications
 
 
 
+
+
 .. toctree::
    :maxdepth: 3
    :caption: SOM
    :hidden:
 
-   Landing Page <https://xilinx.github.io/kria-apps-docs/index.html>
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/latest/build/html/index.html>
-   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/kria_som_ubuntu_support/build/html/index.html>
+   Landing Page <https://xilinx.github.io/kria-apps-docs/>
+   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications.html>
+   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
    Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
-   Kria KV260 <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
+   Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
+
+
+
 
 
 .. toctree::

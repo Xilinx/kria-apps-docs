@@ -20,6 +20,7 @@ SOM Landing Page
 
 
 
+
 With Kria SOMs, you can create and test your own custom applications and programmable logic (PL) functions. Use one or more of the Xilinx development tools (such as Vivado™, Vitis™, and PetaLinux) and open source tools (such as Linux Device Tree Generator/Compiler) to build your applications.
 
 
@@ -41,7 +42,7 @@ Gives an overview to various components in the Kria SOM boot firmware, and point
 
 
 **********************************************************************************************************************************************************************************************
-`Kria KV260 Vision AI Starter Kit Applications <../../../main/build/html/index.html>`__
+`Kria KV260 Vision AI Starter Kit Applications <../../../kv260/main/build/html/index.html>`__
 **********************************************************************************************************************************************************************************************
 
 
@@ -51,7 +52,7 @@ Gives an overview to various components in the Kria SOM boot firmware, and point
    :caption: Kria KV260
    :hidden:
 
-   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
+   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kv260/main/build/html/index.html>
 
 
 
