@@ -32,7 +32,7 @@ author = 'Xilinx, Inc.'
 version = '2021.1'
 # The full version, including alpha/beta/rc tags
 release = '2021.1'
-html_last_updated_fmt = 'August 15, 2022'
+html_last_updated_fmt = 'September 9, 2022'
 
 # -- General configuration ---------------------------------------------------
 
