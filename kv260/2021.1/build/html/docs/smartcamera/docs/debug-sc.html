@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+  <title>Debugging &mdash; Kria™ KV260 2021.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Known Issues" href="issue-sc.html" />
+    <link rel="prev" title="Hardware Architecture of the Accelerator" href="hw_arch_accel.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../index.html" class="icon icon-home"> Kria™ KV260
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2021.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KV260 Applications</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../smartcamera_landing.html">Smart Camera</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#architecture">Architecture</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../smartcamera_landing.html#other">Other</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Debugging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#debugging-tips">Debugging Tips</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#platform-peripheral-debug-tips">Platform Peripheral Debug Tips</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-benign-error-messages">Known Benign Error Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="issue-sc.html">Known Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="issue-sc.html#limitations">Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../smartcamera_landing.html#xilinx-support">Xilinx Support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../aibox-reid/aibox_landing.html">AIBox-ReID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defect-detect/defectdetect_landing.html">Defect Detect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/index.html">2022.1</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2020.2/build/html/index.html">2020.2</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Kria™ KV260</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../smartcamera_landing.html">Smart Camera</a> &raquo;</li>
+      <li>Debugging</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/smartcamera/docs/debug-sc.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide">
+ <tr>
+   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit <br>Smart Camera Tutorial</h1>
+   </td>
+ </tr>
+ <tr>
+ <td align="center"><h1>Debugging</h1> </td>
+ </tr>
+</table><div class="section" id="debugging">
+<h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="debugging-tips">
+<h2>Debugging Tips<a class="headerlink" href="#debugging-tips" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p>Use the following command to load the firmware. If you do not, many drivers (including the MIPI and VCU) will not load, and when you run the application, you will have errors.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">xmutil</span><span class="w">      </span><span class="n">loadapp</span><span class="w"> </span><span class="n">kv260</span><span class="o">-</span><span class="n">smartcam</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>The smartcam application has an option <code class="docutils literal notranslate"><span class="pre">--usb</span></code> to choose the USB media devices. You can list the media devices by</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">media</span><span class="o">*</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>When you give the wrong media index, the application will give errors (for example):</p>
+<ul>
+<li><blockquote>
+<div><p>ERROR: Device x is not ready.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>ERROR: MIPI device x is not ready.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>ERROR: Device x is not USB cam.</p>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p>When you give a width/height not supported by the device, the application shows this error:</p>
+<blockquote>
+<div><p>Error: USB camera doesn’t support resolution xxx</p>
+<p>All supported resolution:</p>
+</div></blockquote>
+<p>Choose from the supported resolutions.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="platform-peripheral-debug-tips">
+<h2>Platform Peripheral Debug Tips<a class="headerlink" href="#platform-peripheral-debug-tips" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="monitor">
+<h3>Monitor<a class="headerlink" href="#monitor" title="Permalink to this heading">¶</a></h3>
+<details>
+ <summary>Click here to view the details.</summary><p>Use certified cables for DP and HDMI. The recommended specifications are listed for HDMI 2.0 and or higher and DP 1.2. If the cables are faulty, they could cause distortions or disable the display.</p>
+<p>Modetest is a test tool that is part of the libdrm suite of test tools.</p>
+<p><strong>Note</strong>: The following print is an example from a 4k monitor. Use this for reference only.</p>
+<div class="section" id="status-of-monitor">
+<h4>Status of Monitor<a class="headerlink" href="#status-of-monitor" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span><span class="w"> </span><span class="o">-</span><span class="n">M</span><span class="w"> </span><span class="n">xlnx</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This command reads the monitors EDID information to ensure the monitor is connected:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="nl">Connectors</span><span class="p">:</span><span class="w"></span>
+<span class="n">id</span><span class="w">      </span><span class="n">encoder</span><span class="w"> </span><span class="n">status</span><span class="w">          </span><span class="n">name</span><span class="w">            </span><span class="n">size</span><span class="w"> </span><span class="p">(</span><span class="n">mm</span><span class="p">)</span><span class="w">       </span><span class="n">modes</span><span class="w">   </span><span class="n">encoders</span><span class="w"></span>
+<span class="mi">43</span><span class="w">      </span><span class="mi">42</span><span class="w">      </span><span class="n">connected</span><span class="w">       </span><span class="n">DP</span><span class="mi">-1</span><span class="w">            </span><span class="mi">610</span><span class="n">x350</span><span class="w">         </span><span class="mi">43</span><span class="w">      </span><span class="mi">42</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="display-modes-supported-by-your-display">
+<h4>Display Modes Supported by Your Display<a class="headerlink" href="#display-modes-supported-by-your-display" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span><span class="w"> </span><span class="o">-</span><span class="n">M</span><span class="w"> </span><span class="n">xlnx</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The following modes are supported by your display.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nl">modes</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">name</span><span class="w"> </span><span class="nf">refresh</span><span class="w"> </span><span class="p">(</span><span class="n">Hz</span><span class="p">)</span><span class="w"> </span><span class="n">hdisp</span><span class="w"> </span><span class="n">hss</span><span class="w"> </span><span class="n">hse</span><span class="w"> </span><span class="n">htot</span><span class="w"> </span><span class="n">vdisp</span><span class="w"> </span><span class="n">vss</span><span class="w"> </span><span class="n">vse</span><span class="w"> </span><span class="n">vtot</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="mi">3840</span><span class="n">x2160</span><span class="w"> </span><span class="mf">30.00</span><span class="w"> </span><span class="mi">3840</span><span class="w"> </span><span class="mi">4016</span><span class="w"> </span><span class="mi">4104</span><span class="w"> </span><span class="mi">4400</span><span class="w"> </span><span class="mi">2160</span><span class="w"> </span><span class="mi">2168</span><span class="w"> </span><span class="mi">2178</span><span class="w"> </span><span class="mi">2250</span><span class="w"> </span><span class="mi">297000</span><span class="w"> </span><span class="n">flags</span><span class="o">:</span><span class="w"> </span><span class="n">phsync</span><span class="p">,</span><span class="w"> </span><span class="n">pvsync</span><span class="p">;</span><span class="w"> </span><span class="n">type</span><span class="o">:</span><span class="w"> </span><span class="n">driver</span><span class="w"></span>
+<span class="w">  </span><span class="mi">3840</span><span class="n">x2160</span><span class="w"> </span><span class="mf">30.00</span><span class="w"> </span><span class="mi">3840</span><span class="w"> </span><span class="mi">4016</span><span class="w"> </span><span class="mi">4104</span><span class="w"> </span><span class="mi">4400</span><span class="w"> </span><span class="mi">2160</span><span class="w"> </span><span class="mi">2168</span><span class="w"> </span><span class="mi">2178</span><span class="w"> </span><span class="mi">2250</span><span class="w"> </span><span class="mi">297000</span><span class="w"> </span><span class="n">flags</span><span class="o">:</span><span class="w"> </span><span class="n">phsync</span><span class="p">,</span><span class="w"> </span><span class="n">pvsync</span><span class="p">;</span><span class="w"> </span><span class="n">type</span><span class="o">:</span><span class="w"> </span><span class="n">driver</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Ensure display is capable of supporting user requested resolution and refresh rates to the application.</p>
+</div>
+<div class="section" id="current-mode">
+<h4>Current Mode<a class="headerlink" href="#current-mode" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span><span class="w"> </span><span class="o">-</span><span class="n">M</span><span class="w"> </span><span class="n">xlnx</span><span class="w"></span>
+</pre></div>
+</div>
+<p>CRTC indicates the current mode that is set.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="nl">CRTCs</span><span class="p">:</span><span class="w"></span>
+<span class="n">id</span><span class="w">      </span><span class="n">fb</span><span class="w">      </span><span class="n">pos</span><span class="w">     </span><span class="n">size</span><span class="w"></span>
+<span class="mi">41</span><span class="w">      </span><span class="mi">47</span><span class="w">      </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w">   </span><span class="p">(</span><span class="mi">3840</span><span class="n">x2160</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="mi">3840</span><span class="n">x2160</span><span class="w"> </span><span class="mf">30.00</span><span class="w"> </span><span class="mi">3840</span><span class="w"> </span><span class="mi">4016</span><span class="w"> </span><span class="mi">4104</span><span class="w"> </span><span class="mi">4400</span><span class="w"> </span><span class="mi">2160</span><span class="w"> </span><span class="mi">2168</span><span class="w"> </span><span class="mi">2178</span><span class="w"> </span><span class="mi">2250</span><span class="w"> </span><span class="mi">297000</span><span class="w"> </span><span class="n">flags</span><span class="o">:</span><span class="w"> </span><span class="n">phsync</span><span class="p">,</span><span class="w"> </span><span class="n">pvsync</span><span class="p">;</span><span class="w"> </span><span class="n">type</span><span class="o">:</span><span class="w"> </span><span class="n">driver</span><span class="w"></span>
+<span class="w">  </span><span class="nl">props</span><span class="p">:</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-to-determine-if-the-display-is-ok">
+<h4>Test to Determine if the Display is OK<a class="headerlink" href="#test-to-determine-if-the-display-is-ok" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>modetest -M xlnx -s <span class="m">43</span>:1920x1080-60@AR24
+</pre></div>
+</div>
+<p>This command sets a mode, SMPTE color bars appear on the display.</p>
+<img src="../../media/SMPTE_Color_Bars.svg" alt="SMPTE color bars" width="150" height="100"></details></div>
+</div>
+<div class="section" id="i2s-audio">
+<h3>I2S Audio<a class="headerlink" href="#i2s-audio" title="Permalink to this heading">¶</a></h3>
+<details>
+ <summary>Click here to view the details.</summary>
+#### Determine the Enumeration for an I2S Audio Card<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">asound</span><span class="o">/</span><span class="n">cards</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">[</span><span class="n">xlnxi2ssndcard0</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="n">xlnx</span><span class="o">-</span><span class="n">i2s</span><span class="o">-</span><span class="n">snd</span><span class="o">-</span><span class="n">ca</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xlnx</span><span class="o">-</span><span class="n">i2s</span><span class="o">-</span><span class="n">snd</span><span class="o">-</span><span class="n">card</span><span class="mi">-0</span><span class="w"></span>
+<span class="w">                      </span><span class="n">xlnx</span><span class="o">-</span><span class="n">i2s</span><span class="o">-</span><span class="n">snd</span><span class="o">-</span><span class="n">card</span><span class="mi">-0</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In the previous example, the enumeration of I2S audio card is 2.</p>
+<div class="section" id="determine-capture-and-playback-device-number">
+<h4>Determine Capture and Playback Device Number<a class="headerlink" href="#determine-capture-and-playback-device-number" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">asound</span><span class="o">/</span><span class="n">devices</span><span class="w"></span>
+<span class="w"> </span><span class="mi">80</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="n">digital</span><span class="w"> </span><span class="n">audio</span><span class="w"> </span><span class="n">playback</span><span class="w"></span>
+<span class="w"> </span><span class="mi">89</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="n">digital</span><span class="w"> </span><span class="n">audio</span><span class="w"> </span><span class="n">capture</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In this example, [2- X]: the 2- is the card and the X is the device.</p>
+</div>
+<div class="section" id="sample-record-and-playback">
+<h4>Sample Record and Playback<a class="headerlink" href="#sample-record-and-playback" title="Permalink to this heading">¶</a></h4>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">alsa-utils.aarch64</span></code></p></li>
+<li><p>Ensure an active source is connected at the Pmod LINE IN.</p></li>
+</ol>
+<div class="section" id="sample-record">
+<h5>Sample Record<a class="headerlink" href="#sample-record" title="Permalink to this heading">¶</a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">aplay</span> <span class="pre">-D</span> <span class="pre">hw:2,0</span> <span class="pre">-fS24_LE</span> <span class="pre">-r</span> <span class="pre">48000</span> <span class="pre">-c</span> <span class="pre">2</span>&#160; <span class="pre">-d</span> <span class="pre">30</span> <span class="pre">-t</span> <span class="pre">raw</span> <span class="pre">file.raw</span></code></p>
+</div>
+<div class="section" id="sample-playback">
+<h5>Sample Playback<a class="headerlink" href="#sample-playback" title="Permalink to this heading">¶</a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">arecord</span> <span class="pre">-D</span> <span class="pre">hw:2,1</span>&#160; <span class="pre">-fS24_LE</span> <span class="pre">-r</span> <span class="pre">48000</span> <span class="pre">-c</span> <span class="pre">2</span>&#160; <span class="pre">-d</span> <span class="pre">30</span> <span class="pre">-t</span> <span class="pre">raw</span> <span class="pre">file.raw</span></code></p>
+</div>
+<div class="section" id="sample-pass-through">
+<h5>Sample Pass-through<a class="headerlink" href="#sample-pass-through" title="Permalink to this heading">¶</a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">arecord</span> <span class="pre">-D</span> <span class="pre">hw:2,1</span> <span class="pre">-f</span> <span class="pre">S24_LE</span> <span class="pre">-r</span> <span class="pre">48000</span> <span class="pre">-c</span> <span class="pre">2</span> <span class="pre">-t</span> <span class="pre">raw</span> <span class="pre">|</span> <span class="pre">aplay</span> <span class="pre">-D</span> <span class="pre">hw:2,0</span> <span class="pre">-c</span> <span class="pre">2</span> <span class="pre">-f</span> <span class="pre">S24_LE</span> <span class="pre">-r</span> <span class="pre">48000</span> <span class="pre">-t</span> <span class="pre">raw</span></code></p>
+</details></div>
+</div>
+</div>
+<div class="section" id="detect-usb-3-0">
+<h3>Detect USB 3.0<a class="headerlink" href="#detect-usb-3-0" title="Permalink to this heading">¶</a></h3>
+<details>
+ <summary>Click here to view the details.</summary><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">lsusb</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Bus</span><span class="w"> </span><span class="mo">002</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mo">003</span><span class="o">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mo">046</span><span class="n">d</span><span class="o">:</span><span class="mi">085</span><span class="n">e</span><span class="w"> </span><span class="n">Logitech</span><span class="p">,</span><span class="w"> </span><span class="n">Inc</span><span class="p">.</span><span class="w"> </span><span class="n">USB5744</span><span class="w"></span>
+<span class="n">Bus</span><span class="w"> </span><span class="mo">002</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mo">002</span><span class="o">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mo">0424</span><span class="o">:</span><span class="mi">5744</span><span class="w"> </span><span class="n">Standard</span><span class="w"> </span><span class="n">Microsystems</span><span class="w"> </span><span class="n">Corp</span><span class="p">.</span><span class="w"> </span><span class="n">USB5744</span><span class="w"></span>
+<span class="n">Bus</span><span class="w"> </span><span class="mo">002</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mo">001</span><span class="o">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">1</span><span class="n">d6b</span><span class="o">:</span><span class="mo">0003</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">Foundation</span><span class="w"> </span><span class="mf">3.0</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">hub</span><span class="w"></span>
+</pre></div>
+</div>
+</details></div>
+<div class="section" id="obtain-media-device-information">
+<h3>Obtain Media device information<a class="headerlink" href="#obtain-media-device-information" title="Permalink to this heading">¶</a></h3>
+<details> <summary>Click here to view the details.</summary><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">media</span><span class="o">*</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Lists all media enumerations:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">media</span><span class="o">-</span><span class="n">ctl</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">mediaX</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Where the X in media is the enumerated value. This command prints the device topology and helps you identify the media device.</p>
+<p>Example for capture path of <code class="docutils literal notranslate"><span class="pre">ar1335</span> <span class="pre">sensor</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">media</span><span class="o">-</span><span class="n">ctl</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">media1</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Media</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="n">API</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="mf">5.4.0</span><span class="w"></span>
+
+<span class="n">Media</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="n">information</span><span class="w"></span>
+<span class="o">------------------------</span><span class="w"></span>
+<span class="n">driver</span><span class="w">          </span><span class="n">xilinx</span><span class="o">-</span><span class="n">video</span><span class="w"></span>
+<span class="n">model</span><span class="w">           </span><span class="n">Xilinx</span><span class="w"> </span><span class="n">Video</span><span class="w"> </span><span class="n">Composite</span><span class="w"> </span><span class="n">Device</span><span class="w"></span>
+<span class="n">serial</span><span class="w"></span>
+<span class="n">bus</span><span class="w"> </span><span class="n">info</span><span class="w"></span>
+<span class="n">hw</span><span class="w"> </span><span class="n">revision</span><span class="w">     </span><span class="mh">0x0</span><span class="w"></span>
+<span class="n">driver</span><span class="w"> </span><span class="n">version</span><span class="w">  </span><span class="mf">5.4.0</span><span class="w"></span>
+
+<span class="n">Device</span><span class="w"> </span><span class="n">topology</span><span class="w"></span>
+<span class="o">-</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w"> </span><span class="n">isp_vcap_csi</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="n">pad</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">link</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">type</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">subtype</span><span class="w"> </span><span class="n">V4L</span><span class="w"> </span><span class="n">flags</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">            </span><span class="n">device</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">video2</span><span class="w"></span>
+<span class="w">        </span><span class="nl">pad0</span><span class="p">:</span><span class="w"> </span><span class="n">Sink</span><span class="w"></span>
+<span class="w">                </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;80000000.csiss&quot;</span><span class="o">:</span><span class="mi">0</span><span class="w"> </span><span class="p">[</span><span class="n">ENABLED</span><span class="p">]</span><span class="w"></span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="mi">5</span><span class="o">:</span><span class="w"> </span><span class="mf">80000000.</span><span class="n">csiss</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="n">pads</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">links</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">type</span><span class="w"> </span><span class="n">V4L2</span><span class="w"> </span><span class="n">subdev</span><span class="w"> </span><span class="n">subtype</span><span class="w"> </span><span class="n">Unknown</span><span class="w"> </span><span class="n">flags</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">            </span><span class="n">device</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">v4l</span><span class="o">-</span><span class="n">subdev0</span><span class="w"></span>
+<span class="w">        </span><span class="nl">pad0</span><span class="p">:</span><span class="w"> </span><span class="n">Source</span><span class="w"></span>
+<span class="w">                </span><span class="p">[</span><span class="n">fmt</span><span class="o">:</span><span class="n">VYYUYY8_1X24</span><span class="o">/</span><span class="mi">1920</span><span class="n">x1080</span><span class="w"> </span><span class="n">field</span><span class="o">:</span><span class="n">none</span><span class="w"> </span><span class="n">colorspace</span><span class="o">:</span><span class="n">srgb</span><span class="p">]</span><span class="w"></span>
+<span class="w">                </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;isp_vcap_csi output 0&quot;</span><span class="o">:</span><span class="mi">0</span><span class="w"> </span><span class="p">[</span><span class="n">ENABLED</span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="nl">pad1</span><span class="p">:</span><span class="w"> </span><span class="n">Sink</span><span class="w"></span>
+<span class="w">                </span><span class="p">[</span><span class="n">fmt</span><span class="o">:</span><span class="n">VYYUYY8_1X24</span><span class="o">/</span><span class="mi">1920</span><span class="n">x1080</span><span class="w"> </span><span class="n">field</span><span class="o">:</span><span class="n">none</span><span class="w"> </span><span class="n">colorspace</span><span class="o">:</span><span class="n">srgb</span><span class="p">]</span><span class="w"></span>
+<span class="w">                </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;ap1302.4-003c&quot;</span><span class="o">:</span><span class="mi">2</span><span class="w"> </span><span class="p">[</span><span class="n">ENABLED</span><span class="p">]</span><span class="w"></span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="mi">8</span><span class="o">:</span><span class="w"> </span><span class="n">ap1302</span><span class="mf">.4</span><span class="mo">-003</span><span class="n">c</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="n">pads</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">links</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">type</span><span class="w"> </span><span class="n">V4L2</span><span class="w"> </span><span class="n">subdev</span><span class="w"> </span><span class="n">subtype</span><span class="w"> </span><span class="n">Unknown</span><span class="w"> </span><span class="n">flags</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">            </span><span class="n">device</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">v4l</span><span class="o">-</span><span class="n">subdev2</span><span class="w"></span>
+<span class="w">        </span><span class="nl">pad0</span><span class="p">:</span><span class="w"> </span><span class="n">Sink</span><span class="w"></span>
+<span class="w">                </span><span class="p">[</span><span class="n">fmt</span><span class="o">:</span><span class="n">SGRBG10_1X10</span><span class="o">/</span><span class="mi">4208</span><span class="n">x3120</span><span class="w"> </span><span class="n">field</span><span class="o">:</span><span class="n">none</span><span class="w"> </span><span class="n">colorspace</span><span class="o">:</span><span class="n">srgb</span><span class="w"></span>
+<span class="w">                 </span><span class="n">crop</span><span class="p">.</span><span class="n">bounds</span><span class="o">:</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="mi">4208</span><span class="n">x3120</span><span class="w"></span>
+<span class="w">                 </span><span class="nl">crop</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="mi">4208</span><span class="n">x3120</span><span class="p">]</span><span class="w"></span>
+<span class="w">                </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;ar1335 0&quot;</span><span class="o">:</span><span class="mi">0</span><span class="w"> </span><span class="p">[</span><span class="n">ENABLED</span><span class="p">,</span><span class="n">IMMUTABLE</span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="nl">pad1</span><span class="p">:</span><span class="w"> </span><span class="n">Sink</span><span class="w"></span>
+<span class="w">                </span><span class="p">[</span><span class="n">fmt</span><span class="o">:</span><span class="n">SGRBG10_1X10</span><span class="o">/</span><span class="mi">4208</span><span class="n">x3120</span><span class="w"> </span><span class="n">field</span><span class="o">:</span><span class="n">none</span><span class="w"> </span><span class="n">colorspace</span><span class="o">:</span><span class="n">srgb</span><span class="w"></span>
+<span class="w">                 </span><span class="n">crop</span><span class="p">.</span><span class="n">bounds</span><span class="o">:</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="mi">4208</span><span class="n">x3120</span><span class="w"></span>
+<span class="w">                 </span><span class="nl">crop</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="mi">4208</span><span class="n">x3120</span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="nl">pad2</span><span class="p">:</span><span class="w"> </span><span class="n">Source</span><span class="w"></span>
+<span class="w">                </span><span class="p">[</span><span class="n">fmt</span><span class="o">:</span><span class="n">UYVY8_1X16</span><span class="o">/</span><span class="mi">4208</span><span class="n">x3120</span><span class="w"> </span><span class="n">field</span><span class="o">:</span><span class="n">none</span><span class="w"> </span><span class="n">colorspace</span><span class="o">:</span><span class="n">srgb</span><span class="w"></span>
+<span class="w">                 </span><span class="n">crop</span><span class="p">.</span><span class="n">bounds</span><span class="o">:</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="mi">4208</span><span class="n">x3120</span><span class="w"></span>
+<span class="w">                 </span><span class="nl">crop</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="mi">4208</span><span class="n">x3120</span><span class="p">]</span><span class="w"></span>
+<span class="w">                </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;80000000.csiss&quot;</span><span class="o">:</span><span class="mi">1</span><span class="w"> </span><span class="p">[</span><span class="n">ENABLED</span><span class="p">]</span><span class="w"></span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="mi">12</span><span class="o">:</span><span class="w"> </span><span class="n">ar1335</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="n">pad</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">link</span><span class="p">)</span><span class="w"></span>
+<span class="w">             </span><span class="n">type</span><span class="w"> </span><span class="n">V4L2</span><span class="w"> </span><span class="n">subdev</span><span class="w"> </span><span class="n">subtype</span><span class="w"> </span><span class="n">Sensor</span><span class="w"> </span><span class="n">flags</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">             </span><span class="n">device</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">v4l</span><span class="o">-</span><span class="n">subdev1</span><span class="w"></span>
+<span class="w">        </span><span class="nl">pad0</span><span class="p">:</span><span class="w"> </span><span class="n">Source</span><span class="w"></span>
+<span class="w">                </span><span class="p">[</span><span class="n">fmt</span><span class="o">:</span><span class="n">SGRBG10_1X10</span><span class="o">/</span><span class="mi">4208</span><span class="n">x3120</span><span class="w"> </span><span class="n">field</span><span class="o">:</span><span class="n">none</span><span class="w"> </span><span class="n">colorspace</span><span class="o">:</span><span class="n">srgb</span><span class="p">]</span><span class="w"></span>
+<span class="w">                </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;ap1302.4-003c&quot;</span><span class="o">:</span><span class="mi">0</span><span class="w"> </span><span class="p">[</span><span class="n">ENABLED</span><span class="p">,</span><span class="n">IMMUTABLE</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</details></div>
+</div>
+<div class="section" id="known-benign-error-messages">
+<h2>Known Benign Error Messages<a class="headerlink" href="#known-benign-error-messages" title="Permalink to this heading">¶</a></h2>
+<details>
+ <summary>Click here to view details:</summary><p>You do not have to worry about errors logged by the Linux kernel while executing the following specified commands, they are benign and can be ignored.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">xmutil</span><span class="w"> </span><span class="n">unloadapp</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"> </span><span class="mf">4125.507273</span><span class="p">]</span><span class="w"> </span><span class="n">OF</span><span class="o">:</span><span class="w"> </span><span class="n">ERROR</span><span class="o">:</span><span class="w"> </span><span class="n">memory</span><span class="w"> </span><span class="n">leak</span><span class="p">,</span><span class="w"> </span><span class="n">expected</span><span class="w"> </span><span class="n">refcount</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">instead</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">......</span><span class="w"> </span><span class="p">...</span><span class="w"> </span>
+<span class="p">[</span><span class="w"> </span><span class="mf">4125.507293</span><span class="p">]</span><span class="w"> </span><span class="n">OF</span><span class="o">:</span><span class="w"> </span><span class="n">ERROR</span><span class="o">:</span><span class="w"> </span><span class="n">memory</span><span class="w"> </span><span class="n">leak</span><span class="p">,</span><span class="w"> </span><span class="n">expected</span><span class="w"> </span><span class="n">refcount</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">instead</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">......</span><span class="w"> </span><span class="p">...</span><span class="w"> </span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">xmutil</span><span class="w"> </span><span class="n">loadapp</span><span class="w"> </span><span class="n">kv260</span><span class="o">-</span><span class="n">smartcam</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"> </span><span class="mf">4183.694299</span><span class="p">]</span><span class="w"> </span><span class="n">xlnx_snd_card</span><span class="w"> </span><span class="n">xlnx_snd_card</span><span class="mf">.1</span><span class="p">.</span><span class="k">auto</span><span class="o">:</span><span class="w"> </span><span class="n">ASoC</span><span class="o">:</span><span class="w"> </span><span class="n">failed</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">init</span><span class="w"> </span><span class="n">link</span><span class="w"> </span><span class="n">xilinx</span><span class="o">-</span><span class="n">i2s_playback</span><span class="o">:</span><span class="w"> </span><span class="mi">-517</span><span class="w"></span>
+<span class="p">[</span><span class="w"> </span><span class="mf">4183.703363</span><span class="p">]</span><span class="w"> </span><span class="n">xlnx_snd_card</span><span class="w"> </span><span class="n">xlnx_snd_card</span><span class="mf">.1</span><span class="p">.</span><span class="k">auto</span><span class="o">:</span><span class="w"> </span><span class="n">xlnx</span><span class="o">-</span><span class="n">i2s</span><span class="o">-</span><span class="n">snd</span><span class="o">-</span><span class="n">card</span><span class="mi">-0</span><span class="w"> </span><span class="n">registration</span><span class="w"> </span><span class="n">failed</span><span class="w"></span>
+</pre></div>
+</div>
+</details><div class="section" id="license">
+<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hw_arch_accel.html" class="btn btn-neutral float-left" title="Hardware Architecture of the Accelerator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="issue-sc.html" class="btn btn-neutral float-right" title="Known Issues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
+      <span class="lastupdated">Last updated on September 21, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

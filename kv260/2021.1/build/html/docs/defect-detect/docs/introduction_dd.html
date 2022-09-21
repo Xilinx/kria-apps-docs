@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+  <title>Design Overview &mdash; Kria™ KV260 2021.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Setting up the Board and Application Deployment" href="app_deployment_dd.html" />
+    <link rel="prev" title="Defect Detect" href="../defectdetect_landing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../index.html" class="icon icon-home"> Kria™ KV260
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2021.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KV260 Applications</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../smartcamera/smartcamera_landing.html">Smart Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aibox-reid/aibox_landing.html">AIBox-ReID</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../defectdetect_landing.html">Defect Detect</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../defectdetect_landing.html#overview">Overview</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defect-detection-application">Defect Detection Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-features-of-the-defect-detection-application">Key Features of the Defect Detection Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#various-components-used-in-this-application">Various Components Used in this Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../defectdetect_landing.html#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../defectdetect_landing.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../defectdetect_landing.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../defectdetect_landing.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../defectdetect_landing.html#other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/index.html">2022.1</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2020.2/build/html/index.html">2020.2</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Kria™ KV260</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../defectdetect_landing.html">Defect Detect</a> &raquo;</li>
+      <li>Design Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/defect-detect/docs/introduction_dd.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide">
+ <tr>
+   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit Defect Detection Tutorial</h1>
+   </td>
+ </tr>
+ <tr>
+ <td align="center"><h1>Design Overview</h1> </td>
+ </tr>
+</table><div class="section" id="design-overview">
+<h1>Design Overview<a class="headerlink" href="#design-overview" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Mango, known as the king of fruits, is an essential product that graces many a kitchen. This juicy delicacy is processed into many forms such as pulp, drinks, jams, pickles, and many more tasty products. The <a class="reference external" href="https://www.statista.com/statistics/577951/world-mango-production/">Statistia website</a> estimates that about 52 million metric tons of mangoes are produced each year globally, and that production rises each year. A large percentage of mangoes are exported, bringing in a considerable influx of foreign exchange.</p>
+<p>Given the importance of the mango in both household and export contexts, it is vital that each mango be without a single blemish of any kind. Due to the large volumes of mangoes produced, it is practically impossible to manually examine each mango for defects. An automated way of marking defects is the need of the hour.</p>
+<p>The Defect Detection application uses Vitis Vision libraries to examine each mango and mark its defects. This helps farmers sell their best mangoes to bring in enhanced revenue, and results in a win-win situation for both the farmers and the consumers.</p>
+<p>Get on with the times! Use the Xilinx automated Defect Detection application to select the best for those demanding, discerning customers.</p>
+</div>
+<div class="section" id="defect-detection-application">
+<h2>Defect Detection Application<a class="headerlink" href="#defect-detection-application" title="Permalink to this heading">¶</a></h2>
+<p>This is a getting started document for Defect Detection Accelerated Application developed on Xilinx SOM embedded platform. This document covers various components such as Hardware, Software, Design, Test Environment and more.</p>
+<p>The SOM platform is a computer vision application platform that is capable of sourcing input data from a file, accelerating the core application algorithm in hardware, and then sending the output to DP/HDMI-Tx/File.</p>
+<p>The following table lists the specific hardware (SOM + Carrier card) and the associated peripherals used in the Defect Detection accelerated application.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>HW Component</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOM-K26</td>
+<td>K26 SOM with Zynq® UltraScale+™ MPSoC</td>
+</tr>
+<tr>
+<td>Carrier Card (CC)-KV260</td>
+<td>The board that the SOM is plugged into is called the Carrier Card</td>
+</tr>
+<tr>
+<td>____</td>
+<td></td>
+</tr>
+</tbody>
+</table><p>The Defect Detection reference design has the following pipelines:</p>
+<ul class="simple">
+<li><p>Capture Pipeline – Capture images of mangoes from the file.</p></li>
+<li><p>Acceleration Pipeline:</p>
+<ul>
+<li><p>Pre-Process Pipeline – Pre-Process received images as required for the processing function.</p></li>
+<li><p>CCA Pipeline – The implemented Connected Component Analysis (CCA), is a custom solution to find the defective pixels in the problem object. This algorithm considers few assumptions that the background must be easily separable from the foreground object.</p></li>
+<li><p>Defect Decision Pipeline - The output of the CCA plugin is fed into the Defect Decision block that determines the defect density and decides the quality of the mango.</p></li>
+</ul>
+</li>
+<li><p>Display Pipelines – Display detection results and images of the mango at various stages.</p></li>
+</ul>
+<p>The following figure shows the various pipelines supported by the design.</p>
+<p><img alt="Pipelines Supported" src="../../../_images/pipelines.png" /></p>
+<p>The application processing unit (APU) in the Processing System (PS) consists of four ARM Cortex-A53 cores and is configured to run in symmetric multi-processing (SMP) Linux mode in the  design. The application running on Linux is responsible for configuring and controlling the video pipeline and accelerators using Jupyter notebooks or the application. The following figure shows the software state after the boot process has completed and the individual applications have been started on the APU. Details are described in the <a class="reference internal" href="sw_arch_platform_dd.html"><span class="doc">Software Architecture document</span></a>.</p>
+<p><img alt="Software state after application is running" src="../../../_images/software_state.png" /></p>
+<p>The APU application controls the following video data paths implemented in a combination of the PS and PL:</p>
+<ul class="simple">
+<li><p>Capture pipeline capturing video frames into DDR memory from</p>
+<ul>
+<li><p>A file on a storage device such as an SD card</p></li>
+<li><p>An image sensor connected via MIPI CSI-2 Rx through the PL</p></li>
+</ul>
+</li>
+<li><p>An output pipeline reads video frames from memory and sends the frames to a sink.</p>
+<ul>
+<li><p>The sink is a display/file storage.</p></li>
+<li><p>The DP controller subsystem in the PS is coupled to the STDP4320 De-multiplexer on the carrier card. STDP4320 consists of dual mode output ports configured as DP/HDMI.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="key-features-of-the-defect-detection-application">
+<h2>Key Features of the Defect Detection Application<a class="headerlink" href="#key-features-of-the-defect-detection-application" title="Permalink to this heading">¶</a></h2>
+<p>The Defect Detection application detects defects in a mango. The application supports file-based use cases.</p>
+<p>File-based usage accepts the input GRAY8 file (Y8 format) and returns three outputs in GRAY8 format.</p>
+<p>For the live use case, connect the AR0144 sensor to capture 1280x800&#64;60fps GRAY8 data. The application processes this data and sends the outputs to the display.</p>
+<p>Note: The Y8 file is playable using a YUV player. As the Y8 file is a raw file, you may need to drag and drop the file to the player of your choice, and set the proper size (width=1280, height=800) and use Y color format.</p>
+<p>The output can come from any of the following stages of processing:</p>
+<ul class="simple">
+<li><p>Stage 1 of the output belongs to input GRAY8 data</p></li>
+<li><p>Stage 2 of the output belongs to pre-processed pipeline</p></li>
+<li><p>Stage 3 of the output belongs to the final stage defect detection pipeline</p></li>
+</ul>
+</div>
+<div class="section" id="various-components-used-in-this-application">
+<h2>Various Components Used in this Application<a class="headerlink" href="#various-components-used-in-this-application" title="Permalink to this heading">¶</a></h2>
+<details>
+ <summary><b>Tools</b></summary><ul>
+<li><p>Xilinx Tools</p>
+<ul class="simple">
+<li><p>Vitis™: 2021.1 (Early development is 2020.2.2)</p></li>
+<li><p>PetaLinux™: 2021.1 (Early development is 2020.2.2)</p></li>
+<li><p>SOM Vitis platform which will be provided by Xilinx.</p></li>
+<li><p>Vivado™ tool: 2021.1(Early development is 2020.2.2)</p></li>
+</ul>
+</details></li>
+</ul>
+<details>
+ <summary><b>Hardware</b></summary><ul class="simple">
+<li><p>Hardware Components</p>
+<ul>
+<li><p>Target platforms and extensions</p>
+<ul>
+<li><p>Kria™ KV260 Vision AI Starter Kit including:</p>
+<ul>
+<li><p><a class="reference external" href="https://www.onsemi.com/products/sensors/image-sensors-processors/image-processors/ap1302">On Semi AP1302 Image Signal Processor</a> on the carrier card</p></li>
+<li><p>DP splitter on the carrier card</p></li>
+<li><p><a class="reference external" href="https://www.onsemi.com/products/sensors/image-sensors-processors/image-sensors/ar0144cs">On Semi AR0144 CMOS Image sensor</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Hardware interfaces and IP</p>
+<ul>
+<li><p>Video Inputs</p>
+<ul>
+<li><p>File</p></li>
+<li><p>MIPI CSI-2 RX</p></li>
+</ul>
+</li>
+<li><p>Video Outputs</p>
+<ul>
+<li><p>File</p></li>
+<li><p>DisplayPort/HDMI</p></li>
+</ul>
+</li>
+<li><p>Auxiliary Peripherals</p>
+<ul>
+<li><p>QSPI</p></li>
+<li><p>SD</p></li>
+<li><p>I2C</p></li>
+<li><p>UART</p></li>
+<li><p>Ethernet</p></li>
+<li><p>General-purpose I/O (GPIO)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</details><details>
+ <summary><b>Software</b></summary><ul class="simple">
+<li><p>Software Components</p>
+<ul>
+<li><p>Video Processing: Vitis Vision library accelerator functions</p></li>
+<li><p>Operating System</p>
+<ul>
+<li><p>APU: SMP Linux</p></li>
+</ul>
+</li>
+<li><p>Linux Kernel Subsystems</p>
+<ul>
+<li><p>Video Source: Video4 Linux (V4L2)</p></li>
+<li><p>Display: Direct Rendering Manager (DRM)/Kernel Mode Setting (KMS)</p></li>
+</ul>
+</li>
+<li><p>Linux User Space Frameworks</p>
+<ul>
+<li><p>Jupyter Notebook</p></li>
+<li><p>GStreamer / Xilinx IVAS</p></li>
+<li><p>Xilinx runtime (XRT)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</details></div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><img alt="right arrow" src="../../../_images/next.jpg" /> <a class="reference internal" href="app_deployment_dd.html"><span class="doc">Setting up the Board and Application deployment</span></a></p></li>
+<li><ul>
+<li><p>Go back to the <a class="reference internal" href="../defectdetect_landing.html"><span class="doc">KV260 Defect detect design start page</span></a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Kria KV260 Vision AI Starter Kit User Guide (<a class="reference external" href="https://www.xilinx.com/docs/cgi-bin/rdoc?t=som-doc%3Bv=latest%3Bd=ug1089-kv260-starter-kit.pdf">UG1089</a>)</p></li>
+<li><p>Kria SOM Carrier Card Design Guide (<a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/rdoc?t=som-doc%3Bd=ug1091-carrier-card-design.pdf">UG1091</a>)</p></li>
+<li><p>Kria KV260 Vision AI Starter Kit Data Sheet(<a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/ndoc?t=data_sheets%3Bd=ds986-kv260-starter-kit.pdf">DS986</a>)</p></li>
+<li><p>Kria K26 SOM Data Sheet(<a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/ndoc?t=data_sheets%3Bd=ds987-k26-som.pdf">DS987</a>)</p></li>
+</ul>
+<div class="section" id="license">
+<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../defectdetect_landing.html" class="btn btn-neutral float-left" title="Defect Detect" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="app_deployment_dd.html" class="btn btn-neutral float-right" title="Setting up the Board and Application Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
+      <span class="lastupdated">Last updated on September 21, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

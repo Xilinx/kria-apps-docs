@@ -42,7 +42,7 @@ Gives an overview to various components in the Kria SOM boot firmware, and point
 
 
 **********************************************************************************************************************************************************************************************
-`Kria KV260 Vision AI Starter Kit Applications <../../../kv260/main/build/html/index.html>`__
+`Kria KV260 Vision AI Starter Kit Applications <../../../kv260/2022.1/build/html/index.html>`__
 **********************************************************************************************************************************************************************************************
 
 
@@ -52,7 +52,7 @@ Gives an overview to various components in the Kria SOM boot firmware, and point
    :caption: Kria KV260
    :hidden:
 
-   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kv260/main/build/html/index.html>
+   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
 
 
 

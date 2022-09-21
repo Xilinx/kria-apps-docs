@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+  <title>Integrate Accelerator Overlay &mdash; Kria™ KV260 2022.1 Staging documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Generation of Firmware binaries" href="generating_custom_firmware.html" />
+    <link rel="prev" title="Build Vitis Platform" href="build_vitis_platform.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Kria™ KV260
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1 Staging
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KV260 Applications</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="smartcamera/smartcamera_landing.html">Smart Camera</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="smartcamera/smartcamera_landing.html#tutorials">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="smartcamera/docs/customize_ai_models.html">Customizing AI Models used in the Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_the_design.html">Building the Design components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_vivado_design.html">Building the Hardware design using Vivado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Integrating an overlay into the platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integrating-an-overlay-accelerator-functions-into-a-vitis-extensible-platform">Integrating an overlay (accelerator functions) into a Vitis Extensible platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-step">Next Step</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generating_custom_firmware.html">Generating Custom Firmaware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">Kria Starterkit Linux Boot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aibox-reid/aibox_landing.html">AIBox-ReID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defect-detect/defectdetect_landing.html">Defect Detect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/index.html">2021.1</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2020.2/build/html/index.html">2020.2</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kria™ KV260</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="smartcamera/smartcamera_landing.html">Smart Camera</a> &raquo;</li>
+      <li>Integrate Accelerator Overlay</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/build_accel.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide">
+ <tr>
+   <td align="center"><img src="media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KV260 Vision AI Starter Kit Tutorial</h1>
+   </td>
+ </tr>
+ <tr>
+ <td align="center"><h1>Integrating the overlay into the Platform</h1> </td>
+ </tr>
+</table><div class="section" id="integrate-accelerator-overlay">
+<h1>Integrate Accelerator Overlay<a class="headerlink" href="#integrate-accelerator-overlay" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction:<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This document provides the steps to integrate the overlay consisting of accelerated functions into the platform.</p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites:<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Vitis Unified Software Platform 2021.1</p></li>
+</ul>
+<div class="section" id="accessing-the-tutorial-reference-files">
+<h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p><strong>Note</strong>: Skip the following steps if the design files have already been cloned and extracted to a working repository</p>
+</div></blockquote>
+<ol>
+<li><p>To access the reference files, type the following into a terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">branch</span> <span class="n">xilinx_v2022</span><span class="mf">.1</span><span class="n">_update3</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Xilinx</span><span class="o">/</span><span class="n">kria</span><span class="o">-</span><span class="n">vitis</span><span class="o">-</span><span class="n">platforms</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">kria-vitis-platforms/kv260-vitis</span></code> which is the working directory.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="integrating-an-overlay-accelerator-functions-into-a-vitis-extensible-platform">
+<h2>Integrating an overlay (accelerator functions) into a Vitis Extensible platform<a class="headerlink" href="#integrating-an-overlay-accelerator-functions-into-a-vitis-extensible-platform" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Go to the working directory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $working_dir/
+</pre></div>
+</div>
+</li>
+<li><p>To compile and integrate the overlay into the platform, run the following command. The Makefile calls a lower level Makefile to run Vitis. If a platform is not already available it builds that as well.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">overlay</span> <span class="n">OVERLAY</span><span class="o">=&lt;</span><span class="n">application_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Applications currently supported are listed below</p>
+</li>
+</ol>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Application name</th>
+<th>Platform used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smartcam</td>
+<td>kv260_ispMipiRx_vcu_DP</td>
+</tr>
+<tr>
+<td>aibox-reid</td>
+<td>kv260_vcuDecode_vmixDP</td>
+</tr>
+<tr>
+<td>defect-detect</td>
+<td>kv260_ispMipiRx_vmixDP</td>
+</tr>
+<tr>
+<td>nlp-smartvision</td>
+<td>kv260_ispMipiRx_rpiMipiRx_DP</td>
+</tr>
+</tbody>
+</table><ol>
+<li><p>The generated bitfile and xclbin will be located at</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$working_dir/overlays/examples/&lt;application_name&gt;/binary_container_1/link/int/system.bit   
+$working_dir/overlays/examples/&lt;application_name&gt;/binary_container_1/*.xclbin
+</pre></div>
+</div>
+<p>The xclbin and bitfile generation may take couple of hours depending on the system specification. They will be used to build the Petaliunx image</p>
+</li>
+</ol>
+</div>
+<div class="section" id="next-step">
+<h2>Next Step<a class="headerlink" href="#next-step" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="build_petalinux">Building a Petalinux Image</a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../index.html"><span class="doc">KV260 SOM designs start page</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<p>For more information on how to integrate an accelerator into a platform refer to Xilinx Vitis Unified Software Platform Documentation <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf">UG1393</a>.</p>
+<div class="section" id="license">
+<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="build_vitis_platform.html" class="btn btn-neutral float-left" title="Build Vitis Platform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generating_custom_firmware.html" class="btn btn-neutral float-right" title="Generation of Firmware binaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
+      <span class="lastupdated">Last updated on September 21, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
