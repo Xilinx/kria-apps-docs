@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+  <title>Setting up the Board and Application Deployment &mdash; Kria™ KV260 2022.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Customizing the AI Models used in the application" href="customize_ai_models.html" />
+    <link rel="prev" title="Design Overview" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../index.html" class="icon icon-home"> Kria™ KV260
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KV260 Applications</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../smartcamera_landing.html">Smart Camera</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#overview">Overview</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../smartcamera_landing.html#quick-start">Quick Start</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Setting up the Board and Application deployment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#booting-up-linux">Booting up Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application-specific-hardware-setup">Application Specific Hardware Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#downloading-and-loading-application-firmware">Downloading and Loading Application Firmware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-based-application-preparation">Docker based application preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-the-application">Run the Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#files-structure-of-the-application">Files structure of the application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../aibox-reid/aibox_landing.html">AIBox-ReID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defect-detect/defectdetect_landing.html">Defect Detect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/index.html">2021.1</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2020.2/build/html/index.html">2020.2</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Kria™ KV260</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../smartcamera_landing.html">Smart Camera</a> &raquo;</li>
+      <li>Setting up the Board and Application Deployment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/smartcamera/docs/app_deployment.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide">
+ <tr>
+   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KV260 Vision AI Starter Kit Smart Camera Tutorial</h1>
+   </td>
+ </tr>
+ <tr>
+ <td align="center"><h1>Setting up the Board and Application Deployment</h1> </td>
+ </tr>
+</table><div class="section" id="setting-up-the-board-and-application-deployment">
+<h1>Setting up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This document shows how to set up the board and run the smartcam application.</p>
+<p>This guide and its prebuilt are targeted for Ubuntu 22.04 and Xilinx 2022.1 toolchain. The previous version of this application (on Xilinx 2021.1 toolchain) targeted to Petalinux is still available <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html">online</a>.</p>
+</div>
+<div class="section" id="booting-up-linux">
+<h2>Booting up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
+<p>Before continuing with smartcam application specific instructions, if not yet done so, boot Linux with instructions from <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> page. Note that smartcam application recommend starting the application using commandline through uart instead of GNOME Desktop.</p>
+</div>
+<div class="section" id="application-specific-hardware-setup">
+<h2>Application Specific Hardware Setup<a class="headerlink" href="#application-specific-hardware-setup" title="Permalink to this heading">¶</a></h2>
+<p>Besides the hardware configurations required in <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> for booting Linux, smartcam application requires the following hardware setup:</p>
+<p><img alt="GitHub Logo" src="../../../_images/som-board.png" /></p>
+<ul>
+<li><p>Monitor:</p>
+<p>Before booting, connect a 1080P/4K monitor to the board via either DP or HDMI port.</p>
+<p>4K monitor is preferred to demonstrate at the maximum supported resolution.</p>
+</li>
+<li><p>IAS sensor:</p>
+<p>Before power on, install an AR1335 sensor module in J7.</p>
+</li>
+<li><p>You may also use a USB webcam as an input device.</p>
+<p>The webcam is optional video input device supported in the application.</p>
+<p>Recommended webcam is the <a class="reference external" href="https://www.logitech.com/en-in/products/webcams/brio-4k-hdr-webcam.960-001105.html">Logitech BRIO</a>.</p>
+</li>
+<li><p>Audio Pmod setup as RTSP audio input:</p>
+<p>Audio Pmod is optional audio input and output device. In the current release (22.1 update3), audio is not supported, please see <a class="reference internal" href="issue-sc.html"><span class="doc">known issues</span></a> for details.</p>
+<p>In the Smart camera application only RTSP mode <a class="reference external" href="#rtsp-audio">uses the audio input function</a> to capture audio. Audio is then sent together with the images as RTSP stream and can be received at the client side.</p>
+<p>To set it up, first install the Pmod to J2, then connect a microphone or any other sound input device to the <a class="reference external" href="https://store.digilentinc.com/pmod-i2s2-stereo-audio-input-and-output/">line input port</a>. A headphone with a microphone will not work - device needs to be a dedicated input.</p>
+<p>Smartcam application does not yet support speakers.</p>
+</li>
+</ul>
+<div class="section" id="software-preparation">
+<h3>Software Preparation<a class="headerlink" href="#software-preparation" title="Permalink to this heading">¶</a></h3>
+<p>You will use a PC having network access to the board as the RTSP client machine.</p>
+<p>Make sure that the PC and the KV260 Vision AI Starter Kit are on the same subnet mask.</p>
+<p>On the client machine, to receive and play the RTSP stream, we recommend to install FFplay which is part of FFmpeg package.</p>
+<p>For Linux, you can install FFmpeg with the package manager of your distribution.</p>
+<p>For Windows, you can find install instructions on https://ffmpeg.org/download.html</p>
+<p>Other than FFplay, VLC can also be used to play RTSP stream, but sometimes it doesn’t work on some client machines, while the FFplay works well.</p>
+</div>
+</div>
+<div class="section" id="downloading-and-loading-application-firmware">
+<h2>Downloading and Loading Application Firmware<a class="headerlink" href="#downloading-and-loading-application-firmware" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Get the latest kv260-smartcam firmware package:</p>
+<ul class="simple">
+<li><p>Search package feed for packages compatible with Kv260</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo apt search xlnx-firmware-kv260
+Sorting... Done
+Full Text Search... Done
+xlnx-firmware-kv260-aibox-reid/jammy <span class="m">0</span>.1-0xlnx1 arm64
+FPGA firmware <span class="k">for</span> Xilinx boards - kv260 aibox-reid application
+
+xlnx-firmware-kv260-benchmark-b4096/jammy <span class="m">0</span>.1-0xlnx1 arm64
+FPGA firmware <span class="k">for</span> Xilinx boards - kv260 benchmark-b4096 application
+
+xlnx-firmware-kv260-defect-detect/jammy <span class="m">0</span>.1-0xlnx1 arm64
+FPGA firmware <span class="k">for</span> Xilinx boards - kv260 defect-detect application
+
+xlnx-firmware-kv260-nlp-smartvision/jammy,now <span class="m">0</span>.1-0xlnx1 arm64 
+FPGA firmware <span class="k">for</span> Xilinx boards - kv260 nlp-smartvision application
+
+xlnx-firmware-kv260-smartcam/jammy <span class="m">0</span>.1-0xlnx1 arm64 <span class="o">[</span>installed<span class="o">]</span>
+FPGA firmware <span class="k">for</span> Xilinx boards - kv260 smartcam application
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Install firmware binaries</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install xlnx-firmware-kv260-smartcam
+</pre></div>
+</div>
+</li>
+<li><p>Dynamically load the application package:</p>
+<p>The firmware consist of bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.</p>
+<ul>
+<li><p>Disable the desktop environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil      desktop_disable
+</pre></div>
+</div>
+<p><strong>Note:</strong> Executing “xmutil desktop_disable” will cause the monitor to go blank. Please use any serial terminal to continue issuing Linux commands via port J4 and not rely completely on the desktop environment.</p>
+<p>After running the application, the desktop environment can be enabled again with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil      desktop_enable
+</pre></div>
+</div>
+</li>
+<li><p>After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil listapps
+</pre></div>
+</div>
+</li>
+<li><p>Switch to a different platform for different Application:</p>
+<p>When there’s already another accelerator/firmware being activated, unload it first, then switch to kv260-smartcam.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp
+sudo xmutil loadapp kv260-smartcam
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="docker-based-application-preparation">
+<h2>Docker based application preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p>Pull the 2022.1 docker image for smartcam using the below command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/smartcam:2022.1
+</pre></div>
+</div>
+<ul>
+<li><p>The storage volume on the SD card can be limited with multiple dockers. If there are space issues, you can use following command to remove the existing container.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker rmi --force &lt;other containers&gt;
+</pre></div>
+</div>
+</li>
+<li><p>You can find the images installed with command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker images
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Launch the docker using the below command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run <span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span> <span class="se">\</span>
+-h <span class="s2">&quot;xlnx-docker&quot;</span> <span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span> <span class="se">\</span>
+--net<span class="o">=</span>host <span class="se">\</span>
+--privileged <span class="se">\</span>
+--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span> <span class="se">\</span>
+-v /tmp:/tmp <span class="se">\</span>
+-v /dev:/dev <span class="se">\</span>
+-v /sys:/sys <span class="se">\</span>
+-v /etc/vart.conf:/etc/vart.conf <span class="se">\</span>
+-v /lib/firmware/xilinx:/lib/firmware/xilinx <span class="se">\</span>
+-v /run:/run <span class="se">\</span>
+-it xilinx/smartcam:2022.1 bash
+</pre></div>
+</div>
+<p>It will launch the smartcam image in a new container</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@xlnx-docker/#
+</pre></div>
+</div>
+</li>
+<li><p>Getting demo video files suitable for the application:</p>
+<p>To be able to demonstrate the function of the application in case you have no MIPI and USB camera in hand, we support the file video source too.</p>
+<p>You can download video files from the following links, which is of MP4 format.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pixabay.com/videos/alley-people-walk-street-ukraine-39837/">Facedet / RefineDet AI Task</a></p></li>
+<li><p><a class="reference external" href="https://pixabay.com/videos/freeway-traffic-cars-rainy-truck-8358/">ADAS SSD AI Task</a></p></li>
+</ul>
+<p>Then, you need to transcode it to H264 file which is one supported input format.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -i input-video.mp4 -c:v libx264 -pix_fmt nv12 -vf <span class="nv">scale</span><span class="o">=</span><span class="m">1920</span>:1080 -r <span class="m">30</span> output.nv12.h264
+</pre></div>
+</div>
+<p>Finally, please upload or copy these transcoded H264 files to the board (by using scp, ftp, or copy onto SD card and finding them in /boot/firmware/), place it to somewhere under /tmp, which will mapped to /tmp in the docker container too.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="run-the-application">
+<h2>Run the Application<a class="headerlink" href="#run-the-application" title="Permalink to this heading">¶</a></h2>
+<p>There are two ways to interact with the application.</p>
+<div class="section" id="jupyter-notebook">
+<h3>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p>User need to run following command to install the package shipped notebooks which reside in <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/notebooks</span></code> to the folder <code class="docutils literal notranslate"><span class="pre">/root/notebooks/smartcam</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">smartcam-install.py</span></code></p>
+<p>This script also provides more options to install the notebook of current application to specified location.</p>
+</li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    usage: smartcam-install [-h] [-d DIR] [-f]
+
+    Script to copy smartcam Jupyter notebook to user directory
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -d DIR, --dir DIR  Install the Jupyter notebook to the specified directory.
+      -f, --force        Force to install the Jupyter notebook even if the destination directory exists.
+</pre></div>
+</div>
+<ul>
+<li><p>To launch Jupyter notebook on the target, run below command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-lab --notebook-dir<span class="o">=</span>/root/notebooks/smartcam --allow-root --ip<span class="o">=</span>ip-address <span class="p">&amp;</span> 
+// fill <span class="k">in</span> ip-address from ifconfig, eth0
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Output example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.644 LabApp<span class="o">]</span> JupyterLab extension loaded from /usr/local/lib/python3.10/dist-packages/jupyterlab
+<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.644 LabApp<span class="o">]</span> JupyterLab application directory is /usr/local/share/jupyter/lab
+<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.664 ServerApp<span class="o">]</span> jupyterlab <span class="p">|</span> extension was successfully loaded.
+<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.683 ServerApp<span class="o">]</span> nbclassic <span class="p">|</span> extension was successfully loaded.
+<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.685 ServerApp<span class="o">]</span> Serving notebooks from <span class="nb">local</span> directory: /root/notebooks/smartcam
+<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.685 ServerApp<span class="o">]</span> Jupyter Server <span class="m">1</span>.18.1 is running at:
+<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.685 ServerApp<span class="o">]</span> http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.686 ServerApp<span class="o">]</span>  or http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.686 ServerApp<span class="o">]</span> Use Control-C to stop this server and shut down all kernels <span class="o">(</span>twice to skip confirmation<span class="o">)</span>.
+<span class="o">[</span>W <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.702 ServerApp<span class="o">]</span> No web browser found: could not locate runnable browser.
+<span class="o">[</span>C <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.703 ServerApp<span class="o">]</span>
+
+    To access the server, open this file <span class="k">in</span> a browser:
+        file:///root/.local/share/jupyter/runtime/jpserver-40-open.html
+    Or copy and paste one of these URLs:
+        http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+     or http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+</pre></div>
+</div>
+<ul>
+<li><p>User can access the server by opening the server URL from previous steps with the Chrome browser.</p>
+<p>In the notebook, we will construct the GStreamer pipeline string, you can get it by adding simple python code to print it out, and played with gst-launch-1.0 command in the console, and there are some user options variables that can be changed and run with. For other parts of the pipeline, you can also change and play to see the effect easily.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="command-line">
+<h3>Command line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h3>
+<p>These allow the user to define different video input and output device targets using the “smartcam” application. These are to be executed using the UART/debug interface.</p>
+<div class="section" id="example-scripts">
+<h4>Example scripts<a class="headerlink" href="#example-scripts" title="Permalink to this heading">¶</a></h4>
+<p>Example scripts and options definitions are provided below.</p>
+<p>Refer to <a class="reference external" href="#script-loc">File Structure</a> to find the files location.</p>
+<details>
+<summary><b>Click here to view the example script usage</b></summary><ul class="simple">
+<li><p>MIPI RTSP server:</p>
+<ol class="simple">
+<li><p>Invoking <code class="docutils literal notranslate"><span class="pre">&quot;bash</span> <span class="pre">01.mipi-rtsp.sh&quot;</span></code> will start rtsp server for mipi captured images.</p></li>
+<li><p>Script accepts ${width} ${height} as the 1st and 2nd parameter, the default is 1920 x 1080.</p></li>
+<li><p>Running the script will give message in the form:</p></li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<div><p>stream ready at:</p>
+<p>rtsp://boardip:port/test</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">Run</span> <span class="s2">&quot;ffplay rtsp://boardip:port/test&quot;</span> <span class="n">on</span> <span class="n">the</span> <span class="n">client</span> <span class="n">PC</span> <span class="n">to</span> <span class="n">receive</span> <span class="n">the</span> <span class="n">rtsp</span> <span class="n">stream</span><span class="o">.</span>
+
+<span class="mf">4.</span> <span class="n">Checking</span><span class="p">:</span>
+
+  <span class="n">You</span> <span class="n">should</span> <span class="n">be</span> <span class="n">able</span> <span class="n">to</span> <span class="n">see</span> <span class="n">the</span> <span class="n">images</span> <span class="n">the</span> <span class="n">camera</span> <span class="ow">is</span> <span class="n">capturing</span> <span class="n">on</span> <span class="n">the</span> <span class="n">ffplay</span> <span class="n">window</span><span class="p">,</span> <span class="ow">and</span> <span class="n">when</span> <span class="n">there</span><span class="s1">&#39;s face captured by camera, there should be blue box drawn around the face, and the box should follow the movement of the face.</span>
+</pre></div>
+</div>
+<ul>
+<li><p>MIPI DP display:</p>
+<ol>
+<li><p>Make sure the monitor is connected as <a class="reference external" href="#Setting-up-the-Board">here</a>.</p></li>
+<li><p>Invoking <code class="docutils literal notranslate"><span class="pre">&quot;bash</span> <span class="pre">02.mipi-dp.sh&quot;</span></code> will play the captured video with detection results on monitor.</p></li>
+<li><p>Script accepts ${width} ${height} as the 1st and 2nd parameter, the default is 1920 x 1080.</p></li>
+<li><p>Checking:</p>
+<p>You should be able to see the images the camera is capturing on the monitor connected to the board, and when there’s face captured by the camera, there should be blue box drawn around the face, and the box should follow the movement of the face.</p>
+</li>
+</ol>
+</li>
+<li><p>File to File</p>
+<ol>
+<li><p>Invoking <code class="docutils literal notranslate"><span class="pre">&quot;bash</span> <span class="pre">03.file-file.sh&quot;</span></code></p>
+<p>Take the first argument passed to this script as the path to the H264 video file (you can use the demo video for face detection, or similar videos), perform face detection and generate video with detection bbox, save as <code class="docutils literal notranslate"><span class="pre">./out.h264</span></code></p>
+</li>
+<li><p>Checking:</p>
+<p>Play the input video file and generated video file “./out.h264” with any media player you prefer, e.g. VLC, FFPlay. You should be able to see in the output video file, there are blue boxes around the faces of people, and the boxes should follow the movement of the faces, while there’re no such boxes with the input video file.</p>
+</li>
+</ol>
+</li>
+<li><p>File to DP</p>
+<ol>
+<li><p>Invoking <code class="docutils literal notranslate"><span class="pre">&quot;bash</span> <span class="pre">04.file-ssd-dp.sh&quot;</span></code></p>
+<p>Take the first argument passed to this script as the path to the H264 video file (you can use the demo video for ADAS SSD, or similar videos), perform vehicles detection and generate video with detection bbox, and display onto monitor</p>
+</li>
+<li><p>Checking:</p>
+<p>You should be able to see a video of highway driving, with the detection of vehicles in a bounding box.</p>
+</li>
+</ol>
+</li>
+</ul>
+</details></div>
+<div class="section" id="additional-configuration-options-for-smartcam-invocation">
+<h4>Additional configuration options for <code class="docutils literal notranslate"><span class="pre">smartcam</span></code> invocation<a class="headerlink" href="#additional-configuration-options-for-smartcam-invocation" title="Permalink to this heading">¶</a></h4>
+<p>The example scripts and Jupyter notebook work as examples to show the capability of the smartcam for specific configurations. More combinations could be made based on the options provided by smartcam. User can get detailed application options as following by invoking <code class="docutils literal notranslate"><span class="pre">smartcam</span> <span class="pre">--help</span></code>.</p>
+<div class="section" id="usage">
+<h5>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h5>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> smartcam [OPTION?] - Application for face detection on SOM board of Xilinx.
+
+ Help Options:
+
+ -h, --help             Show help options
+
+ --help-all             Show all help options
+
+ --help-gst             Show GStreamer Options
+
+
+ Application Options:
+
+ -m, --mipi=                use MIPI camera as input source, auto detect, fail if no mipi available.
+
+ -u, --usb=media_ID         usb camera video device id, e.g. 2 for /dev/video2
+
+ -f, --file=file            path location of h26x file as input
+
+ -i, --infile-type=h264     input file type: [h264 | h265]
+
+ -W, --width=1920           resolution w of the input
+
+ -H, --height=1080          resolution h of the input
+
+ -r, --framerate=30         framerate of the input
+
+ -t, --target=dp            [dp|rtsp|file]
+
+ -o, --outmedia-type=h264   output file type: [h264 | h265]
+
+ -p, --port=5000            Port to listen on (default: 5000)
+
+ -a, --aitask               select AI task to be run: [facedetect|ssd|refinedet]
+
+ -n, --nodet                no AI inference
+
+ -A, --audio                RTSP with I2S audio input
+
+ -R, --report               report fps
+
+ -s, --screenfps            display fps on screen, notic this will cause perfermance degradation.
+
+ --ROI-off                  turn off ROI (Region-of-Interest)
+
+--control-rate=low-latency  Encoder parameter control-rate
+                            Supported value:
+                            ((0): disable (1): variable (2): constant
+                            (2130706434): capped-variable
+                            (2130706433): low-latency)
+
+--target-bitrate=3000       Encoder parameter target-bitrate
+
+--gop-length=60             Encoder parameter gop-length
+
+--profile                   Encoder parameter profile.
+                            Default: h264: constrained-baseline; h264: main
+                            Supported value:
+                            (H264: constrained-baseline, baseline, main, high, high-10, high-4:2:2, high-10-intra, high-4:2:2-intra
+                             H265: main, main-intra, main-10, main-10-intra, main-422-10, main-422-10-intra)
+
+--level                     Encoder parameter level
+                            Default: 4
+                            Supported value:
+                            (4, 4.1, 5, 5.1, 5.2)
+
+--tier                      Encoder parameter tier
+                            Default: main
+                            Supported value:
+                            (main, high)
+
+--encodeEnhancedParam       String for fully customizing the encoder in the form &quot;param1=val1, param2=val2,...&quot;, where paramn is the name of the encoder parameter
+                            For detailed info about the parameter name and value range, just run gst-inspect-1.0 omxh264enc / gst-inspect-1.0 omxh265enc based on encoding type selected by option &quot;--outmedia-type&quot;, the parameter could be any of the listed parameters except &quot;control-rate, target-bitrate, gop-length&quot; which have dedicated options as above.
+</pre></div>
+</div>
+</div>
+<div class="section" id="examples-of-supported-combinations-sorted-by-input-are-outlined-below">
+<h5>Examples of supported combinations sorted by input are outlined below<a class="headerlink" href="#examples-of-supported-combinations-sorted-by-input-are-outlined-below" title="Permalink to this heading">¶</a></h5>
+<p>If using the command line to invoke the smartcam, stop the process via CTRL-C prior to starting the next instance.</p>
+<ul>
+<li><p>MIPI Input (IAS sensor input):</p>
+<ul>
+<li><p>output: RTSP</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --mipi -W <span class="m">1920</span> -H <span class="m">1080</span> --target rtsp
+</pre></div>
+</div>
+</li>
+<li><p>output: RTSP with audio <a name="rtsp-audio"> </a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --mipi -W <span class="m">1920</span> -H <span class="m">1080</span> --target rtsp --audio
+</pre></div>
+</div>
+</li>
+<li><p>output: DP</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --mipi -W <span class="m">1920</span> -H <span class="m">1080</span> --target dp
+</pre></div>
+</div>
+</li>
+<li><p>output: file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --mipi -W <span class="m">1920</span> -H <span class="m">1080</span> --target file
+</pre></div>
+</div>
+<p><strong>Note:</strong> Output file is “./out.h264”</p>
+</li>
+</ul>
+</li>
+<li><p>input file (file on file system):</p>
+<p><strong>Note:</strong> You must update the command to the specific file desired as the input source.</p>
+<ul>
+<li><p>output: RTSP</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --file ./test.h264 -i h264 -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target rtsp
+</pre></div>
+</div>
+</li>
+<li><p>output: DP</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --file ./test.h264 -i h264 -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target dp
+</pre></div>
+</div>
+</li>
+<li><p>output: file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --file ./test.h264 -i h264 -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target file
+</pre></div>
+</div>
+<p><strong>Note:</strong> Output file is “./out.h264”</p>
+</li>
+</ul>
+</li>
+<li><p>input USB (USB webcam):</p>
+<p><strong>Note:</strong> You must ensure the width/height/framerate defined are supported by your USB camera.</p>
+<ul>
+<li><p>output: RTSP</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --usb <span class="m">1</span> -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target rtsp
+</pre></div>
+</div>
+</li>
+<li><p>output: DP</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> smartcam --usb <span class="m">1</span> -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target dp
+</pre></div>
+</div>
+</li>
+<li><p>output: file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> smartcam --usb <span class="m">1</span> -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target file
+</pre></div>
+</div>
+<p><strong>Note:</strong> Output file is “./out.h264”</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="files-structure-of-the-application">
+<h2>Files structure of the application<a class="headerlink" href="#files-structure-of-the-application" title="Permalink to this heading">¶</a></h2>
+<p>The application is installed as:</p>
+<ul class="simple">
+<li><p>Binary File Directory: /opt/xilinx/kv260-smartcam/bin</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>filename</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smartcam</td>
+<td>main app</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>Script File Directory: /opt/xilinx/kv260-smartcam/bin/ <a name="script-loc"></a></p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>filename</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01.mipi-rtsp.sh</td>
+<td>call smartcam to run facedetction and send out rtsp stream.</td>
+</tr>
+<tr>
+<td>02.mipi-dp.sh</td>
+<td>call smartcam to run facedetction and display on DP display.</td>
+</tr>
+<tr>
+<td>03.file-file.sh</td>
+<td>call smartcam to run facedetction and display on input h264/5 file and generate output h264/5 with detection boxes.</td>
+</tr>
+<tr>
+<td>04.file-ssd-dp.sh</td>
+<td>call smartcam to run ssd, process the input h264/5 file and display the results with detection boxes DP display.</td>
+</tr>
+</tbody>
+</table><ul>
+<li><p>Configuration File Directory: /opt/xilinx/kv260-smartcam/share/vvas/${AITASK}</p>
+<p>AITASK = “facedetect” | “refinedet” | “ssd”</p>
+</li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>filename</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>preprocess.json</td>
+<td>Config of preprocess for AI inference</td>
+</tr>
+<tr>
+<td>aiinference.json</td>
+<td>Config of AI inference (facedetect|refinedet|ssd)</td>
+</tr>
+<tr>
+<td>drawresult.json</td>
+<td>Config of boundbox drawing</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>Model files: =&gt; /opt/xilinx/kv260-smartcam/share/vitis_ai_library/models</p></li>
+</ul>
+<p>The model files integrated in the application use the B3136 DPU configuration.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>foldername</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>densebox_640_360</td>
+<td>Model files for facedetcet</td>
+</tr>
+<tr>
+<td>refinedet_pruned_0_96</td>
+<td>Model files for refinedet</td>
+</tr>
+<tr>
+<td>ssd_adas_pruned_0_95</td>
+<td>Model files for ssd</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>Jupyter notebook file: =&gt; /opt/xilinx/kv260-smartcam/share/notebooks/</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>filename</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smartcam.ipynb</td>
+<td>Jupyter notebook file for MIPI/USB --&gt; DP/RTSP demo.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 SOM Smart camera design start page</span></a></p></li>
+</ul>
+<div class="section" id="license">
+<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2022 Xilinx</p></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Design Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="customize_ai_models.html" class="btn btn-neutral float-right" title="Customizing the AI Models used in the application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
+      <span class="lastupdated">Last updated on September 28, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

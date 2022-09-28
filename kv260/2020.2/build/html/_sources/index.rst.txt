@@ -79,7 +79,8 @@ With both hardware and software development requirements simplified, the KV260 V
    :caption: Other Releases
    :hidden:
 
-   2021.1 <https://xilinx.github.io/kria-apps-docs/kv260/main/build/html/index.html>
+   2022.1 <https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/index.html>
+   2021.1 <https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/index.html>
 
 
 
