@@ -64,7 +64,7 @@ This document provides the steps to integrate the overlay consisting of accelera
 
 ## Next Step
 
-* [Building a Petalinux Image](build_petalinux.md)
+* [Generate custom firmware](generating_custom_firmware.md)
 * Go back to the [KV260 SOM designs start page](../index)
 
 ## References

@@ -11,7 +11,7 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>Setting up the Board and Application Deployment &mdash; Kria™ KV260 2022.1 Staging documentation</title>
+  <title>Setting up the Board and Application Deployment &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
@@ -40,7 +40,7 @@ function OptanonWrapper() { }
             <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2022.1 Staging
+                2022.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -137,14 +137,14 @@ function OptanonWrapper() { }
 </div>
 <div class="section" id="booting-up-linux">
 <h2>Booting up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
-<p>Before continuing with NLP application specific instructions, if not yet done so, boot Linux with instructions from <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starterkit Linux boot</span></a> page.</p>
+<p>Before continuing with NLP application specific instructions, if not yet done so, boot Linux with instructions from <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> page.</p>
 </div>
 <div class="section" id="setting-up-the-board">
 <h2>Setting up the Board<a class="headerlink" href="#setting-up-the-board" title="Permalink to this heading">¶</a></h2>
 </div>
 <div class="section" id="application-specific-hardware-setup">
 <h2>Application Specific Hardware Setup<a class="headerlink" href="#application-specific-hardware-setup" title="Permalink to this heading">¶</a></h2>
-<p>Besides the hardware configurations required in <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starterkit Linux boot</span></a> for booting Linux, AIBox application requires a 4k  monitor to display up to 4 channels of 1080p video.</p>
+<p>Besides the hardware configurations required in <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> for booting Linux, AIBox application requires a 4k  monitor to display up to 4 channels of 1080p video.</p>
 <p><img alt="GitHub Logo" src="../../../_images/som-board.png" /></p>
 <ul>
 <li><p>Monitor:</p>
@@ -200,7 +200,7 @@ xlnx-firmware-kv260-smartcam/jammy <span class="m">0</span>.1-0xlnx1 arm64
 <li><p>Dynamically load the application package:</p>
 <p>The firmware consists of bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.</p>
 <ul>
-<li><p>Show the list and status of available acceleration platforms:</p>
+<li><p>After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil listapps
 </pre></div>
 </div>
@@ -219,14 +219,14 @@ sudo xmutil loadapp kv260-nlp-smartvision
 <div class="section" id="docker-based-application-preparation">
 <h2>Docker based application preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
 <ol>
-<li><p>Pull the latest docker image for nlp-smartvision using the below command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/nlp-smartvision:latest
+<li><p>Pull the 2022.1 docker image for nlp-smartvision using the below command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/nlp-smartvision:2022.1
 </pre></div>
 </div>
 <p>Once the above step is done, you can check for the available images as shown below</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ docker images -a
 REPOSITORY                                                                  TAG        IMAGE ID       CREATED                  SIZE
-xilinx/nlp-smartvision                                                      latest     c39b312f1850   Less than a second ago   <span class="m">1</span>.43GB
+xilinx/nlp-smartvision                                                      <span class="m">2022</span>.1     3c16ce65624a   Less than a second ago   <span class="m">1</span>.41GB
 </pre></div>
 </div>
 <p>The storage volume on the SD card can be limited with multiple dockers. If there are space issues, use following command to remove the existing container.</p>
@@ -279,7 +279,7 @@ xilinx/nlp-smartvision                                                      late
 -v /etc/vart.conf:/etc/vart.conf <span class="se">\</span>
 -v /lib/firmware/xilinx:/lib/firmware/xilinx <span class="se">\</span>
 -v /run:/run <span class="se">\</span>
--it xilinx/nlp-smartvision:latest bash
+-it xilinx/nlp-smartvision:2022.1 bash
 </pre></div>
 </div>
 <p>It will launch the nlp-smartvision image in a new container</p>
@@ -299,7 +299,7 @@ xilinx/nlp-smartvision                                                      late
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>   jupyter lab --allow-root --notebook-dir<span class="o">=</span>/opt/xilinx/kv260-nlp-smartvision/share/notebooks/ --ip<span class="o">=</span>&lt;ip address&gt; <span class="p">&amp;</span>
 
-    // fill <span class="k">in</span> ip-address from ifconfig 
+    // fill <span class="k">in</span> ip-address from ifconfig, eth0
 </pre></div>
 </div>
 <p>Output example:</p>
@@ -531,7 +531,7 @@ Number of keywords detected <span class="nv">correctly</span> <span class="o">=<
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on September 21, 2022.
+      <span class="lastupdated">Last updated on September 28, 2022.
       </span></p>
   </div>
 

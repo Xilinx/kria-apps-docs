@@ -20,67 +20,57 @@ This guide and its prebuilt are targeted for Ubuntu 22.04 and Xilinx 2022.1 tool
 
 ## Booting up Linux
 
-Before continuing with smartcam application specific instructions, if not yet done so, boot Linux with instructions from [Kria Starterkit Linux boot](../../kria_starterkit_linux_boot.md) page. Note that smartcam application recommend starting the application using commandline through uart instead of GNOME Desktop.
+Before continuing with smartcam application specific instructions, if not yet done so, boot Linux with instructions from [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) page. Note that smartcam application recommend starting the application using commandline through uart instead of GNOME Desktop.
 
 ## Application Specific Hardware Setup
 
-Besides the hardware configurations required in [Kria Starterkit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, smartcam application requires the following hardware setup:
+Besides the hardware configurations required in [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, smartcam application requires the following hardware setup:
 
 ![GitHub Logo](../../media/som-board.png)
 
-   * Monitor:
+* Monitor:
 
-    Before booting, connect a 1080P/4K monitor to the board via either DP or HDMI port.
+  Before booting, connect a 1080P/4K monitor to the board via either DP or HDMI port.
 
-    4K monitor is preferred to demonstrate at the maximum supported resolution.
+  4K monitor is preferred to demonstrate at the maximum supported resolution.
 
-   * IAS sensor:
+* IAS sensor:
 
-    Before power on, install an AR1335 sensor module in J7.
+  Before power on, install an AR1335 sensor module in J7.
 
-   * You may also use a USB webcam as an input device.
+* You may also use a USB webcam as an input device.
 
-    The webcam is optional video input device supported in the application.
+  The webcam is optional video input device supported in the application.
 
-    Recommended webcam is the [Logitech BRIO](https://www.logitech.com/en-in/products/webcams/brio-4k-hdr-webcam.960-001105.html).
+  Recommended webcam is the [Logitech BRIO](https://www.logitech.com/en-in/products/webcams/brio-4k-hdr-webcam.960-001105.html).
 
+* Audio Pmod setup as RTSP audio input:
 
-   * Audio Pmod setup as RTSP audio input:
+  Audio Pmod is optional audio input and output device. In the current release (22.1 update3), audio is not supported, please see [known issues](./issue-sc.md) for details.
 
-    Audio Pmod is optional audio input and output device. In the current release (22.1 update3), audio is not supported, please see [known issues](./issue-sc.md) for details.
+  In the Smart camera application only RTSP mode [uses the audio input function](#rtsp-audio) to capture audio. Audio is then sent together with the images as RTSP stream and can be received at the client side.
 
-    In the Smart camera application only RTSP mode [uses the audio input function](#rtsp-audio) to capture audio. Audio is then sent together with the images as RTSP stream and can be received at the client side.
+  To set it up, first install the Pmod to J2, then connect a microphone or any other sound input device to the [line input port](https://store.digilentinc.com/pmod-i2s2-stereo-audio-input-and-output/). A headphone with a microphone will not work - device needs to be a dedicated input.
 
-    To set it up, first install the Pmod to J2, then connect a microphone or any other sound input device to the [line input port](https://store.digilentinc.com/pmod-i2s2-stereo-audio-input-and-output/). A headphone with a microphone will not work - device needs to be a dedicated input.
-
-    Smartcam application does not yet support speakers.
+  Smartcam application does not yet support speakers.
 
 ### Software Preparation
 
-    You will use a PC having network access to the board as the RTSP client machine.
+You will use a PC having network access to the board as the RTSP client machine.
 
-    Make sure that the PC and the KV260 Vision AI Starter Kit are on the same subnet mask.
+Make sure that the PC and the KV260 Vision AI Starter Kit are on the same subnet mask.
 
-    On the client machine, to receive and play the RTSP stream, we recommend to install FFplay which is part of FFmpeg package.
+On the client machine, to receive and play the RTSP stream, we recommend to install FFplay which is part of FFmpeg package.
 
-    For Linux, you can install FFmpeg with the package manager of your distribution.
+For Linux, you can install FFmpeg with the package manager of your distribution.
 
-    For Windows, you can find install instructions on https://ffmpeg.org/download.html
+For Windows, you can find install instructions on https://ffmpeg.org/download.html
 
-    Other than FFplay, VLC can also be used to play RTSP stream, but sometimes it doesn't work on some client machines, while the FFplay works well.
+Other than FFplay, VLC can also be used to play RTSP stream, but sometimes it doesn't work on some client machines, while the FFplay works well.
 
 ## Downloading and Loading Application Firmware
 
-1.. Get the latest kv260-smartcam firmware package:
-
-   * Add archive for the Xilinx Apps demo, this will take some time.
-
-    ```bash
-    sudo add-apt-repository ppa:xilinx-apps
-    sudo add-apt-repository ppa:ubuntu-xilinx/sdk
-    sudo apt update
-    sudo apt upgrade
-    ```
+1. Get the latest kv260-smartcam firmware package:
 
    * Search package feed for packages compatible with Kv260
 
@@ -128,7 +118,7 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
       sudo xmutil      desktop_enable
       ```
 
-    * Show the list and status of available acceleration platforms:
+    * After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.
 
       ```bash
       sudo xmutil listapps
@@ -145,10 +135,10 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
 
 ## Docker based application preparation
 
-* Pull the latest docker image for smartcam using the below command.
+* Pull the 2022.1 docker image for smartcam using the below command.
 
     ```bash
-    docker pull xilinx/smartcam:latest
+    docker pull xilinx/smartcam:2022.1
     ```
 
   * The storage volume on the SD card can be limited with multiple dockers. If there are space issues, you can use following command to remove the existing container.
@@ -179,7 +169,7 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
     -v /etc/vart.conf:/etc/vart.conf \
     -v /lib/firmware/xilinx:/lib/firmware/xilinx \
     -v /run:/run \
-    -it xilinx/smartcam:latest bash
+    -it xilinx/smartcam:2022.1 bash
     ```
 
     It will launch the smartcam image in a new container
@@ -233,7 +223,7 @@ There are two ways to interact with the application.
 
     ``` bash
     jupyter-lab --notebook-dir=/root/notebooks/smartcam --allow-root --ip=ip-address & 
-    // fill in ip-address from ifconfig 
+    // fill in ip-address from ifconfig, eth0
     ```
 
 Output example:

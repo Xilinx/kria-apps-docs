@@ -20,32 +20,32 @@ This guide and its prebuilt are targeted for Ubuntu 22.04 and Xilinx 2022.1 tool
 
 ## Booting up Linux
 
-Before continuing with NLP application specific instructions, if not yet done so, boot Linux with instructions from [Kria Starterkit Linux boot](../../kria_starterkit_linux_boot.md) page.
+Before continuing with NLP application specific instructions, if not yet done so, boot Linux with instructions from [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) page.
 
 ## Setting up the Board
 
 ## Application Specific Hardware Setup
 
-Besides the hardware configurations required in [Kria Starterkit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, AIBox application requires a 4k  monitor to display up to 4 channels of 1080p video.
+Besides the hardware configurations required in [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, AIBox application requires a 4k  monitor to display up to 4 channels of 1080p video.
 
 ![GitHub Logo](../../media/som-board.png)
 
-   * Monitor:
+* Monitor:
 
-      The monitor for this application must support 1024x768 resolution. Before booting, connect the monitor to the board via DP/HDMI port.
-  
-   * Camera sensors:
+  The monitor for this application must support 1024x768 resolution. Before booting, connect the monitor to the board via DP/HDMI port.
 
-     This application supports the below 3 camera modules
-      * AR1335 sensor module in J7
-      * Raspberry pi sensor module in J9
-      * USB webcam in any of the available USB ports.
+* Camera sensors:
 
-      Install the required sensor modules in respective locations.
+  This application supports the below 3 camera modules
+  * AR1335 sensor module in J7
+  * Raspberry pi sensor module in J9
+  * USB webcam in any of the available USB ports.
 
-   * USB Microphone:
+  Install the required sensor modules in respective locations.
 
-      Connect the microphone to any of the USB ports. If you USB webcam has a build-in microphone , it will also acts as the USB microphone
+* USB Microphone:
+
+  Connect the microphone to any of the USB ports. If you USB webcam has a build-in microphone , it will also acts as the USB microphone
 
 ## Downloading and Loading Application Firmware
 
@@ -82,7 +82,7 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
 
     The firmware consists of bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.
 
-    * Show the list and status of available acceleration platforms:
+    * After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.
 
        ```bash
       sudo xmutil listapps
@@ -99,10 +99,10 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
 
 ## Docker based application preparation
 
-1. Pull the latest docker image for nlp-smartvision using the below command.
+1. Pull the 2022.1 docker image for nlp-smartvision using the below command.
 
     ```bash
-    docker pull xilinx/nlp-smartvision:latest
+    docker pull xilinx/nlp-smartvision:2022.1
     ```
 
     Once the above step is done, you can check for the available images as shown below
@@ -110,7 +110,7 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
     ```bash
     ubuntu@kria:~$ docker images -a
     REPOSITORY                                                                  TAG        IMAGE ID       CREATED                  SIZE
-    xilinx/nlp-smartvision                                                      latest     c39b312f1850   Less than a second ago   1.43GB
+    xilinx/nlp-smartvision                                                      2022.1     3c16ce65624a   Less than a second ago   1.41GB
     ```
 
     The storage volume on the SD card can be limited with multiple dockers. If there are space issues, use following command to remove the existing container.
@@ -143,7 +143,7 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
     -v /etc/vart.conf:/etc/vart.conf \
     -v /lib/firmware/xilinx:/lib/firmware/xilinx \
     -v /run:/run \
-    -it xilinx/nlp-smartvision:latest bash
+    -it xilinx/nlp-smartvision:2022.1 bash
     ```
 
     It will launch the nlp-smartvision image in a new container
@@ -163,7 +163,7 @@ There are two ways to interact with application, via Jupyter notebook or Command
 ``` bash
    jupyter lab --allow-root --notebook-dir=/opt/xilinx/kv260-nlp-smartvision/share/notebooks/ --ip=<ip address> &
 
-    // fill in ip-address from ifconfig 
+    // fill in ip-address from ifconfig, eth0
 ```
 
 Output example:

@@ -11,7 +11,7 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>Setting up the Board and Application Deployment &mdash; Kria™ KV260 2022.1 Staging documentation</title>
+  <title>Setting up the Board and Application Deployment &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
@@ -40,7 +40,7 @@ function OptanonWrapper() { }
             <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2022.1 Staging
+                2022.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -134,11 +134,11 @@ function OptanonWrapper() { }
 </div>
 <div class="section" id="booting-up-linux">
 <h2>Booting up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
-<p>Before continuing with aibox-reid application specific instructions, if not yet done so, boot Linux with instructions from <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starterkit Linux boot</span></a> page. Note that AIBox application requires starting the application using commandline through uart instead of GNOME Desktop, and recommends using a 4k Monitor.</p>
+<p>Before continuing with aibox-reid application specific instructions, if not yet done so, boot Linux with instructions from <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> page. Note that AIBox application requires starting the application using commandline through uart instead of GNOME Desktop, and recommends using a 4k Monitor.</p>
 </div>
 <div class="section" id="application-specific-hardware-setup">
 <h2>Application Specific Hardware Setup<a class="headerlink" href="#application-specific-hardware-setup" title="Permalink to this heading">¶</a></h2>
-<p>Besides the hardware configurations required in <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starterkit Linux boot</span></a> for booting Linux, AIBox application requires a 4k  monitor to display up to 4 channels of 1080p video.</p>
+<p>Besides the hardware configurations required in <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> for booting Linux, AIBox application requires a 4k  monitor to display up to 4 channels of 1080p video.</p>
 </div>
 <div class="section" id="downloading-and-loading-application-firmware">
 <h2>Downloading and Loading Application Firmware<a class="headerlink" href="#downloading-and-loading-application-firmware" title="Permalink to this heading">¶</a></h2>
@@ -186,7 +186,7 @@ FPGA firmware <span class="k">for</span> Xilinx boards - kv260 smartcam applicat
 </pre></div>
 </div>
 </li>
-<li><p>Show the list and status of available acceleration platforms:</p>
+<li><p>After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil listapps
 </pre></div>
 </div>
@@ -210,8 +210,8 @@ sudo xmutil      dp_bind
 <div class="section" id="docker-based-application-preparation">
 <h2>Docker based application preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
 <ul>
-<li><p>Pull the latest docker image for aibox-reid using the below command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/aibox-reid:latest
+<li><p>Pull the 2022.1 docker image for aibox-reid using the below command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/aibox-reid:2022.1
 </pre></div>
 </div>
 </li>
@@ -239,7 +239,7 @@ sudo xmutil      dp_bind
 -v /etc/vart.conf:/etc/vart.conf <span class="se">\</span>
 -v /lib/firmware/xilinx:/lib/firmware/xilinx <span class="se">\</span>
 -v /run:/run <span class="se">\</span>
--it xilinx/aibox-reid:latest bash
+-it xilinx/aibox-reid:2022.1 bash
 </pre></div>
 </div>
 <p>It will launch the aibox-reid image in a new container</p>
@@ -323,7 +323,7 @@ sudo xmutil      dp_bind
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    jupyter-lab --notebook-dir<span class="o">=</span>/root/notebooks/aibox-reid --allow-root --ip<span class="o">=</span>ip-address <span class="p">&amp;</span>
 
-    // fill <span class="k">in</span> ip-address from ifconfig 
+    // fill <span class="k">in</span> ip-address from ifconfig, eth0
 </pre></div>
 </div>
 <p>Output example:</p>
@@ -541,7 +541,7 @@ sudo xmutil      dp_bind
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on September 21, 2022.
+      <span class="lastupdated">Last updated on September 28, 2022.
       </span></p>
   </div>
 

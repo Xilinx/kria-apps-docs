@@ -20,7 +20,7 @@ This guide and its prebuilt are targeted for Ubuntu 22.04 and Xilinx 2022.1 tool
 
 ## Booting up Linux
 
-Before continuing with defect-detect application specific instructions, if not yet done so, boot Linux with instructions from [Kria Starterkit Linux boot](../../kria_starterkit_linux_boot.md) page. Note that Defect Detect application requires starting the application using commandline through uart instead of GNOME Desktop.
+Before continuing with defect-detect application specific instructions, if not yet done so, boot Linux with instructions from [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) page. Note that Defect Detect application requires starting the application using commandline through uart instead of GNOME Desktop.
 
 Defect Detect requires kernel version 5.15.0-1013 or newer.
 
@@ -88,7 +88,7 @@ See [Known Issues](known_issues_dd.md) with the Defect Detect application.
 
 ## Application Specific Hardware Setup
 
-Besides the hardware configurations required in [Kria Starterkit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, Defect Detect Application requires the following:
+Besides the hardware configurations required in [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, Defect Detect Application requires the following:
 
 ![GitHub Logo](../../media/som-board.png)
 
@@ -144,7 +144,7 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
        sudo xmutil desktop_enable
       ```
 
-    * Show the list and status of available acceleration platforms:
+    * After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.
 
       ```bash
       sudo xmutil listapps
@@ -169,7 +169,7 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
 4. Pull the latest docker image for defect-detect using the below command.
 
     ```bash
-    sudo docker pull xilinx/defect-detect:latest
+    docker pull xilinx/defect-detect:2022.1
     ```
 
     * The storage volume on the SD card can be limited with multiple dockers. If there are space issues, you can use following command to remove the existing container.
@@ -187,7 +187,7 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
 5. Launch the docker using the below command. The firmware must be loaded before launching docker container.
 
     ```bash
-    sudo docker run \
+    docker run \
     --env="DISPLAY" \
         --env="XDG_SESSION_TYPE" \
         --net=host \
@@ -199,7 +199,7 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
         -v /etc/vart.conf:/etc/vart.conf \
         -v /lib/firmware/xilinx:/lib/firmware/xilinx \
         -v /run:/run \
-        -it xilinx/defect-detect:latest bash
+        -it xilinx/defect-detect:2022.1 bash
     ```
 
     It launches the defect-detect docker image container
@@ -248,6 +248,8 @@ To start the defect-detection Jupyter notebook application, perform the followin
 
    ```bash
    jupyter-notebook  --notebook-dir=/opt/xilinx/kv260-defect-detect/share/notebooks/ --ip=<IP Address> --allow-root
+
+   // fill in ip-address from ifconfig, eth0
    ```
 
 Jupyter Notebook requires an IP address. Perform the below steps if the IP address is not assigned by default.

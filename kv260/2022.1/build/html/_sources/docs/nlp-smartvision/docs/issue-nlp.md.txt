@@ -16,6 +16,8 @@ This document records known issues or gives behavior that may be unexpected some
 
 * Monitor should be connected properly to the board before power on, otherwise the resolution will not be recognized correctly.
 
+* Some monitors will display in non-desktop mode (running docker on serial port or SSH session) but not in Ubuntu GUI mode.
+
 * Make sure that AR1335 sensor module is the only video device connected to board. The application may fail of other media devices are connected to board
 
 * With an older version of dfx-mgr, installing firmware binaries (xlnx-firmware-kv260-aibox-reid) causes dfx-mgr to crash and a restart is needed. To restart dfx, issue command ```sudo systemctl restart dfx-mgr.service```

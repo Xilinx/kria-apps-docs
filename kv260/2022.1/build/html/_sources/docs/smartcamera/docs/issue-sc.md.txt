@@ -16,17 +16,11 @@
 
 * The "-R" option of smartcam application for reporting FPS doesn't print any info when the target "-t" is RTSP.
 
-* The latency of the data path to HDMI/DP display is above 100ms which is not optimal and will be improved in future.
-
 * When using VLC to play the RTSP stream sent out by the application, sometimes it doesn't work on some client machines, while the FFplay works well.
 
 * The KR260 carrier card does not power the AR1335 sensor module auto-focus feature. This is due to cross-sensor pin compatibility allowing the board to support other IAS Sensor modules. The result is that the AR1335 sensor module will not have a dynamic focus and depending on positioning of the objects to the lens the images may appear blurry.
 
-* When exercising the I2S Audio path in pass through mode the audio may have noise. This is because the clock frequency received by the audio clock is incorrect. To fix this issue update to the latest firmware (bin file) from the [KV260 wiki Page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513). Instructions on how to update the firmware is also provided on the wiki page.
-
-The other option is overwrite the clock setting before testing the Audio path. Note: This needs to be done everytime you boot into Linux  
-
-  > devmem 0xFF5E00C4 32 0x01010F00
+* The smartcam application is only supported in desktop_disabled mode (direct display). This is because desktop mode requires RGB16 format, while smartcam assumes optimized input format NV12. Desktop rendering would require SW based color conversion that severely reduces system performance. Thus, it is not supported.
 
 * If Logitech Brio camera is only producing 5fps and is enumerated only as a USB2.0 device, ensure to upgrade its firmware to 1.0.423 or later. See Logitech support website for firmware update utilities. Frame rate is reported by the application using the -R option.
 
@@ -34,25 +28,18 @@ The other option is overwrite the clock setting before testing the Audio path. N
 
 * Jupyter notebook only supports MIPI/USB input, and DP/RTSP output.
 
-* Jupyter lab does not have permission to write checkpoints into /opt/xilinx/kv260-smartcam/share/notebooks
-
-```
-[W 18:12:44.164 LabApp] 403 GET /api/contents/smartcam/smartcam.ipynb/checkpoints?1618362763975 (192.168.1.39): Permission denied: smartcam/.ipynb_checkpoints
-[W 18:12:44.165 LabApp] Permission denied: smartcam/.ipynb_checkpoints
-```
-
 * The latency of USB/MIPI camera to DP path varies depending on the source type and monitor type (DP monitor / HDMI monitor), because of different inherent latencies of the specific sources devices and display devices.
 Following is a table of our testing results.
 We measure the glass to glass latency, by putting a running stopwatch before the camera, and then take a screenshot containing both the original stopwatch and the image of the stopwatch in the monitor, so that we can calculate the latency with
 
   **Time_of_stopwatch_in_monitor - Time_physical_stopwatch**
 
-|   | | MIPI|MIPI | USB |USB|
-|-- |--|--|-|-|-|-|
-|   |  |NO AI| With AI|NO AI| With AI|
-|Monitor A |DP connector| 60ms|90ms|90ms|120ms|
-|Monitor A |HDMI connector|60-70ms|90-100ms|140ms|160ms|
-|Monitor B |HDMI connector|260-270ms|280-290ms|220ms|260ms|
+|            |                | MIPI        | MIPI        | USB   | USB     |
+|------------|----------------|-------------|-------------|-------|---------|
+|            |                | No AI       | With AI     | No AI | With AI |
+| Monitor A  | DP connector   | 60ms        | 90ms        | 90ms  | 120ms   |
+| Monitor A  | HDMI connector | 60-70ms     | 90-100ms    | 140ms | 160ms   |
+| Monitor B  | HDMI connector | 260ms-270ms | 280ms-290ms | 220ms | 260ms   |
 
 **With AI** Run smartcam without option "-n"
 **NO AI**  Run smartcam with option "-n", turning off AI detection.

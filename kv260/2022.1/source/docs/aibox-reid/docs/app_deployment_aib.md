@@ -20,11 +20,11 @@ This guide and its prebuilt are targeted for Ubuntu 22.04 and Xilinx 2022.1 tool
 
 ## Booting up Linux
 
-Before continuing with aibox-reid application specific instructions, if not yet done so, boot Linux with instructions from [Kria Starterkit Linux boot](../../kria_starterkit_linux_boot.md) page. Note that AIBox application requires starting the application using commandline through uart instead of GNOME Desktop, and recommends using a 4k Monitor.
+Before continuing with aibox-reid application specific instructions, if not yet done so, boot Linux with instructions from [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) page. Note that AIBox application requires starting the application using commandline through uart instead of GNOME Desktop, and recommends using a 4k Monitor.
 
 ## Application Specific Hardware Setup
 
-Besides the hardware configurations required in [Kria Starterkit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, AIBox application requires a 4k  monitor to display up to 4 channels of 1080p video.
+Besides the hardware configurations required in [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, AIBox application requires a 4k  monitor to display up to 4 channels of 1080p video.
 
 ## Downloading and Loading Application Firmware
 
@@ -75,7 +75,7 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
        sudo xmutil      desktop_enable
        ```
 
-    * Show the list and status of available acceleration platforms:
+    * After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.
 
        ```bash
       sudo xmutil listapps
@@ -97,10 +97,10 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
 
 ## Docker based application preparation
 
-* Pull the latest docker image for aibox-reid using the below command.
+* Pull the 2022.1 docker image for aibox-reid using the below command.
 
     ```bash
-    docker pull xilinx/aibox-reid:latest
+    docker pull xilinx/aibox-reid:2022.1
     ```
 
 * The storage volume on the SD card can be limited with multiple dockers. If there are space issues, you can use following command to remove the existing container.
@@ -131,7 +131,7 @@ Besides the hardware configurations required in [Kria Starterkit Linux boot](../
     -v /etc/vart.conf:/etc/vart.conf \
     -v /lib/firmware/xilinx:/lib/firmware/xilinx \
     -v /run:/run \
-    -it xilinx/aibox-reid:latest bash
+    -it xilinx/aibox-reid:2022.1 bash
     ```
 
     It will launch the aibox-reid image in a new container
@@ -223,7 +223,7 @@ There are two ways to interact with application, via Jupyuter notebook or Comman
 ``` bash
     jupyter-lab --notebook-dir=/root/notebooks/aibox-reid --allow-root --ip=ip-address &
 
-    // fill in ip-address from ifconfig 
+    // fill in ip-address from ifconfig, eth0
 ```
 
 Output example:

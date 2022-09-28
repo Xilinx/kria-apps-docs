@@ -56,8 +56,8 @@ Tutorials
   Building the Hardware design using Vivado <../build_vivado_design>
   Creating a Vitis Platform <../build_vitis_platform>
   Integrating an overlay into the platform <../build_accel>
-  Generating Custom Firmaware <../generating_custom_firmware>
-  Kria Starterkit Linux Boot <../kria_starterkit_linux_boot>
+  Generating Custom Firmware <../generating_custom_firmware>
+  Kria Starter Kit Linux Boot <../kria_starterkit_linux_boot>
 
 
 ********************

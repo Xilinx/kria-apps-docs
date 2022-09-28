@@ -11,7 +11,7 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>Setting up the Board and Application Deployment &mdash; Kria™ KV260 2022.1 Staging documentation</title>
+  <title>Setting up the Board and Application Deployment &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
@@ -40,7 +40,7 @@ function OptanonWrapper() { }
             <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2022.1 Staging
+                2022.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -134,110 +134,74 @@ function OptanonWrapper() { }
 </div>
 <div class="section" id="booting-up-linux">
 <h2>Booting up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
-<p>Before continuing with smartcam application specific instructions, if not yet done so, boot Linux with instructions from <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starterkit Linux boot</span></a> page. Note that smartcam application recommend starting the application using commandline through uart instead of GNOME Desktop.</p>
+<p>Before continuing with smartcam application specific instructions, if not yet done so, boot Linux with instructions from <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> page. Note that smartcam application recommend starting the application using commandline through uart instead of GNOME Desktop.</p>
 </div>
 <div class="section" id="application-specific-hardware-setup">
 <h2>Application Specific Hardware Setup<a class="headerlink" href="#application-specific-hardware-setup" title="Permalink to this heading">¶</a></h2>
-<p>Besides the hardware configurations required in <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starterkit Linux boot</span></a> for booting Linux, smartcam application requires the following hardware setup:</p>
+<p>Besides the hardware configurations required in <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> for booting Linux, smartcam application requires the following hardware setup:</p>
 <p><img alt="GitHub Logo" src="../../../_images/som-board.png" /></p>
-<ul class="simple">
-<li><p>Monitor:</p></li>
+<ul>
+<li><p>Monitor:</p>
+<p>Before booting, connect a 1080P/4K monitor to the board via either DP or HDMI port.</p>
+<p>4K monitor is preferred to demonstrate at the maximum supported resolution.</p>
+</li>
+<li><p>IAS sensor:</p>
+<p>Before power on, install an AR1335 sensor module in J7.</p>
+</li>
+<li><p>You may also use a USB webcam as an input device.</p>
+<p>The webcam is optional video input device supported in the application.</p>
+<p>Recommended webcam is the <a class="reference external" href="https://www.logitech.com/en-in/products/webcams/brio-4k-hdr-webcam.960-001105.html">Logitech BRIO</a>.</p>
+</li>
+<li><p>Audio Pmod setup as RTSP audio input:</p>
+<p>Audio Pmod is optional audio input and output device. In the current release (22.1 update3), audio is not supported, please see <a class="reference internal" href="issue-sc.html"><span class="doc">known issues</span></a> for details.</p>
+<p>In the Smart camera application only RTSP mode <a class="reference external" href="#rtsp-audio">uses the audio input function</a> to capture audio. Audio is then sent together with the images as RTSP stream and can be received at the client side.</p>
+<p>To set it up, first install the Pmod to J2, then connect a microphone or any other sound input device to the <a class="reference external" href="https://store.digilentinc.com/pmod-i2s2-stereo-audio-input-and-output/">line input port</a>. A headphone with a microphone will not work - device needs to be a dedicated input.</p>
+<p>Smartcam application does not yet support speakers.</p>
+</li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Before</span> <span class="n">booting</span><span class="p">,</span> <span class="n">connect</span> <span class="n">a</span> <span class="mi">1080</span><span class="n">P</span><span class="o">/</span><span class="mi">4</span><span class="n">K</span> <span class="n">monitor</span> <span class="n">to</span> <span class="n">the</span> <span class="n">board</span> <span class="n">via</span> <span class="n">either</span> <span class="n">DP</span> <span class="ow">or</span> <span class="n">HDMI</span> <span class="n">port</span><span class="o">.</span>
-
-<span class="mi">4</span><span class="n">K</span> <span class="n">monitor</span> <span class="ow">is</span> <span class="n">preferred</span> <span class="n">to</span> <span class="n">demonstrate</span> <span class="n">at</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">supported</span> <span class="n">resolution</span><span class="o">.</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>IAS sensor:</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Before</span> <span class="n">power</span> <span class="n">on</span><span class="p">,</span> <span class="n">install</span> <span class="n">an</span> <span class="n">AR1335</span> <span class="n">sensor</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">J7</span><span class="o">.</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>You may also use a USB webcam as an input device.</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">webcam</span> <span class="ow">is</span> <span class="n">optional</span> <span class="n">video</span> <span class="nb">input</span> <span class="n">device</span> <span class="n">supported</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">application</span><span class="o">.</span>
-
-<span class="n">Recommended</span> <span class="n">webcam</span> <span class="ow">is</span> <span class="n">the</span> <span class="p">[</span><span class="n">Logitech</span> <span class="n">BRIO</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">logitech</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">en</span><span class="o">-</span><span class="ow">in</span><span class="o">/</span><span class="n">products</span><span class="o">/</span><span class="n">webcams</span><span class="o">/</span><span class="n">brio</span><span class="o">-</span><span class="mi">4</span><span class="n">k</span><span class="o">-</span><span class="n">hdr</span><span class="o">-</span><span class="n">webcam</span><span class="mf">.960</span><span class="o">-</span><span class="mf">001105.</span><span class="n">html</span><span class="p">)</span><span class="o">.</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Audio Pmod setup as RTSP audio input:</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Audio</span> <span class="n">Pmod</span> <span class="ow">is</span> <span class="n">optional</span> <span class="n">audio</span> <span class="nb">input</span> <span class="ow">and</span> <span class="n">output</span> <span class="n">device</span><span class="o">.</span> <span class="n">In</span> <span class="n">the</span> <span class="n">current</span> <span class="n">release</span> <span class="p">(</span><span class="mf">22.1</span> <span class="n">update3</span><span class="p">),</span> <span class="n">audio</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">supported</span><span class="p">,</span> <span class="n">please</span> <span class="n">see</span> <span class="p">[</span><span class="n">known</span> <span class="n">issues</span><span class="p">](</span><span class="o">./</span><span class="n">issue</span><span class="o">-</span><span class="n">sc</span><span class="o">.</span><span class="n">md</span><span class="p">)</span> <span class="k">for</span> <span class="n">details</span><span class="o">.</span>
-
-<span class="n">In</span> <span class="n">the</span> <span class="n">Smart</span> <span class="n">camera</span> <span class="n">application</span> <span class="n">only</span> <span class="n">RTSP</span> <span class="n">mode</span> <span class="p">[</span><span class="n">uses</span> <span class="n">the</span> <span class="n">audio</span> <span class="nb">input</span> <span class="n">function</span><span class="p">](</span><span class="c1">#rtsp-audio) to capture audio. Audio is then sent together with the images as RTSP stream and can be received at the client side.</span>
-
-<span class="n">To</span> <span class="nb">set</span> <span class="n">it</span> <span class="n">up</span><span class="p">,</span> <span class="n">first</span> <span class="n">install</span> <span class="n">the</span> <span class="n">Pmod</span> <span class="n">to</span> <span class="n">J2</span><span class="p">,</span> <span class="n">then</span> <span class="n">connect</span> <span class="n">a</span> <span class="n">microphone</span> <span class="ow">or</span> <span class="nb">any</span> <span class="n">other</span> <span class="n">sound</span> <span class="nb">input</span> <span class="n">device</span> <span class="n">to</span> <span class="n">the</span> <span class="p">[</span><span class="n">line</span> <span class="nb">input</span> <span class="n">port</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">store</span><span class="o">.</span><span class="n">digilentinc</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pmod</span><span class="o">-</span><span class="n">i2s2</span><span class="o">-</span><span class="n">stereo</span><span class="o">-</span><span class="n">audio</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">output</span><span class="o">/</span><span class="p">)</span><span class="o">.</span> <span class="n">A</span> <span class="n">headphone</span> <span class="k">with</span> <span class="n">a</span> <span class="n">microphone</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">work</span> <span class="o">-</span> <span class="n">device</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">a</span> <span class="n">dedicated</span> <span class="nb">input</span><span class="o">.</span>
-
-<span class="n">Smartcam</span> <span class="n">application</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">yet</span> <span class="n">support</span> <span class="n">speakers</span><span class="o">.</span>
-</pre></div>
-</div>
 <div class="section" id="software-preparation">
 <h3>Software Preparation<a class="headerlink" href="#software-preparation" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">You</span> <span class="n">will</span> <span class="n">use</span> <span class="n">a</span> <span class="n">PC</span> <span class="n">having</span> <span class="n">network</span> <span class="n">access</span> <span class="n">to</span> <span class="n">the</span> <span class="n">board</span> <span class="k">as</span> <span class="n">the</span> <span class="n">RTSP</span> <span class="n">client</span> <span class="n">machine</span><span class="o">.</span>
-
-<span class="n">Make</span> <span class="n">sure</span> <span class="n">that</span> <span class="n">the</span> <span class="n">PC</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">KV260</span> <span class="n">Vision</span> <span class="n">AI</span> <span class="n">Starter</span> <span class="n">Kit</span> <span class="n">are</span> <span class="n">on</span> <span class="n">the</span> <span class="n">same</span> <span class="n">subnet</span> <span class="n">mask</span><span class="o">.</span>
-
-<span class="n">On</span> <span class="n">the</span> <span class="n">client</span> <span class="n">machine</span><span class="p">,</span> <span class="n">to</span> <span class="n">receive</span> <span class="ow">and</span> <span class="n">play</span> <span class="n">the</span> <span class="n">RTSP</span> <span class="n">stream</span><span class="p">,</span> <span class="n">we</span> <span class="n">recommend</span> <span class="n">to</span> <span class="n">install</span> <span class="n">FFplay</span> <span class="n">which</span> <span class="ow">is</span> <span class="n">part</span> <span class="n">of</span> <span class="n">FFmpeg</span> <span class="n">package</span><span class="o">.</span>
-
-<span class="n">For</span> <span class="n">Linux</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">install</span> <span class="n">FFmpeg</span> <span class="k">with</span> <span class="n">the</span> <span class="n">package</span> <span class="n">manager</span> <span class="n">of</span> <span class="n">your</span> <span class="n">distribution</span><span class="o">.</span>
-
-<span class="n">For</span> <span class="n">Windows</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">find</span> <span class="n">install</span> <span class="n">instructions</span> <span class="n">on</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">ffmpeg</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">download</span><span class="o">.</span><span class="n">html</span>
-
-<span class="n">Other</span> <span class="n">than</span> <span class="n">FFplay</span><span class="p">,</span> <span class="n">VLC</span> <span class="n">can</span> <span class="n">also</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span> <span class="n">play</span> <span class="n">RTSP</span> <span class="n">stream</span><span class="p">,</span> <span class="n">but</span> <span class="n">sometimes</span> <span class="n">it</span> <span class="n">doesn</span><span class="s1">&#39;t work on some client machines, while the FFplay works well.</span>
-</pre></div>
-</div>
+<p>You will use a PC having network access to the board as the RTSP client machine.</p>
+<p>Make sure that the PC and the KV260 Vision AI Starter Kit are on the same subnet mask.</p>
+<p>On the client machine, to receive and play the RTSP stream, we recommend to install FFplay which is part of FFmpeg package.</p>
+<p>For Linux, you can install FFmpeg with the package manager of your distribution.</p>
+<p>For Windows, you can find install instructions on https://ffmpeg.org/download.html</p>
+<p>Other than FFplay, VLC can also be used to play RTSP stream, but sometimes it doesn’t work on some client machines, while the FFplay works well.</p>
 </div>
 </div>
 <div class="section" id="downloading-and-loading-application-firmware">
 <h2>Downloading and Loading Application Firmware<a class="headerlink" href="#downloading-and-loading-application-firmware" title="Permalink to this heading">¶</a></h2>
-<p>1.. Get the latest kv260-smartcam firmware package:</p>
-<ul class="simple">
-<li><p>Add archive for the Xilinx Apps demo, this will take some time.</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```bash
-sudo add-apt-repository ppa:xilinx-apps
-sudo add-apt-repository ppa:ubuntu-xilinx/sdk
-sudo apt update
-sudo apt upgrade
-```
-</pre></div>
-</div>
+<ol>
+<li><p>Get the latest kv260-smartcam firmware package:</p>
 <ul class="simple">
 <li><p>Search package feed for packages compatible with Kv260</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```bash
-ubuntu@kria:~$ sudo apt search xlnx-firmware-kv260
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo apt search xlnx-firmware-kv260
 Sorting... Done
 Full Text Search... Done
-xlnx-firmware-kv260-aibox-reid/jammy 0.1-0xlnx1 arm64
-FPGA firmware for Xilinx boards - kv260 aibox-reid application
+xlnx-firmware-kv260-aibox-reid/jammy <span class="m">0</span>.1-0xlnx1 arm64
+FPGA firmware <span class="k">for</span> Xilinx boards - kv260 aibox-reid application
 
-xlnx-firmware-kv260-benchmark-b4096/jammy 0.1-0xlnx1 arm64
-FPGA firmware for Xilinx boards - kv260 benchmark-b4096 application
+xlnx-firmware-kv260-benchmark-b4096/jammy <span class="m">0</span>.1-0xlnx1 arm64
+FPGA firmware <span class="k">for</span> Xilinx boards - kv260 benchmark-b4096 application
 
-xlnx-firmware-kv260-defect-detect/jammy 0.1-0xlnx1 arm64
-FPGA firmware for Xilinx boards - kv260 defect-detect application
+xlnx-firmware-kv260-defect-detect/jammy <span class="m">0</span>.1-0xlnx1 arm64
+FPGA firmware <span class="k">for</span> Xilinx boards - kv260 defect-detect application
 
-xlnx-firmware-kv260-nlp-smartvision/jammy,now 0.1-0xlnx1 arm64 
-FPGA firmware for Xilinx boards - kv260 nlp-smartvision application
+xlnx-firmware-kv260-nlp-smartvision/jammy,now <span class="m">0</span>.1-0xlnx1 arm64 
+FPGA firmware <span class="k">for</span> Xilinx boards - kv260 nlp-smartvision application
 
-xlnx-firmware-kv260-smartcam/jammy 0.1-0xlnx1 arm64 [installed]
-FPGA firmware for Xilinx boards - kv260 smartcam application
-```
+xlnx-firmware-kv260-smartcam/jammy <span class="m">0</span>.1-0xlnx1 arm64 <span class="o">[</span>installed<span class="o">]</span>
+FPGA firmware <span class="k">for</span> Xilinx boards - kv260 smartcam application
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Install firmware binaries</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```bash
-sudo apt install xlnx-firmware-kv260-smartcam
-```
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install xlnx-firmware-kv260-smartcam
 </pre></div>
 </div>
-<ol>
+</li>
 <li><p>Dynamically load the application package:</p>
 <p>The firmware consist of bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.</p>
 <ul>
@@ -251,7 +215,7 @@ sudo apt install xlnx-firmware-kv260-smartcam
 </pre></div>
 </div>
 </li>
-<li><p>Show the list and status of available acceleration platforms:</p>
+<li><p>After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil listapps
 </pre></div>
 </div>
@@ -270,8 +234,8 @@ sudo xmutil loadapp kv260-smartcam
 <div class="section" id="docker-based-application-preparation">
 <h2>Docker based application preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
 <ul>
-<li><p>Pull the latest docker image for smartcam using the below command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/smartcam:latest
+<li><p>Pull the 2022.1 docker image for smartcam using the below command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/smartcam:2022.1
 </pre></div>
 </div>
 <ul>
@@ -301,7 +265,7 @@ sudo xmutil loadapp kv260-smartcam
 -v /etc/vart.conf:/etc/vart.conf <span class="se">\</span>
 -v /lib/firmware/xilinx:/lib/firmware/xilinx <span class="se">\</span>
 -v /run:/run <span class="se">\</span>
--it xilinx/smartcam:latest bash
+-it xilinx/smartcam:2022.1 bash
 </pre></div>
 </div>
 <p>It will launch the smartcam image in a new container</p>
@@ -348,7 +312,7 @@ sudo xmutil loadapp kv260-smartcam
 <ul>
 <li><p>To launch Jupyter notebook on the target, run below command.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-lab --notebook-dir<span class="o">=</span>/root/notebooks/smartcam --allow-root --ip<span class="o">=</span>ip-address <span class="p">&amp;</span> 
-// fill <span class="k">in</span> ip-address from ifconfig 
+// fill <span class="k">in</span> ip-address from ifconfig, eth0
 </pre></div>
 </div>
 </li>
@@ -749,7 +713,7 @@ sudo xmutil loadapp kv260-smartcam
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on September 21, 2022.
+      <span class="lastupdated">Last updated on September 28, 2022.
       </span></p>
   </div>
 
