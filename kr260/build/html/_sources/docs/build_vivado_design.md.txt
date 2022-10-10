@@ -30,7 +30,7 @@ This tutorial shows how to build the hardware design for applications running on
 1. To access the reference files, type the following into a terminal:
 
    ```shell
-   git clone --recursive https://github.com/Xilinx/kria-vitis-platforms.git
+   git clone --branch xlnx_rel_v2022.1 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
    ```
 
 2. Navigate to the `kria-vitis-platforms/kr260` which is the working directory.
@@ -99,7 +99,7 @@ The generated XSA or the modified XSA file can now be used to create a Vitis Pla
 ## Next Steps
 
 * [Creating a Vitis Platform](build_vitis_platform.md)
-* Go back to the [KR260 SOM designs start page](../index.html)
+* Go back to the [KR260 SOM designs start page](../index)
 
 ## References
 

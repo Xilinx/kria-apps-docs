@@ -25,7 +25,9 @@ Kria SOM Ubuntu Support
 Ubuntu
 ************************************************************
 
-In addition to the PetaLinux and Yocto enablement Kria KV260 has a certified `Ubuntu 20.04 LTS <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2037317633/Getting+Started+with+Certified+Ubuntu+20.04+LTS+for+Xilinx+Devices>`_ image which can be found at this `Ubuntu site <https://ubuntu.com/download/xilinx>`_. The `Getting Started Guide <https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/getting-started.html>`_ provides a tutorial on how to use the provided Ubuntu image on the KV260 Starter Kit including running the NLP SmartVision application. NOTE: Of the KV260 applications available only the NLP-smartvision application has been ported for out-of-box support in the Ubuntu image.
+In addition to the PetaLinux and Yocto enablement Kria KV260 and KR260 has a certified `Ubuntu 22.04 LTS <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2363129857/Getting+Started+with+Certified+Ubuntu+22.04+LTS+for+Xilinx+Devices>`_ image which can be found at this `Ubuntu site <https://ubuntu.com/download/xilinx>`_. The `Getting Started with Kria KV260 Guide <https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/getting-started.html>`_ provides a tutorial on how to use the provided Ubuntu image on the KV260 Starter Kit including running the Smartcam application, and `Getting Started with Kria KR260 Guide <https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/getting-started.html>`_ provides a tutorial on how to use the provided Ubuntu image on the KV260 Starter Kit including running the ROS 2 Perception Node application. There are more example applications on `Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>`_ and `Robotics Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>`_.
+
+
 
 
 ************************************************************

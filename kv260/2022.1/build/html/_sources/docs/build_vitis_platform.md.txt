@@ -27,7 +27,7 @@ This tutorial shows how to build a Platform for applications running on KV260 Vi
 1. To access the reference files, type the following into a terminal:
 
    ```
-   git clone --branch xilinx_v2022.1_update3 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
+   git clone --branch xlnx_rel_v2022.1 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
    ```
   
 2. Navigate to the `kria-vitis-platforms/kv260` which is the working directory.

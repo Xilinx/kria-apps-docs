@@ -37,7 +37,7 @@ At a high level, the builds steps are as follows:
 1. To access the reference files, type the following into a terminal: 
 
   ```shell
-  git clone --branch xilinx_v2022.1_update3 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
+  git clone --branch xlnx_rel_v2022.1 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
   ```
 
 ## Directory Structure

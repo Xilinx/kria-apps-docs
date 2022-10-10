@@ -25,14 +25,14 @@ sys.path.insert(0, os.path.abspath('docs'))
 # -- Project information -----------------------------------------------------
 
 project = 'SOM'
-copyright = '2021-2022, Xilinx, Inc. Xilinx is now a part of AMD'
-author = 'Xilinx, Inc.'
+copyright = '2021-2022, Advanced Micro Devices, Inc'
+author = 'Advanced Micro Devices, Inc'
 
 # The short X.Y version
 # version = '2022.1'
 # The full version, including alpha/beta/rc tags
 # release = '2022.1'
-html_last_updated_fmt = 'September 28, 2022'
+html_last_updated_fmt = 'October 10, 2022'
 
 # -- General configuration ---------------------------------------------------
 

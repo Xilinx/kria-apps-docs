@@ -47,8 +47,8 @@ Tutorials
   :maxdepth: 1
   
   Building the Design components <../building_the_design>
-  Creating a Vitis Platform <../build_vitis_platform>
   Generate Custom Firmware <../generating_custom_firmware>
+
 * Building the Hardware design using Vivado
 
   * The pre-built bitstream included in the MV-Camera contains licensed FPGA IP modules from technology partners Sensor-to-Image and Framos. If a user wants to customize or create a similar production design to the MV-Camera bitstream they must obtain a license from the corresponding partner.

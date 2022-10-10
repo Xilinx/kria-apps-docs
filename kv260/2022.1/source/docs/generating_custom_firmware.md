@@ -48,7 +48,7 @@ using xmutil.
 An example has been illustrated below for reference:
 
 ```shell
-git clone https://github.com/Xilinx/kria-apps-firmware.git
+git clone --branch xlnx_rel_v2022.1 https://github.com/Xilinx/kria-apps-firmware.git
 cd kria-apps-firmware
 mkdir -p kv260/custom
 mv custom-hardware.bit custom-metadata.xclbin custom-devicetree.dtsi kv260/custom
