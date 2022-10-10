@@ -36,7 +36,7 @@ A makefile is provided to generate the required firmware binaries and install. T
 An example has been illustrated below for reference:
 
 ```shell
-git clone https://github.com/Xilinx/kria-apps-firmware.git
+git clone --branch xlnx_rel_v2022.1 https://github.com/Xilinx/kria-apps-firmware.git
 mv custom-hardware.bit kria-apps-firmware/kr260/tsn-rs485pmod/kr260-tsn-rs485pmod.bit
 mv custom-device-tree.dtsi kria-apps-firmware/kr260/tsn-rs485pmod/kr260-tsn-rs485pmod.dtsi
 cd kria-apps-firmware
@@ -47,7 +47,7 @@ For more info refer to the instructions provided in the readme file [here](https
 
 ## Next Steps
 
-* Go back to the [KR260 SOM designs start page](../index.html)
+* Go back to the [KR260 SOM designs start page](../index)
 
 <p class="sphinxhide" align="center">Copyright&copy; 2022 Xilinx</p>
 

@@ -378,6 +378,49 @@ The scope shot will show a 70% Scheduled traffic 30 % Best Effort traffic distri
 
 > **Note:** You can also monitor Tlast TX ST (P7) and  Tlast TX BE (P9) on Board1, but the distribution is not as clean as the RX, because we are monitoring the data going into the TSN IP before it is scheduled to go out on the Ethernet MAC.
 
+**No Oscilloscope Setup**
+
+* No connections to the Pmods are required in this case since the oscilloscope will not be used, instead the Wireshark application will be used to analyze traffic types.
+
+* _Start Receive mode on Board2 and use tcpdump to begin capturing received packets_
+
+    `$ source /opt/xilinx/tsn-examples/bin/start_qbv_test.sh -rx`
+
+    `$ sudo tcpdump -i ep -w qbv.pcap`
+
+* _Start Transmit mode on Board1_
+
+    `$ source /opt/xilinx/tsn-examples/bin/start_qbv_test.sh -tx`
+
+    The talker on Board1 will run for 30sec and exit automatically
+
+* Exit out of tcpdump using CTRL-c key combination to end capture on Board2
+* Move the qbv.pcap capture file to the SD card located under the /boot directory
+* Move the qbv.pcap file from the SD card to the host PC to analyze the packet distribution within Wireshark
+
+**Observe Results**
+
+Wireshark trace will show a 70% Scheduled traffic 30 % Best Effort traffic distribution.
+
+* Start Wireshark on the host PC, here we will use the one available under Ubuntu
+
+    `$ wireshark &`
+
+* In the Wireshark GUI, select File → Open → Browse and select the qbv.pcap file
+
+* Observe there are two sets of packets within the capture, one set with packet length=900, another set with packet length=800 which when ploted against time will form a 70:30 distribution. The packet length is based on the setting from the talker script, below is an example for lengths 900 and 800 for Scheduled and best effort traffic respectively.
+
+    ![](../media/i210-wireshark.png)
+
+* Click on a packet with length=900 bytes and observe the vlan ID=10, Priority (PCP/PRI=4) where a packet with PCP=4 indicates it is Scheduled traffic
+
+    ![](../media/i210-wsn1.png)
+
+* Click on a packet with length=800 bytes and observe the vlan ID=20, Priority (PCP/PRI=1) where a packet with PCP=1 indicates it is Best Effort traffic
+
+    ![](../media/i210-wsn2.png)
+
+
 ### Network Configuration 2 : KR260 and PC Workstation
 
 A single KR260 board communicating with a PC workstation capable of TSN networking.  The PC workstation is using an I210 Ethernet Controller interface card to demonstrate functionality and features of TSN.

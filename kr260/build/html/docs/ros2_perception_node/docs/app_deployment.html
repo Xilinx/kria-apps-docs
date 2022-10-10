@@ -11,7 +11,14 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>Introduction &mdash; Kria™ KR260 2022.1 documentation</title>
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Board Setup and Application Deployment &mdash; Kria™ KR260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
@@ -29,7 +36,11 @@ function OptanonWrapper() { }
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -85,7 +96,7 @@ function OptanonWrapper() { }
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Introduction</li>
+      <li>Board Setup and Application Deployment</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/docs/ros2_perception_node/docs/app_deployment.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,89 +108,190 @@ function OptanonWrapper() { }
              
   <table class="sphinxhide">
  <tr>
-   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KR260 Robotics Starter Kit <br>TSN ROS Pub Sub Tutorial</h1>
+   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KR260 Robotics Starter Kit <br>ROS Perception Tutorial</h1>
    </td>
  </tr>
  <tr>
  <td align="center"><h1>Setting up the Board and Application Deployment</h1> </td>
  </tr>
-</table><div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
+</table><div class="section" id="board-setup-and-application-deployment">
+<h1>Board Setup and Application Deployment<a class="headerlink" href="#board-setup-and-application-deployment" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document shows, how to setup the board and environment to execute Perception stack application.</p>
-<br></div>
+</div>
+<div class="section" id="pre-requisite">
+<h2>Pre-requisite<a class="headerlink" href="#pre-requisite" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="hardware-requirement">
-<h1>Hardware Requirement<a class="headerlink" href="#hardware-requirement" title="Permalink to this heading">¶</a></h1>
+<h3>Hardware Requirement<a class="headerlink" href="#hardware-requirement" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>KR260 Robotics starter kit</p></li>
-<li><p>Power supply and adaptor</p></li>
-<li><p>Ethernet cable</p></li>
-<li><p>Micro-USB to USB-A cable</p></li>
-<li><p>A 16 GB MicroSD card</p></li>
-<li><p>Ubuntu 20.04 workstation with ethernet port</p></li>
+<li><p>KR260 Robotics Starter Kit</p></li>
+<li><p>KR260 Power Supply &amp; Adapter (Included with KR260 Robotics Starter Kit)</p></li>
+<li><p>Cat 5e Ethernet Cable (Included with KR260 Robotics Starter Kit)</p></li>
+<li><p>USB-A to micro-B Cable (Included with KR260 Robotics Starter Kit)</p></li>
+<li><p>16GB MicroSD Cards (Included with KR260 Robotics Starter Kit)</p></li>
+<li><p>Ubuntu 22.04 workstation with ethernet port</p></li>
 </ul>
 <br></div>
-<div class="section" id="environment-setup-on-host-machine">
-<h1>Environment Setup On Host Machine<a class="headerlink" href="#environment-setup-on-host-machine" title="Permalink to this heading">¶</a></h1>
-<ol class="simple">
-<li><p>Install ROS2 using debian package, see install guide <a class="reference external" href="https://docs.ros.org/en/rolling/Installation/Ubuntu-Install-Debians.html">here</a>.</p></li>
-<li><p>Install KRS 1.0, see installation steps <a class="reference external" href="https://xilinx.github.io/KRS/sphinx/build/html/docs/install.html#">here</a>.</p></li>
+<div class="section" id="initial-setup-setting-up-the-board">
+<h3>Initial Setup, Setting Up The Board<a class="headerlink" href="#initial-setup-setting-up-the-board" title="Permalink to this heading">¶</a></h3>
+<ol>
+<li><p>Setting up the SD Card Image (Ubuntu)</p>
+<ul class="simple">
+<li><p>Follow the instruction from the page below to obtain Ubuntu image and flash SD card
+https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/setting-up-the-sd-card-image.html</p></li>
+</ul>
+</li>
+<li><p>KR260 Board and Interface:</p>
+<p><img alt="../../../_images/board_interfaces2.png" src="../../../_images/board_interfaces2.png" /></p>
+<p><img alt="../../../_images/usb_slot2.png" src="../../../_images/usb_slot2.png" /></p>
+<ul class="simple">
+<li><p>Connecting Everything: Follow the instruction from the page below for initial Board setup</p></li>
+</ul>
+<p>https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/connecting-everything.html</p>
+</li>
+<li><p>Booting your Starter Kit (Ubuntu):</p>
+<ul class="simple">
+<li><p>Follow the instruction from the page below to boot linux</p></li>
+</ul>
+<p>https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/booting-your-starter-kit.html</p>
+</li>
+</ol>
+<blockquote>
+<div><p><strong>Note:</strong> Steps under the section “Set up the Xilinx Development &amp; Demonstration Environment for Ubuntu 22.04 LTS” may not be needed for TSN-ROS demo.</p>
+</div></blockquote>
+<ol>
+<li><p>Set System Timezone and locale:</p>
+<ul>
+<li><p>Set timezone</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo timedatectl set-ntp <span class="nb">true</span>
+ $ sudo timedatectl set-timezone America/Los_Angeles
+ $ timedatectl
+</pre></div>
+</div>
+</li>
+<li><p>Set locale</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo locale-gen en_US en_US.UTF-8
+ $ sudo update-locale <span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8 <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+ $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+ $ locale
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Update Bootfirmware</p>
+<p>The SOM Starter Kits have factory pre-programmed boot firmware that is installed and maintained in the SOM QSPI device. Update the Boot firmware in the SOM QSPI device to ‘2022.1 Boot FW’ Image.
+follow the link below to obtain Boot firmware binary and instructions to update QSPI image using xmutil, after linux boot.</p>
+<p>https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates</p>
+</li>
+<li><p>Get the latest ROS perception application &amp; firmware package:</p>
+<ul>
+<li><p>Add archive for the Xilinx Apps demo</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo add-apt-repository ppa:xilinx-apps
+$ sudo apt update
+$ sudo apt upgrade
+</pre></div>
+</div>
+</li>
+<li><p>Search package feed for packages compatible with KR260</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo apt search xlnx-firmware-kv260
+Sorting... Done
+Full Text Search... Done
+xlnx-firmware-kr260-ros-perception/jammy,now <span class="m">0</span>.1-0xlnx1 arm64
+ FPGA firmware <span class="k">for</span> Xilinx boards - kr260 ros-perception application
+</pre></div>
+</div>
+</li>
+<li><p>Install firmware binaries</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install xlnx-firmware-kr260-ros-perception
+</pre></div>
+</div>
+</li>
+<li><p>Install ROS 2  humble</p>
+<p>Refer <a class="reference external" href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">ROS 2 Documentation</a> for the installation steps. Here is the snippet of what is needed for this application:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+$ <span class="nb">echo</span> <span class="s2">&quot;deb [arch=arm64 signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2-testing/ubuntu jammy main&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/ros2.list &gt; /dev/null
+$ sudo apt update
+$ sudo apt upgrade
+$ sudo apt install ros-humble-ros-base
+</pre></div>
+</div>
+<p>Confirm with “Y” when prompted to install new or updated packages.</p>
+</li>
+<li><p>Install ROS 2 application</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="c1"># Required dependencies ocl-icd-* opencl-headers python3-lttng ros-humble-tracetools ros-humble-tracetools-launch  ros-humble-tracetools-trace lttng-tools lttng-modules-dkms</span>
+ $ mkdir -p ~/Downloads
+ $ wget &lt;&gt; -P ~/Downloads/
+ $ sudo apt install ~/Downloads/ros-humble-xlnx-ros-perception_0.1.0-0jammy_arm64.deb
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
 </ol>
 <br></div>
-<div class="section" id="setting-up-the-board">
-<h1>Setting Up The Board<a class="headerlink" href="#setting-up-the-board" title="Permalink to this heading">¶</a></h1>
-<p><em>TBD</em></p>
+<div class="section" id="environment-setup-on-host-machine-ubuntu-22-04">
+<h3>Environment Setup On Host Machine(Ubuntu 22.04)<a class="headerlink" href="#environment-setup-on-host-machine-ubuntu-22-04" title="Permalink to this heading">¶</a></h3>
+<ol class="simple">
+<li><p>Install ROS2 using debian package, see install guide <a class="reference external" href="https://docs.ros.org/en/rolling/Installation/Ubuntu-Install-Debians.html">here</a>.</p></li>
+<li><p>Install few more dependencies from ros-humble using the below command</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt install ros-humble-gazebo-ros ros-humble-gazebo-plugins ros-humble-gazebo-msgs
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Install Gazebo Classic 11.0, see install guide <a class="reference external" href="https://classic.gazebosim.org/tutorials?tut=install_ubuntu">here</a></p></li>
+<li><p>Get files to setup and run simulation</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone --recursive https://gitenterprise.xilinx.com/SOM/kria_ros_perception
+$ <span class="nb">cd</span> kria_ros_perception
+$ rm -rf src/image_proc src/tracetools_image_pipeline src/vitis_common
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Install Simulation from the below steps</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> /opt/ros/humble/setup.bash
+$ colcon build
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Run simulation on workstation</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Launch Gazebo simulator in your workstation</span>
+<span class="c1">#  requires Gazebo installed and GUI-capabilities</span>
+$ <span class="nb">source</span> /opt/ros/humble/setup.bash  <span class="c1"># Sources system ROS 2 installation</span>
+$ colcon build --merge-install  <span class="c1"># build the workspace to deploy KRS components</span>
+$ <span class="nb">source</span> install/setup.bash  <span class="c1"># source the workspace as an overlay</span>
+$ ros2 launch perception_2nodes simulation.launch.py
+</pre></div>
+</div>
 <br></div>
 <div class="section" id="run-the-application">
-<h1>Run The Application<a class="headerlink" href="#run-the-application" title="Permalink to this heading">¶</a></h1>
-<p>This application has four flavours, which are developed in way that user can understand how he can tweek the application to achieve a desired performance during development. Below are versions and its details:</p>
+<h3>Run The Application<a class="headerlink" href="#run-the-application" title="Permalink to this heading">¶</a></h3>
+<p>This application has two flavours, which are developed in way that user can understand how he can tweek the application to achieve a desired performance during development. Below are versions and its details:</p>
 <ol class="simple">
 <li><p><strong>CPU Baseline</strong>
 This is a very simplistic version, where nodes are not accelerated and are executed on CPU. This version should allow users get familier with working environment and understand easiness in working with KRS based applications. Use below steups to execute:</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Launch Gazebo simulator in your workstation</span>
-<span class="c1">#  requires Gazebo installed and GUI-capabilities</span>
-$ <span class="nb">cd</span> ~/krs_ws  <span class="c1"># head to your KRS workspace</span>
-$ <span class="nb">source</span> /opt/ros/rolling/setup.bash  <span class="c1"># Sources system ROS 2 installation</span>
-$ colcon build --merge-install  <span class="c1"># build the workspace to deploy KRS components</span>
-$ <span class="nb">source</span> install/setup.bash  <span class="c1"># source the workspace as an overlay</span>
-$ ros2 launch perception_2nodes simulation.launch.py
-
-<span class="c1"># Launch the graph in the KV260 CPU (should be connected to the same local network)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Launch the graph in the KV260 CPU (should be connected to the same local network)</span>
 $ <span class="nb">source</span> /opt/ros/rolling/setup.bash
 $ ros2 launch perception_2nodes trace_rectify_resize.launch.py
 </pre></div>
 </div>
 <p><img alt="../../../_images/perception_graph.gif" src="../../../_images/perception_graph.gif" /></p>
 <ol class="simple">
-<li><p>FPGA Accelerated: Here we introduce a custom compute architecture where hardware acceleration is achieved using FPGA. We first accelerate the computations at each one of the graph nodes. <code class="docutils literal notranslate"><span class="pre">/rectify_node_fpga</span></code> and <code class="docutils literal notranslate"><span class="pre">/resize/resize_node_fpga</span></code> <em>Components</em> of the use case above are accelerated using Xilinx’s HLS, XRT and OpenCL targeting the Kria KR260. The changes in the ROS 2 <em>Components</em> of <code class="docutils literal notranslate"><span class="pre">image_pipeline</span></code> to leverage hardware acceleration in the FPGA are available in <a class="reference external" href="https://github.com/ros-acceleration/image_pipeline/blob/ros2/image_proc/src/rectify_fpga.cpp"><code class="docutils literal notranslate"><span class="pre">rectify_fpga</span></code></a> and <a class="reference external" href="https://github.com/ros-acceleration/image_pipeline/blob/ros2/image_proc/src/resize_fpga.cpp"><code class="docutils literal notranslate"><span class="pre">resize_fpga</span></code></a> respectively. Each one of the ROS 2 <em>Components</em> has an associated acceleration kernel that leverages the Vitis Vision Library, a computer vision library optimized for Xilinx silicon solutions and based on OpenCV APIs. Source code of the acceleration kernels is available <a class="reference external" href="https://github.com/ros-acceleration/image_pipeline/tree/ros2/image_proc/src/image_proc">here</a>. To launch the perception graph with FPGA offloading using the Vitis Vision Library:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Launch the graph in the KV260 CPU (should be connected to the same local network as the workstation)</span>
-$ <span class="nb">source</span> /opt/ros/rolling/setup.bash  <span class="c1"># enable ROS 2 overlays</span>
-$ ros2 acceleration <span class="k">select</span> image_proc  <span class="c1"># select and load the accelerator</span>
-$ ros2 launch perception_2nodes trace_rectify_resize_fpga.launch.py  <span class="c1"># launch Nodes</span>
-</pre></div>
-</div>
-<p><img alt="../../../_images/perception_graph_fpga.gif" src="../../../_images/perception_graph_fpga.gif" /></p>
-<br><ol class="simple">
-<li><p>FPGA integrated acceleration: It is observed that during tracing and benchmarking (see how-to here <em>TBD</em>), there is scope of perforamance improvement by achieving efficient inter-process communication. It required to rearchitect the application and both ROS components (rectify and resize) were integrated to one. The benefits achieved are, first, it avoids ROS2 message passing between rectify and resize and second, it avoids compute cycles which were wasted in memory mapping back and forth data between CPU and FPGA. It achieved gain for over 26.96% (see benchmarking for more details). Steps to execute integrated application are:</p></li>
+<li><p><strong>FPGA streamline accelerated</strong>: In this application ROS <em>Components</em> <code class="docutils literal notranslate"><span class="pre">RectifyNodeFPGAStreamlined</span></code> and <code class="docutils literal notranslate"><span class="pre">ResizeNodeFPGAStreamlined</span></code> are redesigned to leverage hardware acceleration, however, besides offloading perception tasks to the FPGA, each <ins>leverages an AXI4-Stream interface to <strong>create an intra-FPGA ROS 2 communication queue</strong> which is then used to pass data across nodes through the FPGA</ins>. This allows to avoid completely the ROS 2 message-passing system and optimizes dataflow achieving a <strong>24.42% total speedup</strong>. Steps to launch streamlined accelerated version are:</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># integrated</span>
+$ xmutil unloadapp
+$ xmutil loadapp image_proc_integrated  <span class="c1"># load the accelerator</span>
 $ <span class="nb">source</span> /opt/ros/rolling/setup.bash  <span class="c1"># enable ROS 2 overlays</span>
-$ ros2 acceleration <span class="k">select</span> image_proc_integrated  <span class="c1"># select and load the accelerator</span>
 $ ros2 launch perception_2nodes trace_rectify_resize_fpga_integrated.launch.py  <span class="c1"># launch Nodes</span>
 </pre></div>
 </div>
-<p><img alt="../../../_images/perception_graph_integrated.gif" src="../../../_images/perception_graph_integrated.gif" /></p>
-<br><ol class="simple">
-<li><p>FPGA streamline accelerated: In this application ROS <em>Components</em> <code class="docutils literal notranslate"><span class="pre">RectifyNodeFPGAStreamlined</span></code> and <code class="docutils literal notranslate"><span class="pre">ResizeNodeFPGAStreamlined</span></code> are redesigned to leverage hardware acceleration, however, besides offloading perception tasks to the FPGA, each <ins>leverages an AXI4-Stream interface to <strong>create an intra-FPGA ROS 2 communication queue</strong> which is then used to pass data across nodes through the FPGA</ins>. This allows to avoid completely the ROS 2 message-passing system and optimizes dataflow achieving a <strong>24.42% total speedup</strong>. Steps to launch streamlined accelerated version are:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># integrated</span>
-$ <span class="nb">source</span> /opt/ros/rolling/setup.bash  <span class="c1"># enable ROS 2 overlays</span>
-$ ros2 acceleration <span class="k">select</span> image_proc_integrated  <span class="c1"># select and load the accelerator</span>
-$ ros2 launch perception_2nodes trace_rectify_resize_fpga_integrated.launch.py  <span class="c1"># launch Nodes</span>
-</pre></div>
-</div>
-<p><img alt="../../../_images/perception_graph_integrated.gif" src="../../../_images/perception_graph_integrated.gif" /></p>
+<p><img alt="docs/ros2_perception_node/media/perception_graph_integrated.gif" src="docs/ros2_perception_node/media/perception_graph_integrated.gif" /></p>
 <br><!---
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
@@ -190,6 +302,8 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 --><p class="sphinxhide" align="center">Copyright&copy; 2022 Xilinx</p></div>
+</div>
+</div>
 
 
            </div>
@@ -209,8 +323,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on August 25, 2022.
+    <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 10, 2022.
       </span></p>
   </div>
 

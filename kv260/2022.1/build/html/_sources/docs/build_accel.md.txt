@@ -25,7 +25,7 @@ This document provides the steps to integrate the overlay consisting of accelera
 1. To access the reference files, type the following into a terminal: 
 
    ```
-   git clone --branch xilinx_v2022.1_update3 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
+   git clone --branch xlnx_rel_v2022.1 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
    ```
 
 2. Navigate to the `kria-vitis-platforms/kv260-vitis` which is the working directory.

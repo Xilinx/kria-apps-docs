@@ -34,7 +34,16 @@ Quick Start
   
    Setting up the Board and Application deployment <docs/app_deployment.md>
 
+***************************
+Tutorials
+***************************
 
+.. toctree::
+  :maxdepth: 1
+  
+  Building the Design components <../building_the_design>
+  Building the Hardware design using Vivado <../build_vivado_design>
+  Generate Custom Firmware <../generating_custom_firmware>
 
 
 ******************

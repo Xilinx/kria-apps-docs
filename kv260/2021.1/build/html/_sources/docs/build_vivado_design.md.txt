@@ -27,7 +27,7 @@ This tutorial shows how to build the hardware design for applications running on
 1. To access the reference files, type the following into a terminal:
 
    ```
-   git clone --recursive https://github.com/Xilinx/kv260-vitis.git
+   git clone --branch release-2021.1 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
    ```
 
 2. Navigate to the `kv260-vitis` which is the working directory.

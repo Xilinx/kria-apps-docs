@@ -58,6 +58,7 @@ Tutorials
   Integrating an overlay into the platform <../build_accel>
   Generating Custom Firmware <../generating_custom_firmware>
   Kria Starter Kit Linux Boot <../kria_starterkit_linux_boot>
+  Rebuilding Application Docker Containers <../build_application_docker_container>
 
 
 ********************

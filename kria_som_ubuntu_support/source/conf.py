@@ -25,14 +25,14 @@ sys.path.insert(0, os.path.abspath('docs'))
 # -- Project information -----------------------------------------------------
 
 project = 'Kria SOM Ubuntu Support'
-copyright = '2021-2022, Xilinx, Inc. Xilinx is now a part of AMD'
-author = 'Xilinx, Inc.'
+copyright = '2021-2022, Advanced Micro Devices, Inc'
+author = 'Advanced Micro Devices, Inc'
 
 # The short X.Y version
 version = '1.0'
 # The full version, including alpha/beta/rc tags
 release = '1.0'
-html_last_updated_fmt = 'August 1, 2022'
+html_last_updated_fmt = 'October 10, 2022'
 
 # -- General configuration ---------------------------------------------------
 

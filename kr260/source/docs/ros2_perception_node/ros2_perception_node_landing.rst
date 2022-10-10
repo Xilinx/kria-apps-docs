@@ -38,7 +38,7 @@ Tutorials
   Building the Design components <../building_the_design>
   Building the Hardware design using Vivado <../build_vivado_design>
   Creating a Vitis Platform <../build_vitis_platform>
-  Building a Petalinux Image <../build_petalinux>
+  Generate Custom Firmware <../generating_custom_firmware>
 
 
 ******
@@ -48,7 +48,6 @@ Other
 .. toctree::
   :maxdepth: 1
   
-  Debugging <docs/debug-pubsub>
   Known Issues & Limitations <docs/issue-pubsub>
 
 

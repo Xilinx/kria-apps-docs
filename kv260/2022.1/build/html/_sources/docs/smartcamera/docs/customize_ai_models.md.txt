@@ -430,7 +430,7 @@ Take Vitis AI model ssd_mobilenet_v2 as example, we provide the detailed steps t
 
 ## References
 
-* Vitis AI User Guide [UG1414](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_4/ug1414-vitis-ai.pdf)
+* Vitis AI User Guide [UG1414](https://docs.xilinx.com/r/en-US/ug1414-vitis-ai)
 
 ### License
 
