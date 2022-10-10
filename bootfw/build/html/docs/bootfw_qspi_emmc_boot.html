@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Boot Firmware - QSPI to eMMC boot for Production SOM &mdash; Boot SOM Firmware 2022.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Boot SOM Firmware
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/main/build/html/index.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Boot Firmware</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_overview.html">Boot Firmware Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Boot Firmware - Image Selector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Firmware Image Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">Boot Firmware - PMU Overlay Config Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">Boot Firmware - U-Boot Handoff</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Boot SOM Firmware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Boot Firmware - QSPI to eMMC boot for Production SOM</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/bootfw_qspi_emmc_boot.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="boot-firmware-qspi-to-emmc-boot-for-production-som">
+<h1>Boot Firmware - QSPI to eMMC boot for Production SOM<a class="headerlink" href="#boot-firmware-qspi-to-emmc-boot-for-production-som" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>The production SOM has an eMMC device populated, whereas the Starterkit SOMs do not. Therefore, instead of Starterkit’s QSPI-&gt;SD two stage boot process, developer can do a QSPI -&gt; eMMC two stage process on the production SOM. This page gives an example of how to boot from QSPI -&gt; eMMC.</p>
+<p>User can also use the traditional monolthic boot (from eMMC) for production SOMs by using eMMC bootmode and placing boot files in eMMC. This method is not covered by this document.</p>
+</div>
+<div class="section" id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="program-boot-bin-to-qspi">
+<h3>1. Program boot.bin to QSPI<a class="headerlink" href="#program-boot-bin-to-qspi" title="Permalink to this heading">¶</a></h3>
+<p>Unlike Starter Kit SOM, the production SOM is shipped without QSPI prepopulated. So developer first need to program QSPI with the appropiate boot firmware. the QSPI binary for Starter Kit SOM is not released, but instead developer can program boot.bin directly to address 0x0 of QSPI.</p>
+<p><em>list directions in Vivado to program</em></p>
+</div>
+<div class="section" id="boot-linux-through-jtag-or-other-methods">
+<h3>2. Boot Linux through JTAG or other methods<a class="headerlink" href="#boot-linux-through-jtag-or-other-methods" title="Permalink to this heading">¶</a></h3>
+<p>To book from QSPI -&gt; eMMC, we first need to boot Linux that has eMMC awareness.
+We can either do petalinux-boot –jtag or boot from SD card for now assuming that there’s a SD card on the CC.</p>
+<p>To use Petalinux-boot, refer to <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Steps-to-Boot-a-PetaLinux-Image-on-Hardware-with-JTAG">Petalinux Jtag Boot</a>. Developer should download the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">Production K26 SOM BSP</a>.</p>
+<p>On the host connected to the board, start xsdb and put the board in JTAG bootmode:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>connect 
+targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+mwr -force 0xffca0010 0x0<span class="p">;</span> mwr -force 0xff5e0200 0x0100
+rst -system
+</pre></div>
+</div>
+<p>On the host with K26 BSP:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-k26-som-&lt;version&gt;.bsp
+<span class="nb">cd</span> xilinx-k26-som-&lt;version&gt;
+petalinux-boot --jtag --prebuilt <span class="m">3</span> --hw_server-url &lt;hostname:3121&gt;
+</pre></div>
+</div>
+<p>on the host connected to the board, in the uart console, stop at u-boot and enter the following:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>booti 0x00200000 0x04000000 0x00100000
+</pre></div>
+</div>
+<p>This will boot a Linux with tinyFS, and you can ignore the error <code class="docutils literal notranslate"><span class="pre">ERROR:</span> <span class="pre">There's</span> <span class="pre">no</span> <span class="pre">'/dev'</span> <span class="pre">on</span> <span class="pre">rootfs.</span></code> because tiny FS does not provide /dev folder.</p>
+</div>
+<div class="section" id="write-to-emmc-in-linux">
+<h3>3. Write to eMMC in Linux<a class="headerlink" href="#write-to-emmc-in-linux" title="Permalink to this heading">¶</a></h3>
+<p>Once booted to Linux, you should be able to see  /dev/mmcblk0-  the eMMC partition, and /dev/mmcblk1 - the SD partition on KV260 starter kit. to double check, you can use this command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat /sys/class/mmc_host/mmc0/*/uevent
+cat /sys/class/mmc_host/mmc1/*/uevent
+</pre></div>
+</div>
+<p>if <code class="docutils literal notranslate"><span class="pre">MMC_TYPE=MMC</span></code>, it is an eMMC device, if <code class="docutils literal notranslate"><span class="pre">MMC_TYPE=SD</span></code>, it is a SD device.</p>
+<p>Next, delete the paritions on eMMC.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>fdisk /dev/mmcblk0 <span class="c1">#delete all partitions using &quot;d&quot; + &quot;enter&quot; followed by &quot;partition number to be deleted&quot;</span>
+</pre></div>
+</div>
+<p>Next, transfer the file over using your favorite method (such as scp, nfs, copying over SD card etc…). We are showing nfsroot method below:</p>
+<p>On host computer:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nfsroot3 &lt;path to be mounted where wic image is present&gt;
+</pre></div>
+</div>
+<p>On target:</p>
+<div class="highlight-shel notranslate"><div class="highlight"><pre><span></span>        mkdir /nfsroot
+        mount -t nfs -o nolock,proto=tcp,port=2049 10.10.70.101:/exports/root /nfsroot
+        Use DD command to flash wic
+        dd if=/nfsroot/petalinux-sdimage.wic of=/dev/mmcblk0
+</pre></div>
+</div>
+</div>
+<div class="section" id="reboot-in-qspi-mode">
+<h3>4. reboot in QSPI mode<a class="headerlink" href="#reboot-in-qspi-mode" title="Permalink to this heading">¶</a></h3>
+<p>Next, boot the board in QSPI - simply power cycle or do following in xsdb:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+mwr -force 0xffca0010 0x0<span class="p">;</span>mwr -force 0xff5e0200 0x2100
+rst -system
+targets -set -nocase -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ cortex-A53*0<span class="o">}</span>
+con
+con
+</pre></div>
+</div>
+<p>refer to <a class="reference internal" href="bootfw_uboot_handoff.html"><span class="doc">u-boot handoff</span></a> “Prioritized Boot Order” section, on 22.1 or later, u-boot will prioritize handling off from QSPI to eMMC on production SOM, if images are available.</p>
+</div>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 10, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
