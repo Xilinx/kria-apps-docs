@@ -116,14 +116,14 @@ The resource utilization numbers on this platform post implementation is reporte
 
 | Resource  | Utilization  | Avaialble  | Utilization %  |
 | :---      |    :----     | :---       |    :----       |
-|LUT	|17412	|117120	|14.87	 |
-|LUTRAM	|1057	|57600	|1.84	 |
-|FF	|32592	|234240	|13.91	 |
-|BRAM	|19.5	|144	|13.54	 |
-|URAM	|8	|64	|12.50	 |
-|DSP	|1	|1248	|0.08	 |
-|IO	|23	|186	|12.37	 |
-|BUFG	|11	|352	|3.13	 |
+|LUT	|21514	|117120	|18.37	 |
+|LUTRAM	|1975	|57600	|3.43	 |
+|FF	|32085	|234240	|13.70	 |
+|BRAM	|18	|144	|12.50	 |
+|URAM	|1	|64	|1.56	 |
+|DSP	|35	|1248	|2.80	 |
+|IO	|15	|186	|8.06	 |
+|BUFG	|10	|352	|2.84	 |
 |MMCM	|2	|4	|50.00	 |
 |PLL	|1	|8	|12.50	 |
 <br />

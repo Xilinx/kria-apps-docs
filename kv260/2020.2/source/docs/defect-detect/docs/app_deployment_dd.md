@@ -346,6 +346,14 @@ sudo defect-detect -w 1280 -h 800 -r 60 -f 1 -i input.y8 -x raw.y8 -y pre_pros.y
 
 > **Note**: You must update the command to the specific file desired as the input source.
 
+#### File-In and Display-Out playback, run the following command.
+
+```
+sudo 01.file-defect-detect-display.sh ./input_video.y8
+```
+
+> **Note**: For File-In and Display-Out playback, all three stage outputs will be displayed on DP/HDMI. The preceding command has a sample input file path. You need to change this path as per your requirement. The script `01.file-defect-detect-display.sh` contains the Gstreamer pipeline command. 
+
 Once you are done with the Defect Detection application and to switch to another accelerator application, you can unload the currently loaded accelerator application firmware by running:
 
 ```
@@ -364,6 +372,12 @@ The application is comprised of the following files:
    | filename | description |
    |----------|-------------|
    |defect-detect| main app|
+
+* Script File: => `/opt/xilinx/bin/`
+
+   | filename | description |
+   |----------|-------------|
+   |`01.file-defect-detect-display.sh`| Invoke GStreamer pipeline to detect the defects and display outputs on DP/HDMI.|
 
 * Configuration Files: => `/opt/xilinx/share/ivas/defect-detect/`
 
