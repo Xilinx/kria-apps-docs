@@ -36,10 +36,10 @@ The end applications leverage custom Gstreamer plugins for Vitis Vision librarie
 
 | Deliveries| Type|Definition|
 | ----------- | ----------- |------ |
-|libivas_otsu.so | Kernel Linking Vitis Vision library to do Gaussian and OTSU to do the filtering along with that, need to calculate the median threshold. |
-| libivas_preprocess.so |Kernel Library |Linking Vitis Vision library to do threshold binary along with filtering to remove the salt and pepper noise for defect detection. |
-|libivas_cca.so | Kernel Library | Linking Vitis Vision library to defect the defect and pass the defect parameters to the next element.|
-|libivas_text2overlay.so|Kernel Library|Linking *OpenCV* software library to embed text as result into output images.|
+|libivas_preprocess.so | Kernel Library|Linking Vitis Vision library to do threshold binary along with filtering to remove the salt and pepper noise for defect detection. |
+| libivas_canny_edge.so |Kernel Library |Linking Vitis Vision library to the Canny edge detector is an edge detection operator that uses a multi-stage algorithm to detect a wide range of edges in images. |
+|libivas_edge_tracer.so | Kernel Library | Linking Vitis Vision library to trace the edge for defect calculation.|
+|libivas_defectcalc.so|Kernel Library|Linking *OpenCV* software library to find the contour, fill the contour, and embed text as result into output images.|
 |defect-detect | Application Executable | Executable to invoke the whole application with options to choose a source, width, height, framerate and configuration file path, and other parameters.|
 ____
 

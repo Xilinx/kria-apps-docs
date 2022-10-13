@@ -29,11 +29,10 @@ Overview
 Features
 ================================
 
-
-- 4k resolution images from a sensor
-- H.264/H.265 encode/decode
-- HDMI or DisplayPort or RTSP out
-- User programmable Deep Learning models
+* 4k resolution images from a sensor
+* H.264/H.265 encode/decode
+* HDMI or DisplayPort or RTSP out
+* User programmable Deep Learning models
 
 
 *******************************

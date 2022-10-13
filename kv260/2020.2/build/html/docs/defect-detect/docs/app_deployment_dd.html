@@ -416,6 +416,15 @@ http://ip:port/?token=xxxxxxxxxxxxxxxxxx :: /opt/xilinx/share/notebooks
 <blockquote>
 <div><p><strong>Note</strong>: You must update the command to the specific file desired as the input source.</p>
 </div></blockquote>
+</div>
+<div class="section" id="file-in-and-display-out-playback-run-the-following-command">
+<h4>File-In and Display-Out playback, run the following command.<a class="headerlink" href="#file-in-and-display-out-playback-run-the-following-command" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="mf">01.</span><span class="n">file</span><span class="o">-</span><span class="n">defect</span><span class="o">-</span><span class="n">detect</span><span class="o">-</span><span class="n">display</span><span class="o">.</span><span class="n">sh</span> <span class="o">./</span><span class="n">input_video</span><span class="o">.</span><span class="n">y8</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note</strong>: For File-In and Display-Out playback, all three stage outputs will be displayed on DP/HDMI. The preceding command has a sample input file path. You need to change this path as per your requirement. The script <code class="docutils literal notranslate"><span class="pre">01.file-defect-detect-display.sh</span></code> contains the Gstreamer pipeline command.</p>
+</div></blockquote>
 <p>Once you are done with the Defect Detection application and to switch to another accelerator application, you can unload the currently loaded accelerator application firmware by running:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xmutil</span> <span class="n">unloadapp</span> <span class="n">kv260</span><span class="o">-</span><span class="n">defect</span><span class="o">-</span><span class="n">detect</span>
 </pre></div>
@@ -440,6 +449,22 @@ http://ip:port/?token=xxxxxxxxxxxxxxxxxx :: /opt/xilinx/share/notebooks
 <tr>
 <td>defect-detect</td>
 <td>main app</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>Script File: =&gt; <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/bin/</span></code></p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>filename</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>01.file-defect-detect-display.sh</code></td>
+<td>Invoke GStreamer pipeline to detect the defects and display outputs on DP/HDMI.</td>
 </tr>
 </tbody>
 </table><ul class="simple">
@@ -526,7 +551,7 @@ http://ip:port/?token=xxxxxxxxxxxxxxxxxx :: /opt/xilinx/share/notebooks
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2022, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on October 10, 2022.
+      <span class="lastupdated">Last updated on October 13, 2022.
       </span></p>
   </div>
 
