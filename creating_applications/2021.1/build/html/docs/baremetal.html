@@ -11,7 +11,14 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>Bare-metal Flow Example &mdash; Kria™ SOM 2022.1 documentation</title>
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Bare-metal Flow Example &mdash; Kria™ SOM 2021.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -31,7 +38,11 @@ function OptanonWrapper() { }
     <link rel="prev" title="Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application" href="vitis_accel_flow_smartcam_filter2d_example.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -40,7 +51,7 @@ function OptanonWrapper() { }
             <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2022.1
+                2021.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -53,10 +64,10 @@ function OptanonWrapper() { }
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kria_som_ubuntu_support/build/html/index.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/main/build/html/index.html">Kria KV260</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/index.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Flows</span></p>
@@ -67,10 +78,7 @@ function OptanonWrapper() { }
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Bare-metal Flow Example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#prerequisites-and-assumptions">Prerequisites and Assumptions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#vivado-board-file">Vivado board file</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-1-generate-pl-design-in-vivado">Step 1: Generate PL design in Vivado</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-2-generate-standalone-software-in-vitis">Step 2: Generate Standalone Software in Vitis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-3-boot-baremetal-applications">Step 3: Boot Baremetal Applications</a><ul>
@@ -80,9 +88,9 @@ function OptanonWrapper() { }
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#step-4-observe-uart-output">Step 4: Observe UART Output</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#optional-restoring-linux-booting-image">Optional: Restoring Linux booting image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 </ul>
@@ -91,10 +99,11 @@ function OptanonWrapper() { }
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/SOM/kria_app_dev_doc/creating_applications/1.0/build/html/index.html">2021.2</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/index.html">2022.1</a></li>
 </ul>
 
         </div>
@@ -123,23 +132,20 @@ function OptanonWrapper() { }
              
   <div class="section" id="bare-metal-flow-example">
 <h1>Bare-metal Flow Example<a class="headerlink" href="#bare-metal-flow-example" title="Permalink to this heading">¶</a></h1>
-<p>Developers who wish to use SOM without Linux will be creating a bare-metal(also called standalone) application. This example flow will detail the process of creating a simple PL design with a BRAM connected to the PS, running on the Vision AI Starter Kit. The flow will then create a standalone software in Vitis to read and write from BRAM. Lastly, the flow will suggest two ways to load and test the application on SOM.</p>
+<p>Developers who wish to use SOM without Linux will be creating a bare-metal(also called standalone) application. This example flow will detail the process of creating a simple
+PL design with a BRAM connected to the PS, running on the Vision AI Starter Kit. The flow will then create a standalone software in Vitis to read and write from BRAM. Lastly, the flow will suggest two ways to load
+and test the application on SOM.</p>
 <ul class="simple">
 <li><p>Assumption: Xilinx built carrier cards with corresponding SOM Starter Kit board file</p></li>
 <li><p>Input: SOM Starter Kit board files (in Vivado), developer’s own accelerator designs in Vivado (in this case, BRAM)</p></li>
-<li><p>Output: <code class="docutils literal notranslate"><span class="pre">&lt;pl&gt;</span></code>.bit, fsbl.elf, pmufw.elf, <code class="docutils literal notranslate"><span class="pre">&lt;application&gt;</span></code>.elf, and boot.bin</p></li>
+<li><p>Output: <pl>.bit, fsbl.elf, pmufw.elf, <application>.elf, and boot.bin</p></li>
 </ul>
 <div class="section" id="prerequisites-and-assumptions">
 <h2>Prerequisites and Assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permalink to this heading">¶</a></h2>
 <p>This document assumes that developers will use 2021.1 or later tools and SOM content releases. The tool versions should match - e.g. use the same tool versions for Vivado, Vitis, Bootgen, XSDB</p>
 <ol class="simple">
-<li><p>Vitis tools installation, which will include Vivado, Bootgen, and XSDB</p></li>
+<li><p>Vitis tools installation	- which will include Vivado, Bootgen, and XSDB</p></li>
 </ol>
-<div class="section" id="vivado-board-file">
-<h3>Vivado board file<a class="headerlink" href="#vivado-board-file" title="Permalink to this heading">¶</a></h3>
-<p>This flows starts with Vivado board files containing information on K26, KV260 CC or KR260 CC. The K26 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals. These board files are available in Vivado’s board list in “Create Project” wizard.</p>
-<p>Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Vivado-Board-Support-Packages">Wiki</a> for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.</p>
-</div>
 </div>
 <div class="section" id="step-1-generate-pl-design-in-vivado">
 <h2>Step 1: Generate PL design in Vivado<a class="headerlink" href="#step-1-generate-pl-design-in-vivado" title="Permalink to this heading">¶</a></h2>
@@ -153,7 +159,7 @@ function OptanonWrapper() { }
 <p><img alt="Tool Flow" src="../_images/04_vivado.png" /></p>
 <p>In Block Design, click on the + sign, and add PS block:</p>
 <p><img alt="Tool Flow" src="../_images/05_vivado.png" /></p>
-<p>Once the PS block is added, make sure to click <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Block</span> <span class="pre">Automation</span></code> and apply the board preset. This will configure the PS block correctly for SOM + Carrier Card:</p>
+<p>Once the PS block is added, make sure to click <code class="docutils literal notranslate"> <span class="pre">Run</span> <span class="pre">Block</span> <span class="pre">Automation</span></code> and apply the board preset. This will configure the PS block correctly for SOM + Carrier Card:</p>
 <p><img alt="Tool Flow" src="../_images/06_vivado.png" /></p>
 <p>Now add another block - the AXI BRAM controller:</p>
 <p><img alt="Tool Flow" src="../_images/07_vivado.png" /></p>
@@ -196,9 +202,9 @@ function OptanonWrapper() { }
 <p>In <code class="docutils literal notranslate"><span class="pre">helloworld.c</span></code>, alter the code to read and write from BRAM, and then right click <code class="docutils literal notranslate"><span class="pre">hello_world_system</span></code> and select <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Project</span></code>:</p>
 <p><img alt="Tool Flow" src="../_images/24_vitis.png" /></p>
 <p>Now developers will have the following files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vitis_workspace/add_bram_wrapper/export/add_bram_wrapper/sw/add_bram_wrapper/boot/fsbl.elf
-vitis_workspace/add_bram_wrapper/export/add_bram_wrapper/sw/add_bram_wrapper/boot/pmufw.elf
-vitis_workspace/hello_world/Debug/hello_world.elf
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vitis_workspace</span><span class="o">/</span><span class="n">add_bram_wrapper</span><span class="o">/</span><span class="n">export</span><span class="o">/</span><span class="n">add_bram_wrapper</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="n">add_bram_wrapper</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">fsbl</span><span class="o">.</span><span class="n">elf</span>
+<span class="n">vitis_workspace</span><span class="o">/</span><span class="n">add_bram_wrapper</span><span class="o">/</span><span class="n">export</span><span class="o">/</span><span class="n">add_bram_wrapper</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="n">add_bram_wrapper</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">pmufw</span><span class="o">.</span><span class="n">elf</span>
+<span class="n">vitis_workspace</span><span class="o">/</span><span class="n">hello_world</span><span class="o">/</span><span class="n">Debug</span><span class="o">/</span><span class="n">hello_world</span><span class="o">.</span><span class="n">elf</span>
 </pre></div>
 </div>
 </div>
@@ -208,46 +214,46 @@ vitis_workspace/hello_world/Debug/hello_world.elf
 <div class="section" id="option-1-boot-using-jtag">
 <h3>Option 1: Boot using JTAG<a class="headerlink" href="#option-1-boot-using-jtag" title="Permalink to this heading">¶</a></h3>
 <p>Developers can boot using JTAG using the 4 files generated: fsbl.elf, pmufw.elf, hello_world.elf, add_bram_wrapper.bit using the following XSDB script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc boot_jtag <span class="o">{</span> <span class="o">}</span> <span class="o">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">boot_jtag</span> <span class="p">{</span> <span class="p">}</span> <span class="p">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to JTAG boot mode #</span>
 <span class="c1">############################</span>
-targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+<span class="n">mwr</span> <span class="mh">0xffca0010</span> <span class="mh">0x0</span>
 <span class="c1"># change boot mode to JTAG</span>
-mwr 0xff5e0200 0x0100
+<span class="n">mwr</span> <span class="mh">0xff5e0200</span> <span class="mh">0x0100</span>
 <span class="c1"># reset</span>
-rst -system
-<span class="o">}</span>
+<span class="n">rst</span> <span class="o">-</span><span class="n">system</span>
+<span class="p">}</span>
 
-connect
-boot_jtag
+<span class="n">connect</span>
+<span class="n">boot_jtag</span>
 
-after <span class="m">2000</span>
-targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
-fpga <span class="s2">&quot;add_bram_wrapper.bit&quot;</span>
-mwr 0xffca0038 0x1FF
+<span class="n">after</span> <span class="mi">2000</span>
+<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
+<span class="n">fpga</span> <span class="s2">&quot;add_bram_wrapper.bit&quot;</span>
+<span class="n">mwr</span> <span class="mh">0xffca0038</span> <span class="mh">0x1FF</span>
 
 <span class="c1"># Download pmufw.elf</span>
-targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;MicroBlaze PMU&quot;</span><span class="o">}</span>
-after <span class="m">500</span>
-dow pmufw.elf
-con
-after <span class="m">500</span>
+<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;MicroBlaze PMU&quot;</span><span class="p">}</span>
+<span class="n">after</span> <span class="mi">500</span>
+<span class="n">dow</span> <span class="n">pmufw</span><span class="o">.</span><span class="n">elf</span>
+<span class="n">con</span>
+<span class="n">after</span> <span class="mi">500</span>
 
 <span class="c1"># Select A53 Core 0</span>
-targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;Cortex-A53 #0&quot;</span><span class="o">}</span>
-rst -processor -clear-registers
-dow fsbl.elf
-con
-after <span class="m">10000</span>
-stop
+<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;Cortex-A53 #0&quot;</span><span class="p">}</span>
+<span class="n">rst</span> <span class="o">-</span><span class="n">processor</span> <span class="o">-</span><span class="n">clear</span><span class="o">-</span><span class="n">registers</span>
+<span class="n">dow</span> <span class="n">fsbl</span><span class="o">.</span><span class="n">elf</span>
+<span class="n">con</span>
+<span class="n">after</span> <span class="mi">10000</span>
+<span class="n">stop</span>
 
 
-dow hello_world.elf
-after <span class="m">500</span>
-con
+<span class="n">dow</span> <span class="n">hello_world</span><span class="o">.</span><span class="n">elf</span>
+<span class="n">after</span> <span class="mi">500</span>
+<span class="n">con</span>
 </pre></div>
 </div>
 </div>
@@ -255,22 +261,22 @@ con
 <h3>Option 2: Boot Using boot.bin<a class="headerlink" href="#option-2-boot-using-boot-bin" title="Permalink to this heading">¶</a></h3>
 <p>Alternatively, developers can generate a boot.bin file to be programmed into the A/B image update section.</p>
 <p>Developers first need to create a <code class="docutils literal notranslate"><span class="pre">&lt;test&gt;.bif</span></code> file containing the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>the_ROM_image:
-<span class="o">{</span>
-    <span class="o">[</span>fsbl_config<span class="o">]</span> a5x_x64
-    <span class="o">[</span>pmufw_image<span class="o">]</span>pmufw.elf
-    <span class="o">[</span>bootloader<span class="o">]</span>fsbl.elf    
-    <span class="o">[</span><span class="nv">destination_device</span><span class="o">=</span>pl<span class="o">]</span>add_bram_wrapper.bit
-    <span class="o">[</span><span class="nv">destination_cpu</span><span class="o">=</span>a5x-0<span class="o">]</span>hello_world.elf
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">the_ROM_image</span><span class="p">:</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="n">fsbl_config</span><span class="p">]</span> <span class="n">a5x_x64</span>
+    <span class="p">[</span><span class="n">pmufw_image</span><span class="p">]</span><span class="n">pmufw</span><span class="o">.</span><span class="n">elf</span>
+    <span class="p">[</span><span class="n">bootloader</span><span class="p">]</span><span class="n">fsbl</span><span class="o">.</span><span class="n">elf</span>    
+    <span class="p">[</span><span class="n">destination_device</span><span class="o">=</span><span class="n">pl</span><span class="p">]</span><span class="n">add_bram_wrapper</span><span class="o">.</span><span class="n">bit</span>
+    <span class="p">[</span><span class="n">destination_cpu</span><span class="o">=</span><span class="n">a5x</span><span class="o">-</span><span class="mi">0</span><span class="p">]</span><span class="n">hello_world</span><span class="o">.</span><span class="n">elf</span>
 
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>Then they need to run <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1283-bootgen-user-guide/Introduction">bootgen</a> to create boot.bin:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bootgen -arch zynqmp -image test.bif -o boot.bin
+<p>Then they need to run <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2021_1/ug1283-bootgen-user-guide.pdf">bootgen</a> to create boot.bin:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bootgen</span> <span class="o">-</span><span class="n">arch</span> <span class="n">zynqmp</span> <span class="o">-</span><span class="n">image</span> <span class="n">test</span><span class="o">.</span><span class="n">bif</span> <span class="o">-</span><span class="n">o</span> <span class="n">boot</span><span class="o">.</span><span class="n">bin</span>
 </pre></div>
 </div>
-<p>Then, use the FW update and recovery utility documented in <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/ug1089-kv260-starter-kit#page=24">UG1089</a> and <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-Update-Process">here</a>
+<p>Then, use the FW update and recovery utility documented in <a class="reference external" href="https://www.xilinx.com/support/documentation/user_guides/som/1_0/ug1089-kv260-starter-kit.pdf#page=25">UG1089</a> and <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Stand-alone-FW-Update-&amp;-Recovery-Utility">here</a>
 to update the boot firmware. In this example, we have decided to write boot.bin into image A. Make sure to mark Image A as bootable, and as the requested Boot Image so that SOM will boot image A on every power cycle.</p>
 <p><img alt="Tool Flow" src="../_images/25_img_recovery.png" /></p>
 </div>
@@ -282,14 +288,14 @@ to update the boot firmware. In this example, we have decided to write boot.bin 
 <h3>Optional: Restoring Linux booting image<a class="headerlink" href="#optional-restoring-linux-booting-image" title="Permalink to this heading">¶</a></h3>
 <p>Developers may need to restore Starter Kit back to its default, Linux-booting setting after one of the image sectors had been overwriten with baremetal boot file. In that case, they can download the released Linux booting BOOT.bin from <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">SOM Wiki</a> and program it into one of the image sectors. They will then mark that image sector as bootable and requested image.</p>
 </div>
-</div>
 <div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
 <p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
 </div>
 
 
@@ -313,8 +319,8 @@ to update the boot firmware. In this example, we have decided to write boot.bin 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on August 1, 2022.
+    <p>&#169; Copyright 2021-2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 20, 2022.
       </span></p>
   </div>
 

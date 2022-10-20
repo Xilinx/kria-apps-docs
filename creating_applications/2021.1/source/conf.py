@@ -25,14 +25,14 @@ sys.path.insert(0, os.path.abspath('docs'))
 # -- Project information -----------------------------------------------------
 
 project = 'Kria™ SOM'
-copyright = '2021-2022, Xilinx, Inc. Xilinx is now a part of AMD'
-author = 'Xilinx, Inc.'
+copyright = '2021-2022, Advanced Micro Devices, Inc'
+author = 'Advanced Micro Devices, Inc'
 
 # The short X.Y version
-version = '2022.1'
+version = '2021.1'
 # The full version, including alpha/beta/rc tags
-release = '2022.1'
-html_last_updated_fmt = 'October 5, 2022'
+release = '2021.1'
+html_last_updated_fmt = 'October 20, 2022'
 
 # -- General configuration ---------------------------------------------------
 

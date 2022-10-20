@@ -1,6 +1,6 @@
 # On-target Utilities and Firmware
 
-After generating the PL design, developers will need to move the required files to target platform. Developers can either scp or ftp the required files to SOM, or load them into SD cards and find them in /boot/. Below file structures are some of the files on target developers may need to touch to test and deploy their applications.
+After generating the PL design, developers will need to move the required files to target platform. Developers can either scp or ftp the required files to SOM, or load them into SD cards and find them in /media/sd-mmcblk1p1/. Below file structures are some of the files on target developers may need to touch to test and deploy their applications.
 
 ``` text
 |-- etc           
@@ -26,13 +26,13 @@ The SOM Starter Kit Linux includes a set of utilities to help manage dynamic dep
 
 ## xmutil
 
-[xmutil](https://github.com/Xilinx/xmutil) is a Python-based utility wrapper that provides a front-end to other standard Linux utilities (e.g., dnf) or Xilinx platform specific sub-utilities (e.g., platform stats). In the context of dynamic deployment xmutil provides the functionality to read the package feeds defined by the on-target \*.repo file and down select the package-groups based on the hardware platform name read from the SOM and carrier card (CC) EEPROM contents. For example, when calling xmutil getpkgs on the KV260 starter kit, the utility will query the package feed and then only present to you the package-groups that include the string kv260 in them. This is intended to help you quickly identify the accelerated applications related packages for your platform. You can also use standard dnf calls to interact with the package-feed.
+xmutil is a Python-based utility wrapper that provides a front-end to other standard Linux utilities (e.g., dnf) or Xilinx platform specific sub-utilities (e.g., platform stats). In the context of dynamic deployment xmutil provides the functionality to read the package feeds defined by the on-target \*.repo file and down select the package-groups based on the hardware platform name read from the SOM and carrier card (CC) EEPROM contents. For example, when calling xmutil getpkgs on the KV260 starter kit, the utility will query the package feed and then only present to you the package-groups that include the string kv260 in them. This is intended to help you quickly identify the accelerated applications related packages for your platform. You can also use standard dnf calls to interact with the package-feed.
 
 ## dfx-mgr
 
 The [dfx-mgr](https://github.com/Xilinx/dfx-mgr) is a Xilinx library that implements an on-target daemon for managing a data model of on-target applications, active PL configuration, and loading/unloading the corresponding bitstreams. The dfx-mgr daemon(dfx-mgrd) maintains a data model of relevant application bitstreams, bitstream types, and active bitstream. The xmutil application is calling dfx-mgr when making the calls loadapp, unloadapp, and listapps. dfx-mgr is capable of supporting flat and hierarchical (DFX) PL designs.
 
-The dfx-mgr requires that the application bitstreams be loaded in /lib/firmware/<company_name>/<app_name>. Up until 2021.2, xilinx is the only folder supported. In 2022.1 and later, other folders are supported as long as they have been added in daemon.config. For latest details, visit its [github](https://github.com/Xilinx/dfx-mgr) page.
+The dfx-mgr requires that the application bitstreams be loaded in /lib/firmware/<company_name>/<app_name>. Up until 2021.2, xilinx is the only folder supported. In 2022.1, other folders will be supported as long as they have been added in daemon.config. For latest details, visit its [github](https://github.com/Xilinx/dfx-mgr) page.
 
 The dfx-mgr uses i-notify to identify when new applications are brought into the system, and requires that the files required for an application be loading in the same <app_name>. The app_name directory must contain:
 
@@ -50,7 +50,7 @@ echo 'all:{system.bit}'>bootgen.bif
 bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
 ```
 
-Example files for dfx-mgr can be found in [github](https://github.com/Xilinx/kria-apps-firmware).
+Example files for dfx-mgr can be found in [github](https://github.com/Xilinx/kv260-firmware).
 
 ### shell.json file
 
@@ -65,7 +65,7 @@ The shell.json file is a metadata file for dfx-mgr. Current implementation (2021
 
 ### Debugging with dfx-mgr
 
-As of 2022.1, dfx-mgr do not yet output debug message with a flag for verbose mode. To see debug messages from dfx-mgr, stop the current dfx-mgr process and restart it manually:
+In 2022.1, dfx-mgr do not yet output debug message with a flag for verbose mode. To see debug messages from dfx-mgr, stop the current dfx-mgr process and restart it manually:
 
 ```shell
 sudo systemctl stop dfx-mgr.service
@@ -107,17 +107,17 @@ Then run the utility:
     ```
 
 * in 22.1:
-  * use below for KV260:
+   * use below for KV260:
 
-    ``` shell
-    sudo resize-part "/dev/mmcblk1" "p2"
-    ```
+        ``` shell
+        sudo resize-part "/dev/mmcblk1" "p2"
+        ```
 
-  * use below for KR260:
+   * use below for KR260:
 
-    ``` shell
-    sudo resize-part "/dev/sda" "2"
-    ```
+        ``` shell
+        sudo resize-part "/dev/sda" "2"
+        ```
 
 To verify, run fdisk again to see updated size of partitions:
 

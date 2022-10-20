@@ -9,16 +9,16 @@ This example provide an example for developers who want to add an acceleration a
    |defect-detect |kv260_ispMipiRx_vmixDP|
    |nlp-smartvision |kv260_ispMipiRx_DP|
 
-This example adds a VADD acceleration application into kv260_ispMipiRx_DP used by nlp-smartvision and uses 2022.1 tools. You can use any of the released platforms to try out the example. Note an overlay and its application needs to be both present for an acceleration application to execute. Since we are inserting the VADD accelerator without the original NLP-smartvision overlay,  the original smartvision applications will not work on this newly generated overlay.
+This example adds a VADD acceleration application into kv260_ispMipiRx_DP used by nlp-smartvision and uses 2021.1 tools. You can use any of the released platforms to try out the example. Note an overlay and its application needs to be both present for an acceleration application to execute. Since we are inserting the VADD accelerator without the original NLP-smartvision overlay,  the original smartvision applications will not work on this newly generated overlay.
 
 ## Obtaining Platform
 
 Since we are altering an existing platform, we will first  get the platform - kv260_ispMipiRx_DP. Detailed tutorial is at [Creating Vitis Platform](https://xilinx.github.io/kria-apps-docs/main/build/html/docs/build_vitis_platform.html). Here are the specific commands to generate the platform:
 
 ```shell
-git clone --recursive https://github.com/Xilinx/kria-vitis-platforms.git
-cd $workdir/kria-vitis-platforms/kv260/platforms
-git checkout release-2022.1
+git clone --recursive https://github.com/Xilinx/kv260-vitis.git
+cd $workdir/kv260-vitis
+git checkout release-2021.1
 source <vitis path>/settings64.sh
 make platform PFM=kv260_ispMipiRx_DP
 ```

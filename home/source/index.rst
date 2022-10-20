@@ -1,11 +1,11 @@
-﻿###############################################################################################################
+###############################################################################################################
 SOM Landing Page
 ###############################################################################################################
 
 .. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM/ with xilinx.github.io/kria-apps-docs/
 
 **********************************************************************************************************************************************************************************************
-`Kria™ SOM Application Development <../../../creating_applications/2021.1/build/html/index.html>`__
+`Kria™ SOM Application Development <../../../creating_applications/2022.1/build/html/index.html>`__
 **********************************************************************************************************************************************************************************************
 
 
@@ -17,7 +17,7 @@ SOM Landing Page
    Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications.html>
    Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
    Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
-
+   OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
 
 
 
@@ -38,6 +38,15 @@ Kria SOM has official Ubuntu support with a certified Ubuntu image. Currently th
 **********************************************************************************************************************************************************************************************
 
 Gives an overview to various components in the Kria SOM boot firmware, and points to source code available for customers to get started with their implementations for their Kria SOM  custom carrier card.
+
+
+
+**********************************************************************************************************************************************************************************************
+`OpenAMP <../../../openamp/build/html/openamp_landing.html>`__
+**********************************************************************************************************************************************************************************************
+
+
+The Kria Starter Kit OpenAMP PetaLinux implementation uses the Linux kernel implementation of RPMsg for leveraging the MPSoC RPUs as co-processors. The out-of-box Kria Linux OpenAMP only implements a Linux based master on APU with the RPU as a client processor with corresponding pre-built RPU examples.
 
 
 
