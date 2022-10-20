@@ -11,7 +11,14 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>On-target Utilities and Firmware &mdash; Kria™ SOM 2022.1 documentation</title>
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>On-target Utilities and Firmware &mdash; Kria™ SOM 2021.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -31,7 +38,11 @@ function OptanonWrapper() { }
     <link rel="prev" title="Bare-metal Flow Example" href="baremetal.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -40,7 +51,7 @@ function OptanonWrapper() { }
             <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2022.1
+                2021.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -53,10 +64,10 @@ function OptanonWrapper() { }
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kria_som_ubuntu_support/build/html/index.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/main/build/html/index.html">Kria KV260</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/index.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Flows</span></p>
@@ -83,10 +94,11 @@ function OptanonWrapper() { }
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/SOM/kria_app_dev_doc/creating_applications/1.0/build/html/index.html">2021.2</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/index.html">2022.1</a></li>
 </ul>
 
         </div>
@@ -115,7 +127,7 @@ function OptanonWrapper() { }
              
   <div class="section" id="on-target-utilities-and-firmware">
 <h1>On-target Utilities and Firmware<a class="headerlink" href="#on-target-utilities-and-firmware" title="Permalink to this heading">¶</a></h1>
-<p>After generating the PL design, developers will need to move the required files to target platform. Developers can either scp or ftp the required files to SOM, or load them into SD cards and find them in /boot/. Below file structures are some of the files on target developers may need to touch to test and deploy their applications.</p>
+<p>After generating the PL design, developers will need to move the required files to target platform. Developers can either scp or ftp the required files to SOM, or load them into SD cards and find them in /media/sd-mmcblk1p1/. Below file structures are some of the files on target developers may need to touch to test and deploy their applications.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>|-- etc           
 |   |-- dfx-mgrd                     dfx-manager daemon configuration files, including daemon.config
 |   |   |-- daemon.config            Configuration file to indicate locations of firmware for dfx-mgr
@@ -143,7 +155,7 @@ function OptanonWrapper() { }
 <div class="section" id="dfx-mgr">
 <h2>dfx-mgr<a class="headerlink" href="#dfx-mgr" title="Permalink to this heading">¶</a></h2>
 <p>The <a class="reference external" href="https://github.com/Xilinx/dfx-mgr">dfx-mgr</a> is a Xilinx library that implements an on-target daemon for managing a data model of on-target applications, active PL configuration, and loading/unloading the corresponding bitstreams. The dfx-mgr daemon(dfx-mgrd) maintains a data model of relevant application bitstreams, bitstream types, and active bitstream. The xmutil application is calling dfx-mgr when making the calls loadapp, unloadapp, and listapps. dfx-mgr is capable of supporting flat and hierarchical (DFX) PL designs.</p>
-<p>The dfx-mgr requires that the application bitstreams be loaded in /lib/firmware/&lt;company_name&gt;/&lt;app_name&gt;. Up until 2021.2, xilinx is the only folder supported. In 2022.1 and later, other folders are supported as long as they have been added in daemon.config. For latest details, visit its <a class="reference external" href="https://github.com/Xilinx/dfx-mgr">github</a> page.</p>
+<p>The dfx-mgr requires that the application bitstreams be loaded in /lib/firmware/&lt;company_name&gt;/&lt;app_name&gt;. Up until 2021.2, xilinx is the only folder supported. In 2022.1, other folders will be supported as long as they have been added in daemon.config. For latest details, visit its <a class="reference external" href="https://github.com/Xilinx/dfx-mgr">github</a> page.</p>
 <p>The dfx-mgr uses i-notify to identify when new applications are brought into the system, and requires that the files required for an application be loading in the same &lt;app_name&gt;. The app_name directory must contain:</p>
 <ul class="simple">
 <li><p>Application bitstream converted to *.bit.bin format</p></li>
@@ -157,7 +169,7 @@ function OptanonWrapper() { }
 bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
 </pre></div>
 </div>
-<p>Example files for dfx-mgr can be found in <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware">github</a>.</p>
+<p>Example files for dfx-mgr can be found in <a class="reference external" href="https://github.com/Xilinx/kv260-firmware">github</a>.</p>
 <div class="section" id="shell-json-file">
 <h3>shell.json file<a class="headerlink" href="#shell-json-file" title="Permalink to this heading">¶</a></h3>
 <p>The shell.json file is a metadata file for dfx-mgr. Current implementation (2021.1) only recognizes XRT_FLAT but it is being expanded to support: XRT_FLAT, XRT_DFX, PL_FLAT, PL_DFX, and AIE types in future release. For now, use XRT_FLAT. The shell.json only needs following content:</p>
@@ -170,7 +182,7 @@ bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
 </div>
 <div class="section" id="debugging-with-dfx-mgr">
 <h3>Debugging with dfx-mgr<a class="headerlink" href="#debugging-with-dfx-mgr" title="Permalink to this heading">¶</a></h3>
-<p>As of 2022.1, dfx-mgr do not yet output debug message with a flag for verbose mode. To see debug messages from dfx-mgr, stop the current dfx-mgr process and restart it manually:</p>
+<p>In 2022.1, dfx-mgr do not yet output debug message with a flag for verbose mode. To see debug messages from dfx-mgr, stop the current dfx-mgr process and restart it manually:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo systemctl stop dfx-mgr.service
 sudo /usr/bin/dfx-mgrd <span class="p">&amp;</span>
 </pre></div>
@@ -259,8 +271,8 @@ sudo /usr/bin/dfx-mgrd <span class="p">&amp;</span>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on August 1, 2022.
+    <p>&#169; Copyright 2021-2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 20, 2022.
       </span></p>
   </div>
 

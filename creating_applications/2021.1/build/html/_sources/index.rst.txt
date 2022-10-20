@@ -8,12 +8,19 @@ With Kria SOMs, you can create and test your own custom applications and program
 
 The Kria SOM hardware design consist of the SOM (K26) and a carrier card. The carrier card (CC) can be a Xilinx carrier card (e.g. KV260), or a custom carrier card. The Kria K26 SOM uses the XCK26 Zynq MPSoC chip containing both the Processor Subsystem (PS) and Programmable Logic (PL). The Kria Starter Kit reference designs have a Linux operating system running in PS, which then runs applications that utilize HW accelerators implemented in PL. The PL design or bitstream is generated using Vivado and/or Vitis, and it is integrated with Linux software components using PetaLinux.
 
-The SOM board files in Vivado captures the hardware configuration of K26 SOM and maps connectivity to Xilinx provided carrier card peripherals. Developers can use Vivado to generate a custom HW design which may include a different peripheral configuration set than pre-built Xilinx reference designs. Vitis provides a design abstraction for provided "Vitis platforms" in which a subset of CC physical interface peripherals is defined and developers can focus on generating an acceleration "overlay" within the context of that platform. Developers can leverage Xilinx provided Kria Vitis platforms that align to a given CC or they can create their own Vitis platform. Developers can use the same generalized flows when creating platforms and designs for their own custom carrier card. Below is the tool flow that Xilinx uses to generate reference designs for Kria SOM.
+The SOM board files in Vivado captures the hardware configuration of K26 SOM and maps connectivity to Xilinx provided carrier card peripherals. Developers can use Vivado to generate a custom HW design which may include a different peripheral configuration set than pre-built Xilinx reference designs. Vitis provides a design abstraction for provided "Vitis platforms" in which a subset of CC physical interface peripherals is defined and developers can focus on generating an acceleration "overlay" within the context of that platform. Developers can leverage Xilinx provided Kria Vitis platforms that align to a given CC or they can create their own Vitis platform. Developers can use the same generalized flows when creating platforms and designs for their own custom carrier card.
+
+Note that the SOM Kria Flow is slightly different than legacy ZynqMPSoC flow. Please see their difference in :doc:`docs/bitstream_management` .
+
+Below is the tool flow that Xilinx uses to generate reference designs for Kria SOM.
 
 
 
 .. image:: docs/media/tool_flow.png
   :alt: Tool Flow
+
+
+
 
 
 .. toctree::
@@ -22,10 +29,10 @@ The SOM board files in Vivado captures the hardware configuration of K26 SOM and
    :hidden:
 
    Landing Page <https://xilinx.github.io/kria-apps-docs/>
-   Ubuntu Support <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kria_som_ubuntu_support/build/html/index.html>
-   Boot Firmware <https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html>
+   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
+   Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
-   Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260/build/html/index.html>
+   Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
 
 
@@ -44,7 +51,6 @@ The SOM board files in Vivado captures the hardware configuration of K26 SOM and
    docs/baremetal
 
 
-
 .. toctree::
    :maxdepth: 3
    :caption: Common Utilities
@@ -54,6 +60,8 @@ The SOM board files in Vivado captures the hardware configuration of K26 SOM and
    docs/target
    docs/bootmodes
    docs/dtsi_dtbo_generation
+   docs/bitstream_management
+
 
 
 .. toctree::
@@ -61,7 +69,9 @@ The SOM board files in Vivado captures the hardware configuration of K26 SOM and
    :caption: Other Releases
    :hidden:
 
-   2021.2 <https://pages.gitenterprise.xilinx.com/SOM/kria_app_dev_doc/creating_applications/1.0/build/html/index.html>
+   2022.1 <https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/index.html>
+
+
 
 
 **********************
@@ -136,7 +146,6 @@ If using a Xilinx Kria Starter Kit reference designs, applications are provided 
 
 Deploy & Test On-Target
 =====================================
-
 
 Once applications and custom HW designs are generated the user needs to move them to target.
 

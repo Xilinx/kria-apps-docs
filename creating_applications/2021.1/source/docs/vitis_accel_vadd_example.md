@@ -7,55 +7,92 @@ This example provide an example for developers who want to add an acceleration a
    |smartcam |kv260_ispMipiRx_vcu_DP|
    |aibox-reid |kv260_vcuDecode_vmixDP|
    |defect-detect |kv260_ispMipiRx_vmixDP|
-   |nlp-smartvision |kv260_ispMipiRx_rpiMipiRx_DP|
+   |nlp-smartvision |kv260_ispMipiRx_DP|
 
-This example adds a VADD acceleration application into kv260_ispMipiRx_DP used by nlp-smartvision and uses 2022.1 tools. You can use any of the released platforms to try out the example. Note an overlay and its application needs to be both present for an acceleration application to execute. Since we are inserting the VADD accelerator without the original NLP-smartvision overlay,  the original smartvision applications will not work on this newly generated overlay.
+This example adds a VADD acceleration application into kv260_ispMipiRx_DP used by nlp-smartvision and uses 2021.1 tools. You can use any of the released platforms to try out the example. Note an overlay and its application needs to be both present for an acceleration application to execute. Since we are inserting the VADD accelerator without the original NLP-smartvision overlay,  the original smartvision applications will not work on this newly generated overlay.
 
 ## Obtaining Platform
 
-Since we are altering an existing platform, we will first  get the platform - kv260_ispMipiRx_DP. Detailed tutorial is at [Creating Vitis Platform](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vitis_platform.html). Here are the specific commands to generate the platform:
+Since we are altering an existing platform, we will first  get the platform - kv260_ispMipiRx_DP. Detailed tutorial is at [Creating Vitis Platform](https://xilinx.github.io/kria-apps-docs/main/build/html/docs/build_vitis_platform.html). Here are the specific commands to generate the platform:
 
 ```shell
-git clone --branch xlnx_rel_v2022.1 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
-cd $workdir/kria-vitis-platforms/kv260/platforms
+git clone --recursive https://github.com/Xilinx/kv260-vitis.git
+cd $workdir/kv260-vitis
+git checkout release-2021.1
 source <vitis path>/settings64.sh
-make platform PFM=kv260_ispMipiRx_rpiMipiRx_DP 
+make platform PFM=kv260_ispMipiRx_DP
 ```
 
-The platform we will need in later steps will be available now in ```$workdir/kria-vitis-platforms/kv260/platforms/xilinx_kv260_ispMipiRx_rpiMipiRx_DP_202210_1```.
+The platform we will need in later steps will be available now in ```$workdir/kv260-vitis/platforms/xilinx_kv260_ispMipiRx_DP_202110_1/```.
 
-### Optional step
+## Create Sysroot
 
-   Up to 2022.1(this will be fixed in 2022.2.), Vitis still tries to generate sd_card.img even if .bif file is empty - resulting in an error ```ERROR:BootGen - syntax error``` when doing step 7 of "Generating overlay in Vitis". This error is harmless - all the needed files are still generated. However, to avoid the error, you can populate ```$workdir/kria-vitis-platforms/kv260/platforms/xilinx_kv260_ispMipiRx_rpiMipiRx_DP_202210_1/sw/kv260_ispMipiRx_rpiMipiRx_DP/boot/linux.bif``` with below content, assuming that your kv260-vitis/ and xilinx-k26-starterkit-v2022.1/ are both top level in $workdir:
+Vadd requires xrt library, therefore we need to generate sysroot with PetaLinux before starting Vitis.
+
+1. Check [Kria K26 SOM wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM). Download the **Starter Kit SOM BSP** that matches your tool version under **PetaLinux Board Support Package** section.
+
+    For example, the [2021.1 KV260 Starter kit BSP](https://www.xilinx.com/member/forms/download/xef.html?filename=xilinx-k26-starterkit-v2021.1-final.bsp), save it to your working directory.
+
+2. Setup PetaLinux environment
+
+    ```bash
+    source <petaLinux_tool_install_dir>/settings.sh
+    ```
+
+3. Update PetaLinux eSDK to enable the recipes needed by the Starter Kit SOM BSP.
+
+    ```bash
+    petalinux-upgrade -u 'http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2021.1_update1/' -p 'aarch64'
+    ```
+
+4. Create PetaLinux with the Starter Kit SOM BSP and the XSA export from step 1.
+
+    ```bash
+    cd $workdir
+    petalinux-create --type project -s xilinx-k26-starterkit-v2021.1-final.bsp
+    cd xilinx-k26-starterkit-v2021.1/
+    ```
+
+5. Add XRT to rootfs
+
+    KV260 PetaLinux BSP doesn't enable XRT because it installs XRT with overlay. To create sysroot for application developer cross compiling, we enable XRT in the rootfs.
+
+    - Run `petalinux-config -c rootfs` to launch rootfs configuration window.
+    - Go to **Filesystem packages -> libs -> xrt**
+    - Enable `xrt`
+    - Press Exit to exit configuration. Press Save to save the configuration.
+
+6. Build PetaLinux and generate SDK
+
+    ```bash
+    petalinux-build
+    petalinux-build --sdk
+    ```
+
+    The PetaLinux image files and sysroot sdk.sh will be generated in < PetaLinux Project >/images/linux directory. We will use them in the next step.
+
+7. Install sysroot:
+
+   - Go to `$workdir/xilinx-k26-starterkit-v2021.1/images/linux` directory.
+   - Type `./sdk.sh -d <Install sysroot Target Dir>` to install PetaLinux SDK. use the `-d` option to provide a full pathname to an output directory, an arbitrary path user can vhoose, and confirm.
+   - Note: The environment variable **LD_LIBRARY_PATH** must not be set when running this command
+
+8. Optional step:
+   in 2021.1, Vitis still tries to generate sd_card.img even if .bif file is empty - resulting in an error ```ERROR:BootGen - syntax error``` when doing step 7 of "Generating overlay in Vitis". This error is harmless - all the needed files are still generated. However, to avoid the error, you can populate ```$workdir/kv260-vitis/platforms/xilinx_kv260_ispMipiRx_DP_202110_1/sw/kv260_ispMipiRx_DP/boot/linux.bif``` with below content, assuming that your kv260-vitis/ and xilinx-k26-starterkit-v2021.1/ are both top level in $workdir:
 
    ```text
    the_ROM_image:
    {
     [fsbl_config] a53_x64
-    [bootloader] <../../../../xilinx-k26-starterkit-2022.1/images/linux/zynqmp_fsbl.elf>
-    [pmufw_image] <../../../../xilinx-k26-starterkit-2022.1/images/linux/pmufw.elf>
-    [destination_cpu=a53-0, exception_level=el-3, trustzone] <../../../../xilinx-k26-starterkit-2022.1/images/linux/bl31.elf>
-    [load=0x00100000] <../../../../xilinx-k26-starterkit-2022.1/images/linux/system.dtb>
-    [destination_cpu=a53-0, exception_level=el-2] <../../../../xilinx-k26-starterkit-2022.1/images/linux/u-boot.elf>
+    [bootloader] <../../../../xilinx-k26-starterkit-2021.1/images/linux/zynqmp_fsbl.elf>
+    [pmufw_image] <../../../../xilinx-k26-starterkit-2021.1/images/linux/pmufw.elf>
+    [destination_cpu=a53-0, exception_level=el-3, trustzone] <../../../../xilinx-k26-starterkit-2021.1/images/linux/bl31.elf>
+    [load=0x00100000] <../../../../xilinx-k26-starterkit-2021.1/images/linux/system.dtb>
+    [destination_cpu=a53-0, exception_level=el-2] <../../../../xilinx-k26-starterkit-2021.1/images/linux/u-boot.elf>
    }
    ```
 
-## Downloading Sysroot for Ubuntu OS
-
-Ubuntu users can download the sysroot for the corresponding version they are using [here](https://ubuntu.com/download/amd-xilinx), make sure to download the 22.04 sysroot for this example since our target will be running Ubuntu 22.04.
-
-Unlike PetaLinux 2021.1, Ubuntu sysroot already have xrt installed so you dont need to regenerate. But the README.md file has information on re-generating sysroot in case other libraries are needed.
-
-Unzip the sysroot file:
-
-```shell
-cd $ubuntu
-tar -xf iot-limerick-kria-classic-desktop-2204-x06-20220614-78-sysroot.tar.xz
-```
-
-The ```<target sysroot>``` is ```$ubuntu/sysroots/aarch64-xilinx-linux```
-
-## Generating Overlay in Vitis - Hardware
+## Generating Overlay in Vitis
 
 1. Start Vitis, and select ```Create Application Projects```, skip the welcome page
 2. In ```Select a platform from repository```, click ```+ Add``` and navigate to the folder containing ```.xpfm``` file in  ```$workdir/kv260-vitis/platforms/xilinx_kv260_ispMipiRx_DP_202110_1``` and click ```Open```. this will open the .xpfm file and its associated platform. click  ```Next```
@@ -65,67 +102,31 @@ The ```<target sysroot>``` is ```$ubuntu/sysroots/aarch64-xilinx-linux```
 3. Name the project ```vadd```, click ```Next```.
 4. In Domain page:
    - Set Domain to ```smp_linux```
-   - Set ```Sys_root path``` to ```<target sysroot>```.
+   - Set ```Sys_root path``` to ```<Install sysroot Target Dir>/sysroots/cortexa72-cortexa53-xilinx-linux```(as you created by running ```sdk.sh```).
    - Leave ```Root FS``` empty
    - Leave ```Kernel Image```  empty
    - click Next
 
-5. Select ```Acceleration templates with PL and AIE accelerators -> Simple Vector Addition``` and click ```Finish``` to generate the application.
+5. Select ```Acceleration templates with PL and AIE accelerators -> Vector Addition``` and click ```Finish``` to generate the application.
 6. In the Explorer window double click the **vadd_system->vadd->vadd.prj** file to open it, change the **Active Build configuration** from **Emulation-SW** to **Hardware**.
-7. Select ```vadd_system``` in Explorer window and Click **Build** icon in toolbar. The build task would take 10-30 minutes. When build completes, the build result is located in `vadd_system/Hardware/` directory. Note that if step 8 in section "Create Sysroot" was not performed, there will be an error and it can be ignored.
+7. Select ```vadd_system``` in Explorer window and Click **Build** icon in toolbar. The build task would take 10-30 minutes. When build completes, the build result is located in `vadd_system/Hardware/` directory. Note that if step 8 in section Create Sysroot was not performed, there will be an error and it can be ignored.
 
-    - vadd_system_hw_link/Hardware/binary_container_1.build/link/int/system.bit: PL bitstream including vadd kernel and platform components.
-    - vadd_system_hw_link/Hardware/binary_container_1.xclbin: Acceleration binary container for XRT configuration. It includes metadata that describes the kernels.
-
-    Usually, vadd/Hardware/vadd will contain the compiled application, but in this case the software generation portion will have an error:
-
-    ```text
-    fatal error: bits/libc-header-start.h no such file
-    ```
-
-    Please ignore this for now, we will address this in "Compiling application - software" section.
+    - vadd_system/Hardware/package.build/package/system.bit: PL bitstream including vadd kernel and platform components.
+    - vadd_system_hw_link/Hardware/binary_container_1.xclbin: Acceleration binary container for XRT configuration. It includes system.bit and metadata that describes the kernels.
+    - vadd/Hardware/vadd: Compiled host application
 
 8. The bitstream needs to be in bin format so that fpgamanager can load it. Convert `.bit` file to `.bit.bin` file with the following commands.
 
    ```bash
-   cd vadd_system_hw_link/Hardware/binary_container_1.build/link/int/
+   cd vadd_system/Hardware/package.build/package/
    echo 'all:{system.bit}'>bootgen.bif
    bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
    mv system.bit.bin vadd.bit.bin    
    ```
 
-## Compiling application - software
-
-The native g++ compiler used by Vitis is not compatible with the Ubuntu 22.04 sysroot. In order to compile the software, we need to use Ubuntu 22.04 tool chain (aarch64-linux-gnu-g++) instead of Vitis tool chain.
-
-### 22.04 Ubuntu Host
-
-If you happen to be running Vitis on Ubuntu 22.04 (note that this is not officially supported), you can first run these commands to install the tools:
-
-```bash
-sudo apt update
-sudo apt install crossbuild-essential-arm64
-```
-
-This should install tool chain and you will see files including ```/usr/bin/aarch64-linux-gnu-g++```, add the installed folder to your $PATH.
-
-In Vitis, open the project with vadd again. Right click vadd -> C/C++ Build Settings:
-
-![image](./media/vitis_vadd_example/vadd_cbuild.png)
-
-And give the path of /usr/bin/aarch64-linux-gnu-g++ for both compiler and linker before rebuilding the software by right clicking on vadd -> build project. 
-
-![image](./media/vitis_vadd_example/vadd_compiler.png)
-![image](./media/vitis_vadd_example/vadd_builder.png)
-
-
-### 20.04 Ubuntu Host
-
-If you are using a 20.04 Ubuntu Host, there's a CHROOT workaround to compile with a Ubuntu 22.04 tool chain. Please refer to [Wiki](need to getlink for this!!!!!!!!!)
-
 ## Obtaining .dtbo File
 
-You can download the corresponding .dtsi file (in this case, nlp-smartvision from [kv260_firmware 2022.1 release](https://github.com/Xilinx/kria-apps-firmware/tree/xlnx_rel_v2022.1) and compile them using command below. For more information on dtc please refer to [dtsi_dtbo_generation](./dtsi_dtbo_generation.md):
+You can download the corresponding .dtsi file (in this case, nlp-smartvision from [kv260_firmware 2021.1 release](https://github.com/Xilinx/kria-apps-firmware/tree/xlnx_rel_v2021.1) and compile them using command below. For more information on dtc please refer to [dtsi_dtbo_generation](./dtsi_dtbo_generation.md):
 
 ```shell
 dtc -@ -O dtb -o vadd.dtbo kv260-nlp-smartvision.dtsi
@@ -152,17 +153,17 @@ Output is vadd.dtbo.
 
     ```shell
     # Running on host machine
-    scp vadd.dtbo vadd.bit.bin shell.json vadd binary_container_1.xclbin ubuntu@<SOM Starter Kit IP>:/home/ubuntu/
+    scp vadd.dtbo vadd.bit.bin shell.json vadd binary_container_1.xclbin petalinux@<SOM Starter Kit IP>:/home/petalinux/
     ```
 
-    note that the vadd file above is a file generated in section "Compiling application - software".
+    note that the vadd file above is a file generated in section "Generating Overlay in Vitis" step 7.
 
 2. Load the hardware on target
 
     ```shell
     # Running on target board
     sudo mkdir /lib/firmware/xilinx/vadd
-    cd /home/ubuntu
+    cd /home/petalinux
     sudo mv vadd.dtbo vadd.bit.bin shell.json /lib/firmware/xilinx/vadd/
     sudo xmutil listapps
     sudo xmutil unloadapp

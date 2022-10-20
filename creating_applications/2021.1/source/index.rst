@@ -6,7 +6,7 @@ Kria SOM Accelerator and Custom Carrier Card Firmware Development
 
 With Kria SOMs, you can create and test your own custom applications and programmable logic (PL) functions. Use one or more of the Xilinx development tools (such as Vivado™, Vitis™, and PetaLinux) and open source tools (such as Linux Device Tree Generator/Compiler) to build your applications. This document focuses on the overall concept of the different PL hardware generation flows. Whenever available, this document also points to detailed step-by-step tutorials.
 
-The Kria SOM hardware design consist of the SOM (K26) and a carrier card. The carrier card (CC) can be a Xilinx carrier card (e.g. KV260), or a custom carrier card. The Kria K26 SOM uses the XCK26 Zynq MPSoC chip containing both the Processor Subsystem (PS) and Programmable Logic (PL). The Kria Starter Kit reference designs have a Linux operating system running in PS, which then runs applications that utilize HW accelerators implemented in PL. The PL design or bitstream is generated using Vivado and/or Vitis, and it is integrated with Linux software components in PetaLinux or Ubuntu.
+The Kria SOM hardware design consist of the SOM (K26) and a carrier card. The carrier card (CC) can be a Xilinx carrier card (e.g. KV260), or a custom carrier card. The Kria K26 SOM uses the XCK26 Zynq MPSoC chip containing both the Processor Subsystem (PS) and Programmable Logic (PL). The Kria Starter Kit reference designs have a Linux operating system running in PS, which then runs applications that utilize HW accelerators implemented in PL. The PL design or bitstream is generated using Vivado and/or Vitis, and it is integrated with Linux software components using PetaLinux.
 
 The SOM board files in Vivado captures the hardware configuration of K26 SOM and maps connectivity to Xilinx provided carrier card peripherals. Developers can use Vivado to generate a custom HW design which may include a different peripheral configuration set than pre-built Xilinx reference designs. Vitis provides a design abstraction for provided "Vitis platforms" in which a subset of CC physical interface peripherals is defined and developers can focus on generating an acceleration "overlay" within the context of that platform. Developers can leverage Xilinx provided Kria Vitis platforms that align to a given CC or they can create their own Vitis platform. Developers can use the same generalized flows when creating platforms and designs for their own custom carrier card.
 
@@ -18,7 +18,6 @@ Below is the tool flow that Xilinx uses to generate reference designs for Kria S
 
 .. image:: docs/media/tool_flow.png
   :alt: Tool Flow
-
 
 
 
@@ -38,13 +37,41 @@ Below is the tool flow that Xilinx uses to generate reference designs for Kria S
 
 
 
+.. toctree::
+   :maxdepth: 3
+   :caption: Flows
+   :hidden:
+
+
+   docs/vitis_accel_flow
+   docs/vitis_platform_flow
+   docs/vivado_accel_flow
+   docs/custom_cc_flow
+   docs/examples
+   docs/baremetal
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Common Utilities
+   :hidden:
+
+
+   docs/target
+   docs/bootmodes
+   docs/dtsi_dtbo_generation
+   docs/bitstream_management
+
+
 
 .. toctree::
    :maxdepth: 3
    :caption: Other Releases
    :hidden:
 
-   2021.1 <https://xilinx.github.io/kria-apps-docs/creating_applications/2021.1/build/html/index.html>
+   2022.1 <https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/index.html>
+
+
 
 
 **********************
@@ -120,12 +147,12 @@ If using a Xilinx Kria Starter Kit reference designs, applications are provided 
 Deploy & Test On-Target
 =====================================
 
-
 Once applications and custom HW designs are generated the user needs to move them to target.
 
 If using the Kria Starter Kit with the Linux reference design, developers can also use :doc:`on-target utilities <./docs/target>` to move their applications over and test. 
 
 If using the Kria Starter Kit a user can use various boot-modes to test monolithic boot of application software using :doc:`these TCL scripts <./docs/bootmodes>` to override the Starter Kit hardware defined QSPI32 boot mode.
+
 
 ****************************************************
 Prerequisites and Assumptions
@@ -249,7 +276,7 @@ Developers can create a custom Vitis platform if they require a distinct set of 
 
 - Assumption: Xilinx provided SOM carrier card with associated Vivado board file automation
 - Input: Vivado SOM Starter Kit board file
-- Output: ``.dtbo``, ``.bit.bin``, ``.xclbin``
+- Output: ``.dtbo``, ``.bit.bin``, ``.xlcbin``
 
 
 
@@ -381,6 +408,6 @@ File extension appendix:
 - ``.wic``: wic image helps simplify the process of deploying a platform project image to test by including the required boot, rootfs, and related partitions in the image. As a result, all developers need to do is copy the image to a storage device and use it to boot the hardware target device.
 - ``.xdc``: Xilinx Design Constraint file: indicate pin mapping, and pin constraints in Vivado
 - ``.xml``: The XML board file is a configuration file used by Vivado to create board related configuration
-- ``.xclbin``: device binary file, also known as AXLF file. it is an extensible, future-proof container of (bitstream/platform) hardware as well as software (MPSoC/MicroBlaze ELF files) design data. In the flows above, the ``.xclbin`` file has information about address space of the PL design
+- ``.xlcbin``: device binary file, also known as AXLF file. it is an extensible, future-proof container of (bitstream/platform) hardware as well as software (MPSoC/MicroBlaze ELF files) design data. In the flows above, the ``.xlcbin`` file has information about address space of the PL design
 - ``.xsa``: Xilinx Shell Archive. These files are generated by Vivado to contain the required hardware information to develop embedded software with Vitis. Can only be opened with Xilinx tools
 

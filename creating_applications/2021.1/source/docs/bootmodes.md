@@ -1,16 +1,15 @@
 # Setting Bootmodes
 
-Once applications and custom HW designs are generated, developers need to move them to target. If using the Kria Starter Kit, developers can use various boot-modes to test monolithic boot to application software using the following TCL scripts to set the preferred development boot process. Developers will first put the functions in a ```<boot>.tcl``` script. Then, with the host machine connected with their SOM kit, they use the following commands in XSDB or XSCT:
 
-```bash
+Once applications and custom HW designs are generated, developers need to move them to target. If using the Kria Starter Kit, developers can use various boot-modes to test monolithic boot to application software using the following TCL scripts to set the preferred development boot process. Developers will first put the functions in a ```<boot>.tcl``` script. Then, with the host machine connected with their SOM kit, they use the following commands in XSDB or XSCT:
+```
 connect
 source <boot>.tcl
 boot_<mode>
 ```
 
 To set K26 to JTAG bootmode using XSDB/XSCT, add the following TCL scripts and call the function:
-
-```bash
+```
 proc boot_jtag { } {
 ############################
 # Switch to JTAG boot mode #
@@ -26,8 +25,7 @@ rst -system
 ```
 
 To set K26 to SD bootmode using XSDB/XSCT, add the following TCL scripts and call the function:
-
-```bash
+```
 proc boot_sd { } {
 ############################
 # Switch to SD boot mode #
@@ -46,8 +44,7 @@ con
 ```
 
 To set K26 to QSPI bootmode using XSDB/XSCT, add the following TCL scripts and call the function:
-
-```bash
+```
 proc boot_qspi { } {
 ############################
 # Switch to QSPI boot mode #
@@ -66,8 +63,7 @@ con
 ```
 
 To set K26 to eMMC bootmode using XSDB/XSCT, add the following TCL scripts and call the function:
-
-```bash
+```
 proc boot_emmc { } {
 ############################
 # Switch to emmc boot mode #
@@ -87,8 +83,7 @@ con
 ```
 
 To set K26 to USB bootmode using XSDB/XSCT, add the following TCL scripts and call the function:
-
-```bash
+```
 proc boot_usb { } {
 ############################
 # Switch to usb0 boot mode #
@@ -107,7 +102,8 @@ con
 } 
 ```
 
-## License
+
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

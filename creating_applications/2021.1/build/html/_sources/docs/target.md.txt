@@ -1,6 +1,6 @@
 # On-target Utilities and Firmware
 
-After generating the PL design, developers will need to move the required files to target platform. Developers can either scp or ftp the required files to SOM, or load them into SD cards and find them in /boot/. Below file structures are some of the files on target developers may need to touch to test and deploy their applications.
+After generating the PL design, developers will need to move the required files to target platform. Developers can either scp or ftp the required files to SOM, or load them into SD cards and find them in /media/sd-mmcblk1p1/. Below file structures are some of the files on target developers may need to touch to test and deploy their applications.
 
 ``` text
 |-- etc           
@@ -32,7 +32,7 @@ xmutil is a Python-based utility wrapper that provides a front-end to other stan
 
 The [dfx-mgr](https://github.com/Xilinx/dfx-mgr) is a Xilinx library that implements an on-target daemon for managing a data model of on-target applications, active PL configuration, and loading/unloading the corresponding bitstreams. The dfx-mgr daemon(dfx-mgrd) maintains a data model of relevant application bitstreams, bitstream types, and active bitstream. The xmutil application is calling dfx-mgr when making the calls loadapp, unloadapp, and listapps. dfx-mgr is capable of supporting flat and hierarchical (DFX) PL designs.
 
-The dfx-mgr requires that the application bitstreams be loaded in /lib/firmware/<company_name>/<app_name>. Up until 2021.2, xilinx is the only folder supported. In 2022.1 and later, other folders are supported as long as they have been added in daemon.config. For latest details, visit its [github](https://github.com/Xilinx/dfx-mgr) page.
+The dfx-mgr requires that the application bitstreams be loaded in /lib/firmware/<company_name>/<app_name>. Up until 2021.2, xilinx is the only folder supported. In 2022.1, other folders will be supported as long as they have been added in daemon.config. For latest details, visit its [github](https://github.com/Xilinx/dfx-mgr) page.
 
 The dfx-mgr uses i-notify to identify when new applications are brought into the system, and requires that the files required for an application be loading in the same <app_name>. The app_name directory must contain:
 
@@ -50,7 +50,7 @@ echo 'all:{system.bit}'>bootgen.bif
 bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
 ```
 
-Example files for dfx-mgr can be found in [github](https://github.com/Xilinx/kria-apps-firmware).
+Example files for dfx-mgr can be found in [github](https://github.com/Xilinx/kv260-firmware).
 
 ### shell.json file
 
@@ -65,7 +65,7 @@ The shell.json file is a metadata file for dfx-mgr. Current implementation (2021
 
 ### Debugging with dfx-mgr
 
-As of 2022.1, dfx-mgr do not yet output debug message with a flag for verbose mode. To see debug messages from dfx-mgr, stop the current dfx-mgr process and restart it manually:
+In 2022.1, dfx-mgr do not yet output debug message with a flag for verbose mode. To see debug messages from dfx-mgr, stop the current dfx-mgr process and restart it manually:
 
 ```shell
 sudo systemctl stop dfx-mgr.service

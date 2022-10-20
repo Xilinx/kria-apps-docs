@@ -11,7 +11,14 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>Setting Bootmodes &mdash; Kria™ SOM 2022.1 documentation</title>
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Setting Bootmodes &mdash; Kria™ SOM 2021.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -31,7 +38,11 @@ function OptanonWrapper() { }
     <link rel="prev" title="On-target Utilities and Firmware" href="target.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -40,7 +51,7 @@ function OptanonWrapper() { }
             <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2022.1
+                2021.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -53,10 +64,10 @@ function OptanonWrapper() { }
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kria_som_ubuntu_support/build/html/index.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/main/build/html/index.html">Kria KV260</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/index.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Flows</span></p>
@@ -76,10 +87,11 @@ function OptanonWrapper() { }
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/SOM/kria_app_dev_doc/creating_applications/1.0/build/html/index.html">2021.2</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/index.html">2022.1</a></li>
 </ul>
 
         </div>
@@ -109,98 +121,98 @@ function OptanonWrapper() { }
   <div class="section" id="setting-bootmodes">
 <h1>Setting Bootmodes<a class="headerlink" href="#setting-bootmodes" title="Permalink to this heading">¶</a></h1>
 <p>Once applications and custom HW designs are generated, developers need to move them to target. If using the Kria Starter Kit, developers can use various boot-modes to test monolithic boot to application software using the following TCL scripts to set the preferred development boot process. Developers will first put the functions in a <code class="docutils literal notranslate"><span class="pre">&lt;boot&gt;.tcl</span></code> script. Then, with the host machine connected with their SOM kit, they use the following commands in XSDB or XSCT:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>connect
-<span class="nb">source</span> &lt;boot&gt;.tcl
-boot_&lt;mode&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">connect</span>
+<span class="n">source</span> <span class="o">&lt;</span><span class="n">boot</span><span class="o">&gt;.</span><span class="n">tcl</span>
+<span class="n">boot_</span><span class="o">&lt;</span><span class="n">mode</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>To set K26 to JTAG bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc boot_jtag <span class="o">{</span> <span class="o">}</span> <span class="o">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">boot_jtag</span> <span class="p">{</span> <span class="p">}</span> <span class="p">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to JTAG boot mode #</span>
 <span class="c1">############################</span>
-targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+<span class="n">mwr</span> <span class="mh">0xffca0010</span> <span class="mh">0x0</span>
 <span class="c1"># change boot mode to JTAG</span>
-mwr 0xff5e0200 0x0100
+<span class="n">mwr</span> <span class="mh">0xff5e0200</span> <span class="mh">0x0100</span>
 <span class="c1"># reset</span>
-rst -system
-<span class="o">}</span>
+<span class="n">rst</span> <span class="o">-</span><span class="n">system</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>To set K26 to SD bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc boot_sd <span class="o">{</span> <span class="o">}</span> <span class="o">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">boot_sd</span> <span class="p">{</span> <span class="p">}</span> <span class="p">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to SD boot mode #</span>
 <span class="c1">############################</span>
-targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+<span class="n">mwr</span> <span class="mh">0xffca0010</span> <span class="mh">0x0</span>
 <span class="c1"># change boot mode to SD</span>
-mwr 0xff5e0200 0xE100
+<span class="n">mwr</span> <span class="mh">0xff5e0200</span> <span class="mh">0xE100</span>
 <span class="c1"># reset</span>
-rst -system
+<span class="n">rst</span> <span class="o">-</span><span class="n">system</span>
 <span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-after <span class="m">2000</span>
-con
-<span class="o">}</span>
+<span class="n">after</span> <span class="mi">2000</span>
+<span class="n">con</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>To set K26 to QSPI bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc boot_qspi <span class="o">{</span> <span class="o">}</span> <span class="o">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">boot_qspi</span> <span class="p">{</span> <span class="p">}</span> <span class="p">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to QSPI boot mode #</span>
 <span class="c1">############################</span>
-targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+<span class="n">mwr</span> <span class="mh">0xffca0010</span> <span class="mh">0x0</span>
 <span class="c1"># change boot mode to QSPI</span>
-mwr 0xff5e0200 0x2100
+<span class="n">mwr</span> <span class="mh">0xff5e0200</span> <span class="mh">0x2100</span>
 <span class="c1"># reset</span>
-rst -system
+<span class="n">rst</span> <span class="o">-</span><span class="n">system</span>
 <span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-after <span class="m">2000</span>
-con
-<span class="o">}</span>
+<span class="n">after</span> <span class="mi">2000</span>
+<span class="n">con</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>To set K26 to eMMC bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc boot_emmc <span class="o">{</span> <span class="o">}</span> <span class="o">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">boot_emmc</span> <span class="p">{</span> <span class="p">}</span> <span class="p">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to emmc boot mode #</span>
 <span class="c1">############################</span>
-targets -set -nocase -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
-stop
+<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="n">nocase</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
+<span class="n">stop</span>
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+<span class="n">mwr</span> <span class="mh">0xffca0010</span> <span class="mh">0x0</span>
 <span class="c1"># change boot mode to EMMC</span>
-mwr 0xff5e0200 0x6100
+<span class="n">mwr</span> <span class="mh">0xff5e0200</span> <span class="mh">0x6100</span>
 <span class="c1"># reset</span>
-rst -system
+<span class="n">rst</span> <span class="o">-</span><span class="n">system</span>
 <span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-after <span class="m">2000</span>
-con
-<span class="o">}</span> 
+<span class="n">after</span> <span class="mi">2000</span>
+<span class="n">con</span>
+<span class="p">}</span> 
 </pre></div>
 </div>
 <p>To set K26 to USB bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc boot_usb <span class="o">{</span> <span class="o">}</span> <span class="o">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">proc</span> <span class="n">boot_usb</span> <span class="p">{</span> <span class="p">}</span> <span class="p">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to usb0 boot mode #</span>
 <span class="c1">############################</span>
-targets -set -nocase -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
-stop
+<span class="n">targets</span> <span class="o">-</span><span class="nb">set</span> <span class="o">-</span><span class="n">nocase</span> <span class="o">-</span><span class="nb">filter</span> <span class="p">{</span><span class="n">name</span> <span class="o">=~</span> <span class="s2">&quot;PSU&quot;</span><span class="p">}</span>
+<span class="n">stop</span>
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+<span class="n">mwr</span> <span class="mh">0xffca0010</span> <span class="mh">0x0</span>
 <span class="c1"># change boot mode to EMMC</span>
-mwr 0xff5e0200 0x7100
+<span class="n">mwr</span> <span class="mh">0xff5e0200</span> <span class="mh">0x7100</span>
 <span class="c1"># reset</span>
-rst -system
+<span class="n">rst</span> <span class="o">-</span><span class="n">system</span>
 <span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-after <span class="m">2000</span>
-con
-<span class="o">}</span> 
+<span class="n">after</span> <span class="mi">2000</span>
+<span class="n">con</span>
+<span class="p">}</span> 
 </pre></div>
 </div>
 <div class="section" id="license">
@@ -233,8 +245,8 @@ con
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on August 1, 2022.
+    <p>&#169; Copyright 2021-2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 20, 2022.
       </span></p>
   </div>
 

@@ -1,23 +1,19 @@
-# Bare-metal Flow Example
+#  Bare-metal Flow Example
 
-Developers who wish to use SOM without Linux will be creating a bare-metal(also called standalone) application. This example flow will detail the process of creating a simple PL design with a BRAM connected to the PS, running on the Vision AI Starter Kit. The flow will then create a standalone software in Vitis to read and write from BRAM. Lastly, the flow will suggest two ways to load and test the application on SOM.
+Developers who wish to use SOM without Linux will be creating a bare-metal(also called standalone) application. This example flow will detail the process of creating a simple 
+PL design with a BRAM connected to the PS, running on the Vision AI Starter Kit. The flow will then create a standalone software in Vitis to read and write from BRAM. Lastly, the flow will suggest two ways to load 
+and test the application on SOM.
 
 * Assumption: Xilinx built carrier cards with corresponding SOM Starter Kit board file
 * Input: SOM Starter Kit board files (in Vivado), developer's own accelerator designs in Vivado (in this case, BRAM)
-* Output: ```<pl>```.bit, fsbl.elf, pmufw.elf, ```<application>```.elf, and boot.bin
+* Output: <pl>.bit, fsbl.elf, pmufw.elf, <application>.elf, and boot.bin
+
 
 ## Prerequisites and Assumptions
 
 This document assumes that developers will use 2021.1 or later tools and SOM content releases. The tool versions should match - e.g. use the same tool versions for Vivado, Vitis, Bootgen, XSDB
 
-1. Vitis tools installation, which will include Vivado, Bootgen, and XSDB
-
-
-### Vivado board file
-
-This flows starts with Vivado board files containing information on K26, KV260 CC or KR260 CC. The K26 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals. These board files are available in Vivado's board list in "Create Project" wizard.
-
-Refer to [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Vivado-Board-Support-Packages) for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.
+1. Vitis tools installation	- which will include Vivado, Bootgen, and XSDB
 
 ## Step 1: Generate PL design in Vivado
 
@@ -41,7 +37,7 @@ In Block Design, click on the + sign, and add PS block:
 
 ![Tool Flow](./media/baremetal_example/05_vivado.png)
 
-Once the PS block is added, make sure to click ```Run Block Automation``` and apply the board preset. This will configure the PS block correctly for SOM + Carrier Card:
+Once the PS block is added, make sure to click ``` Run Block Automation``` and apply the board preset. This will configure the PS block correctly for SOM + Carrier Card:
 
 ![Tool Flow](./media/baremetal_example/06_vivado.png)
 
@@ -121,7 +117,7 @@ In ```helloworld.c```, alter the code to read and write from BRAM, and then righ
 
 Now developers will have the following files:
 
-```bash
+```
 vitis_workspace/add_bram_wrapper/export/add_bram_wrapper/sw/add_bram_wrapper/boot/fsbl.elf
 vitis_workspace/add_bram_wrapper/export/add_bram_wrapper/sw/add_bram_wrapper/boot/pmufw.elf
 vitis_workspace/hello_world/Debug/hello_world.elf
@@ -135,7 +131,7 @@ There are two ways to boot baremetal applications - using JTAG to download files
 
 Developers can boot using JTAG using the 4 files generated: fsbl.elf, pmufw.elf, hello_world.elf, add_bram_wrapper.bit using the following XSDB script:
 
-```bash
+```
 proc boot_jtag { } {
 ############################
 # Switch to JTAG boot mode #
@@ -180,11 +176,11 @@ con
 
 ### Option 2: Boot Using boot.bin
 
-Alternatively, developers can generate a boot.bin file to be programmed into the A/B image update section.
+Alternatively, developers can generate a boot.bin file to be programmed into the A/B image update section. 
 
 Developers first need to create a `<test>.bif` file containing the following:
 
-```bash
+```
 the_ROM_image:
 {
     [fsbl_config] a5x_x64
@@ -196,26 +192,27 @@ the_ROM_image:
 }
 ```
 
-Then they need to run [bootgen](https://docs.xilinx.com/r/en-US/ug1283-bootgen-user-guide/Introduction) to create boot.bin:
+Then they need to run [bootgen](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2021_1/ug1283-bootgen-user-guide.pdf) to create boot.bin:
 
-```bash
+```
 bootgen -arch zynqmp -image test.bif -o boot.bin
 ```
 
-Then, use the FW update and recovery utility documented in [UG1089](https://docs.xilinx.com/v/u/en-US/ug1089-kv260-starter-kit#page=24) and [here](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-Update-Process)
-to update the boot firmware. In this example, we have decided to write boot.bin into image A. Make sure to mark Image A as bootable, and as the requested Boot Image so that SOM will boot image A on every power cycle.
+Then, use the FW update and recovery utility documented in [UG1089](https://www.xilinx.com/support/documentation/user_guides/som/1_0/ug1089-kv260-starter-kit.pdf#page=25) and [here](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Stand-alone-FW-Update-&-Recovery-Utility) 
+to update the boot firmware. In this example, we have decided to write boot.bin into image A. Make sure to mark Image A as bootable, and as the requested Boot Image so that SOM will boot image A on every power cycle. 
 
 ![Tool Flow](./media/baremetal_example/25_img_recovery.png)
 
 ## Step 4: Observe UART Output
 
-After step 3, .bit file and the .elf files will be programmed, and developers should observe printouts from uart indicating the ability to write and read from BRAM.
+After step 3, .bit file and the .elf files will be programmed, and developers should observe printouts from uart indicating the ability to write and read from BRAM. 
 
 ### Optional: Restoring Linux booting image
 
 Developers may need to restore Starter Kit back to its default, Linux-booting setting after one of the image sectors had been overwriten with baremetal boot file. In that case, they can download the released Linux booting BOOT.bin from [SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates) and program it into one of the image sectors. They will then mark that image sector as bootable and requested image.
 
-## License
+
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
@@ -225,3 +222,4 @@ You may obtain a copy of the License at
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 <p align="center">Copyright&copy; 2021 Xilinx</p>
+
