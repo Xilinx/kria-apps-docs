@@ -17,7 +17,7 @@ This guide is targeted for Ubuntu 22.04 and Xilinx 2022.1 toolchain.
 
 1. Flash the Kria Starter Kit Linux image into the SD Card (minimum 16GB)
 
-      Refer to [KV260 Getting Started Page](https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/setting-up-the-sd-card-image.html) to flash SD card with a Ubuntu 22.04 image.
+      Refer to [KV260 Getting Started Page](https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started-ubuntu/setting-up-the-sd-card-image.html) to flash SD card with a Ubuntu 22.04 image.
 
       You can re-use the same SD card to evaluate all the applications released for Ubuntu 22.04.
 
