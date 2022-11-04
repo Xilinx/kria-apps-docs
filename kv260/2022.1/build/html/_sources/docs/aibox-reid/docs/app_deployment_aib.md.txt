@@ -106,7 +106,8 @@ Besides the hardware configurations required in [Kria Starter Kit Linux boot](..
 * The storage volume on the SD card can be limited with multiple dockers. If there are space issues, you can use following command to remove the existing container.
 
   ```bash
-  docker rmi --force aibox-reid
+  docker rmi --force <installed container>
+  # example: docker rmi --force xilinx/aibox-reid:2022.1
   ```
 
 * You can find the images installed with command:
