@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Kria SOM Software Hardware Hybrid DRM Solution &mdash; SOM Digital Rights Management 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="SOM Digital Rights Management" href="drm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../drm_landing.html" class="icon icon-home"> SOM Digital Rights Management
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Digital Rights Management</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="drm.html">SOM Digital Rights Management</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Kria SOM Software Hardware Hybrid DRM Solution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-prebuilt-binaries">Using Prebuilt Binaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#boot-firmware">Boot Firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#petalinux-linux-drivers-drm-test-application">PetaLinux Linux Drivers &amp; DRM Test Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-bitstream-with-pl-drm-activator">Test bitstream with PL DRM activator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-drm-test-application">Running the DRM Test Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#generating-binaries">Generating Binaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generating-app-store-boot-firmware">Generating App Store Boot Firmware</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#atf">ATF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#u-boot">U-Boot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-the-cma-allocation-for-boot-scr">Update the CMA allocation for boot.scr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#temporary-workaround-for-2022-1">Temporary Workaround for 2022.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boot-bin-generation">BOOT.BIN Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#linux-drivers-drm-test-application">Linux Drivers &amp; DRM Test Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#enable-provencore-tee">Enable ProvenCore TEE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enable-accelize-drm-controller-ta">Enable Accelize DRM Controller TA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-linux-wic-image">Create Linux .wic image</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-drm-activator-to-pl-hardware-design">Adding DRM Activator to PL Hardware Design</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adding-bitstreams-to-linux-image">Adding Bitstreams to Linux Image</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#working-outside-of-petalinux-infrastructure">Working outside of PetaLinux Infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resources">Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../drm_landing.html">SOM Digital Rights Management</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../drm_landing.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Kria SOM Software Hardware Hybrid DRM Solution</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/drm_hybrid.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="kria-som-software-hardware-hybrid-drm-solution">
+<h1>Kria SOM Software Hardware Hybrid DRM Solution<a class="headerlink" href="#kria-som-software-hardware-hybrid-drm-solution" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>The Accelize software DRM solution consists of a software based DRM controller that runs as a trusted application (TA) running in ProvenCore trusted execution environment (TEE) running next to Linux in the MPSoC APU using Arm TrustZone technology. The DRM Controller TA interacts with the DRM Activators that are integrated in a given PL design. Accelize distributes an integrated binary consolidating the ProvenCore TEE + the DRM Controller TA for supporting the Xilinx App Store (appstore.bin). This document provides an example of how to integrate this into the target platforms including Kria SOM and Starter Kits.</p>
+<p>There are three main aspects of the Kria SOM platform that must be modified to integrate the Accelize software DRM Controller:</p>
+<ol class="simple">
+<li><p>Inclusion of the integrated TEE + DRM Controller TA (appstore.bin) into the platform BOOT.BIN.</p></li>
+<li><p>Integration of the ProvenCore TEE Linux driver.</p></li>
+<li><p>Integration of the PL DRM Activator into a given PL design.</p></li>
+</ol>
+<p>In this tutorial, prebuilt binaries and images are provided for developers to try the DRM test application quickly without having to use any toolchains to generate binaries/images. Then we provide instructions or pointers to re-generate BOOT.bin, Linux wic image, and PL bitstream with DRM solution integrated.</p>
+<p>As as of now, the DRM example application drmselftest only have support for KV260. The document will be updated when KR260 is supported.</p>
+</div>
+<div class="section" id="using-prebuilt-binaries">
+<h2>Using Prebuilt Binaries<a class="headerlink" href="#using-prebuilt-binaries" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="boot-firmware">
+<h3>Boot Firmware<a class="headerlink" href="#boot-firmware" title="Permalink to this heading">¶</a></h3>
+<p>The ProvenCore binary pre-integrates the trusted applications (TAs) including the DRM controller, which needs to be integrated into the  BOOT.BIN partition that is active in the primary boot device (QSPI). In the diagram below, the grey boxes are the new component added to BOOT.BIN that has the ProvenCore TEE and DRM TA integrated. Upon boot the CSU ROM unpacks BOOT.BIN and FSBL is then used to load the other components as shown in the diagram below.</p>
+<p><img alt="image" src="../_images/drm_bootfw.png" /></p>
+<p>The integrated TEE, DRM TA and the standard Kria SOM Starter Kit components BOOT.bin binary is available from Accelize can be downloaded following the instructions on the <a class="reference external" href="https://appstore.xilinx.com/products/acceleration-solutions/accelize_drm_selftest.html%3Fpage_type%3D1&amp;product_id%3D875667">AMD/Xilinx App Store product page</a>.</p>
+<p>Update the firmware on your Kria SOM Starter Kit using instructions from <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-Update-Process">Kria SOM Wiki</a>. Note that this boot.bin is backwards compatible -  a regular, vanilla PetaLinux image will boot from it as well.</p>
+</div>
+<div class="section" id="petalinux-linux-drivers-drm-test-application">
+<h3>PetaLinux Linux Drivers &amp; DRM Test Application<a class="headerlink" href="#petalinux-linux-drivers-drm-test-application" title="Permalink to this heading">¶</a></h3>
+<p>The Linux drivers for ProvenCore and DRM Controller are not pre-built into the Kria SOM Starter Kit PetaLinux images in 2022.1 by default. The linux driver and test applications can be installed at runtime on the default released 2022.1 Petalinux image. Instructions for both can be requested at <a class="reference external" href="https://appstore.xilinx.com/products/acceleration-solutions/accelize_drm_selftest.html%3Fpage_type%3D1&amp;product_id%3D875667">AMD/Xilinx App Store product page</a>. Instructions to build them into PetaLinux image can be found later in this tutorial.</p>
+</div>
+<div class="section" id="test-bitstream-with-pl-drm-activator">
+<h3>Test bitstream with PL DRM activator<a class="headerlink" href="#test-bitstream-with-pl-drm-activator" title="Permalink to this heading">¶</a></h3>
+<p>When using the software DRM functionality it must interact with the DRM activator function in the PL design. This interaction is outlined in the following concept diagram and shows that for the reference implementation the activators are accessed via a shared M_AXI_HPM0_FPD port to which the software DRM Controller software needs to align.</p>
+<p><img alt="image" src="../_images/drm_pl_design.png" /></p>
+<p>An example pre-built firmware (including bitstream, .dtbo, .xclbin and .json file) is provided by Accelize. They can be installed onto a vanilla 2022.1 wic image. Instructions are on the <a class="reference external" href="https://appstore.xilinx.com/products/acceleration-solutions/accelize_drm_selftest.html%3Fpage_type%3D1&amp;product_id%3D875667">AMD/Xilinx App Store product page</a>.</p>
+</div>
+<div class="section" id="running-the-drm-test-application">
+<h3>Running the DRM Test Application<a class="headerlink" href="#running-the-drm-test-application" title="Permalink to this heading">¶</a></h3>
+<p>There are two test applications associated with DRM application.</p>
+<p>First, execute uppercase application from ProvenCore to validate that the Secure OS is functioning correctly. Instructions to test with uppercase can be found on <a class="reference external" href="https://github.com/ProvenRun/meta-provenrun/tree/xilinx-drm-honister/recipes-integration/applications/provenrun-uppercase/files">ProvenRun’s github page</a>.</p>
+<p>Second, execute drmselftest application from Accelize to validate that the soft DRM controller is interfacing with the DRM activator in the test bitstream correctly. Instructions to test with drmselftest application are on the <a class="reference external" href="https://appstore.xilinx.com/products/acceleration-solutions/accelize_drm_selftest.html%3Fpage_type%3D1&amp;product_id%3D875667">AMD/Xilinx App Store product page</a>.</p>
+</div>
+</div>
+<div class="section" id="generating-binaries">
+<h2>Generating Binaries<a class="headerlink" href="#generating-binaries" title="Permalink to this heading">¶</a></h2>
+<p>This section shows how to generate binaries to integrate the DRM solution into your applications instead of just using the prebuilt test applications.</p>
+<div class="section" id="generating-app-store-boot-firmware">
+<h3>Generating App Store Boot Firmware<a class="headerlink" href="#generating-app-store-boot-firmware" title="Permalink to this heading">¶</a></h3>
+<p>In order to generate a BOOT.BIN with support for the DRM solution, you will first need to download the appstore.bin from the <a class="reference external" href="https://appstore.xilinx.com/front/customer/content-delivery">AMD/Xilinx User Portal</a>. Once receiving the appstore.bin from Accelize you must rebuild BOOT.BIN in order to have it loaded at boot time by FSBL. The following steps outline how to integrate the appstore.bin through Xilinx PetaLinux BootGen.</p>
+<p>The following instructions assumes that we are working with 2022.1 <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">Kria SOM PetaLinux BSP</a> and 2022.1 tool chain. Download the appropriate BSP, and create workspace:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s &lt;kria_starterkit&gt;.bsp
+<span class="nb">cd</span> &lt;kria_starter_kit_petalinux_folder&gt;
+petalinux-config --silentconfig
+
+<span class="c1"># Get the meta layers for Provenrun and Accelize</span>
+<span class="nb">cd</span> project-spec/
+git clone https://github.com/ProvenRun/meta-provenrun.git -b xilinx-drm-honister
+git clone https://github.com/Accelize/meta-accelize.git -b honister
+<span class="nb">cd</span> ../
+</pre></div>
+</div>
+<p>Next, add to MACHINE_FEATURES:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># vim project-spec/meta-user/conf/petalinuxbsp.conf and append following</span>
+MACHINE_FEATURES:append <span class="o">=</span> <span class="s2">&quot; provencore accelize fpga-overlay&quot;</span>
+</pre></div>
+</div>
+<p>Next, add user layers:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-config
+<span class="c1">### Go to  Yocto Settings  ---&gt; User Layers  ---&gt;</span>
+</pre></div>
+</div>
+<p>Add the meta layers as shown below. Note that meta-provenrun needs to be added before meta-accelize.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{$PROOT}/project-spec/meta-provenrun
+{$PROOT}/project-spec/meta-accelize
+</pre></div>
+</div>
+<p><img alt="userlayer" src="../_images/drm_userlayer1.png" />
+<img alt="userlayer" src="../_images/drm_userlayer2.png" />
+<img alt="userlayer" src="../_images/drm_userlayer3.png" />
+<img alt="userlayer" src="../_images/drm_userlayer4.png" />
+<img alt="userlayer" src="../_images/drm_userlayer5.png" />
+<img alt="userlayer" src="../_images/drm_userlayer6.png" /></p>
+<div class="section" id="atf">
+<h4>ATF<a class="headerlink" href="#atf" title="Permalink to this heading">¶</a></h4>
+<p>The ProvenCore components have been upstreamed to the main ATF repository. The user had enabled this feature by adding <code class="docutils literal notranslate"><span class="pre">provencore</span></code> to MACHINE_FEATURES in previous steps.</p>
+<p>For reference the ATF build flags are:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make -j8 <span class="nv">PRELOADED_BL33_BASE</span><span class="o">=</span>0x8000000 <span class="nv">ZYNQMP_CONSOLE</span><span class="o">=</span>cadence1 <span class="nv">SPD</span><span class="o">=</span>pncd <span class="nv">SPD_PNCD_NS_IRQ</span><span class="o">=</span><span class="m">51</span> <span class="nv">ZYNQMP_BL32_MEM_BASE</span><span class="o">=</span>0x70000000 <span class="nv">ZYNQMP_BL32_MEM_SIZE</span><span class="o">=</span>0x10000000 <span class="nv">PRELOADED_BL33_BASE</span><span class="o">=</span>0x80000000 <span class="nv">PLAT</span><span class="o">=</span>zynqmp <span class="nv">RESET_TO_BL31</span><span class="o">=</span><span class="m">1</span> bl31
+</pre></div>
+</div>
+</div>
+<div class="section" id="u-boot">
+<h4>U-Boot<a class="headerlink" href="#u-boot" title="Permalink to this heading">¶</a></h4>
+<p>As the ProvenCore TEE isolates via XMPU/XPPU configurations a section of the DDR memory as secure memory for its operation it is necessary to identify this range to U-Boot to avoid it trying to make use of the reserved DDR range.</p>
+<p>Building of U-Boot with the <code class="docutils literal notranslate"><span class="pre">provencore</span></code> MACHINE_FEATURE will mark the corresponding ProvenCore TEE address range as reserved.</p>
+</div>
+<div class="section" id="update-the-cma-allocation-for-boot-scr">
+<h4>Update the CMA allocation for boot.scr<a class="headerlink" href="#update-the-cma-allocation-for-boot-scr" title="Permalink to this heading">¶</a></h4>
+<p>Due to memory allocation for provencore binary, the memory for CMA region is reduced to 700M</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># vim project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi</span>
+<span class="c1"># update CMA value to 700M. Default value was 900M</span>
+<span class="nv">bootargs</span> <span class="o">=</span> <span class="s2">&quot;earlycon console=ttyPS1,115200 clk_ignore_unused init_fatal_sh=1 cma=700M &quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="temporary-workaround-for-2022-1">
+<h4>Temporary Workaround for 2022.1<a class="headerlink" href="#temporary-workaround-for-2022-1" title="Permalink to this heading">¶</a></h4>
+<p>In 2022.1, the following workaround need to be applied to correct the names of test applications:</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">components/yocto/layers/meta-petalinux/dynamic-layers/provenrun/recipes-core/images/petalinux-image-common-provencore.inc</span></code>, correct PROVENCORE_INSTALL to the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>PROVENCORE_INSTALL = &quot; \
+    provencore-driver \
+    libprovencore \
+    provenrun-uppercase \
+    provenrun-uppercase-firmware \
+    &quot;
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">components/yocto/layers/meta-petalinux/dynamic-layers/accelize/recipes-core/images/petalinux-image-common-accelize.inc</span></code>, correct ACCELIZE_INSTALL to the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ACCELIZE_INSTALL = &quot; \
+    accelize-drmselftest \
+    accelize-drmselftest-firmware \
+    libaccelize-drm \
+    &quot;
+</pre></div>
+</div>
+<p>This is not required in 2022.2 and newer.</p>
+</div>
+<div class="section" id="boot-bin-generation">
+<h4>BOOT.BIN Generation<a class="headerlink" href="#boot-bin-generation" title="Permalink to this heading">¶</a></h4>
+<p>With the changes made to PetaLinux project, we are ready to build and generate boot.bin with commands below:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-config --silentconfig
+petalinux-build
+petalinux-package --boot <span class="se">\</span>
+                --pmufw <span class="se">\</span>
+                --fsbl <span class="se">\</span>
+                --u-boot <span class="se">\</span>
+                --dtb <span class="se">\</span>
+                --atf <span class="se">\</span>
+                --add  &lt;path to appstore.bin&gt; --cpu a53-0 --file-attribute <span class="s2">&quot;startup=0x70000020, exception_level=el-1, trustzone&quot;</span> --load 0x70000000 <span class="se">\</span>
+                --force
+</pre></div>
+</div>
+<p>When executing the above in PetaLinux project, the input files are selected from images/linux and appropriate file attributes are set and can be confirmed by looking at image/linux/bootgen.bif. Output file BOOT.BIN can be found in images/linux/BOOT.BIN</p>
+<p>For production systems Secure Boot is required to protect the integrity of the software DRM Controller and overall boot process of the ProvenCore TEE. For more information about this ZynqMPSoC security feature, please read <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841708/Zynq+Ultrascale+MPSoC+Security+Features?view=blog">Zynq MPSoC Security Feature</a>.</p>
+</div>
+</div>
+<div class="section" id="linux-drivers-drm-test-application">
+<h3>Linux Drivers &amp; DRM Test Application<a class="headerlink" href="#linux-drivers-drm-test-application" title="Permalink to this heading">¶</a></h3>
+<p>The Linux drivers for ProvenCore and DRM Controller are pre-built into the Kria SOM Starter Kit PetaLinux images starting in 2022.2. The following provides information on where to find the Linux drivers from Accelize and ProvenRun if creating your own custom Linux image for 2021,1 and onwards. Use of Yocto meta-layers is outside the scope of this document.</p>
+<p>The Linux kernel code is provided as an out of tree module - in order to enable this provided layers need to be added and the required package added to IMAGE_INSTALL.</p>
+<div class="section" id="enable-provencore-tee">
+<h4>Enable ProvenCore TEE<a class="headerlink" href="#enable-provencore-tee" title="Permalink to this heading">¶</a></h4>
+<p>For information on Provencore TEE, please see their partner <a class="reference external" href="https://www.xilinx.com/products/intellectual-property/1-11msd1m.html">page</a> and Xilinx <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/wp516-security-apps">WP516</a>.</p>
+<p>Including the <code class="docutils literal notranslate"><span class="pre">provencore</span> <span class="pre">accelize</span></code> MACHINE_FEATURE will install the kernel driver and the pnr_uppercase test application.</p>
+<p>The SDP_PNCD_NS_IRQ flag is meant to set the NS interrupt number that will be used between ProvenCore OS and linux ProvenCore driver. ATF is the one triggering this interrupt so it must be aware of its value. This value is hardcoded in ProvenCore binary and in the provencore.bin you have its value is 51. In other projects and especially on other platforms this value is different.</p>
+</div>
+<div class="section" id="enable-accelize-drm-controller-ta">
+<h4>Enable Accelize DRM Controller TA<a class="headerlink" href="#enable-accelize-drm-controller-ta" title="Permalink to this heading">¶</a></h4>
+<p>Adding <code class="docutils literal notranslate"><span class="pre">provencore</span> <span class="pre">accelize</span></code> to MACHINE_FEATURE will enable the Accelize driver and drmselftest test application.</p>
+</div>
+<div class="section" id="create-linux-wic-image">
+<h4>Create Linux .wic image<a class="headerlink" href="#create-linux-wic-image" title="Permalink to this heading">¶</a></h4>
+<p>To create the .wic image after configuring with <code class="docutils literal notranslate"><span class="pre">provencore</span></code> and <code class="docutils literal notranslate"><span class="pre">accelize</span></code> layers, use one of the following commands dependent on target platform:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># For KV260, use the following command:</span>
+petalinux-package --wic --images-dir images/linux/ --bootfiles <span class="s2">&quot;ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kv-g-revB.dtb&quot;</span> --disk-name <span class="s2">&quot;mmcblk1&quot;</span>
+</pre></div>
+</div>
+<p>Note that the resulting .wic file will not have cred.json - that still need to be copied over at runtime.</p>
+</div>
+</div>
+<div class="section" id="adding-drm-activator-to-pl-hardware-design">
+<h3>Adding DRM Activator to PL Hardware Design<a class="headerlink" href="#adding-drm-activator-to-pl-hardware-design" title="Permalink to this heading">¶</a></h3>
+<p>When using the software DRM functionality it must interact with the DRM activator function in the PL design. This interaction is outlined in the following concept diagram and shows that for the reference implementation the activators are accessed via a shared M_AXI_HPM0_FPD port to which the software DRM Controller software needs to align. For the software DRM Controller implementation provided in this guide, the address is fixed at 0xA0010000 with a 64KB range. If it is desired to not use the fixed address range, reach out to support&#64;accelize.com to customize.</p>
+<p><img alt="image" src="../_images/drm_pl_design.png" /></p>
+<p>The DRM Activator HSL code must be consistent in its instance name, interface name (e.g. s_axi_control), and its address segment for DRM licensed application developers creating their own bitstreams against the software DRM Controller pre-built binary. The DRM Activator address can be forced to the outlined reference example via the following TCL command:</p>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="nv">assign_bd_address</span><span class="w"> </span><span class="o">-</span>offset<span class="w"> </span><span class="mh">0xA0010000</span><span class="w"> </span><span class="o">-</span>range<span class="w"> </span><span class="mh">0x00010000</span><span class="w"> </span><span class="o">-</span>target_address_space<span class="w"> </span><span class="k">[</span><span class="nv">get_bd_addr_spaces</span><span class="w"> </span>PS_0<span class="o">/</span>Data<span class="k">]</span><span class="w"> </span><span class="k">[</span><span class="nv">get_bd_addr_segs</span><span class="w"> </span>preprocess_accel_1<span class="o">/</span>s_axi_control<span class="o">/</span>Reg<span class="k">]</span><span class="w"> </span><span class="o">-</span>force
+</pre></div>
+</div>
+<p>Details on how integrate the DRM activator please follow the <a class="reference external" href="https://tech.accelize.com/documentation/stable/drm_hardware_integration.html">drm hardware integration guideline</a> from Accelize.</p>
+<p>A PL developer will need to insert a <a class="reference external" href="https://tech.accelize.com/documentation/stable/drm_hardware_ip_activator.html">DRM activator</a> for each of the Licensed IP they want to protect. An example pre-built bitstream was provided in the drmselftest application.</p>
+<div class="section" id="adding-bitstreams-to-linux-image">
+<h4>Adding Bitstreams to Linux Image<a class="headerlink" href="#adding-bitstreams-to-linux-image" title="Permalink to this heading">¶</a></h4>
+<p>By including <code class="docutils literal notranslate"><span class="pre">provencore</span> <span class="pre">accelize</span></code> in MACHINE_FEATURES, the test applications’ firmware are already included in the .wic image.</p>
+<p>With firmware you have generated for your own application, you can copy  firmware to target (to /lib/firmware/xilinx/) at runtime or add them in when generating .wic image. This is an example to add firmware to the project in PetaLinux, prior to calling petalinux-build:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-create -t apps --template fpgamanager -n drmselftest-fpga --enable --srcuri <span class="s2">&quot; \</span>
+<span class="s2">    &lt;path&gt;.xclbin \</span>
+<span class="s2">    &lt;path&gt;.bit \</span>
+<span class="s2">    &lt;path&gt;.dtsi \</span>
+<span class="s2">    &lt;path&gt;shell.json &quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="working-outside-of-petalinux-infrastructure">
+<h3>Working outside of PetaLinux Infrastructure<a class="headerlink" href="#working-outside-of-petalinux-infrastructure" title="Permalink to this heading">¶</a></h3>
+<p>This document provided detailed instructions on how to generate DRM supported artifacts through PetaLinux. If developers are outside of PetaLinux infrastructure, below are some information to help get started..</p>
+<p>For integration of the ProvenCore OS Linux driver for interacting with the TEE see the meta-provenrun Yocto layer available <a class="reference external" href="https://github.com/ProvenRun/meta-provenrun/tree/xilinx-drm-honister">here</a> in the xilinx-drm-honister branch.</p>
+<p>For integration of the Accelize DRM Linux driver see meta-accelize Yocto layer available <a class="reference external" href="https://github.com/Accelize/meta-accelize/tree/honister">here</a> in the honister branch.</p>
+<p>To generate BOOT.BIN outside of PetaLinux, you can also use bootgen with a .bif file to generate BOOT.BIN outside PetaLinux infrastructure:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#boot gen command:</span>
+bootgen -arch zynqmp -image bootgen.bif
+</pre></div>
+</div>
+<p>Sample bootgen.bif:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>the_ROM_image:
+{
+    [bootloader, destination_cpu=a53-0] &lt;path to zynqmp_fsbl.elf&gt;
+    [pmufw_image] &lt;path to pmufw.elf&gt;
+    [destination_cpu=a53-0, exception_level=el-3, trustzone] &lt;path to bl31.elf&gt;
+    [destination_cpu=a53-0, load=0x00100000] &lt;path to system-zynqmp-sck-kv-g-revB.dtb&gt;
+    [destination_cpu=a53-0, exception_level=el-2] &lt;path to u-boot.elf&gt;
+    [destination_cpu=a53-0, startup=0x70000020, exception_level=el-1, trustzone, load=0x70000000] &lt;path to appstore.bin&gt;
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="resources">
+<h3>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wiki.accelize.com/home/How-to-Publish-a-Kria-Application-on-the-Xilinx-Kria-Store.147226634.html">How to publish a Kria Application on the Xilinx Kria Store</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Accelize/GettingStarted_Examples/tree/master/Hardware/Xilinx_Vitis/01_rtl_kernel_XDMA/rtl_adder_pipes_KV260_2021.1#2-build-the-embeeded-linux-packages-using-petalinux">Accelize Getting Started Examples</a></p></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="drm.html" class="btn btn-neutral float-left" title="SOM Digital Rights Management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on November 10, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
