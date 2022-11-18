@@ -18,7 +18,7 @@ SOM Landing Page
    Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
    Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
    OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
-   Digital Rights Management <https://pages.gitenterprise.xilinx.com/techdocs/SOM/drm.html>
+   Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
 
 
 
