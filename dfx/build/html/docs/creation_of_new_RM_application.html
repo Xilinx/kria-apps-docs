@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Creating a new Application &mdash; Kria SOM DFX Examples 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Create a new accelerator RM" href="creation_of_new_RM.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Kria SOM DFX Examples
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DFX Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DFX_Landing_Page.html">Dynamic Function eXchange (DFX)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kria_DFX_K26.html">K26 DFX Hardware Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Accelerators_On_K26.html">Accelerator Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html">Load Accelerator Example and Run Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orchestration_of_accelerators.html">Orchestrate Accelerator Examples to Demonstrate DFX on K26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creation_of_new_RM.html">Create New RM for the K26 DFX Hardware Design</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Create New RM Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pre-requisites-and-assumptions">Pre-Requisites and Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-movement-apis">Data Movement APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#buffer-allocation-for-the-application">Buffer Allocation for the Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application-example-template">Application Example Template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application-example-for-accelerator-doing-addition-subtraction">Application Example for Accelerator doing Addition/Subtraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-apps-for-new-accelerators">Building apps for new accelerators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-new-accelerator-rm-application-on-the-target">Run new accelerator RM application on the target</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#steps-to-install-firmware-for-new-rms">Steps to install firmware for new RMs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-new-accelerator-rm-on-the-target">Load new accelerator RM on the target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-applications-for-new-rm">Run applications for new RM</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kria SOM DFX Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Creating a new Application</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/creation_of_new_RM_application.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="creating-a-new-application">
+<h1>Creating a new Application<a class="headerlink" href="#creating-a-new-application" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This section provides an details to create applications for accelerators on DFX example design. It also provides steps to install and run new accelerator firmware on the target. Usually, an accelerator takes input data, processes it, and produces the output data. This output data can be consumed by the user or passed further to another accelerator for processing. On the DFX uexample design, the input and output data are stored on DDR. An IP with virtual AXI stream channel support is provided for data movement between DDR and the accelerators. The virtual channels are realized on a single AXI Stream Bus by using different TID Values. Data Packets use TID value 0 and Control packets use TID values 1 through 7.
+The application can differentiate between control and data packets based on the TID. A total of 8 TID values, 0 to 7, are supported.
+The data movement APIs use UIO drivers to map the custom IPs like data movement IP etc. The APIs are described in the following section.</p>
+</div>
+<div class="section" id="pre-requisites-and-assumptions">
+<h2>Pre-Requisites and Assumptions<a class="headerlink" href="#pre-requisites-and-assumptions" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Accelerators are configured with streams with TIDs ranging from 1 to 7 on the data mover.</p></li>
+<li><p>Data is provided to accelerators with TID = 0 on the data mover.</p></li>
+<li><p>Streaming accelerator functions by reading data from the input stream and writing data on the output stream. Data mover API DataToAccel reads data from DDR and provides it to the Accelerator input stream.  Data mover API DataFromAccel reads data from the accelerator’s output stream and writes the data to DDR. In cases when data needs to be read from DDR for processing and written to DDR after processing, both the APIs - DataToAccel and DataFromAccel, need to be called. Calling only DataToAccel will stall the pipe after sometime as the accelerator’s output data is not read.
+<img alt="image" src="../_images/BufferBackPressure.png" /></p></li>
+<li><p>In the two-slot design, the user can load different accelerators in each of the slots and run the applications in paralell. The max limit of DDR that the users can allocate for each application is 256MB.</p></li>
+<li><p>For buffer allocation using XRT, the pre-requisite is that zocl must be loaded. The dtsi file should have a zyxclmm_drm entry which ensures that zocl will be loaded when the device tree overlay is applied.</p></li>
+</ul>
+</div>
+<div class="section" id="data-movement-apis">
+<h2>Data Movement APIs<a class="headerlink" href="#data-movement-apis" title="Permalink to this heading">¶</a></h2>
+<p>All the APIs take one common argument called slot number which denotes the reconfigurable partition where the accelerator is loaded. The RMs have an inbuilt AXIS data mover to take care of data movement between the AXIS accelerators and DDR. The in-built data mover reads data from a source address in DDR and provides an input stream to Accelerator; reads data from the output stream of an accelerator and writes to a destination address on DDR.</p>
+<p><strong>InitializeMapRMs</strong> - Initialize and Map the data mover IPs using UIO drivers.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">InitializeMapRMs</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"> </span><span class="c1">// Possible slot values 0 or 1 based on which slot is being Initialized and Mapped.</span>
+</pre></div>
+</div>
+<p><strong>DataToAccel</strong> - DDR to accelerator data movement</p>
+<p>Code example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define DKB_OFFSET_MEM		0x0 </span>
+<span class="cp">#define EB_OFFSET_MEM		  0x100</span>
+<span class="cp">#define KEYBUFF_SIZE		  0x2</span>
+<span class="cp">#define TID_0				      0x0</span>
+<span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">DKB_OFFSET_MEM</span><span class="p">,</span><span class="n">KEYBUFF_SIZE</span><span class="p">,</span><span class="n">TID_1</span><span class="p">);</span><span class="w"></span>
+<span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">EB_OFFSET_MEM</span><span class="p">,</span><span class="n">BUFF_SIZE</span><span class="p">,</span><span class="n">TID_0</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>DataToAccelDone</strong> – Check whether the previous DataToAccel function finished execution. Call to this API will wait until the last DataToAccel API has finished its operation.</p>
+<p>Code example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>DataFromAccel</strong> - Data movement from accelerator to DDR.</p>
+<p>Code example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define RESULT_OFFSET_MEM	0x300</span>
+<span class="cp">#define BUFF_SIZE			0x10	</span>
+<span class="n">DataFromAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="n">RESULT_OFFSET_MEM</span><span class="p">,</span><span class="w"> </span><span class="n">BUFF_SIZE</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>DataFromAccelDone</strong> - Check whether the previous DataFromAccel function finished execution. Call to this API will wait until the last DataFromAccel API has finished its operation.</p>
+<p>Code example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFromAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>FinaliseUnmapRMs</strong> - Unmap the data mover IPs that were mapped as part of the call to initializeMapRMs(int slot).</p>
+<p>Code example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FinaliseUnmapRMs</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="buffer-allocation-for-the-application">
+<h2>Buffer Allocation for the Application<a class="headerlink" href="#buffer-allocation-for-the-application" title="Permalink to this heading">¶</a></h2>
+<p>Every application needs buffer allocation for providing input data to Accelerator and storing the output data from the accelerator. XRT Native APIs are used for buffer allocation and deallocation.</p>
+<p>Code example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//Allocate XRT buffer to be used for input and output of the application</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">device</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">bufferObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">bo</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">SIZE_IN_BYTES</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">vptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">bufferObject</span><span class="p">.</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">//Use vptr to work with the allocated xrt buffer</span>
+<span class="n">mapBuffer</span><span class="p">(</span><span class="n">bufferObject</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>XRT takes care of deallocating the buffer when the application exits.</p>
+</div>
+<div class="section" id="application-example-template">
+<h2>Application Example Template<a class="headerlink" href="#application-example-template" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-cp notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Includes</span>
+<span class="o">//</span><span class="n">Functions</span>
+<span class="n">int</span> <span class="n">main</span><span class="p">(</span><span class="n">int</span> <span class="n">argc</span><span class="p">,</span><span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="o">//</span><span class="n">Set</span> <span class="n">slot</span> <span class="n">from</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+  <span class="o">//</span><span class="n">Initialize</span> <span class="n">and</span> <span class="n">Memory</span> <span class="n">map</span> <span class="n">RMs</span>
+  <span class="o">//</span><span class="n">Allocate</span> <span class="n">memory</span> <span class="n">Buffer</span> <span class="n">using</span> <span class="n">XRT</span>
+  <span class="o">//</span><span class="n">Application</span> <span class="n">access</span> <span class="n">to</span> <span class="n">the</span> <span class="n">allocated</span> <span class="n">buffer</span> 
+  <span class="o">//</span><span class="n">Accelerator</span> <span class="n">access</span> <span class="n">to</span> <span class="n">allocated</span> <span class="n">buffer</span> <span class="n">differentiated</span> <span class="n">by</span> <span class="n">TIDs</span>
+  <span class="o">//</span><span class="n">Application</span> <span class="n">Logic</span>
+  <span class="o">//</span><span class="n">Unmap</span> <span class="n">RMs</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="application-example-for-accelerator-doing-addition-subtraction">
+<h2>Application Example for Accelerator doing Addition/Subtraction<a class="headerlink" href="#application-example-for-accelerator-doing-addition-subtraction" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Copyright (C) 2022, Advanced Micro Devices, Inc. All rights reserved.</span>
+<span class="cm"> * SPDX-License-Identifier: MIT</span>
+<span class="cm"> */</span><span class="w"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/mman.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// XRT includes</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;experimental/xrt_bo.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;experimental/xrt_device.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;experimental/xrt_kernel.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#define SIZE_IN_BYTES       0x4000000	</span><span class="c1">//64MB</span>
+
+
+<span class="cp">#define A_OFFSET			0 		</span><span class="c1">//Decryption Key Offset at 0</span>
+<span class="cp">#define B_OFFSET			8 		</span><span class="c1">//Encryption Key Offset at 32</span>
+<span class="cp">#define OPERATION_OFFSET	64 		        </span><span class="c1">//Encrypted Buffer Offset at 256</span>
+<span class="cp">#define RESULT_OFFSET		128		        </span><span class="c1">//Decryped Buffer Offset at 512</span>
+<span class="cp">#define A_OFFSET_MEM		0x0 	                </span><span class="c1">//Decryption Key Mem Offset in Hex</span>
+<span class="cp">#define B_OFFSET_MEM		0x20	                </span><span class="c1">//Encryption Key Mem Offset in Hex</span>
+<span class="cp">#define OPERATION_OFFSET_MEM		0x100 	        </span><span class="c1">//Encrypted Buffer Mem Offset in Hex</span>
+<span class="cp">#define RESULT_OFFSET_MEM	0x200	                </span><span class="c1">//Result Buffer Mem Offset in Hex</span>
+<span class="cp">#define INPUT_SIZE			0x2		</span><span class="c1">//Size of Input Data</span>
+<span class="cp">#define OPERATION_SIZE		0x1		        </span><span class="c1">//Size of Operation</span>
+<span class="cp">#define TID_0				0x0		</span><span class="c1">//TID 0</span>
+<span class="cp">#define TID_1				0x1		</span><span class="c1">//TID 1</span>
+<span class="cp">#define TID_2				0x2		</span><span class="c1">//TID 2</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">InitializeMapRMs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">StartAccel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">FinaliseUnmapRMs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">mapBuffer</span><span class="p">(</span><span class="n">xrt</span><span class="o">::</span><span class="n">bo</span><span class="w"> </span><span class="n">boa</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DataToAccel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">tid</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DataFromAccel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DataToAccelDone</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DataFromAccelDone</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// A Input Buffer</span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="n">A</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="mh">0x55555555</span><span class="p">,</span><span class="w"> </span><span class="mh">0x44444444</span><span class="p">,</span><span class="w"> </span><span class="mh">0x33333333</span><span class="p">,</span><span class="w"> </span><span class="mh">0x22222222</span><span class="p">,</span><span class="w"></span>
+<span class="w">	</span><span class="mh">0x55555555</span><span class="p">,</span><span class="w"> </span><span class="mh">0x44444444</span><span class="p">,</span><span class="w"> </span><span class="mh">0x33333333</span><span class="p">,</span><span class="w"> </span><span class="mh">0x22222222</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="c1">// B Input Buffer </span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="n">B</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"></span>
+<span class="w">	</span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="c1">// Operation</span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="n">OperationAdd</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="mh">0x00000001</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="kt">uint32_t</span><span class="w"> </span><span class="n">OperationSub</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="c1">//Default slot Set to 0 unless passed as an argument</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="w"> </span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="c1">//Updating slot number provided as command line argument</span>
+<span class="w">		</span><span class="n">slot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">slot</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">slot</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">		</span><span class="p">{</span><span class="w"></span>
+<span class="w">			</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;- Invalid slot number provided %s. Valid values : 0 or 1</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">			</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">		</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="c1">//Initialize and memory map RMs</span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">InitializeMapRMs</span><span class="p">(</span><span class="n">slot</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;- Check the slot number where the accelerator is loaded and run the test on the specific slot.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="c1">//Allocate XRT buffer to be used for input and output of the application</span>
+<span class="w">	</span><span class="k">auto</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">device</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="k">auto</span><span class="w"> </span><span class="n">bufferObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">bo</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">SIZE_IN_BYTES</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">vptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">bufferObject</span><span class="p">.</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">	</span><span class="n">mapBuffer</span><span class="p">(</span><span class="n">bufferObject</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">	</span><span class="c1">// Write A of Size 32 bytes (4bytes x 8 )</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">vptr</span><span class="o">+</span><span class="n">A_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">A</span><span class="p">));</span><span class="w"></span>
+<span class="w">	</span><span class="c1">// Write B of Size 32 bytes (4bytes x 8 )</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">vptr</span><span class="o">+</span><span class="n">B_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">B</span><span class="p">));</span><span class="w"></span>
+<span class="w">	</span><span class="c1">// Write Add Operation</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">vptr</span><span class="o">+</span><span class="n">OPERATION_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OperationAdd</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">OperationAdd</span><span class="p">));</span><span class="w"></span>
+<span class="w">	</span><span class="c1">// Write Sub Operation </span>
+<span class="w">	</span><span class="c1">//std::memcpy(vptr+OPERATION_OFFSET, &amp;OperationSub, sizeof(OperationSub));</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">//Initialize RM</span>
+<span class="w">	</span><span class="n">StartAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="c1">//Program A to Accelerator - Size 32 bytes (16bytes x 2 ) to Offset 0 (0x0)</span>
+<span class="w">	</span><span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">A_OFFSET_MEM</span><span class="p">,</span><span class="n">INPUT_SIZE</span><span class="p">,</span><span class="n">TID_0</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="c1">//Program B to Accelerator - Size 32 bytes (16bytes x 2 ) to Offset 8 (0x20)</span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">OPERATION_OFFSET_MEM</span><span class="p">,</span><span class="n">OPERATION_SIZE</span><span class="p">,</span><span class="n">TID_1</span><span class="p">);</span><span class="w"></span>
+<span class="w">		</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="c1">//Program Operation to Accelerator - Size 16 bytes (16bytes x 1 ) to Offset 64 (0x100)</span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">B_OFFSET_MEM</span><span class="p">,</span><span class="n">INPUT_SIZE</span><span class="p">,</span><span class="n">TID_2</span><span class="p">);</span><span class="w"></span>
+<span class="w">		</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="c1">//DataFromAccel - Size 16 bytes (16bytes x 1 ) to Offset 128 (0x200)</span>
+<span class="w">		</span><span class="n">DataFromAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="n">RESULT_OFFSET_MEM</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_SIZE</span><span class="p">);</span><span class="w"></span>
+<span class="w">		</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFromAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> Success: Selected Operation Done !.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="n">FinaliseUnmapRMs</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-apps-for-new-accelerators">
+<h2>Building apps for new accelerators<a class="headerlink" href="#building-apps-for-new-accelerators" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The applications shoukld be built on the target.</p></li>
+<li><p>Copy the above application example from the localhost as main.c to the target</p></li>
+<li><p>Run the below steps to build an application on the target</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt install uuid-dev libdfx-dev libdfx-mgr-dev <span class="c1">#Installing required libraries </span>
+sudo git clone --branch xlnx_rel_v2022.1 --recursive  https://github.com/Xilinx/kria-dfx-apps.git <span class="c1">#Cloning Application Git Repo that has siha APIs</span>
+<span class="nb">cd</span> kria-dfx-apps/src
+sudo mkdir ADD <span class="c1">#Create directory to copy/create application source code</span>
+sudo scp user@localhost:&lt;path to directory containing main.c on localhost&gt;/main.c ./ADD <span class="c1">#Copy application source code</span>
+<span class="nb">cd</span> ..
+<span class="nv">INC</span><span class="o">=</span><span class="s1">&#39;-I/usr/include/xrt -I/usr/include/dfx-mgr&#39;</span> <span class="c1">#Setting up Include files</span>
+<span class="nv">LNK</span><span class="o">=</span><span class="s1">&#39;-luuid -lxrt_coreutil -lxrt++ -ldfx-mgr&#39;</span> <span class="c1">#Setting up Library dependencies</span>
+sudo g++ -Wall -g -std<span class="o">=</span>c++1y <span class="nv">$INC</span> lib/siha.c src/ADD/main.c <span class="nv">$LNK</span> -o testADD <span class="c1">#Compile application</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-new-accelerator-rm-application-on-the-target">
+<h2>Run new accelerator RM application on the target<a class="headerlink" href="#run-new-accelerator-rm-application-on-the-target" title="Permalink to this heading">¶</a></h2>
+<p>This section provides details to install new custom RM firmware on target and run its corresponding application.</p>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h3>
+<p>Clone the kria-apps-firmware repository on target</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v2022.1 --recursive https://github.com/Xilinx/kria-apps-firmware.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="steps-to-install-firmware-for-new-rms">
+<h3>Steps to install firmware for new RMs<a class="headerlink" href="#steps-to-install-firmware-for-new-rms" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Copy the new RM firmware directory created <a class="reference external" href="creation_of_new_RM.md#new-rm-output-files">here</a> to the directory kria-apps-firmware/k26-dfx/2rp on the target.</p></li>
+<li><p>Navigate to the directory kria-apps-firmware/k26-dfx/2rp</p></li>
+<li><p>Run Makefile to install new accelerator RM firmware on the target.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> kria-apps-firmware/k26-dfx/2rp/
+sudo apt install bootgen-xlnx
+sudo make install
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-new-accelerator-rm-on-the-target">
+<h3>Load new accelerator RM on the target<a class="headerlink" href="#load-new-accelerator-rm-on-the-target" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Check if free slots are available on target using xmutil listapps.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil listapps
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If all slots on target are full, free up a slot</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp 
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Load the new accelerator RM on the target</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil loadapp NewRMName
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-applications-for-new-rm">
+<h3>Run applications for new RM<a class="headerlink" href="#run-applications-for-new-rm" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>On the target, navigate to the directory where the new RM application is present.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/kria-dfx-apps
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run the new RM application built by providing the slot number where the RM was loaded.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo ./NewRMApplication SlotNumber
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://xilinx.github.io/XRT/2020.2/html/xrt_native_apis.html">xrt native APIs</a></p></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="creation_of_new_RM.html" class="btn btn-neutral float-left" title="Create a new accelerator RM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on November 17, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

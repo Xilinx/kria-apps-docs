@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Introduction &mdash; Kria SOM DFX Examples 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Orchestration of AES, FFT, and FIR accelerators" href="Orchestration_of_accelerators.html" />
+    <link rel="prev" title="Kria DFX Accelerators" href="Accelerators_On_K26.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Kria SOM DFX Examples
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DFX Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DFX_Landing_Page.html">Dynamic Function eXchange (DFX)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kria_DFX_K26.html">K26 DFX Hardware Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Accelerators_On_K26.html">Accelerator Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Load Accelerator Example and Run Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-pre-built-firmware-and-applications-on-the-target">Install pre-built firmware and applications on the target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#load-pre-built-accelerators-on-the-target">Load pre-built accelerators on the target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jupyter-notebook-with-pre-built-accelerators">Jupyter Notebook with pre-built accelerators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-jupyter-lab-on-target">Install Jupyter Lab on target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connect-to-jupyter-lab">Connect to Jupyter Lab</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#steps-for-running-jupyter-notebooks-in-the-browser">Steps for running Jupyter Notebooks in the browser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notebook-to-demonstrate-image-encryption-and-decryption-using-aes128">1. Notebook to demonstrate image encryption and decryption using AES128</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steps-to-run-the-notebook">Steps to run the notebook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#notebook-to-demonstrate-image-encryption-and-decryption-using-aes192">2. Notebook to demonstrate image encryption and decryption using AES192</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Steps to run the notebook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#notebook-to-demonstrate-data-exchange-between-accelerators">3. Notebook to demonstrate data exchange between accelerators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Steps to run the notebook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#notebook-to-demonstrate-orchestration-of-accelerators">4. Notebook to demonstrate orchestration of accelerators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Steps to run the notebook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#notebook-to-benchmark-accelerator-performance-against-ps">5. Notebook to Benchmark Accelerator Performance against PS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Steps to run the notebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#results">Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-test-applications-for-pre-built-accelerators">Command line test applications for pre-built accelerators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#limitations-known-issues">Limitations / Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Orchestration_of_accelerators.html">Orchestrate Accelerator Examples to Demonstrate DFX on K26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creation_of_new_RM.html">Create New RM for the K26 DFX Hardware Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creation_of_new_RM_application.html">Create New RM Application</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kria SOM DFX Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/run_application_on_target.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
+<p>This document covers how to run the Kria DFX pre-built applications and accelerators. To run the application on target, install the firmware, applications on target, load the required RM partial to the target, and then run the corresponding RM application.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>The Kria DFX example designs presented here assume that the user has already followed the application-agnostic steps of setting up their board and completing the initial boot of the Ubuntu 22.04 OS. The Kria example designs are agnostic to the specific carrier card meaning they work both on KV260 and KR260 Starter Kits. Steps for getting a Kria Starter Kit booted with Ubuntu 22.04 and the Xilinx-specific support packages installed are outlined <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html">here</a>.</p>
+</div>
+<div class="section" id="install-pre-built-firmware-and-applications-on-the-target">
+<h2>Install pre-built firmware and applications on the target<a class="headerlink" href="#install-pre-built-firmware-and-applications-on-the-target" title="Permalink to this heading">¶</a></h2>
+<p>To get started, install the pre-built firmware provided as part of the DFX example design.</p>
+<ul class="simple">
+<li><p>The accelerators AES128, AES192, FFT, FIR, DPU, and PP_PIPELINE are provided as part of the pre-built firmware.</p></li>
+<li><p>On target, run xmutil listapps to look at the installed firmware. Default k26-starter-kits firmware will be shown.</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil listapps
+                k26-starter-kits            XRT_FLAT                k26-starter-kits            XRT_FLAT               (0+0)                  0,
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Install the DFX firmware and applications package. This installs the firmware on the target at the location /lib/firmware/xilinx and applications at /opt/xilinx/kria-dfx-2rp/bin/.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt install xlnx-firmware-k26-dfx-2rp
+sudo apt install kria-dfx-apps
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Verify that pre-built firmware is installed on target by running the xmutil listapps command. It will show the newly installed firmware with Base_type PL_DFX.</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil listapps
+                     Accelerator          Accel_type                            Base           Base_type      #slots(PL+AIE)         Active_slot
+                     PP_PIPELINE         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                             DPU         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1                           
+                          AES128         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                             FIR         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                          AES192         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                             FFT         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                k26-starter-kits            XRT_FLAT                k26-starter-kits            XRT_FLAT               (0+0)                  0,
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-pre-built-accelerators-on-the-target">
+<h2>Load pre-built accelerators on the target<a class="headerlink" href="#load-pre-built-accelerators-on-the-target" title="Permalink to this heading">¶</a></h2>
+<p>On boot, the k26-starter-kits accelerator is loaded. Unload the default app using “sudo xmutil unloadapp” to later load the desired DFX accelerator.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil unloadapp
+remove from slot 0 returns: 0 (Ok)
+ubuntu@kria:~$ sudo xmutil listapps
+                     Accelerator          Accel_type                            Base           Base_type      #slots(PL+AIE)         Active_slot
+                     PP_PIPELINE         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                             DPU         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1 
+                          AES128         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                             FIR         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                          AES192         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                             FFT         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                k26-starter-kits            XRT_FLAT                k26-starter-kits            XRT_FLAT               (0+0)                  -1
+</pre></div>
+</div>
+<p>The required accelerator can be loaded using the command “sudo xmutil loadapp”. By default, running loadapp the first time will load the accelerator to slot 0, and running loadapp the second time will load it to slot 1.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil loadapp AES128
+[  146.337693] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /fpga-full/firmware-name
+[  146.347829] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /fpga-full/resets
+[  146.357800] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/overlay0
+[  146.367687] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/fpga_PR0
+[  146.377538] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/fpga_PR1
+[  146.387408] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/overlay1
+[  146.397252] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/afi0
+[  146.406749] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/clocking0
+[  146.416684] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/clocking1
+[  146.426615] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/clocking2
+[  146.436544] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/clocking3
+[  146.446520] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/overlay2
+[  146.456394] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/RP_0_AccelConfig_0
+[  146.467119] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/RP_0_rm_comm_box_0
+[  146.477915] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/RP_1_AccelConfig_0
+[  146.488643] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/RP_1_rm_comm_box_0
+[  146.499358] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/static_shell_VCU_vcu_0
+[  146.510423] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/encoder
+[  146.520178] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/decoder
+[  146.529934] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/static_shell_dfx_slot_manager_siha_manager_0
+[  146.936778] zocl-drm axi:zyxclmm_drm: IRQ index 0 not found
+AES128: loaded to slot 0
+</pre></div>
+</div>
+<p>Verify that the accelerator is loaded using “sudo xmutil listapps” and observe which “Active_slot” it is loaded to.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil listapps
+                     Accelerator          Accel_type                            Base           Base_type      #slots(PL+AIE)         Active_slot
+                     PP_PIPELINE         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                             DPU         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1 
+                          AES128         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  0,
+                             FIR         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                          AES192         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                             FFT         SIHA_PL_DFX                         k26_2rp              PL_DFX               (2+0)                  -1
+                k26-starter-kits            XRT_FLAT                k26-starter-kits            XRT_FLAT               (0+0)                  -1
+</pre></div>
+</div>
+<p><strong>Note</strong>: After the DFX shell is loaded, the accelerator in each slot can be unloaded by running the unloadapp command along with the slot number.</p>
+<p>Example:</p>
+<ul class="simple">
+<li><p>Unload accelerator from slot 0 using “sudo xmutil unloadapp 0”</p></li>
+<li><p>Unload accelerator from slot 1 using “sudo xmutil unloadapp 1”</p></li>
+</ul>
+</div>
+<div class="section" id="jupyter-notebook-with-pre-built-accelerators">
+<h2>Jupyter Notebook with pre-built accelerators<a class="headerlink" href="#jupyter-notebook-with-pre-built-accelerators" title="Permalink to this heading">¶</a></h2>
+<p>This section provides information on how to install Jupyter Lab on target and connect to it.
+Example notebooks are provided to demonstrate working with pre-built accelerators and their corresponding applications.</p>
+<div class="section" id="install-jupyter-lab-on-target">
+<h3>Install Jupyter Lab on target<a class="headerlink" href="#install-jupyter-lab-on-target" title="Permalink to this heading">¶</a></h3>
+<p>Run the following commands on target to install Jupyter notebook.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo apt install jupyter
+ubuntu@kria:~$ sudo pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org jupyterlab
+ubuntu@kria:~$ sudo git clone https://github.com/Xilinx/kria-dfx-apps
+cd kria-dfx-apps/notebook
+</pre></div>
+</div>
+</div>
+<div class="section" id="connect-to-jupyter-lab">
+<h3>Connect to Jupyter Lab<a class="headerlink" href="#connect-to-jupyter-lab" title="Permalink to this heading">¶</a></h3>
+<p>Run the following command on target to obtain it’s IP address.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~/kria-dfx-apps/notebook$ ifconfig
+</pre></div>
+</div>
+<p>Launch Jupyter Lab using the IP address obtained in the above step.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~/kria-dfx-apps/notebook$ sudo -b su -c &quot;jupyter-lab --no-browser --allow-root --ip=10.140.37.119&quot;
+</pre></div>
+</div>
+<p>After running the above command, the URL to connect to Jupyter Lab server is displayed. In a browser, use the link having the target’s IP address to connect to Jupyter Lab.
+An example is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>http://10.140.38.140:8888/lab?&lt;token=####&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="steps-for-running-jupyter-notebooks-in-the-browser">
+<h3>Steps for running Jupyter Notebooks in the browser<a class="headerlink" href="#steps-for-running-jupyter-notebooks-in-the-browser" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Open a new terminal instance inside jupyter lab to be able to run xmutil commands mentioned below. From the menu options, click on File -&gt; New -&gt; Terminal.</p></li>
+<li><p>Available notebooks are displayed in the left side panel of the browser. Double-click to open a notebook.</p></li>
+<li><p>The notebooks are divided into cells. Use Shift+Enter to run individual cells in the notebook.</p></li>
+<li><p>Before running each notebook, corresponding accelerators need to be loaded from terminal. Refer to each notebook for specific commands.</p></li>
+</ul>
+</div>
+<div class="section" id="notebook-to-demonstrate-image-encryption-and-decryption-using-aes128">
+<h3>1. Notebook to demonstrate image encryption and decryption using AES128<a class="headerlink" href="#notebook-to-demonstrate-image-encryption-and-decryption-using-aes128" title="Permalink to this heading">¶</a></h3>
+<p>This notebook demonstrates the working of AES128 encryption and decryption accelerators.</p>
+<p>In this notebook:</p>
+<ul class="simple">
+<li><p>An image file is read as an input and displayed.</p></li>
+<li><p>Encryption and decryption engines use the same key.</p></li>
+<li><p>AES128 IP is configured for encryption. The input image is passed to AES128 IP for encryption and the encrypted image is displayed.</p></li>
+<li><p>AES128 IP is configured for decryption. The encrypted image is passed to AES128 IP for decryption and the decrypted image is displayed.</p></li>
+<li><p>The decrypted image should match with the original input image.</p></li>
+</ul>
+<div class="section" id="id1">
+<h4>Prerequisites<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<p>Unload all accelerators and load AES128 accelerator to slot 0 by running the following commands on the terminal opened in Jupyter notebook.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
+sudo xmutil unloadapp <span class="m">1</span>
+sudo xmutil loadapp AES128
+</pre></div>
+</div>
+</div>
+<div class="section" id="steps-to-run-the-notebook">
+<h4>Steps to run the notebook<a class="headerlink" href="#steps-to-run-the-notebook" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Open AES128.ipynb</p></li>
+<li><p>From the menu options, click Run -&gt; Run All Cells.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="notebook-to-demonstrate-image-encryption-and-decryption-using-aes192">
+<h3>2. Notebook to demonstrate image encryption and decryption using AES192<a class="headerlink" href="#notebook-to-demonstrate-image-encryption-and-decryption-using-aes192" title="Permalink to this heading">¶</a></h3>
+<p>This notebook demonstrates the working of AES192 encryption and decryption accelerators.</p>
+<p>In this notebook:</p>
+<ul class="simple">
+<li><p>An image file is read as an input and displayed.</p></li>
+<li><p>Encryption and decryption engines use the same key.</p></li>
+<li><p>AES192 IP is configured for encryption. The input image is passed to AES192 IP for encryption and the encrypted image is displayed.</p></li>
+<li><p>AES192 IP is configured for decryption. The encrypted image is passed to AES192 IP for decryption and the decrypted image is displayed.</p></li>
+<li><p>The decrypted image should match with the original input image.</p></li>
+</ul>
+<div class="section" id="id2">
+<h4>Prerequisites<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<p>Unload all accelerators and load AES192 accelerator to slot 0 by running the following commands on the terminal opened in Jupyter notebook.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
+sudo xmutil unloadapp <span class="m">1</span>
+sudo xmutil loadapp AES192
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>Steps to run the notebook<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Open AES192.ipynb</p></li>
+<li><p>From the menu options, click Run -&gt; Run All Cells.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="notebook-to-demonstrate-data-exchange-between-accelerators">
+<h3>3. Notebook to demonstrate data exchange between accelerators<a class="headerlink" href="#notebook-to-demonstrate-data-exchange-between-accelerators" title="Permalink to this heading">¶</a></h3>
+<p>This notebook demonstrates data transfer between AES128 and FFT accelerators using DDR buffer.</p>
+<p>In this notebook,</p>
+<ul class="simple">
+<li><p>AES128 accelerator is configured as a decryption engine.</p></li>
+<li><p>An encrypted data file is read and plotted as a time series signal.</p></li>
+<li><p>The encrypted file is passed to AES128 accelerator for decryption.</p></li>
+<li><p>The decrypted data file is plotted again as a time series signal.</p></li>
+<li><p>The decrypted data is passed as an input to FFT accelerator to perform fast fourier transform the time series data.</p></li>
+<li><p>The output of FFT accelerator is plotted to show the frequency components present in the data.</p></li>
+</ul>
+<div class="section" id="id4">
+<h4>Prerequisites<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
+<p>Unload all accelerators and load AES128 accelerator to slot 0 and FFT to slot 1 by running the following commands on the terminal opened in Jupyter notebook.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
+sudo xmutil unloadapp <span class="m">1</span>
+sudo xmutil loadapp AES128
+sudo xmutil loadapp FFT
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h4>Steps to run the notebook<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Open AES-FFT.ipynb.</p></li>
+<li><p>From the menu options, click Run -&gt; Run All Cells.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="notebook-to-demonstrate-orchestration-of-accelerators">
+<h3>4. Notebook to demonstrate orchestration of accelerators<a class="headerlink" href="#notebook-to-demonstrate-orchestration-of-accelerators" title="Permalink to this heading">¶</a></h3>
+<p>This notebook demonstrates</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="Orchestration_of_accelerators.html"><span class="doc">Orchestration</span></a> of three accelerators over two dfx slots using dfx-mgr.</p></li>
+<li><p>Sharing data between accelerators using DDR buffer.</p></li>
+</ul>
+<p>In this notebook,</p>
+<ul class="simple">
+<li><p>AES128 accelerator is configured as a decryption engine.</p></li>
+<li><p>An encrypted data file is read and plotted as a time series signal.</p></li>
+<li><p>The encrypted file is passed to AES128 accelerator for decryption.</p></li>
+<li><p>The decrypted data file is plotted again as a time series signal.</p></li>
+<li><p>The decrypted data is passed as an input to FFT accelerator to perform fast fourier transform the time series data.</p></li>
+<li><p>The output of FFT accelerator is plotted to show the frequency components present in the signal.</p></li>
+<li><p>FIR accelerator is configured as a band pass filter.</p></li>
+<li><p>The decrypted data file i.e., the output of AES128 is passed as input to FIR to perform the filter operation.</p></li>
+<li><p>The output of FIR accelerator is passed as input to FFT accelerator in slot 1 to perform fast fourier transform.</p></li>
+<li><p>The output of FFT is plotted to show the frequency components present after the filter operation.</p></li>
+</ul>
+<div class="section" id="id6">
+<h4>Prerequisites<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
+<p>Unload all accelerators and load AES128 accelerator to slot 0 and FFT to slot 1 by running the following commands on the terminal opened in Jupyter notebook.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
+sudo xmutil unloadapp <span class="m">1</span>
+sudo xmutil loadapp AES128
+sudo xmutil loadapp FFT
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h4>Steps to run the notebook<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Open AES-FIR-FFT.ipynb.</p></li>
+<li><p>Run a cell in the notebook by pressing shift + enter</p></li>
+<li><p>Run Initialization cell.</p></li>
+<li><p>Run the cell AES128 acceleration. The time series data before and after decryption operation is displayed.</p></li>
+<li><p>Run the cell FFT acceleration to perform FFT operation on AES128 accelerator output. The output of FFT is plotted.</p></li>
+<li><p>Switch to terminal in the Jupyter notebook and perform the following steps to unload AES128 accelerator and load FIR accelerator</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
+sudo xmutil loadapp FIR
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run the cell FIR acceleration. Output of AES128 accelerator is passed as input to FIR accelerator. Time series plot of decrypted data before and after filter operation is plotted.</p></li>
+<li><p>Run the cell FFT acceleration. Output of FIR accelerator is passed as input to FFT accelerator. The frequency plot after FIR operation is performed.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="notebook-to-benchmark-accelerator-performance-against-ps">
+<h3>5. Notebook to Benchmark Accelerator Performance against PS<a class="headerlink" href="#notebook-to-benchmark-accelerator-performance-against-ps" title="Permalink to this heading">¶</a></h3>
+<p>This notebook demonstrates the performance benchmarks of running an application using the pre-built AES128 accelerator versus running the same operation on the PS.</p>
+<div class="section" id="id8">
+<h4>Prerequisites<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h4>
+<p>Unload all accelerators and load AES128 accelerator to slot 0 by running the following commands on the terminal opened in Jupyter notebook.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
+sudo xmutil unloadapp <span class="m">1</span>
+sudo xmutil loadapp AES128
+</pre></div>
+</div>
+<p>Install the python library - pycryptodome</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo pip install pycryptodome
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h4>Steps to run the notebook<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Open AES_On_HW_vs_SW.ipynb</p></li>
+<li><p>From the menu options, click Run -&gt; Run All Cells.</p></li>
+</ul>
+</div>
+<div class="section" id="results">
+<h4>Results<a class="headerlink" href="#results" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>The performance metrics for running the application using the hardware accelerator is displayed after the cell - AES128 running on PL</p></li>
+<li><p>The performance metrics for running the application using the hardware accelerator is displayed after the cell - AES128 running on PS</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="command-line-test-applications-for-pre-built-accelerators">
+<h2>Command line test applications for pre-built accelerators<a class="headerlink" href="#command-line-test-applications-for-pre-built-accelerators" title="Permalink to this heading">¶</a></h2>
+<p>Each of the example DFX bitstreams also has a simple command line test application if the user does not want to make use of Jupyter notebooks. These are executed by running the pre-built test application name and referencing the corresponding active DFX slot number after installing the pre-built accelerators as mentioned above.</p>
+<p>The following example demonstrates loading AES128 to slot 0 and AES192 to slot 1 and running corresponding applications by passing slot number as argument to the application.</p>
+<p>Unload accelerators from both the slots to have a clean start</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil unloadapp 0
+ubuntu@kria:~$ sudo xmutil unloadapp 1
+</pre></div>
+</div>
+<p>Load AES128 to slot 0</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil loadapp AES128
+</pre></div>
+</div>
+<p>Run AES128 application</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/aes128 0
+AES128 TEST on Slot 0:
+- AES128 DECRYPTION -
+         Slot configured for DECRYPTION.
+         AES128 DECRYPTION done.
+         Success: DECRYPTED DATA MATCHED WITH REFERENCE DATA !
+- AES128 ENCRYPTION -
+         Slot configured for ENCRYPTION.
+         AES128 ENCRYPTION done.
+         Success: ENCRYPTED DATA MATCHED WITH REFERENCE DATA !
+</pre></div>
+</div>
+<p>Load AES128 to slot 1</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil loadapp AES192
+</pre></div>
+</div>
+<p>Run AES192 application</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/aes192 1 
+AES192 TEST on Slot 1:
+- AES192 DECRYPTION -
+         Slot configured for DECRYPTION.
+         AES192 DECRYPTION done.
+         Success: DECRYPTED DATA MATCHED WITH REFERENCE DATA !
+- AES192 ENCRYPTION -
+         Slot configured for ENCRYPTION.
+         AES192 ENCRYPTION done.
+         Success: ENCRYPTED DATA MATCHED WITH REFERENCE DATA !
+</pre></div>
+</div>
+</div>
+<div class="section" id="limitations-known-issues">
+<h2>Limitations / Known Issues<a class="headerlink" href="#limitations-known-issues" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Multi-slot accelerator unloading/reloading using (xmutil loadapp/unloadapp commands) stress test will fail after 30 cycles. Reboot the platform or Restart dfx-mgr to recover from the state.</p></li>
+<li><p>DPU and PP_PIPELINE (Video Pre Processing) firmware are included for reference but are not fully functional in this release.</p></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Accelerators_On_K26.html" class="btn btn-neutral float-left" title="Kria DFX Accelerators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Orchestration_of_accelerators.html" class="btn btn-neutral float-right" title="Orchestration of AES, FFT, and FIR accelerators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on November 17, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

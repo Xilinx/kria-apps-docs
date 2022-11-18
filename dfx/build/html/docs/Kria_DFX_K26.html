@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Kria K26 DFX Example Hardware Design &mdash; Kria SOM DFX Examples 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kria DFX Accelerators" href="Accelerators_On_K26.html" />
+    <link rel="prev" title="Dynamic Function eXchange (DFX)" href="DFX_Landing_Page.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Kria SOM DFX Examples
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DFX Introduction</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="DFX_Landing_Page.html">Dynamic Function eXchange (DFX)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">K26 DFX Hardware Design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bdcs-in-dfx-example-design">BDCs in DFX example design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#static-region">Static Region</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#static-region-interfaces">Static Region Interfaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ps-fabric-interface-in-the-static-region">PS - Fabric Interface in the static region</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#clocking">Clocking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reset">Reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dfx-decoupler">DFX Decoupler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#management-ip-siha-manager">Management IP - SIHA manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rm-communication">RM communication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#reconfigurable-partition">Reconfigurable partition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rp-interface">RP Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rp-addressing">RP addressing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rp-0-addressing">RP_0 Addressing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rp-1-addressing">RP_1 Addressing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rp-clocking">RP Clocking</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#set-rp-0-clock-frequency">Set RP_0 clock frequency</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-rp-1-clock-frequency">Set RP_1 clock frequency</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rp-reset">RP Reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rm-comm-box">rm_comm_box</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rm-comm-box-interface">rm_comm_box Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rm-comm-box-mm2s-register-map">rm_comm_box mm2s register map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rm-comm-box-s2mm-register-map">rm_comm_box s2mm register map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rm-comm-box-limitations">rm_comm_box Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#accelconfig">AccelConfig</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interface">Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rm-accelerator">RM Accelerator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#device-floorplan">Device floorplan</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pblock-static">pblock_static</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pblock-0">pblock_0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pblock-1">pblock_1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#resource-allocation">Resource Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Accelerators_On_K26.html">Accelerator Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html">Load Accelerator Example and Run Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orchestration_of_accelerators.html">Orchestrate Accelerator Examples to Demonstrate DFX on K26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creation_of_new_RM.html">Create New RM for the K26 DFX Hardware Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creation_of_new_RM_application.html">Create New RM Application</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kria SOM DFX Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Kria K26 DFX Example Hardware Design</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/Kria_DFX_K26.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="kria-k26-dfx-example-hardware-design">
+<h1>Kria K26 DFX Example Hardware Design<a class="headerlink" href="#kria-k26-dfx-example-hardware-design" title="Permalink to this heading">¶</a></h1>
+<p>This page provides an introduction to the Kria K26 DFX example hardware design.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p><img alt="image" src="../_images/2RP_Design.png" />
+The shell in this example design uses a Xilinx solution called DFX, which allows for the reconfiguration of modules within an active design. Using DFX, the shell is carved into a static region and DFX regions called reconfigurable partitions(RP). The RP region(s) of the fabric can be dynamically reprogrammed with different functions, called reconfigurable modules(RMs), while the static region of the design cannot be modified or reprogrammed. A DFX region is carved out by drawing pblocks in Vivado.</p>
+<p>The static region hosts the infrastructure blocks like PS, VCU, interconnect, reset, clocking, DFX decouplers, and platform management IPs. The reconfigurable partitions are used to host the accelerators, where each RP can run an accelerator. The static region acts as a bridge for accelerators to access PS resources. The RPs are carved out such that they are all homogeneous i.e., they have a similar area and the same number of logic resources.</p>
+<p>The Vivado design uses Block Design Container(BDC), which allows one or more block designs(BDs) to be instantiated inside another block design. The number of BDCs depends on the number of reconfigurable partitions in the design, having a 1:1 correspondence.</p>
+<p>When DFX is enabled on a BDC, the interface of all the BDs added to that BDC must be identical. A BD should be built for each RM and added to BDC.</p>
+<p>The DFX example design shell consists of 2 reconfigurable partitions, hence 2 BDCs in the vivado design. This design can run two accelerators simultaneously.</p>
+<p>4 accelerators are added to each BDC in the example design.
+When the example design is built in Vivado, the following bit files are built.</p>
+<ul class="simple">
+<li><p>Full bitstream - Bit file for the entire design, consisting of static and the default reconfigurable modules.</p></li>
+<li><p>Partial Bitstreams - One partial bit file for every RM BD added to each BDC.</p></li>
+<li><p>XSA - The XSA of the HW design for software handoff.</p></li>
+</ul>
+<p><img alt="image" src="../_images/BlockDiagram.png" /></p>
+</div>
+<div class="section" id="bdcs-in-dfx-example-design">
+<h2>BDCs in DFX example design<a class="headerlink" href="#bdcs-in-dfx-example-design" title="Permalink to this heading">¶</a></h2>
+<p>In the DFX example design, 2 BDCs are corresponding to the 2 RPs on the device. 4 RM BDs(AES192, AES128, FFT, FIR) are loaded into each BDC. DFX rules are enabled on the BDC. When the hardware design is built, 4 partial bit file for each slot is built.</p>
+</div>
+<div class="section" id="static-region">
+<h2>Static Region<a class="headerlink" href="#static-region" title="Permalink to this heading">¶</a></h2>
+<p>The static region is part of the device which will not be reconfigured. This portion of the shell is expected to remain programmed while different accelerators are programmed in the reconfigurable partitions of the DFX reference design shell.</p>
+<p>The static region includes the PS, VCU, clocking, reset, DFX decoupling, and platform management IPs.</p>
+<div class="section" id="static-region-interfaces">
+<h3>Static Region Interfaces<a class="headerlink" href="#static-region-interfaces" title="Permalink to this heading">¶</a></h3>
+<p>The PL fabric of the static region acts as a bridge for RP regions to access PS resources and has interfaces with both PS and RPs.</p>
+<div class="section" id="ps-fabric-interface-in-the-static-region">
+<h4>PS - Fabric Interface in the static region<a class="headerlink" href="#ps-fabric-interface-in-the-static-region" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Port</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pl_ps_irq0[0:0]</td>
+<td>Interrupt input to PS. Driven by vcu_host_interrupt in the static region.</td>
+</tr>
+<tr>
+<td>pl_ps_irq1[7:0]</td>
+<td>Interrupt input to PS. Driven from the RP. pl_ps_irq1[3:0] is driven by RP_0 and pl_ps_irq1[7:4] driven by RP_1.</td>
+</tr>
+<tr>
+<td>M_AXI_HPM0_FPD</td>
+<td>32-bit AXI interface. PS is the master. Runs at 250 MHz. Used to configure bus.</td>
+</tr>
+<tr>
+<td>pl_clk0</td>
+<td>250 MHz clock output from PS. Used to clock the logic in the static region of the design.</td>
+</tr>
+<tr>
+<td>pl_clk1</td>
+<td>60 MHz clock output from PS. Used as VCU clock.</td>
+</tr>
+<tr>
+<td>pl_clk2</td>
+<td>250 MHz clock output from PS. Used as input clock for reconfigurable partition RP_0.</td>
+</tr>
+<tr>
+<td>pl_clk3</td>
+<td>250 MHz clock output from PS. Used as input clock for reconfigurable partition RP_1.</td>
+</tr>
+<tr>
+<td>pl_resetn0</td>
+<td>Active low reset output from PS.</td>
+</tr>
+<tr>
+<td>S_AXI_HPC0_FPD</td>
+<td>128-bit AXI-MM interface. Used by the reconfigurable partitions to access DDR/OCM memory. RP_0 and RP_1 are the master and PS is the slave. Runs at 250 MHz.</td>
+</tr>
+</tbody>
+</table>
+<h4>Static - RP Interface</h4><p>The static region has the following interface with each of the RPs (RP0 and RP1)</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Port</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RP&lt;0/1&gt;_clk</td>
+<td>The clock input to RP&lt;0/1&gt;.</td>
+</tr>
+<tr>
+<td>RP&lt;0/1&gt;_resetn</td>
+<td>Active low reset input to RP&lt;0/1&gt;.</td>
+</tr>
+<tr>
+<td>RP&lt;0/1&gt;_config</td>
+<td>32-bit AXI-lite port for configuration of RP&lt;0/1&gt;. RP is the slave. The traffic on these ports comes from M_AXI_HPM1_FPD.</td>
+</tr>
+<tr>
+<td>RP&lt;0/1&gt;_data</td>
+<td>128-bit AXI4-MM port for data transfer from RP&lt;0/1&gt;. RP is the master, PS is the slave. The traffic from these ports goes to S_AXI_HPC0_FPD ports.</td>
+</tr>
+<tr>
+<td>RP&lt;0/1&gt;_interrupt</td>
+<td>4-bit interrupt output from RP&lt;0/1&gt;.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="clocking">
+<h3>Clocking<a class="headerlink" href="#clocking" title="Permalink to this heading">¶</a></h3>
+<p>For most FPGA designs, a reference input clock is used to generate other required clocks in the design using PLL/MMCMs. The PLL/MMCMs are usually part of the static region. In this DFX example design, no PLL/MMCM is available in the static region. So, this design uses four clock outputs from PS.</p>
+<ul class="simple">
+<li><p>pl_clk0 drives the static region of the design &#64; 250 MHz.</p></li>
+<li><p>pl_clk1 drives the VCU block in the static region &#64; 60 MHz.</p></li>
+<li><p>pl_clk2 drives the reconfigurable partition RP_0 &#64; 250 MHz.</p></li>
+<li><p>pl_clk3 drives the reconfigurable partition RP_1 &#64; 250 MHz.</p></li>
+</ul>
+<p>The clocks to the reconfigurable partitions are gated to reduce power utilization. The RP clocks are gated when the RM in the RP is not being used or during reconfiguration. The clock is ungated only after the RP is programmed with a partial bitstream. There are no BUFGCE cells in the static region of this example design shell. So, the BUFGCE_HDIO cell which is generally used to provide IO clock gating is used in the design for RP clock gating.</p>
+<p>For more information on RP clock management, refer to <a class="reference external" href="#management-ip---siha-manager">SIHA manager</a>.</p>
+</div>
+<div class="section" id="reset">
+<h3>Reset<a class="headerlink" href="#reset" title="Permalink to this heading">¶</a></h3>
+<p>The reset for the static region of the design is derived from pl_resetn0. Processor System reset modules are used to synchronize pl_resetn0 to each clock domain in the static region.</p>
+<p>The reset for Reconfigurable partitions is controlled using the SIHA manager IP. The resets are controlled by programming registers in the SIHA manager IP. The RPs are kept under reset when the RM in the RP is not being used or during reconfiguration. After the RM is configured in the RP, the reset to the RP is released. For more information on RP reset management, refer to <a class="reference external" href="#management-ip---siha-manager">SIHA manager</a>.</p>
+</div>
+<div class="section" id="dfx-decoupler">
+<h3>DFX Decoupler<a class="headerlink" href="#dfx-decoupler" title="Permalink to this heading">¶</a></h3>
+<p>DFX decoupler IP is used to provide logical isolation between static and RP regions during reconfiguration. A DFX decoupler is instantiated for each RP instance. The RP decoupling is handled by the SIHA manager IP by controlling the decouple input of the DFX Decoupler. For more information on RP decoupling, refer to <a class="reference external" href="#management-ip---siha-manager">SIHA Manager</a>.</p>
+<p>The following signals between static and RPs are decoupled using a DFX decoupler.</p>
+<ul class="simple">
+<li><p>AXI-Lite bus used for configuration</p></li>
+<li><p>AXI4-MM bus used for data transfer</p></li>
+<li><p>Interrupts from RP to static</p></li>
+<li><p>Reset from static to RP.</p></li>
+</ul>
+</div>
+<div class="section" id="management-ip-siha-manager">
+<h3>Management IP - SIHA manager<a class="headerlink" href="#management-ip-siha-manager" title="Permalink to this heading">¶</a></h3>
+<p>SIHA HW manager provides a standardized HW interface for a configurable number of DFX regions, allowing for a standardized SW driver (dfx-mgrd) to be created. SIHA HW manager controls the DFX decoupler IP, which provides a safe and managed boundary between static logic and reconfigurable partition during reconfiguration, configurable clock control for each partition, and standard control interface via AXI-Lite.</p>
+<p>The IP can control up to 9 DFX slots. A set of registers are available for control of each slot. The base addresses of control registers associated with each slot are listed in the table below.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Slot</th>
+<th>Offset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slot 1</td>
+<td>0x4000</td>
+</tr>
+<tr>
+<td>Slot 2</td>
+<td>0x5000</td>
+</tr>
+<tr>
+<td>Slot 3</td>
+<td>0x6000</td>
+</tr>
+<tr>
+<td>Slot 4</td>
+<td>0x7000</td>
+</tr>
+<tr>
+<td>Slot 5</td>
+<td>0x8000</td>
+</tr>
+<tr>
+<td>Slot 6</td>
+<td>0x9000</td>
+</tr>
+<tr>
+<td>Slot 7</td>
+<td>0xA000</td>
+</tr>
+<tr>
+<td>Slot 8</td>
+<td>0xB000</td>
+</tr>
+<tr>
+<td>Slot 9</td>
+<td>0xC000</td>
+</tr>
+</tbody>
+</table><p>The details of the control registers associated with each slot is listed in the below table.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Register</th>
+<th>Offset</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Release slot decoupling</td>
+<td>0x0</td>
+<td>RW  Control clock enable and decoupling of RP0. Writing '1' to this register will release RM clock isolation and disable the DFX decoupling of RP0.</td>
+</tr>
+<tr>
+<td>Reset Control</td>
+<td>0x4</td>
+<td>RW  Control reset for the slot. Writing '1' to this register will release the RM reset of RP0.</td>
+</tr>
+<tr>
+<td>Cache-Control</td>
+<td>0x8</td>
+<td>RW    Control AXI AxCache attributes for the RP0 slot. Program the register with the required AxCache value.</td>
+</tr>
+<tr>
+<td>Prot Control</td>
+<td>0xC</td>
+<td>RW    Control AXI AxPROT attributes for the RP0 slot. Program the register with the required AxProt value.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="rm-communication">
+<h3>RM communication<a class="headerlink" href="#rm-communication" title="Permalink to this heading">¶</a></h3>
+<p>DDR buffers are used by the RMs for reading and writing data. RMs can communicate with each other by sharing the DDR buffers.</p>
+</div>
+</div>
+<div class="section" id="reconfigurable-partition">
+<h2>Reconfigurable partition<a class="headerlink" href="#reconfigurable-partition" title="Permalink to this heading">¶</a></h2>
+<p>The regions in PL fabric where DFx is enabled. There are two reconfigurable partitions in the K26 Kria DFX shell.
+Reconfigurable modules (RMs) can be programmed to this region of the PL fabric.
+All RPs are homogeneous. They have the same size, area, and resources.
+All RPs have a similar interface.
+<img alt="image" src="../_images/RPInterface.png" /></p>
+<div class="section" id="rp-interface">
+<h3>RP Interface<a class="headerlink" href="#rp-interface" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Port</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clk</td>
+<td>The clock input to RP&lt;0/1&gt;.</td>
+</tr>
+<tr>
+<td>resetn</td>
+<td>Active low reset input to RP&lt;0/1&gt;.</td>
+</tr>
+<tr>
+<td>A_AXI_CTRL</td>
+<td>32-bit AXI-lite port for configuration of RP&lt;0/1&gt;. RP is the slave. The traffic on these ports comes from M_AXI_HPM1_FPD.</td>
+</tr>
+<tr>
+<td>M_AXI_GMEM</td>
+<td>128-bit AXI4-MM port for data transfer from RP&lt;0/1&gt;. RP is the master, PS is the slave. The traffic from these ports goes to S_AXI_HPC0_FPD ports.</td>
+</tr>
+<tr>
+<td>interrupt</td>
+<td>4-bit interrupt output from RP&lt;0/1&gt;.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="rp-addressing">
+<h3>RP addressing<a class="headerlink" href="#rp-addressing" title="Permalink to this heading">¶</a></h3>
+<p>Each RP has fixed address apertures. When an RM is being created for an RP it should only use the addresses relevant to that RP.</p>
+<div class="section" id="rp-0-addressing">
+<h4>RP_0 Addressing<a class="headerlink" href="#rp-0-addressing" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Port</th>
+<th>Addresses</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S_AXI_CTRL</td>
+<td>0x8000_0000-0x81FF_FFFF</td>
+<td>32MB</td>
+<td>AXI_lite slave interface</td>
+</tr>
+<tr>
+<td>M_AXI_GMEM</td>
+<td>0x0000_0000-0x7FFF_FFFF <br> 0xC000_0000-0xDFFF_FFFF <br> 0xFF00_0000-0xFFFF_FFFF <br> 0x2_0000_0000-0x2_3FFF_FFFF <br> 0x2_8000_0000-0x2_BFFF_FFFF <br> 0x8_0000_0000-0xF_FFFF_FFFF</td>
+<td>2GB <br> 512MB <br> 16MB <br> 1G <br> 1G <br> 32G</td>
+<td>AXI4-MM master interface</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="rp-1-addressing">
+<h4>RP_1 Addressing<a class="headerlink" href="#rp-1-addressing" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Port</th>
+<th>Addresses</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S_AXI_CTRL</td>
+<td>0x82000000-0x83FFFFFF</td>
+<td>32MB</td>
+<td>AXI_lite slave interface</td>
+</tr>
+<tr>
+<td>M_AXI_GMEM</td>
+<td>0x0000_0000-0x7FFF_FFFF <br> 0xC000_0000-0xDFFF_FFFF <br> 0xFF00_0000-0xFFFF_FFFF <br> 0x2_0000_0000-0x2_3FFF_FFFF <br> 0x2_8000_0000-0x2_BFFF_FFFF <br> 0x8_0000_0000-0xF_FFFF_FFFF</td>
+<td>2GB <br> 512MB <br> 16MB <br> 1G <br> 1G <br> 32G</td>
+<td>AXI4-MM master interface</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="rp-clocking">
+<h3>RP Clocking<a class="headerlink" href="#rp-clocking" title="Permalink to this heading">¶</a></h3>
+<p>Each RP has a single clock input. The clock output(s) from the PS is the clock source.
+The default RP clock frequency is 250 MHz. If a different clock frequency is required, the user can use SW functions to change the PS output clock frequency. If more clock frequencies are required, an MMCM/PLL can be instantiated in the RP.</p>
+<p>On target run the following command to change the RP clock frequency</p>
+<div class="section" id="set-rp-0-clock-frequency">
+<h4>Set RP_0 clock frequency<a class="headerlink" href="#set-rp-0-clock-frequency" title="Permalink to this heading">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">sh</span> <span class="pre">-c</span> <span class="pre">'echo</span> <span class="pre">RequiredFrequencyValue</span> <span class="pre">&gt;</span> <span class="pre">/sys/devices/platform/fclk2/set_rate'</span></code></p>
+<p>Ex: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">sh</span> <span class="pre">-c</span> <span class="pre">'echo</span> <span class="pre">300000000</span> <span class="pre">&gt;</span> <span class="pre">/sys/devices/platform/fclk2/set_rate'</span></code></p>
+</div>
+<div class="section" id="set-rp-1-clock-frequency">
+<h4>Set RP_1 clock frequency<a class="headerlink" href="#set-rp-1-clock-frequency" title="Permalink to this heading">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">sh</span> <span class="pre">-c</span> <span class="pre">'echo</span> <span class="pre">RequiredFrequencyValue</span> <span class="pre">&gt;</span> <span class="pre">/sys/devices/platform/fclk3/set_rate'</span></code></p>
+</div>
+</div>
+<div class="section" id="rp-reset">
+<h3>RP Reset<a class="headerlink" href="#rp-reset" title="Permalink to this heading">¶</a></h3>
+<p>Each RP has a single active low reset input signal. The signal is passed to a ‘Processor System Reset’ IP to generate reset signals inside the RP.</p>
+</div>
+<div class="section" id="rm-comm-box">
+<h3>rm_comm_box<a class="headerlink" href="#rm-comm-box" title="Permalink to this heading">¶</a></h3>
+<p>rm_comm_box is a data mover IP that has:</p>
+<ul class="simple">
+<li><p>AXI4-MM interface to read/write data from DDR/BRAM etc</p></li>
+<li><p>AXI-Stream output port to provide input to AXIS accelerators</p></li>
+<li><p>AXIS input to read data from AXIS accelerators.</p></li>
+</ul>
+<p>It consists of two engines:</p>
+<ul class="simple">
+<li><p>mm2s - Reads data from a memory address using AXI-MM and provides the data on AXIS streaming output.</p></li>
+<li><p>s2mm - Reads data from AXIS input interface and writes to a destination address using AXI-MM interface.</p></li>
+</ul>
+<div class="section" id="rm-comm-box-interface">
+<h4>rm_comm_box Interface<a class="headerlink" href="#rm-comm-box-interface" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Port</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clk</td>
+<td>Clock input</td>
+</tr>
+<tr>
+<td>resetn</td>
+<td>Active low reset input</td>
+</tr>
+<tr>
+<td>s2mm_axis</td>
+<td>AXIS input. The data read from this port is written to memory</td>
+</tr>
+<tr>
+<td>s_axi_control</td>
+<td>AXI-Lite control interface. Used to program the mm2s and s2mm engines</td>
+</tr>
+<tr>
+<td>mm2s_axis</td>
+<td>AXIS output. The data read from memory is forwarded on this port</td>
+</tr>
+<tr>
+<td>m_axi_gmem</td>
+<td>AXI-MM master interface. Connected to memory.</td>
+</tr>
+<tr>
+<td>interrupt_s2mm</td>
+<td>Interrupt associated with s2mm engine. Will be asserted when an s2mm transfer finishes</td>
+</tr>
+<tr>
+<td>interrupt_mm2s</td>
+<td>Interrupt associated with the mm2s engine. Will be asserted when an mm2s transfer finishes</td>
+</tr>
+</tbody>
+</table>
+<h4>rm_comm_box Addressing</h4><p>s2mm and mm2s engines each have a 64KB address range. The offset address of the s2mm engine is 0x0 and that of mm2s is 0x10000.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Engine</th>
+<th>Offset Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s2mm</td>
+<td>0x0</td>
+</tr>
+<tr>
+<td>mm2s</td>
+<td>0x10000</td>
+</tr>
+</tbody>
+</table>
+<h4>rm_comm_box Virtual channels</h4><p>On the mm2s path, rm_comm_box supports 8 Virtual AXIS channels differentiated by tid value on the AXIS bus. Using the virtual channels, users can perform different functions with the same AXIS port. The DFX example design uses TID = 0 to indicate a data packet and TID = 1 for a control packet. When an mm2s transfer is initiated, the value of TID on the AXIS port will not change from the start to the end of the transfer. The virtual channels can be controlled from the SW by programming the Virtual ID register in the mm2s engine.</p>
+</div>
+<div class="section" id="rm-comm-box-mm2s-register-map">
+<h4>rm_comm_box mm2s register map<a class="headerlink" href="#rm-comm-box-mm2s-register-map" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Register</th>
+<th>Offset</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control register</td>
+<td>0x0</td>
+<td>Implements ap_ctrl_hs interface. <br> bit 0 - ap_start (Read/Write/COH) <br> bit 1 - ap_done (Read/COR)  <br> bit 2 - ap_idle (Read)  <br> bit 3 - ap_ready (Read)  <br> bit 7 - auto_restart (Read/Write)</td>
+</tr>
+<tr>
+<td>GIE</td>
+<td>0x4</td>
+<td>Global Interrupt Enable Register.</td>
+</tr>
+<tr>
+<td>IE</td>
+<td>0x8</td>
+<td>Interrupt Enable Register</td>
+</tr>
+<tr>
+<td>IS</td>
+<td>0xC</td>
+<td>Interrupt Status Register</td>
+</tr>
+<tr>
+<td>Source Addr Low</td>
+<td>0x10</td>
+<td>Lower 32-bit address of the source address for mm2s transfer</td>
+</tr>
+<tr>
+<td>Source Addr High</td>
+<td>0x14</td>
+<td>Higher 32-bit address of the source address for mm2s transfer</td>
+</tr>
+<tr>
+<td>Transfer size</td>
+<td>0x1C</td>
+<td>The size of the mm2s data transfer in the number of beats. The value programmed should be transfer_size_in_bytes/16</td>
+</tr>
+<tr>
+<td>Virtual ID</td>
+<td>0x24</td>
+<td>The virtual ID associated with the data transfer. The value programmed in this register will appear on the TID port of the m2s_axi bus. The TID value on this bus will not change from the start to the end of the packet</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="rm-comm-box-s2mm-register-map">
+<h4>rm_comm_box s2mm register map<a class="headerlink" href="#rm-comm-box-s2mm-register-map" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Register</th>
+<th>Offset</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control register</td>
+<td>0x0</td>
+<td>Implements ap_ctrl_hs interface. <br> bit 0 - ap_start (Read/Write/COH) <br> bit 1 - ap_done (Read/COR)  <br> bit 2 - ap_idle (Read)  <br> bit 3 - ap_ready (Read)  <br> bit 7 - auto_restart (Read/Write)</td>
+</tr>
+<tr>
+<td>GIE</td>
+<td>0x4</td>
+<td>Global Interrupt Enable Register.</td>
+</tr>
+<tr>
+<td>IE</td>
+<td>0x8</td>
+<td>Interrupt Enable Register</td>
+</tr>
+<tr>
+<td>IS</td>
+<td>0xC</td>
+<td>Interrupt Status Register</td>
+</tr>
+<tr>
+<td>Destination Addr Low</td>
+<td>0x10</td>
+<td>Lower 32 bit address of the destination address for s2mm transfer</td>
+</tr>
+<tr>
+<td>Destination Addr High</td>
+<td>0x14</td>
+<td>Higher 32 bit address of the destination address for s2mm transfer</td>
+</tr>
+<tr>
+<td>Transfer size</td>
+<td>0x1C</td>
+<td>The size of the s2mm data transfer in the number of beats. The value programmed should be transfer_size_in_bytes/16</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="rm-comm-box-limitations">
+<h4>rm_comm_box Limitations<a class="headerlink" href="#rm-comm-box-limitations" title="Permalink to this heading">¶</a></h4>
+<p>The data mover does not support narrow transfers. The size of the data transfer should be in multiple of 128-bit.</p>
+</div>
+</div>
+<div class="section" id="accelconfig">
+<h3>AccelConfig<a class="headerlink" href="#accelconfig" title="Permalink to this heading">¶</a></h3>
+<p>The AccelConfig IP provides two important functions to the RM.</p>
+<ol class="simple">
+<li><p>Provides ap_ctrl_hs interface to accelerators that do not have a memory-mapped control interface. For accelerators that have a control interface, this can be disabled. It is controlled by the parameter EN_AP_CTRL_HS. When EN_AP_CTRL_HS is ‘1’, a set of memory-mapped registers are implemented and the ap_ctrl_hs signals - ap_start, ap_done, ap_ready, and ap_idle are implemented.</p></li>
+</ol>
+<p>ap_ctrl_hs port is enabled:
+<img alt="image" src="../_images/AccelConfig1.png" /></p>
+<p>ap_ctrl_hs port is disabled:
+<img alt="image" src="../_images/AccelConfig2.png" /></p>
+<ol class="simple">
+<li><p>Parses AXIS packets received from the mm2s channel of the RM data mover and provides 8 separate outputs based on the input TID value. TID values 0 through 7 are supported. For a TID value of 1, based on the parameter TID1_OUTPUT AXIS output or scalar output can be chosen. For all other TID values, AXIS output ports are implemented.
+TID1_OUTPUT = 1 chooses an AXIS output; TID1_OUTPUT = 2 chooses a scalar output. When a scalar output is chosen, the number of scalar ports(between 1 and 8) and the width of each scalar port can be selected. The IP splits the incoming AXIS stream with TID=1 into the specified scalars starting with the first AXIS beat going to scalar 1. The width of all scalar ports should be 32-bit aligned.</p></li>
+</ol>
+<p>TID1 output is AXIS port:
+<img alt="image" src="../_images/AccelConfig3.png" /></p>
+<p>TID1 output is scalar port(s):
+Two scalar ports. Scalar 1 is 128-bit wide and scalar 2 is 32-bit wide.
+<img alt="image" src="../_images/AccelConfig4.png" /></p>
+<div class="section" id="interface">
+<h4>Interface<a class="headerlink" href="#interface" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Port</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s_axi_ctrl</td>
+<td>Optional port. Enabled when EN_AP_CTRL_HS = 1</td>
+</tr>
+<tr>
+<td>axis_in</td>
+<td>AXIS input port. Connected to AXIS output of rm_comm_box.</td>
+</tr>
+<tr>
+<td>clk</td>
+<td>Clock input</td>
+</tr>
+<tr>
+<td>resetn</td>
+<td>Active low reset input</td>
+</tr>
+<tr>
+<td>ap_done</td>
+<td>Input signal. Connected to the accelerator. Part of ap_ctrl_hs interface. Enabled when EN_AP_CTRL_HS = 1</td>
+</tr>
+<tr>
+<td>ap_ready</td>
+<td>Input signal. Connected to the accelerator. Part of ap_ctrl_hs interface. Enabled when EN_AP_CTRL_HS = 1</td>
+</tr>
+<tr>
+<td>ap_idle</td>
+<td>Input signal. Connected to the accelerator. Part of ap_ctrl_hs interface. Enabled when EN_AP_CTRL_HS = 1</td>
+</tr>
+<tr>
+<td>ap_start</td>
+<td>Output signal. Connected to the accelerator. Part of ap_ctrl_hs interface. Enabled when EN_AP_CTRL_HS = 1</td>
+</tr>
+<tr>
+<td>tid0_axis</td>
+<td>AXIS output where packets with TID =0 from  axis_in port are forwarded. This port is always enabled on the IP.</td>
+</tr>
+<tr>
+<td>tid1_axis</td>
+<td>AXIS output where packets with TID =1 from  axis_in port are forwarded. When TID = 1, the output can be AXIS ports or scalar ports. Enabled when TID1_OUTPUT = 1</td>
+</tr>
+<tr>
+<td>tidn_axis</td>
+<td>AXIS output where packets with TID =n from  axis_in port are forwarded. The range of n is 2-7</td>
+</tr>
+<tr>
+<td>interrupt</td>
+<td>Interrupt signal. Part of ap_ctrl_hs interface. Enabled when EN_AP_CTRL_HS = 1</td>
+</tr>
+<tr>
+<td>Scalar<n></td>
+<td>Scalar outputs. When TID = 1, the output can be AXIS ports or scalar ports. Enabled when TID1_OUTPUT = 2. A Total of 8 scalar outputs(1-8) is supported. The width of each scalar output should be aligned to 32-bit width</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="rm-accelerator">
+<h3>RM Accelerator<a class="headerlink" href="#rm-accelerator" title="Permalink to this heading">¶</a></h3>
+<p>Accelerators with AXI-Stream interface are supported inside the RM. The accelerator can have multiple AXIS inputs, multiple scalar inputs, and one AXIS output. Use the data mover, rm_comm_box to move data in/out of the RM. On the mm2s path of the data mover i.e., the path on which data is fed to the accelerator, AccelConfig IP is present. Configure the AccelConfig IP based on the accelerator’s interface requirements. The AXIS output of the accelerator should be connected to the s2mm AXIS port of the data mover, rm_comm_box.</p>
+</div>
+</div>
+<div class="section" id="device-floorplan">
+<h2>Device floorplan<a class="headerlink" href="#device-floorplan" title="Permalink to this heading">¶</a></h2>
+<p>The device is partitioned into three pblocks - pblock_static, pblock_0 and pblock_1.</p>
+<div class="section" id="pblock-static">
+<h3>pblock_static<a class="headerlink" href="#pblock-static" title="Permalink to this heading">¶</a></h3>
+<p>Usually, the static region of the design does not need a pblock. However, in this DFX example design, a pblock is drawn for the static region to prevent nets in the static region from bleeding over to RPs. Apart from the FPGA fabric, the static pblock also consists of PS and VCU blocks.
+There are also chances that nets at the static-RP interface can bleed into adjacent RP regions. To avoid this, a shim pblock per RP is drawn such that the shim pblock falls within the routing footprint of that RP. The shim pblock is a child pblock of pblock_static and helps prevent static-RP interface nets from bleeding into adjacent RPs.</p>
+</div>
+<div class="section" id="pblock-0">
+<h3>pblock_0<a class="headerlink" href="#pblock-0" title="Permalink to this heading">¶</a></h3>
+<p>Pblock for reconfigurable partition 0.</p>
+</div>
+<div class="section" id="pblock-1">
+<h3>pblock_1<a class="headerlink" href="#pblock-1" title="Permalink to this heading">¶</a></h3>
+<p>Pblock for reconfigurable partition 1.</p>
+<p>The pblocks of reconfigurable partitions are drawn such that they have a homogenous resource footprint.</p>
+<p><img alt="image" src="../_images/2RP_Layout.png" /></p>
+</div>
+</div>
+<div class="section" id="resource-allocation">
+<h2>Resource Allocation<a class="headerlink" href="#resource-allocation" title="Permalink to this heading">¶</a></h2>
+<p>The following table captures some key resource allocation to different pblocks in the design.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Resource Availability</th>
+<th>Static</th>
+<th>pblock_0</th>
+<th>pblock_1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LUT</td>
+<td>32640</td>
+<td>41888</td>
+<td>41888</td>
+</tr>
+<tr>
+<td>FF</td>
+<td>65280</td>
+<td>84480</td>
+<td>84480</td>
+</tr>
+<tr>
+<td>BRAM</td>
+<td>0</td>
+<td>72</td>
+<td>72</td>
+</tr>
+<tr>
+<td>URAM</td>
+<td>0</td>
+<td>32</td>
+<td>32</td>
+</tr>
+<tr>
+<td>DSP</td>
+<td>384</td>
+<td>432</td>
+<td>432</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>No PLL/MMCM is available in the static region. All clocks are sourced from PS.</p></li>
+<li><p>No BUFGCE is available in the static region. BUFGCE_HDIO is used for gating clocks going to RPs.</p></li>
+<li><p>The static region does not have BRAM cells</p></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="DFX_Landing_Page.html" class="btn btn-neutral float-left" title="Dynamic Function eXchange (DFX)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Accelerators_On_K26.html" class="btn btn-neutral float-right" title="Kria DFX Accelerators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on November 17, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
