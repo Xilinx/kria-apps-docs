@@ -4,9 +4,7 @@ SOM Landing Page
 
 .. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM/ with xilinx.github.io/kria-apps-docs/
 
-**********************************************************************************************************************************************************************************************
-`Kria™ SOM Application Development <../../../creating_applications/2022.1/build/html/index.html>`__
-**********************************************************************************************************************************************************************************************
+
 
 
 .. toctree::
@@ -19,6 +17,17 @@ SOM Landing Page
    Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
    OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
    Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
+   Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
+
+
+
+
+
+
+
+**********************************************************************************************************************************************************************************************
+`Kria™ SOM Application Development <../../../creating_applications/2022.1/build/html/index.html>`__
+**********************************************************************************************************************************************************************************************
 
 
 
@@ -58,6 +67,19 @@ The Kria Starter Kit OpenAMP PetaLinux implementation uses the Linux kernel impl
 
 
 Kria SOMs and Starter Kits can be enabled with a digital rights management (DRM) solution for partners to protect and monetize their programmable logic (PL) IPs.
+
+
+
+
+
+**********************************************************************************************************************************************************************************************
+`Kria SOM Dynamic Function eXchange Examples <../../../dfx/build/html/docs/DFX_Landing_Page.html>`__
+**********************************************************************************************************************************************************************************************
+
+
+
+The Kria SOM DFX examples provide two base designs with one implementing a single DFX slot and one implementing two DFX slots. Both base designs are supported with a common set of pre-defined HW acceleration libraries that can be loaded in combination to available DFX slots. The runtime management of the HW accelerator libraries is provided by the DFX Manager daemon (dfx-mgrd) also used in other Kria example designs.
+
 
 
 

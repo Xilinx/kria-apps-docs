@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Kria DFX Accelerators &mdash; Kria SOM DFX Examples 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction" href="run_application_on_target.html" />
+    <link rel="prev" title="Kria K26 DFX Example Hardware Design" href="Kria_DFX_K26.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Kria SOM DFX Examples
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DFX Introduction</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="DFX_Landing_Page.html">Dynamic Function eXchange (DFX)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kria_DFX_K26.html">K26 DFX Hardware Design</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Accelerator Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#aes">AES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aes-application-considerations">AES Application considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#aes-channel-id-0">AES Channel ID 0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aes-channel-id-1">AES Channel ID 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aes-features">AES Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#fft4">FFT4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fft-accelerator-architecture-block-diagram">FFT Accelerator Architecture Block Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fft4-features">FFT4 Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fft4-application-considerations">FFT4 Application considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fft4-channel-id-0">FFT4 Channel ID 0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fft4-channel-id-1">FFT4 Channel ID 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fft4-channel-id-2">FFT4 Channel ID 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fft4-channel-id-3">FFT4 Channel ID 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fft4-channel-id-4">FFT4 Channel ID 4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#fir">FIR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fir-features">FIR Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fir-application-considerations">FIR Application considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fir-channel-id-0">FIR Channel ID 0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fir-channel-id-1">FIR Channel ID 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fir-channel-id-2">FIR Channel ID 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fir-channel-id-3">FIR Channel ID 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html">Load Accelerator Example and Run Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orchestration_of_accelerators.html">Orchestrate Accelerator Examples to Demonstrate DFX on K26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creation_of_new_RM.html">Create New RM for the K26 DFX Hardware Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creation_of_new_RM_application.html">Create New RM Application</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kria SOM DFX Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Kria DFX Accelerators</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/Accelerators_On_K26.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="kria-dfx-accelerators">
+<h1>Kria DFX Accelerators<a class="headerlink" href="#kria-dfx-accelerators" title="Permalink to this heading">¶</a></h1>
+<p>This page provides a technical overview of the Kria DFX example accelerators and considerations to develop applications for these accelerators. The accelerators have AXIS interface and make use of AXIS <a class="reference external" href="./Kria_DFX_K26.md#virtual-channels">virtual channels</a>, where TID = 0 is used for data packets and TID = 1 through 7 for control packets. When the accelerators have multiple AXIS input interfaces, each axis port is associated with a TID. <a class="reference external" href="/Kria_DFX_K26.md#rm_comm_box">Data mover</a> transfers are setup using different TID values to to feed data to the corresponding accelerator ports. <a class="reference external" href="/Kria_DFX_K26.md#accelconfig">Accelconfig</a> IP that is part of the accelerator shell parses packets from data movers with different TID values and feeds to corresponding ports of the accelerator.</p>
+<div class="section" id="aes">
+<h2>AES<a class="headerlink" href="#aes" title="Permalink to this heading">¶</a></h2>
+<p>Two accelerators are provided for AES - AES128 and AES192. AES accelerators provide both AES encryption and decryption engines in the same accelerator. The accelerator can work as an encryption or decryption engine based on configuration from the software. They accept input data on a AXIS port and provide output data on a AXIS port.</p>
+<p><img alt="image" src="../_images/AES.png" /></p>
+</div>
+<div class="section" id="aes-application-considerations">
+<h2>AES Application considerations<a class="headerlink" href="#aes-application-considerations" title="Permalink to this heading">¶</a></h2>
+<p>The accelerator uses two virtual channel IDs. The application should set up data transfers using the following TID values.</p>
+<div class="section" id="aes-channel-id-0">
+<h3>AES Channel ID 0<a class="headerlink" href="#aes-channel-id-0" title="Permalink to this heading">¶</a></h3>
+<p>The virtual channel with TID 0 is used to feed input data to the accelerator. This data is stored in DDR and data mover transfer with TID = 0 is used to feed it to the accelerator. The length of this transfer is equal to the size of the data file that needs encryption.</p>
+</div>
+<div class="section" id="aes-channel-id-1">
+<h3>AES Channel ID 1<a class="headerlink" href="#aes-channel-id-1" title="Permalink to this heading">¶</a></h3>
+<p>The virtual channel with TID 1 is used to provide key to the accelerator and also to select between encryption and decryption engine.</p>
+<p>AES128 uses 256 transfer on this virtual channel.</p>
+<ul class="simple">
+<li><p>Lower 128 bits constitute the key</p></li>
+<li><p>Least significant bit of the next 32 bits selects between encryption and decryption engine.</p></li>
+</ul>
+<p>AES192 uses 256 transfer on this virtual channel.</p>
+<ul class="simple">
+<li><p>Lower 192 bits constitute the key</p></li>
+<li><p>Least significant bit of the next 32 bits selects between encryption and decryption engine.</p></li>
+</ul>
+</div>
+<div class="section" id="aes-features">
+<h3>AES Features<a class="headerlink" href="#aes-features" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Single RM provides both Encrypt and Decrypt functionality.</p></li>
+<li><p>The encrypt or Decrypt function can be chosen by software configuration.</p></li>
+<li><p>The same key is used for both Encrypt and Decrypt engines.</p></li>
+<li><p>Built using the Vitis security AES library.</p></li>
+<li><p>In built data mover uses two</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="fft4">
+<h2>FFT4<a class="headerlink" href="#fft4" title="Permalink to this heading">¶</a></h2>
+<p>FFT4 Application uses XFFT IP as a building block and creates a high throughput design catering to 1 GSPS sample rate. 4 FFT IPs are combined and wrapped with HLS data mover to achieve high bandwidth. 128 bit input data is scattered across 4 FFT IPs feeding 32 bit to each IP. Each FFT IP needs a unique AXIS port for configuration making a total of 4  configuration ports. The 32 bit output from each FFT IP is gathered and output on a 128 bit bus.</p>
+<div class="section" id="fft-accelerator-architecture-block-diagram">
+<h3>FFT Accelerator Architecture Block Diagram<a class="headerlink" href="#fft-accelerator-architecture-block-diagram" title="Permalink to this heading">¶</a></h3>
+<p><img alt="image" src="../_images/FFT_Architecture.png" /></p>
+</div>
+<div class="section" id="fft4-features">
+<h3>FFT4 Features<a class="headerlink" href="#fft4-features" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Channels: 4</p></li>
+<li><p>FFT Window: 4K</p></li>
+<li><p>Sampling Rate: 1GSPS</p></li>
+<li><p>Supported Sample resolution: 16bit</p></li>
+<li><p>Support for scaling factor</p></li>
+<li><p>Input Bus width: 128 bit</p></li>
+<li><p>Throughput: 22.32 Gbps</p></li>
+</ul>
+</div>
+<div class="section" id="fft4-application-considerations">
+<h3>FFT4 Application considerations<a class="headerlink" href="#fft4-application-considerations" title="Permalink to this heading">¶</a></h3>
+<p>The FFT4 accelerator uses 5 virtual channel IDs. The application should set up data transfers using the following TID values.</p>
+</div>
+<div class="section" id="fft4-channel-id-0">
+<h3>FFT4 Channel ID 0<a class="headerlink" href="#fft4-channel-id-0" title="Permalink to this heading">¶</a></h3>
+<p>The virtual channel with TID 0 is used to feed input data to the accelerator.</p>
+</div>
+<div class="section" id="fft4-channel-id-1">
+<h3>FFT4 Channel ID 1<a class="headerlink" href="#fft4-channel-id-1" title="Permalink to this heading">¶</a></h3>
+<p>The virtual channel with TID 1 is used for configuration of first instance of FFT IP in the accelerator.</p>
+</div>
+<div class="section" id="fft4-channel-id-2">
+<h3>FFT4 Channel ID 2<a class="headerlink" href="#fft4-channel-id-2" title="Permalink to this heading">¶</a></h3>
+<p>The virtual channel with TID 2 is used for configuration of second instance of FFT IP in the accelerator.</p>
+</div>
+<div class="section" id="fft4-channel-id-3">
+<h3>FFT4 Channel ID 3<a class="headerlink" href="#fft4-channel-id-3" title="Permalink to this heading">¶</a></h3>
+<p>The virtual channel with TID 3 is used for configuration of third instance of FFT IP in the accelerator.</p>
+</div>
+<div class="section" id="fft4-channel-id-4">
+<h3>FFT4 Channel ID 4<a class="headerlink" href="#fft4-channel-id-4" title="Permalink to this heading">¶</a></h3>
+<p>The virtual channel with TID 4 is used for configuration of fourth instance of FFT IP in the accelerator.</p>
+</div>
+</div>
+<div class="section" id="fir">
+<h2>FIR<a class="headerlink" href="#fir" title="Permalink to this heading">¶</a></h2>
+<p>FIR accelerator makes use of Vivado catalog IP FIR compiler and provides various modes of operation like Low Pass Filter(LPF) , High Pass Filter(HPF), and Band Pass Filter(BPF). The number of coefficients is set to 80 for the 159-order filter. For reload, with the inferred option only half of the coefficients are provided.</p>
+<div class="section" id="fir-features">
+<h3>FIR Features<a class="headerlink" href="#fir-features" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Single Rate FIR with four parallel 16bit input samples.</p></li>
+<li><p>Support for 12,13,14 and 15 binary point input data.</p></li>
+<li><p>Sampling Frequency supported - 1 GSPS.</p></li>
+<li><p>The Reload port enable to change the filter coefficients thereby filter functionality.</p></li>
+<li><p>174 cycle latency.</p></li>
+<li><p>159 symmetric integer 16-bit coefficients support.</p></li>
+</ul>
+<p><img alt="image" src="../_images/FIR_Architecture.png" /></p>
+</div>
+<div class="section" id="fir-application-considerations">
+<h3>FIR Application considerations<a class="headerlink" href="#fir-application-considerations" title="Permalink to this heading">¶</a></h3>
+<p>The FIR accelerator uses 4 virtual channel IDs. The application should set up data transfers using the following TID values.</p>
+</div>
+<div class="section" id="fir-channel-id-0">
+<h3>FIR Channel ID 0<a class="headerlink" href="#fir-channel-id-0" title="Permalink to this heading">¶</a></h3>
+<p>The virtual channel with TID 0 is used to feed input data to the accelerator. Only 64-bits from inout data is fed to the accelerator. The number of input bits is decided upon by the clock frequency and sampling frequency ratio.</p>
+</div>
+<div class="section" id="fir-channel-id-1">
+<h3>FIR Channel ID 1<a class="headerlink" href="#fir-channel-id-1" title="Permalink to this heading">¶</a></h3>
+<p>The virtual channel with TID 1 is used to feed RELOAD data to the FIR compiler.</p>
+</div>
+<div class="section" id="fir-channel-id-2">
+<h3>FIR Channel ID 2<a class="headerlink" href="#fir-channel-id-2" title="Permalink to this heading">¶</a></h3>
+<p>The virtual channel with TID 2 is used to feed CONFIG data to the FIR compiler.</p>
+</div>
+<div class="section" id="fir-channel-id-3">
+<h3>FIR Channel ID 3<a class="headerlink" href="#fir-channel-id-3" title="Permalink to this heading">¶</a></h3>
+<p>The virtual channel with TID 3 is used to configure input data binary width of the FIR compiler.</p>
+</div>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Kria_DFX_K26.html" class="btn btn-neutral float-left" title="Kria K26 DFX Example Hardware Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="run_application_on_target.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on November 17, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
