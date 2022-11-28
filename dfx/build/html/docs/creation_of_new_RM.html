@@ -85,8 +85,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Create New RM for the K26 DFX Hardware Design</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites-and-assumptions">Prerequisites and assumptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rp-interface">RP Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rp-addressing">RP addressing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rp-interface">RP Interface</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#rp-0-addressing">RP_0 Addressing</a></li>
 </ul>
 </li>
@@ -152,18 +151,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="rp-interface">
 <h2>RP Interface<a class="headerlink" href="#rp-interface" title="Permalink to this heading">¶</a></h2>
-<p>The IO interface for both the RPs is identical. The below table lists the RP interface signals.
-| Port | Description |
-|——|————-|
-| clk  | Clock input to the RM from Static|
-| resetn| active low reset input|
-| S_AXI_CTRL | AXI4-Lite slave interface|
-| M_AXI_GMEM| AXI4-MM master interface|
-|Interrupt | 4-bit interrupt output|</p>
-</div>
-<div class="section" id="rp-addressing">
-<h2>RP addressing<a class="headerlink" href="#rp-addressing" title="Permalink to this heading">¶</a></h2>
-<p>Each RP has fixed address apertures. Based on the RP being targeted, the RM should use the addresses listed below. This is already taken care of in the template.</p>
+<p>The IO interface for both the RPs is identical. The below table lists the RP interface signals.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Port</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clk</td>
+<td>Clock input to the RM from Static</td>
+</tr>
+<tr>
+<td>resetn</td>
+<td>active low reset input</td>
+</tr>
+<tr>
+<td>S_AXI_CTRL</td>
+<td>AXI4-Lite slave interface</td>
+</tr>
+<tr>
+<td>M_AXI_GMEM</td>
+<td>AXI4-MM master interface</td>
+</tr>
+<tr>
+<td>Interrupt</td>
+<td>4-bit interrupt output</td>
+</tr>
+</tbody>
+</table>
+<h2>RP addressing</h2><p>Each RP has fixed address apertures. Based on the RP being targeted, the RM should use the addresses listed below. This is already taken care of in the template.</p>
 <div class="section" id="rp-0-addressing">
 <h3>RP_0 Addressing<a class="headerlink" href="#rp-0-addressing" title="Permalink to this heading">¶</a></h3>
 <table border="1" class="docutils">
@@ -268,10 +287,10 @@ cr_bd_axis_rm <span class="s2">&quot;&quot;</span> &lt;RMName&gt; &lt;targetRP&g
 <li><p>Open the BD created in the step above by double-clicking on the RM BD in the Vivado sources pane.</p></li>
 <li><p>Verify the address editor has valid address ranges for the RP being targeted.</p></li>
 <li><p>AXIS RMs have 2 custom IPs as part of the RM template.</p>
-<p><strong>rm_comm_box</strong> - More information about this IP is available <a class="reference external" href="Kria_DFX_K26.md#rm_comm_box">here</a></p>
-<p><strong>AccelConfig</strong> - More information about this IP is available <a class="reference external" href="Kria_DFX_K26.md#accelconfig">here</a></p>
+<p><strong>rm_comm_box</strong> - More information about this IP is available <a class="reference external" href="./Kria_DFX_K26.html#rm_comm_box">here</a></p>
+<p><strong>AccelConfig</strong> - More information about this IP is available <a class="reference external" href="./Kria_DFX_K26.html#accelconfig">here</a></p>
 </li>
-<li><p>Details about how to connect the accelerator to rm_comm_box and Accelconfig is provided <a class="reference external" href="Kria_DFX_K26.md#rm-accelerator">here</a></p></li>
+<li><p>Details about how to connect the accelerator to rm_comm_box and Accelconfig is provided <a class="reference external" href="./Kria_DFX_K26.html#rm-accelerator">here</a></p></li>
 </ul>
 </div>
 <div class="section" id="update-the-rm-bd">
@@ -370,7 +389,7 @@ generate_rm RMName targetRP
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 17, 2022.
+      <span class="lastupdated">Last updated on November 28, 2022.
       </span></p>
   </div>
 

@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Orchestration of AES, FFT, and FIR accelerators &mdash; Kria SOM DFX Examples 1.0 documentation</title>
+  <title>DFX on Kria Release covers the following git repositories &mdash; Kria SOM DFX Examples 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -33,9 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Create a new accelerator RM" href="creation_of_new_RM.html" />
-    <link rel="prev" title="Introduction" href="run_application_on_target.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -79,12 +77,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="Accelerators_On_K26.html">Accelerator Examples</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How To</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html">Load Accelerator Example and Run Application</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Orchestrate Accelerator Examples to Demonstrate DFX on K26</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html#run-pre-built-applications-on-k26">Run pre-built applications on K26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html#run-new-accelerator-rm-application-on-target">Run new accelerator RM application on target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html#limitations-known-issues">Limitations / Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orchestration_of_accelerators.html">Orchestrate Accelerator Examples to Demonstrate DFX on K26</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creation_of_new_RM.html">Create New RM for the K26 DFX Hardware Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creation_of_new_RM_application.html">Create New RM Application</a></li>
 </ul>
@@ -103,9 +101,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Orchestration of AES, FFT, and FIR accelerators</li>
+      <li>DFX on Kria Release covers the following git repositories</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/docs/Orchestration_of_accelerators.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/docs/README.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -113,35 +111,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="orchestration-of-aes-fft-and-fir-accelerators">
-<h1>Orchestration of AES, FFT, and FIR accelerators<a class="headerlink" href="#orchestration-of-aes-fft-and-fir-accelerators" title="Permalink to this heading">¶</a></h1>
-<p>The flow described below shows how DFX can be used to orchestrate multiple accelerators within a DFX-based system. As the Kria K26 design provides 2RPs the scenarios shown here focus on two PL-based accelerators, but the concepts can extend to a larger number of DFX slots.</p>
-<p>Use Case:
-Decrypt a signal that contains data of three different frequencies, Run FIR to get filtered output, and on the result of FIR, run FFT to get final output data.
-<img alt="image" src="../_images/UseCase.png" /></p>
-<ol class="simple">
-<li><p>Both Reconfigurable Partitions are empty to start with. So, we can load two accelerators to them using the “xmutil loadapp” command. Load AES accelerator to RP0 and FIR accelerator to RP1</p></li>
-</ol>
-<p><img alt="image" src="../_images/Step1.png" /></p>
-<ol class="simple">
-<li><p>Run AES decryption on the input encrypted signal and send the decrypted output to the FIR accelerator for further processing</p></li>
-</ol>
-<p><img alt="image" src="../_images/Step2.png" /></p>
-<ol class="simple">
-<li><p>We need to load the FFT accelerator but both Reconfigurable partitions are programmed with AES and FIR. We need to unload one accelerator using “xmutil unloadapp” command and load the FFT accelerator in the Reconfigurable Partition. Unload the AES accelerator from RP0 and Load FFT in its place</p></li>
-</ol>
-<p><img alt="image" src="../_images/Step3.png" /></p>
-<ol class="simple">
-<li><p>Pass the output of the FIR accelerator from Step 2 as an input to the FFT accelerator loaded in RP0 and run FFT on it</p></li>
-</ol>
-<p><img alt="image" src="../_images/Step4.png" /></p>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+  <div class="section" id="dfx-on-kria-release-covers-the-following-git-repositories">
+<h1>DFX on Kria Release covers the following git repositories<a class="headerlink" href="#dfx-on-kria-release-covers-the-following-git-repositories" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Xilinx/kria-dfx-hw/tree/xlnx_rel_v2022.1">Hardware Reference Design</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/tree/xlnx_rel_v2022.1">Firmware</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/kria-dfx-apps/tree/xlnx_rel_v2022.1">Software Application</a></p></li>
+<li><p><a class="reference external" href="./">Documentation</a></p></li>
+</ul>
+</div>
+<div class="section" id="build-steps">
+<h1>Build steps<a class="headerlink" href="#build-steps" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Xilinx/kria-dfx-hw/blob/xlnx_rel_v2022.1/k26/2rp_design/README.md">Steps</a> to build the hardware design.</p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/kria-dfx-apps/blob/xlnx_rel_v2022.1/README.md">Steps</a> to build the applications. Applications for DFX example design should be built on the target.</p></li>
+<li><p><a class="reference external" href="./run_application_on_target.md#install-pre-built-firmware-on-target">Steps</a> to install pre-built firmware on the target.</p></li>
+<li><p><a class="reference external" href="./run_application_on_target.md#load-pre-built-accelerators-on-the-target">Steps</a> to load pre-built accelerators on the target.</p></li>
+<li><p><a class="reference external" href="./run_application_on_target.md#run-applications-for-pre-built-accelerators">Steps</a> to run applications for pre-built accelerators on the target.</p></li>
+<li><p><a class="reference internal" href="creation_of_new_RM.html"><span class="doc">Steps</span></a> to build a new user RM.</p></li>
+<li><p><a class="reference internal" href="creation_of_new_RM_application.html"><span class="doc">Steps</span></a> to build a new user RM application</p></li>
+<li><p><a class="reference external" href="./run_application_on_target.md#run-new-accelerator-rm-application-on-target">Steps</a> to load and run a new user RM application</p></li>
+</ul>
 </div>
 
 
@@ -157,16 +147,13 @@ Decrypt a signal that contains data of three different frequencies, Run FIR to g
                         }
                   </style>
 				  
-				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="run_application_on_target.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="creation_of_new_RM.html" class="btn btn-neutral float-right" title="Create a new accelerator RM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+				  <footer>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 28, 2022.
+      <span class="lastupdated">Last updated on November 17, 2022.
       </span></p>
   </div>
 

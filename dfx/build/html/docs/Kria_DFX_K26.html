@@ -282,16 +282,16 @@ When the example design is built in Vivado, the following bit files are built.</
 <li><p>pl_clk3 drives the reconfigurable partition RP_1 &#64; 250 MHz.</p></li>
 </ul>
 <p>The clocks to the reconfigurable partitions are gated to reduce power utilization. The RP clocks are gated when the RM in the RP is not being used or during reconfiguration. The clock is ungated only after the RP is programmed with a partial bitstream. There are no BUFGCE cells in the static region of this example design shell. So, the BUFGCE_HDIO cell which is generally used to provide IO clock gating is used in the design for RP clock gating.</p>
-<p>For more information on RP clock management, refer to <a class="reference external" href="#management-ip---siha-manager">SIHA manager</a>.</p>
+<p>For more information on RP clock management, refer to <a class="reference external" href="#management-ip-siha-manager">SIHA manager</a>.</p>
 </div>
 <div class="section" id="reset">
 <h3>Reset<a class="headerlink" href="#reset" title="Permalink to this heading">¶</a></h3>
 <p>The reset for the static region of the design is derived from pl_resetn0. Processor System reset modules are used to synchronize pl_resetn0 to each clock domain in the static region.</p>
-<p>The reset for Reconfigurable partitions is controlled using the SIHA manager IP. The resets are controlled by programming registers in the SIHA manager IP. The RPs are kept under reset when the RM in the RP is not being used or during reconfiguration. After the RM is configured in the RP, the reset to the RP is released. For more information on RP reset management, refer to <a class="reference external" href="#management-ip---siha-manager">SIHA manager</a>.</p>
+<p>The reset for Reconfigurable partitions is controlled using the SIHA manager IP. The resets are controlled by programming registers in the SIHA manager IP. The RPs are kept under reset when the RM in the RP is not being used or during reconfiguration. After the RM is configured in the RP, the reset to the RP is released. For more information on RP reset management, refer to <a class="reference external" href="#management-ip-siha-manager">SIHA manager</a>.</p>
 </div>
 <div class="section" id="dfx-decoupler">
 <h3>DFX Decoupler<a class="headerlink" href="#dfx-decoupler" title="Permalink to this heading">¶</a></h3>
-<p>DFX decoupler IP is used to provide logical isolation between static and RP regions during reconfiguration. A DFX decoupler is instantiated for each RP instance. The RP decoupling is handled by the SIHA manager IP by controlling the decouple input of the DFX Decoupler. For more information on RP decoupling, refer to <a class="reference external" href="#management-ip---siha-manager">SIHA Manager</a>.</p>
+<p>DFX decoupler IP is used to provide logical isolation between static and RP regions during reconfiguration. A DFX decoupler is instantiated for each RP instance. The RP decoupling is handled by the SIHA manager IP by controlling the decouple input of the DFX Decoupler. For more information on RP decoupling, refer to <a class="reference external" href="#management-ip-siha-manager">SIHA Manager</a>.</p>
 <p>The following signals between static and RPs are decoupled using a DFX decoupler.</p>
 <ul class="simple">
 <li><p>AXI-Lite bus used for configuration</p></li>
@@ -873,7 +873,7 @@ There are also chances that nets at the static-RP interface can bleed into adjac
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 17, 2022.
+      <span class="lastupdated">Last updated on November 28, 2022.
       </span></p>
   </div>
 

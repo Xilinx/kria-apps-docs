@@ -266,7 +266,7 @@ git clone --branch xlnx_rel_v2022.1 --recursive https://github.com/Xilinx/kria-a
 
 ### Steps to install firmware for new RMs
 
-- Copy the new RM firmware directory created [here](creation_of_new_RM.md#new-rm-output-files) to the directory kria-apps-firmware/k26-dfx/2rp on the target.
+- Copy the new RM firmware directory created [here](./creation_of_new_RM.html#new-rm-output-files) to the directory kria-apps-firmware/k26-dfx/2rp on the target.
 - Navigate to the directory kria-apps-firmware/k26-dfx/2rp
 - Run Makefile to install new accelerator RM firmware on the target.
 
@@ -312,7 +312,7 @@ sudo ./NewRMApplication SlotNumber
 
 ## References
 
-- [xrt native APIs](https://xilinx.github.io/XRT/2020.2/html/xrt_native_apis.html)
+- [xrt native APIs](https://xilinx.github.io/XRT/2022.1/html/xrt_native_apis.html)
 
 ## License
 

@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Index &mdash; Kria SOM DFX Examples 1.0 documentation</title>
+  <title>Dynamic Function eXchange (DFX) &mdash; DFX Examples 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/_static/custom.css" type="text/css" />
@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
 
@@ -45,7 +45,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
-            <a href="index.html" class="icon icon-home"> Kria SOM DFX Examples
+            <a href="index.html" class="icon icon-home"> DFX Examples
             <img src="_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
@@ -90,7 +90,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Kria SOM DFX Examples</a>
+          <a href="index.html">DFX Examples</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -98,8 +98,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Index</li>
+      <li>Dynamic Function eXchange (DFX)</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/kria_dfx_landing.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -107,11 +108,68 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="dynamic-function-exchange-dfx">
+<h1>Dynamic Function eXchange (DFX)<a class="headerlink" href="#dynamic-function-exchange-dfx" title="Permalink to this heading">¶</a></h1>
+<p>The AMD-Xilinx Dynamic Function eXchange (DFX) is a technology that enables an incremental and partitioned hardware configuration of a programmable device. Details on DFX capabilities within the Vivado tool are available at <a class="reference external" href="https://www.xilinx.com/products/design-tools/vivado/high-level-design.html#dfx">this link</a>. In PL/FPGA based DFX this enables a concept of reconfigurable partitions (RP) and reconfigurable modules (RM). The RP provides a pre-provisioned HW space allocation within which different RMs can be loaded dynamically. The system and solution capabilities of the DFX incremental HW configuration enable:</p>
+<ul class="simple">
+<li><p>Partitioned designs allowing one part of the system to be changed (reconfigured) while another part of the system remains running.</p></li>
+<li><p><em>Slotted</em> architecture allowing for dynamically composable HW systems without having to recompile a monolithic configuration bitstream file.</p></li>
+<li><p>Decoupled life cycles for PL based functions, facilitating a reconfigurable module (RM) to be deployed to the field later without having to update or rebuild the base platform design.</p></li>
+</ul>
+<p>The Kria example DFX design demonstrates the implementation of a single slot (1 RP) and a dual slot (2 RP) design with multiple dynamic PL accelerated functions. In the Kria design the RP <em>slots</em> are homogenous in footprint allowing for any of the accelerated libraries to be loaded to any slot. In the 2-slot reference design this provides an ability to dynamically compose any combination of PL accelerated functions based on the needs of the user without having to recompile the PL design.</p>
+<div class="section" id="kria-dfx-hardware-design">
+<h2>Kria DFX Hardware Design<a class="headerlink" href="#kria-dfx-hardware-design" title="Permalink to this heading">¶</a></h2>
+<img alt="2RP Design" src="_images/2RP_Design.png" />
+<p>The Kria DFX shell uses a Xilinx solution called DFX, which allows for the reconfiguration of modules within an active design. Using DFX, the shell is carved into a static region and DFX regions called reconfigurable partitions(RP). The RP region(s) of the fabric can be dynamically reprogrammed with different functions, called reconfigurable modules(RMs), while the static region of the design cannot be modified or reprogrammed. A DFX region is carved out by drawing pblocks in Vivado.</p>
+<p>The static region hosts the infrastructure blocks like PS, VCU, interconnect, reset, clocking, DFX decouplers, and platform management IPs. The reconfigurable partitions are used to host the accelerators, where each RP can run an accelerator. The static region acts as a bridge for accelerators to access PS resources. The RPs are carved out such that they are all homogeneous i.e., they have similar area and the same number of logic resources.</p>
+<p>The Vivado design uses Block Design Container(BDC), which allows one or more block designs(BDs) to be instantiated inside another block design. The number of BDCs depend on the number of reconfigurable partitions in the design, having a 1:1 correspondence.</p>
+<p>When DFX is enabled on a BDC, the interface of all the BDs added to that BDC must be identical. A BD should be built for each RM and added to BDC.
+The Kria DFX shell consists of 2 reconfigurable paritions, hence 2 BDCs in the vivado design.</p>
+<p>When the design is built in Vivado, the following bit files will be built:</p>
+<ul class="simple">
+<li><p>Full bitstream: Bit file for the entire design, consisting of static and the reconfigurable modules.</p></li>
+<li><p>Partial Bitstreams: One partial bit file for every RM BD added to each BDC.</p></li>
+</ul>
+</div>
+<div class="section" id="orchestration-of-dynamically-interchangeable-accelerators-on-k26-board">
+<h2>Orchestration of Dynamically interchangeable Accelerators on K26 board<a class="headerlink" href="#orchestration-of-dynamically-interchangeable-accelerators-on-k26-board" title="Permalink to this heading">¶</a></h2>
+<p>The Kria example DFX design demonstrates the implementation of a single slot (1 RP) and a dual slot (2 RP) design with multiple dynamic PL accelerated functions. In the Kria design the RP “slots” are homogenous in footprint allowing for any of the accelerated libraries to be loaded to any slot. In the 2-slot reference design this provides an ability to dynamically compose any combination of PL accelerated functions based on the needs of the user without having to recompile the PL design.</p>
+</div>
+<div class="section" id="pre-built-kria-dfx-applications-for-kr260-and-kv260">
+<h2>Pre-Built Kria DFX Applications for KR260 and KV260<a class="headerlink" href="#pre-built-kria-dfx-applications-for-kr260-and-kv260" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="../../../kria_som_ubuntu_support/build/html/index.html">Kria SOM Ubuntu Support</a></p>
+<p><a class="reference internal" href="docs/Accelerators_On_K26.html"><span class="doc">Pre-Built Kria DFX Applications for KR260 and KV260</span></a></p>
+<p>Detailed description of Applications is available at</p>
+<p>Applications that can run on both KR260 and KV260 : AES128,AES192,FFT and FIR
+* AES128/AES192 application takes a set of data that is moved over to the AES128/AES192 accelerator. This data is first decrypted on the hardware and the data is sent back from the accelerator which is then compared to a golden reference.
+* FFT application uses XFFT IP as a building block and creates a high throughput design catering to 1gsps sample rate. 4 similar IPs are combined together and wrapped with HLS data mover to achieve the high bandwidth.
+* FIR application tests Finite Impulse Response digital filter used in DSP applications.
+Applications that are specific to KV260 : DPU and PP_PIPELINE
+* TBD: Add Description</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<hr class="docutils" />
+<div class="section" id="xilinx-support">
+<h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this heading">¶</a></h3>
+<p>GitHub issues will be used for tracking requests and bugs. For questions, go to <a class="reference external" href="http://forums.xilinx.com/">forums.xilinx.com</a>.</p>
+</div>
+<div class="section" id="license">
+<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">apache.org/licenses/LICENSE-2.0</a>.</p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+</div>
+</div>
 </div>
 
 
@@ -133,7 +191,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 28, 2022.
+      <span class="lastupdated">Last updated on November 3, 2022.
       </span></p>
   </div>
 
@@ -169,7 +227,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
 
 </body>
 </html>
