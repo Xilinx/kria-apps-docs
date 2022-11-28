@@ -75,17 +75,17 @@ For most FPGA designs, a reference input clock is used to generate other require
 
 The clocks to the reconfigurable partitions are gated to reduce power utilization. The RP clocks are gated when the RM in the RP is not being used or during reconfiguration. The clock is ungated only after the RP is programmed with a partial bitstream. There are no BUFGCE cells in the static region of this example design shell. So, the BUFGCE_HDIO cell which is generally used to provide IO clock gating is used in the design for RP clock gating.
 
-For more information on RP clock management, refer to [SIHA manager](#management-ip---siha-manager).
+For more information on RP clock management, refer to [SIHA manager](#management-ip-siha-manager).
 
 ### Reset
 
 The reset for the static region of the design is derived from pl_resetn0. Processor System reset modules are used to synchronize pl_resetn0 to each clock domain in the static region.
 
-The reset for Reconfigurable partitions is controlled using the SIHA manager IP. The resets are controlled by programming registers in the SIHA manager IP. The RPs are kept under reset when the RM in the RP is not being used or during reconfiguration. After the RM is configured in the RP, the reset to the RP is released. For more information on RP reset management, refer to [SIHA manager](#management-ip---siha-manager).
+The reset for Reconfigurable partitions is controlled using the SIHA manager IP. The resets are controlled by programming registers in the SIHA manager IP. The RPs are kept under reset when the RM in the RP is not being used or during reconfiguration. After the RM is configured in the RP, the reset to the RP is released. For more information on RP reset management, refer to [SIHA manager](#management-ip-siha-manager).
 
 ### DFX Decoupler
 
-DFX decoupler IP is used to provide logical isolation between static and RP regions during reconfiguration. A DFX decoupler is instantiated for each RP instance. The RP decoupling is handled by the SIHA manager IP by controlling the decouple input of the DFX Decoupler. For more information on RP decoupling, refer to [SIHA Manager](#management-ip---siha-manager).
+DFX decoupler IP is used to provide logical isolation between static and RP regions during reconfiguration. A DFX decoupler is instantiated for each RP instance. The RP decoupling is handled by the SIHA manager IP by controlling the decouple input of the DFX Decoupler. For more information on RP decoupling, refer to [SIHA Manager](#management-ip-siha-manager).
 
 The following signals between static and RPs are decoupled using a DFX decoupler.
 

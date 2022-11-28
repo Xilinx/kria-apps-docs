@@ -18,6 +18,7 @@ Accelerators with AXIS interface can be part of the RM for DFX example design. R
 ## RP Interface
 
 The IO interface for both the RPs is identical. The below table lists the RP interface signals.
+
   | Port | Description |
   |------|-------------|
   | clk  | Clock input to the RM from Static|
@@ -100,11 +101,11 @@ This creates a BD file with the name RMName_targetRP.bd and validates it.
 * Verify the address editor has valid address ranges for the RP being targeted.
 * AXIS RMs have 2 custom IPs as part of the RM template.
   
-  **rm_comm_box** - More information about this IP is available [here](Kria_DFX_K26.md#rm_comm_box)
+  **rm_comm_box** - More information about this IP is available [here](./Kria_DFX_K26.html#rm_comm_box)
   
-  **AccelConfig** - More information about this IP is available [here](Kria_DFX_K26.md#accelconfig)
+  **AccelConfig** - More information about this IP is available [here](./Kria_DFX_K26.html#accelconfig)
   
-* Details about how to connect the accelerator to rm_comm_box and Accelconfig is provided [here](Kria_DFX_K26.md#rm-accelerator)
+* Details about how to connect the accelerator to rm_comm_box and Accelconfig is provided [here](./Kria_DFX_K26.html#rm-accelerator)
 
 #### Update the RM BD
 
