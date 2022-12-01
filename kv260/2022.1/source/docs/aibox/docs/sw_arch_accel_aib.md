@@ -140,7 +140,7 @@ You can choose any of the following next steps:
 
 * Go back to the [KV260 AI Box design start page](../aibox-dist_landing)
 
-### License
+## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

@@ -10,22 +10,24 @@
  </tr>
 </table>
 
-# Distributed Camera SoM
+# Hardware Architecture of the Platform
+
+## Distributed Camera SoM
 
   Please refer to [Hardware Architecture of the Platform of Kria™ KV260 Vision AI Starter Kit Smart Camera Tutorial](../../smartcamera/docs/hw_arch_platform.md)
 
-# Surveillance Center Cross Tracking and Monitoring
+## Surveillance Center Cross Tracking and Monitoring
 
   Please refer to [Hardware Architecture of the Platform of Kria™ KV260 Vision AI Starter Kit AIBox-ReID Tutorial](../../aibox-reid/docs/hw_arch_platform_aib.md)
 
-# Next Steps
+## Next Steps
 
 You can choose any of the following next steps:
 
 * Read [Hardware Architecture of the Accelerator](hw_arch_accel_aib.md)
 * Go back to the [KV260 AI Box design start page](../aibox-dist_landing)
 
-### License
+## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

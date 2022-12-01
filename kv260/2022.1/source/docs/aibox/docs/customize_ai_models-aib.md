@@ -26,19 +26,38 @@ As the AIBox-Dist application is using two kinds of models listed below, customi
 
 ### Model Preparation
 
-**Note** The design currently only supports  **Vitis AI 2.5.0**
+**Note** The design currently only supports **Vitis AI 2.5.0**
 
-The arch.json used to compile the xmodel for B3136 DPU can be obtained by build the accelerator, but if you won't build all from the start, you can just save following code as arch.json file.
+**Note** As described in the Hardware Accelerator section, the DPU integrated in the platform uses the **B3136** configuration.
+
+The arch.json used to compile the xmodel for B3136 DPU can be obtained by build the accelerator, but if you won't build all from the start, you can obtain the DPU fingerprint by using the following commands on target SOM:
+
+```bash
+    xdputil query
+```
+
+You will get some output like this:
+
+```bash
+...
+"kernels":[
+  {
+...
+     "fingerprint":"0x101000016010406",
+...
+  }
+]
+```
+
+Save the fingerprint as arch.json.
 
 ```json
 {
-    "fingerprint":"0x1000020F6014406"
+    "fingerprint":"0x101000016010406"
 }
 ```
 
-For detailed instructions on obtaining an alternative model from the Xilinx model zoo or training, pruning, quantizing, and compiling a new model, please refer to the [Vitis AI 2.5.0 documentation](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_4/ug1414-vitis-ai.pdf)
-
-**Note** As described in the [Hardware Accelerator section](hw_arch_accel_aib.md), the DPU integrated in the platform uses the B3136 configuration.
+For detailed instructions on obtaining an alternative model from the Xilinx model zoo or training, pruning, quantizing, and compiling a new model, please refer to the [Vitis AI documentation](https://docs.xilinx.com/r/en-US/ug1414-vitis-ai).
 
 ### Configuration files:
 

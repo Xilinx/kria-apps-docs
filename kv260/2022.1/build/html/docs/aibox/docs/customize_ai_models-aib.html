@@ -156,15 +156,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <div class="section" id="model-preparation">
 <h3>Model Preparation<a class="headerlink" href="#model-preparation" title="Permalink to this heading">¶</a></h3>
-<p><strong>Note</strong> The design currently only supports  <strong>Vitis AI 2.5.0</strong></p>
-<p>The arch.json used to compile the xmodel for B3136 DPU can be obtained by build the accelerator, but if you won’t build all from the start, you can just save following code as arch.json file.</p>
+<p><strong>Note</strong> The design currently only supports <strong>Vitis AI 2.5.0</strong></p>
+<p><strong>Note</strong> As described in the Hardware Accelerator section, the DPU integrated in the platform uses the <strong>B3136</strong> configuration.</p>
+<p>The arch.json used to compile the xmodel for B3136 DPU can be obtained by build the accelerator, but if you won’t build all from the start, you can obtain the DPU fingerprint by using the following commands on target SOM:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    xdputil query
+</pre></div>
+</div>
+<p>You will get some output like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
+<span class="s2">&quot;kernels&quot;</span>:<span class="o">[</span>
+  <span class="o">{</span>
+...
+     <span class="s2">&quot;fingerprint&quot;</span>:<span class="s2">&quot;0x101000016010406&quot;</span>,
+...
+  <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>Save the fingerprint as arch.json.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;fingerprint&quot;</span><span class="p">:</span><span class="s2">&quot;0x1000020F6014406&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;fingerprint&quot;</span><span class="p">:</span><span class="s2">&quot;0x101000016010406&quot;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>For detailed instructions on obtaining an alternative model from the Xilinx model zoo or training, pruning, quantizing, and compiling a new model, please refer to the <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_4/ug1414-vitis-ai.pdf">Vitis AI 2.5.0 documentation</a></p>
-<p><strong>Note</strong> As described in the <a class="reference internal" href="hw_arch_accel_aib.html"><span class="doc">Hardware Accelerator section</span></a>, the DPU integrated in the platform uses the B3136 configuration.</p>
+<p>For detailed instructions on obtaining an alternative model from the Xilinx model zoo or training, pruning, quantizing, and compiling a new model, please refer to the <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1414-vitis-ai">Vitis AI documentation</a>.</p>
 </div>
 <div class="section" id="configuration-files">
 <h3>Configuration files:<a class="headerlink" href="#configuration-files" title="Permalink to this heading">¶</a></h3>

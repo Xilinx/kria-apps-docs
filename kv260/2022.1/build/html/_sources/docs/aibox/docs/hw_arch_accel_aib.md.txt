@@ -20,7 +20,7 @@ Please refer to [Hardware Architecture of the Accelerator of Kria™ KV260 Visio
 * [Software Architecture of the Platform](./sw_arch_platform_aib)
 * Go back to the [KV260 AI Box design start page](../aibox-dist_landing)
 
-### References
+## References
 
 Vitis Vision functions:
 * [](https://github.com/Xilinx/Vitis_Libraries/tree/master/vision/L2/examples/cvtcolor)
@@ -31,7 +31,7 @@ DPU
 * [](https://github.com/Xilinx/Vitis-AI/tree/master/dsa/DPU-TRD)
 * [](https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_2/pg338-dpu.pdf)
 
-#### License
+## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
