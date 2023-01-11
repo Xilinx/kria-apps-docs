@@ -20,7 +20,7 @@ Kria KR260 Robotics Starter Kit Applications
 .. image:: docs/media/Perception.png
    :width: 200
    :alt: ROS 2 Perception Node
-   :target: https://www.xilinx.com/products/app-store/kria/ros-2-perception-node.html
+   :target: ./docs/ros2_perception_node/ros2_perception_node_landing.html
 
 
 
@@ -35,6 +35,9 @@ Kria KR260 Robotics Starter Kit Applications
    Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications.html>
    Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
    Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
+   OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
+   Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
+   Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
 
@@ -49,18 +52,7 @@ Kria KR260 Robotics Starter Kit Applications
 
    10GigE Vision Camera <docs/10gige_vision_camera/10gige_vision_camera_landing>
    ROS 2 Multi-Node Communications via TSN <docs/ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing>
-   ROS 2 Perception Node <https://www.xilinx.com/products/app-store/kria/ros-2-perception-node.html>
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: KR260 Tutorials
-   :hidden:
-  
-   Building the Design components <./docs/building_the_design.md>
-   Building the Hardware design using Vivado <./docs/build_vivado_design.md>
-   Creating a Vitis Platform <./docs/build_vitis_platform.md>
-   Generating Custom Firmware <./docs/generating_custom_firmware.md>
+   ROS 2 Perception Node <docs/ros2_perception_node/ros2_perception_node_landing>
 
 
 

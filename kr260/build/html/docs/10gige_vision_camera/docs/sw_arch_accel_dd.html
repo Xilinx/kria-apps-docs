@@ -65,6 +65,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
@@ -72,14 +75,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../10gige_vision_camera_landing.html">10GigE Vision Camera</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications via TSN</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://www.xilinx.com/products/app-store/kria/ros-2-perception-node.html">ROS 2 Perception Node</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">KR260 Tutorials</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Building the Design components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware design using Vivado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Creating a Vitis Platform</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generating Custom Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ros2_perception_node/ros2_perception_node_landing.html">ROS 2 Perception Node</a></li>
 </ul>
 
         </div>
@@ -106,25 +102,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <table class="sphinxhide">
+  <table>
  <tr>
-   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit Defect Detection Tutorial</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Kria&trade; KR260 Robotics Starter Kit</h1>
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Software Architecture of the Accelerator</h1> </td>
+ <td align="center"><h1>Machine Vision Camera Tutorial</h1> </td>
  </tr>
 </table><div class="section" id="software-architecture-of-the-accelerator">
 <h1>Software Architecture of the Accelerator<a class="headerlink" href="#software-architecture-of-the-accelerator" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This document describes the software architecture of the Defect Detection accelerator application.</p>
+<p>This document describes the software architecture of the MV-Defect-Detect accelerator application.</p>
 <div class="section" id="software-architecture">
 <h3>Software Architecture<a class="headerlink" href="#software-architecture" title="Permalink to this heading">¶</a></h3>
-<p>In the Defect Detection application, the Computer Vision Starter Kit can take video inputs from a live or a file source. As shown in the following figure, the video inputs will be in the Luma(Y) format, processed and displayed. Vitis overlay includes Vitis Vision libraries that process the frames and detect defects in mangoes.</p>
-<p>In this reference design, the resolution on the input frames is 1280 x 800, and the outputs are 3x1280x800 on a 4K display.</p>
+<p>In the MV-Defect-Detect application, the Computer Vision Starter Kit can take video inputs from a live or a file source. As shown in the following figure, the video inputs will be in the Luma(Y) format, processed and displayed. Vitis overlay includes Vitis Vision libraries that process the frames and detect defects in mangoes.</p>
+<p>In this reference design, the resolution on the input frames is 1920 x 1080, and the outputs are 1920x1080 on a 1080p display.</p>
 <p><img alt="../../../_images/defect-detection-process.png" src="../../../_images/defect-detection-process.png" /></p>
-<p>The parts before pre-process plugin and after mixer for data source and sink respectively, use purely official GStreamer plugins, such as <em>filesrc</em> for file input, <em>v4l2src</em> for MIPI, and <em>Kmssink</em> for the display. Refer to the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/tutorials/index.html?gi-language=c">GStreamer documentation</a> for detailed usage.</p>
+<p>The parts before pre-process plugin and after mv-defect-detect accelerator for data source and sink respectively, use purely official GStreamer plugins, such as <em>filesrc</em> for file input, <em>v4l2src</em> for capture, and <em>Kmssink</em> for the display. Refer to the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/tutorials/index.html?gi-language=c">GStreamer documentation</a> for detailed usage.</p>
 <p>The core acceleration tasks are performed by the Pre-Process and CCA libraries, which are developed by XILINX.</p>
 <details>
  <summary><b>The following table lists the GStreamer plugins used in the application.</b></summary><table border="1" class="docutils">
@@ -152,18 +148,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>Upstream GStreamer</td>
 </tr>
 <tr>
-<td>Tee</td>
-<td>1-to-N pipe fitting</td>
-<td>Upstream GStreamer</td>
-</tr>
-<tr>
 <td>VVAS xfilter</td>
 <td>Kernel Library: <em>gaussian_otsu</em>. Vitis Vision library for the Gaussian + OTSU detector. Preserves edges while smoothening and calculates the optimum threshold between foreground and background pixels.</td>
 <td>Xilinx Opensource Plugin</td>
 </tr>
 <tr>
 <td>VVAS xfilter</td>
-<td>Kernel Library: <em>threshold_median</em>. Vitis Vision library to convert a grey-scale image to a binary image and filter out noise from the image.</td>
+<td>Kernel Library: <em>pre-process</em>. Vitis Vision library to convert a grey-scale image to a binary image and filter out noise from the image.</td>
 <td>Xilinx Opensource Plugin</td>
 </tr>
 <tr>
@@ -186,40 +177,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <summary><b>The following table lists the Component types used in the application.</b></summary><table border="1" class="docutils">
 <thead>
 <tr>
-<th>Pipeline</th>
 <th>Component</th>
 <th>Component Type</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Pre-Process</td>
 <td>Gaussian + OTSU Accelerator</td>
 <td>PL</td>
 </tr>
 <tr>
-<td></td>
-<td>Threshold + Median Filter</td>
+<td>Threshold</td>
 <td>PL</td>
 </tr>
 <tr>
 <td>Defect Decision</td>
 <td>CCA</td>
-<td>PL</td>
 </tr>
 <tr>
-<td></td>
 <td>Text2Overlay + Defect Decision</td>
 <td>SW</td>
 </tr>
 </tbody>
-</table><hr class="docutils" />
-</details></div>
+</table></details></div>
 </div>
 <div class="section" id="v4l2src">
 <h2>v4l2src<a class="headerlink" href="#v4l2src" title="Permalink to this heading">¶</a></h2>
 <details>
- <summary><b>Click here to view details</b></summary><p>v4l2src is an open source plugin. The underlying GStreamer plugin uses the AR0144 sensor and the AP1302 ISP. The data flow is as follows:</p>
+ <summary><b>Click here to view details</b></summary><p>v4l2src is an open source plugin. The underlying GStreamer plugin uses the IMX547 sensor and the AP1302 ISP. The data flow is as follows:</p>
 <p><img alt="../../../_images/v4l2src-data-flow.png" src="../../../_images/v4l2src-data-flow.png" /></p>
 </details><div class="section" id="in-house-plugins">
 <h3>In-House Plugins<a class="headerlink" href="#in-house-plugins" title="Permalink to this heading">¶</a></h3>
@@ -232,8 +217,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The following figure depicts the Pre-Process plugin data flow.</p>
 <p><img alt="../../../_images/preprocess-plugin-data-flow.png" src="../../../_images/preprocess-plugin-data-flow.png" /></p>
 <h1>Gaussian_OTSU Accelerator</h1><p>This accelerator has two kernels - Gaussian &amp; OTSU, stitched in streaming fashion.
-In general, any smoothing filter smoothens the image and will affect the edges of the image. To
-preserve the edges while smoothing, you can use a bilateral filter. In an analogous way as the
+In general, any smoothing filter smoothens the image, and affects the edges of the image. To
+preserve the edges while smoothing, use bilateral filter. In an analogous way as the
 Gaussian filter, the bilateral filter also considers the neighboring pixels with weights assigned to each of them.</p>
 <p>These weights have two components, the first of which is the same weighing used
 by the Gaussian filter. The second component takes into account the difference in the intensity
@@ -248,7 +233,7 @@ then calculates the optimum threshold separating the two classes.</p>
 <p><img alt="../../../_images/gaussian-plugin-dataflow.png" src="../../../_images/gaussian-plugin-dataflow.png" /></p>
 <h1>Threshold_Median Accelerator</h1><p>The grey-scale image should be converted to a binary image with an appropriate threshold value. The threshold function in the Vitis Vision library can perform the thresholding operation on the input image. This should yield an image that has a black background with the mango area in white.</p>
 <p>The median blur filter acts as a non-linear digital filter that reduces noise. A filter size of N outputs the median of the NxN neighborhood pixel values, for each pixel. In this design, N is 3.</p>
-<p>This plugin accepts the 1280x800 Y8 image as input. The plugin applies the threshold binary algorithm to convert the Y8 image to binary image by using the threshold value of the pixel. Later, it applies the Median filter to remove salt and pepper noise.</p>
+<p>This plugin accepts the 1920x1080 Y8 image as input. The plugin applies the threshold binary algorithm to convert the Y8 image to binary image by using the threshold value of the pixel. Later, it applies the Median filter to remove salt and pepper noise.</p>
 <p>The following figure depicts the Threshold + Median plugin software stack.</p>
 <p><img alt="../../../_images/threshold-plugin-sw-stack.png" src="../../../_images/threshold-plugin-sw-stack.png" /></p>
 <p>The following figure depicts the Threshold + Median plugin data flow.</p>
@@ -289,18 +274,19 @@ then calculates the optimum threshold separating the two classes.</p>
 <div class="section" id="configuration-files">
 <h2>Configuration Files<a class="headerlink" href="#configuration-files" title="Permalink to this heading">¶</a></h2>
 <details>
- <summary><b>Click here to view details</b></summary><p>The <strong>defect-detect</strong> application uses the following configuration files.</p>
-<ul class="simple">
-<li><p>Gaussian_OTSU Accelerator</p></li>
-</ul>
+ <summary><b>Click here to view details</b></summary><p>The <strong>mv-defect-detect</strong> application uses the following configuration files.</p>
+<ul>
+<li><p>Gaussian_OTSU Accelerator</p>
 <p>The <em>otsu-accelerator.json</em> file is as follows:</p>
+</li>
+</ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/kv260-defect-detect/lib&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kr260-mv-camera/kr260-mv-camera.xclbin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/xlnx-app-kr260-mv-defect-detect/lib&quot;</span><span class="p">,</span>
   <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span> <span class="s2">&quot;transform&quot;</span><span class="p">,</span>
   <span class="s2">&quot;kernels&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;gaussian_otsu_accel:gaussian_otsu_accel_1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;gaussian_otsu_accel:</span><span class="si">{gaussian_otsu_accel_1}</span><span class="s2">&quot;</span><span class="p">,</span>
       <span class="s2">&quot;library-name&quot;</span><span class="p">:</span> <span class="s2">&quot;libvvas_otsu.so&quot;</span><span class="p">,</span>
       <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">1</span>
@@ -308,23 +294,23 @@ then calculates the optimum threshold separating the two classes.</p>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
-
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Preprocess Accelerator</p></li>
-</ul>
+<ul>
+<li><p>Preprocess Accelerator</p>
 <p>The <em>preprocess-accelerator.json</em> file is as follows:</p>
+</li>
+</ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/kv260-defect-detect/lib&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kr260-mv-camera/kr260-mv-camera.xclbin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/xlnx-app-kr260-mv-defect-detect/lib&quot;</span><span class="p">,</span>
   <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span> <span class="s2">&quot;transform&quot;</span><span class="p">,</span>
   <span class="s2">&quot;kernels&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;preprocess_accel:preprocess_accel_1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;preprocess_accel:</span><span class="si">{preprocess_accel_1}</span><span class="s2">&quot;</span><span class="p">,</span>
       <span class="s2">&quot;library-name&quot;</span><span class="p">:</span> <span class="s2">&quot;libvvas_preprocess.so&quot;</span><span class="p">,</span>
       <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -338,7 +324,31 @@ then calculates the optimum threshold separating the two classes.</p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
 <span class="o">*</span> <span class="n">max_value</span><span class="p">:</span> <span class="n">Maximum</span> <span class="n">value</span> <span class="n">to</span> <span class="n">use</span> <span class="k">with</span> <span class="n">the</span> <span class="n">THRESH_BINARY</span> <span class="n">thresholding</span> <span class="n">types</span><span class="o">.</span>
-<span class="n">For</span> <span class="n">more</span> <span class="n">information</span><span class="p">,</span> <span class="n">see</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">opencv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">d7</span><span class="o">/</span><span class="n">d1b</span><span class="o">/</span><span class="n">group__imgproc__misc</span><span class="o">.</span><span class="n">html</span><span class="c1">#gae8a4a146d1ca78c626a53577199e9c57</span>
+    <span class="n">For</span> <span class="n">more</span> <span class="n">information</span><span class="p">,</span> <span class="n">click</span> <span class="p">[</span><span class="n">here</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">opencv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">d7</span><span class="o">/</span><span class="n">d1b</span><span class="o">/</span><span class="n">group__imgproc__misc</span><span class="o">.</span><span class="n">html</span><span class="c1">#gae8a4a146d1ca78c626a53577199e9c57).</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Preprocess Accelerator stride</p>
+<p>The <em>preprocess-accelerator-stride.json</em> file is as follows:</p>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kr260-mv-camera/kr260-mv-camera.xclbin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/xlnx-app-kr260-mv-defect-detect/lib&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span> <span class="s2">&quot;transform&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;kernels&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;preprocess_accel:</span><span class="si">{preprocess_accel_1}</span><span class="s2">&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;library-name&quot;</span><span class="p">:</span> <span class="s2">&quot;libvvas_preprocess.so&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;max_value&quot;</span><span class="p">:</span> <span class="mi">255</span><span class="p">,</span>
+        <span class="s2">&quot;stride_value&quot;</span><span class="p">:</span> <span class="mi">2048</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+
 </pre></div>
 </div>
 <ul class="simple">
@@ -346,12 +356,12 @@ then calculates the optimum threshold separating the two classes.</p>
 </ul>
 <p>The <em>cca-accelarator.json</em> file is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/kv260-defect-detect/lib&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kr260-mv-camera/kr260-mv-camera.xclbin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/xlnx-app-kr260-mv-defect-detect/lib&quot;</span><span class="p">,</span>
   <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span> <span class="s2">&quot;transform&quot;</span><span class="p">,</span>
   <span class="s2">&quot;kernels&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;cca_custom_accel:cca_custom_accel_1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;cca_custom_accel:</span><span class="si">{cca_custom_accel_1}</span><span class="s2">&quot;</span><span class="p">,</span>
       <span class="s2">&quot;library-name&quot;</span><span class="p">:</span> <span class="s2">&quot;libvvas_cca.so&quot;</span><span class="p">,</span>
       <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;debug_level&quot;</span> <span class="p">:</span> <span class="mi">1</span>
@@ -369,8 +379,8 @@ then calculates the optimum threshold separating the two classes.</p>
 </ul>
 <p>The <em>text2overlay.json</em> file is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/kv260-defect-detect/lib&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kr260-mv-camera/kr260-mv-camera.xclbin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/xlnx-app-kr260-mv-defect-detect/lib&quot;</span><span class="p">,</span>
   <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span>
   <span class="s2">&quot;kernels&quot;</span> <span class="p">:[</span>
     <span class="p">{</span>
@@ -380,7 +390,7 @@ then calculates the optimum threshold separating the two classes.</p>
         <span class="s2">&quot;font_size&quot;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="s2">&quot;font&quot;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
         <span class="s2">&quot;x_offset&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s2">&quot;y_offset&quot;</span> <span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s2">&quot;y_offset&quot;</span> <span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
         <span class="s2">&quot;defect_threshold&quot;</span> <span class="p">:</span> <span class="mf">0.14</span><span class="p">,</span>
         <span class="s2">&quot;is_acc_result&quot;</span> <span class="p">:</span> <span class="mi">0</span>
       <span class="p">}</span>
@@ -389,22 +399,29 @@ then calculates the optimum threshold separating the two classes.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
-<span class="o">*</span> <span class="n">font_size</span><span class="p">:</span> <span class="n">User</span> <span class="n">configuration</span> <span class="n">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">font</span> <span class="n">size</span><span class="o">.</span>
-<span class="o">*</span> <span class="n">font</span><span class="p">:</span> <span class="n">User</span> <span class="n">configuration</span> <span class="n">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">supported</span> <span class="n">font</span> <span class="nb">type</span><span class="o">.</span>
-<span class="o">*</span> <span class="n">x_offset</span><span class="p">:</span> <span class="n">The</span> <span class="n">X</span> <span class="n">co</span><span class="o">-</span><span class="n">ordinate</span> <span class="kn">from</span> <span class="nn">where</span> <span class="n">the</span> <span class="n">text</span> <span class="n">starts</span> <span class="n">writing</span><span class="o">.</span>
-<span class="o">*</span> <span class="n">y_offset</span><span class="p">:</span> <span class="n">The</span> <span class="n">Y</span> <span class="n">co</span><span class="o">-</span><span class="n">ordinate</span> <span class="kn">from</span> <span class="nn">where</span> <span class="n">the</span> <span class="n">text</span> <span class="n">starts</span> <span class="n">writing</span><span class="o">.</span>
-<span class="o">*</span> <span class="n">defect_threshold</span><span class="p">:</span> <span class="n">The</span> <span class="n">defect</span> <span class="n">density</span> <span class="n">threshold</span> <span class="n">to</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">defect</span><span class="o">.</span> <span class="n">If</span> <span class="n">the</span> <span class="n">defect</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">more</span> <span class="n">than</span> <span class="n">the</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">it</span> <span class="n">falls</span> <span class="n">under</span> <span class="n">defect</span> <span class="n">category</span><span class="o">.</span>
-<span class="o">*</span> <span class="n">is_acc_result</span><span class="p">:</span> <span class="n">Flag</span> <span class="n">to</span> <span class="n">display</span> <span class="n">the</span> <span class="n">accumulated</span> <span class="n">result</span><span class="o">.</span> <span class="n">If</span> <span class="n">the</span> <span class="n">value</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">accumulated</span> <span class="n">result</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">displayed</span><span class="o">.</span>
-<span class="n">For</span> <span class="n">more</span> <span class="n">information</span> <span class="n">see</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">opencv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mf">3.4</span><span class="o">/</span><span class="n">d0</span><span class="o">/</span><span class="n">de1</span><span class="o">/</span><span class="n">group__core</span><span class="o">.</span><span class="n">html</span><span class="c1">#ga0f9314ea6e35f99bb23f29567fc16e11.</span>
+<p><strong>Note</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="p">)</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
+
+<span class="mi">2</span><span class="p">)</span> <span class="n">font_size</span><span class="p">:</span> <span class="n">User</span> <span class="n">configuration</span> <span class="n">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">font</span> <span class="n">size</span><span class="o">.</span>
+
+<span class="mi">3</span><span class="p">)</span> <span class="n">font</span><span class="p">:</span> <span class="n">User</span> <span class="n">configuration</span> <span class="n">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">supported</span> <span class="n">font</span> <span class="nb">type</span><span class="o">.</span>
+
+<span class="mi">4</span><span class="p">)</span> <span class="n">x_offset</span><span class="p">:</span> <span class="n">The</span> <span class="n">X</span> <span class="n">co</span><span class="o">-</span><span class="n">ordinate</span> <span class="kn">from</span> <span class="nn">where</span> <span class="n">the</span> <span class="n">text</span> <span class="n">starts</span> <span class="n">writing</span><span class="o">.</span>
+
+<span class="mi">5</span><span class="p">)</span> <span class="n">y_offset</span><span class="p">:</span> <span class="n">The</span> <span class="n">Y</span> <span class="n">co</span><span class="o">-</span><span class="n">ordinate</span> <span class="kn">from</span> <span class="nn">where</span> <span class="n">the</span> <span class="n">text</span> <span class="n">starts</span> <span class="n">writing</span><span class="o">.</span>
+
+<span class="mi">6</span><span class="p">)</span> <span class="n">defect_threshold</span><span class="p">:</span> <span class="n">The</span> <span class="n">defect</span> <span class="n">density</span> <span class="n">threshold</span> <span class="n">to</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">defect</span><span class="o">.</span> <span class="n">If</span> <span class="n">the</span> <span class="n">defect</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">more</span> <span class="n">than</span> <span class="n">the</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">it</span> <span class="n">falls</span> <span class="n">under</span> <span class="n">defect</span> <span class="n">category</span><span class="o">.</span>
+
+<span class="mi">7</span><span class="p">)</span> <span class="n">is_acc_result</span><span class="p">:</span> <span class="n">Flag</span> <span class="n">to</span> <span class="n">display</span> <span class="n">the</span> <span class="n">accumulated</span> <span class="n">result</span><span class="o">.</span> <span class="n">If</span> <span class="n">the</span> <span class="n">value</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">accumulated</span> <span class="n">result</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">displayed</span><span class="o">.</span>
+<span class="n">For</span> <span class="n">more</span> <span class="n">information</span> <span class="p">[</span><span class="n">see</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">opencv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mf">3.4</span><span class="o">/</span><span class="n">d0</span><span class="o">/</span><span class="n">de1</span><span class="o">/</span><span class="n">group__core</span><span class="o">.</span><span class="n">html</span><span class="c1">#ga0f9314ea6e35f99bb23f29567fc16e11).</span>
 </pre></div>
 </div>
 </details></div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="hw_arch_platform_dd.html"><span class="doc">Hardware Architecture</span></a></p></li>
 <li><p><a class="reference internal" href="hw_arch_accel_dd.html"><span class="doc">Hardware Accelerator</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="sw_arch_platform_dd.html"><span class="doc">System Architecture of the Platform</span></a></p></li>
 </ul>
 <!---
 
@@ -438,7 +455,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 25, 2022.
+      <span class="lastupdated">Last updated on October 27, 2022.
       </span></p>
   </div>
 

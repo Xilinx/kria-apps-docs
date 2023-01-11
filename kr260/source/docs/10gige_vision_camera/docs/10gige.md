@@ -57,7 +57,7 @@ At a high level, the design implements the following pipelines:
 
 ### Single Sensor SLVS-EC Capture
 
-A capture pipeline receives video frames from an external IMX547 image sensor. This is done with the Framos SLVS-EC IP.
+A capture pipeline receives video frames from an external IMX547 Monochrome image sensor. This is done with the Framos SLVS-EC IP.
 
 ### GigE Vision protocol pipeline
 

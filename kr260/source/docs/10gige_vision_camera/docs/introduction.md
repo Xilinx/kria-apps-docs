@@ -10,15 +10,13 @@
  </tr>
 </table>
 
-# Introduction to Sensor Capture and 10GigE
+# Introduction to Sensor Capture, MV-Defect-Detect, and 10GigE
 
 The SLVS-EC Machine Vision application on Kria KR260 board demonstrates the use of a Xilinx Zynq® Ultrascale+™ device together with Framos SLVS-EC IP and Sensor to Image 10GigE Vision IP to build a machine vision application according to the GigE Vision standard.
 
-## 10GigE Application
-
 10GigE machine vision application developed on Xilinx SOM embedded platform. This document covers various components such as Hardware, Software, High Level Design, Test Environment and more.
 
-The following table lists the specific hardware (SOM + Carrier card) and the associated peripherals used in the 10GigE accelerated application.
+The following table lists the specific hardware (SOM + Carrier card) and the associated peripherals used in the MV-Camera accelerated application.
 
 | **HW Component**        | **Description**           |
 | :------------- |:-------------|
@@ -28,6 +26,8 @@ The following table lists the specific hardware (SOM + Carrier card) and the ass
 | NIC*     | 10G NIC card     |
 | 10G SFP+ Transceiver*     | Transceiver to connect fiber optic cable    |
 | Fiber optic cable*     | Fiber optic cable to connect KR260 to host machine  |
+| 1080p Monitor     | MV-Defect-Detect output displays on DP Monitor  |
+| DP Cable     | Connects KR260 board and DP monitor  |
 
 <*> This is not shipped along with KRIA starter kit
 
@@ -41,11 +41,17 @@ The Application Processing Unit (APU) in the Processing System (PS) consists of 
 
 The APU application controls the following video data paths implemented in a combination of the PS and PL:
 
-- Capture pipeline collects video frames from IMX547 sensor interfaced via SLVS EC Interface and it will handover to FPGA block where it will be converted into AXI streams.
+- Capture pipeline collects video frames from IMX547 sensor interfaced through SLVS EC Interface, and it handovers to FPGA block where it converts into AXI streams.
+- Acceleration Pipeline:
+  *	Pre-Process Pipeline – Pre-Process received images as required for the processing function.
+  * CCA Pipeline – The implemented Connected Component Analysis (CCA), is a custom solution to find the defective pixels in the problem object. This algorithm considers few assumptions that the background must be easily separable from the foreground object.
+  * Defect Decision Pipeline - The output of the CCA plugin is fed into the Defect Decision block that determines the defect density and decides the quality of the mango.
 
-- GenDC in the 10GigE pipeline receives the AXI stream data and converts it into GenICam protocol. Through SFP+ transceiver the data will be transmitted to host machine.
+- Display Pipelines – Display detection results and images of the mango at various stages.
 
-The 10GigE application stream out the sensor's RAW format via 10GigE protocol.
+- GenDC in the 10GigE pipeline receives the AXI stream data and converts it into GenICam protocol. Through SFP+ transceiver, the data transmits to host machine.
+
+The 10GigE application stream out the sensor's RAW format through 10GigE protocol.
 
 For the live use case, connect the IMX547 sensor to capture 2472 x 2128\@122fps - 10bpp data. The application processes this data and sends the outputs to the host PC.
 
