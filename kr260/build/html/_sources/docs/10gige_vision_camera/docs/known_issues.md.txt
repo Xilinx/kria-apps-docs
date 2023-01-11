@@ -26,7 +26,7 @@
 
 7. Depends on the Host PC capability with Sphinx application frame rate may vary.
 
-8. If user get any TIMEOUT error in Sphinx host application, KR260 device may get closed. In such case, exit the sphinx application and relauch it.
+8. If user get any TIMEOUT error in Sphinx host application, KR260 device may get closed. In such case, exit the sphinx application and relaunch it.
 
 9. When gvrd application is stopped & re-launched again, user will get below error which can be ignored.
 
@@ -40,14 +40,26 @@
 
 10. s2imac driver probe may fail, when user loads the MV-Camera application firmware. In such case user can unload and load the MV-Camera firmware again.
 
-11. Installing firmware binaries may cause dfx-mgr to crash and a restart is needed, which is listed in the known issues section. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed.
+11. Installing firmware binaries may cause dfx-mgr to crash and a restart is needed. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed.
 
     If dfx-manager crashes, restart it with this command:
     ```sudo systemctl restart dfx-mgr.service```
 
-12. Randomly after running gst-launch command and sphinx, user may not see the preview image in sphinx GEV viewer. In such case check the framebuffer interrupt count using `cat/proc/interrupts`. If the interrupt count is not increasing, reboot the KR260 target and relaunch the MV Camera application.
+12. Randomly after running gst-launch command and sphinx, user may not see the preview image in sphinx GEV viewer. In such case check the framebuffer interrupt count using `cat/proc/interrupts`. If the interrupt count is not increasing, reboot the KR260 target and relaunch the MV-Camera application.
 
 13. Recommended to use Windows version of sphinx because sphinx GEV viewer in Ubuntu flashes set XML error at times.
+
+14. Appearing optical black lines at top of the live in display output.
+
+15. At sometimes, it is been observed that white lines are appearing at top of the final output display.
+
+# Limitations
+
+1. MV-Defect-Detect pipeline supports max 60 fps.
+
+2. MV-Defect-Detect pipeline is sensitive to lighting conditions.
+
+3. There is no hardened ISP in KR260 board, and there is no enough PL resources available to add soft ISP (HLS). So there might be a deviation in the expected accuracy out from mv-defect-detect application.
 
 ## Next Steps
 

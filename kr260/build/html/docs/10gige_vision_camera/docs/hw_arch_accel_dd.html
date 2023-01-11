@@ -65,6 +65,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
@@ -72,14 +75,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../10gige_vision_camera_landing.html">10GigE Vision Camera</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications via TSN</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://www.xilinx.com/products/app-store/kria/ros-2-perception-node.html">ROS 2 Perception Node</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">KR260 Tutorials</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Building the Design components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware design using Vivado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Creating a Vitis Platform</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generating Custom Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ros2_perception_node/ros2_perception_node_landing.html">ROS 2 Perception Node</a></li>
 </ul>
 
         </div>
@@ -106,20 +102,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <table class="sphinxhide">
+  <table>
  <tr>
-   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit Defect Detection Tutorial</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Kria&trade; KR260 Robotics Starter Kit</h1>
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Hardware Architecture of the Accelerator</h1> </td>
+ <td align="center"><h1>Machine Vision Camera Tutorial</h1> </td>
  </tr>
 </table><div class="section" id="hardware-architecture-of-the-accelerator">
 <h1>Hardware Architecture of the Accelerator<a class="headerlink" href="#hardware-architecture-of-the-accelerator" title="Permalink to this heading">¶</a></h1>
-<p>The Vitis overlay includes the Pre-Process block and the Defect Detection blocks.</p>
+<p>The Vitis overlay includes the Pre-Process block and the MV-Defect-Detect blocks.</p>
 <div class="section" id="pre-process">
 <h2>Pre-Process<a class="headerlink" href="#pre-process" title="Permalink to this heading">¶</a></h2>
-<p>The Pre-Process pipeline reads a video frame from memory, processes it as required for the Defect Detection function, and writes it back to memory. The Pre-Process pipeline consists of the Gaussian + OTSU accelerator
+<p>The Pre-Process pipeline reads a video frame from memory, processes it as required for the MV-Defect Detect function, and writes it back to memory. The Pre-Process pipeline consists of the Gaussian + OTSU accelerator
 and the Threshold + Median accelerator.</p>
 <p>The Gaussian + OTSU accelerator is as follows:</p>
 <p><img alt="Gaussian_OTSU Pipeline Hardware Accelerator" src="../../../_images/gaussian-otsu-pipeline-hardware-accel.png" /></p>
@@ -143,7 +139,7 @@ and the Threshold + Median accelerator.</p>
 </div>
 <div class="section" id="defect-detection">
 <h2>Defect Detection<a class="headerlink" href="#defect-detection" title="Permalink to this heading">¶</a></h2>
-<p>The block in the Defect Detection pipeline reads a video frame from memory, processes it, and writes it back to memory. The Defect Detection pipeline is as follows:</p>
+<p>The block in the MV-Defect-Detect pipeline reads a video frame from memory, processes it, and writes it back to memory. The MV-Defect-Detect pipeline is as follows:</p>
 <p><img alt="Passes and Computations" src="../../../_images/defect-detection-computations.png" /></p>
 <p>In hardware, the processing is done in two passes. In pass 1, the forward and reverse passes are computed in parallel.
 Two input pointers are used, which point to the same data in the DDR, one for forward and other for reverse (two parallel ports are required because the forward and reverse computations are done in parallel).</p>
@@ -157,7 +153,7 @@ Two input pointers are used, which point to the same data in the DDR, one for fo
 </div>
 <div class="section" id="resource-utilization">
 <h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this heading">¶</a></h2>
-<p>Vitis integrates the pre-processing function and Defect detection function into the platform. The following table shows utilization numbers post implementation.</p>
+<p>Vitis integrates the pre-processing function and mv-defect-detection function into the platform. The following table shows utilization numbers post implementation.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -178,52 +174,52 @@ Two input pointers are used, which point to the same data in the DDR, one for fo
 </tr>
 <tr>
 <td>Platform</td>
-<td>22646</td>
-<td>18</td>
-<td>30</td>
-<td>1</td>
+<td>45863</td>
+<td>96.5</td>
+<td>209</td>
+<td>12</td>
 </tr>
 <tr>
 <td>Gaussian_OTSU</td>
-<td>13633</td>
-<td>6</td>
-<td>71</td>
+<td>10928</td>
+<td>4.5</td>
+<td>72</td>
 <td>0</td>
 </tr>
 <tr>
 <td>Pre-processing</td>
-<td>5244</td>
+<td>7126</td>
 <td>3.5</td>
-<td>9</td>
+<td>8</td>
 <td>0</td>
 </tr>
 <tr>
 <td>CCA</td>
-<td>13756</td>
+<td>5775</td>
 <td>5</td>
-<td>10</td>
+<td>2</td>
 <td>0</td>
 </tr>
 <tr>
 <td>Other*</td>
-<td>6062</td>
-<td>39</td>
+<td>9212</td>
+<td>18.5</td>
 <td>0</td>
 <td>0</td>
 </tr>
 <tr>
 <td>Total</td>
-<td>61341</td>
-<td>71.5</td>
-<td>120</td>
-<td>1</td>
+<td>78904</td>
+<td>128</td>
+<td>291</td>
+<td>12</td>
 </tr>
 <tr>
 <td>Total %</td>
-<td>52.37%</td>
-<td>49.65%</td>
-<td>9.05%</td>
-<td>1.56%</td>
+<td>67.37%</td>
+<td>88.89%</td>
+<td>23.32%</td>
+<td>18.75%</td>
 </tr>
 </tbody>
 </table><p>Other* : AXI interconnects and Interrupt concat block added by Vitis
@@ -232,7 +228,8 @@ Two input pointers are used, which point to the same data in the DDR, one for fo
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Go back to the <a class="reference external" href="../defectdetect_landing">KV260 SOM Defect detect design start page</a></p></li>
+<li><p><a class="reference internal" href="debug.html"><span class="doc">Debug</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="sw_arch_accel_dd.html"><span class="doc">Software Accelerator</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="references">
@@ -273,7 +270,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 25, 2022.
+      <span class="lastupdated">Last updated on October 27, 2022.
       </span></p>
   </div>
 

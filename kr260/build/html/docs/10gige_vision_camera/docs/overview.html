@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Introduction to Sensor Capture and 10GigE" href="introduction.html" />
+    <link rel="next" title="Introduction to Sensor Capture, MV-Defect-Detect, and 10GigE" href="introduction.html" />
     <link rel="prev" title="10GigE Vision Camera" href="../10gige_vision_camera_landing.html" /> 
 </head>
 
@@ -67,6 +67,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
@@ -89,14 +92,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications via TSN</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://www.xilinx.com/products/app-store/kria/ros-2-perception-node.html">ROS 2 Perception Node</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">KR260 Tutorials</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Building the Design components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware design using Vivado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Creating a Vitis Platform</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generating Custom Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ros2_perception_node/ros2_perception_node_landing.html">ROS 2 Perception Node</a></li>
 </ul>
 
         </div>
@@ -134,16 +130,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </tr>
 </table><div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h1>
-<p>The Machine Vision (MV) camera application uses a Sony IMX547 sensor module which interfaces to the KR260 with the widely adopted SLVS-EC interface standard.</p>
+<p>The Machine Vision (MV) Camera Application uses a Sony IMX547 sensor module which interfaces to the KR260 with the widely adopted SLVS-EC interface standard.</p>
 <p>The FPGA implements a SLVS-EC receiver IP core that is provided by third-party IP company <a class="reference external" href="https://www.framos.com/framos-slvs-ec-rx-ip-core">Framos</a> and a 10GigE Vision pipeline using a series of IP cores from third-party IP company <a class="reference external" href="https://www.euresys.com/en/Products/IP-Cores/Vision-Standard-IP-Cores-for-FPGA/GigE-Vision-IP-Core-(2)">Sensor-to-Image</a>. As these third-party IPs are not open-source, users must contact the third-party contacts via <a class="reference external" href="https://www.xilinx.com/products/app-store/kria/10gige-vision-camera/product-inquiry.html">Product Inquiry</a> to create custom and product designs.</p>
 <p>The KR260 carrier card has the interface for Euresys 10GigE. 10GigE pipeline consist of multiple IP’s like GenDC, Framebuffer, 10GigE MAC etc. GenDC Front-End IP core implements GenICam protocol GenDC layer to be used together with additional machine vision interfacing IP cores provided by Sensor to Image(S2I). Frame Buffer companion IP implements a video frame buffering functionality, packetization, and optional packet resending. The data divided into packets is transmitted to the back-end IP cores implementing particular machine vision interfaces like GigE Vision. Using SFP+ packets will be sent to host machine and displayed in Sphinx GEV Viewer software.</p>
+<p>From the capture pipeline, AXI broadcaster gives two outputs to 10gige pipeline and mv-defect detect pipeline respectively.
+MV-Defect-Detect application uses Vitis Vision libraries to examine each mango and mark its defects. This helps customers sell their best mangoes to bring in enhanced revenue, and results in a win-win situation for both the customers and the consumers.</p>
 <p>The MV-Camera high level pipeline is depicted in below figure,</p>
 <p><img alt="KR260 Overview Diagram" src="../../../_images/Overview_diagram.PNG" /></p>
 <div class="section" id="features">
 <h2>Features<a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
 <li><p>IMX547 Camera Sensor with 5.1 Mega Pixel/2472 x 2128 pixel with max framerate of 122 fps.</p></li>
-<li><p>Sphinx GE Viewer to display the live streaming data through 10 GigE pipeline.</p></li>
+<li><p>Sphinx GEV Viewer to display the live streaming data through 10 GigE pipeline.</p></li>
+<li><p>MV-Defect-Detect acceleration pipelines are to detect defects in the input mango images.</p></li>
 </ol>
 </div>
 <div class="section" id="next-steps">
@@ -178,14 +177,14 @@ Unless required by applicable law or agreed to in writing, software distributed 
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../10gige_vision_camera_landing.html" class="btn btn-neutral float-left" title="10GigE Vision Camera" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction to Sensor Capture and 10GigE" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction to Sensor Capture, MV-Defect-Detect, and 10GigE" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on October 10, 2022.
+      <span class="lastupdated">Last updated on October 27, 2022.
       </span></p>
   </div>
 

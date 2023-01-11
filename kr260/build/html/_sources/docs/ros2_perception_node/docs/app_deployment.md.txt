@@ -1,4 +1,4 @@
-﻿<table class="sphinxhide">
+<table class="sphinxhide">
  <tr>
    <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KR260 Robotics Starter Kit <br>ROS Perception Tutorial</h1>
    </td>
@@ -25,11 +25,63 @@ This document shows, how to setup the board and environment to execute Perceptio
 * Cat 5e Ethernet Cable (Included with KR260 Robotics Starter Kit)
 * USB-A to micro-B Cable (Included with KR260 Robotics Starter Kit)
 * 16GB MicroSD Cards (Included with KR260 Robotics Starter Kit)
-* Ubuntu 22.04 workstation with ethernet port
+* Ubuntu 22.04 workstation(x86 Host) with ethernet port for settingup simulation on Gazebo and Visualizing the simulated nodes on RQT
 
 <br>
 
-### Initial Setup, Setting Up The Board
+
+### Environment Setup On Host(x86) Machine(Ubuntu 22.04)
+
+1. Install ROS2 using debian package, see install guide [here](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html).
+2. Install few more dependencies from ros-humble using the below command
+```bash
+$ sudo apt install ros-humble-gazebo-ros ros-humble-gazebo-plugins ros-humble-gazebo-msgs
+```
+3. Install Gazebo Classic 11.0, see install guide [here](https://classic.gazebosim.org/tutorials?tut=install_ubuntu)
+4. Get files to setup and run simulation
+```bash
+$ git clone https://gitenterprise.xilinx.com/SOM/kria_ros_perception
+$ cd kria_ros_perception
+$ rm -rf src/image_proc src/tracetools_image_pipeline src/vitis_common src/tracing src/image_pipeline_examples
+```
+3. Install Simulation from the below steps
+```bash
+$ source /opt/ros/humble/setup.bash  # source ROS2 Humble
+$ colcon build
+```
+4. Run simulation on workstation
+```bash
+$ source install/setup.bash  # source the workspace as an overlay
+$ ros2 launch perception_2nodes simulation.launch.py
+```
+
+It opens gazebo window showing the simulation world of a pinhole camera capturing a black stationary cube and a small grey cube revolving ontop of a checkered plane as shown below
+
+![](../media//gazebo_sim.png)
+
+### Setting up RQT on Host(x86) Machine to view the demo
+
+1. Open new terminal and launch [RQT](https://docs.ros.org/en/humble/Concepts/About-RQt.html) using rqt command as shown below for visualizing the perception graph. It will open a window which appears as shown below 
+```bash
+$ source /opt/ros/humble/setup.bash  # source ROS2 Humble
+$ rqt
+```
+
+![](../media//rqt_inital_launch.png)
+
+2. Click on Plugins -> Introspection -> Node Graph and set the configuration as shown below. Refresh the node graph using ![](../media//refresh_rqt.png) to update to latest graph while running the demo 
+
+![](../media//node_graph_settings.png)
+
+3. Similarly enable Visualization plugin from  Plugins -> Visualization -> Image View. You can open multiple windows of Image View windows to see multiple images at once. To swich to different image click on the dropdown as shown ![](../media//dropdown_rqt.png)
+
+![](../media//image_view_rqt.png)
+
+> **_NOTE:_**  User is expected to launch as many RQT plugins as required for visualizing the perception show as shown in the below gif animations.
+
+<br>
+
+### Initial Setup, Setting Up The KR260 Board
 
 1. Setting up the SD Card Image (Ubuntu)
 
@@ -52,7 +104,7 @@ This document shows, how to setup the board and environment to execute Perceptio
 
 	https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/booting-your-starter-kit.html
 
-> **Note:** Steps under the section "Set up the Xilinx Development & Demonstration Environment for Ubuntu 22.04 LTS" may not be needed for TSN-ROS demo.
+> **Note:** Steps under the section "Set up the Xilinx Development & Demonstration Environment for Ubuntu 22.04 LTS" may not be needed for ROS-Perception demo.
 
 4. Set System Timezone and locale:
 
@@ -81,31 +133,13 @@ This document shows, how to setup the board and environment to execute Perceptio
 
 6. Get the latest ROS perception application & firmware package:
 
-	* Add archive for the Xilinx Apps demo
-
-       ```bash
-	   $ sudo add-apt-repository ppa:xilinx-apps
-	   $ sudo apt update
-	   $ sudo apt upgrade
-       ```
-
-    * Search package feed for packages compatible with KR260
-
-       ```bash
-      ubuntu@kria:~$ sudo apt search xlnx-firmware-kv260
-      Sorting... Done
-      Full Text Search... Done
-      xlnx-firmware-kr260-ros-perception/jammy,now 0.1-0xlnx1 arm64
-        FPGA firmware for Xilinx boards - kr260 ros-perception application
-       ```
-
-    * Install firmware binaries
+	* Download the [attached zip](https://confluence.xilinx.com/download/attachments/672024701/image_proc_streamlined.zip?version=1&modificationDate=1665573645434&api=v2) and copy to board. Extract the contents to /lib/firmware/xilinx/ folder using the below command
 
       ```bash
-      sudo apt install xlnx-firmware-kr260-ros-perception
+      $ sudo apt install xlnx-firmware-kr260-perception
       ```
 
-  	* Install ROS 2  humble
+  	* Install ROS 2  humble and LTTng
 
         Refer [ROS 2 Documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html) for the installation steps. Here is the snippet of what is needed for this application:
 
@@ -114,79 +148,60 @@ This document shows, how to setup the board and environment to execute Perceptio
 		$ echo "deb [arch=arm64 signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2-testing/ubuntu jammy main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 		$ sudo apt update
 		$ sudo apt upgrade
-		$ sudo apt install ros-humble-ros-base
+		$ sudo apt install -y ros-humble-desktop
+      $ sudo apt install lttng-modules-dkms lttng-tools ros-humble-tracetools-launch
         ```
-        Confirm with "Y" when prompted to install new or updated packages.
     
     * Install ROS 2 application
 
        ```bash
-      $ # Required dependencies ocl-icd-* opencl-headers python3-lttng ros-humble-tracetools ros-humble-tracetools-launch  ros-humble-tracetools-trace lttng-tools lttng-modules-dkms
-		$ mkdir -p ~/Downloads
-		$ wget <> -P ~/Downloads/
-		$ sudo apt install ~/Downloads/ros-humble-xlnx-ros-perception_0.1.0-0jammy_arm64.deb
+      $ mkdir -p ~/Downloads
+      $ cd ~/Downloads
+      $ wget https://github.com/Xilinx/kria_ros_perception/releases/download/xlnx-rel-v2022.1_update4/kria-ros-perception_1.0-1_arm64.deb 
+      $ sudo apt install ./kria-ros-perception_1.0-1_arm64.deb
+       ```
+
+   * Disable Gnome desktop GUI 
+      ```bash
+      $ sudo xmutil desktop_disable
        ```
 <br>
 
-### Environment Setup On Host Machine(Ubuntu 22.04)
-
-1. Install ROS2 using debian package, see install guide [here](https://docs.ros.org/en/rolling/Installation/Ubuntu-Install-Debians.html).
-2. Install few more dependencies from ros-humble using the below command
-```bash
-$ sudo apt install ros-humble-gazebo-ros ros-humble-gazebo-plugins ros-humble-gazebo-msgs
-```
-3. Install Gazebo Classic 11.0, see install guide [here](https://classic.gazebosim.org/tutorials?tut=install_ubuntu)
-4. Get files to setup and run simulation
-```bash
-$ git clone --recursive https://gitenterprise.xilinx.com/SOM/kria_ros_perception
-$ cd kria_ros_perception
-$ rm -rf src/image_proc src/tracetools_image_pipeline src/vitis_common
-```
-3. Install Simulation from the below steps
-```bash
-$ source /opt/ros/humble/setup.bash
-$ colcon build
-```
-4. Run simulation on workstation
-```bash
-# Launch Gazebo simulator in your workstation
-#  requires Gazebo installed and GUI-capabilities
-$ source /opt/ros/humble/setup.bash  # Sources system ROS 2 installation
-$ colcon build --merge-install  # build the workspace to deploy KRS components
-$ source install/setup.bash  # source the workspace as an overlay
-$ ros2 launch perception_2nodes simulation.launch.py
-```
-
-<br>
-
-### Run The Application
+### Run The Application on KR260
 This application has two flavours, which are developed in way that user can understand how he can tweek the application to achieve a desired performance during development. Below are versions and its details:
 
 1) **CPU Baseline**
-This is a very simplistic version, where nodes are not accelerated and are executed on CPU. This version should allow users get familier with working environment and understand easiness in working with KRS based applications. Use below steups to execute:
+This is a very simplistic version, where nodes are not accelerated and are executed on CPU. This version should allow users get familier with working environment and understand easiness in working with KRS based applications. Use below steps to execute:
 
 ```bash
-# Launch the graph in the KV260 CPU (should be connected to the same local network)
-$ source /opt/ros/rolling/setup.bash
-$ ros2 launch perception_2nodes trace_rectify_resize.launch.py
+$ source /opt/ros/humble/setup.bash # enable ROS 2 overlays
+$ ros2 launch perception_2nodes trace_rectify_resize.launch.py # launch rectify and resize Nodes on ARM cores
 ```
+Below is the gif showing the gazebo simulation window(left half) along with RQt window(right half) with node graph and /camera/image_raw, /image_rect and /resize/resize image views. You may need to reload the plugin windows to update the node graph and image views.
 
 ![](../media//perception_graph.gif)
 
 2) **FPGA streamline accelerated**: In this application ROS *Components* `RectifyNodeFPGAStreamlined` and `ResizeNodeFPGAStreamlined` are redesigned to leverage hardware acceleration, however, besides offloading perception tasks to the FPGA, each <ins>leverages an AXI4-Stream interface to **create an intra-FPGA ROS 2 communication queue** which is then used to pass data across nodes through the FPGA</ins>. This allows to avoid completely the ROS 2 message-passing system and optimizes dataflow achieving a **24.42% total speedup**. Steps to launch streamlined accelerated version are:
 
 ```bash
-# integrated
-$ xmutil unloadapp
-$ xmutil loadapp image_proc_integrated  # load the accelerator
-$ source /opt/ros/rolling/setup.bash  # enable ROS 2 overlays
-$ ros2 launch perception_2nodes trace_rectify_resize_fpga_integrated.launch.py  # launch Nodes
+# streamlined
+$ sudo xmutil unloadapp
+$ sudo xmutil loadapp kr260-perception  # load the accelerator
+$ source /opt/ros/humble/setup.bash  # enable ROS 2 overlays
+$ ros2 launch perception_2nodes trace_rectify_resize_fpga_streamlined.launch.py  # launch rectify and resize FPGA accelerated Nodes
 ```
+Below is the gif showing the gazebo simulation window(top half) along with RQt window(bottom half) with node graph and /camera/image_raw, /image_rect and /resize image views. Since the data is transfer via streaming interface from rectify to resize, we dont see any image in rectify image view. You may need to reload the plugin windows to update the node graph and image views.
 
-![](../media/perception_graph_integrated.gif)
+![](../media/perception_graph_streamlined.gif)
 
 <br>
 
+> **_NOTE:_** For benchmark results using Tracetools and other ROS2 acceleration examples please refer to [Kria Robotics Stack](https://xilinx.github.io/KRS/sphinx/build/html/index.html) (KRS)
+
+## Next Steps
+
+- [Kria Robotics Stack (KRS)](https://xilinx.github.io/KRS/sphinx/build/html/docs/intro.html)
+- [Known Issues](issue-perception.md)
 
 <!---
 

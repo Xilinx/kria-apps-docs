@@ -65,6 +65,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
@@ -72,14 +75,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../10gige_vision_camera_landing.html">10GigE Vision Camera</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications via TSN</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://www.xilinx.com/products/app-store/kria/ros-2-perception-node.html">ROS 2 Perception Node</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">KR260 Tutorials</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Building the Design components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware design using Vivado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Creating a Vitis Platform</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generating Custom Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ros2_perception_node/ros2_perception_node_landing.html">ROS 2 Perception Node</a></li>
 </ul>
 
         </div>
@@ -106,19 +102,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <table class="sphinxhide">
+  <table>
  <tr>
-   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit Defect Detection Tutorial</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Kria&trade; KR260 Robotics Starter Kit</h1>
    </td>
  </tr>
  <tr>
- <td align="center"><h1>System Architecture of the Platform</h1> </td>
+ <td align="center"><h1>Machine Vision Camera Tutorial</h1> </td>
  </tr>
 </table><div class="section" id="system-architecture-of-the-platform">
 <h1>System Architecture of the Platform<a class="headerlink" href="#system-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="architecture-diagram">
 <h2>Architecture Diagram<a class="headerlink" href="#architecture-diagram" title="Permalink to this heading">¶</a></h2>
-<p>The following figure illustrates the system architecture of the SOM Defect Detection application.</p>
+<p>The following figure illustrates the system architecture of the SOM MV-Defect-Detect application.</p>
 <p><img alt="../../../_images/defect-detection-arch-dia.png" src="../../../_images/defect-detection-arch-dia.png" /></p>
 </div>
 <div class="section" id="gstreamer-pipeline-changes">
@@ -127,7 +123,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="deployment">
 <h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this heading">¶</a></h2>
-<p>This reference design includes a pre-packaged SD card image to provide user-friendly out-of-box experience for the Vision Defect Detection Starter Kit. This image should be used first to verify hardware setup and also to demonstrate the capabilities of the SOM. Each of the application examples provided with the kit are delivered as an RPM package group for ease of installation and deployment.</p>
+<p>This reference design includes a pre-packaged SD card image to provide user-friendly out-of-box experience for the Vision MV-Defect-Detect Starter Kit. This image should be used first to verify hardware setup and also to demonstrate the capabilities of the SOM. Each of the application examples provided with the kit are delivered as an RPM package group for ease of installation and deployment.</p>
 <p>In addition to pre-build SD card image, the design source files are also provided to allow customization. The <a class="reference internal" href="../../building_the_design.html"><span class="doc">Building the Design components</span></a> page documents in detail all the different design sources and steps to re-build the SD card image from scratch, including the Vivado block design and Vitis platform.</p>
 <p>The end applications leverage custom Gstreamer plugins for Vitis Vision libraries built using the VVAS framework. These plugins leverage the following libraries:</p>
 <table border="1" class="docutils">
@@ -160,7 +156,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td><em>OpenCV</em> software library to calculate the defect density, determine the quality of the mango, and embed text as result into output images.</td>
 </tr>
 <tr>
-<td>defect-detect</td>
+<td>mv-defect-detect</td>
 <td>Application Executable</td>
 <td>Executable to invoke the whole application with options to choose a source, width, height, framerate, configuration file path, and other parameters.</td>
 </tr>
@@ -173,82 +169,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </table></div>
 <div class="section" id="display-pipeline">
 <h2>Display Pipeline<a class="headerlink" href="#display-pipeline" title="Permalink to this heading">¶</a></h2>
-<p>To support multiple video streams to be displayed on a 4k monitor, the following solution is explored. The three images from various stages are of size 1280 x 800. These images are mixed with a background image of 4k. The PS print the display results on the background image. The following figure shows an example background and layout. This is the sample output display for defect detection on a monitor.</p>
-<p>The 4K Monitor displays the following outputs:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">Input</span> <span class="n">Image</span> <span class="p">(</span><span class="n">output</span> <span class="n">belongs</span> <span class="n">to</span> <span class="nb">input</span> <span class="n">GRAY8</span> <span class="n">data</span> <span class="n">that</span> <span class="n">comes</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">file</span><span class="o">/</span><span class="n">live</span> <span class="n">source</span><span class="p">)</span>
-<span class="mf">2.</span> <span class="n">Binary</span> <span class="n">Image</span> <span class="p">(</span><span class="n">output</span> <span class="n">belongs</span> <span class="n">to</span> <span class="n">pre</span><span class="o">-</span><span class="n">processed</span> <span class="n">pipeline</span> <span class="n">where</span> <span class="n">Vitis</span> <span class="n">Vision</span> <span class="n">library</span> <span class="n">threshold</span> <span class="n">function</span> <span class="n">can</span> <span class="n">perform</span> <span class="n">the</span> <span class="n">thresholding</span> <span class="n">operation</span> <span class="n">on</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">image</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">Median</span> <span class="n">blur</span> <span class="nb">filter</span> <span class="n">acts</span> <span class="k">as</span> <span class="n">a</span> <span class="n">non</span><span class="o">-</span><span class="n">linear</span> <span class="n">digital</span> <span class="nb">filter</span> <span class="n">that</span> <span class="n">improves</span> <span class="n">noise</span> <span class="n">reduction</span><span class="p">)</span>
-<span class="mf">3.</span> <span class="n">text2overlay</span> <span class="n">Image</span> <span class="p">(</span><span class="n">output</span> <span class="n">belongs</span> <span class="n">to</span> <span class="n">the</span> <span class="n">defected</span> <span class="n">portions</span> <span class="n">along</span> <span class="k">with</span> <span class="n">the</span> <span class="n">defect</span> <span class="n">results</span><span class="p">)</span>
-</pre></div>
-</div>
+<p>To support multiple video streams to be displayed on a 1080p monitor, the following solution is explored. The three images from various stages are of size 1920 x 1080. The following figure shows an example background and layout. This is the sample output display for defect detection on a monitor.</p>
+<p>The 1080p Monitor displays one of the following outputs:</p>
+<ol class="simple">
+<li><p>Input Image (output belongs to input GRAY8 data that comes from the file/live source)</p></li>
+<li><p>Binary Image (output belongs to pre-processed pipeline where Vitis Vision library threshold function can perform the thresholding operation on the input image and the Median blur filter acts as a non-linear digital filter that improves noise reduction)</p></li>
+<li><p>text2overlay Image (output belongs to the defected portions along with the defect results)</p></li>
+</ol>
 <p>The text2overlay image along with its embedded text contains:</p>
 <ol class="simple">
 <li><p>Defect Density (amount of defected portion)</p></li>
 <li><p>Defect Decision (Is Defected: Yes/No)</p></li>
-<li><p>Accumulated Defects - Results by default will be disabled but can be enabled by setting the <em>is_acc_result</em> to <strong>1</strong> in the <em>text2overlay.json</em> file. To enable, see <a class="reference internal" href="sw_arch_accel_dd.html"><span class="doc">Software Accelerator</span></a></p></li>
+<li><p>Accumulated Defects - Results by default will be disabled but can be enabled by setting the <em>is_acc_result</em> to <strong>1</strong> in the <em>text2overlay.json</em> file. To enable, see <a class="reference internal" href="sw_arch_accel_dd.html"><span class="doc">Software Accelerator</span></a>.</p></li>
 </ol>
 <p>For a given set of test images, manually calculate accuracy as follows:</p>
 <ol class="simple">
 <li><p>Each image in the test is pre-labeled by a human. The label indicates if the mango in the image is defected or not.</p></li>
-<li><p>The pre-labeled result of the human is compared with the result given by the Vision SOM Defect Detection system. The number of images that are not detected correctly is found.</p></li>
-<li><p>The ratio of the number of images that are detected correctly to the total number of images in the test, is the accuracy of the Defect Detection system.</p></li>
+<li><p>The pre-labeled result of the human is compared with the result given by the Vision SOM MV-Defect Detect system. The number of images that are not detected correctly is found.</p></li>
+<li><p>The ratio of the number of images that are detected correctly to the total number of images in the test, is the accuracy of the MV-Defect-Detect system.</p></li>
 </ol>
 <p>Accumulated defects are the number of defects detected in a certain period of time.</p>
-<p><img alt="../../../_images/display_pipeline.png" src="../../../_images/display_pipeline.png" /></p>
+<p>The input raw image of the mango is as shown in the below figure.
+<img alt="../../../_images/mvdd_raw.PNG" src="../../../_images/mvdd_raw.PNG" /></p>
+<p>The Pre-processed image of the mango is as shown in the below figure.
+<img alt="../../../_images/mvdd_preprocessed.PNG" src="../../../_images/mvdd_preprocessed.PNG" /></p>
+<p>The Final output of the mango is as shown in the below figure.
+<img alt="../../../_images/mvdd_final.PNG" src="../../../_images/mvdd_final.PNG" /></p>
 <blockquote>
 <div><p><em><strong>Note</strong></em>: The test mango image is taken from <a class="reference external" href="http://www.cofilab.com/wp-content/downloads/DB_Mango.rar">Cofilab site</a>.</p>
 </div></blockquote>
 <p>In the PL, the video mixer IP reads the video streams (three images + base layer) from memory and streams it into the DP/HDMI port. AXI-Stream conversion to native video is done using AXI4-Stream to Video IP and Video Timing controller IP.</p>
-<p>The video mixer IP workflow is as follows.</p>
-<p><img alt="../../../_images/video_mixer_ip_workflow.png" src="../../../_images/video_mixer_ip_workflow.png" /></p>
 </div>
 <div class="section" id="platform">
 <h2>Platform<a class="headerlink" href="#platform" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="video-capture">
-<h3>Video Capture<a class="headerlink" href="#video-capture" title="Permalink to this heading">¶</a></h3>
-<details>
- <summary><b>Click here to view details</b></summary><p>The following figure illustrates the Video Capture software stack using the single-sensor MIPI CSI capture pipeline, as an example:</p>
-<p><img alt="../../../_images/video-capture-stack.png" src="../../../_images/video-capture-stack.png" /></p>
-<p>At a high level, the stack consists of the following layers from top to bottom:</p>
-<ul class="simple">
-<li><p>User-space layers:</p>
-<ul>
-<li><p>GStreamer: Media source bin plugin (wrapper around the generic <em>v4l2src</em> plugin)</p></li>
-<li><p>Media controller: Library to configure <em>v4l</em> subdevices and media devices</p></li>
-</ul>
-</li>
-<li><p>Kernel-space layers</p>
-<ul>
-<li><p>V4L2/Media subsystems: Xilinx video IP pipeline (XVIPP) driver</p></li>
-<li><p>DMA engine: Xilinx framebuffer driver</p></li>
-</ul>
-</li>
-</ul>
-<p>The following device tree shows AP1302 node properties:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ap1302</span><span class="p">:</span> <span class="n">isp</span><span class="o">@</span><span class="mi">3</span><span class="n">c</span> <span class="p">{</span>
-							<span class="n">compatible</span> <span class="o">=</span> <span class="s2">&quot;onnn,ap1302&quot;</span><span class="p">;</span>
-							<span class="n">reg</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mh">0x3c</span><span class="o">&gt;</span><span class="p">;</span>
-							<span class="c1">#address-cells = &lt;1&gt;;</span>
-							<span class="c1">#size-cells = &lt;0&gt;;</span>
-							<span class="n">reset</span><span class="o">-</span><span class="n">gpios</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">gpio</span> <span class="mi">80</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">;</span>
-							<span class="n">clocks</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">ap1302_clk</span><span class="o">&gt;</span><span class="p">;</span>
-							<span class="n">sensors</span> <span class="p">{</span>
-								<span class="c1">#address-cells = &lt;1&gt;;</span>
-								<span class="c1">#size-cells = &lt;0&gt;;</span>
-								<span class="n">onnn</span><span class="p">,</span><span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;onnn,ar0144&quot;</span><span class="p">;</span>
-								<span class="n">sensor</span><span class="o">@</span><span class="mi">0</span> <span class="p">{</span>
-									<span class="n">reg</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">;</span>
-									<span class="n">vdd</span><span class="o">-</span><span class="n">supply</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">ap1302_vdd</span><span class="o">&gt;</span><span class="p">;</span>
-									<span class="n">vaa</span><span class="o">-</span><span class="n">supply</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">ap1302_vaa</span><span class="o">&gt;</span><span class="p">;</span>
-									<span class="n">vddio</span><span class="o">-</span><span class="n">supply</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">ap1302_vddio</span><span class="o">&gt;</span><span class="p">;</span>
-								<span class="p">};</span>
-							<span class="p">};</span>
-</pre></div>
-</div>
-  </details></div>
 <div class="section" id="media-source-bin-gstreamer-plugin">
 <h3>Media Source Bin GStreamer Plugin<a class="headerlink" href="#media-source-bin-gstreamer-plugin" title="Permalink to this heading">¶</a></h3>
 <details>
- <summary><b>Click here to view details</b></summary><p>The <em>mediasrcbin</em> plugin is designed to simplify the usage of live video capture devices in this design, otherwise the user must take care of initialization and configuration. The plugin is a bin element that includes the standard <em>v4l2src</em> GStreamer element. It configures the media pipelines of the supported video sources in this design. The <em>v4l2src</em> element inside the <em>mediasrcbin</em> element interfaces with the V4L2 Linux framework and the Xilinx VIPP driver through the video device node. The <em>mediasrcbin</em> element interfaces with the Media Controller Linux framework through the <em>v412-subdev</em> and media device nodes that allow you to configure the media pipeline and its sub-devices. It uses the <em>libmediactl</em> and <em>libv4l2subdev</em> libraries, which provide the following functionality:</p>
+ <summary><b>Click here to view details</b></summary><p>The <em>mediasrcbin</em> plugin is designed to simplify the usage of live video capture devices in this design, otherwise the user must take care of initialization and configuration. The plugin is a bin element that includes the standard <em>v4l2src</em> GStreamer element. It configures the media pipelines of the supported video sources in this design. The <em>v4l2src</em> element inside the <em>mediasrcbin</em> element interfaces with the V4L2 Linux framework and the Xilinx VIPP driver through the video device node. The <em>mediasrcbin</em> element interfaces with the Media Controller Linux framework through the <em>v412-subdev</em> and media device nodes that allows to configure the media pipeline and its sub-devices. It uses the <em>libmediactl</em> and <em>libv4l2subdev</em> libraries, which provide the following functionality:</p>
 <ul class="simple">
 <li><p>Enumerate entities, pads and links</p></li>
 <li><p>Configure sub-devices</p>
@@ -268,7 +225,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="driver-architecture">
 <h3>Driver Architecture<a class="headerlink" href="#driver-architecture" title="Permalink to this heading">¶</a></h3>
-<p>The Video Capture Software Stack figure in the Capture section shows how the generic V4L2 driver model of a video pipeline is mapped to the single-sensor MIPI CSI-2 Rx capture pipelines. The video pipeline driver loads the necessary sub-device drivers and registers the device nodes it needs, based on the video pipeline configuration specified in the device tree. The framework exposes the following device node types to user space to control certain aspects of the pipeline:</p>
+<p>The Video Capture Software Stack figure in the Capture section shows how the generic V4L2 driver model of a video pipeline is mapped to the single-sensor capture pipelines. The video pipeline driver loads the necessary sub-device drivers and registers the device nodes it needs, based on the video pipeline configuration specified in the device tree. The framework exposes the following device node types to user space to control certain aspects of the pipeline:</p>
 <ul class="simple">
 <li><p>Media device node: <code class="docutils literal notranslate"><span class="pre">/dev/media*</span></code></p></li>
 <li><p>Video device node: <code class="docutils literal notranslate"><span class="pre">/dev/video*</span></code></p></li>
@@ -291,7 +248,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Enable/disable</p></li>
 <li><p>Validate formats</p></li>
 </ul>
-<p>The following figure shows the media graphs for MIPI CSI-2 Rx video capture pipeline as generated by the <em>media-ctl</em> utility. The subdevices are shown in green with their corresponding control interface base address and subdevice node in the center. The numbers on the edges are pads and the solid arrows represent active links. The yellow boxes are video nodes that correspond to DMA channels, in this case write channels (outputs).</p>
+<p>The following figure shows the media graphs for video capture pipeline as generated by the <em>media-ctl</em> utility. The sub devices are shown in green with their corresponding control interface base address and sub device node in the center. The numbers on the edges are pads and the solid arrows represent active links. The yellow boxes are video nodes that correspond to DMA channels, in this case write channels (outputs).</p>
 <p><img alt="../../../_images/MIPI-CS-2-Media-Graphs.png" src="../../../_images/MIPI-CS-2-Media-Graphs.png" /></p>
 </details></div>
 <div class="section" id="video-ip-drivers">
@@ -319,19 +276,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>* Configures and controls DMA engines (Xilinx Video Framebuffer Write)</td>
 </tr>
 <tr>
-<td>MIPI CSI-2 Rx</td>
-<td>* Sets media bus format and resolution on input pad</td>
-</tr>
-<tr>
-<td></td>
-<td>* Sets media bus format and resolution on output pad</td>
-</tr>
-<tr>
 <td>AP1302 Video Image Signal Processing (ISP)</td>
-<td>* Loads the firmware blob on to ap1302 ISP for enabling sensor and ISP functionality</td>
-</tr>
-<tr>
-<td></td>
 <td>* Sets the media bus format and resolution for the sensor output pad</td>
 </tr>
 <tr>
@@ -365,22 +310,6 @@ commands and data to the GPU. The ARM Mali driver uses a proprietary driver stac
 <h3>Kernel Mode Setting<a class="headerlink" href="#kernel-mode-setting" title="Permalink to this heading">¶</a></h3>
 <p>Mode setting is an operation that sets the display mode including video resolution and refresh rate. It was traditionally done in user-space by the X-server that caused several issues due to accessing low-level hardware from user-space, which if done wrong, can lead to system instabilities. The mode setting API was added to the kernel DRM framework, hence the name Kernel Mode Setting. The KMS API is responsible for handling the frame buffer and planes, setting the mode, and performing page-flips (switching between buffers). The KMS device is modeled as a set of planes, CRTCs, encoders, and connectors as shown in the top half of the DP Tx display. The bottom half of that figure shows how the driver model maps to the physical hardware components inside the PS DP Tx display pipeline.</p>
 </div>
-<div class="section" id="crtc">
-<h3>CRTC<a class="headerlink" href="#crtc" title="Permalink to this heading">¶</a></h3>
-<details>
- <summary><b>Click here to view details</b></summary><p>CRTC is an antiquated term that stands for Cathode Ray Tube Controller, which today would be simply named display controller as CRT monitors have disappeared and many other display types are available. The CRTC is an abstraction that is responsible for composing the frame to be scanned out to the display and setting the mode of the display. In the Xilinx DRM driver, the CRTC is represented by the buffer manager and blender hardware blocks. The frame buffer (primary plane) to be scanned out can be overlayed and/or alpha-blended with a second plane inside the blender. The DP Tx hardware supports up to two planes, one for video and one for graphics. The z-order (foreground or background position) of the planes and the alpha mode (global or pixel-alpha) can be configured through the driver via custom properties.</p>
-<p>The pixel formats of the video and graphics planes can be configured individually at run-time and a variety of formats are supported. The default pixel formats for each plane are set statically in the device tree. Pixel unpacking and format conversions are handled by the buffer manager and blender. The DRM driver configures the hardware accordingly, so this is transparent to the user.</p>
-<p>A page-flip is the operation that configures a plane with the new buffer index to be selected for the next scan-out. The new buffer is prepared while the current buffer is being scanned
-out and the flip typically happens during vertical blanking to avoid image tearing.</p>
-</details></div>
-<div class="section" id="plane">
-<h3>Plane<a class="headerlink" href="#plane" title="Permalink to this heading">¶</a></h3>
-<details>
- <summary><b>Click here to view details</b></summary><p>A plane represents an image source that can be blended with or overlayed on top of a CRTC frame buffer during the scan-out process. Planes are associated with a frame buffer to
-optionally crop a portion of the image memory (source) and scale it to a destination size. The DP Tx display pipeline does not support cropping or scaling, therefore both video and graphics plane dimensions must match the CRTC mode (that is, the resolution set on the display). The Xilinx DRM driver supports the universal plane feature, therefore the primary plane and overlay planes can be configured through the same API. The primary plane on the video mixer is configurable and set to the top-most plane to match the DP Tx pipeline.
-As planes are modeled inside KMS, the physical hardware device that reads the data from memory is typically a DMA whose driver is implemented using the DMA engine Linux
-framework. The DPDMA is a 6-channel DMA engine that supports a (up to) 3-channel video stream, a 1-channel graphics stream, and two channels for audio (not used in this design). The video mixer uses built-in AXI master interfaces to fetch video frames from memory.</p>
-</details></div>
 <div class="section" id="encoder">
 <h3>Encoder<a class="headerlink" href="#encoder" title="Permalink to this heading">¶</a></h3>
 <p>An encoder takes pixel data from a CRTC and converts it to a format suitable for any attached connectors. There are many different display protocols defined, such as HDMI or DisplayPort. The PS display pipeline has a DisplayPort transmitter built in. The encoded video data is then sent to the serial I/O unit (SIOU) which serializes the data using the gigabit transceivers (PS GTRs) before it goes out via the physical DP connector to the display. The PL display pipeline uses a HDMI transmitter which sends the encoded video data to the Video PHY. The Video PHY serializes the data using the GTH transceivers in the PL before it goes out via the HDMI Tx connector.</p>
@@ -398,6 +327,7 @@ framework. The DPDMA is a 6-channel DMA engine that supports a (up to) 3-channel
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="sw_arch_accel_dd.html"><span class="doc">Software Accelerator</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="app_deployment.html"><span class="doc">Application Deployment</span></a></p></li>
 </ul>
 <!---
 
@@ -431,7 +361,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 25, 2022.
+      <span class="lastupdated">Last updated on October 27, 2022.
       </span></p>
   </div>
 
