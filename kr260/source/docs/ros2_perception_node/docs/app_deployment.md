@@ -40,7 +40,7 @@ $ sudo apt install ros-humble-gazebo-ros ros-humble-gazebo-plugins ros-humble-ga
 3. Install Gazebo Classic 11.0, see install guide [here](https://classic.gazebosim.org/tutorials?tut=install_ubuntu)
 4. Get files to setup and run simulation
 ```bash
-$ git clone https://gitenterprise.xilinx.com/SOM/kria_ros_perception
+$ git clone https://github.com/Xilinx/kria_ros_perception
 $ cd kria_ros_perception
 $ rm -rf src/image_proc src/tracetools_image_pipeline src/vitis_common src/tracing src/image_pipeline_examples
 ```
@@ -174,7 +174,7 @@ This application has two flavours, which are developed in way that user can unde
 This is a very simplistic version, where nodes are not accelerated and are executed on CPU. This version should allow users get familier with working environment and understand easiness in working with KRS based applications. Use below steps to execute:
 
 ```bash
-$ source /opt/ros/humble/setup.bash # enable ROS 2 overlays
+$ source /opt/xilinx/kria_ros_perception/setup.bash # enable ROS 2 overlays
 $ ros2 launch perception_2nodes trace_rectify_resize.launch.py # launch rectify and resize Nodes on ARM cores
 ```
 Below is the gif showing the gazebo simulation window(left half) along with RQt window(right half) with node graph and /camera/image_raw, /image_rect and /resize/resize image views. You may need to reload the plugin windows to update the node graph and image views.
@@ -187,7 +187,7 @@ Below is the gif showing the gazebo simulation window(left half) along with RQt 
 # streamlined
 $ sudo xmutil unloadapp
 $ sudo xmutil loadapp kr260-perception  # load the accelerator
-$ source /opt/ros/humble/setup.bash  # enable ROS 2 overlays
+$ source /opt/xilinx/kria_ros_perception/setup.bash  # enable ROS 2 overlays
 $ ros2 launch perception_2nodes trace_rectify_resize_fpga_streamlined.launch.py  # launch rectify and resize FPGA accelerated Nodes
 ```
 Below is the gif showing the gazebo simulation window(top half) along with RQt window(bottom half) with node graph and /camera/image_raw, /image_rect and /resize image views. Since the data is transfer via streaming interface from rectify to resize, we dont see any image in rectify image view. You may need to reload the plugin windows to update the node graph and image views.
