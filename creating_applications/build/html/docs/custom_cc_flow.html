@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Custom Carrier Card Flow &mdash; Kria™ SOM 2022.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Vivado Accelerator Flow" href="vivado_accel_flow.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Kria™ SOM
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Flows</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="vitis_accel_flow.html">Vitis Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vitis_platform_flow.html">Vitis Platform Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Custom Carrier Card Flow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-aligning-kria-som-boot-som-linux-infrastructure">Step 1 - Aligning Kria SOM boot &amp; SOM Linux infrastructure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#petalinux-bsp-alignment">PetaLinux BSP Alignment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-create-board-file-and-xdc-file-for-custom-carrier-card">Step 2 - Create board file and .xdc file for custom carrier card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-generate-a-new-custom-pl-design-using-vivado">Step 3 - Generate a new custom PL design using Vivado</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vivado-starter-project-in-bsp">Vivado Starter Project in BSP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-bit-bin-and-xsa-file">Generate .bit.bin and .xsa file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-create-linux-boot-image-from-xsa-in-petalinux">step 4 - Create Linux boot image from .xsa in Petalinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-boot-new-image-on-target-platform">Step 5 - Boot new image on target platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-develop-applications">Step 6 - Develop Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2021.1/build/html/index.html">2021.1</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kria™ SOM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Custom Carrier Card Flow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/custom_cc_flow.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="custom-carrier-card-flow">
+<h1>Custom Carrier Card Flow<a class="headerlink" href="#custom-carrier-card-flow" title="Permalink to this heading">¶</a></h1>
+<p>Developers creating their own carrier card will create a Vivado project using the Xilinx provided K26 production SOM Vivado board file as a starting point. The K26 board file contains the MIO configuration defined by the SOM HW design, and provides a minimal HW configuration to boot to Linux. The K26 board file does not contain any information specific to a carrier card. Developers then design in their specific custom MIO and PL based physical interfaces to create their own custom HW configuration while following the Kria CC Design Guide (<a class="reference external" href="https://www.xilinx.com/support/documentation/user_guides/som/ug1091-carrier-card-design.pdf">UG1091</a>). After creating the integrated SOM + CC configuration, a .xsa file is exported. If using Linux, developers then create a Petalinux project to generate boot and OS images for booting Linux. Developers can then use the artifacts to create applications to run on top of the base Linux, using the previously discussed workflows: Vitis Accelerator Flow, Vitis Platform Flow, or Vivado Accelerator Flow.</p>
+<ul class="simple">
+<li><p>assumption: Using SOM K26 with developer defined carrier card</p></li>
+<li><p>input: Vivado K26 SOM board file, customer defined carrier card board configuration</p></li>
+<li><p>output: BOOT.bin, .wic image containing boot.src, Image, ramdisk.cpio.gz.u-boot, system.dtb, rootfs.tar.gz</p></li>
+</ul>
+<p><img alt="Tool Flow" src="../_images/tool_flow_custom_cc.PNG" /></p>
+<div class="section" id="prerequisites-and-assumptions">
+<h2>Prerequisites and Assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permalink to this heading">¶</a></h2>
+<p>This document assume that developer will use 2022.1 or later for tools and SOM content releases. The tool versions should match - e.g. use the same tool versions for PetaLinux, Vivado, and the released BSP.</p>
+<ol class="simple">
+<li><p>Vitis tools installation</p></li>
+<li><p>Vivado tools installation</p></li>
+<li><p>PetaLinux tools installation</p></li>
+</ol>
+</div>
+<div class="section" id="step-1-aligning-kria-som-boot-som-linux-infrastructure">
+<h2>Step 1 - Aligning Kria SOM boot &amp; SOM Linux infrastructure<a class="headerlink" href="#step-1-aligning-kria-som-boot-som-linux-infrastructure" title="Permalink to this heading">¶</a></h2>
+<p>Xilinx built Kria SOM Starter Kit applications on a shared, application-agnostic infrastructure in the SOM Starter Linux including kernel version, Yocto project dependent libraries, and baseline BSP. When using this tutorial, make sure to align tools, git repositories, and BSP released versions.</p>
+<div class="section" id="petalinux-bsp-alignment">
+<h3>PetaLinux BSP Alignment<a class="headerlink" href="#petalinux-bsp-alignment" title="Permalink to this heading">¶</a></h3>
+<p>The SOM Starter Linux image is generated using the corresponding SOM variant multi-carrier card PetaLinux board support package (BSP). Developers creating applications on the Starter Kit are recommended to use this BSP as a baseline for their application development as it ensures kernel, Yocto project libraries, and baseline configuration alignment. The multi-carrier card BSP defines a minimalistic BSP that has the primary function of providing an application-agnostic operating system, and can be updated and configured dynamically at runtime.</p>
+</div>
+</div>
+<div class="section" id="step-2-create-board-file-and-xdc-file-for-custom-carrier-card">
+<h2>Step 2 - Create board file and .xdc file for custom carrier card<a class="headerlink" href="#step-2-create-board-file-and-xdc-file-for-custom-carrier-card" title="Permalink to this heading">¶</a></h2>
+<p>In example carrier card projects, we have created a few board configuration files used by Vivado to create board related configurations.  You will find  a few different board files for the SOM itself - the differences betweeen each SOM variants can be found <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#SOM-Variants">here</a></p>
+<p>The following is a list of the supported board files related to SOM as of 2022.1:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Xilinx/XilinxBoardStore/tree/2022.1/boards/Xilinx/k26c">Production SOM K26 C grade</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/XilinxBoardStore/tree/2022.1/boards/Xilinx/k26i">Production SOM K26 I grade</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/XilinxBoardStore/tree/2022.1/boards/Xilinx/kv260_som">KV260 SOM</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/XilinxBoardStore/tree/2022.1/boards/Xilinx/kr260_som">KR260 SOM</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/XilinxBoardStore/tree/2022.1/boards/Xilinx/kv260_carrier">KV260 Carrier Board</a> also <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms/tree/xlnx_rel_v2022.1/kr260/platforms/vivado/board_files">here</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/XilinxBoardStore/tree/2022.1/boards/Xilinx/kr260_carrier">KR260 Carrier Board</a> also <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms/tree/xlnx_rel_v2022.1/kr260/platforms/vivado/board_files">here</a></p></li>
+</ul>
+<p>Information on generating custom Vivado board files and where to place them can be found in <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug895-vivado-system-level-design-entry/Board-File">UG895</a>. Developers will need to create a custom board file for their custom carrier card, and they can use KV260 as an example. Developer will use the production SOM (either C grade or I grade) as their SOM Card, not KV260 SOM or KR260 SOM.</p>
+<p>Developers also need .xdc file to create mappings between Xilinx MPSoC pins and connectors, as well as adding constraints. K26 and KV260 .xdc files can both be found on <a class="reference external" href="https://www.xilinx.com/products/som/kria/k26c-commercial.html#documentation">Kria documentation site</a>. K260 .xdc file contains information on how MPSoC pins maps to the connector, and developer can use that information to create their own .xdc for their carrier card. KV260 .xdc file can be used as an example. Developers should refer to Vivado Design Suite using Constraints <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug903-vivado-using-constraints">UG903</a> for more information on creating their .xdc file.</p>
+</div>
+<div class="section" id="step-3-generate-a-new-custom-pl-design-using-vivado">
+<h2>Step 3 - Generate a new custom PL design using Vivado<a class="headerlink" href="#step-3-generate-a-new-custom-pl-design-using-vivado" title="Permalink to this heading">¶</a></h2>
+<p>This flows starts with vivado board files containing information on K26 and custom CC as mentioned in step 2. After the board file for custom carrier card has been created and imported, they can be selected in Vivado:</p>
+<p><img alt="Board Files" src="../_images/tool_flow_boardfile.PNG" /></p>
+<p>Be sure to select the custom board file you have created in step 2 instead of KV260 board.</p>
+<p>When selecting the Kria starter kit board file, make sure to click on “connections” to indicate that the K26 and KV carrier card are connected.</p>
+<p>Once Zynq_ultra_ps_e_0 block is added to a design, make sure to click “Run Block Automation” to apply board file settings.</p>
+<p><img alt="Board Files" src="../_images/tool_flow_block_automation_marked.PNG" /></p>
+<p>Developers then may need to indicate that the platform is an Extensible Vitis Platform. Whether to make the project extensible or not is dependent on if developer intend to reuse the platform for developing in Vitis. More details on how to create Extensible Platform can be found <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Platform-Creation-Basics">here</a>.
+Project Manager -&gt; Settings -&gt; General -&gt; check “Project is an extensible Vitis Platform”
+<img alt="Extensible Platform" src="../_images/extensible_check.PNG" /></p>
+<p>Developers then should add the .xdc files for both K26 and their custom carrier card.</p>
+<div class="section" id="vivado-starter-project-in-bsp">
+<h3>Vivado Starter Project in BSP<a class="headerlink" href="#vivado-starter-project-in-bsp" title="Permalink to this heading">¶</a></h3>
+<p>Alternatively, developers can start from the base Vivado project provided. It can either be downloaded from <a class="reference external" href="https://github.com/Xilinx/kria-base-hardware/tree/xlnx_rel_v2022.1/kria_som/k26">github</a> or be found in the BSP file.</p>
+<p>To get the project from bsp, first, download the SOM Starter Kit BSP from the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">SOM Wiki</a>
+Then create the project using BSP:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-k26-&lt;version&gt;.bsp
+<span class="nb">cd</span> xilinx-k26-&lt;version&gt;
+</pre></div>
+</div>
+<p>The Vivado starter project can be found in <code class="docutils literal notranslate"><span class="pre">hardware/</span></code> folder, and developers can open the project using the .xpr file. This project is a k26 project only, and will not contain any information about the carrier card being used. However, it does have enough information to boot basic Linux.</p>
+</div>
+<div class="section" id="generate-bit-bin-and-xsa-file">
+<h3>Generate .bit.bin and .xsa file<a class="headerlink" href="#generate-bit-bin-and-xsa-file" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to Vivado documentation to add custom IP blocks into your design and generate a .xsa file and a binary bitstream (.bin file converted .bit.bin file). In order to generate a binary bitstream (.bin) file, go to Tools -&gt; setting and enable -bin_file, and rename the generated .bin file to .bit.bin.</p>
+<p><img alt="Board Files" src="../_images/tool_flow_binfile.PNG" /></p>
+<p>An updated .xsa file needs to be generated by using File -&gt; Export -&gt; Export Hardware, make sure to select “include bitstream” in the generation.</p>
+<p><img alt="Board Files" src="../_images/tool_flow_xsa_gen.PNG" /></p>
+<p>An example base design for booting Linux can be found in PetaLinux project folder generated from SOM Starter Kit BSP in <code class="docutils literal notranslate"><span class="pre">project-spec/hw-description/system.xsa</span></code>.</p>
+<p>If using Linux the developer will also need to create a dtsi file for the project. The SOM dtsi file can be found <a class="reference external" href="https://github.com/Xilinx/device-tree-xlnx/blob/xlnx_rel_v2022.1/device_tree/data/kernel_dtsi/2022.1/BOARD/zynqmp-sm-k26-reva.dtsi">here</a>, the Kria SOM Starter Kit SOM dtsi can be found <a class="reference external" href="https://github.com/Xilinx/device-tree-xlnx/blob/xlnx_rel_v2022.1/device_tree/data/kernel_dtsi/2022.1/BOARD/zynqmp-smk-k26-reva.dtsi">here</a></p>
+</div>
+</div>
+<div class="section" id="step-4-create-linux-boot-image-from-xsa-in-petalinux">
+<h2>step 4 - Create Linux boot image from .xsa in Petalinux<a class="headerlink" href="#step-4-create-linux-boot-image-from-xsa-in-petalinux" title="Permalink to this heading">¶</a></h2>
+<p>Please refer to <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Introduction#page=20">UG1144</a> for detailed guide to create an image. Below are the commands extracted from the guide:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create --type project --template zynqMP --name &lt;petalinux_project&gt;
+<span class="nb">cd</span> &lt;petalinux_project&gt;
+petalinux-config --get-hw-description &lt;path to .xsa file&gt;
+cp &lt;path to .dtsi file&gt; project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
+petalinux-build 
+</pre></div>
+</div>
+<p>the image and boot files can be found in <code class="docutils literal notranslate"><span class="pre">images/linux/</span></code></p>
+<p>Developer can also use the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">SOM K26 production BSP</a> to generate a Petalinux project and images. It does not have any information on any carrier cards, but it has enough SOM information to generate an image to boot to Linux and also include utilities such as xmutil and dfx-mgr. This can be used for bring up. To use released BSP, replace the above <code class="docutils literal notranslate"><span class="pre">petalinux-create</span></code> command with the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-k26-&lt;version&gt;.bsp
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-5-boot-new-image-on-target-platform">
+<h2>Step 5 - Boot new image on target platform<a class="headerlink" href="#step-5-boot-new-image-on-target-platform" title="Permalink to this heading">¶</a></h2>
+<p>Depending on what developers decide to put on their custom carrier card, they may choose different <a class="reference internal" href="bootmodes.html"><span class="doc">boot modes</span></a>. JTAG booting should be available on all carrier cards and this section will detail how to boot Linux via JTAG using PetaLinux. Details on using PetaLinux to boot Linux can be found in <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Generate-Boot-Image-for-Zynq-UltraScale-MPSoC">Petalinux User Guide</a> to help with booting with preferred bootmode.</p>
+<p>First package the built images into pre-built folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-package --prebuilt
+</pre></div>
+</div>
+<p>Then generate a xsdb tcl script &lt;test.tcl&gt;:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-boot --jtag --prebuilt <span class="m">3</span> --tcl &lt;test.tcl&gt;
+</pre></div>
+</div>
+<p>&lt;test.tcl&gt; will contain a script to boot Linux with tiny rootfs and exit xsdb, assuming that user is still in PetaLinux project folder. Take care to copy needed files and change pointers to files if you need to move the files to a different host machine to boot. Remove “exit” at the end of the tcl script to observe printouts from the script in xsdb.</p>
+<p>In xsdb, first connect and put the board in JTAG mode using xsdb commands <a class="reference internal" href="bootmodes.html"><span class="doc">here</span></a>. Then <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">&lt;test.tcl&gt;</span></code>, and Linux should boot.</p>
+</div>
+<div class="section" id="step-6-develop-applications">
+<h2>Step 6 - Develop Applications<a class="headerlink" href="#step-6-develop-applications" title="Permalink to this heading">¶</a></h2>
+<p>Now that a base Linux design is up a running, developers can follow <a class="reference internal" href="vitis_accel_flow.html"><span class="doc">Vitis Accelerator Flow</span></a>, or <a class="reference internal" href="vitis_platform_flow.html"><span class="doc">Vitis Platform Flow</span></a>, or <a class="reference internal" href="vivado_accel_flow.html"><span class="doc">Vivado Accelerator Flow</span></a> to develop their applications.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Refer to <a class="reference internal" href="custom_cc_flow_example.html"><span class="doc">custom cc flow example</span></a> for a detailed step by step example on how to crease a base design forKV260.</p></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vivado_accel_flow.html" class="btn btn-neutral float-left" title="Vivado Accelerator Flow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 20, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

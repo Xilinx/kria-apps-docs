@@ -133,11 +133,21 @@ $ rqt
 
 6. Get the latest ROS perception application & firmware package:
 
-	* Download the [attached zip](https://confluence.xilinx.com/download/attachments/672024701/image_proc_streamlined.zip?version=1&modificationDate=1665573645434&api=v2) and copy to board. Extract the contents to /lib/firmware/xilinx/ folder using the below command
+    * Download the firmware
+      * Search package feed for packages compatible with KR260
 
-      ```bash
-      $ sudo apt install xlnx-firmware-kr260-perception
-      ```
+       ```bash
+      	ubuntu@kria:~$ sudo apt search xlnx-firmware-kr260
+      	Sorting... Done
+      	Full Text Search... Done
+      	xlnx-firmware-kr260-perception/jammy 0.1-0xlnx1 arm64
+        	FPGA firmware for Xilinx boards - kr260 perception application
+       ```
+
+      * Install firmware binaries
+       ```bash
+       $ sudo apt install xlnx-firmware-kr260-perception
+       ```
 
   	* Install ROS 2  humble and LTTng
 

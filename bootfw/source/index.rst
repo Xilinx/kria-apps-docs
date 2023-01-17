@@ -11,7 +11,8 @@ Boot Firmware
    Landing Page <https://xilinx.github.io/kria-apps-docs/>
    Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications.html>
    Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
-   Kria KV260 <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
+   OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
+   Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
    Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
 
