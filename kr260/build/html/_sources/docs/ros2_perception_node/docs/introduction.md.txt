@@ -10,7 +10,7 @@ The ROS 2 Perception Node accelerated application implements a subset of image_p
 
 This application is based on KRS(Kria Robotics Framework) and it demonstrates the capabilities of KRS on how a roboticits can leverage programmable logic to accelerate their applications efficiently without having deeper hardware knowledge. This simple application is implemented to give users a quick hands on with KRS framework and get roboticists started to write their hardware accelerated applications on Kria Robotics starter kit easily.
 
-Here, we have used Gazebo, which is industry's leading Simulator with a pre selected camera module to feed image data in to the computational graph. Though the application supports ros2 capable cameras also but it is completely optional. The image is first rectified and then resized. The output "/resize" topic data can be seen using "rqt". KRS also provides tracing feature using LTTNG framework, which is an industry standard and can be used to trace and 
+Here, we have used Gazebo, which is industry's leading Simulator with a pre selected camera module to feed image data in to the computational graph. Though the application supports ros2 capable cameras also but it is completely optional. The image is first rectified and then resized. The output "/resize" topic data can be seen using "rqt". KRS also provides tracing feature using LTTNG framework, which is an industry standard and can be used to trace and analyze the performance of Linux systems and applications.
 
 ### Features
 

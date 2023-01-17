@@ -35,8 +35,7 @@ Tutorials
 .. toctree::
   :maxdepth: 1
   
-  Building the Design components <../building_the_design>
-  Building the Hardware design using Vivado <../build_vivado_design>
+
   Creating a Vitis Platform <../build_vitis_platform>
   Generate Custom Firmware <../generating_custom_firmware>
 

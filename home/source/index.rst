@@ -12,12 +12,13 @@ SOM Landing Page
    :caption: Kria SOM
    :hidden:
 
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications.html>
-   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
-   Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
-   OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
-   Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
-   Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
+   Application Development <https://pages.gitenterprise.xilinx.com/techdocs/SOM/creating_applications.html>
+   Ubuntu Support <https://pages.gitenterprise.xilinx.com/techdocs/SOM/ubuntu_support.html>
+   Boot Firmware <https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html>
+   OpenAMP <https://pages.gitenterprise.xilinx.com/techdocs/SOM/openamp.html>
+   Digital Rights Management <https://pages.gitenterprise.xilinx.com/techdocs/SOM/drm.html>
+   Dynamic Function eXchange <https://pages.gitenterprise.xilinx.com/techdocs/SOM/dfx.html>
+   IPMI EEPROM Design Guide <https://pages.gitenterprise.xilinx.com/techdocs/SOM/ipmi_eeprom.html>
 
 
 
@@ -83,6 +84,14 @@ The Kria SOM DFX examples provide two base designs with one implementing a singl
 
 
 
+**********************************************************************************************************************************************************************************************
+`IPMI EEPROM Design Guide <../../../ipmi_eeprom/build/html/docs/IPMI_EEPROM_design_guide.html>`__
+**********************************************************************************************************************************************************************************************
+
+
+The Intelligent Platform Management Interface (IPMI) is a set of computer interface specifications for an autonomous computer subsystem that provides management and monitoring capabilities independently of the host system's CPU, firmware (BIOS or UEFI) and operating system. This document content of the configuration EEPROM on Xilinx SOM and associated carrier card hardware platforms.
+
+
 
 **********************************************************************************************************************************************************************************************
 `Kria KV260 Vision AI Starter Kit Applications <../../../kv260/2022.1/build/html/index.html>`__
@@ -95,7 +104,7 @@ The Kria SOM DFX examples provide two base designs with one implementing a singl
    :caption: Kria KV260
    :hidden:
 
-   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
+   Vision AI Starter Kit Applications <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260-docs.html>
 
 
 
@@ -117,7 +126,7 @@ Enabled by a growing ecosystem of accelerated applications from the Xilinx App S
    :caption: Kria KR260
    :hidden:
 
-   Robotics Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
+   Robotics Starter Kit Applications <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260-docs.html>
 
 
 The Kria KR260 Robotics Starter Kit is the latest out-of-the box ready evaluation/development platform in the Xilinx `Kria <https://www.xilinx.com/products/som/kria.html>`_ portfolio of products. The Starter Kit is the platform of choice for development of robotics, machine vision, industrial communication & control target applications. It consists of a non-production K26 SOM plugged into a robotics carrier card and equipped with an active thermal solution of fan and heatsink. The SOM on the Starter Kit is based on `Zynq UltraScale+ MPSoC <https://www.xilinx.com/products/silicon-devices/soc/zynq-ultrascale-mpsoc.html>`_ EV architecture that is paired with 4 GB of DDR4 memory.

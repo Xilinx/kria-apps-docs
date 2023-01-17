@@ -146,7 +146,7 @@ U-Boot provides the functionality for the hand-off between the primary boot devi
 
 U-Boot is an open source Universal Boot Loader that is frequently used in the Linux community. Xilinx provides a Git tree located at [github](https://github.com/Xilinx/u-boot-xlnx) which includes [U-Boot to run on Xilinx boards](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842223/U-boot). U-Boot for SOM has been configured to support dynamic booting on different starter kits using MPSoC PMU configuration objects.
 
-Read the [PMU configuration objects(./bootfw_pmu_config_obj.md) and [U-Boot handoff](./bootfw_uboot_handoff.md) for more details on dynamic carrier card configuration in Kria StarterKits.
+Read the [PMU configuration objects](./bootfw_pmu_config_obj.md) and [U-Boot handoff](./bootfw_uboot_handoff.md) for more details on dynamic carrier card configuration in Kria StarterKits.
 
 ## QSPI update
 
