@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Vitis Platform Flow &mdash; Kria™ SOM 2022.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Vivado Accelerator Flow" href="vivado_accel_flow.html" />
+    <link rel="prev" title="Vitis Accelerator Flow" href="vitis_accel_flow.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Kria™ SOM
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/main/build/html/index.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Flows</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="vitis_accel_flow.html">Vitis Accelerator Flow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Vitis Platform Flow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-aligning-kria-som-boot-som-starter-linux-infrastructure">Step 1 - Aligning Kria SOM boot &amp; SOM Starter Linux infrastructure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#petalinux-bsp-alignment">PetaLinux BSP Alignment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-generate-a-new-custom-pl-design-using-vivado">Step 2 - Generate a new custom PL design using Vivado</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vivado-board-file">Vivado board file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#after-selecting-board">After selecting board</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#vivado-starter-project-in-bsp">Vivado Starter Project in BSP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-xsa-file">Generate .xsa file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-package-the-platform">Step 3 - Package the platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-compile-a-device-tree-overlay-blob-dtbo">Step 4 - Compile a device tree overlay blob (.dtbo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-follow-vitis-accelerator-flow-to-generate-applications">step 5 - follow Vitis Accelerator Flow to generate applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2021.1/build/html/index.html">2021.1</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kria™ SOM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Vitis Platform Flow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/vitis_platform_flow.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="vitis-platform-flow">
+<h1>Vitis Platform Flow<a class="headerlink" href="#vitis-platform-flow" title="Permalink to this heading">¶</a></h1>
+<p>Developers can create a custom Vitis platform if they require a different set of physical PL I/O peripherals than those provided in Xilinx generated platforms. Development starts with the Vivado tool to create an extensible hardware platform. In Vivado, the Kria SOM Starter Kit Vivado board files are provided. It automatically drives the PS subsystem HW configuration and provides pre-defined connectivity for commonly used PL IPs based on the selected carrier card (e.g. MIPI interfaces on KV260 carrier card). Developers use Vivado to generate a custom .xsa file to be ported into Vitis as a platform project. Once the platform project is created, then a corresponding device tree overlay is generated. With the extensible .xsa and .dtbo developers can now follow the same flow outlined in Vitis Accelerator flow. The resulting bitstream, .xclbin, and .dtbo files are copied into the target.</p>
+<ul class="simple">
+<li><p>Assumption: Xilinx provided SOM carrier card with associated Vivado board file automation</p></li>
+<li><p>Input: Vivado SOM Starter Kit board files</p></li>
+<li><p>Output: .dtbo, .bit.bin, .xclbin</p></li>
+</ul>
+<p><img alt="Tool Flow" src="../_images/tool_flow_vitis_platform.PNG" /></p>
+<div class="section" id="prerequisites-and-assumptions">
+<h2>Prerequisites and Assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permalink to this heading">¶</a></h2>
+<p>This document assumes that developers will use 2021.1 or later tools and SOM content releases. The tool versions should match - e.g. use the same tool versions for released BSP, Vivado, as well as PetaLinux and/or Ubuntu. For Ubuntu version, refer to table in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Ubuntu-LTS">wiki</a>.</p>
+<ol class="simple">
+<li><p>Vitis tools installation</p></li>
+<li><p>(Optional) PetaLinux <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">SOM Starter Kit BSP download</a></p></li>
+<li><p>Vivado tools installation</p></li>
+<li><p>tool for generating and/or compiling .dtbo file: a. PetaLinux tools installation or b. XSCT (will be installed as part of Vivado or Vitis)</p></li>
+</ol>
+</div>
+<div class="section" id="step-1-aligning-kria-som-boot-som-starter-linux-infrastructure">
+<h2>Step 1 - Aligning Kria SOM boot &amp; SOM Starter Linux infrastructure<a class="headerlink" href="#step-1-aligning-kria-som-boot-som-starter-linux-infrastructure" title="Permalink to this heading">¶</a></h2>
+<p>Xilinx built Kria SOM Starter Kit applications on a shared, application-agnostic infrastructure in the SOM Starter Linux including kernel version, Yocto project dependent libraries, and baseline BSP. When using this tutorial, make sure to align tools, git repositories, and BSP released versions.</p>
+<div class="section" id="petalinux-bsp-alignment">
+<h3>PetaLinux BSP Alignment<a class="headerlink" href="#petalinux-bsp-alignment" title="Permalink to this heading">¶</a></h3>
+<p>The SOM Starter Linux image is generated using the corresponding SOM variant multi-carrier card PetaLinux board support package (BSP). Developers creating applications on the Starter Kit are recommended to use this BSP as a baseline for their application development as it ensures kernel, Yocto project libraries, and baseline configuration alignment. The multi-carrier card BSP defines a minimalistic BSP that has the primary function of providing an application-agnostic operating system, and can be updated and configured dynamically at runtime.</p>
+</div>
+</div>
+<div class="section" id="step-2-generate-a-new-custom-pl-design-using-vivado">
+<h2>Step 2 - Generate a new custom PL design using Vivado<a class="headerlink" href="#step-2-generate-a-new-custom-pl-design-using-vivado" title="Permalink to this heading">¶</a></h2>
+<p>There are two ways to get started designing PL design for SOM Carrier cards. Developers can either start with the Vivado board file, or the released Vivado starter project in BSP.</p>
+<div class="section" id="vivado-board-file">
+<h3>Vivado board file<a class="headerlink" href="#vivado-board-file" title="Permalink to this heading">¶</a></h3>
+<p>This flows starts with Vivado board files containing information on K26, KV260 CC or KR260 CC. The K26 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals. These board files are available in Vivado’s board list in “Create Project” wizard.</p>
+<p>Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Vivado-Board-Support-Packages">Wiki</a> for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.</p>
+<div class="section" id="after-selecting-board">
+<h4>After selecting board<a class="headerlink" href="#after-selecting-board" title="Permalink to this heading">¶</a></h4>
+<p><img alt="Board Files" src="../_images/tool_flow_boardfile.PNG" /></p>
+<p>When selecting the Kria starter kit board file, make sure to click on “connections” to indicate that the K26 and KV carrier card are connected.</p>
+<p>Once Zynq_ultra_ps_e_0 block is added to a design, make sure to click “Run Block Automation” to apply board file settings.</p>
+<p><img alt="Board Files" src="../_images/tool_flow_block_automation_marked.PNG" /></p>
+<p>Developers then indicate that the platform is an Extensible Vitis Platform. More details on how to create Extensible Platform can be found <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2021_1/vitis_doc/create_embedded_platforms.html">here</a>.
+Project Manager -&gt; Settings -&gt; General -&gt; check “Project is an extensible Vitis Platform”
+<img alt="Extensible Platform" src="../_images/extensible_check.PNG" /></p>
+</div>
+</div>
+<div class="section" id="vivado-starter-project-in-bsp">
+<h3>Vivado Starter Project in BSP<a class="headerlink" href="#vivado-starter-project-in-bsp" title="Permalink to this heading">¶</a></h3>
+<p>Alternatively, developers can start from the Vivado project provided in the BSP file.
+First, download the SOM Starter Kit BSP from the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">SOM Wiki</a>
+Then create the project using BSP:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;board&gt;-&lt;version&gt;.bsp
+<span class="nb">cd</span> xilinx--&lt;board&gt;-&lt;version&gt;
+</pre></div>
+</div>
+<p>The Vivado starter project can be found in <code class="docutils literal notranslate"><span class="pre">hardware/</span></code> folder, and developers can open the project using the .xpr file. If using the K26 BSP, the project is a k26 project only, and will not contain any information about the carrier card being used. However, it does have enough information to boot basic Linux. The KV260 and KR260 BSP have CC information.</p>
+<p>In 2022.1 or later, those project will also be available in <a class="reference external" href="https://github.com/Xilinx/kria-base-hardware">github repo</a> for those who do not wish to use PetaLinux.</p>
+</div>
+<div class="section" id="generate-xsa-file">
+<h3>Generate .xsa file<a class="headerlink" href="#generate-xsa-file" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to Vivado documentation to add custom IP blocks into your design. An updated .xsa file needs to be generated by using File -&gt; Export -&gt; Export Hardware , make sure to select “include bitstream” in the generation.</p>
+<p><img alt="Board Files" src="../_images/tool_flow_xsa_gen.PNG" /></p>
+<p>To access the example KV260 Vitis reference design, developers can follow the steps in the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vivado_design.html">Using Vivado to Build the Hardware Design</a> tutorial.</p>
+<p>To access the example KR260 Vitis reference design, developers can follow the steps in the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/build_vivado_design.html">Using Vivado to Build the Hardware Design</a> tutorial.</p>
+</div>
+</div>
+<div class="section" id="step-3-package-the-platform">
+<h2>Step 3 - Package the platform<a class="headerlink" href="#step-3-package-the-platform" title="Permalink to this heading">¶</a></h2>
+<p>After generating the .xsa file, developers will need to package it into a a Xilinx Platform File (.xpfm file). Developers can use the script <a class="reference external" href="https://github.com/Xilinx/vck190-base-trd/blob/2022.1/platforms/scripts/pfm.tcl">pfm.tcl</a>  to generate .xpfm file and its associated hw/ and sw/ folders:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xsct -sdx pfm.tcl -xsa &lt;generated xsa file from step <span class="m">2</span>&gt;.xsa
+</pre></div>
+</div>
+<p>The .xpfm file and its associated hw/ sw/ folders will be located at <code class="docutils literal notranslate"><span class="pre">xsct/&lt;platform</span> <span class="pre">name&gt;/&lt;platform</span> <span class="pre">name&gt;/export/&lt;platform</span> <span class="pre">name&gt;/</span></code>.  To copy or move the xpfm file, developers must also move the hw/ and sw/ directories, as the xpfm file expects them to be adjacent to itself.</p>
+</div>
+<div class="section" id="step-4-compile-a-device-tree-overlay-blob-dtbo">
+<h2>Step 4 - Compile a device tree overlay blob (.dtbo)<a class="headerlink" href="#step-4-compile-a-device-tree-overlay-blob-dtbo" title="Permalink to this heading">¶</a></h2>
+<p>If using PL loading post Linux boot, then a DT overlay is required to add the HW/SW interfaces to the initial Linux booted device tree. For creating the DT overlay please refer to <a class="reference internal" href="dtsi_dtbo_generation.html"><span class="doc">dtsi_dtbo_generation</span></a> page.</p>
+<p>Note that in the <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Setting-Up-the-Environment-to-Run-the-Vitis-Software-Platform">Accelerated Flow Application Development</a> where the accelerator or reconfigurable module only uses interfaces initialiated by the platform, the final bitstreams generated from the same platform can all share the same .dtbo files. The meta data associated with the accelerator added in step 5 below will be in a .xclbin file and we will not need to updte .dtbo, even though the bitstream has been updated.</p>
+<p>If not using Accelerated Flow Application development, then the .dtsi file may need update after adding accelerator.</p>
+</div>
+<div class="section" id="step-5-follow-vitis-accelerator-flow-to-generate-applications">
+<h2>step 5 - follow Vitis Accelerator Flow to generate applications<a class="headerlink" href="#step-5-follow-vitis-accelerator-flow-to-generate-applications" title="Permalink to this heading">¶</a></h2>
+<p>After creating .dtbo and Platform files, developers will be able to create their accelerators in Vitis platform. They can follow step 3 through 5 in <a class="reference internal" href="vitis_accel_flow.html"><span class="doc">Vitis Accelerator Flow</span></a> to finish creating and running their applications.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>This <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2022.1/Vitis_Platform_Creation/Design_Tutorials/01-Edge-KV260/README.md">Vitis guide</a> is a good detailed tutorial that uses a flow close to Vitis Platform Flow. It includes software generation in Petalinux as well, which is not in the scope of this tutorial.</p></li>
+<li><p>This [Vitis platform flow example] details step by step, how to add a Raspi pipeline to the kv260_ispMipiRx_vcu_DP platform (on which smartcam application is based), to allow smartcam application to use Raspi camera.</p></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vitis_accel_flow.html" class="btn btn-neutral float-left" title="Vitis Accelerator Flow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vivado_accel_flow.html" class="btn btn-neutral float-right" title="Vivado Accelerator Flow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 20, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
