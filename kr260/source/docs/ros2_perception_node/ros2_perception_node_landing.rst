@@ -25,6 +25,7 @@ Quick Start
 .. toctree::
   :maxdepth: 1
   
+  KR260 Starter Kit Linux Boot <../kria_starterkit_linux_boot>
   Setting up the Board and Application deployment <docs/app_deployment>
 
 
@@ -36,6 +37,7 @@ Tutorials
   :maxdepth: 1
   
 
+  KR260 Starter Kit Linux Boot <../kria_starterkit_linux_boot>
   Creating a Vitis Platform <../build_vitis_platform>
   Generate Custom Firmware <../generating_custom_firmware>
 

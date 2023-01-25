@@ -21,8 +21,6 @@ Here, we have used Gazebo, which is industry's leading Simulator with a pre sele
 
 * Comes with one pre-selected camera module in Gazebo
 
-* Allows use of any camera system capable of publishing ROS topics with raw data on Ethernet
-
 * Shows how instrument ROS 2 with LTTNG to measure performance before and after acceleration
 
 * Shows how the Accelerated Vitis Vision Library functions in actions

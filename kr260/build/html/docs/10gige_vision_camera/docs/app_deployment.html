@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Tool Flow Overview" href="../../building_the_design.html" />
-    <link rel="prev" title="Introduction to Sensor Capture, MV-Defect-Detect, and 10GigE" href="introduction.html" /> 
+    <link rel="prev" title="Booting Kria Starter Kit Linux on KR260" href="../../kria_starterkit_linux_boot.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -79,9 +79,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#introduction">Introduction</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../10gige_vision_camera_landing.html#quick-start">Quick Start</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../kria_starterkit_linux_boot.html">KR260 Starter Kit Linux Boot</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Setting up the Board and Application deployment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction-to-the-test-environment">Introduction to the Test Environment</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#boot-the-linux-image">Boot the Linux Image</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#installing-the-application-packages">Installing the Application packages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#docker-based-application-preparation">Docker based application preparation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#firmware-loading">Firmware Loading</a></li>
@@ -231,19 +231,8 @@ cat Mango_*.y8 &gt; input_video.y8
 <p>Refer to KR260 Board &amp; Interface layout below for connector reference numbers:</p>
 <p><img alt="board interfaces" src="../../../_images/board_interfaces.png" /></p>
 <p><img alt="usb slot" src="../../../_images/usb_slot.png" /></p>
-<blockquote>
-<div><p><strong>Note</strong>: Skip Step 1 (Flashing the SD Card), if the SD Card already flashed with the KR260 Robotics Starter Kit Image.</p>
-</div></blockquote>
 <ol>
-<li><p>Flashing the SD Card</p>
-<p>Follow the instruction from the <a class="reference external" href="https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/setting-up-the-sd-card-image.html">Kria KR260 getting started page</a> to obtain Ubuntu image and flash SD card.</p>
-</li>
-<li><p>Insert the SD card into slot at J11.</p></li>
-<li><p>UART/JTAG interface:</p>
-<p>a. For interacting and seeing boot-time information, connect a USB debugger to the J4.</p>
-<p>b. Open a serial terminal program (teraterm, putty etc) on UART monitoring laptop and connect to COM port corresponding to the board.</p>
-<p>c. Com Parameters: Speed: 115200, Data bits: 8, Stop bits: 1, Parity: None, Flow control: Xon/Xoff</p>
-</li>
+<li><p>Go through <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Booting Kria Starter Kit Linux</span></a> to complete minimum setup required to boot Linux before continuing with instructions in this page.</p></li>
 <li><p>Ensure that the board is powered off. Connect IMX547 Monochrome sensor module to J22 in KR260 using flex cable refer below figure:</p>
 <p><img alt="IMX547 Sensor Camera" src="../../../_images/IMX547_sensor_camera_1.png" /></p>
 <p><img alt="IMX547 Sensor Camera" src="../../../_images/IMX547_sensor_camera_2.png" /></p>
@@ -251,7 +240,6 @@ cat Mango_*.y8 &gt; input_video.y8
 <li><p>Keep the KR260 board and sensor module firmly held in a static position.</p></li>
 <li><p>Connect Ethernet cable from PS ethernet ‘J10C’ to local network with DHCP enabled to install packages.</p></li>
 <li><p>Connect the fiber optic cable to SFP+ connector in KR260 board, other end to host machine (Windows/Ubuntu) NIC card.</p></li>
-<li><p>Power supply: 12V 3A adapter to be plugged into the DC jack at J12.</p></li>
 </ol>
 <p>The KR260 board connection should be as shown in the below figure:</p>
 <p><img alt="Board Connection" src="../../../_images/KR_260_Board_connection.png" /></p>
@@ -275,55 +263,11 @@ cat Mango_*.y8 &gt; input_video.y8
 <p><strong>Note:</strong> Ensure 10GigE interface is enabled on Host PC before loading MV-Camera application firmware.</p>
 </div>
 </div>
-<div class="section" id="boot-the-linux-image">
-<h2>Boot the Linux Image<a class="headerlink" href="#boot-the-linux-image" title="Permalink to this heading">¶</a></h2>
-<p>Power on the board, and boot Linux image:</p>
-<blockquote>
-<div><p><strong>NOTE</strong>: Only perform this step if Starter kit is booting for the first time. Otherwise, log in with the <em>ubuntu</em> username and the password that was previously set.</p>
-</div></blockquote>
-<p>The Linux image boots into the following login prompt:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    kria login:
-</pre></div>
-</div>
-<p>Use the <em>ubuntu</em> user for login. If login password expires, it prompted to set a new password when executing sudo commands.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>   kria login: ubuntu
-   Password: ubuntu
-   ubuntu@kria:<span class="se">\~\$</span> sudo touch file.txt
-   <span class="se">\[</span>sudo<span class="se">\]</span> password <span class="k">for</span> ubuntu:
-   sudo: Account or password is expired, reset your password and tryagain
-   Changing password <span class="k">for</span> ubuntu.
-   Current password:
-   New password:
-   Retype new password:
-</pre></div>
-</div>
-<p>The <em>ubuntu</em> user does not have root privileges. Most commands used in subsequent tutorials must be run using <em>sudo</em>, and it may be prompted to enter your password.</p>
-<blockquote>
-<div><p><strong>Note:</strong> For security, by default, the root user is disabled. If user want to login as root user, perform the following steps. Use the <em>ubuntu</em> user’s password on the first password prompt, then set a new password for the root user. User can now login as root user using the newly set root user password.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:\~\$ sudo -i
-sudo\] password for ubuntu:
-root@kria:\~#
-</pre></div>
-</div>
-</div></blockquote>
-<p><strong>Note:</strong> After every reboot, ensure the device date and time must be inline with current local date and time. Use the below command accordingly.</p>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">date</span> <span class="pre">--set</span> <span class="pre">&quot;11</span> <span class="pre">January</span> <span class="pre">2023</span> <span class="pre">16:47:00&quot;</span></code></p>
-</div>
 <div class="section" id="installing-the-application-packages">
 <h2>Installing the Application packages<a class="headerlink" href="#installing-the-application-packages" title="Permalink to this heading">¶</a></h2>
+<p>Make sure that you had gone through  <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Booting Kria Starter Kit Linux</span></a> as indicated in previous step to complete minimum setup required to boot Linux before continuing with instructions in this page.</p>
 <p>Install the latest application packages.</p>
 <ol>
-<li><p>Add Xilinx apps repository to download the apps:</p>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">add-apt-repository</span> <span class="pre">ppa:xilinx-apps</span></code></p>
-</li>
-<li><p>Check the package feed for new updates.</p>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">upgrade</span></code></p>
-<p>Confirm with “Y” when prompted to install new or updated packages.</p>
-</li>
-<li><p>Reboot the board using below command and login with ubuntu username and password.</p>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">reboot</span></code></p>
-</li>
 <li><p>Get the list of available packages in the feed:</p>
 <p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xmutil</span> <span class="pre">getpkgs</span></code></p>
 </li>
@@ -337,26 +281,14 @@ root@kria:\~#
 </div>
 <div class="section" id="docker-based-application-preparation">
 <h2>Docker based application preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
-<p>Install docker</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install docker.io
-</pre></div>
-</div>
 <p>Pull the latest docker image for mv-defect-detect using the below command.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    sudo docker pull xilinx/mv-defect-detect:2022.1
 </pre></div>
 </div>
-<ul>
-<li><p>The storage volume on the SD card can be limited with multiple dockers. If there are space issues, use the following command to remove the existing container.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo docker rmi --force <span class="nv">$INSTALLED_DOCKER_IMAGE</span>
-</pre></div>
-</div>
-</li>
-<li><p>Find the images installed with the below command:</p>
+<p>Find the images installed with the below command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo docker images
 </pre></div>
 </div>
-</li>
-</ul>
 </div>
 <div class="section" id="firmware-loading">
 <h2>Firmware Loading<a class="headerlink" href="#firmware-loading" title="Permalink to this heading">¶</a></h2>
@@ -925,7 +857,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
                   </style>
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction to Sensor Capture, MV-Defect-Detect, and 10GigE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../kria_starterkit_linux_boot.html" class="btn btn-neutral float-left" title="Booting Kria Starter Kit Linux on KR260" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../../building_the_design.html" class="btn btn-neutral float-right" title="Tool Flow Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
