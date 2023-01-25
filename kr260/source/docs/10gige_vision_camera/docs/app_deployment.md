@@ -127,35 +127,19 @@ Refer to KR260 Board & Interface layout below for connector reference numbers:
 
 ![usb slot](./media/usb_slot.png)
 
-> **Note**: Skip Step 1 (Flashing the SD Card), if the SD Card already flashed with the KR260 Robotics Starter Kit Image.
+1. Go through [Booting Kria Starter Kit Linux](../../kria_starterkit_linux_boot.md) to complete minimum setup required to boot Linux before continuing with instructions in this page.
 
-1. Flashing the SD Card
-
-    Follow the instruction from the [Kria KR260 getting started page](https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/setting-up-the-sd-card-image.html) to obtain Ubuntu image and flash SD card.
-
-2. Insert the SD card into slot at J11.
-
-3. UART/JTAG interface:
-
-    a. For interacting and seeing boot-time information, connect a USB debugger to the J4.
-
-    b. Open a serial terminal program (teraterm, putty etc) on UART monitoring laptop and connect to COM port corresponding to the board.
-
-    c. Com Parameters: Speed: 115200, Data bits: 8, Stop bits: 1, Parity: None, Flow control: Xon/Xoff
-
-4. Ensure that the board is powered off. Connect IMX547 Monochrome sensor module to J22 in KR260 using flex cable refer below figure:
+2. Ensure that the board is powered off. Connect IMX547 Monochrome sensor module to J22 in KR260 using flex cable refer below figure:
 
     ![IMX547 Sensor Camera](media/IMX547_sensor_camera_1.png)
 
     ![IMX547 Sensor Camera](media/IMX547_sensor_camera_2.png)
 
-5. Keep the KR260 board and sensor module firmly held in a static position.
+3. Keep the KR260 board and sensor module firmly held in a static position.
 
-6. Connect Ethernet cable from PS ethernet \'J10C\' to local network with DHCP enabled to install packages.
+4. Connect Ethernet cable from PS ethernet \'J10C\' to local network with DHCP enabled to install packages.
 
-7. Connect the fiber optic cable to SFP+ connector in KR260 board, other end to host machine (Windows/Ubuntu) NIC card.
-
-8. Power supply: 12V 3A adapter to be plugged into the DC jack at J12.
+5. Connect the fiber optic cable to SFP+ connector in KR260 board, other end to host machine (Windows/Ubuntu) NIC card.
 
 The KR260 board connection should be as shown in the below figure:
 
@@ -182,82 +166,24 @@ The newly inserted NIC card shows the new interface in the host machine. User ma
 **Note:** On windows host, ensure that network related drivers are installed from the [link](https://www.euresys.com/en/Products/IP-Cores/Vision-Standard-IP-Cores-for-FPGA/GigE-Vision-IP-Core-(2)), before running Host Sphinx application.
 
 **Note:** Ensure 10GigE interface is enabled on Host PC before loading MV-Camera application firmware.
-## Boot the Linux Image
-
-Power on the board, and boot Linux image:
-
-> **NOTE**: Only perform this step if Starter kit is booting for the first time. Otherwise, log in with the *ubuntu* username and the password that was previously set.
-
-The Linux image boots into the following login prompt:
-
-```bash
-    kria login:
-```
-
-Use the *ubuntu* user for login. If login password expires, it prompted to set a new password when executing sudo commands.
-
- ```shell
-    kria login: ubuntu
-    Password: ubuntu
-    ubuntu@kria:\~\$ sudo touch file.txt
-    \[sudo\] password for ubuntu:
-    sudo: Account or password is expired, reset your password and tryagain
-    Changing password for ubuntu.
-    Current password:
-    New password:
-    Retype new password:
-```
-
-The *ubuntu* user does not have root privileges. Most commands used in subsequent tutorials must be run using *sudo*, and it may be prompted to enter your password.
-
-> **Note:** For security, by default, the root user is disabled. If user want to login as root user, perform the following steps. Use the *ubuntu* user's password on the first password prompt, then set a new password for the root user. User can now login as root user using the newly set root user password.
->   ```
->   ubuntu@kria:\~\$ sudo -i
->   sudo\] password for ubuntu:
->   root@kria:\~#
->    ```
-**Note:** After every reboot, ensure the device date and time must be inline with current local date and time. Use the below command accordingly.
-
-`sudo date --set "11 January 2023 16:47:00"`
 
 ## Installing the Application packages
 
+Make sure that you had gone through  [Booting Kria Starter Kit Linux](../../kria_starterkit_linux_boot.md) as indicated in previous step to complete minimum setup required to boot Linux before continuing with instructions in this page.
+
 Install the latest application packages.
 
-1. Add Xilinx apps repository to download the apps:
-
-     `sudo add-apt-repository ppa:xilinx-apps`
-
-2. Check the package feed for new updates.
-
-    `sudo apt update`
-
-    `sudo apt upgrade`
-
-    Confirm with "Y" when prompted to install new or updated packages.
-
-3. Reboot the board using below command and login with ubuntu username and password.
-
-   `sudo reboot`
-
-4. Get the list of available packages in the feed:
+1. Get the list of available packages in the feed:
 
       `sudo xmutil getpkgs`
 
-5. Install the application.
+2. Install the application.
 
     `sudo apt install xlnx-firmware-kr260-mv-camera`
-
 
     > **Note :** Installing firmware binaries may cause dfx-mgr to crash and a restart is needed, which is listed in the [Known issues and Limitations](known_issues.md) section. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed.
 
 ## Docker based application preparation
-
-Install docker
-
-```bash
-sudo apt install docker.io
-```
 
 Pull the latest docker image for mv-defect-detect using the below command.
 
@@ -265,17 +191,11 @@ Pull the latest docker image for mv-defect-detect using the below command.
     sudo docker pull xilinx/mv-defect-detect:2022.1
 ```
 
-  * The storage volume on the SD card can be limited with multiple dockers. If there are space issues, use the following command to remove the existing container.
+Find the images installed with the below command:
 
-      ```bash
-      sudo docker rmi --force $INSTALLED_DOCKER_IMAGE
-      ```
-
-  * Find the images installed with the below command:
-
-      ```bash
-      sudo docker images
-      ```
+```bash
+sudo docker images
+```
 
 ## Firmware Loading
 
@@ -351,7 +271,6 @@ There is only one way to invoke the application and that is by command line.
 >**Note**: Docker starts with the *root* user access. Only one instance of the application can run at a time. Only 2472 x 2128 \@122fps -- 10bpp configuration is validated.
 
 To run the application, follow below steps:
-
 
 1. Run the configure script to configure the media nodes & the IP's in capture path
 

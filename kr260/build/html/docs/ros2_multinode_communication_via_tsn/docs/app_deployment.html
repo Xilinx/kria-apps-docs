@@ -79,6 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1 current"><a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications via TSN</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html#overview">Overview</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html#quick-start">Quick Start</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../kria_starterkit_linux_boot.html">KR260 Starter Kit Linux Boot</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Setting up the Board and Application deployment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisite">Pre-requisite</a></li>
@@ -139,94 +140,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Pre-requisite<a class="headerlink" href="#pre-requisite" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="hardware-requirements">
 <h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this heading">¶</a></h3>
-<ul>
+<ul class="simple">
 <li><p>KR260 Robotics Starter Kit</p></li>
 <li><p>KR260 Power Supply &amp; Adapter (Included with KR260 Robotics Starter Kit)</p></li>
 <li><p>Cat 5e Ethernet Cable (Included with KR260 Robotics Starter Kit)</p></li>
 <li><p>USB-A to micro-B Cable (Included with KR260 Robotics Starter Kit)</p></li>
 <li><p>16GB MicroSD Cards (Included with KR260 Robotics Starter Kit)</p></li>
-<li><p>Digilent TPH2 Pmod - 12-pin Test Point Header - Optional (Sold Separately)</p>
-<p>https://digilent.com/shop/pmod-tph2-12-pin-test-point-header/</p>
-</li>
-<li><p>I210-T1 Network Adapter installed on a PC host machine - Optional (Sold Separately)</p>
-<p>https://www.amazon.com/gp/product/B00ESFF2JC/</p>
-</li>
-<li><p>Oscilloscope or Analog Discovery 2 – Minimum 100MS/s USB Oscilloscope - Optional (Sold Separately)</p>
-<p>https://digilent.com/reference/test-and-measurement/analog-discovery-2/start</p>
-</li>
-<li><p>RS485 Modbus Temperature Humidity Sensor - Optional (Sold Separately)</p>
-<p>https://www.aliexpress.com/item/33054683552.html</p>
-<p>https://www.amazon.com/Temperature-Humidity-Sensor-Display-Modbus/dp/B078NRYBVZ</p>
-</li>
-<li><p>12VDC Power Supply with Prototyping or Bare Terminals – Optional (Sold Separately)</p>
-<p>https://digilent.com/shop/12v-3a-power-supply/</p>
-</li>
+<li><p><a class="reference external" href="https://digilent.com/shop/pmod-tph2-12-pin-test-point-header/">Digilent TPH2 Pmod - 12-pin Test Point Header</a> - Optional (Sold Separately)</p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/gp/product/B00ESFF2JC/">I210-T1 Network Adapter</a> installed on a PC host machine - Optional (Sold Separately)</p></li>
+<li><p><a class="reference external" href="https://digilent.com/reference/test-and-measurement/analog-discovery-2/start">Oscilloscope or Analog Discovery 2</a> – Minimum 100MS/s USB Oscilloscope - Optional (Sold Separately)</p></li>
+<li><p>RS485 Modbus Temperature Humidity Sensor - Optional (Sold Separately <a class="reference external" href="https://www.aliexpress.com/item/33054683552.html">here</a> or <a class="reference external" href="https://www.amazon.com/Temperature-Humidity-Sensor-Display-Modbus/dp/B078NRYBVZ">here</a>)</p></li>
+<li><p><a class="reference external" href="https://digilent.com/shop/12v-3a-power-supply/">12VDC Power Supply</a> with Prototyping or Bare Terminals – Optional (Sold Separately)</p></li>
 <li><p>Wireshark tools installed on host machine (Ubuntu 20.04 Linux used for documentation)</p></li>
 </ul>
 </div>
 <div class="section" id="initial-setup">
 <h3>Initial Setup<a class="headerlink" href="#initial-setup" title="Permalink to this heading">¶</a></h3>
 <ol>
-<li><p>Setting up the SD Card Image (Ubuntu)</p>
-<ul class="simple">
-<li><p>Follow the instruction from the page below to obtain Ubuntu image and flash SD card</p></li>
-</ul>
-<p>https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/setting-up-the-sd-card-image.html</p>
-</li>
-<li><p>KR260 Board and Interface:</p>
-<p><img alt="../../../_images/board_interfaces1.png" src="../../../_images/board_interfaces1.png" /></p>
-<p><img alt="../../../_images/usb_slot1.png" src="../../../_images/usb_slot1.png" /></p>
-<ul class="simple">
-<li><p>Connecting Everything: Follow the instruction from the page below for initial Board setup</p></li>
-</ul>
-<p>https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/connecting-everything.html</p>
-</li>
-<li><p>Booting your Starter Kit (Ubuntu):</p>
-<ul class="simple">
-<li><p>Follow the instruction from the page below to boot linux</p></li>
-</ul>
-<p>https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/booting-your-starter-kit.html</p>
-</li>
-</ol>
-<blockquote>
-<div><p><strong>Note:</strong> Steps under the section “Set up the Xilinx Development &amp; Demonstration Environment for Ubuntu 22.04 LTS” may not be needed for TSN-ROS demo.</p>
-</div></blockquote>
-<ol>
-<li><p>Set System Timezone and locale:</p>
-<ul>
-<li><p>Set timezone</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo timedatectl set-ntp <span class="nb">true</span>
- $ sudo timedatectl set-timezone America/Los_Angeles
- $ timedatectl
-</pre></div>
-</div>
-</li>
-<li><p>Set locale</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo locale-gen en_US en_US.UTF-8
- $ sudo update-locale <span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8 <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
- $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
- $ locale
-</pre></div>
-</div>
-</li>
-</ul>
-</li>
-<li><p>Update Bootfirmware</p>
-<p>The SOM Starter Kits have factory pre-programmed boot firmware that is installed and maintained in the SOM QSPI device. Update the Boot firmware in the SOM QSPI device to ‘2022.1 Boot FW’ Image.
-follow the link below to obtain Boot firmware binary and instructions to update QSPI image using xmutil, after linux boot.</p>
-<p>https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates</p>
-</li>
+<li><p>Go through  <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Booting Kria Starter Kit Linux</span></a> to complete minimum setup required to boot Linux before continuing with instructions in this page.</p></li>
 <li><p>Get the latest TSN-ROS application &amp; firmware package:</p>
 <ul>
-<li><p>Add archive for the Xilinx Apps demo</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo add-apt-repository ppa:xilinx-apps
-$ sudo apt update
-$ sudo apt upgrade
-</pre></div>
-</div>
-</li>
 <li><p>Search package feed for packages compatible with KR260</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo xmutil getpkgs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil getpkgs
 </pre></div>
 </div>
 <p>An example output is show below</p>
@@ -239,55 +174,53 @@ $ sudo apt upgrade
 </div>
 </li>
 <li><p>Install Xilinx demo application packages and dependencies for ROS-TSN</p>
-<ul>
-<li><p>Install firmware binaries and restart dfx-mgr</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ sudo apt install xlnx-firmware-kr260-tsn-rs485pmod
- $ sudo systemctl restart dfx-mgr.service
+<ul class="simple">
+<li><p>Install firmware binaries and restart dfx-mgr</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install xlnx-firmware-kr260-tsn-rs485pmod
+sudo systemctl restart dfx-mgr.service
 </pre></div>
 </div>
-</li>
-</ul>
 <blockquote>
 <div><p>Note : Installing firmware binaries (xlnx-firmware-kr260-tsn-pmod) causes dfx-mgr to crash and a restart is needed, which is listed in the known issues section. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed.</p>
 </div></blockquote>
-<ul>
-<li><p>Install dependencies and apps</p>
+<ul class="simple">
+<li><p>Install dependencies and apps</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install TSN applications below</span>
-$ sudo apt install xlnx-app-kr260-pmod-rs485-test
-$ sudo apt install xlnx-app-kr260-tsn-examples
+sudo apt install xlnx-app-kr260-pmod-rs485-test
+sudo apt install xlnx-app-kr260-tsn-examples
 </pre></div>
 </div>
-</li>
-</ul>
 <p>Confirm with “Y” when prompted to install new or updated packages.</p>
 <blockquote>
-<div><p>Note: <code class="docutils literal notranslate"><span class="pre">linuxptp</span></code>, <code class="docutils literal notranslate"><span class="pre">xlnx-tsn-utils</span></code>, <code class="docutils literal notranslate"><span class="pre">libmodbus5</span></code> are dependencies to TSN applications that are installed automtically with above commands.</p>
+<div><p>Note: <code class="docutils literal notranslate"><span class="pre">linuxptp</span></code>, <code class="docutils literal notranslate"><span class="pre">xlnx-tsn-utils</span></code>, <code class="docutils literal notranslate"><span class="pre">libmodbus5</span></code> are dependencies to TSN applications that are installed automatically with above commands.</p>
 </div></blockquote>
 </li>
 <li><p>Add following path in environment variable for Xilinx demo application</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>:/opt/xilinx/pmod-rs485-test/bin/
-$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>:/opt/xilinx/tsn-examples/bin/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>:/opt/xilinx/pmod-rs485-test/bin/
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>:/opt/xilinx/tsn-examples/bin/
 </pre></div>
 </div>
 <blockquote>
 <div><p><strong>Note:</strong> consider adding the above commands to ~/.bashrc to avoid executing on every new shell created.</p>
 </div></blockquote>
 </li>
-<li><p>Install ROS 2  humble</p>
+<li><p>Install ROS 2 humble</p>
 <p>Refer <a class="reference external" href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">ROS 2 Documentation</a> for the installation steps. Here is the snippet of what is needed for this application:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-$ <span class="nb">echo</span> <span class="s2">&quot;deb [arch=arm64 signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2-testing/ubuntu jammy main&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/ros2.list &gt; /dev/null
-$ sudo apt update
-$ sudo apt upgrade
-$ sudo apt install ros-humble-ros-base
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+<span class="nb">echo</span> <span class="s2">&quot;deb [arch=arm64 signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2-testing/ubuntu jammy main&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/ros2.list &gt; /dev/null
+sudo apt update
+sudo apt upgrade
+sudo apt install ros-humble-ros-base
 </pre></div>
 </div>
 <p>Confirm with “Y” when prompted to install new or updated packages.</p>
 </li>
 <li><p>Install ROS 2 application</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ mkdir -p ~/Downloads
- $ wget https://github.com/Xilinx/ros-tsn-pubsub/releases/download/v0.1/ros-humble-xlnx-pubsub_0.1.0-0jammy_arm64.deb -P ~/Downloads/
- $ sudo apt install ~/Downloads/ros-humble-xlnx-pubsub_0.1.0-0jammy_arm64.deb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> mkdir -p ~/Downloads
+ wget https://github.com/Xilinx/ros-tsn-pubsub/releases/download/v0.1/ros-humble-xlnx-pubsub_0.1.0-0jammy_arm64.deb -P ~/Downloads/
+ sudo apt install ~/Downloads/ros-humble-xlnx-pubsub_0.1.0-0jammy_arm64.deb
 </pre></div>
 </div>
 </li>
@@ -326,18 +259,17 @@ $ sudo apt install ros-humble-ros-base
 <div class="section" id="network-configuration-1-two-kr260-boards">
 <h3>Network Configuration 1 : Two KR260 boards<a class="headerlink" href="#network-configuration-1-two-kr260-boards" title="Permalink to this heading">¶</a></h3>
 <p>This configuration requires two KR260 units, TSN subsystem are connected to form a network where one of the units is configured to be master, while the other as slave. Image below represent this configuration:</p>
-<p><img alt="../../../_images/2board-osc.png" src="../../../_images/2board-osc.png" /></p>
+<p><img alt="osc" src="../../../_images/2board-osc.png" /></p>
 <div class="section" id="board-setup">
 <h4>Board setup<a class="headerlink" href="#board-setup" title="Permalink to this heading">¶</a></h4>
-<ul>
+<ul class="simple">
 <li><p>Connect Ethernet cable from PL ETH1 of Board1 (J10 top) to PL ETH1 of  Board2 (J10 top)</p></li>
 <li><p>Connect JTAG/UART ports of both boards to your PC</p></li>
 <li><p>Connect Digilent TPH2 Pmod into the PMOD2 connector on the KR260 board</p></li>
 <li><p>The Analog Discovery 2  or Oscilloscope can be connected to Board1 and Board2 for observing the PTP clock synchronization, Qbv scheduling and measuring latency.</p></li>
-<li><p>power on both the boards with the prebuilt wic image in the sd_card that was prepared in prerequisite section</p>
-<p><img alt="../../../_images/2board-live.png" src="../../../_images/2board-live.png" /></p>
-</li>
+<li><p>power on both the boards with the prebuilt wic image in the sd_card that was prepared in prerequisite section</p></li>
 </ul>
+<p><img alt="2board" src="../../../_images/2board-live.png" /></p>
 </div>
 <div class="section" id="run-tsn-ros-out-of-box-applications">
 <h4>Run TSN-ROS Out of Box Applications<a class="headerlink" href="#run-tsn-ros-out-of-box-applications" title="Permalink to this heading">¶</a></h4>
@@ -346,13 +278,13 @@ $ sudo apt install ros-humble-ros-base
 <li><p>Setup Ethernet ports by running the following commands on the serial terminal. This sets the MAC/IP/VLAN on the EP and ETH ports of the TSN switch IP</p>
 <ul>
 <li><p><em>KR260 Board1 interface setup</em></p>
-<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/usr/bin/net_setup.sh</span> <span class="pre">-b1</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/usr/bin/net_setup.sh</span> <span class="pre">-b1</span></code></p>
 </li>
 <li><p><em>KR260 Board2 interface setup</em></p>
-<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/usr/bin/net_setup.sh</span> <span class="pre">-b2</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/usr/bin/net_setup.sh</span> <span class="pre">-b2</span></code></p>
 </li>
 <li><p><em>Setup ros env on both KR260 Board 1 &amp; Board2</em></p>
-<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/ros/humble/setup.sh</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/ros/humble/setup.sh</span></code></p>
 </li>
 </ul>
 <blockquote>
@@ -360,15 +292,15 @@ $ sudo apt install ros-humble-ros-base
 </div></blockquote>
 </li>
 </ul>
-<div class="section" id="network-time-synchronization-ptp-demo">
-<h5>Network Time Synchronization (PTP Demo)<a class="headerlink" href="#network-time-synchronization-ptp-demo" title="Permalink to this heading">¶</a></h5>
+<div class="section" id="network-time-synchronization-kr260-kr260-ptp-demo">
+<h5>Network Time Synchronization KR260-KR260 (PTP Demo)<a class="headerlink" href="#network-time-synchronization-kr260-kr260-ptp-demo" title="Permalink to this heading">¶</a></h5>
 <p>In this demo Board1 will set its clock as master. Board2 will be the slave. Board2 clock will sync with Board1 clock after a brief synchronization period.
 Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 <ul>
 <li><p>Connect P1 on the Test Pmod of Board1 to Channel1 of the oscilloscope - Monitors PTP clock on Board1</p></li>
 <li><p>Connect P1 on the Test Pmod of Board2 to Channel2 of the oscilloscope - Monitors PTP clock on Board2</p></li>
 <li><p>There are also additional signals exposed to the test Pmod if you wish to observe them with additional oscilloscope channels:</p>
-<p><img alt="../../../_images/ptp-pmod.png" src="../../../_images/ptp-pmod.png" /></p>
+<p><img alt="pmod" src="../../../_images/ptp-pmod.png" /></p>
 <ul>
 <li><p><em>Start ptp on Board1 in master mode</em></p>
 <p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/usr/bin/start_ptp.sh</span> <span class="pre">-m</span></code></p>
@@ -381,16 +313,17 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 <div><p><strong>Note:</strong>  Ensure to run ptp master before starting ptp slave as slave will fail to sync when grandmaster clock is not set. The sync takes about 30 seconds to complete.</p>
 </div></blockquote>
 <p><strong>Observe Results:</strong></p>
+<ul class="simple">
+<li><p>The file ptplog saves the ptp4l output on Board2. The rms value starts out high and goes down to a single digit value showing the clocks are now in sync.</p></li>
+</ul>
+<p><img alt="ptp" src="../../../_images/ptp-sync.png" /></p>
 <ul>
-<li><p>The file ptplog saves the ptp4l output on Board2. The rms value starts out high and goes down to a single digit value showing the clocks are now in sync.</p>
-<p><img alt="../../../_images/ptp-sync.png" src="../../../_images/ptp-sync.png" /></p>
-</li>
 <li><p>To see the current status of PTP run the following command</p>
 <p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-f</span> <span class="pre">.local/log/ptplog</span></code></p>
 </li>
 <li><p>Using an Oscilloscope, or the Analog Discovery 2 and the WaveForms application, the clocks will start out not in sync and will begin to sync to each other and this can be observed by the phase alignment between Channel1 and Channel2.</p>
-<p><img alt="../../../_images/b2p-algdis.png" src="../../../_images/b2p-algdis.png" /></p>
-<p><img alt="../../../_images/ptp-osc-sync.png" src="../../../_images/ptp-osc-sync.png" /></p>
+<p><img alt="b2p" src="../../../_images/b2p-algdis.png" /></p>
+<p><img alt="ptp" src="../../../_images/ptp-osc-sync.png" /></p>
 </li>
 </ul>
 </li>
@@ -410,7 +343,7 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 <ul>
 <li><p>The xlnx-pubsub talker generates a packet of schedule traffic type every second.</p></li>
 <li><p>The xlnx-pubsub listener prints a message when it receives a packet.</p>
-<p><img alt="../../../_images/ros-pubsub.png" src="../../../_images/ros-pubsub.png" /></p>
+<p><img alt="pubsub" src="../../../_images/ros-pubsub.png" /></p>
 </li>
 </ul>
 </div>
@@ -425,7 +358,7 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 <li><p>Connect P7 on the Test PMOD of Board1 to Channel1 of the oscilloscope - Monitors TX packet from Publisher1. Publisher1 can transmit a Scheduled Traffic (ST) packet or a Best effort (BE) packet.</p></li>
 <li><p>Connect P8 on the Test PMOD of Board2 to Channel2 of the oscilloscope - Monitors RX packet from Listener1. Listener 1 will receive a ST packet or BE packet.</p></li>
 <li><p>Set up triggers on Channel1 and Channel2 with an OR condition and set the time scale interval to 50us.</p>
-<p><img alt="../../../_images/ros-pmod.png" src="../../../_images/ros-pmod.png" /></p>
+<p><img alt="pmod" src="../../../_images/ros-pmod.png" /></p>
 <p>Figure: Test PMOD pins when MUX is set to SW trigger</p>
 <p>The talker application will generate a packet which will trigger the Publisher1 pin in the figure above. When the packet is received on Board2 the listener application will trigger the Listner1 pin. Measure the time difference between Channel1 and Channel2 of the scope to find out the latency. It is ideally found to be between 80us to 160us.</p>
 <ul>
@@ -443,11 +376,11 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 <p><strong>Observe Results</strong></p>
 <ul>
 <li><p>The next steps will measure the time difference between Channel1 and Channel2 of the scope to find out the latency. It is ideally found to be between 80us to 160us. The latency numbers will be the similar between Best Effort and Scheduled Traffic. If you set Qbv priority, the latency may increase depending on the order of the slot (BE first or ST first) and Time allotted for each slot.</p>
-<p><img alt="../../../_images/latency.png" src="../../../_images/latency.png" /></p>
+<p><img alt="latency" src="../../../_images/latency.png" /></p>
 </li>
 </ul>
 <blockquote>
-<div><p><strong>Note:</strong> The latency  measurment on the oscilloscope is from a software trigger, this includes the processing time of the processor to read the packet received over the network stack and initiate a trigger signal to the PMOD. When work load on the processor is high, latency measurments could reflect a higher value.</p>
+<div><p><strong>Note:</strong> The latency  measurement on the oscilloscope is from a software trigger, this includes the processing time of the processor to read the packet received over the network stack and initiate a trigger signal to the PMOD. When work load on the processor is high, latency measurements could reflect a higher value.</p>
 </div></blockquote>
 </li>
 </ul>
@@ -455,13 +388,12 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 <h5>Network Time Shaper Function (802.1Qbv Demo)<a class="headerlink" href="#network-time-shaper-function-802-1qbv-demo" title="Permalink to this heading">¶</a></h5>
 <p>This demo allots a time slot for scheduled traffic and best effort and it can be visualized on a oscilloscope. For a cycle time period of 1ms, ST traffic will be sent for 700us and BE traffic for 300us.</p>
 <p><strong>Oscilloscope or Analog Discovery 2 Setup</strong></p>
-<ul>
+<ul class="simple">
 <li><p>Connect P8 on the Test PMOD of <strong>Board2</strong> to Channel1 of the oscilloscope - ST packet Rx</p></li>
 <li><p>Connect P10 on the Test PMOD of <strong>Board2</strong> to Channel2 of the oscilloscope - BE packet Rx</p></li>
-<li><p>Set up triggers on Channel1 and Channel2 with an OR condition and set the time scale interval to 1 millisecond.</p>
-<p><img alt="../../../_images/qbv_pmod.png" src="../../../_images/qbv_pmod.png" /></p>
-</li>
+<li><p>Set up triggers on Channel1 and Channel2 with an OR condition and set the time scale interval to 1 millisecond.</p></li>
 </ul>
+<p><img alt="pmod" src="../../../_images/qbv_pmod.png" /></p>
 <p><strong>Board2</strong> will listen for packets. On Board1, the application will set up time slots for the traffic classes.  It  will generate packets in continuous mode for both traffic types. The oscilloscope will monitor the tlast signal of scheduled packets and best effort packets exposed by the TSN IP.</p>
 <ul>
 <li><p><em>Start Receive on Board2</em></p>
@@ -474,7 +406,7 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 </ul>
 <p><strong>Observe Results</strong></p>
 <p>The scope shot will show a 70% Scheduled traffic 30 % Best Effort traffic distribution.</p>
-<p><img alt="../../../_images/qbv_osc.png" src="../../../_images/qbv_osc.png" /></p>
+<p><img alt="osc" src="../../../_images/qbv_osc.png" /></p>
 <blockquote>
 <div><p><strong>Note:</strong> You can also monitor Tlast TX ST (P7) and  Tlast TX BE (P9) on Board1, but the distribution is not as clean as the RX, because we are monitoring the data going into the TSN IP before it is scheduled to go out on the Ethernet MAC.</p>
 </div></blockquote>
@@ -501,13 +433,13 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 </li>
 <li><p>In the Wireshark GUI, select File → Open → Browse and select the qbv.pcap file</p></li>
 <li><p>Observe there are two sets of packets within the capture, one set with packet length=900, another set with packet length=800 which when ploted against time will form a 70:30 distribution. The packet length is based on the setting from the talker script, below is an example for lengths 900 and 800 for Scheduled and best effort traffic respectively.</p>
-<p><img alt="../../../_images/i210-wireshark.png" src="../../../_images/i210-wireshark.png" /></p>
+<p><img alt="wireshark" src="../../../_images/i210-wireshark.png" /></p>
 </li>
 <li><p>Click on a packet with length=900 bytes and observe the vlan ID=10, Priority (PCP/PRI=4) where a packet with PCP=4 indicates it is Scheduled traffic</p>
-<p><img alt="../../../_images/i210-wsn1.png" src="../../../_images/i210-wsn1.png" /></p>
+<p><img alt="wsn" src="../../../_images/i210-wsn1.png" /></p>
 </li>
 <li><p>Click on a packet with length=800 bytes and observe the vlan ID=20, Priority (PCP/PRI=1) where a packet with PCP=1 indicates it is Best Effort traffic</p>
-<p><img alt="../../../_images/i210-wsn2.png" src="../../../_images/i210-wsn2.png" /></p>
+<p><img alt="wsn" src="../../../_images/i210-wsn2.png" /></p>
 </li>
 </ul>
 </div>
@@ -524,15 +456,11 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 <li><p>Connect the TPH2 Pmod to the PMOD2 expansion connector (J18) of the KR260 carrier board</p></li>
 <li><p>Connect Ethernet cable from PL ETH1 of KR260 Carrier Board (J10 top port) to Intel I210 NIC Ethernet port of the Linux host machine</p></li>
 <li><p>Connect Power Supply to the 12V PWR DC barrel jack (J12) on the KR260 carrier board.</p>
-<p><img alt="../../../_images/i210-setup.png" src="../../../_images/i210-setup.png" /></p>
+<p><img alt="i210" src="../../../_images/i210-setup.png" /></p>
 </li>
 <li><p>Ensure to load the TSN accelerator/firmware (refer to step-7 ‘dynamically load the application package’ from initial setup) using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">kr260-tsn-rs485pmod</span></code> before testing example application. If the firmware is already loaded, ignore this step and proceed.</p></li>
 <li><p>Setup Ethernet port on the target KR260 board by running the following commands within the USB-UART connected serial terminal, this sets the MAC/IP/VLAN on the EP and ETH port of the TSN switch IP</p>
-<ul>
-<li><p><em>Setup KR260 Board Interfaces</em></p>
 <p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/usr/bin/net_setup.sh</span> <span class="pre">-b2</span> </code></p>
-</li>
-</ul>
 </li>
 </ul>
 <p><strong>Workstation Configuration</strong></p>
@@ -545,27 +473,27 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 </li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h4>Network Time Synchronization (PTP Demo)<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="network-time-synchronization-workstation-kr260-ptp-demo">
+<h4>Network Time Synchronization Workstation-KR260 (PTP Demo)<a class="headerlink" href="#network-time-synchronization-workstation-kr260-ptp-demo" title="Permalink to this heading">¶</a></h4>
 <p>In this demo KR260 will set its clock as slave and the Linux host workstation will serve as the clock master. The KR260 clock will sync with the Linux host workstation clock after a brief synchronization period.</p>
 <p>Using a text editor on the Linux TSN host workstation, create a new ptp4l configuration file with the following settings needed to launch ptp4l as the network clock master</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">[</span><span class="k">global</span><span class="p">]</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    [global]
 
-    <span class="n">transportSpecific</span>       <span class="mi">1</span>
-    <span class="n">priority1</span>               <span class="mi">248</span>
-    <span class="n">priority2</span>               <span class="mi">249</span>
-    <span class="n">ptp_dst_mac</span>             <span class="mi">01</span><span class="p">:</span><span class="mi">80</span><span class="p">:</span><span class="n">C2</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">E</span>
-    <span class="n">p2p_dst_mac</span>             <span class="mi">01</span><span class="p">:</span><span class="mi">80</span><span class="p">:</span><span class="n">C2</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">E</span>
-    <span class="n">logAnnounceInterval</span>     <span class="mi">1</span>
-    <span class="n">logSyncInterval</span>         <span class="o">-</span><span class="mi">3</span>
-    <span class="n">follow_up_info</span>          <span class="mi">1</span>
-    <span class="n">announceReceiptTimeout</span>  <span class="mi">3</span>
-    <span class="n">syncReceiptTimeout</span>      <span class="mi">3</span>
-    <span class="n">neighborPropDelayThresh</span> <span class="mi">800</span>
-    <span class="n">min_neighbor_prop_delay</span> <span class="o">-</span><span class="mi">20000000</span>
-    <span class="n">network_transport</span>       <span class="n">L2</span>
-    <span class="n">delay_mechanism</span>         <span class="n">P2P</span>
-    <span class="n">tx_timestamp_timeout</span>    <span class="mi">10</span>
+    transportSpecific       1
+    priority1               248
+    priority2               249
+    ptp_dst_mac             01:80:C2:00:00:0E
+    p2p_dst_mac             01:80:C2:00:00:0E
+    logAnnounceInterval     1
+    logSyncInterval         -3
+    follow_up_info          1
+    announceReceiptTimeout  3
+    syncReceiptTimeout      3
+    neighborPropDelayThresh 800
+    min_neighbor_prop_delay -20000000
+    network_transport       L2
+    delay_mechanism         P2P
+    tx_timestamp_timeout    10
 </pre></div>
 </div>
 <ul>
@@ -587,15 +515,15 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 <p><strong>Observe Results</strong></p>
 <ul>
 <li><p>The file ptplog contains the saved ptp4l output to the file system on KR260. The rms value will start out high and trend downward to a single digit value showing that the clocks are now in sync.</p>
-<p><img alt="../../../_images/i210-ptp.png" src="../../../_images/i210-ptp.png" /></p>
+<p><img alt="i210" src="../../../_images/i210-ptp.png" /></p>
 </li>
 <li><p>To see the current status of PTP run the following command, to exit log view when finished</p>
-<p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-f</span> <span class="pre">.local/log/ptplog</span> </code></p>
+<p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-f</span> <span class="pre">.local/log/ptplog</span></code></p>
 </li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h4>Network Time Shaper Function (802.1Qbv Demo)<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="id2">
+<h4>Network Time Shaper Function (802.1Qbv Demo)<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
 <p>This demo allots a time slot for Scheduled Traffic (ST) and Best Effort (BE) traffic and it can be visualized on an oscilloscope.  For a cycle time period of 1ms, ST traffic will be sent for 700us and BE traffic for 300us.  Wireshark on the Linux host workstation will listen for packets.  On the KR260 board, the application will set up time slots for the traffic classes.  Packets are generated in continuous mode for both traffic types.  Wireshark will monitor the incoming packets for scheduled and best-effort traffic exposed by the TSN IP.</p>
 <p>An oscilloscope or Analog Discovery 2 device can also be used to monitor Tlast Tx ST (P7) and Tlast Tx EP (P9) on KR260 board to view the distribution.
 Oscilloscope Setup (optional)</p>
@@ -603,10 +531,10 @@ Oscilloscope Setup (optional)</p>
 <li><p>Connect P7 on the Test Pmod of KR260 to Channel1 of the oscilloscope - Tlast Tx ST</p></li>
 <li><p>Connect P9 on the Test Pmod of KR260 to Channel2 of the oscilloscope - Tlast Tx EP</p></li>
 <li><p>Set up triggers on Channel1 and Channel2 with an OR condition and set the time scale interval to 1 millisecond:</p>
-<p><img alt="../../../_images/i210-qbv.png" src="../../../_images/i210-qbv.png" /></p>
+<p><img alt="i210" src="../../../_images/i210-qbv.png" /></p>
 </li>
 <li><p>The Analog Discovery 2 can be connected to KR260 using these connections for observing the scheduled traffic:</p>
-<p><img alt="../../../_images/i210-osc.png" src="../../../_images/i210-osc.png" /></p>
+<p><img alt="i210" src="../../../_images/i210-osc.png" /></p>
 </li>
 <li><p>Start Wireshark on the Linux host machine and select I210 interface to see traffic data</p>
 <p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">wireshark</span> <span class="pre">&amp;</span></code></p>
@@ -619,7 +547,7 @@ Oscilloscope Setup (optional)</p>
 <p><strong>Observe Results</strong></p>
 <ul>
 <li><p>The scope shot will show an approximate Scheduled traffic (Channel 1 yellow) and Best Effort traffic (Channel 2 green) distribution.</p>
-<p><img alt="../../../_images/i210-osc-results.png" src="../../../_images/i210-osc-results.png" /></p>
+<p><img alt="i210" src="../../../_images/i210-osc-results.png" /></p>
 </li>
 </ul>
 <blockquote>
@@ -627,13 +555,13 @@ Oscilloscope Setup (optional)</p>
 </div></blockquote>
 <ul>
 <li><p>Observe there are two sets of packets within the capture, one set with packet length=900, another set with packet length=800</p>
-<p><img alt="../../../_images/i210-wireshark.png" src="../../../_images/i210-wireshark.png" /></p>
+<p><img alt="i210" src="../../../_images/i210-wireshark.png" /></p>
 </li>
 <li><p>Click on a packet with length=900 bytes and observe the vlan ID=10, Priority (PCP/PRI=4) where a packet with PCP=4 indicates it is Scheduled traffic</p>
-<p><img alt="../../../_images/i210-wsn1.png" src="../../../_images/i210-wsn1.png" /></p>
+<p><img alt="i210" src="../../../_images/i210-wsn1.png" /></p>
 </li>
 <li><p>Click on a packet with length=800 bytes and observe the vlan ID=20, Priority (PCP/PRI=1) where a packet with PCP=1 indicates it is Best Effort traffic</p>
-<p><img alt="../../../_images/i210-wsn2.png" src="../../../_images/i210-wsn2.png" /></p>
+<p><img alt="i210" src="../../../_images/i210-wsn2.png" /></p>
 <p>Wireshark trace shows a traffic distribution of 70% Scheduled traffic and 30% Best Effort traffic</p>
 </li>
 </ul>
@@ -642,18 +570,21 @@ Oscilloscope Setup (optional)</p>
 <div class="section" id="communication-using-rs485">
 <h3>Communication using RS485<a class="headerlink" href="#communication-using-rs485" title="Permalink to this heading">¶</a></h3>
 <p>The K26 SOM has capability to perform as an advanced and highly integrated gateway for legacy industrial networking protocols (those using RS485/Modbus) to more modern industrial networking infrastructure (such as TSN) and this application serves as an example of how to interface to a remote temperature sensor for capturing data.  This is analogous to integrating in legacy, but still functional, capital equipment in order to reduce total replacement costs within factory retrofits and technology upgrades.</p>
-<div class="section" id="id4">
-<h4>Board Setup<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
-<ul>
-<li><p>Connect the Pmod RS485 to the PMOD1 expansion connector (J2) of the KR260 carrier board, be sure to connect this to the bottom row of pins (ones labeled 2,4,6,8,10, and 12) since the module is a 1x6 header connecting to a 2x6 connector on KR260</p>
-<p><img alt="../../../_images/pmod-temp.png" src="../../../_images/pmod-temp.png" /></p>
-</li>
-<li><p>Connect the Temperature sensor and PMOD RS485 using prototyping wire (18 AWG works well) as shown in the figure below:</p>
-<p><img alt="../../../_images/pmod-temp-sch.png" src="../../../_images/pmod-temp-sch.png" /></p>
-</li>
-<li><p>Connect a 12 VDC supply to power the RS485 temperature sensor using GND and VIN terminals.</p>
-<p><img alt="../../../_images/pmo-temp-disp.png" src="../../../_images/pmo-temp-disp.png" /></p>
-</li>
+<div class="section" id="id3">
+<h4>Board Setup<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Connect the Pmod RS485 to the PMOD1 expansion connector (J2) of the KR260 carrier board, be sure to connect this to the bottom row of pins (ones labeled 2,4,6,8,10, and 12) since the module is a 1x6 header connecting to a 2x6 connector on KR260</p></li>
+</ul>
+<p><img alt="pmod" src="../../../_images/pmod-temp.png" /></p>
+<ul class="simple">
+<li><p>Connect the Temperature sensor and PMOD RS485 using prototyping wire (18 AWG works well) as shown in the figure below:</p></li>
+</ul>
+<p><img alt="pmod" src="../../../_images/pmod-temp-sch.png" /></p>
+<ul class="simple">
+<li><p>Connect a 12 VDC supply to power the RS485 temperature sensor using GND and VIN terminals.</p></li>
+</ul>
+<p><img alt="pmod" src="../../../_images/pmo-temp-disp.png" /></p>
+<ul class="simple">
 <li><p>Connect Power Supply to the 12V PWR DC barrel jack (J12) on the KR260 carrier board.</p></li>
 </ul>
 </div>
@@ -666,12 +597,12 @@ Oscilloscope Setup (optional)</p>
 <li><p>Probe sensor via RS485 interface</p></li>
 </ul>
 <p>Execute binary</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pmod-rs485-test
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pmod-rs485-test
 </pre></div>
 </div>
 <p><strong>Observe Results</strong></p>
 <p>The output on the serial terminal should match the value displayed on the seven-segment LED display of the sensor.</p>
-<p><img alt="../../../_images/temp-term.png" src="../../../_images/temp-term.png" /></p>
+<p><img alt="temp" src="../../../_images/temp-term.png" /></p>
 <blockquote>
 <div><p><strong>Note:</strong>  Occasionally, erroneous values (for example 3276.8) are reported for temperature/humidity sensor data and this is due to error in the sensor itself which can be ignored and the test rerun to clear the error.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">32768</span> <span class="p">(</span><span class="mh">0x8000</span><span class="p">)</span>
@@ -681,7 +612,7 @@ Oscilloscope Setup (optional)</p>
 </pre></div>
 </div>
 <p>For reference, here is the register map of the sensor:
-<img alt="../../../_images/tmp-ref.png" src="../../../_images/tmp-ref.png" /></p>
+<img alt="tmp" src="../../../_images/tmp-ref.png" /></p>
 </div></blockquote>
 </div>
 </div>
