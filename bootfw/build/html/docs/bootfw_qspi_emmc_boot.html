@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
@@ -62,9 +62,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs//creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs//ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs//openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs//drm.html">Digital Rights Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs//dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs//ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -120,17 +123,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="steps">
 <h2>Steps<a class="headerlink" href="#steps" title="Permalink to this heading">¶</a></h2>
 <p>There are many different ways to get a Production SOM to boot from QSPI to eMMC. Here are the outlines of the steps:</p>
-<ol class="simple">
-<li><p>Program production SOM with QSPI binary, there are 2 ways to do this:
-1.A Program QSPI using XSDB/XSCT and u-boot
-1.B Program QSPI using Vivado Labs</p></li>
-<li><p>Program Production SOM eMMC with Linux Image, there are 2 days to do this:
-2.A Program Production SOM eMMC with Image Recovery App (does not support Ubuntu)
-2.B Program Production SOM eMMC with Linux Image using Linux:
-first boot Linux with eMMC awareness, and there are 2 days to do this too:
-2.B.a. Boot Linux using petalinux-boot
-2.B.b. Boot Linux through SD
-Write to eMMC in Linux</p></li>
+<ol>
+<li><p>Program production SOM with QSPI binary, there are 2 ways to do this:</p>
+<p>1.A Program QSPI using XSDB/XSCT and u-boot</p>
+<p>1.B Program QSPI using Vivado Labs</p>
+</li>
+<li><p>Program Production SOM eMMC with Linux Image, there are 2 days to do this:</p>
+<p>2.A Program Production SOM eMMC with Image Recovery App (does not support Ubuntu)</p>
+<p>2.B Program Production SOM eMMC with Linux Image using Linux:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">first</span> <span class="n">boot</span> <span class="n">Linux</span> <span class="k">with</span> <span class="n">eMMC</span> <span class="n">awareness</span><span class="p">,</span> <span class="ow">and</span> <span class="n">there</span> <span class="n">are</span> <span class="mi">2</span> <span class="n">days</span> <span class="n">to</span> <span class="n">do</span> <span class="n">this</span> <span class="n">too</span><span class="p">:</span>
+     <span class="mf">2.</span><span class="n">B</span><span class="o">.</span><span class="n">a</span><span class="o">.</span> <span class="n">Boot</span> <span class="n">Linux</span> <span class="n">using</span> <span class="n">petalinux</span><span class="o">-</span><span class="n">boot</span>
+     <span class="mf">2.</span><span class="n">B</span><span class="o">.</span><span class="n">b</span><span class="o">.</span> <span class="n">Boot</span> <span class="n">Linux</span> <span class="n">through</span> <span class="n">SD</span>
+ <span class="n">Write</span> <span class="n">to</span> <span class="n">eMMC</span> <span class="ow">in</span> <span class="n">Linux</span>
+</pre></div>
+</div>
+</li>
 <li><p>reboot in QSPI mode</p></li>
 </ol>
 <div class="section" id="program-production-som-with-qspi-binary">
@@ -251,12 +258,12 @@ l xilinx-&lt;board&gt;-&lt;version&gt;/pre-built/linux/images/petalinux-sdimage.
 </div>
 <p>If doing this for the second time (eMMC already have a good working Linux image), Kria SOM will choose to boot to eMMC prior to try to boot to SD. In order to boot to SD instead of eMMC, press “enter” when u-boot prompts to stop autoboot. In u-boot, use these commands to boot to PetaLinux image in sd:</p>
 <p>[note: need to check if this is working]</p>
-<p>For KV260:</p>
+<p>For KV260, SD is mapped to mmc1:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setenv</span> <span class="n">boot_targets</span> <span class="n">mmc1</span>
 <span class="n">run</span> <span class="n">bootcmd_mmc1</span>
 </pre></div>
 </div>
-<p>For KR260:</p>
+<p>For KR260, SD is behind the USB hub:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setenv</span> <span class="n">boot_targets</span> <span class="n">usb0</span>
 <span class="n">run</span> <span class="n">bootcmd_usb0</span>
 </pre></div>
@@ -264,7 +271,7 @@ l xilinx-&lt;board&gt;-&lt;version&gt;/pre-built/linux/images/petalinux-sdimage.
 </div>
 <div class="section" id="write-to-emmc-in-linux">
 <h4>Write to eMMC in Linux<a class="headerlink" href="#write-to-emmc-in-linux" title="Permalink to this heading">¶</a></h4>
-<p>Once booted to Linux, you should be able to see  /dev/mmcblk0 -  the eMMC partition, and /dev/mmcblk1 - the SD partition on KV260 starter kit. To double check, you can use this command:</p>
+<p>Once booted to Linux, you should be able to see  /dev/mmcblk0 -  the eMMC partition. Note on KV260 starter kit, there is also /dev/mmcblk1 - the SD partition. To double check, you can use this command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat /sys/class/mmc_host/mmc0/*/uevent
 cat /sys/class/mmc_host/mmc1/*/uevent
 </pre></div>
@@ -275,18 +282,25 @@ cat /sys/class/mmc_host/mmc1/*/uevent
 </pre></div>
 </div>
 <p>Next, transfer the file over using your favorite method (such as scp, nfs, copying over SD card etc…). We are showing nfsroot method below:</p>
-<p>On host computer:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nfsroot3 &lt;path to be mounted where wic image is present&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>On host computer:
+
+```shell
+nfsroot3 &lt;path to be mounted where wic image is present&gt;
+```
+
+On target:
+
+```shell
+mkdir /nfsroot
+mount -t nfs -o nolock,proto=tcp,port=2049 10.10.70.101:/exports/root /nfsroot
+#Use DD command to flash wic
+dd if=/nfsroot/petalinux-sdimage.wic of=/dev/mmcblk0
+```
 </pre></div>
 </div>
-<p>On target:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir /nfsroot
-mount -t nfs -o nolock,proto<span class="o">=</span>tcp,port<span class="o">=</span><span class="m">2049</span> <span class="m">10</span>.10.70.101:/exports/root /nfsroot
-<span class="c1">#Use DD command to flash wic</span>
-dd <span class="k">if</span><span class="o">=</span>/nfsroot/petalinux-sdimage.wic <span class="nv">of</span><span class="o">=</span>/dev/mmcblk0
-</pre></div>
-</div>
-<p>[note to self: also how do i program ubuntu instead of a wic image?]</p>
+<p>Instead of nfxroot method, you can also use scp:</p>
+<p>on host computer:</p>
+<p>[note to self: add thre above after testing. also how do i program ubuntu instead of a wic image?]</p>
 </div>
 </div>
 <div class="section" id="reboot-in-qspi-mode">
@@ -330,7 +344,7 @@ con
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 13, 2023.
+      <span class="lastupdated">Last updated on February 3, 2023.
       </span></p>
   </div>
 

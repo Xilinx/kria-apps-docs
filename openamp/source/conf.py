@@ -25,14 +25,14 @@ sys.path.insert(0, os.path.abspath('docs'))
 # -- Project information -----------------------------------------------------
 
 project = 'OpenAMP'
-copyright = '2022, Advanced Micro Devices, Inc'
+copyright = '2022-2023, Advanced Micro Devices, Inc'
 author = 'Advanced Micro Devices, Inc'
 
 # The short X.Y version
 version = '1.0'
 # The full version, including alpha/beta/rc tags
 release = '1.0'
-html_last_updated_fmt = 'October 10, 2022'
+html_last_updated_fmt = 'February 3, 2023'
 
 # -- General configuration ---------------------------------------------------
 
