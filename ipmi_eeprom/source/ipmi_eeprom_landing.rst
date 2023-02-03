@@ -3,7 +3,7 @@ IPMI EEPROM Design Guide
 ########################################################################################################################
 
 
-.. Before going public, replace xilinx.github.io/kria-apps-docs// with xilinx.github.io/kria-apps-docs/
+.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM/ with xilinx.github.io/kria-apps-docs/
 
 .. toctree::
    :maxdepth: 3
@@ -15,8 +15,8 @@ IPMI EEPROM Design Guide
    Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
    Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
    OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
-   Digital Rights Management <https://xilinx.github.io/kria-apps-docs//drm.html>
-   Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs//dfx.html>
+   Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
+   Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
    Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
