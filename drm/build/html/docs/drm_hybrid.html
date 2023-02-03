@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
@@ -67,6 +67,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs//dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs//ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -103,10 +105,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#working-outside-of-petalinux-infrastructure">Working outside of PetaLinux Infrastructure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#resources">Resources</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 </ul>
@@ -181,7 +183,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="generating-app-store-boot-firmware">
 <h3>Generating App Store Boot Firmware<a class="headerlink" href="#generating-app-store-boot-firmware" title="Permalink to this heading">¶</a></h3>
 <p>In order to generate a BOOT.BIN with support for the DRM solution, you will first need to download the appstore.bin from the <a class="reference external" href="https://appstore.xilinx.com/front/customer/content-delivery">AMD/Xilinx User Portal</a>. Once receiving the appstore.bin from Accelize you must rebuild BOOT.BIN in order to have it loaded at boot time by FSBL. The following steps outline how to integrate the appstore.bin through Xilinx PetaLinux BootGen.</p>
-<p>The following instructions assumes that we are working with 2022.1 <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">Kria SOM PetaLinux BSP</a> and 2022.1 tool chain. Download the appropriate BSP, and create workspace:</p>
+<p>The following instructions assumes that we are working with 2022.1 <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">Kria SOM PetaLinux BSP</a> and 2022.1 tool chain. Download the appropriate BSP, and create workspace. When cloning Accelize github, use REL221027_PL20221 tag to get 2022.1 specific release.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s &lt;kria_starterkit&gt;.bsp
 <span class="nb">cd</span> &lt;kria_starter_kit_petalinux_folder&gt;
 petalinux-config --silentconfig
@@ -189,7 +191,7 @@ petalinux-config --silentconfig
 <span class="c1"># Get the meta layers for Provenrun and Accelize</span>
 <span class="nb">cd</span> project-spec/
 git clone https://github.com/ProvenRun/meta-provenrun.git -b xilinx-drm-honister
-git clone https://github.com/Accelize/meta-accelize.git -b honister
+git clone https://github.com/Accelize/meta-accelize.git -b REL221027_PL20221
 <span class="nb">cd</span> ../
 </pre></div>
 </div>
@@ -328,7 +330,7 @@ petalinux-package --wic --images-dir images/linux/ --bootfiles <span class="s2">
 <h3>Working outside of PetaLinux Infrastructure<a class="headerlink" href="#working-outside-of-petalinux-infrastructure" title="Permalink to this heading">¶</a></h3>
 <p>This document provided detailed instructions on how to generate DRM supported artifacts through PetaLinux. If developers are outside of PetaLinux infrastructure, below are some information to help get started..</p>
 <p>For integration of the ProvenCore OS Linux driver for interacting with the TEE see the meta-provenrun Yocto layer available <a class="reference external" href="https://github.com/ProvenRun/meta-provenrun/tree/xilinx-drm-honister">here</a> in the xilinx-drm-honister branch.</p>
-<p>For integration of the Accelize DRM Linux driver see meta-accelize Yocto layer available <a class="reference external" href="https://github.com/Accelize/meta-accelize/tree/honister">here</a> in the honister branch.</p>
+<p>For integration of the Accelize DRM Linux driver see meta-accelize Yocto layer available <a class="reference external" href="https://github.com/Accelize/meta-accelize/tree/honister">here</a> in the honister branch. Use REL221027_PL20221 tag for 2022.1 specific builds.</p>
 <p>To generate BOOT.BIN outside of PetaLinux, you can also use bootgen with a .bif file to generate BOOT.BIN outside PetaLinux infrastructure:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#boot gen command:</span>
 bootgen -arch zynqmp -image bootgen.bif
@@ -347,21 +349,21 @@ bootgen -arch zynqmp -image bootgen.bif
 </pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="resources">
-<h3>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">¶</a></h3>
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://wiki.accelize.com/home/How-to-Publish-a-Kria-Application-on-the-Xilinx-Kria-Store.147226634.html">How to publish a Kria Application on the Xilinx Kria Store</a></p></li>
 <li><p><a class="reference external" href="https://github.com/Accelize/GettingStarted_Examples/tree/master/Hardware/Xilinx_Vitis/01_rtl_kernel_XDMA/rtl_adder_pipes_KV260_2021.1#2-build-the-embeeded-linux-packages-using-petalinux">Accelize Getting Started Examples</a></p></li>
 </ul>
 </div>
 <div class="section" id="license">
-<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
 <p align="center">Copyright&copy; 2021 Xilinx</p></div>
-</div>
 </div>
 
 
@@ -384,8 +386,8 @@ bootgen -arch zynqmp -image bootgen.bif
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 10, 2022.
+    <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 3, 2023.
       </span></p>
   </div>
 

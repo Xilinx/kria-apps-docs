@@ -2,7 +2,7 @@
 Dynamic Function eXchange (DFX)
 ###############################################################################################################
 
-
+.. Before going public, replace xilinx.github.io/kria-apps-docs// with xilinx.github.io/kria-apps-docs/
 
 .. toctree::
    :maxdepth: 3
@@ -14,11 +14,11 @@ Dynamic Function eXchange (DFX)
    Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
    Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
    OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
+   Digital Rights Management <https://xilinx.github.io/kria-apps-docs//drm.html>
+   IPMI EEPROM Design Guide <https://xilinx.github.io/kria-apps-docs//ipmi_eeprom.html>
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
    Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
-
-
 
 
 .. toctree::

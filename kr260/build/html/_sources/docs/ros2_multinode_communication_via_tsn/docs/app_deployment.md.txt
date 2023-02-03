@@ -154,7 +154,7 @@ This configuration requires two KR260 units, TSN subsystem are connected to form
 
 ![osc](../media/2board-osc.png)
 
-#### Board setup
+#### Two KR260 boards: Board setup
 
 * Connect Ethernet cable from PL ETH1 of Board1 (J10 top) to PL ETH1 of  Board2 (J10 top)
 * Connect JTAG/UART ports of both boards to your PC
@@ -355,7 +355,7 @@ Wireshark trace will show a 70% Scheduled traffic 30 % Best Effort traffic distr
 
 A single KR260 board communicating with a PC workstation capable of TSN networking.  The PC workstation is using an I210 Ethernet Controller interface card to demonstrate functionality and features of TSN.
 
-#### Board Setup
+#### KR260 and PC Workstation: Board Setup
 
 * Insert the microSD card containing the boot image into the microSD card slot (J11) on the Starter Kit
 * Connect JTAG/UART port (J4) of the KR260 carrier board to the development PC
@@ -430,7 +430,7 @@ Using a text editor on the Linux TSN host workstation, create a new ptp4l config
 
     `tail -f .local/log/ptplog`
 
-#### Network Time Shaper Function (802.1Qbv Demo)
+#### Network Time Shaper Function (other 802.1Qbv Demo)
 
 This demo allots a time slot for Scheduled Traffic (ST) and Best Effort (BE) traffic and it can be visualized on an oscilloscope.  For a cycle time period of 1ms, ST traffic will be sent for 700us and BE traffic for 300us.  Wireshark on the Linux host workstation will listen for packets.  On the KR260 board, the application will set up time slots for the traffic classes.  Packets are generated in continuous mode for both traffic types.  Wireshark will monitor the incoming packets for scheduled and best-effort traffic exposed by the TSN IP.
 
@@ -482,7 +482,7 @@ Oscilloscope Setup (optional)
 
 The K26 SOM has capability to perform as an advanced and highly integrated gateway for legacy industrial networking protocols (those using RS485/Modbus) to more modern industrial networking infrastructure (such as TSN) and this application serves as an example of how to interface to a remote temperature sensor for capturing data.  This is analogous to integrating in legacy, but still functional, capital equipment in order to reduce total replacement costs within factory retrofits and technology upgrades.
 
-#### Board Setup
+#### RS485: Board Setup
 
 * Connect the Pmod RS485 to the PMOD1 expansion connector (J2) of the KR260 carrier board, be sure to connect this to the bottom row of pins (ones labeled 2,4,6,8,10, and 12) since the module is a 1x6 header connecting to a 2x6 connector on KR260
 

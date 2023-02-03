@@ -18,15 +18,22 @@ User can also use the traditional monolithic boot (from eMMC) for production SOM
 There are many different ways to get a Production SOM to boot from QSPI to eMMC. Here are the outlines of the steps:
 
 1. Program production SOM with QSPI binary, there are 2 ways to do this:
+
     1.A Program QSPI using XSDB/XSCT and u-boot
+
     1.B Program QSPI using Vivado Labs
+
 2. Program Production SOM eMMC with Linux Image, there are 2 days to do this:
+
     2.A Program Production SOM eMMC with Image Recovery App (does not support Ubuntu)
+
     2.B Program Production SOM eMMC with Linux Image using Linux:
+
         first boot Linux with eMMC awareness, and there are 2 days to do this too:
             2.B.a. Boot Linux using petalinux-boot
             2.B.b. Boot Linux through SD
         Write to eMMC in Linux
+
 3. reboot in QSPI mode
 
 ### 1. Program Production SOM with QSPI binary
@@ -193,13 +200,13 @@ If doing this for the second time (eMMC already have a good working Linux image)
 
 [note: need to check if this is working]
 
-For KV260:
+For KV260, SD is mapped to mmc1:
 ``` 
 setenv boot_targets mmc1
 run bootcmd_mmc1
 ```
 
-For KR260:
+For KR260, SD is behind the USB hub:
 ``` 
 setenv boot_targets usb0
 run bootcmd_usb0
@@ -207,7 +214,7 @@ run bootcmd_usb0
 
 #### Write to eMMC in Linux
 
-Once booted to Linux, you should be able to see  /dev/mmcblk0 -  the eMMC partition, and /dev/mmcblk1 - the SD partition on KV260 starter kit. To double check, you can use this command:
+Once booted to Linux, you should be able to see  /dev/mmcblk0 -  the eMMC partition. Note on KV260 starter kit, there is also /dev/mmcblk1 - the SD partition. To double check, you can use this command:
 
 ```shell
 cat /sys/class/mmc_host/mmc0/*/uevent
@@ -224,22 +231,26 @@ fdisk /dev/mmcblk0 #delete all partitions using "d" + "enter" followed by "parti
 
 Next, transfer the file over using your favorite method (such as scp, nfs, copying over SD card etc...). We are showing nfsroot method below:
 
-On host computer:
+    On host computer:
 
-```shell
-nfsroot3 <path to be mounted where wic image is present>
-```
+    ```shell
+    nfsroot3 <path to be mounted where wic image is present>
+    ```
 
-On target:
+    On target:
 
-```shell
-mkdir /nfsroot
-mount -t nfs -o nolock,proto=tcp,port=2049 10.10.70.101:/exports/root /nfsroot
-#Use DD command to flash wic
-dd if=/nfsroot/petalinux-sdimage.wic of=/dev/mmcblk0
-```
+    ```shell
+    mkdir /nfsroot
+    mount -t nfs -o nolock,proto=tcp,port=2049 10.10.70.101:/exports/root /nfsroot
+    #Use DD command to flash wic
+    dd if=/nfsroot/petalinux-sdimage.wic of=/dev/mmcblk0
+    ```
 
-[note to self: also how do i program ubuntu instead of a wic image?]
+Instead of nfxroot method, you can also use scp:
+
+on host computer:
+
+[note to self: add thre above after testing. also how do i program ubuntu instead of a wic image?]
 
 ### 3. reboot in QSPI mode
 

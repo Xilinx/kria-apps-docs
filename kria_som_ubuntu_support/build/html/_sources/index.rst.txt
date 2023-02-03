@@ -11,7 +11,7 @@ Kria SOM Ubuntu Support
 
    Landing Page <https://xilinx.github.io/kria-apps-docs/>
    Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications/latest/build/html/index.html>
-   Boot Firmware <https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html>
+   Boot Firmware <https://xilinx.github.io/kria-apps-docs//bootfw.html>
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/main/build/html/index.html>
    Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260/build/html/index.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>

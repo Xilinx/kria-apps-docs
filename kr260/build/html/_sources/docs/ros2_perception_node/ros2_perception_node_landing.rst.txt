@@ -8,9 +8,9 @@ Overview
 *******************************
 
 .. toctree::
-  :maxdepth: 1
+   :maxdepth: 1
   
-  Introduction <docs/introduction>
+   Introduction <docs/introduction>
 
 
 Features
@@ -23,10 +23,10 @@ Quick Start
 *******************************
 
 .. toctree::
-  :maxdepth: 1
+   :maxdepth: 1
   
-  KR260 Starter Kit Linux Boot <../kria_starterkit_linux_boot>
-  Setting up the Board and Application deployment <docs/app_deployment>
+   KR260 Starter Kit Linux Boot <../kria_starterkit_linux_boot>
+   Setting up the Board and Application deployment <docs/app_deployment>
 
 
 ***************************
@@ -34,12 +34,12 @@ Tutorials
 ***************************
 
 .. toctree::
-  :maxdepth: 1
+   :maxdepth: 1
   
 
-  KR260 Starter Kit Linux Boot <../kria_starterkit_linux_boot>
-  Creating a Vitis Platform <../build_vitis_platform>
-  Generate Custom Firmware <../generating_custom_firmware>
+   KR260 Starter Kit Linux Boot <../kria_starterkit_linux_boot>
+   Creating a Vitis Platform <../build_vitis_platform>
+   Generate Custom Firmware <../generating_custom_firmware>
 
 
 ******
@@ -47,9 +47,9 @@ Other
 ******
 
 .. toctree::
-  :maxdepth: 1
+   :maxdepth: 1
   
-  Known Issues & Limitations <docs/issue-pubsub>
+   Known Issues & Limitations <docs/issue-perception>
 
 
 

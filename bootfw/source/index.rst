@@ -9,14 +9,15 @@ Boot Firmware
    :hidden:
 
    Landing Page <https://xilinx.github.io/kria-apps-docs/>
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications.html>
-   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
-   OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
+   Application Development <https://xilinx.github.io/kria-apps-docs//creating_applications.html>
+   Ubuntu Support <https://xilinx.github.io/kria-apps-docs//ubuntu_support.html>
+   OpenAMP <https://xilinx.github.io/kria-apps-docs//openamp.html>
+   Digital Rights Management <https://xilinx.github.io/kria-apps-docs//drm.html>
+   Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs//dfx.html>
+   IPMI EEPROM Design Guide <https://xilinx.github.io/kria-apps-docs//ipmi_eeprom.html>
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
    Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
-
-
 
 
 

@@ -21,7 +21,7 @@ To integrate hardware DRM solution, to Accelize [getting started](https://tech.a
 
 For an example on how to integrate the Accelize software DRM solution with a Kria SOM Starter Kit and/or production SOM please refer to [drm_hybrid](../docs/drm_hybrid) page.
 
-### License
+## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

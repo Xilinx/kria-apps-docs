@@ -54,7 +54,7 @@ This section shows how to generate binaries to integrate the DRM solution into y
 
 In order to generate a BOOT.BIN with support for the DRM solution, you will first need to download the appstore.bin from the [AMD/Xilinx User Portal](https://appstore.xilinx.com/front/customer/content-delivery). Once receiving the appstore.bin from Accelize you must rebuild BOOT.BIN in order to have it loaded at boot time by FSBL. The following steps outline how to integrate the appstore.bin through Xilinx PetaLinux BootGen.
 
-The following instructions assumes that we are working with 2022.1 [Kria SOM PetaLinux BSP](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages) and 2022.1 tool chain. Download the appropriate BSP, and create workspace:
+The following instructions assumes that we are working with 2022.1 [Kria SOM PetaLinux BSP](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages) and 2022.1 tool chain. Download the appropriate BSP, and create workspace. When cloning Accelize github, use REL221027_PL20221 tag to get 2022.1 specific release.
 
 ```shell
 petalinux-create -t project -s <kria_starterkit>.bsp
@@ -64,7 +64,7 @@ petalinux-config --silentconfig
 # Get the meta layers for Provenrun and Accelize
 cd project-spec/
 git clone https://github.com/ProvenRun/meta-provenrun.git -b xilinx-drm-honister
-git clone https://github.com/Accelize/meta-accelize.git -b honister
+git clone https://github.com/Accelize/meta-accelize.git -b REL221027_PL20221
 cd ../
 ```
 
@@ -234,7 +234,7 @@ This document provided detailed instructions on how to generate DRM supported ar
 
 For integration of the ProvenCore OS Linux driver for interacting with the TEE see the meta-provenrun Yocto layer available [here](https://github.com/ProvenRun/meta-provenrun/tree/xilinx-drm-honister) in the xilinx-drm-honister branch.
 
-For integration of the Accelize DRM Linux driver see meta-accelize Yocto layer available [here](https://github.com/Accelize/meta-accelize/tree/honister) in the honister branch.
+For integration of the Accelize DRM Linux driver see meta-accelize Yocto layer available [here](https://github.com/Accelize/meta-accelize/tree/honister) in the honister branch. Use REL221027_PL20221 tag for 2022.1 specific builds.
 
 To generate BOOT.BIN outside of PetaLinux, you can also use bootgen with a .bif file to generate BOOT.BIN outside PetaLinux infrastructure:
 
@@ -257,12 +257,12 @@ the_ROM_image:
 }
 ```
 
-### Resources
+## Resources
 
 - [How to publish a Kria Application on the Xilinx Kria Store](https://wiki.accelize.com/home/How-to-Publish-a-Kria-Application-on-the-Xilinx-Kria-Store.147226634.html)
 - [Accelize Getting Started Examples](https://github.com/Accelize/GettingStarted_Examples/tree/master/Hardware/Xilinx_Vitis/01_rtl_kernel_XDMA/rtl_adder_pipes_KV260_2021.1#2-build-the-embeeded-linux-packages-using-petalinux)
 
-### License
+## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 

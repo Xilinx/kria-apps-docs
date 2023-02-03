@@ -260,8 +260,8 @@ sudo apt install ros-humble-ros-base
 <h3>Network Configuration 1 : Two KR260 boards<a class="headerlink" href="#network-configuration-1-two-kr260-boards" title="Permalink to this heading">¶</a></h3>
 <p>This configuration requires two KR260 units, TSN subsystem are connected to form a network where one of the units is configured to be master, while the other as slave. Image below represent this configuration:</p>
 <p><img alt="osc" src="../../../_images/2board-osc.png" /></p>
-<div class="section" id="board-setup">
-<h4>Board setup<a class="headerlink" href="#board-setup" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="two-kr260-boards-board-setup">
+<h4>Two KR260 boards: Board setup<a class="headerlink" href="#two-kr260-boards-board-setup" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Connect Ethernet cable from PL ETH1 of Board1 (J10 top) to PL ETH1 of  Board2 (J10 top)</p></li>
 <li><p>Connect JTAG/UART ports of both boards to your PC</p></li>
@@ -448,8 +448,8 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 <div class="section" id="network-configuration-2-kr260-and-pc-workstation">
 <h3>Network Configuration 2 : KR260 and PC Workstation<a class="headerlink" href="#network-configuration-2-kr260-and-pc-workstation" title="Permalink to this heading">¶</a></h3>
 <p>A single KR260 board communicating with a PC workstation capable of TSN networking.  The PC workstation is using an I210 Ethernet Controller interface card to demonstrate functionality and features of TSN.</p>
-<div class="section" id="id1">
-<h4>Board Setup<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="kr260-and-pc-workstation-board-setup">
+<h4>KR260 and PC Workstation: Board Setup<a class="headerlink" href="#kr260-and-pc-workstation-board-setup" title="Permalink to this heading">¶</a></h4>
 <ul>
 <li><p>Insert the microSD card containing the boot image into the microSD card slot (J11) on the Starter Kit</p></li>
 <li><p>Connect JTAG/UART port (J4) of the KR260 carrier board to the development PC</p></li>
@@ -522,8 +522,8 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 </li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h4>Network Time Shaper Function (802.1Qbv Demo)<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="network-time-shaper-function-other-802-1qbv-demo">
+<h4>Network Time Shaper Function (other 802.1Qbv Demo)<a class="headerlink" href="#network-time-shaper-function-other-802-1qbv-demo" title="Permalink to this heading">¶</a></h4>
 <p>This demo allots a time slot for Scheduled Traffic (ST) and Best Effort (BE) traffic and it can be visualized on an oscilloscope.  For a cycle time period of 1ms, ST traffic will be sent for 700us and BE traffic for 300us.  Wireshark on the Linux host workstation will listen for packets.  On the KR260 board, the application will set up time slots for the traffic classes.  Packets are generated in continuous mode for both traffic types.  Wireshark will monitor the incoming packets for scheduled and best-effort traffic exposed by the TSN IP.</p>
 <p>An oscilloscope or Analog Discovery 2 device can also be used to monitor Tlast Tx ST (P7) and Tlast Tx EP (P9) on KR260 board to view the distribution.
 Oscilloscope Setup (optional)</p>
@@ -570,8 +570,8 @@ Oscilloscope Setup (optional)</p>
 <div class="section" id="communication-using-rs485">
 <h3>Communication using RS485<a class="headerlink" href="#communication-using-rs485" title="Permalink to this heading">¶</a></h3>
 <p>The K26 SOM has capability to perform as an advanced and highly integrated gateway for legacy industrial networking protocols (those using RS485/Modbus) to more modern industrial networking infrastructure (such as TSN) and this application serves as an example of how to interface to a remote temperature sensor for capturing data.  This is analogous to integrating in legacy, but still functional, capital equipment in order to reduce total replacement costs within factory retrofits and technology upgrades.</p>
-<div class="section" id="id3">
-<h4>Board Setup<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="rs485-board-setup">
+<h4>RS485: Board Setup<a class="headerlink" href="#rs485-board-setup" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Connect the Pmod RS485 to the PMOD1 expansion connector (J2) of the KR260 carrier board, be sure to connect this to the bottom row of pins (ones labeled 2,4,6,8,10, and 12) since the module is a 1x6 header connecting to a 2x6 connector on KR260</p></li>
 </ul>
@@ -680,7 +680,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 24, 2023.
+      <span class="lastupdated">Last updated on February 3, 2023.
       </span></p>
   </div>
 
