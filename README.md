@@ -1,7 +1,6 @@
-<h1 align="center">KRIA SOM DOCUMENTATION</h1>
+# Kria™ SOM Documentation
 
-## Introduction
-This repository contains the source code of Kria SOM documentation which gets rendered to sphinx pages. To view complete documentation click on the link below.
+This repository contains the source code of Kria SOM documentation, which is rendered in HTML to improve your experience and improve its usability.
 
+## Go to the [Kria SOM Documentation Landing Page](https://xilinx.github.io/kria-apps-docs/)
 
-## [Kria SOM Landing Page](https://xilinx.github.io/kria-apps-docs/)
