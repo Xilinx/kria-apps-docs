@@ -19,7 +19,7 @@ SOM Landing Page
    Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
    Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
    IPMI EEPROM Design Guide <https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html>
-
+   Frequently Asked Questions <https://xilinx.github.io/kria-apps-docs/faq.html>
 
 
 
@@ -90,6 +90,19 @@ The Kria SOM DFX examples provide two base designs with one implementing a singl
 
 
 The Intelligent Platform Management Interface (IPMI) is a set of computer interface specifications for an autonomous computer subsystem that provides management and monitoring capabilities independently of the host system's CPU, firmware (BIOS or UEFI) and operating system. This document content of the configuration EEPROM on Xilinx SOM and associated carrier card hardware platforms.
+
+
+
+
+
+**********************************************************************************************************************************************************************************************
+`Frequently Asked Questions <../../../faq/build/html/docs/faq.html>`__
+**********************************************************************************************************************************************************************************************
+
+
+Common questions that you might encounter while using Kria SOM.
+
+
 
 
 

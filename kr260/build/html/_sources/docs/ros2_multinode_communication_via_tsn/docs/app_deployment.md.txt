@@ -38,6 +38,8 @@ This document shows how to set up the board and run TSN ROS application.
 
 * RS485 Modbus Temperature Humidity Sensor - Optional (Sold Separately [here](https://www.aliexpress.com/item/33054683552.html) or [here](https://www.amazon.com/Temperature-Humidity-Sensor-Display-Modbus/dp/B078NRYBVZ))
 
+* Digilent RS485 Pmod - High-speed Isolated Communications - Optional (Sold Separately [here](https://digilent.com/reference/pmod/pmodrs485/start))
+
 * [12VDC Power Supply](https://digilent.com/shop/12v-3a-power-supply/) with Prototyping or Bare Terminals – Optional (Sold Separately)
 
 * Wireshark tools installed on host machine (Ubuntu 20.04 Linux used for documentation)

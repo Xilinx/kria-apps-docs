@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Frequently Asked Questions / Common Debug Tips &mdash; Boot SOM Firmware 2022.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Frequently Asked Questions" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Boot SOM Firmware
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/drm.html">Digital Rights Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently Asked Questions / Common Debug Tips</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#released-linux-images-not-booting">Released Linux Images Not Booting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#root-privileges">Root Privileges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ppa-error-requiring-setting-timezone">PPA Error Requiring Setting Timezone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xmutil-dfx-mgr-related-debug">xmutil / dfx-mgr related debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-space-limitation">Docker Space Limitation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debug-monitors">Debug Monitors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ensure-status-of-monitor-is-connected">Ensure status of monitor is connected</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#display-modes-supported-by-your-display">Display modes supported by your display</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#current-mode">Current mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-to-determine-if-display-is-ok">Test to determine if display is OK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Boot SOM Firmware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Frequently Asked Questions / Common Debug Tips</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/faq.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="frequently-asked-questions-common-debug-tips">
+<h1>Frequently Asked Questions / Common Debug Tips<a class="headerlink" href="#frequently-asked-questions-common-debug-tips" title="Permalink to this heading">¶</a></h1>
+<p>This page documents common questions and issues that you might encounter with Kria SOM.</p>
+<div class="section" id="released-linux-images-not-booting">
+<h2>Released Linux Images Not Booting<a class="headerlink" href="#released-linux-images-not-booting" title="Permalink to this heading">¶</a></h2>
+<p>All Xilinx released images are verified on their supported Starter Kit. If an <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Starter-Kit-Linux">released image</a> does not boot on the Starter Kit, for an example you may see errors like this while booting, for an example, Ubuntu:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[   17.644316] emc: device handler registered
+[   17.658214] rdac: device handler registered
+[   20.374057] tpm tpm0: A TPM error (256) occurred attempting the self test
+</pre></div>
+</div>
+<p>It is usually because the Starter Kit needs an updated boot firmware. Download the correct version of <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">boot firmware according to the wiki</a>, and use <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K">image recovery application</a>.</p>
+</div>
+<div class="section" id="root-privileges">
+<h2>Root Privileges<a class="headerlink" href="#root-privileges" title="Permalink to this heading">¶</a></h2>
+<p>The <em>ubuntu</em> user does not have root privileges. Most commands used in tutorials must be run using <em>sudo</em>, and it may be prompted to enter your password.</p>
+<p>For security, by default, the root user is disabled. If user want to login as root user, perform the following steps. Use the <em>ubuntu</em> user’s password on the first password prompt, then set a new password for the root user. User can now login as root user using the newly set root user password.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:<span class="se">\~\$</span> sudo -i
+sudo<span class="se">\]</span> password <span class="k">for</span> ubuntu:
+root@kria:<span class="se">\~</span><span class="c1">#</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ppa-error-requiring-setting-timezone">
+<h2>PPA Error Requiring Setting Timezone<a class="headerlink" href="#ppa-error-requiring-setting-timezone" title="Permalink to this heading">¶</a></h2>
+<p>If you receive a PPA error or no response when executing “apt update” command, it maybe due to wrong timezone/time on the system. The followings are commands to set System Timezone and locale:</p>
+<ul class="simple">
+<li><p>Set timezone</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-ntp <span class="nb">true</span>
+sudo timedatectl set-timezone America/Los_Angeles
+timedatectl
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Set locale</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo locale-gen en_US en_US.UTF-8
+sudo update-locale <span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8 <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+<span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+locale
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>set the date and time.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo date --set <span class="s2">&quot;11 January 2023 16:47:00&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="xmutil-dfx-mgr-related-debug">
+<h2>xmutil / dfx-mgr related debug<a class="headerlink" href="#xmutil-dfx-mgr-related-debug" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>If user get -1 for <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">&lt;app</span> <span class="pre">name&gt;</span></code>, try to unload the existing app firmware using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">unloadapp</span></code> and then load the preferred app firmware. Another possibility is that the application did not exist in the correct folder/have the correct file extensions, as detailed in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/target.html#dfx-mgr">dfx-mgr doc for SOM</a>.</p></li>
+<li><p>Installing firmware binaries may cause dfx-mgr to crash and a restart is needed. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed. If dfx-manager crashes, restart it with this command: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">dfx-mgr.service</span></code></p></li>
+<li><p>xmutil or dfx-mgr runs only in base OS, they do not run in Docker containers. Therefore in order to load/unload firmware, you must first exit Docker container.</p></li>
+<li><p>After invoking the command <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span></code> to load firmware, it needs several seconds for the whole firmware to be ready. If you launch docker before the firmware is loaded, it will not be able to use DPU node properly and you may see the below error while launching application</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>WARNING: Logging before InitGoogleLogging<span class="o">()</span> is written to STDERR
+F0830 <span class="m">10</span>:01:34.758910 <span class="m">22</span> xrt_bin_stream.cpp:60<span class="o">]</span> Check failed: fd_ &gt; <span class="m">0</span> <span class="o">(</span>-1 vs. <span class="m">0</span><span class="o">)</span> , open<span class="o">(</span>/usr/lib/dpu.xclbin<span class="o">)</span> failed.
+  Check failure stack trace: ***
+Aborted by signal Aborted...
+</pre></div>
+</div>
+<p>To resolve this issue, exit the docker container and unload the firmware using xmutil. Then delete folder /etc/vart.conf/ using <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">/etc/vart.conf/</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@xlnx-docker/# <span class="nb">exit</span>
+ubuntu@kria:~$ sudo xmutil unloadapp
+ubuntu@kria:~$ sudo rm -rf /etc/vart.conf/
+</pre></div>
+</div>
+<p>Now you can start with the app deployment steps from loading the firmware and launching docker.</p>
+</li>
+<li><p>You do not have to worry about errors logged by the Linux kernel while executing the following specified commands, they are benign and can be ignored. The “ERROR: memory leak” error is a result of upstream Linux device tree framework.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>xmutil unloadapp
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Nov 21 06:10:22 xilinx-kv260-starterkit-20221 kernel: OF: ERROR: memory leak, expected refcount 1 instead of 2, of_node_get()/of_node_put() unbalanced - destroy cset entry: attach overlay node /axi/fixedregulator@1
+Nov 21 06:10:22 xilinx-kv260-starterkit-20221 kernel: OF: ERROR: memory leak, expected refcount 1 instead of 2, of_node_get()/of_node_put() unbalanced - destroy cset entry: attach overlay node /axi/fixedregulator@0
+</pre></div>
+</div>
+<p>You can look for print out “remove from slot 0 returns: 0 (Ok)” to know that the firmware was unloaded correctly.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>xmutil loadapp kv260-smartcam
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Nov 21 06:10:58 xilinx-kv260-starterkit-20221 kernel: OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/al5d
+Nov 21 06:10:58 xilinx-kv260-starterkit-20221 kernel: OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/zocl
+Nov 21 06:10:58 xilinx-kv260-starterkit-20221 kernel: debugfs: Directory &#39;4-003c&#39; with parent &#39;regmap&#39; already present!
+Nov 21 06:10:58 xilinx-kv260-starterkit-20221 kernel: zocl-drm axi:zyxclmm_drm: IRQ index 8 not found
+xilinx-kv260-starterkit-20221:~$ Nov 21 06:11:00 xilinx-kv260-starterkit-20221 kernel: xilinx-video axi:isp_vcap_csi: Entity type for entity 80000000.csiss was not initialized!
+</pre></div>
+</div>
+<p>You can look for print out <code class="docutils literal notranslate"><span class="pre">kv260-smartcam:</span> <span class="pre">loaded</span> <span class="pre">to</span> <span class="pre">slot</span> <span class="pre">0</span></code> to know that the firmware was loaded.</p>
+</li>
+<li><p>As of 2022.1, dfx-mgr do not yet output debug message with a flag for verbose mode. To see debug messages from dfx-mgr, stop the current dfx-mgr process and restart it manually:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo systemctl stop dfx-mgr.service
+sudo /usr/bin/dfx-mgrd <span class="p">&amp;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="docker-space-limitation">
+<h2>Docker Space Limitation<a class="headerlink" href="#docker-space-limitation" title="Permalink to this heading">¶</a></h2>
+<p>The storage volume on the SD card can be limited with multiple Docker images. If there are space issues, use the following command to remove the existing container.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo docker rmi --force <span class="nv">$INSTALLED_DOCKER_IMAGE</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="debug-monitors">
+<h2>Debug Monitors<a class="headerlink" href="#debug-monitors" title="Permalink to this heading">¶</a></h2>
+<p>Monitor should be connected properly to the board before power on, otherwise the resolution will not be recognized correctly.</p>
+<p>Ensure to use certified cables for DP and HDMI, recommended specs are HDMI 2.0 and DP 1.2 above. If cables are faulty, they could cause distortions or disable display.</p>
+<p>Modetest is a test tool which can be found as part of the libdrm suite of test tools.</p>
+<p>Depending on if there is a video mixer in the PL or not, modetest would either directly test the DP, or go through video mixer using <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">80000000.v_mix</span></code> argument.</p>
+<p>Note that among examples using a monitor, AI Box and Defect Detect have video mixer; Smartcam and NLP SmartVision do not have video mixer.</p>
+<div class="section" id="ensure-status-of-monitor-is-connected">
+<h3>Ensure status of monitor is connected<a class="headerlink" href="#ensure-status-of-monitor-is-connected" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modetest -M xlnx [-D 80000000.v_mix]`
+</pre></div>
+</div>
+<p>The above command would read out the monitors EDID information.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Connectors:
+id      encoder status          name            size (mm)       modes   encoders
+52      51      connected       DP-1            610x350         43      51
+</pre></div>
+</div>
+</div>
+<div class="section" id="display-modes-supported-by-your-display">
+<h3>Display modes supported by your display<a class="headerlink" href="#display-modes-supported-by-your-display" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modetest -M xlnx [-D 80000000.v_mix]`
+</pre></div>
+</div>
+<p>Below are the modes that are supported by your display.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  modes:
+        name refresh (Hz) hdisp hss hse htot vdisp vss vse vtot)
+  3840x2160 30.00 3840 4016 4104 4400 2160 2168 2178 2250 297000 flags: phsync, pvsync; type: driver
+  3840x2160 30.00 3840 4016 4104 4400 2160 2168 2178 2250 297000 flags: phsync, pvsync; type: driver
+  ...
+  ...
+</pre></div>
+</div>
+<p>Ensure display is capable of supporting user requested resolution and refresh rates to the application.</p>
+</div>
+<div class="section" id="current-mode">
+<h3>Current mode<a class="headerlink" href="#current-mode" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modetest -M xlnx [-D 80000000.v_mix]`
+</pre></div>
+</div>
+<p>CRTC indicates the current mode that is set.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CRTCs:
+id      fb      pos     size
+40      47      (0,0)   (3840x2160)
+  3840x2160 30.00 3840 4016 4104 4400 2160 2168 2178 2250 297000 flags: phsync, pvsync; type: driver
+  props:
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-to-determine-if-display-is-ok">
+<h3>Test to determine if display is OK<a class="headerlink" href="#test-to-determine-if-display-is-ok" title="Permalink to this heading">¶</a></h3>
+<p>Example for 4k and video mixer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modetest -M xlnx -D 80000000.v_mix -s 52@40:3840x2160@NV16`
+</pre></div>
+</div>
+<p>The  above command sets a mode, blue screen appears on the display.</p>
+<p><img alt="Blue Screen" src="../_images/blue_screen.png" /></p>
+<p>Example for less resolution and without video mixer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span> <span class="o">-</span><span class="n">M</span> <span class="n">xlnx</span> <span class="o">-</span><span class="n">s</span> <span class="mi">43</span><span class="p">:</span><span class="mi">1024</span><span class="n">x768</span><span class="o">-</span><span class="mi">60</span><span class="nd">@AR24</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span> <span class="o">-</span><span class="n">M</span> <span class="n">xlnx</span> <span class="o">-</span><span class="n">s</span> <span class="mi">43</span><span class="p">:</span><span class="mi">1920</span><span class="n">x1080</span><span class="o">-</span><span class="mi">60</span><span class="nd">@AR24</span>
+</pre></div>
+</div>
+<p>The  above command sets a mode, SMPTE Color Bars appears on the display.</p>
+<p><img alt="SMPTE color bars" src="../_images/SMPTE_Color_Bars.svg" /></p>
+<div class="section" id="license">
+<h4>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h4>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Frequently Asked Questions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 3, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
