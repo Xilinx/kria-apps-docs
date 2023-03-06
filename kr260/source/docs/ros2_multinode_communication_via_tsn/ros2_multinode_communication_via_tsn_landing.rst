@@ -48,6 +48,7 @@ Tutorials
    Creating a Vitis Platform <../build_vitis_platform>
    Generate Custom Firmware <../generating_custom_firmware>
 
+* Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq.html) for commonly encountered issues across Kria SOM applications.
 
 ******************
 Architecture

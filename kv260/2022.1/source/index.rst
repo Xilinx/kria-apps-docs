@@ -13,11 +13,6 @@ Kria KV260 Vision AI Starter Kit Applications
    :alt: AI Box-ReID
    :target: ./docs/aibox-reid/aibox_landing.html
 
-.. image:: docs/media/aib-dist_rdme.png
-   :width: 200
-   :alt:  AI Box-Distributed ReID
-   :target: ./docs/aibox/aibox-dist_landing.html
-
 .. image:: docs/media/dd_rdme.png
    :width: 200
    :alt:  Defect Detect
@@ -28,6 +23,10 @@ Kria KV260 Vision AI Starter Kit Applications
    :alt:  NLP SmartVision
    :target: ./docs/nlp-smartvision/nlp_smartvision_landing.html
 
+.. image:: docs/media/aib-dist_rdme.png
+   :width: 200
+   :alt:  AI Box-Distributed ReID
+   :target: ./docs/aibox/aibox-dist_landing.html
 
 
 The Kria KV260 Vision AI Starter Kit is the first out-of-the box ready evaluation/development platform in the Xilinx® Kria portfolio of products. The Starter Kit is the platform of choice for development of vision specific target applications. It consists of a non-production K26 SOM plugged into a vision carrier card and equipped with a thermal solution of fan and heatsink. The SOM on the Starter Kit is based on Zynq® UltraScale+™ MPSoC architecture paired with 4 GB of DDR4 memory. The Starter Kit is vision ready as it features multi-camera support through 2x OnSemi Image Access System (IAS) connectors and 1x Raspberry Pi connector. One of the IAS connectors links to a dedicated OnSemi 13 MP AP1302 Image Sensor Processor (ISP), which can handle all image processing functions including interlaced High Dynamic Range (iHDR) operations. Beyond the vision-specific interfaces, there are a host of other interfaces for general purpose development as well. These include flexible I/O connectivity through Ethernet and USB, expandability via Pmod connectors.
@@ -63,9 +62,10 @@ With both hardware and software development requirements simplified, the KV260 V
    OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
    Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
    Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
-   IPMI EEPROM Design Guide <https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html>
+   Frequently Asked Questions <https://xilinx.github.io/kria-apps-docs/faq.html>
    Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
+
 
 
 
@@ -76,10 +76,9 @@ With both hardware and software development requirements simplified, the KV260 V
 
    Smart Camera <docs/smartcamera/smartcamera_landing>
    AI Box ReID <docs/aibox-reid/aibox_landing>
-   AI Box Distributed ReID <docs/aibox/aibox-dist_landing>
    Defect Detect <docs/defect-detect/defectdetect_landing>
    NLP SmartVision <docs/nlp-smartvision/nlp_smartvision_landing>
-
+   AI Box Distributed ReID <docs/aibox/aibox-dist_landing>
 
 
 .. toctree::

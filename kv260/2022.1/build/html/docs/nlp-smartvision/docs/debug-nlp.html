@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
@@ -68,9 +68,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
@@ -78,7 +75,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../smartcamera/smartcamera_landing.html">Smart Camera</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../aibox-reid/aibox_landing.html">AI Box ReID</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../defect-detect/defectdetect_landing.html">Defect Detect</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../nlp_smartvision_landing.html">NLP SmartVision</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../nlp_smartvision_landing.html#overview">Overview</a></li>
@@ -89,7 +85,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Debugging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#this-section-list-some-debugging-tips-for-the-application">This section list some debugging tips for the application</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#this-section-list-some-debugging-tips-for-platform-peripherals">This section list some debugging tips for platform peripherals</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#known-benign-error-messages">Known Benign Error messages</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="issue-nlp.html">Known Issues</a></li>
@@ -98,6 +93,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
@@ -140,6 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </tr>
 </table><div class="section" id="debugging">
 <h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading">¶</a></h1>
+<p>Please first review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across Kria SOM applications.</p>
 <div class="section" id="this-section-list-some-debugging-tips-for-the-application">
 <h2>This section list some debugging tips for the application<a class="headerlink" href="#this-section-list-some-debugging-tips-for-the-application" title="Permalink to this heading">¶</a></h2>
 <ul>
@@ -153,54 +150,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>This section list some debugging tips for platform peripherals<a class="headerlink" href="#this-section-list-some-debugging-tips-for-platform-peripherals" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="monitor">
 <h3>Monitor<a class="headerlink" href="#monitor" title="Permalink to this heading">¶</a></h3>
-<details>
- <summary>Click here to view details</summary><p>Ensure to use certified cables for DP and HDMI, recommended specs are HDMI 2.0 and DP 1.2 above.
-If cables are faulty, they could cause distortions or disable display.</p>
-<p>Modetest is a test tool which can be found as part of the libdrm suite of test tools.</p>
-<p>Note: Prints shown below is an example from a 4k monitor. Use for reference only.</p>
-</div>
-<div class="section" id="ensure-status-of-monitor-is-connected">
-<h3>Ensure status of monitor is connected<a class="headerlink" href="#ensure-status-of-monitor-is-connected" title="Permalink to this heading">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span></code></p>
-<p>The above command would read out the monitors EDID information.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Connectors</span><span class="p">:</span>
-<span class="nb">id</span>      <span class="n">encoder</span> <span class="n">status</span>          <span class="n">name</span>            <span class="n">size</span> <span class="p">(</span><span class="n">mm</span><span class="p">)</span>       <span class="n">modes</span>   <span class="n">encoders</span>
-<span class="mi">43</span>      <span class="mi">42</span>      <span class="n">connected</span>       <span class="n">DP</span><span class="o">-</span><span class="mi">1</span>            <span class="mi">610</span><span class="n">x350</span>         <span class="mi">43</span>      <span class="mi">42</span>
-</pre></div>
-</div>
-<div class="section" id="display-mode-1024x768-needs-to-be-supported-by-your-display">
-<h4>Display mode 1024x768 needs to be supported by your display<a class="headerlink" href="#display-mode-1024x768-needs-to-be-supported-by-your-display" title="Permalink to this heading">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span></code></p>
-<p>Below are the modes that are supported by your display.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>  modes:
-        name refresh <span class="o">(</span>Hz<span class="o">)</span> hdisp hss hse htot vdisp vss vse vtot<span class="o">)</span>
-  ...
-  ...
-  1024x768 <span class="m">75</span>.03 <span class="m">1024</span> <span class="m">1040</span> <span class="m">1136</span> <span class="m">1312</span> <span class="m">768</span> <span class="m">769</span> <span class="m">772</span> <span class="m">800</span> <span class="m">78750</span> flags: phsync, pvsync<span class="p">;</span> type: driver
-  ...
-  ...
-</pre></div>
-</div>
-<p>Ensure display is capable of supporting user requested resolution and refresh rates to the application.</p>
-</div>
-<div class="section" id="current-mode">
-<h4>Current mode<a class="headerlink" href="#current-mode" title="Permalink to this heading">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span></code></p>
-<p>CRTC indicates the current mode that is set.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CRTCs:
-id      fb      pos     size
-<span class="m">41</span>      <span class="m">47</span>      <span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>   <span class="o">(</span>3840x2160<span class="o">)</span>
-  3840x2160 <span class="m">30</span>.00 <span class="m">3840</span> <span class="m">4016</span> <span class="m">4104</span> <span class="m">4400</span> <span class="m">2160</span> <span class="m">2168</span> <span class="m">2178</span> <span class="m">2250</span> <span class="m">297000</span> flags: phsync, pvsync<span class="p">;</span> type: driver
-  props:
-</pre></div>
-</div>
-</div>
-<div class="section" id="test-to-determine-if-display-is-ok">
-<h4>Test to determine if display is OK<a class="headerlink" href="#test-to-determine-if-display-is-ok" title="Permalink to this heading">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span> <span class="pre">-s</span> <span class="pre">43:1024x768-60&#64;AR24</span></code></p>
-<p>The  above command sets a mode, SMPTE Color Bars appears on the display.</p>
-<p><img alt="SMPTE color bars" src="../../../_images/SMPTE_Color_Bars.svg" /></p>
-</details></div>
+<p>Please review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays">Debug Displays</a> for debugging the monitor.</p>
 </div>
 <div class="section" id="audio">
 <h3>Audio<a class="headerlink" href="#audio" title="Permalink to this heading">¶</a></h3>
@@ -317,21 +267,7 @@ Device topology
 </pre></div>
 </div>
 </details></div>
-</div>
-<div class="section" id="known-benign-error-messages">
-<h2>Known Benign Error messages<a class="headerlink" href="#known-benign-error-messages" title="Permalink to this heading">¶</a></h2>
-<details> <summary>Click here to view details</summary><p>User does not have to worry about Errors logged by the linux kernel while executing the specified commands below, they are benign and can be ignored.</p>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xmutil</span> <span class="pre">unloadapp</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span> <span class="m">4125</span>.507273<span class="o">]</span> OF: ERROR: memory leak, expected refcount <span class="m">1</span> instead of <span class="m">2</span>, ...... ... 
-<span class="o">[</span> <span class="m">4125</span>.507293<span class="o">]</span> OF: ERROR: memory leak, expected refcount <span class="m">1</span> instead of <span class="m">2</span>, ...... ... 
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">kv260-nlp-smartvision</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span> <span class="m">4183</span>.694299<span class="o">]</span> xlnx_snd_card xlnx_snd_card.1.auto: ASoC: failed to init link xilinx-i2s_playback: -517
-<span class="o">[</span> <span class="m">4183</span>.703363<span class="o">]</span> xlnx_snd_card xlnx_snd_card.1.auto: xlnx-i2s-snd-card-0 registration failed
-</pre></div>
-</div>
-</details><div class="section" id="license">
+<div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
@@ -363,7 +299,7 @@ Device topology
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 3, 2023.
+      <span class="lastupdated">Last updated on March 6, 2023.
       </span></p>
   </div>
 

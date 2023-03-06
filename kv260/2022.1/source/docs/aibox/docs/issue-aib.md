@@ -12,6 +12,8 @@
 
 # Known Issues
 
+Please review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across Kria SOM applications.
+
 ## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.

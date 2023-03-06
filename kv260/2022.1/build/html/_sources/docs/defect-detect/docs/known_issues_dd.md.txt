@@ -11,6 +11,8 @@
  </tr>
 </table>
 
+Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across Kria SOM applications.
+
 # Limitations
 
 Defect Detection algorithm is evolving and will be updated in further releases. The present algorithm has the following limitations:
@@ -34,8 +36,6 @@ The known issues with the Defect Detection application are as follows:
 ```bash
 /opt/xilinx/kv260-defect-detect/bin/ar0144-sensor-calib.sh: 38: Syntax error: "(" unexpected
 ```
-
-* With an older version of dfx-mgr, installing firmware binaries (xlnx-firmware-kv260-aibox-reid) causes dfx-mgr to crash and a restart is needed. To restart dfx, issue command ```sudo systemctl restart dfx-mgr.service```
 
 ## Next Steps
 

@@ -1,6 +1,6 @@
 # Frequently Asked Questions / Common Debug Tips
 
-This page documents common questions and issues that you might encounter with Kria SOM.
+This page documents common questions that developers may encounter while using Kria SOM.
 
 ## Released Linux Images Not Booting
 
@@ -12,7 +12,7 @@ All Xilinx released images are verified on their supported Starter Kit. If an [r
 [   20.374057] tpm tpm0: A TPM error (256) occurred attempting the self test
 ```
 
-It is usually because the Starter Kit needs an updated boot firmware. Download the correct version of [boot firmware according to the wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates), and use [image recovery application](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K).
+It is usually because the Starter Kit needs an updated boot firmware. Download the correct version of [boot firmware according to the wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates), and use [image recovery application](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K
 
 ## Root Privileges
 
@@ -55,9 +55,9 @@ sudo date --set "11 January 2023 16:47:00"
 
 ## xmutil / dfx-mgr related debug
 
-1. If user get -1 for `xmutil loadapp <app name>`, try to unload the existing app firmware using `xmutil unloadapp` and then load the preferred app firmware. Another possibility is that the application did not exist in the correct folder/have the correct file extensions, as detailed in [dfx-mgr doc for SOM](https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/target.html#dfx-mgr).
+1. If user get -1 for ```xmutil loadapp <app name>```, try to unload the existing app firmware using ```xmutil unloadapp``` and then load the preferred app firmware. Another possibility is that the application did not exist in the correct folder/have the correct file extensions, as detailed in [dfx-mgr doc for SOM](https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/target.html#dfx-mgr)
 
-2. Installing firmware binaries may cause dfx-mgr to crash and a restart is needed. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed. If dfx-manager crashes, restart it with this command: `sudo systemctl restart dfx-mgr.service`
+2. Installing firmware binaries may cause dfx-mgr to crash and a restart is needed. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed. If dfx-manager crashes, restart it with this command: ```sudo systemctl restart dfx-mgr.service```
 
 3. xmutil or dfx-mgr runs only in base OS, they do not run in Docker containers. Therefore in order to load/unload firmware, you must first exit Docker container.
 
@@ -105,7 +105,7 @@ sudo date --set "11 January 2023 16:47:00"
     xilinx-kv260-starterkit-20221:~$ Nov 21 06:11:00 xilinx-kv260-starterkit-20221 kernel: xilinx-video axi:isp_vcap_csi: Entity type for entity 80000000.csiss was not initialized!
     ```
 
-    You can look for print out `kv260-smartcam: loaded to slot 0` to know that the firmware was loaded.
+    You can look for print out ```kv260-smartcam: loaded to slot 0``` to know that the firmware was loaded.
 
 6. As of 2022.1, dfx-mgr do not yet output debug message with a flag for verbose mode. To see debug messages from dfx-mgr, stop the current dfx-mgr process and restart it manually:
 
@@ -134,11 +134,9 @@ Depending on if there is a video mixer in the PL or not, modetest would either d
 
 Note that among examples using a monitor, AI Box and Defect Detect have video mixer; Smartcam and NLP SmartVision do not have video mixer.
 
-### Ensure status of monitor is connected
+### Ensure status of monitor is connected 
 
-```
-modetest -M xlnx [-D 80000000.v_mix]`
-```
+`modetest -M xlnx [-D 80000000.v_mix]`
 
 The above command would read out the monitors EDID information.
 
@@ -150,11 +148,9 @@ id      encoder status          name            size (mm)       modes   encoders
 
 ### Display modes supported by your display
 
-```
-modetest -M xlnx [-D 80000000.v_mix]`
-```
+`modetest -M xlnx [-D 80000000.v_mix]`
 
-Below are the modes that are supported by your display.
+ Below are the modes that are supported by your display.
 
 ```text
   modes:
@@ -169,9 +165,7 @@ Ensure display is capable of supporting user requested resolution and refresh ra
 
 ### Current mode
 
-```
-modetest -M xlnx [-D 80000000.v_mix]`
-```
+`modetest -M xlnx [-D 80000000.v_mix]`
 
 CRTC indicates the current mode that is set.
 
@@ -185,11 +179,9 @@ id      fb      pos     size
 
 ### Test to determine if display is OK
 
-Example for 4k and video mixer:
+Example for 4k and video mixer::
 
-```
-modetest -M xlnx -D 80000000.v_mix -s 52@40:3840x2160@NV16`
-```
+`modetest -M xlnx -D 80000000.v_mix -s 52@40:3840x2160@NV16`
 
 The  above command sets a mode, blue screen appears on the display.
 
@@ -197,13 +189,8 @@ The  above command sets a mode, blue screen appears on the display.
 
 Example for less resolution and without video mixer:
 
-```
-modetest -M xlnx -s 43:1024x768-60@AR24
-```
-
-```
-modetest -M xlnx -s 43:1920x1080-60@AR24
-```
+`modetest -M xlnx -s 43:1024x768-60@AR24`
+`modetest -M xlnx -s 43:1920x1080-60@AR24`
 
 The  above command sets a mode, SMPTE Color Bars appears on the display.
 
@@ -217,5 +204,3 @@ You may obtain a copy of the License at
 [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

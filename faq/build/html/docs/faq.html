@@ -122,7 +122,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="frequently-asked-questions-common-debug-tips">
 <h1>Frequently Asked Questions / Common Debug Tips<a class="headerlink" href="#frequently-asked-questions-common-debug-tips" title="Permalink to this heading">¶</a></h1>
-<p>This page documents common questions and issues that you might encounter with Kria SOM.</p>
+<p>This page documents common questions that developers may encounter while using Kria SOM.</p>
 <div class="section" id="released-linux-images-not-booting">
 <h2>Released Linux Images Not Booting<a class="headerlink" href="#released-linux-images-not-booting" title="Permalink to this heading">¶</a></h2>
 <p>All Xilinx released images are verified on their supported Starter Kit. If an <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Starter-Kit-Linux">released image</a> does not boot on the Starter Kit, for an example you may see errors like this while booting, for an example, Ubuntu:</p>
@@ -131,7 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 [   20.374057] tpm tpm0: A TPM error (256) occurred attempting the self test
 </pre></div>
 </div>
-<p>It is usually because the Starter Kit needs an updated boot firmware. Download the correct version of <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">boot firmware according to the wiki</a>, and use <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K">image recovery application</a>.</p>
+<p>It is usually because the Starter Kit needs an updated boot firmware. Download the correct version of <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">boot firmware according to the wiki</a>, and use [image recovery application](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K</p>
 </div>
 <div class="section" id="root-privileges">
 <h2>Root Privileges<a class="headerlink" href="#root-privileges" title="Permalink to this heading">¶</a></h2>
@@ -173,7 +173,7 @@ locale
 <div class="section" id="xmutil-dfx-mgr-related-debug">
 <h2>xmutil / dfx-mgr related debug<a class="headerlink" href="#xmutil-dfx-mgr-related-debug" title="Permalink to this heading">¶</a></h2>
 <ol>
-<li><p>If user get -1 for <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">&lt;app</span> <span class="pre">name&gt;</span></code>, try to unload the existing app firmware using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">unloadapp</span></code> and then load the preferred app firmware. Another possibility is that the application did not exist in the correct folder/have the correct file extensions, as detailed in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/target.html#dfx-mgr">dfx-mgr doc for SOM</a>.</p></li>
+<li><p>If user get -1 for <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">&lt;app</span> <span class="pre">name&gt;</span></code>, try to unload the existing app firmware using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">unloadapp</span></code> and then load the preferred app firmware. Another possibility is that the application did not exist in the correct folder/have the correct file extensions, as detailed in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/target.html#dfx-mgr">dfx-mgr doc for SOM</a></p></li>
 <li><p>Installing firmware binaries may cause dfx-mgr to crash and a restart is needed. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed. If dfx-manager crashes, restart it with this command: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">dfx-mgr.service</span></code></p></li>
 <li><p>xmutil or dfx-mgr runs only in base OS, they do not run in Docker containers. Therefore in order to load/unload firmware, you must first exit Docker container.</p></li>
 <li><p>After invoking the command <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span></code> to load firmware, it needs several seconds for the whole firmware to be ready. If you launch docker before the firmware is loaded, it will not be able to use DPU node properly and you may see the below error while launching application</p>
@@ -236,9 +236,7 @@ sudo /usr/bin/dfx-mgrd <span class="p">&amp;</span>
 <p>Note that among examples using a monitor, AI Box and Defect Detect have video mixer; Smartcam and NLP SmartVision do not have video mixer.</p>
 <div class="section" id="ensure-status-of-monitor-is-connected">
 <h3>Ensure status of monitor is connected<a class="headerlink" href="#ensure-status-of-monitor-is-connected" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modetest -M xlnx [-D 80000000.v_mix]`
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span> <span class="pre">[-D</span> <span class="pre">80000000.v_mix]</span></code></p>
 <p>The above command would read out the monitors EDID information.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Connectors:
 id      encoder status          name            size (mm)       modes   encoders
@@ -248,9 +246,7 @@ id      encoder status          name            size (mm)       modes   encoders
 </div>
 <div class="section" id="display-modes-supported-by-your-display">
 <h3>Display modes supported by your display<a class="headerlink" href="#display-modes-supported-by-your-display" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modetest -M xlnx [-D 80000000.v_mix]`
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span> <span class="pre">[-D</span> <span class="pre">80000000.v_mix]</span></code></p>
 <p>Below are the modes that are supported by your display.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  modes:
         name refresh (Hz) hdisp hss hse htot vdisp vss vse vtot)
@@ -264,9 +260,7 @@ id      encoder status          name            size (mm)       modes   encoders
 </div>
 <div class="section" id="current-mode">
 <h3>Current mode<a class="headerlink" href="#current-mode" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modetest -M xlnx [-D 80000000.v_mix]`
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span> <span class="pre">[-D</span> <span class="pre">80000000.v_mix]</span></code></p>
 <p>CRTC indicates the current mode that is set.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CRTCs:
 id      fb      pos     size
@@ -278,19 +272,13 @@ id      fb      pos     size
 </div>
 <div class="section" id="test-to-determine-if-display-is-ok">
 <h3>Test to determine if display is OK<a class="headerlink" href="#test-to-determine-if-display-is-ok" title="Permalink to this heading">¶</a></h3>
-<p>Example for 4k and video mixer:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modetest -M xlnx -D 80000000.v_mix -s 52@40:3840x2160@NV16`
-</pre></div>
-</div>
+<p>Example for 4k and video mixer::</p>
+<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span> <span class="pre">-D</span> <span class="pre">80000000.v_mix</span> <span class="pre">-s</span> <span class="pre">52&#64;40:3840x2160&#64;NV16</span></code></p>
 <p>The  above command sets a mode, blue screen appears on the display.</p>
 <p><img alt="Blue Screen" src="../_images/blue_screen.png" /></p>
 <p>Example for less resolution and without video mixer:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span> <span class="o">-</span><span class="n">M</span> <span class="n">xlnx</span> <span class="o">-</span><span class="n">s</span> <span class="mi">43</span><span class="p">:</span><span class="mi">1024</span><span class="n">x768</span><span class="o">-</span><span class="mi">60</span><span class="nd">@AR24</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span> <span class="o">-</span><span class="n">M</span> <span class="n">xlnx</span> <span class="o">-</span><span class="n">s</span> <span class="mi">43</span><span class="p">:</span><span class="mi">1920</span><span class="n">x1080</span><span class="o">-</span><span class="mi">60</span><span class="nd">@AR24</span>
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span> <span class="pre">-s</span> <span class="pre">43:1024x768-60&#64;AR24</span></code>
+<code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span> <span class="pre">-s</span> <span class="pre">43:1920x1080-60&#64;AR24</span></code></p>
 <p>The  above command sets a mode, SMPTE Color Bars appears on the display.</p>
 <p><img alt="SMPTE color bars" src="../_images/SMPTE_Color_Bars.svg" /></p>
 <div class="section" id="license">
@@ -299,7 +287,7 @@ id      fb      pos     size
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
+</div>
 </div>
 </div>
 </div>
@@ -325,7 +313,7 @@ id      fb      pos     size
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 3, 2023.
+      <span class="lastupdated">Last updated on March 6, 2023.
       </span></p>
   </div>
 

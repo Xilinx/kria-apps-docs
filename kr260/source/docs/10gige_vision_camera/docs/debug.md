@@ -12,6 +12,8 @@
 
 # Debug
 
+Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq.html) for commonly encountered issues across Kria SOM applications.
+
 1. To get Max fps in sphinx GEV viewer user can change the draw value in sphinx --> options based on the host type (windows or ubuntu)
 
     - On ubuntu host,
@@ -35,7 +37,7 @@
 
 6. To trigger the sensor stream-on, run the Gstreamer capture pipeline in background using gst-launch-1.0 utility before starting 10GigE application.
 
-7. To install the mv-camera firmware manually, use below command. 
+7. To install the mv-camera firmware manually, use below command.
     ```bash
    apt install xlnx-firmware-kr260-mv-camera
    ```

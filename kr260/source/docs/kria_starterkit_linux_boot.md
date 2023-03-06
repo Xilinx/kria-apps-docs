@@ -110,7 +110,7 @@ sudo\] password for ubuntu:
 root@kria:\~#
 ```
 
-If needed, the followinds are commands to set System Timezone and locale:
+If needed, the these are commands to set System Timezone and locale:
 
 * Set timezone
 

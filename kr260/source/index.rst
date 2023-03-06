@@ -3,6 +3,7 @@ Kria KR260 Robotics Starter Kit Applications
 ########################################################################################
 
 
+
 .. image:: docs/media/tsn-communications.png
    :width: 200
    :alt: ROS 2 Multi-Node Communications via TSN
@@ -38,6 +39,7 @@ Kria KR260 Robotics Starter Kit Applications
    OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
    Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
    Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
+   Frequently Asked Questions <https://xilinx.github.io/kria-apps-docs/faq.html>
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
 

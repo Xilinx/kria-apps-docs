@@ -12,6 +12,8 @@
 
 This document lists some debugging tips for the Defect Detection application.
 
+Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across Kria SOM applications.
+
 * Make sure that you use:
 
   `sudo xmutil loadapp kv260-defect-detect`

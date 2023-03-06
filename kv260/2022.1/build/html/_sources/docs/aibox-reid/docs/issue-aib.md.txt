@@ -12,6 +12,8 @@
 
 # Known Issues
 
+Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across Kria SOM applications.
+
 * With a few non-standard 4k monitors the display will show additional strips around the 2x2 grids.
 * With all 4 channels enabled, the output displayed will look laggy.
 * When calling the apps for the first time, you may see a critical error "Couldn't g_module_open libpython" - it is benign and can be ignored
@@ -27,26 +29,6 @@
 
 * With some monitors the application "-p" option for selecting which position/quadrant to display the requested video does not function properly. Instead the video will always be displayed in zero position (upper left) irrespective of the "-p" requested position.
 
-* With an older version of dfx-mgr, installing firmware binaries (xlnx-firmware-kv260-aibox-reid) causes dfx-mgr to crash and a restart is needed. To restart dfx, issue command ```sudo systemctl restart dfx-mgr.service```
-
-* After invoking the command `xmutil loadapp` to load firmware, it needs several seconds for the whole firmware to be ready. If you launch docker before the firmware is loaded, it will not be able to use DPU node properly and you may see the below error while launching application
-
-    ```bash
-    WARNING: Logging before InitGoogleLogging() is written to STDERR
-    F0830 10:01:34.758910 22 xrt_bin_stream.cpp:60] Check failed: fd_ > 0 (-1 vs. 0) , open(/usr/lib/dpu.xclbin) failed.
-      Check failure stack trace: ***
-    Aborted by signal Aborted...
-    ```
-
-    To resolve this issue, exit the docker container and unload the nlp-smartvision firmware using xmutil. Then delete folder /etc/vart.conf/ using ```rm -rf /etc/vart.conf/```
-
-    ```bash
-    root@xlnx-docker/# exit
-    ubuntu@kria:~$ sudo xmutil unloadapp
-    ubuntu@kria:~$ sudo rm -rf /etc/vart.conf/
-    ```
-
-    Now you can start with the app deployment steps from loading the firmware and launching docker.
 
 ## License
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
@@ -68,9 +68,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
@@ -96,9 +93,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../aibox-reid/aibox_landing.html">AI Box ReID</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../defect-detect/defectdetect_landing.html">Defect Detect</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
@@ -141,6 +138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </tr>
 </table><div class="section" id="debugging">
 <h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading">¶</a></h1>
+<p>Please first review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across Kria SOM applications.</p>
 <div class="section" id="debugging-tips">
 <h2>Debugging Tips<a class="headerlink" href="#debugging-tips" title="Permalink to this heading">¶</a></h2>
 <ul>
@@ -183,59 +181,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Platform Peripheral Debug Tips<a class="headerlink" href="#platform-peripheral-debug-tips" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="monitor">
 <h3>Monitor<a class="headerlink" href="#monitor" title="Permalink to this heading">¶</a></h3>
-<details>
- <summary>Click here to view the details.</summary><p>Use certified cables for DP and HDMI. The recommended specifications are listed for HDMI 2.0 and or higher and DP 1.2. If the cables are faulty, they could cause distortions or disable the display.</p>
-<p>Modetest is a test tool that is part of the libdrm suite of test tools.</p>
-<p><strong>Note</strong>: The following print is an example from a 4k monitor. Use this for reference only.</p>
-<div class="section" id="status-of-monitor">
-<h4>Status of Monitor<a class="headerlink" href="#status-of-monitor" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span><span class="w"> </span><span class="o">-</span><span class="n">M</span><span class="w"> </span><span class="n">xlnx</span><span class="w"></span>
-</pre></div>
-</div>
-<p>This command reads the monitors EDID information to ensure the monitor is connected:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="nl">Connectors</span><span class="p">:</span><span class="w"></span>
-<span class="n">id</span><span class="w">      </span><span class="n">encoder</span><span class="w"> </span><span class="n">status</span><span class="w">          </span><span class="n">name</span><span class="w">            </span><span class="n">size</span><span class="w"> </span><span class="p">(</span><span class="n">mm</span><span class="p">)</span><span class="w">       </span><span class="n">modes</span><span class="w">   </span><span class="n">encoders</span><span class="w"></span>
-<span class="mi">43</span><span class="w">      </span><span class="mi">42</span><span class="w">      </span><span class="n">connected</span><span class="w">       </span><span class="n">DP</span><span class="mi">-1</span><span class="w">            </span><span class="mi">610</span><span class="n">x350</span><span class="w">         </span><span class="mi">43</span><span class="w">      </span><span class="mi">42</span><span class="w"></span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="display-modes-supported-by-your-display">
-<h4>Display Modes Supported by Your Display<a class="headerlink" href="#display-modes-supported-by-your-display" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span><span class="w"> </span><span class="o">-</span><span class="n">M</span><span class="w"> </span><span class="n">xlnx</span><span class="w"></span>
-</pre></div>
-</div>
-<p>The following modes are supported by your display.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nl">modes</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="n">name</span><span class="w"> </span><span class="nf">refresh</span><span class="w"> </span><span class="p">(</span><span class="n">Hz</span><span class="p">)</span><span class="w"> </span><span class="n">hdisp</span><span class="w"> </span><span class="n">hss</span><span class="w"> </span><span class="n">hse</span><span class="w"> </span><span class="n">htot</span><span class="w"> </span><span class="n">vdisp</span><span class="w"> </span><span class="n">vss</span><span class="w"> </span><span class="n">vse</span><span class="w"> </span><span class="n">vtot</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="mi">3840</span><span class="n">x2160</span><span class="w"> </span><span class="mf">30.00</span><span class="w"> </span><span class="mi">3840</span><span class="w"> </span><span class="mi">4016</span><span class="w"> </span><span class="mi">4104</span><span class="w"> </span><span class="mi">4400</span><span class="w"> </span><span class="mi">2160</span><span class="w"> </span><span class="mi">2168</span><span class="w"> </span><span class="mi">2178</span><span class="w"> </span><span class="mi">2250</span><span class="w"> </span><span class="mi">297000</span><span class="w"> </span><span class="n">flags</span><span class="o">:</span><span class="w"> </span><span class="n">phsync</span><span class="p">,</span><span class="w"> </span><span class="n">pvsync</span><span class="p">;</span><span class="w"> </span><span class="n">type</span><span class="o">:</span><span class="w"> </span><span class="n">driver</span><span class="w"></span>
-<span class="w">  </span><span class="mi">3840</span><span class="n">x2160</span><span class="w"> </span><span class="mf">30.00</span><span class="w"> </span><span class="mi">3840</span><span class="w"> </span><span class="mi">4016</span><span class="w"> </span><span class="mi">4104</span><span class="w"> </span><span class="mi">4400</span><span class="w"> </span><span class="mi">2160</span><span class="w"> </span><span class="mi">2168</span><span class="w"> </span><span class="mi">2178</span><span class="w"> </span><span class="mi">2250</span><span class="w"> </span><span class="mi">297000</span><span class="w"> </span><span class="n">flags</span><span class="o">:</span><span class="w"> </span><span class="n">phsync</span><span class="p">,</span><span class="w"> </span><span class="n">pvsync</span><span class="p">;</span><span class="w"> </span><span class="n">type</span><span class="o">:</span><span class="w"> </span><span class="n">driver</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-</pre></div>
-</div>
-<p>Ensure display is capable of supporting user requested resolution and refresh rates to the application.</p>
-</div>
-<div class="section" id="current-mode">
-<h4>Current Mode<a class="headerlink" href="#current-mode" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">modetest</span><span class="w"> </span><span class="o">-</span><span class="n">M</span><span class="w"> </span><span class="n">xlnx</span><span class="w"></span>
-</pre></div>
-</div>
-<p>CRTC indicates the current mode that is set.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="nl">CRTCs</span><span class="p">:</span><span class="w"></span>
-<span class="n">id</span><span class="w">      </span><span class="n">fb</span><span class="w">      </span><span class="n">pos</span><span class="w">     </span><span class="n">size</span><span class="w"></span>
-<span class="mi">41</span><span class="w">      </span><span class="mi">47</span><span class="w">      </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w">   </span><span class="p">(</span><span class="mi">3840</span><span class="n">x2160</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="mi">3840</span><span class="n">x2160</span><span class="w"> </span><span class="mf">30.00</span><span class="w"> </span><span class="mi">3840</span><span class="w"> </span><span class="mi">4016</span><span class="w"> </span><span class="mi">4104</span><span class="w"> </span><span class="mi">4400</span><span class="w"> </span><span class="mi">2160</span><span class="w"> </span><span class="mi">2168</span><span class="w"> </span><span class="mi">2178</span><span class="w"> </span><span class="mi">2250</span><span class="w"> </span><span class="mi">297000</span><span class="w"> </span><span class="n">flags</span><span class="o">:</span><span class="w"> </span><span class="n">phsync</span><span class="p">,</span><span class="w"> </span><span class="n">pvsync</span><span class="p">;</span><span class="w"> </span><span class="n">type</span><span class="o">:</span><span class="w"> </span><span class="n">driver</span><span class="w"></span>
-<span class="w">  </span><span class="nl">props</span><span class="p">:</span><span class="w"></span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="test-to-determine-if-the-display-is-ok">
-<h4>Test to Determine if the Display is OK<a class="headerlink" href="#test-to-determine-if-the-display-is-ok" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>modetest -M xlnx -s <span class="m">43</span>:1920x1080-60@AR24
-</pre></div>
-</div>
-<p>This command sets a mode, SMPTE color bars appear on the display.</p>
-<img src="../../media/SMPTE_Color_Bars.svg" alt="SMPTE color bars" width="150" height="100"></details></div>
+<p>Please review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays">Debug Displays</a> for debugging the monitor.</p>
 </div>
 <div class="section" id="i2s-audio">
 <h3>I2S Audio<a class="headerlink" href="#i2s-audio" title="Permalink to this heading">¶</a></h3>
@@ -410,7 +356,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 3, 2023.
+      <span class="lastupdated">Last updated on March 6, 2023.
       </span></p>
   </div>
 
