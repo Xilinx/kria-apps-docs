@@ -12,6 +12,8 @@
 
 # Known Issues
 
+Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq.html) for commonly encountered issues across Kria SOM applications.
+
 1. There is a time-bomb implemented in the capture & 10GigE pipeline IPs', so sensor streaming will be there for limited time.
 
 2. After a while streaming the data, white screen may appear in Sphinx, it indicates that evaluation period has expired. For full version of IPs' user can contact IP vendor [Framos](sales@framos.com).
@@ -40,18 +42,13 @@
 
 10. s2imac driver probe may fail, when user loads the MV-Camera application firmware. In such case user can unload and load the MV-Camera firmware again.
 
-11. Installing firmware binaries may cause dfx-mgr to crash and a restart is needed. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed.
+11. Randomly after running gst-launch command and sphinx, user may not see the preview image in sphinx GEV viewer. In such case check the framebuffer interrupt count using `cat/proc/interrupts`. If the interrupt count is not increasing, reboot the KR260 target and relaunch the MV-Camera application.
 
-    If dfx-manager crashes, restart it with this command:
-    ```sudo systemctl restart dfx-mgr.service```
+12. Recommended to use Windows version of sphinx because sphinx GEV viewer in Ubuntu flashes set XML error at times.
 
-12. Randomly after running gst-launch command and sphinx, user may not see the preview image in sphinx GEV viewer. In such case check the framebuffer interrupt count using `cat/proc/interrupts`. If the interrupt count is not increasing, reboot the KR260 target and relaunch the MV-Camera application.
+13. Appearing optical black lines at top of the live in display output.
 
-13. Recommended to use Windows version of sphinx because sphinx GEV viewer in Ubuntu flashes set XML error at times.
-
-14. Appearing optical black lines at top of the live in display output.
-
-15. At sometimes, it is been observed that white lines are appearing at top of the final output display.
+14. At sometimes, it is been observed that white lines are appearing at top of the final output display.
 
 # Limitations
 

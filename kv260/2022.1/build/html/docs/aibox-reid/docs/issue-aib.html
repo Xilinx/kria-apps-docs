@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="AI Box Distributed ReID" href="../../aibox/aibox-dist_landing.html" />
+    <link rel="next" title="Defect Detect" href="../../defect-detect/defectdetect_landing.html" />
     <link rel="prev" title="Debugging" href="debug-aib.html" /> 
 </head>
 
@@ -68,9 +68,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
@@ -93,9 +90,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../defect-detect/defectdetect_landing.html">Defect Detect</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
@@ -138,6 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </tr>
 </table><div class="section" id="known-issues">
 <h1>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h1>
+<p>Please first review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across Kria SOM applications.</p>
 <ul class="simple">
 <li><p>With a few non-standard 4k monitors the display will show additional strips around the 2x2 grids.</p></li>
 <li><p>With all 4 channels enabled, the output displayed will look laggy.</p></li>
@@ -151,24 +149,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 [W 11:59:21.865 LabApp] Permission denied: aibox-reid/.ipynb_checkpoints
 </pre></div>
 </div>
-<ul>
+<ul class="simple">
 <li><p>With some monitors the application “-p” option for selecting which position/quadrant to display the requested video does not function properly. Instead the video will always be displayed in zero position (upper left) irrespective of the “-p” requested position.</p></li>
-<li><p>With an older version of dfx-mgr, installing firmware binaries (xlnx-firmware-kv260-aibox-reid) causes dfx-mgr to crash and a restart is needed. To restart dfx, issue command <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">dfx-mgr.service</span></code></p></li>
-<li><p>After invoking the command <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span></code> to load firmware, it needs several seconds for the whole firmware to be ready. If you launch docker before the firmware is loaded, it will not be able to use DPU node properly and you may see the below error while launching application</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>WARNING: Logging before InitGoogleLogging<span class="o">()</span> is written to STDERR
-F0830 <span class="m">10</span>:01:34.758910 <span class="m">22</span> xrt_bin_stream.cpp:60<span class="o">]</span> Check failed: fd_ &gt; <span class="m">0</span> <span class="o">(</span>-1 vs. <span class="m">0</span><span class="o">)</span> , open<span class="o">(</span>/usr/lib/dpu.xclbin<span class="o">)</span> failed.
-  Check failure stack trace: ***
-Aborted by signal Aborted...
-</pre></div>
-</div>
-<p>To resolve this issue, exit the docker container and unload the nlp-smartvision firmware using xmutil. Then delete folder /etc/vart.conf/ using <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">/etc/vart.conf/</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@xlnx-docker/# <span class="nb">exit</span>
-ubuntu@kria:~$ sudo xmutil unloadapp
-ubuntu@kria:~$ sudo rm -rf /etc/vart.conf/
-</pre></div>
-</div>
-<p>Now you can start with the app deployment steps from loading the firmware and launching docker.</p>
-</li>
 </ul>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
@@ -194,14 +176,14 @@ ubuntu@kria:~$ sudo rm -rf /etc/vart.conf/
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="debug-aib.html" class="btn btn-neutral float-left" title="Debugging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../aibox/aibox-dist_landing.html" class="btn btn-neutral float-right" title="AI Box Distributed ReID" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../../defect-detect/defectdetect_landing.html" class="btn btn-neutral float-right" title="Defect Detect" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 3, 2023.
+      <span class="lastupdated">Last updated on March 6, 2023.
       </span></p>
   </div>
 

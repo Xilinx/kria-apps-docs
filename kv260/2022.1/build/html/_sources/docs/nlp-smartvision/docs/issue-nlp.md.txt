@@ -14,32 +14,11 @@
 
 This document records known issues or gives behavior that may be unexpected some explanations.
 
-* Monitor should be connected properly to the board before power on, otherwise the resolution will not be recognized correctly.
+Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across Kria SOM applications.
 
 * Some monitors will display in non-desktop mode (running docker on serial port or SSH session) but not in Ubuntu GUI mode.
 
 * Make sure that AR1335 sensor module is the only video device connected to board. The application may fail of other media devices are connected to board
-
-* With an older version of dfx-mgr, installing firmware binaries (xlnx-firmware-kv260-aibox-reid) causes dfx-mgr to crash and a restart is needed. To restart dfx, issue command ```sudo systemctl restart dfx-mgr.service```
-
-* After invoking the command `xmutil loadapp` to load firmware, it needs several seconds for the whole firmware to be ready. If you launch docker before the firmware is loaded, it will not be able to use DPU node properly and you may see the below error while launching nlp-smartvision application
-
-    ```bash
-    WARNING: Logging before InitGoogleLogging() is written to STDERR
-    F0830 10:01:34.758910 22 xrt_bin_stream.cpp:60] Check failed: fd_ > 0 (-1 vs. 0) , open(/usr/lib/dpu.xclbin) failed.
-      Check failure stack trace: ***
-    Aborted by signal Aborted...
-    ```
-
-    To resolve this issue, exit the docker container and unload the nlp-smartvision firmware using xmutil. Then delete folder /etc/vart.conf/ using ```rm -rf /etc/vart.conf/```
-
-    ```bash
-    root@xlnx-docker/# exit
-    ubuntu@kria:~$ sudo xmutil unloadapp
-    ubuntu@kria:~$ sudo rm -rf /etc/vart.conf/
-    ```
-
-    Now you can start with the app deployment steps from loading the firmware and launching docker.
 
 * During application launch the following warning is seen. This is a bug from trying to use Gstreamer with OpenCV. User can ignore this warning as it wont effect the functionality
 

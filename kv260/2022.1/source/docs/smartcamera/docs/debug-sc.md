@@ -12,6 +12,8 @@
 
 # Debugging
 
+Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across Kria SOM applications.
+
 ## Debugging Tips
 
 * Use the following command to load the firmware. If you do not, many drivers (including the MIPI and VCU) will not load, and when you run the application, you will have errors.
@@ -44,76 +46,7 @@
 
 ### Monitor
 
-<details>
- <summary>Click here to view the details.</summary>
-
-Use certified cables for DP and HDMI. The recommended specifications are listed for HDMI 2.0 and or higher and DP 1.2. If the cables are faulty, they could cause distortions or disable the display.
-
-Modetest is a test tool that is part of the libdrm suite of test tools.
-
-**Note**: The following print is an example from a 4k monitor. Use this for reference only.
-
-#### Status of Monitor
-
-```cpp
-modetest -M xlnx
-```
-
-This command reads the monitors EDID information to ensure the monitor is connected:
-
-```cpp
-Connectors:
-id      encoder status          name            size (mm)       modes   encoders
-43      42      connected       DP-1            610x350         43      42
-```
-
-#### Display Modes Supported by Your Display
-
-```cpp
-modetest -M xlnx
-```
-
-The following modes are supported by your display.
-
-```cpp
-  modes:
-        name refresh (Hz) hdisp hss hse htot vdisp vss vse vtot)
-  3840x2160 30.00 3840 4016 4104 4400 2160 2168 2178 2250 297000 flags: phsync, pvsync; type: driver
-  3840x2160 30.00 3840 4016 4104 4400 2160 2168 2178 2250 297000 flags: phsync, pvsync; type: driver
-  ...
-  ...
-```
-
-Ensure display is capable of supporting user requested resolution and refresh rates to the application.
-
-#### Current Mode
-
-```cpp
-modetest -M xlnx
-```
-
-CRTC indicates the current mode that is set.
-
-```cpp
-CRTCs:
-id      fb      pos     size
-41      47      (0,0)   (3840x2160)
-  3840x2160 30.00 3840 4016 4104 4400 2160 2168 2178 2250 297000 flags: phsync, pvsync; type: driver
-  props:
-```
-
-#### Test to Determine if the Display is OK
-
-```bash
-modetest -M xlnx -s 43:1920x1080-60@AR24
-```
-
-This command sets a mode, SMPTE color bars appear on the display.
-
-<img src="../../media/SMPTE_Color_Bars.svg" alt="SMPTE color bars" width="150" height="100">
-
-</details>
-
+Please review the [Debug Displays](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays) for debugging the monitor.
 ### I2S Audio 
 
 <details>

@@ -14,6 +14,8 @@
 
 This document records known issues or gives behavior that may be unexpected.
 
+Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq.html) for commonly encountered issues across Kria SOM applications.
+
 * Continues RTPS DDS (ROS Middleware) messages popup while running CPU varient as shown below. This is a known behaviour with RTPS middleware as mentioned [here](https://github.com/eProsima/Fast-DDS/issues/2799)
   ```bash
   [component_container-1] 2022-10-13 16:30:56.972 [RTPS_MSG_IN Error] (ID:281473539668192) Problem reserving CacheChange in reader: 01.0f.da.c1.9f.f4.74.8f.01.00.00.00|0.0.2f.4 -> Function processDataMsg

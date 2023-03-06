@@ -12,7 +12,7 @@
 
 # Known Issues
 
-* Monitor should be connected properly to the board before power on, otherwise the resolution will not be recognized correctly.
+Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across Kria SOM applications.
 
 * The "-R" option of smartcam application for reporting FPS doesn't print any info when the target "-t" is RTSP.
 
@@ -46,7 +46,6 @@ We measure the glass to glass latency, by putting a running stopwatch before the
 **Monitor A** Dell PC monitor P2317H 1080p
 **Monitor B** Skyworth 4K TV 50H9D
 
-* With an older version of dfx-mgr, installing firmware binaries (xlnx-firmware-kv260-aibox-reid) causes dfx-mgr to crash and a restart is needed. To restart dfx, issue command ```sudo systemctl restart dfx-mgr.service```
 
 * After invoking the command `xmutil loadapp` to load firmware, it needs several seconds for the whole firmware to be ready. If you launch docker before the firmware is loaded, it will not be able to use DPU node properly and you may see the below error while launching application
 

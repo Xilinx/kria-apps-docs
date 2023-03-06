@@ -12,6 +12,8 @@
 
 # Debugging
 
+Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across Kria SOM applications.
+
 ## This section list some debugging tips for the application
 
 * Make sure you use
@@ -24,69 +26,7 @@
 
 ### Monitor
 
-<details>
- <summary>Click here to view details</summary>
-
-Ensure to use certified cables for DP and HDMI, recommended specs are HDMI 2.0 and DP 1.2 above.
-If cables are faulty, they could cause distortions or disable display.
-
-Modetest is a test tool which can be found as part of the libdrm suite of test tools.
-
- Note: Prints shown below is an example from a 4k monitor. Use for reference only.
-
-### Ensure status of monitor is connected
-
-`modetest -M xlnx`
-
-The above command would read out the monitors EDID information.
-
-```
-Connectors:
-id      encoder status          name            size (mm)       modes   encoders
-43      42      connected       DP-1            610x350         43      42
-```
-
-#### Display mode 1024x768 needs to be supported by your display
-
-`modetest -M xlnx`
-
- Below are the modes that are supported by your display.
-
-```bash
-  modes:
-        name refresh (Hz) hdisp hss hse htot vdisp vss vse vtot)
-  ...
-  ...
-  1024x768 75.03 1024 1040 1136 1312 768 769 772 800 78750 flags: phsync, pvsync; type: driver
-  ...
-  ...
-```
-
-Ensure display is capable of supporting user requested resolution and refresh rates to the application.
-
-#### Current mode
-
-`modetest -M xlnx`
-
- CRTC indicates the current mode that is set.
-
-```bash
-CRTCs:
-id      fb      pos     size
-41      47      (0,0)   (3840x2160)
-  3840x2160 30.00 3840 4016 4104 4400 2160 2168 2178 2250 297000 flags: phsync, pvsync; type: driver
-  props:
-```
-
-#### Test to determine if display is OK
-
-`modetest -M xlnx -s 43:1024x768-60@AR24`
-
-The  above command sets a mode, SMPTE Color Bars appears on the display.
-
-![SMPTE color bars](../../media/SMPTE_Color_Bars.svg)
-
-</details>
+Please review the [Debug Displays](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays) for debugging the monitor.
 
 ### Audio
 
@@ -221,29 +161,6 @@ Device topology
 
 </details>
 
-## Known Benign Error messages
-
-<details>
-
- <summary>Click here to view details</summary>
-
-User does not have to worry about Errors logged by the linux kernel while executing the specified commands below, they are benign and can be ignored.
-
-`sudo xmutil unloadapp`
-
-```bash
-[ 4125.507273] OF: ERROR: memory leak, expected refcount 1 instead of 2, ...... ... 
-[ 4125.507293] OF: ERROR: memory leak, expected refcount 1 instead of 2, ...... ... 
-```
-
-`sudo xmutil loadapp kv260-nlp-smartvision`
-
-```bash
-[ 4183.694299] xlnx_snd_card xlnx_snd_card.1.auto: ASoC: failed to init link xilinx-i2s_playback: -517
-[ 4183.703363] xlnx_snd_card xlnx_snd_card.1.auto: xlnx-i2s-snd-card-0 registration failed
-```
-
-</details>
 
 ### License
 

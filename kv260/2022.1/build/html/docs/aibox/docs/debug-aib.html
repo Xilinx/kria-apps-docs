@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
@@ -68,9 +68,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
@@ -78,6 +75,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../smartcamera/smartcamera_landing.html">Smart Camera</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../aibox-reid/aibox_landing.html">AI Box ReID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../defect-detect/defectdetect_landing.html">Defect Detect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../aibox-dist_landing.html">AI Box Distributed ReID</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../aibox-dist_landing.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aibox-dist_landing.html#quick-start">Quick Start</a></li>
@@ -87,7 +86,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Debugging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#this-section-list-some-debugging-tips-for-the-application">This section list some debugging tips for the application.</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#this-section-list-some-debugging-tips-for-platform-peripherals">This section list some debugging tips for platform peripherals.</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#known-benign-error-messages">Known Benign Error messages</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="issue-aib.html">Known Issues</a></li>
@@ -96,8 +94,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../defect-detect/defectdetect_landing.html">Defect Detect</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
@@ -140,6 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </tr>
 </table><div class="section" id="debugging">
 <h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading">¶</a></h1>
+<p>Please first review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across Kria SOM applications.</p>
 <div class="section" id="this-section-list-some-debugging-tips-for-the-application">
 <h2>This section list some debugging tips for the application.<a class="headerlink" href="#this-section-list-some-debugging-tips-for-the-application" title="Permalink to this heading">¶</a></h2>
 <ul>
@@ -153,67 +150,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>This section list some debugging tips for platform peripherals.<a class="headerlink" href="#this-section-list-some-debugging-tips-for-platform-peripherals" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="monitor">
 <h3>Monitor<a class="headerlink" href="#monitor" title="Permalink to this heading">¶</a></h3>
-<details>
- <summary>Click here to view details</summary><p>Ensure to use certified cables for DP and HDMI, recommended specs are HDMI 2.0 and DP 1.2 above.
-If cables are faulty, they could cause distortions or disable display.</p>
-<p>Modetest is a test tool which can be found as part of the libdrm suite of test tools.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Note</span><span class="p">:</span> <span class="n">Prints</span> <span class="n">shown</span> <span class="n">below</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">example</span> <span class="kn">from</span> <span class="nn">a</span> <span class="mi">4</span><span class="n">k</span> <span class="n">monitor</span><span class="o">.</span> <span class="n">Use</span> <span class="k">for</span> <span class="n">reference</span> <span class="n">only</span><span class="o">.</span>
-</pre></div>
+<p>Please review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays">Debug Displays</a> for debugging the monitor.</p>
 </div>
-<div class="section" id="ensure-status-of-monitor-is-connected">
-<h4>Ensure status of monitor is connected<a class="headerlink" href="#ensure-status-of-monitor-is-connected" title="Permalink to this heading">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span> <span class="pre">-D</span> <span class="pre">80000000.v_mix</span></code></p>
-<p>The above command would read out the monitors EDID information.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Connectors</span><span class="p">:</span>
-<span class="nb">id</span>      <span class="n">encoder</span> <span class="n">status</span>          <span class="n">name</span>            <span class="n">size</span> <span class="p">(</span><span class="n">mm</span><span class="p">)</span>       <span class="n">modes</span>   <span class="n">encoders</span>
-<span class="mi">52</span>      <span class="mi">51</span>      <span class="n">connected</span>       <span class="n">DP</span><span class="o">-</span><span class="mi">1</span>            <span class="mi">610</span><span class="n">x350</span>         <span class="mi">43</span>      <span class="mi">51</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="display-modes-supported-by-your-display">
-<h4>Display modes supported by your display<a class="headerlink" href="#display-modes-supported-by-your-display" title="Permalink to this heading">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span> <span class="pre">-D</span> <span class="pre">80000000.v_mix</span></code></p>
-<p>Below are the modes that are supported by your display.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">modes</span><span class="p">:</span>
-        <span class="n">name</span> <span class="n">refresh</span> <span class="p">(</span><span class="n">Hz</span><span class="p">)</span> <span class="n">hdisp</span> <span class="n">hss</span> <span class="n">hse</span> <span class="n">htot</span> <span class="n">vdisp</span> <span class="n">vss</span> <span class="n">vse</span> <span class="n">vtot</span><span class="p">)</span>
-  <span class="mi">3840</span><span class="n">x2160</span> <span class="mf">30.00</span> <span class="mi">3840</span> <span class="mi">4016</span> <span class="mi">4104</span> <span class="mi">4400</span> <span class="mi">2160</span> <span class="mi">2168</span> <span class="mi">2178</span> <span class="mi">2250</span> <span class="mi">297000</span> <span class="n">flags</span><span class="p">:</span> <span class="n">phsync</span><span class="p">,</span> <span class="n">pvsync</span><span class="p">;</span> <span class="nb">type</span><span class="p">:</span> <span class="n">driver</span>
-  <span class="mi">3840</span><span class="n">x2160</span> <span class="mf">30.00</span> <span class="mi">3840</span> <span class="mi">4016</span> <span class="mi">4104</span> <span class="mi">4400</span> <span class="mi">2160</span> <span class="mi">2168</span> <span class="mi">2178</span> <span class="mi">2250</span> <span class="mi">297000</span> <span class="n">flags</span><span class="p">:</span> <span class="n">phsync</span><span class="p">,</span> <span class="n">pvsync</span><span class="p">;</span> <span class="nb">type</span><span class="p">:</span> <span class="n">driver</span>
-  <span class="o">...</span>
-  <span class="o">...</span>
-</pre></div>
-</div>
-<p>Ensure display is capable of supporting user requested resolution and refresh rates to the application.</p>
-</div>
-<div class="section" id="current-mode">
-<h4>Current mode<a class="headerlink" href="#current-mode" title="Permalink to this heading">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span> <span class="pre">-D</span> <span class="pre">80000000.v_mix</span></code></p>
-<p>CRTC indicates the current mode that is set.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CRTCs</span><span class="p">:</span>
-<span class="nb">id</span>      <span class="n">fb</span>      <span class="n">pos</span>     <span class="n">size</span>
-<span class="mi">40</span>      <span class="mi">47</span>      <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>   <span class="p">(</span><span class="mi">3840</span><span class="n">x2160</span><span class="p">)</span>
-  <span class="mi">3840</span><span class="n">x2160</span> <span class="mf">30.00</span> <span class="mi">3840</span> <span class="mi">4016</span> <span class="mi">4104</span> <span class="mi">4400</span> <span class="mi">2160</span> <span class="mi">2168</span> <span class="mi">2178</span> <span class="mi">2250</span> <span class="mi">297000</span> <span class="n">flags</span><span class="p">:</span> <span class="n">phsync</span><span class="p">,</span> <span class="n">pvsync</span><span class="p">;</span> <span class="nb">type</span><span class="p">:</span> <span class="n">driver</span>
-  <span class="n">props</span><span class="p">:</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="test-to-determine-if-display-is-ok">
-<h4>Test to determine if display is OK<a class="headerlink" href="#test-to-determine-if-display-is-ok" title="Permalink to this heading">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">modetest</span> <span class="pre">-M</span> <span class="pre">xlnx</span> <span class="pre">-D</span> <span class="pre">80000000.v_mix</span> <span class="pre">-s</span> <span class="pre">52&#64;40:3840x2160&#64;NV16</span></code></p>
-<p>The  above command sets a mode, blue screen appears on the display.</p>
-<p><img alt="Blue Screen" src="../../../_images/blue_screen.png" /></p>
-</details></div>
-</div>
-</div>
-<div class="section" id="known-benign-error-messages">
-<h2>Known Benign Error messages<a class="headerlink" href="#known-benign-error-messages" title="Permalink to this heading">¶</a></h2>
-<details>
- <summary>Click here to view details</summary><p>User does not have to worry about Errors logged by the linux kernl while excuting the specified commands below, they are benign and can be ignored.</p>
-<p><code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">unloadapp</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="mf">4125.507273</span><span class="p">]</span> <span class="n">OF</span><span class="p">:</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">memory</span> <span class="n">leak</span><span class="p">,</span> <span class="n">expected</span> <span class="n">refcount</span> <span class="mi">1</span> <span class="n">instead</span> <span class="n">of</span> <span class="mi">2</span><span class="p">,</span> <span class="o">......</span> <span class="o">...</span> 
-<span class="p">[</span> <span class="mf">4125.507293</span><span class="p">]</span> <span class="n">OF</span><span class="p">:</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">memory</span> <span class="n">leak</span><span class="p">,</span> <span class="n">expected</span> <span class="n">refcount</span> <span class="mi">1</span> <span class="n">instead</span> <span class="n">of</span> <span class="mi">2</span><span class="p">,</span> <span class="o">......</span> <span class="o">...</span> 
-</pre></div>
-</div>
-</details><div class="section" id="license">
+<div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
@@ -245,7 +184,7 @@ If cables are faulty, they could cause distortions or disable display.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 3, 2023.
+      <span class="lastupdated">Last updated on March 6, 2023.
       </span></p>
   </div>
 
