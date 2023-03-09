@@ -15,13 +15,14 @@ Boot Firmware
    Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
    Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
    IPMI EEPROM Design Guide <https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html>
+   Frequently Asked Questions <https://xilinx.github.io/kria-apps-docs/faq.html>
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
    Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
 
 
 
-.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs/
+.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs
 
 .. toctree::
    :maxdepth: 3

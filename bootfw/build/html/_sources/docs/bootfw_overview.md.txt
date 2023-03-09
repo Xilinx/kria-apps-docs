@@ -2,7 +2,7 @@
 
 The SOM Starter Kits use a two stage boot process. The primary boot firmware is pre-installed at the factory on the QSPI device. The secondary boot device is an SD card containing the Linux kernel and Linux root filesystem (rootfs). The Xilinx Starter Kit carrier card hardware design sets the MPSoC boot mode to QSPI32. The SOM boots up to U-Boot using the QSPI contents and U-Boot then hand-off to the secondary boot device.
 
-This document gives an overview to various components in the Kria SOM boot firmware, and points to source code available for customers to get started with their implementations for their Kria SOM  custom carrier card. For general information about boot of the Zynq MPSoC, refer to Zynq UltraScale TRM [Boot and Configuration](https://docs.xilinx.com/v/u/en-US/ug1085-zynq-ultrascale-trm#page=237) chapter.
+This document gives an overview to various components in the Kria SOM boot firmware, and points to source code available for customers to get started with their implementations for their Kria SOM  custom carrier card. For general information about boot of the Zynq MPSoC, refer to Zynq UltraScale TRM [Boot and Configuration](https://docs.xilinx.com/r/en-US/ug1085-zynq-ultrascale-trm/Boot-and-Configuration) chapter.
 
 The QSPI image and its boot firmware (FW) contents in SOM Starter Kits are common across all K26 starter kits.
 
