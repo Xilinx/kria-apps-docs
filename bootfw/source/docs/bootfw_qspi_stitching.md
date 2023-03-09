@@ -7,7 +7,7 @@ This page outlines the process to re-create a QSPI image for Kria SOM Starter ki
 
 ## Requirements
 
-As outlined in [bootfw overview](./bootfw_overview.md), Kria SOM Starter Kit QSPI image is stitched together from several components. The rest of the bootfw documentation also outlined process to individually generate each components.
+As outlined in [bootfw overview](./bootfw_overview.md), Kria SOM Starter Kit QSPI image is stitched together from several components. The overview also provides the QSPI memory map that Kria Starter Kit QSPI binaries follow. The rest of the bootfw documentation also outlined process to individually generate each components.
 
 This document details a Yocto Flow that automates the generation of those binary files and stitch them together. Before starting, make sure the build host PC meets [these requirements](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#compatible-linux-distribution). Besides installing the packages/tools specified by the requirement page, look in [issues](#issues) section for possible additional requirements.
 
@@ -55,7 +55,7 @@ To build QSPI image use below command
 MACHINE=k26-som bitbake som-qspi 
 ```
 
-The resulting QSPI image ```som-qspi-k26-som.bin``` and its artifacts can be found in ```$TMPDIR/deploy/images/k26-som```, and $TMPDIR is defined in ```build/conf/local.conf```. Note that the fsbl file ```fsbl-k26-som.elf``` may also be needed in the QSPI programming steps. This image universally supports both KV260 and KR260, as well as both StarterKit SOM and Production SOM. [note: check with wes if hes okay with this statement]
+The resulting QSPI image ```som-qspi-k26-som.bin``` and its artifacts can be found in ```$TMPDIR/deploy/images/k26-som```, and $TMPDIR is defined in ```build/conf/local.conf```. Note that the fsbl file ```fsbl-k26-som.elf``` may also be needed in the QSPI programming steps. This image universally supports both KV260 and KR260, as well as both StarterKit SOM and Production SOM.
 
 To only build the boot.bin:
 
