@@ -19,6 +19,7 @@ SOM Landing Page
    Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
    Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
    IPMI EEPROM Design Guide <https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html>
+   Yocto Support <https://xilinx.github.io/kria-apps-docs/yocto.html>
    Frequently Asked Questions <https://xilinx.github.io/kria-apps-docs/faq.html>
 
 
@@ -93,6 +94,13 @@ The Intelligent Platform Management Interface (IPMI) is a set of computer interf
 
 
 
+
+**********************************************************************************************************************************************************************************************
+`Yocto Support <../../../yocto/build/html/docs/yocto_port_example.html>`__
+**********************************************************************************************************************************************************************************************
+
+
+A step by step example that ports Smartcam application to run on PetaLinux OS. 
 
 
 **********************************************************************************************************************************************************************************************
