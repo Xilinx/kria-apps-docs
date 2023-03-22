@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Orchestration of AES, FFT, and FIR accelerators" href="Orchestration_of_accelerators.html" />
-    <link rel="prev" title="Kria DFX Accelerators" href="Accelerators_On_K26.html" /> 
+    <link rel="prev" title="Try ML Accelerator Example on K26" href="dfx_ml_inference.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -65,11 +65,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Area Record</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -82,7 +84,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How To</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Load Accelerator Example and Run Application</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="dfx_ml_inference.html">Try ML Accelerator Example on K26</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Load Non-ML Accelerator Example and Run Application on K26</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-pre-built-firmware-and-applications-on-the-target">Install pre-built firmware and applications on the target</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#load-pre-built-accelerators-on-the-target">Load pre-built accelerators on the target</a></li>
@@ -91,35 +94,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#connect-to-jupyter-lab">Connect to Jupyter Lab</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#steps-for-running-jupyter-notebooks-in-the-browser">Steps for running Jupyter Notebooks in the browser</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#notebook-to-demonstrate-image-encryption-and-decryption-using-aes128">1. Notebook to demonstrate image encryption and decryption using AES128</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites-for-aes">Prerequisites for AES</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#steps-to-run-the-notebook">Steps to run the notebook</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#notebook-to-demonstrate-image-encryption-and-decryption-using-aes192">2. Notebook to demonstrate image encryption and decryption using AES192</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Prerequisites</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Steps to run the notebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites-for-aes192">Prerequisites for AES192</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steps-to-run-the-aes192-notebook">Steps to run the AES192 notebook</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#notebook-to-demonstrate-data-exchange-between-accelerators">3. Notebook to demonstrate data exchange between accelerators</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Prerequisites</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">Steps to run the notebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites-for-aes-fft">Prerequisites for AES-FFT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steps-to-run-the-aes-fft-notebook">Steps to run the AES-FFT notebook</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#notebook-to-demonstrate-orchestration-of-accelerators">4. Notebook to demonstrate orchestration of accelerators</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id6">Prerequisites</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">Steps to run the notebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites-for-aes-fir-fft">Prerequisites for AES-FIR-FFT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steps-to-run-the-aes-fir-fft-notebook">Steps to run the AES-FIR-FFT notebook</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#notebook-to-benchmark-accelerator-performance-against-ps">5. Notebook to Benchmark Accelerator Performance against PS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id8">Prerequisites</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">Steps to run the notebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites-for-aes128">Prerequisites for AES128</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steps-to-run-the-aes128-notebook">Steps to run the AES128 notebook</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#results">Results</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#command-line-test-applications-for-pre-built-accelerators">Command line test applications for pre-built accelerators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#applications-for-pre-built-accelerators">Applications for pre-built accelerators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#limitations-known-issues">Limitations / Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#faq-and-debug">FAQ and Debug</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
@@ -154,10 +158,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
-<p>This document covers how to run the Kria DFX pre-built applications and accelerators. To run the application on target, install the firmware, applications on target, load the required RM partial to the target, and then run the corresponding RM application.</p>
+<p>This document covers how to run the DFX pre-built applications and accelerators for the Kria K26 SOM. To run the application on target, install the firmware, applications on target, load the required RM partial to the target, and then run the corresponding RM application.</p>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
-<p>The Kria DFX example designs presented here assume that the user has already followed the application-agnostic steps of setting up their board and completing the initial boot of the Ubuntu 22.04 OS. The Kria example designs are agnostic to the specific carrier card meaning they work both on KV260 and KR260 Starter Kits. Steps for getting a Kria Starter Kit booted with Ubuntu 22.04 and the Xilinx-specific support packages installed are outlined <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html">here</a>.</p>
+<p>The Kria SOM DFX example designs presented here assume that the user has already followed the application-agnostic steps of setting up their board and completing the initial boot of the Ubuntu 22.04 OS. These example designs are agnostic to the specific carrier card, meaning they work both on KV260 and KR260 Starter Kits. Steps for getting a Kria SOM Starter Kit booted with Ubuntu 22.04 and the Xilinx-specific support packages installed are outlined <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html">here</a>.</p>
 </div>
 <div class="section" id="install-pre-built-firmware-and-applications-on-the-target">
 <h2>Install pre-built firmware and applications on the target<a class="headerlink" href="#install-pre-built-firmware-and-applications-on-the-target" title="Permalink to this heading">¶</a></h2>
@@ -262,8 +266,8 @@ Example notebooks are provided to demonstrate working with pre-built accelerator
 <p>Run the following commands on target to install Jupyter notebook.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo apt install jupyter
 ubuntu@kria:~$ sudo pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org jupyterlab
-ubuntu@kria:~$ sudo git clone https://github.com/Xilinx/kria-dfx-apps
-cd kria-dfx-apps/notebook
+ubuntu@kria:~$ sudo git clone https://github.com/Xilinx/kria-dfx-apps -b xlnx_rel_v2022.1
+ubuntu@kria:~$ cd kria-dfx-apps/notebook
 </pre></div>
 </div>
 </div>
@@ -271,6 +275,32 @@ cd kria-dfx-apps/notebook
 <h3>Connect to Jupyter Lab<a class="headerlink" href="#connect-to-jupyter-lab" title="Permalink to this heading">¶</a></h3>
 <p>Run the following command on target to obtain it’s IP address.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~/kria-dfx-apps/notebook$ ifconfig
+docker0: flags=4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:57:d1:80:4b  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0 
+        
+eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 10.140.37.119  netmask 255.255.252.0  broadcast 10.140.39.255                       &lt;--------- ip address = 10.140.37.119
+        inet6 fe80::fc7b:1dd4:d124:e0fc  prefixlen 64  scopeid 0x20&lt;link&gt;
+        ether 00:0a:35:0f:26:dc  txqueuelen 1000  (Ethernet)
+        RX packets 4569  bytes 722519 (722.5 KB)
+        RX errors 0  dropped 3  overruns 0  frame 0
+        TX packets 3645  bytes 1369608 (1.3 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 37   
+        
+lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 4526  bytes 1691246 (1.6 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4526  bytes 1691246 (1.6 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 </pre></div>
 </div>
 <p>Launch Jupyter Lab using the IP address obtained in the above step.</p>
@@ -303,8 +333,8 @@ An example is:</p>
 <li><p>AES128 IP is configured for decryption. The encrypted image is passed to AES128 IP for decryption and the decrypted image is displayed.</p></li>
 <li><p>The decrypted image should match with the original input image.</p></li>
 </ul>
-<div class="section" id="id1">
-<h4>Prerequisites<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="prerequisites-for-aes">
+<h4>Prerequisites for AES<a class="headerlink" href="#prerequisites-for-aes" title="Permalink to this heading">¶</a></h4>
 <p>Unload all accelerators and load AES128 accelerator to slot 0 by running the following commands on the terminal opened in Jupyter notebook.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
 sudo xmutil unloadapp <span class="m">1</span>
@@ -331,8 +361,8 @@ sudo xmutil loadapp AES128
 <li><p>AES192 IP is configured for decryption. The encrypted image is passed to AES192 IP for decryption and the decrypted image is displayed.</p></li>
 <li><p>The decrypted image should match with the original input image.</p></li>
 </ul>
-<div class="section" id="id2">
-<h4>Prerequisites<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="prerequisites-for-aes192">
+<h4>Prerequisites for AES192<a class="headerlink" href="#prerequisites-for-aes192" title="Permalink to this heading">¶</a></h4>
 <p>Unload all accelerators and load AES192 accelerator to slot 0 by running the following commands on the terminal opened in Jupyter notebook.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
 sudo xmutil unloadapp <span class="m">1</span>
@@ -340,8 +370,8 @@ sudo xmutil loadapp AES192
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h4>Steps to run the notebook<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="steps-to-run-the-aes192-notebook">
+<h4>Steps to run the AES192 notebook<a class="headerlink" href="#steps-to-run-the-aes192-notebook" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Open AES192.ipynb</p></li>
 <li><p>From the menu options, click Run -&gt; Run All Cells.</p></li>
@@ -360,8 +390,8 @@ sudo xmutil loadapp AES192
 <li><p>The decrypted data is passed as an input to FFT accelerator to perform fast fourier transform the time series data.</p></li>
 <li><p>The output of FFT accelerator is plotted to show the frequency components present in the data.</p></li>
 </ul>
-<div class="section" id="id4">
-<h4>Prerequisites<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="prerequisites-for-aes-fft">
+<h4>Prerequisites for AES-FFT<a class="headerlink" href="#prerequisites-for-aes-fft" title="Permalink to this heading">¶</a></h4>
 <p>Unload all accelerators and load AES128 accelerator to slot 0 and FFT to slot 1 by running the following commands on the terminal opened in Jupyter notebook.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
 sudo xmutil unloadapp <span class="m">1</span>
@@ -370,8 +400,8 @@ sudo xmutil loadapp FFT
 </pre></div>
 </div>
 </div>
-<div class="section" id="id5">
-<h4>Steps to run the notebook<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="steps-to-run-the-aes-fft-notebook">
+<h4>Steps to run the AES-FFT notebook<a class="headerlink" href="#steps-to-run-the-aes-fft-notebook" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Open AES-FFT.ipynb.</p></li>
 <li><p>From the menu options, click Run -&gt; Run All Cells.</p></li>
@@ -398,8 +428,8 @@ sudo xmutil loadapp FFT
 <li><p>The output of FIR accelerator is passed as input to FFT accelerator in slot 1 to perform fast fourier transform.</p></li>
 <li><p>The output of FFT is plotted to show the frequency components present after the filter operation.</p></li>
 </ul>
-<div class="section" id="id6">
-<h4>Prerequisites<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="prerequisites-for-aes-fir-fft">
+<h4>Prerequisites for AES-FIR-FFT<a class="headerlink" href="#prerequisites-for-aes-fir-fft" title="Permalink to this heading">¶</a></h4>
 <p>Unload all accelerators and load AES128 accelerator to slot 0 and FFT to slot 1 by running the following commands on the terminal opened in Jupyter notebook.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
 sudo xmutil unloadapp <span class="m">1</span>
@@ -408,8 +438,8 @@ sudo xmutil loadapp FFT
 </pre></div>
 </div>
 </div>
-<div class="section" id="id7">
-<h4>Steps to run the notebook<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="steps-to-run-the-aes-fir-fft-notebook">
+<h4>Steps to run the AES-FIR-FFT notebook<a class="headerlink" href="#steps-to-run-the-aes-fir-fft-notebook" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Open AES-FIR-FFT.ipynb.</p></li>
 <li><p>Run a cell in the notebook by pressing shift + enter</p></li>
@@ -431,8 +461,8 @@ sudo xmutil loadapp FIR
 <div class="section" id="notebook-to-benchmark-accelerator-performance-against-ps">
 <h3>5. Notebook to Benchmark Accelerator Performance against PS<a class="headerlink" href="#notebook-to-benchmark-accelerator-performance-against-ps" title="Permalink to this heading">¶</a></h3>
 <p>This notebook demonstrates the performance benchmarks of running an application using the pre-built AES128 accelerator versus running the same operation on the PS.</p>
-<div class="section" id="id8">
-<h4>Prerequisites<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="prerequisites-for-aes128">
+<h4>Prerequisites for AES128<a class="headerlink" href="#prerequisites-for-aes128" title="Permalink to this heading">¶</a></h4>
 <p>Unload all accelerators and load AES128 accelerator to slot 0 by running the following commands on the terminal opened in Jupyter notebook.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
 sudo xmutil unloadapp <span class="m">1</span>
@@ -444,8 +474,8 @@ sudo xmutil loadapp AES128
 </pre></div>
 </div>
 </div>
-<div class="section" id="id9">
-<h4>Steps to run the notebook<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="steps-to-run-the-aes128-notebook">
+<h4>Steps to run the AES128 notebook<a class="headerlink" href="#steps-to-run-the-aes128-notebook" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Open AES_On_HW_vs_SW.ipynb</p></li>
 <li><p>From the menu options, click Run -&gt; Run All Cells.</p></li>
@@ -460,11 +490,13 @@ sudo xmutil loadapp AES128
 </div>
 </div>
 </div>
-<div class="section" id="command-line-test-applications-for-pre-built-accelerators">
-<h2>Command line test applications for pre-built accelerators<a class="headerlink" href="#command-line-test-applications-for-pre-built-accelerators" title="Permalink to this heading">¶</a></h2>
-<p>Each of the example DFX bitstreams also has a simple command line test application if the user does not want to make use of Jupyter notebooks. These are executed by running the pre-built test application name and referencing the corresponding active DFX slot number after installing the pre-built accelerators as mentioned above.</p>
-<p>The following example demonstrates loading AES128 to slot 0 and AES192 to slot 1 and running corresponding applications by passing slot number as argument to the application.</p>
-<p>Unload accelerators from both the slots to have a clean start</p>
+<div class="section" id="applications-for-pre-built-accelerators">
+<h2>Applications for pre-built accelerators<a class="headerlink" href="#applications-for-pre-built-accelerators" title="Permalink to this heading">¶</a></h2>
+<p>Each of the example DFX bitstreams also has a simple command line application if the user does not want to make use of Jupyter notebooks. These applications run a test with pre-defined data when only the corresponding active DFX slot number is given as a command line argument. We can also feed data to the accelerators in the form of files using these applications. More information on the applications is mentioned below.</p>
+<ol class="simple">
+<li><p>AES128 - an application for encrypting and decrypting data</p></li>
+</ol>
+<p>Unload accelerators from both the slots to have a clean start.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil unloadapp 0
 ubuntu@kria:~$ sudo xmutil unloadapp 1
 </pre></div>
@@ -473,7 +505,24 @@ ubuntu@kria:~$ sudo xmutil unloadapp 1
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil loadapp AES128
 </pre></div>
 </div>
-<p>Run AES128 application</p>
+<p>Usage of AES128 application</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kira:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/aes128 -h
+ Usage:
+ aes128 (0|1) perform a quick internal test for slot 0 or 1
+ aes128 [&lt;options&gt;] --key passphrase --out out_file --in in_file
+ Options :
+        -h, --help
+        -d, --decrypt               Decrypt the file given on the command line. (Optional) Default operation is encryption if this flag is not provided
+        -s, --slot rm_slot          Set slot to rm_slot: 0 or 1. (Optional) Default slot is 0 if this flag is not provided
+        -i, --in in_file            Input file for the application (Required)
+        -o, --out out_file          Write output to file (Required)
+        -k, --key passphrase        Use passphrase or passphrase file (Required)
+ Example : 
+        sudo ./aes128 -s 0 -k encryption_key.bin -i input.bin -o output.bin (to encrypt a file)
+        sudo ./aes128 -d -s 0 -k decryption_key.bin -i input.bin -o output.bin (to decrypt a file)
+</pre></div>
+</div>
+<p>Application runs an internal test when only slot is passed as argument.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/aes128 0
 AES128 TEST on Slot 0:
 - AES128 DECRYPTION -
@@ -486,12 +535,42 @@ AES128 TEST on Slot 0:
          Success: ENCRYPTED DATA MATCHED WITH REFERENCE DATA !
 </pre></div>
 </div>
-<p>Load AES128 to slot 1</p>
+<p>Using AES128 application to encrypt a file</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/aes128 -s 0 -k &lt;path to key/passphrase&gt; -i &lt;path to input file&gt; -o &lt;path to output file&gt;
+AES128 application running on Slot 0:
+AES128 encryption done
+</pre></div>
+</div>
+<p>Using AES128 application to decrypt an encrypted file</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/aes128 -s 0 -k &lt;path to key/passphrase&gt; -i &lt;path to input file&gt; -o &lt;path to output file&gt; -d
+AES128 application running on Slot 0:
+AES128 decryption done
+</pre></div>
+</div>
+<p>2.AES192 - an application for encrypting and decrypting data</p>
+<p>Load AES192 to slot 1</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil loadapp AES192
 </pre></div>
 </div>
-<p>Run AES192 application</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/aes192 1 
+<p>Usage of AES192 application</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kira:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/aes192 -h
+ Usage:
+ aes192 (0|1) perform a quick internal test for slot 0 or 1
+ aes192 [&lt;options&gt;] --key passphrase --out out_file --in in_file
+ Options :
+        -h, --help
+        -d, --decrypt               Decrypt the file given on the command line. (Optional) Default operation is encryption if this flag is not provided
+        -s, --slot rm_slot          Set slot to rm_slot: 0 or 1. (Optional) Default slot is 0 if this flag is not provided
+        -i, --in in_file            Input file for the application (Required)
+        -o, --out out_file          Write output to file (Required)
+        -k, --key passphrase        Use passphrase or passphrase file (Required)
+ Example : 
+        sudo ./aes192 -s 0 -k encryption_key.bin -i input.bin -o output.bin (to encrypt a file)
+        sudo ./aes192 -d -s 0 -k decryption_key.bin -i input.bin -o output.bin (to decrypt a file)
+</pre></div>
+</div>
+<p>Application runs an internal test when only slot is passed as argument.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/aes192 1
 AES192 TEST on Slot 1:
 - AES192 DECRYPTION -
          Slot configured for DECRYPTION.
@@ -503,6 +582,105 @@ AES192 TEST on Slot 1:
          Success: ENCRYPTED DATA MATCHED WITH REFERENCE DATA !
 </pre></div>
 </div>
+<p>Using AES192 application to encrypt a file</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/aes192 -s 1 -k &lt;path to key/passphrase&gt; -i &lt;path to input file&gt; -o &lt;path to output file&gt;
+AES192 application running on Slot 1:
+AES192 encryption done
+</pre></div>
+</div>
+<p>Using AES192 application to decrypt an encrypted file</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/aes192 -s 1 -k &lt;path to key/passphrase&gt; -i &lt;path to input file&gt; -o &lt;path to output file&gt; -d
+AES192 application running on Slot 1:
+AES192 decryption done
+</pre></div>
+</div>
+<p>3.FFT - an application for performing 4-channel Fast Fourier Transform</p>
+<p>Unload previously loaded firmware and load FFT to slot 0</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil unloadapp 
+ubuntu@kria:~$ sudo xmutil loadapp FFT
+</pre></div>
+</div>
+<p>Usage of FFT application</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kira:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/fft -h
+ Usage:
+ fft (0|1) perform a quick internal test for slot 0 or 1
+ fft [&lt;options&gt;] --slot rm_slot --config filename --out filename --in filename
+ Options :
+  -h, --help
+  -s, --slot rm_slot            Set slot to rm_slot: 0 or 1. (Optional) Default slot is 0 if this flag is not provided
+  -c, --config filename         Use config file (Required)
+  -i, --in filename             Input file to the program (Required)
+  -o, --out filename            Write output to file (Required)
+ Example : 
+        fft -s 0 -c config.bin -o output.bin -i input.bin
+</pre></div>
+</div>
+<p>Application runs an internal test when only slot is passed as argument.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/fft 0
+FFT TEST on Slot 0:
+         Configure FFT Ch0 done.
+         Configure FFT Ch1 done.
+         Configure FFT Ch2 done.
+         Configure FFT Ch3 done.
+         Configure FFT data done.
+         Received Data From Accel.
+         Success: FFT TEST PASSED !
+</pre></div>
+</div>
+<p>Using FFT application</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/fft -s 0 -c &lt;path to config file&gt; -i &lt;path to input file&gt; -o &lt;path to output file&gt;
+FFT application running on Slot 0:
+Configure FFT Ch1 done.
+Configure FFT Ch2 done.
+Configure FFT Ch3 done.
+Configure FFT Ch4 done.
+Configure FFT data done.
+Data from Accel done.
+FFT operation done
+</pre></div>
+</div>
+<p>4.FIR - an application for filtering signals using FIR</p>
+<p>Unload previously loaded firmware and load FIR to slot 1</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil unloadapp 1
+ubuntu@kria:~$ sudo xmutil loadapp FIR
+</pre></div>
+</div>
+<p>Usage of FIR application</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kira:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/fir -h
+ Usage:
+ fir (0|1) perform a quick internal test for slot 0 or 1
+ fir [&lt;options&gt;] --slot rm_slot --config filename --reload filename --out filename --in filename
+ Options :
+  -h, --help
+  -s, --slot rm_slot        Set slot to rm_slot: 0 or 1. (Optional) Default slot is 0 if this flag is not provided
+  -c, --config filename     Use config file (Required)
+  -r, --reload filename     Use reload file (Required)
+  -i, --in filename         Input file to the program (Required)
+  -o, --out filename        Write output to file (Required)
+ Example : 
+        fir -s 0 -c config.bin -r reload.bin -o output.bin -i input.bin
+</pre></div>
+</div>
+<p>Application runs an internal test when only slot is passed as argument.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/fir 1
+FIR TEST on Slot 1:
+         Configure Reload data done.
+         Configure Data done.
+         Configure FIR Input data done.
+         Received Data From Accel.
+         Success: FIR TEST PASSED !
+</pre></div>
+</div>
+<p>Using FIR application</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo /opt/xilinx/kria-dfx-2rp/bin/fir -s 1 -c &lt;path to config file&gt; -r &lt;path to reload file&gt; -i &lt;path to input file&gt; -o &lt;path to output file&gt;
+FIR application running on Slot 1:
+Configure Reload data done.
+Configure Config data done.
+Configure FIR Input data done.
+Data from Accel done.
+FIR operation done
+</pre></div>
+</div>
 </div>
 <div class="section" id="limitations-known-issues">
 <h2>Limitations / Known Issues<a class="headerlink" href="#limitations-known-issues" title="Permalink to this heading">¶</a></h2>
@@ -511,13 +689,29 @@ AES192 TEST on Slot 1:
 <li><p>DPU and PP_PIPELINE (Video Pre Processing) firmware are included for reference but are not fully functional in this release.</p></li>
 </ul>
 </div>
+<div class="section" id="faq-and-debug">
+<h2>FAQ and Debug<a class="headerlink" href="#faq-and-debug" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The pre-built applications depend on “uuid-dev”, “libdfx-dev”, “libdfx-mgr-dev” packages.
+In case of building the applications by cloning a git, “cmake” package needs to be installed.
+To build the firmware for the pre-built accelerators, “bootgen-xlnx” package needs to be installed.
+Steps to install the dependencies manually</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo apt install uuid-dev libdfx-dev cmake libdfx-mgr-dev bootgen-xlnx
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Ensure to load the corresponding accelerator on the specific DFX slot while running an application targeting that slot. In case the accelerator loaded on the slot does not match the application requirement, the console hangs. Restart the target to continue.</p></li>
+</ul>
+</div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p>&lt;palign=”center”&gt;Copyright© 2021 Xilinx</p></p>
+</div>
 </div>
 
 
@@ -534,7 +728,7 @@ AES192 TEST on Slot 1:
                   </style>
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Accelerators_On_K26.html" class="btn btn-neutral float-left" title="Kria DFX Accelerators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dfx_ml_inference.html" class="btn btn-neutral float-left" title="Try ML Accelerator Example on K26" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="Orchestration_of_accelerators.html" class="btn btn-neutral float-right" title="Orchestration of AES, FFT, and FIR accelerators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -542,7 +736,7 @@ AES192 TEST on Slot 1:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 3, 2023.
+      <span class="lastupdated">Last updated on March 21, 2023.
       </span></p>
   </div>
 

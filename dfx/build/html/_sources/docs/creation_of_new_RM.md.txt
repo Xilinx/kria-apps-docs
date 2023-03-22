@@ -1,6 +1,6 @@
 # Create a new accelerator RM
 
-The target audience for this guide is developers who wish to add a new Reconfigurable Module(RM) to the publicly available DFX reference design on Kria K26.
+The target audience for this guide is developers who wish to add a new Reconfigurable Module(RM) to the publicly available DFX reference design on Kria K26 SOM.
 
 ## Prerequisites and assumptions
 
@@ -11,7 +11,7 @@ The target audience for this guide is developers who wish to add a new Reconfigu
 
 ## Introduction
 
-The DFX design on Kria has two Reconfigurable Partitions, which have the same IO interface and similar footprint. So, when a new RM design is developed for one DFX partition, it can be targeted to the other DFX partitions as well with addressing changes. Using this document, RM partial bit files and the required firmware files to target the DFX design on Kria can be generated.
+The DFX design for the Kria SOM has two Reconfigurable Partitions, which have the same IO interface and similar footprint. So, when a new RM design is developed for one DFX partition, it can be targeted to the other DFX partitions as well with addressing changes. Using this document, RM partial bit files and the required firmware files can be generated, to target the DFX design for the Kria SOM.
 
 Accelerators with AXIS interface can be part of the RM for DFX example design. RM template for AXIS accelerators is provided as a reference to create the new RMs. Using the template ensures that RMs being created have the required IO interface and address. Any deviation from the IO interface or addressing provided in the templates will cause errors during RM generation.
 

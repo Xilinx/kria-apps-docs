@@ -64,12 +64,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Area Record</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
@@ -128,14 +128,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The example here was tested using smartcam and tool version 2022.1. It assumes that you have already familiar with the smartcam application either using <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/docs/app_deployment.html#">Ubuntu with tool version 2022.1</a> or <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/docs/smartcamera/docs/app_deployment.html">PetaLinux 2021.1</a>.</p>
 <p>There are 3 ways to port smartcam onto PetaLinux OS:</p>
 <p>Without having to use PetaLinux toolchain:</p>
-<ol class="simple">
-<li><p>Build on target</p></li>
-</ol>
-<p>Using PetaLinux toolchain, this method has some overlap steps with eachother, therefore they are documented under the <a class="reference external" href="#building-a-wic-image-or-rpm-packages">same section</a>:</p>
-<ol class="simple">
-<li><p>Build a new PetaLinux wic image with smartcam baked in using recipes</p></li>
-<li><p>Generate an RPM using PetaLinux and recipes, and move to target</p></li>
-</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Build</span> <span class="n">on</span> <span class="n">target</span>
+</pre></div>
+</div>
+<p>Using PetaLinux toolchain, the following two methods has some overlap steps with eachother, therefore they are documented under the <a class="reference external" href="#building-a-wic-image-or-rpm-packages">same section</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Build</span> <span class="n">a</span> <span class="n">new</span> <span class="n">PetaLinux</span> <span class="n">wic</span> <span class="n">image</span> <span class="k">with</span> <span class="n">smartcam</span> <span class="n">baked</span> <span class="ow">in</span> <span class="n">using</span> <span class="n">recipes</span>
+<span class="o">*</span> <span class="n">Generate</span> <span class="n">an</span> <span class="n">RPM</span> <span class="n">using</span> <span class="n">PetaLinux</span> <span class="ow">and</span> <span class="n">recipes</span><span class="p">,</span> <span class="ow">and</span> <span class="n">move</span> <span class="n">to</span> <span class="n">target</span>
+</pre></div>
+</div>
 <div class="section" id="build-on-target">
 <h2>Build on Target<a class="headerlink" href="#build-on-target" title="Permalink to this heading">¶</a></h2>
 <p>This section outlines how to build smartcam on KV260 target running released 2022.1 wic image. First, download and boot with <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Starter-Kit-Linux">2022.1 PetaLinux Starter Kit Linux pre-built SD card image</a>. Once booted, download git, and repositories required for building smartcam - the FPGA firmware, AP1302 firmware, and smartcam application software:</p>

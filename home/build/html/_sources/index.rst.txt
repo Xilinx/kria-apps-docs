@@ -16,7 +16,6 @@ SOM Landing Page
    Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
    Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
    OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
-   Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
    Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
    IPMI EEPROM Design Guide <https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html>
    Yocto Support <https://xilinx.github.io/kria-apps-docs/yocto.html>
@@ -59,16 +58,6 @@ Gives an overview to various components in the Kria SOM boot firmware, and point
 
 
 The Kria Starter Kit OpenAMP PetaLinux implementation uses the Linux kernel implementation of RPMsg for leveraging the MPSoC RPUs as co-processors. The out-of-box Kria Linux OpenAMP only implements a Linux based master on APU with the RPU as a client processor with corresponding pre-built RPU examples.
-
-
-
-
-**********************************************************************************************************************************************************************************************
-`SOM Digital Rights Management <../../../drm/build/html/docs/drm.html>`__
-**********************************************************************************************************************************************************************************************
-
-
-Kria SOMs and Starter Kits can be enabled with a digital rights management (DRM) solution for partners to protect and monetize their programmable logic (PL) IPs.
 
 
 

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>AI Customization &mdash; Kria™ SOM 2022.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Bitstream Management on Kria SOM" href="bitstream_management.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Kria™ SOM
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Area Record</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Flows</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vitis_accel_flow.html">Vitis Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vitis_platform_flow.html">Vitis Platform Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AI Customization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dpu-ip-introduction">DPU IP Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vitis-ai-model">Vitis AI Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ai-model-customization-for-kria-som-applications">AI model customization for Kria SOM applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#model-preparation">Model Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-files">Configuration files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2021.1/build/html/index.html">2021.1</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kria™ SOM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>AI Customization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/AI_customization.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="ai-customization">
+<h1>AI Customization<a class="headerlink" href="#ai-customization" title="Permalink to this heading">¶</a></h1>
+<p>AI inference capability can be brought in by leverage the Vitis AI development stack, which provides optimized IP, tools, libraries, models, and example designs. In this topic we will introduce how to use Xilinx model set and build your own model demo.</p>
+<div class="section" id="dpu-ip-introduction">
+<h2>DPU IP Introduction<a class="headerlink" href="#dpu-ip-introduction" title="Permalink to this heading">¶</a></h2>
+<p>DPU (Deep Learning processor) is a programmable engine optimized for deep neural networks. It is a group of parameterizable IP cores pre-implemented on the hardware with no place and route required. The DPU is released with the Vitis AI specialized instruction set, allowing for efficient implementation of many deep learning networks.</p>
+<p>The DPU IP can be implemented in the programmable logic (PL) of the selected Zynq®-7000 SoC or Zynq® UltraScale+™ MPSoC device with direct connections to the processing system (PS). The DPU requires instructions to implement a neural network and accessible memory locations for input images as well as temporary and output data. A program running on the application processing unit (APU) is also required to service interrupts and coordinate data transfers.</p>
+<p>The following figure shows the DPU Top-Level Block Diagram.
+<img alt="DPU diagram" src="../_images/dpu_diagram.png" /></p>
+  <p align=center>DPU Top-level Block Diagram</p>
+  <p align=center>PE:Processing Engine, DPU:Deep Learning Processor Unit, APU:Application Processing Unit<p>Refer to <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_3/pg338-dpu.pdf">PG338</a> and <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_4/ug1354-xilinx-ai-sdk.pdf">UG1354</a> for more details on DPU IP.</p>
+</div>
+<div class="section" id="vitis-ai-model">
+<h2>Vitis AI Model<a class="headerlink" href="#vitis-ai-model" title="Permalink to this heading">¶</a></h2>
+<p>The Vitis™ AI development environment accelerates AI inference on Xilinx® hardware platforms, including both edge devices and Alveo™ accelerator cards. It consists of optimized IP cores, tools, libraries, models, and example designs. It is designed with high efficiency and ease of use in mind to unleash the full potential of AI acceleration on Xilinx FPGAs and on adaptive compute acceleration platforms (ACAPs). The Vitis AI development environment makes it easy for users without FPGA knowledge to develop deep-learning inference applications by abstracting the intricacies of the underlying FPGA and ACAP.</p>
+<ol class="simple">
+<li><p>Machine Learning and Data Science: <br>
+Importing a machine learning model from a Caffe, Pytorch, TensorFlow, or other popular framework onto Vitis™ AI, and then optimizing and evaluating its effectiveness.</p>
+<ul class="simple">
+<li><p>Setup the environment of the Cloud or Edge. The Vitis AI contains various samples for demonstration.</p></li>
+<li><p>Quantizing the Model. Quantization and channel pruning techniques are employed to address these issues while achieving high performance and high energy efficiency with little degradation in accuracy. The Vitis AI develop kit has the quantization and channel pruning tool.</p></li>
+<li><p>Compiling the Model. The Compiler generates the compiled model based on the DPU microarchitecture. Vitis AI supports several DPUs for different platforms and applications.</p></li>
+</ul>
+</li>
+<li><p>Host Software Development: <br>
+Developing the application code, accelerator development, including library, XRT, and Graph API use. Deploy the model on the target and run the model.</p></li>
+<li><p>Hardware, IP, and Platform Development: <br>
+Creating the PL IP blocks for the hardware platform, creating PL kernels, functional simulation, and evaluating the Vivado®timing, resource use, and power closure. Also involves developing the hardware platform for system integration.</p></li>
+<li><p>System Integration and Validation: <br>
+Integrating and validating the system functional performance, including timing, resource use, and power closure.</p></li>
+</ol>
+<p>Refer to <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/2_5/ug1414-vitis-ai.pdf">UG1414</a> to know more details on Vitis AI development kit.</p>
+</div>
+<div class="section" id="ai-model-customization-for-kria-som-applications">
+<h2>AI model customization for Kria SOM applications<a class="headerlink" href="#ai-model-customization-for-kria-som-applications" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="model-preparation">
+<h3>Model Preparation<a class="headerlink" href="#model-preparation" title="Permalink to this heading">¶</a></h3>
+<p>Users can customize their own models for the DPU instance integrated into the platform.</p>
+<p>As above, the Vitis AI Model Zoo has already provided some ready-to-use models for Vitis AI Library API.</p>
+<p>If the model has been trained to an existing Kria example app DPU instance (e.g. DPU3136) then the resulting models can be copied to the Kria Linux file system and used on an existing platform</p>
+<p><strong>Note</strong> Make sure the Vitis AI version of app and models.</p>
+<p><strong>Note</strong> As described in the Hardware Accelerator section, the DPU integrated in the different platform uses different configuration such as <strong>B3136</strong> etc.</p>
+<p>The arch.json used to compile the xmodel for DPU can be obtained by build the accelerator, but if you won’t build all from the start, you can save following code as arch.json</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;fingerprint&quot;</span><span class="p">:</span><span class="s2">&quot;0x1000020F6014406&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-files">
+<h3>Configuration files<a class="headerlink" href="#configuration-files" title="Permalink to this heading">¶</a></h3>
+<p>To integrate a different .xmodel into the SmartCam application, the following configuration files must be updated accordingly:</p>
+<ul>
+<li><p>AI Inference Config:</p>
+<p>Take the refinedet aiinference.json <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vvas/refinedet/aiinference.json</span></code> as an example,</p>
+</li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;vvas-library-repo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/lib/&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;element-mode&quot;</span><span class="p">:</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;kernels&quot;</span><span class="w"> </span><span class="p">:[</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;library-name&quot;</span><span class="p">:</span><span class="s2">&quot;libvvas_xdpuinfer.so&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;model-name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refinedet_pruned_0_96&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;model-class&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REFINEDET&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;model-path&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/share/vitis_ai_library/models&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;run_time_model&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;need_preprocess&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;performance_test&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You can change the “model-name” and “model-path” fields to use the customized xmdel file at <code class="docutils literal notranslate"><span class="pre">${model-path}/${model-name}/${model-name}.xmodel</span></code>.</p>
+<p>Pay attention to the field “need_preprocess”, which is now “false”, tells Vitis AI Library the input buffer is already the resized and quantized BGR image as required by the model. And the preprocess is done by the preprocess plugin with the proper configuration which will be detailed in next section.</p>
+<p>When you set the “need_preprocess” here to “true” for some reason, you should also make change to the process configuration to ask the preprocess IP works just as colour conversion and resizing.</p>
+<ul class="simple">
+<li><p>Preprocess Config:</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;mean_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;mean_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">117</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;mean_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">104</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;scale_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;scale_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;scale_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The configuration value of mean/scale for r/g/b channels should be the same as the ones specified in Vitis AI Model prototxt file. For example, following  is taken from /opt/xilinx/share/kv260-smartcam/vvas/refinedet/preprocess.json.</p>
+<div class="highlight-prototxt notranslate"><div class="highlight"><pre><span></span>model {
+name : &quot;refinedet_480x360_5G&quot;
+    kernel {
+    name: &quot;refinedet_480x360_5G&quot;
+    mean: 104.0
+    mean: 117.0
+    mean: 123.0
+    scale: 1.0
+    scale: 1.0
+    scale: 1.0
+    }
+}
+</pre></div>
+</div>
+<p><strong>Notice</strong> the channels sequence in the Vitis AI model prototxt file is B, G, R, not R, G, B, as the above samples show.</p>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<p>Take Vitis AI model ssd_mobilenet_v2 as example, we provide the detailed steps to add an AI task for smartcam application.</p>
+<ol>
+<li><p>Create folder <code class="docutils literal notranslate"><span class="pre">ssd_mobilenet_v2</span></code> under <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vvas/</span></code>, so that <code class="docutils literal notranslate"><span class="pre">ssd_mobilenet_v2</span></code> can be used as the value for argument –AItask.</p></li>
+<li><p>Download model file for GPU from the link provided by <a class="reference external" href="https://github.com/Xilinx/Vitis-AI/blob/master/models/AI-Model-Zoo/model-list/cf_ssdmobilenetv2_bdd_360_480_6.57G_1.4/model.yaml">https://github.com/Xilinx/Vitis-AI/blob/master/models/AI-Model-Zoo/model-list/cf_ssdmobilenetv2_bdd_360_480_6.57G_1.4/model.yaml</a></p>
+<p>After extraction, we get such file structure:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>├── README.md
+├── code
+│   ├── gen_data
+│   │   └── gen_quantize_data_list.py
+│   ├── test
+│   │   ├── demo.sh
+│   │   ├── demo_list.txt
+│   │   ├── demo_quantized.sh
+│   │   ├── evaluation.py
+│   │   ├── gt_labels.txt
+│   │   ├── images.txt
+│   │   ├── quantize.sh
+│   │   └── result.txt
+│   └── train
+│       ├── solver.prototxt
+│       └── trainval.sh
+├── data
+│   ├── convert_jsonTotxt.py
+│   └── data_preprocess.sh
+├── float
+│   ├── quantize.prototxt
+│   ├── test.prototxt
+│   ├── trainval.caffemodel
+│   └── trainval.prototxt
+├── labelmap_voc.prototxt
+└── quantized
+    ├── deploy.caffemodel
+    ├── deploy.prototxt
+    ├── quantized_test.prototxt
+    ├── quantized_train_test.caffemodel
+    └── quantized_train_test.protot
+</pre></div>
+</div>
+</li>
+<li><p>Prepare ssd_mobilenet_v2 Model <code class="docutils literal notranslate"><span class="pre">ssd_mobilenet_v2.xmodel</span></code> for DPU 3136 and put generated xmodel files together with the prototxt file to:</p>
+<p><code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vitis_ai_library/models/ssd_mobilenet_v2/</span></code>
+ssd_mobilenet_v2.prototxt</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  opt
+  └── xilinx
+    └── kv260-smartcam
+          └── share
+              └── vitis_ai_library
+                  └── models
+                      └── ssd_mobilenet_v2
+                          ├── ssd_mobilenet_v2.prototxt
+                          └── ssd_mobilenet_v2.xmodel
+</pre></div>
+</div>
+</li>
+<li><p>Create configuration files for ssd_mobilenet_v2.</p></li>
+</ol>
+<ul>
+<li><p>preprocess.json</p>
+<p>The mean and scale of B, G, R channel is taken from the deploy.protxt of the model.</p>
+<div class="highlight-prototxt notranslate"><div class="highlight"><pre><span></span>layer {
+  name: &quot;data&quot;
+  type: &quot;Input&quot;
+  top: &quot;data&quot;
+  transform_param {
+    mean_value: 104
+    mean_value: 117
+    mean_value: 123
+    resize_param {
+      prob: 1
+      resize_mode: WARP
+      height: 360
+      width: 480
+      interp_mode: LINEAR
+    }
+  }
+  input_param {
+    shape {
+      dim: 1
+      dim: 3
+      dim: 360
+      dim: 480
+    }
+  }
+}
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="nt">&quot;xclbin-location&quot;</span><span class="p">:</span><span class="s2">&quot;/lib/firmware/xilinx/kv260-smartcam/kv260-smartcam.xclbin&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="nt">&quot;vvas-library-repo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/lib&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="nt">&quot;kernels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">   </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;kernel-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pp_pipeline_accel:pp_pipeline_accel_1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;library-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;libvvas_xpp.so&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;mean_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;mean_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">117</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;mean_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">104</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;scale_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;scale_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;scale_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">     </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>aiinference.json:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="nt">&quot;xclbin-location&quot;</span><span class="p">:</span><span class="s2">&quot;/lib/firmware/xilinx/kv260-smartcam/kv260-smartcam.xclbin&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="nt">&quot;vvas-library-repo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/lib/&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="nt">&quot;element-mode&quot;</span><span class="p">:</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="nt">&quot;kernels&quot;</span><span class="w"> </span><span class="p">:[</span><span class="w"></span>
+<span class="w">   </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;library-name&quot;</span><span class="p">:</span><span class="s2">&quot;libvvas_xdpuinfer.so&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;model-name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ssd_mobilenet_v2&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;model-class&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SSD&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;model-path&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/share/vitis_ai_library/models&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;run_time_model&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;need_preprocess&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;performance_test&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">     </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>lable.json:</p>
+<p>SSD model privdes predictation of multiple classes in file <code class="docutils literal notranslate"><span class="pre">labelmap_voc.prototxt</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>item <span class="o">{</span>
+  name: <span class="s2">&quot;none_of_the_above&quot;</span>
+  label: <span class="m">0</span>
+  display_name: <span class="s2">&quot;background&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;person&quot;</span>
+  label: <span class="m">1</span>
+  display_name: <span class="s2">&quot;person&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;rider&quot;</span>
+  label: <span class="m">2</span>
+  display_name: <span class="s2">&quot;rider&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;car&quot;</span>
+  label: <span class="m">3</span>
+  display_name: <span class="s2">&quot;car&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;truck&quot;</span>
+  label: <span class="m">4</span>
+  display_name: <span class="s2">&quot;truck&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;bus&quot;</span>
+  label: <span class="m">5</span>
+  display_name: <span class="s2">&quot;bus&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;train&quot;</span>
+  label: <span class="m">6</span>
+  display_name: <span class="s2">&quot;train&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;motor&quot;</span>
+  label: <span class="m">7</span>
+  display_name: <span class="s2">&quot;motor&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;bike&quot;</span>
+  label: <span class="m">8</span>
+  display_name: <span class="s2">&quot;bike&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;sign&quot;</span>
+  label: <span class="m">9</span>
+  display_name: <span class="s2">&quot;sign&quot;</span>
+<span class="o">}</span>
+item <span class="o">{</span>
+  name: <span class="s2">&quot;light&quot;</span>
+  label: <span class="m">10</span>
+  display_name: <span class="s2">&quot;light&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>We need to convert the above lable info to json file as requested by VVAS framework as bellow.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;model-name&quot;</span><span class="p">:</span><span class="s2">&quot;ssd_mobilenet_v2&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;num-labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;background&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;background&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rider&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rider&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;car&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;car&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;truck&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tr&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bus&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bus&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;train&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;train&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;motor&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;motor&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bike&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bike&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sign&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sign&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;light&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;light&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>drawresult.json</p>
+<p>Here we pick up 3 classes to be shown: car, person, bicycle; and also customize the color for each class as bellow.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;xclbin-location&quot;</span><span class="p">:</span><span class="s2">&quot;/usr/lib/dpu.xclbin&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;vvas-library-repo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/lib&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;element-mode&quot;</span><span class="p">:</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;kernels&quot;</span><span class="w"> </span><span class="p">:[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;library-name&quot;</span><span class="p">:</span><span class="s2">&quot;libvvas_airender.so&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;fps_interval&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;font_size&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;font&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;thickness&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;label_color&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;blue&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;green&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;red&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;label_filter&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;probability&quot;</span><span class="w"> </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;classes&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;car&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;blue&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;green&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;red&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;blue&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;green&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;red&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bicycle&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;blue&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;green&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;red&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="w"></span>
+<span class="w">                </span><span class="p">}]</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bitstream_management.html" class="btn btn-neutral float-left" title="Bitstream Management on Kria SOM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 3, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

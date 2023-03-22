@@ -8,12 +8,12 @@ There are 3 ways to port smartcam onto PetaLinux OS:
 
 Without having to use PetaLinux toolchain:
 
-1. Build on target
+    * Build on target
 
-Using PetaLinux toolchain, this method has some overlap steps with eachother, therefore they are documented under the [same section](#building-a-wic-image-or-rpm-packages):
+Using PetaLinux toolchain, the following two methods has some overlap steps with eachother, therefore they are documented under the [same section](#building-a-wic-image-or-rpm-packages):
 
-2. Build a new PetaLinux wic image with smartcam baked in using recipes
-3. Generate an RPM using PetaLinux and recipes, and move to target
+    * Build a new PetaLinux wic image with smartcam baked in using recipes
+    * Generate an RPM using PetaLinux and recipes, and move to target
 
 ## Build on Target
 

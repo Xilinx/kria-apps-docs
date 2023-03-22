@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
@@ -34,7 +34,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="IPMI EEPROM Design Guide" href="../ipmi_eeprom_landing.html" /> 
+    <link rel="next" title="Kria SOM EEPROM Content" href="EEPROM_mapping_for_Kria_products.html" />
+    <link rel="prev" title="IPMI EEPROM Information" href="../ipmi_eeprom_landing.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -64,18 +65,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Area Record</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">IPMI EEPROM</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Design Guide</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">EEPROM Design Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#kria-som-eeprom-overview">Kria SOM EEPROM Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#eeprom-information">EEPROM Information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#record-type-summary-for-kria-som-and-xilinx-carrier-cards">Record Type Summary for Kria SOM and Xilinx Carrier Cards</a></li>
@@ -83,14 +86,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="#ipmi-oem-xilinx-defined-record-fields">IPMI OEM Xilinx-defined Record Fields</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#board-info-area-record-custom-mfg-info">Board Info Area Record Custom Mfg Info</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mac-addr-multirecords">MAC Addr MultiRecords</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#memory-config-multirecord">Memory Config MultiRecord</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ethercat-addr-multirecords">EtherCat Addr MultiRecords</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-config-multirecord">Memory Config MultiRecord</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria Product EEPROM mapping</a></li>
 </ul>
 
         </div>
@@ -121,7 +124,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Kria SOM EEPROM Design Guide<a class="headerlink" href="#kria-som-eeprom-design-guide" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="kria-som-eeprom-overview">
 <h2>Kria SOM EEPROM Overview<a class="headerlink" href="#kria-som-eeprom-overview" title="Permalink to this heading">¶</a></h2>
-<p>This document covers Kria SOMs and its associated carrier card hardware platform’s EEPROM content, which are based on the IPMI specification. The information in  EEPROM defines platform information that allows the system to be identified by software. The Intelligent Platform Management Interface (IPMI) is a set of computer interface specifications for an autonomous computer subsystem that provides management and monitoring capabilities independently of the host system’s CPU, firmware (BIOS or UEFI) and operating system. Xilinx EEPROM configuration build on top of the <a class="reference external" href="https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf">IPMI Platform Management FRU Information Storage Definition v1.0</a> and a Xilinx specific, internal EEPROM Definition specification.</p>
+<p>This document covers Kria SOMs platform’s EEPROM content format, which are based on the IPMI specification. It is meant to provide a guideline for you to create your own EEPROM contents for your custom carrier card. The information in  EEPROM defines platform information that allows the system to be identified by software. The Intelligent Platform Management Interface (IPMI) is a set of computer interface specifications for an autonomous computer subsystem that provides management and monitoring capabilities independently of the host system’s CPU, firmware (BIOS or UEFI) and operating system. Xilinx EEPROM configuration build on top of the <a class="reference external" href="https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf">IPMI Platform Management FRU Information Storage Definition v1.0</a> and a Xilinx specific, internal EEPROM Definition specification.</p>
+<p>For specific EEPROM Content format for Kria SOM and its carrier card, refer to <a class="reference internal" href="EEPROM_mapping_for_Kria_products.html"><span class="doc">EEPROM mapping for Kria Product page</span></a>.</p>
 </div>
 <div class="section" id="eeprom-information">
 <h2>EEPROM Information<a class="headerlink" href="#eeprom-information" title="Permalink to this heading">¶</a></h2>
@@ -149,7 +153,7 @@ i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEP
 </div>
 <div class="section" id="record-type-summary-for-kria-som-and-xilinx-carrier-cards">
 <h2>Record Type Summary for Kria SOM and Xilinx Carrier Cards<a class="headerlink" href="#record-type-summary-for-kria-som-and-xilinx-carrier-cards" title="Permalink to this heading">¶</a></h2>
-<p>There are two record types in Kria SOM EEPROM - standard record type that follows IPMI specification, and OEM (original equipment manufacturer) record type that is specified by Xilinx. Developer of SOM carrier cards (OEM) are expected to fill in their carrier card specific information aligning to standard or OEM record types. The following tables list the record areas for SOM and CC to show the order which they are presented in.</p>
+<p>There are two record types in Kria SOM EEPROM - standard record type that follows IPMI specification, and OEM (original equipment manufacturer) record type that is specified by Xilinx. Developer of SOM carrier cards (OEM) are expected to fill in their carrier card specific information aligning to standard or OEM record types. The following tables list the record areas for SOM and CC to show the order which they are presented in. For an example, this is the record areas for K26:</p>
 <p>Kria SOM (K26) and EEPROM Record Area Summary:</p>
 <table border="1" class="docutils">
 <thead>
@@ -180,59 +184,8 @@ i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEP
 <td>IPMI OEM Record, refer to table in <a href="#memory-config-multirecord">Memory Config MultiRecord</a></td>
 </tr>
 </tbody>
-</table><p>KV Carrier Card:</p>
-<table border="1" class="docutils">
-<thead>
-<tr>
-<th>Record Area</th>
-<th>Record Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Common Header</td>
-<td>IPMI Standard, refer to table 8-1 in <a href="https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf">IPMI Spec</a></td>
-</tr>
-<tr>
-<td>Board Info Area</td>
-<td>IPMI Standard, refer to table 11-1 in <a href="https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf">IPMI Spec</a></td>
-</tr>
-<tr>
-<td>DC Load MultiRecord</td>
-<td>IPMI Standard, refer to table 16-1 and  18-4 in <a href="https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf">IPMI Spec</a></td>
-</tr>
-</tbody>
-</table><p>KR Carrier Card:</p>
-<table border="1" class="docutils">
-<thead>
-<tr>
-<th>Record Area</th>
-<th>Record Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Common Header</td>
-<td>IPMI Standard, refer to table 8-1 in <a href="https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf">IPMI Spec</a></td>
-</tr>
-<tr>
-<td>Board Info Area</td>
-<td>IPMI Standard, refer to table 11-1 in <a href="https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf">IPMI Spec</a></td>
-</tr>
-<tr>
-<td>DC Load MultiRecord</td>
-<td>IPMI Standard, refer to table 16-1 and  18-4 in <a href="https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf">IPMI Spec</a></td>
-</tr>
-<tr>
-<td>CC MAC Addr MultiRecord</td>
-<td>IPMI OEM Record, refer to table in <a href="#mac-addr-multirecords">MAC Addr MultiRecords</a></td>
-</tr>
-<tr>
-<td>CC EtherCAT Addr MultiRecord</td>
-<td>IPMI OEM Record, refer to table in <a href="#mac-addr-multirecords">MAC Addr MultiRecords</a></td>
-</tr>
-</tbody>
-</table></div>
+</table><p>For information on Kria product EEPROM record area, review <a class="reference internal" href="EEPROM_mapping_for_Kria_products.html"><span class="doc">EEPROM mapping for Kria products</span></a>.</p>
+</div>
 <div class="section" id="ipmi-defined-record-fields">
 <h2>IPMI-defined Record Fields<a class="headerlink" href="#ipmi-defined-record-fields" title="Permalink to this heading">¶</a></h2>
 <p>For IPMI standard record type, refer to <a class="reference external" href="https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf">IPMI specification</a> to determine field meaning and determine how to fill in those fields. They must be IPMI-compliant.</p>
@@ -246,7 +199,6 @@ i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEP
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th>Start   Location</th>
 <th>Length   (in Bytes)</th>
 <th>Description</th>
 <th>Stored Format</th>
@@ -255,42 +207,36 @@ i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEP
 </thead>
 <tbody>
 <tr>
-<td>0x43</td>
 <td>1</td>
 <td>Revision Type-Length</td>
 <td>Binary</td>
 <td>Bits 7:6 - format<br> 11 indicates ASCII<br>Bits 5:0 - length</td>
 </tr>
 <tr>
-<td>0x44</td>
 <td>8</td>
 <td>Revision Number</td>
 <td>ASCII</td>
 <td>Indicates the board PWA revision capturing PCB + BOM + rework level. Unused Bytes are 0x0 filled. Value assigned at time of board manufacturing.</td>
 </tr>
 <tr>
-<td>0x4C</td>
 <td>1</td>
 <td>PCIe Info Type/length byte</td>
 <td>Binary</td>
 <td>Bits 7:6 - format<br> 00 indicates Binary <br>Bits 5:0 - length</td>
 </tr>
 <tr>
-<td>0x4D</td>
 <td>8</td>
 <td>PCIe Info</td>
 <td>Binary</td>
 <td>Vendor ID – 2 bytes<br>Device ID – 2 bytes<br>SubVendor ID – 2 bytes<br>SubDevice ID – 2 bytes</td>
 </tr>
 <tr>
-<td>0x55</td>
 <td>1</td>
 <td>UUID Type/length byte</td>
 <td>Binary</td>
 <td>Bits 7:6 - format<br> 00 indicates Binary <br>Bits 5:0 - length</td>
 </tr>
 <tr>
-<td>0x56</td>
 <td>16</td>
 <td>UUID</td>
 <td>Binary</td>
@@ -305,7 +251,7 @@ i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEP
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th>Size (in Bytes)</th>
+<th>Length (in Bytes)</th>
 <th>Data Description</th>
 <th>Stored Format</th>
 <th>Notes</th>
@@ -379,42 +325,69 @@ i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEP
 <td>MAC ID - if length field is 28 or greater</td>
 </tr>
 </tbody>
-</table><p>While the SOM itself support only 1 MAC ID for  PS primary Ethernet, each CC card have different numbers of MAC IDs dependent on how many Ethernet PHYs are put on the CC.</p>
-<p>SOM EEPROM for this entry has a length of 0x0A (10) and have the following MAC ID definition:</p>
+</table><p>While the SOM itself support only 1 MAC ID for  PS primary Ethernet, each CC card have different numbers of MAC IDs dependent on how many Ethernet PHYs are put on the CC. Refer to <a class="reference internal" href="EEPROM_mapping_for_Kria_products.html"><span class="doc">EEPROM mapping for Kria products</span></a> for examples.</p>
+</div>
+<div class="section" id="ethercat-addr-multirecords">
+<h3>EtherCat Addr MultiRecords<a class="headerlink" href="#ethercat-addr-multirecords" title="Permalink to this heading">¶</a></h3>
+<p>The SOM EtherCat Addr MultiRecord is a OEM Record of type 0xD2 (“Xilinx EtherCat Addr Multi Record” defined by Xilinx), manufacturer of Carrier card can choose to follow the same format to define their EtherCat address, but its not required.</p>
+<p>This is the Xilinx definition for its EtherCat Addr MultiRecord. It is similar to <a class="reference external" href="#mac-addr-multirecords">MAC Address MultiRecords</a> except the EtherCat ID is 4 bytes long.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
+<th>Length (in Bytes)</th>
 <th>Data Description</th>
+<th>Stored Format</th>
 <th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>MAC ID 0</td>
-<td>SOM PS Primary Ethernet MAC ID</td>
-</tr>
-</tbody>
-</table><p>The SCK-KV-G carrier card only supports a single SOM driven Ethernet interface. Therefore, an incremental MAC Address record is not required.</p>
-<p>The SCK-KR-G carrier card has 3 additional Ethernet interface (4 total including the SOM-driven one), thus EEPROM for this entry has a length of 0x16 (22) and have the following MAC ID definition:</p>
-<table border="1" class="docutils">
-<thead>
-<tr>
-<th>Data Description</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>MAC ID 0</td>
-<td>SOM PS secondary Ethernet #1 MAC ID</td>
+<td>1</td>
+<td>Record   Type (OEM)</td>
+<td>Binary</td>
+<td>OEM Record - set to 0xD2 (free form format)</td>
 </tr>
 <tr>
-<td>MAC ID 1</td>
-<td>SOM PL Ethernet #0 MAC ID</td>
+<td>1</td>
+<td>Type</td>
+<td>Binary</td>
+<td>set to 0x02 or 0x82 (Bit 7 on means last record)</td>
 </tr>
 <tr>
-<td>MAC ID 2</td>
-<td>SOM PL Ethernet #1 MAC ID</td>
+<td>1</td>
+<td>Length</td>
+<td>Binary</td>
+<td>Data length starting after Header Check Sum to end of record - this indicates how many MAC ID fields are present</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Record Check Sum</td>
+<td>Binary</td>
+<td>Sum over bytes after Header Checksum plus this checksum should equal 00.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Header Check Sum</td>
+<td>Binary</td>
+<td>Sum over last 4 bytes plus this checksum = 00.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>IANA ID</td>
+<td>Binary</td>
+<td>Internet Assigned Numbers Authority</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Version Number</td>
+<td>Binary</td>
+<td>Version number - 0x31 for Device Under Test for characterization/ evaluation MAC ID’s</td>
+</tr>
+<tr>
+<td>4</td>
+<td>EtherCat ID 0</td>
+<td>Binary</td>
+<td>EtherCat ID</td>
 </tr>
 </tbody>
 </table></div>
@@ -424,8 +397,7 @@ i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEP
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th>Start location (hex)</th>
-<th>Length(in decimal Bytes)</th>
+<th>Length(in Bytes)</th>
 <th>Data Description</th>
 <th>Stored Format</th>
 <th>Notes</th>
@@ -433,141 +405,123 @@ i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEP
 </thead>
 <tbody>
 <tr>
-<td>0x89</td>
 <td>1</td>
 <td>Record   Type (OEM)</td>
 <td>Binary</td>
 <td>Set to 0xD3</td>
 </tr>
 <tr>
-<td>0x8A</td>
 <td>1</td>
 <td>Record Format</td>
 <td>Binary</td>
 <td>set to 0x02 or 0x82 (Bit 7 on means last record)</td>
 </tr>
 <tr>
-<td>0x8B</td>
 <td>1</td>
 <td>Length</td>
 <td>Binary</td>
 <td>length of data after Header Checksum - 0x57 (87) for   K26 SOM</td>
 </tr>
 <tr>
-<td>0x8C</td>
 <td>1</td>
 <td>Record Check Sum</td>
 <td>Binary</td>
 <td>Sum over bytes after Header Checksum plus   this checksum should equal 00.</td>
 </tr>
 <tr>
-<td>0x8D</td>
 <td>1</td>
 <td>Header Check Sum</td>
 <td>Binary</td>
 <td>Sum over last 4 bytes plus this checksum should   equal 00.</td>
 </tr>
 <tr>
-<td>0x8E</td>
 <td>3</td>
 <td>IANA ID</td>
 <td>Binary</td>
 <td>(Internet Assigned Numbers Authority)</td>
 </tr>
 <tr>
-<td>0x91</td>
 <td>8</td>
-<td>“Memory: “</td>
+<td>Memory Type Field Name identifier. e.g. “Memory: ”</td>
 <td>ASCII</td>
 <td>Memory Type Field Name identifier.</td>
 </tr>
 <tr>
-<td>0x99</td>
 <td>12</td>
 <td>Primary boot device memory definition<br>e.g. “QSPI:512Mb”</td>
 <td>ASCII</td>
 <td>Describes primary NV memory device. If no primary   device note “None”. <br>Unused characters are spaces: 0x20 <br> “b”   means bit, “B” means byte</td>
 </tr>
 <tr>
-<td>0xA5</td>
 <td>1</td>
 <td>Memory Type Field end</td>
 <td>Binary</td>
 <td>Set to 0x00</td>
 </tr>
 <tr>
-<td>0xA6</td>
 <td>8</td>
-<td>“Memory: ”</td>
+<td>Memory Type Field Name identifier. e.g. “Memory: ”</td>
 <td>ASCII</td>
 <td>Memory Type Field Name identifier.</td>
 </tr>
 <tr>
-<td>0xAE</td>
 <td>12</td>
 <td>SOM secondary boot device memory <br>e.g. “eMMC:16GB” <br>e.g. “eMMC:32GB”</td>
 <td>ASCII</td>
 <td>Describes secondary NV memory device. If no   secondary boot device note “None”. <br> Unused characters are spaces:   0x20 <br> “b” means bit, “B” means byte</td>
 </tr>
 <tr>
-<td>0xBA</td>
 <td>1</td>
 <td>Memory Type Field end</td>
 <td>Binary</td>
 <td>Set to 0x00</td>
 </tr>
 <tr>
-<td>0xBB</td>
 <td>8</td>
-<td>“Memory: ”</td>
+<td>Memory Type Field Name identifier. e.g. “Memory: ”</td>
 <td>ASCII</td>
 <td>Memory Type Field Name identifier.</td>
 </tr>
 <tr>
-<td>0xC3</td>
 <td>12</td>
 <td>SOM PS DDR memory<br>e.g. “PSDDR4:4GB”<br>e.g. “PSDDR4:2GB”</td>
 <td>ASCII</td>
 <td>Describes PS MIO based DDR configuration. If no PS   DDR note “None”. <br> Unused characters are spaces: 0x20 <br> “b”   means bit, “B” means byte</td>
 </tr>
 <tr>
-<td>0xCF</td>
 <td>1</td>
 <td>Memory Type Field end</td>
 <td>Binary</td>
 <td>Set to 0x00</td>
 </tr>
 <tr>
-<td>0xD0</td>
 <td>8</td>
-<td>“Memory: ”</td>
+<td>Memory Type Field Name identifier. e.g. “Memory: ”</td>
 <td>ASCII</td>
 <td>Memory Type Field Name identifier.</td>
 </tr>
 <tr>
-<td>0xD8</td>
 <td>12</td>
 <td>SOM PL DDR memory <br>e.g. “PLDDR4:None”</td>
 <td>ASCII</td>
 <td>Describes PL based DDR configuration. If no PL DDR   note “None”. <br> Unused characters are spaces: 0x20 <br> “b”   means bit, “B” means byte</td>
 </tr>
 <tr>
-<td>0xE4</td>
 <td>1</td>
 <td>Memory Type Field end</td>
 <td>Binary</td>
 <td>Set to 0x00</td>
 </tr>
 </tbody>
-</table><div class="section" id="license">
-<h4>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h4>
+</table></div>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
 <p class="sphinxhide" align="center">Copyright&copy; 2023 Xilinx</p></div>
-</div>
-</div>
 </div>
 
 
@@ -584,7 +538,8 @@ i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEP
                   </style>
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../ipmi_eeprom_landing.html" class="btn btn-neutral float-left" title="IPMI EEPROM Design Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ipmi_eeprom_landing.html" class="btn btn-neutral float-left" title="IPMI EEPROM Information" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="EEPROM_mapping_for_Kria_products.html" class="btn btn-neutral float-right" title="Kria SOM EEPROM Content" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

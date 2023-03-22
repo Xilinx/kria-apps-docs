@@ -11,11 +11,13 @@ Dynamic Function eXchange (DFX)
 
    Landing Page <https://xilinx.github.io/kria-apps-docs/>
    Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications.html>
-   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
    Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
+   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
+   Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
    OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
-   Digital Rights Management <https://xilinx.github.io/kria-apps-docs/drm.html>
-   IPMI EEPROM Design Guide <https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html>
+   IPMI EEPROM Area Record <https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html>
+   Yocto Support <https://xilinx.github.io/kria-apps-docs/yocto.html>
+   Frequently Asked Questions <https://xilinx.github.io/kria-apps-docs/faq.html>
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
    Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
    Kria Robotics Stack <https://xilinx.github.io/KRS/>
@@ -37,7 +39,8 @@ Dynamic Function eXchange (DFX)
    :caption: How To
    :hidden:
 
-   Load Accelerator Example and Run Application <docs/run_application_on_target>
+   Try ML Accelerator Example on K26 <docs/dfx_ml_inference>
+   Load Non-ML Accelerator Example and Run Application on K26 <docs/run_application_on_target>
    Orchestrate Accelerator Examples to Demonstrate DFX on K26 <docs/Orchestration_of_accelerators>
    Create New RM for the K26 DFX Hardware Design <docs/creation_of_new_RM>
    Create New RM Application <docs/creation_of_new_RM_application>
