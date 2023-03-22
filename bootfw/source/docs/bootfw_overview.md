@@ -91,6 +91,8 @@ The following is QSPI memory map used for Kira SOM starter kits.
 
 \*   QSPI Image Version Information Example: XilinxSom_QspiImage_v1.0_20201030 Last 32Bytes: HashValue Hash Algo: SHA256 It is only 256Bytes but has to be 64KB aligned - therefore size is 0x10000.
 
+Starting from 2022.2, Yocto can generate QSPI images for Starter Kits. Information can be found in [QSPI Stitching page](./bootfw_qspi_stitching.md)
+
 ## Image Selector Registers
 
 Below table shows contents of image selector registers at offset 0x100000

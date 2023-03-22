@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
@@ -65,11 +65,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Area Record</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -82,7 +84,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How To</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html">Load Accelerator Example and Run Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dfx_ml_inference.html">Try ML Accelerator Example on K26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html">Load Non-ML Accelerator Example and Run Application on K26</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Orchestration_of_accelerators.html">Orchestrate Accelerator Examples to Demonstrate DFX on K26</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Create New RM for the K26 DFX Hardware Design</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites-and-assumptions">Prerequisites and assumptions</a></li>
@@ -136,7 +139,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="create-a-new-accelerator-rm">
 <h1>Create a new accelerator RM<a class="headerlink" href="#create-a-new-accelerator-rm" title="Permalink to this heading">¶</a></h1>
-<p>The target audience for this guide is developers who wish to add a new Reconfigurable Module(RM) to the publicly available DFX reference design on Kria K26.</p>
+<p>The target audience for this guide is developers who wish to add a new Reconfigurable Module(RM) to the publicly available DFX reference design on Kria K26 SOM.</p>
 <div class="section" id="prerequisites-and-assumptions">
 <h2>Prerequisites and assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
@@ -148,7 +151,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>The DFX design on Kria has two Reconfigurable Partitions, which have the same IO interface and similar footprint. So, when a new RM design is developed for one DFX partition, it can be targeted to the other DFX partitions as well with addressing changes. Using this document, RM partial bit files and the required firmware files to target the DFX design on Kria can be generated.</p>
+<p>The DFX design for the Kria SOM has two Reconfigurable Partitions, which have the same IO interface and similar footprint. So, when a new RM design is developed for one DFX partition, it can be targeted to the other DFX partitions as well with addressing changes. Using this document, RM partial bit files and the required firmware files can be generated, to target the DFX design for the Kria SOM.</p>
 <p>Accelerators with AXIS interface can be part of the RM for DFX example design. RM template for AXIS accelerators is provided as a reference to create the new RMs. Using the template ensures that RMs being created have the required IO interface and address. Any deviation from the IO interface or addressing provided in the templates will cause errors during RM generation.</p>
 </div>
 <div class="section" id="rp-interface">
@@ -391,7 +394,7 @@ generate_rm RMName targetRP
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 3, 2023.
+      <span class="lastupdated">Last updated on March 21, 2023.
       </span></p>
   </div>
 

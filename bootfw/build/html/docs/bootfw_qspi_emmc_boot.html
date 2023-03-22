@@ -33,7 +33,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Boot Firmware - Stitching QSPI Image" href="bootfw_qspi_stitching.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -63,23 +64,48 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/drm.html">Digital Rights Management</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Area Record</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Boot Firmware</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="bootfw_overview.html">Boot Firmware Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Boot Firmware - Image Selector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Firmware Image Recovery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">Boot Firmware - PMU Overlay Config Object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">Boot Firmware - U-Boot Handoff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Boot Firmware - Stitching QSPI Image</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Boot Firmware - QSPI to eMMC boot for Production SOM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#steps">Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#program-production-som-with-qspi-binary">1. Program Production SOM with QSPI binary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#program-qspi-using-xsdb-xsct-and-u-boot">Program QSPI using XSDB/XSCT and u-boot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#program-production-som-emmc-with-linux-image">2. Program Production SOM eMMC with Linux Image</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a-program-production-som-emmc-with-image-recovery-app">2A Program Production SOM eMMC with Image Recovery App</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#b-program-production-som-emmc-with-linux-image-using-linux">2B Program Production SOM eMMC with Linux Image using Linux</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#b-a-boot-linux-through-sd">2.B.a Boot Linux through SD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#b-b-write-to-emmc-in-linux">2.B.b Write to eMMC in Linux</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#reboot-in-qspi-mode">3. Reboot in QSPI mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -344,13 +370,15 @@ dd if=/nfsroot/&lt;image&gt; of=/dev/mmcblk0
                         }
                   </style>
 				  
-				  <footer>
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bootfw_qspi_stitching.html" class="btn btn-neutral float-left" title="Boot Firmware - Stitching QSPI Image" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 9, 2023.
+      <span class="lastupdated">Last updated on March 7, 2023.
       </span></p>
   </div>
 
