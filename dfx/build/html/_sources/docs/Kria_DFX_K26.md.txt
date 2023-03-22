@@ -1,6 +1,6 @@
-# Kria K26 SOM DFX Example Hardware Design
+# Kria K26 DFX Example Hardware Design
 
-This page provides an introduction to the Kria K26 SOM DFX example hardware design.
+This page provides an introduction to the Kria K26 DFX example hardware design.
 
 ## Overview
 
@@ -127,7 +127,7 @@ DDR buffers are used by the RMs for reading and writing data. RMs can communicat
 
 ## Reconfigurable partition
 
-The regions in PL fabric where DFx is enabled. There are two reconfigurable partitions in the DFX shell.
+The regions in PL fabric where DFx is enabled. There are two reconfigurable partitions in the K26 Kria DFX shell.
 Reconfigurable modules (RMs) can be programmed to this region of the PL fabric.
 All RPs are homogeneous. They have the same size, area, and resources.
 All RPs have a similar interface.
