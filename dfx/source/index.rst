@@ -39,7 +39,8 @@ Dynamic Function eXchange (DFX)
    :caption: How To
    :hidden:
 
-   Load Accelerator Example and Run Application <docs/run_application_on_target>
+   Try ML Accelerator Example on K26 <docs/dfx_ml_inference>
+   Load Non-ML Accelerator Example and Run Application on K26 <docs/run_application_on_target>
    Orchestrate Accelerator Examples to Demonstrate DFX on K26 <docs/Orchestration_of_accelerators>
    Create New RM for the K26 DFX Hardware Design <docs/creation_of_new_RM>
    Create New RM Application <docs/creation_of_new_RM_application>
