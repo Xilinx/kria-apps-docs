@@ -1,6 +1,6 @@
 # Orchestration of AES, FFT, and FIR accelerators
 
-The flow described below shows how DFX can be used to orchestrate multiple accelerators within a DFX-based system. As the Kria K26 design provides 2RPs the scenarios shown here focus on two PL-based accelerators, but the concepts can extend to a larger number of DFX slots.  
+The flow described below shows how DFX can be used to orchestrate multiple accelerators within a DFX-based system. As the Kria K26 SOM design provides 2RPs the scenarios shown here focus on two PL-based accelerators, but the concepts can extend to a larger number of DFX slots.  
 
 Use Case:
 Decrypt a signal that contains data of three different frequencies, Run FIR to get filtered output, and on the result of FIR, run FFT to get final output data.

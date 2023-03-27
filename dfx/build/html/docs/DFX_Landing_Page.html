@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Kria K26 DFX Example Hardware Design" href="Kria_DFX_K26.html" />
+    <link rel="next" title="Kria K26 SOM DFX Example Hardware Design" href="Kria_DFX_K26.html" />
     <link rel="prev" title="Dynamic Function eXchange (DFX)" href="../index.html" /> 
 </head>
 
@@ -87,8 +87,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#building-a-new-rm-accelerator-hw">Building a new RM Accelerator HW</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#dfx-example-design-repositories">DFX Example Design Repositories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dfx-example-design-repositories">DFX Example Design Repositories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Kria_DFX_K26.html">K26 DFX Hardware Design</a></li>
@@ -96,7 +98,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How To</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html">Load Accelerator Example and Run Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dfx_ml_inference.html">Try ML Accelerator Example on K26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_application_on_target.html">Load Non-ML Accelerator Example and Run Application on K26</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Orchestration_of_accelerators.html">Orchestrate Accelerator Examples to Demonstrate DFX on K26</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creation_of_new_RM.html">Create New RM for the K26 DFX Hardware Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creation_of_new_RM_application.html">Create New RM Application</a></li>
@@ -132,12 +135,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>• Partitioned designs allowing one part of the system to be changed (reconfigured) while another part of the system remains running.</p>
 <p>• “Slotted” architecture allowing for dynamically composable HW systems without having to recompile a monolithic configuration bitstream file.</p>
 <p>• Decoupled life cycles for PL-based functions, facilitating a reconfigurable module (RM) to be deployed to the field later without having to update or rebuild the base platform design.</p>
-<p>This Kria example design demonstrates the implementation of a dual slot (2 RP) design with multiple dynamic PL accelerated functions. In the design, the RP “slots” are homogenous in footprint allowing for any of the accelerated libraries to be loaded to any slot. In the 2-slot reference design, this provides an ability to dynamically compose any combination of PL accelerated functions based on the needs of the user without having to recompile the PL design.</p>
+<p>This example design for the Kria K26 SOM demonstrates the implementation of a dual slot (2 RP) design with multiple dynamic PL accelerated functions. In the design, the RP “slots” are homogenous in footprint allowing for any of the accelerated libraries to be loaded to any slot. In the 2-slot reference design, this provides an ability to dynamically compose any combination of PL accelerated functions based on the needs of the user without having to recompile the PL design.</p>
 <p>This page outlines a user flow from initially getting started, a technical overview of the implementation, and steps for building both hardware and software components of the design from the source. Lastly, the example design base or shell is implemented with the intention for user to be able to create their own HW accelerator RM and application.</p>
 <div class="section" id="dfx-hardware-design">
 <h2>DFX Hardware Design<a class="headerlink" href="#dfx-hardware-design" title="Permalink to this heading">¶</a></h2>
 <p><img alt="image" src="../_images/2RP_Design.png" /></p>
-<p>Using DFX, the Kria K26 shell is carved into a static region and DFX regions called reconfigurable partitions(RP). The RP region(s) of the fabric can be dynamically reprogrammed with different functions, called reconfigurable modules(RMs), while the static region of the design cannot be modified or reprogrammed. The DFX example design consists of 2 RPs, with four RMs added to each RP. When the design is built in Vivado, the following bit files will be built:</p>
+<p>Using DFX, the shell is carved into a static region and DFX regions called reconfigurable partitions(RP). The RP region(s) of the fabric can be dynamically reprogrammed with different functions, called reconfigurable modules(RMs), while the static region of the design cannot be modified or reprogrammed. The DFX example design consists of 2 RPs, with four RMs added to each RP. When the design is built in Vivado, the following bit files will be built:</p>
 <ul class="simple">
 <li><p>Full bitstream - Bit file for the entire design, consisting of static and reconfigurable modules.</p></li>
 <li><p>Partial Bitstreams - One partial bit file for every RM BD added to each RP.</p></li>
@@ -146,15 +149,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="orchestration-of-dynamically-interchangeable-accelerators-on-the-k26-board">
 <h2>Orchestration of Dynamically interchangeable Accelerators on the K26 board<a class="headerlink" href="#orchestration-of-dynamically-interchangeable-accelerators-on-the-k26-board" title="Permalink to this heading">¶</a></h2>
 <p>This example design provides a proof-of-concept reference for making use of the AMD-Xilinx dynamic function exchange (DFX) technology. The DFX technology enables the FPGA to be split into virtual “slots” that can be reconfigured while leaving other parts of the FPGA functionality in place. A partial reconfiguration of the FPGA introduces several interesting system-level use cases for swapping functionality based on a system’s mode of operation/mission phase as well as an ability to dynamically compose unique combinations of functionality when using a multi-slot base design.</p>
-<p>The DFX on Kria examples provides two base designs with one implementing a single DFX slot and one implementing two DFX slots. Both base designs are supported with a common set of pre-defined HW acceleration libraries that can be loaded in combination with available DFX slots. The runtime management of the HW accelerator libraries is provided by the DFX Manager daemon (dfx-mgrd) also used in other example designs.</p>
+<p>Two base designs are provided, with one implementing a single DFX slot and one implementing two DFX slots. Both base designs are supported with a common set of pre-defined HW acceleration libraries that can be loaded in combination with available DFX slots. The runtime management of the HW accelerator libraries is provided by the DFX Manager daemon (dfx-mgrd) also used in other example designs.</p>
 </div>
 <div class="section" id="getting-started-with-pre-built-dfx-examples-for-kr260-and-kv260">
 <h2>Getting Started with Pre-Built DFX Examples for KR260 and KV260<a class="headerlink" href="#getting-started-with-pre-built-dfx-examples-for-kr260-and-kv260" title="Permalink to this heading">¶</a></h2>
-<p>For reference, a set of pre-built DFX-based accelerators and the corresponding applications for the K26 2RP design are provided. These example accelerated applications are: AES128, AES192, FFT, and FIR. These pre-built applications are implemented on the K26 SOM and can run on either the KV260 or KR260 Starter Kits.</p>
+<p>For reference, a set of pre-built DFX-based accelerators and the corresponding applications for the K26 2RP design are provided. These example accelerated applications are: AES128, AES192, FFT, FIR, DPU and PP_PIPELINE. These pre-built applications are implemented on the K26 SOM and can run on either the KV260 or KR260 Starter Kits.</p>
 <ul class="simple">
 <li><p>The AES128/AES192 application takes a set of data that is moved over to the AES128/AES192 accelerator. This data is first decrypted on the hardware and the data is sent back from the accelerator which is then compared to a golden reference.</p></li>
 <li><p>FFT application uses XFFT IP as a building block and creates a high throughput design catering to 1 GSPS sample rate. Four similar IPs are combined and wrapped with HLS data mover to achieve high bandwidth.</p></li>
 <li><p>FIR application tests the Finite Impulse Response digital filter used in DSP applications.</p></li>
+<li><p>Dfx-ml-inference pipeline uses DPU and PP_PIPELINE to run the inference on input live or usb video.</p></li>
 </ul>
 <p>A detailed description of the example HW accelerators and test applications is available <a class="reference internal" href="Accelerators_On_K26.html"><span class="doc">here</span></a>.</p>
 <p>To get started with the example designs follow the instruction <a class="reference internal" href="run_application_on_target.html"><span class="doc">here</span></a>.</p>
@@ -179,14 +183,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/tree/xlnx_rel_v2022.1/k26-dfx/2rp">kria-apps-firmware</a> - Firmware</p></li>
 <li><p><a class="reference external" href="https://github.com/Xilinx/kria-dfx-apps/tree/xlnx_rel_v2022.1">kria-dfx-apps</a> - Accelerator applications</p></li>
 </ul>
-</div>
 <div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2022-2023 Xilinx</p></div>
+</div>
 </div>
 
 
@@ -204,14 +208,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="Dynamic Function eXchange (DFX)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Kria_DFX_K26.html" class="btn btn-neutral float-right" title="Kria K26 DFX Example Hardware Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Kria_DFX_K26.html" class="btn btn-neutral float-right" title="Kria K26 SOM DFX Example Hardware Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 3, 2023.
+    <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc..
+      <span class="lastupdated">Last updated on March 27, 2023.
       </span></p>
   </div>
 
