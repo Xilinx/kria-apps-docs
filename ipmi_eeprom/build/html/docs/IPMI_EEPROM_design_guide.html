@@ -81,6 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1 current"><a class="current reference internal" href="#">EEPROM Design Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#kria-som-eeprom-overview">Kria SOM EEPROM Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#eeprom-information">EEPROM Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tools-and-scripts">Tools and Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#record-type-summary-for-kria-som-and-xilinx-carrier-cards">Record Type Summary for Kria SOM and Xilinx Carrier Cards</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ipmi-defined-record-fields">IPMI-defined Record Fields</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ipmi-oem-xilinx-defined-record-fields">IPMI OEM Xilinx-defined Record Fields</a><ul>
@@ -124,8 +125,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Kria SOM EEPROM Design Guide<a class="headerlink" href="#kria-som-eeprom-design-guide" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="kria-som-eeprom-overview">
 <h2>Kria SOM EEPROM Overview<a class="headerlink" href="#kria-som-eeprom-overview" title="Permalink to this heading">¶</a></h2>
-<p>This document covers Kria SOMs platform’s EEPROM content format, which are based on the IPMI specification. It is meant to provide a guideline for you to create your own EEPROM contents for your custom carrier card. The information in  EEPROM defines platform information that allows the system to be identified by software. The Intelligent Platform Management Interface (IPMI) is a set of computer interface specifications for an autonomous computer subsystem that provides management and monitoring capabilities independently of the host system’s CPU, firmware (BIOS or UEFI) and operating system. Xilinx EEPROM configuration build on top of the <a class="reference external" href="https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf">IPMI Platform Management FRU Information Storage Definition v1.0</a> and a Xilinx specific, internal EEPROM Definition specification.</p>
-<p>For specific EEPROM Content format for Kria SOM and its carrier card, refer to <a class="reference internal" href="EEPROM_mapping_for_Kria_products.html"><span class="doc">EEPROM mapping for Kria Product page</span></a>.</p>
+<p>This document covers Kria SOMs platform’s EEPROM content format, which are based on the IPMI specification. It is meant to provide a guideline for you to create your own EEPROM contents for your custom carrier card. The information in  EEPROM defines platform information that allows the system to be identified by software. The Intelligent Platform Management Interface (IPMI) is a set of computer interface specifications for an autonomous computer subsystem that provides management and monitoring capabilities independently of the host system’s CPU, firmware (BIOS or UEFI) and operating system. Xilinx EEPROM configuration is based on the <a class="reference external" href="https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf">IPMI Platform Management FRU Information Storage Definition v1.0</a> specification.</p>
+<p>For specific EEPROM content format of Kria SOM and its starter kit carrier cards (CC), refer to <a class="reference internal" href="EEPROM_mapping_for_Kria_products.html"><span class="doc">EEPROM mapping for Kria Product page</span></a>.</p>
 </div>
 <div class="section" id="eeprom-information">
 <h2>EEPROM Information<a class="headerlink" href="#eeprom-information" title="Permalink to this heading">¶</a></h2>
@@ -150,6 +151,15 @@ i2c md 0x50 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out SOM EE
 i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEPROM</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="tools-and-scripts">
+<h2>Tools and Scripts<a class="headerlink" href="#tools-and-scripts" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://github.com/Xilinx/kria-eeprom-gen">Kria-EEPROM-gen repo</a> contains scripts to:</p>
+<ol class="simple">
+<li><p>generate EEPROM bins for different Starter kit SOMs and Carrier cards by processing user data</p></li>
+<li><p>generate user data from EEPROM bins which is useful for comparing the deltas</p></li>
+</ol>
+<p>Refer to readme in the repo for instructions.</p>
 </div>
 <div class="section" id="record-type-summary-for-kria-som-and-xilinx-carrier-cards">
 <h2>Record Type Summary for Kria SOM and Xilinx Carrier Cards<a class="headerlink" href="#record-type-summary-for-kria-som-and-xilinx-carrier-cards" title="Permalink to this heading">¶</a></h2>
@@ -546,7 +556,7 @@ i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEP
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 3, 2023.
+      <span class="lastupdated">Last updated on April 4, 2023.
       </span></p>
   </div>
 

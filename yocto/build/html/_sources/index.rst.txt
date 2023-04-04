@@ -23,7 +23,7 @@ Yocto Support
 
 
 
-.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs/
+.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs
 
 .. toctree::
    :maxdepth: 3
@@ -31,6 +31,7 @@ Yocto Support
    :hidden:
 
    ./docs/yocto_port_example
+   ./docs/library_dependency
 
 
 
