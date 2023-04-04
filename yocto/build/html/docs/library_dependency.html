@@ -33,7 +33,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Porting an Application to PetaLinux - Smartcam" href="yocto_port_example.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -75,8 +76,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Yocto Port Example</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="yocto_port_example.html">Porting an Application to PetaLinux - Smartcam</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Library Dependency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -105,15 +110,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="library-dependency">
 <h1>Library Dependency<a class="headerlink" href="#library-dependency" title="Permalink to this heading">¶</a></h1>
-<p>Some example applications are dependent on specific versions of Vitis libraries - specifically <a class="reference external" href="https://www.xilinx.com/products/design-tools/vitis/vvas.html">VVAS</a> and <a class="reference external" href="https://www.xilinx.com/products/design-tools/vitis/vitis-ai.html">VAI</a> libraries. The libraries are not backward compatible, to use the example applications, you will need to download a specific version.</p>
-<p>In the Ubuntu example apps, we used docker container which specified required libraries.</p>
-<p>In Yocto/PetaLinux, we need to take care to download the specific libraries.</p>
-<p>In 2022.1, you must use:</p>
+<p>Some example applications are dependent on specific versions of Vitis libraries - specifically:</p>
 <ul class="simple">
-<li><p>zocl-202210.2.13.479-r0.0</p></li>
-<li><p>xrt-202210.2.13.479-r0.0</p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/products/design-tools/vitis/vvas.html">VVAS</a>  package name <code class="docutils literal notranslate"><span class="pre">vvas-accel-libs</span></code> in PetaLinux (renamed from <code class="docutils literal notranslate"><span class="pre">ivas-accel-libs</span></code> in 2021.1 and older tools) or <code class="docutils literal notranslate"><span class="pre">vvas-essentials</span></code> in Ubuntu, github page <a class="reference external" href="https://github.com/Xilinx/vvas">here</a></p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/products/design-tools/vitis/vitis-ai.html">Vitis-AI or VAI</a>, package name <code class="docutils literal notranslate"><span class="pre">vitis-ai-library</span></code>, github page <a class="reference external" href="https://github.com/Xilinx/vitis-ai">here</a></p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/products/design-tools/vitis/xrt.html">XRT</a> and <a class="reference external" href="https://xilinx.github.io/XRT/master/html/zocl_ioctl.main.html">ZOCL</a>, github page <a class="reference external" href="https://github.com/Xilinx/xrt">here</a></p></li>
 </ul>
-<p>In 2022.2, ???</p>
+<p>The libraries are not always backward compatible, to use the example applications, you will need to install a specific version of those libraries. When example applications are installed apps through package feed or docker (per deployment documentation), the appropriate library versions are installed by default. When the applications are installed manually (such as the flow in <a class="reference internal" href="yocto_port_example.html"><span class="doc">Yocto port Example</span></a>), you need to take care to install specific versions.</p>
+<p>These are the specific library versions that was verified with released example applications:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>BSP/App Version</strong></th>
+<th><strong>XRT/ZOCL Version</strong></th>
+<th><strong>Vitis-AI Version</strong></th>
+<th><strong>VVAS Version</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022.1</td>
+<td>202210.2.13.479</td>
+<td>2.5.0</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>2021.1</td>
+<td>202110.2.11.0</td>
+<td>1.4.0</td>
+<td>1.0(IVAS)</td>
+</tr>
+<tr>
+<td>2020.2</td>
+<td>202020.2.8.1</td>
+<td>1.3.0</td>
+<td>1.0(IVAS)</td>
+</tr>
+</tbody>
+</table><p>Note that ZOCL is a XRT dependency - always install ZOCL first, otherwise XRT installation will install the latest ZOCL as a dependency.
+Similarly, Vitis-AI is a VVAS dependency, always install Vitis-AI first, otherwise VVAS installation may install the latest version of Vitis-AI as a dependency.</p>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
@@ -136,13 +171,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         }
                   </style>
 				  
-				  <footer>
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="yocto_port_example.html" class="btn btn-neutral float-left" title="Porting an Application to PetaLinux - Smartcam" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 6, 2023.
+      <span class="lastupdated">Last updated on April 4, 2023.
       </span></p>
   </div>
 

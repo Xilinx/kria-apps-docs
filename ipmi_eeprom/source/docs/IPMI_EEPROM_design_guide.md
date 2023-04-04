@@ -2,9 +2,9 @@
 
 ## Kria SOM EEPROM Overview
 
-This document covers Kria SOMs platform's EEPROM content format, which are based on the IPMI specification. It is meant to provide a guideline for you to create your own EEPROM contents for your custom carrier card. The information in  EEPROM defines platform information that allows the system to be identified by software. The Intelligent Platform Management Interface (IPMI) is a set of computer interface specifications for an autonomous computer subsystem that provides management and monitoring capabilities independently of the host system's CPU, firmware (BIOS or UEFI) and operating system. Xilinx EEPROM configuration build on top of the [IPMI Platform Management FRU Information Storage Definition v1.0](https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf) and a Xilinx specific, internal EEPROM Definition specification.
+This document covers Kria SOMs platform's EEPROM content format, which are based on the IPMI specification. It is meant to provide a guideline for you to create your own EEPROM contents for your custom carrier card. The information in  EEPROM defines platform information that allows the system to be identified by software. The Intelligent Platform Management Interface (IPMI) is a set of computer interface specifications for an autonomous computer subsystem that provides management and monitoring capabilities independently of the host system's CPU, firmware (BIOS or UEFI) and operating system. Xilinx EEPROM configuration is based on the [IPMI Platform Management FRU Information Storage Definition v1.0](https://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/ipmi-platform-mgt-fru-info-storage-def-v1-0-rev-1-3-spec-update.pdf) specification.
 
-For specific EEPROM Content format for Kria SOM and its carrier card, refer to [EEPROM mapping for Kria Product page](./EEPROM_mapping_for_Kria_products.md).
+For specific EEPROM content format of Kria SOM and its starter kit carrier cards (CC), refer to [EEPROM mapping for Kria Product page](./EEPROM_mapping_for_Kria_products.md).
 
 ## EEPROM Information
 
@@ -29,6 +29,15 @@ i2c dev 1;
 i2c md 0x50 0.2 0x100 # Reads out SOM EEPROM
 i2c md 0x51 0.2 0x100 # Reads out CC EEPROM
 ```
+
+## Tools and Scripts
+
+[Kria-EEPROM-gen repo](https://github.com/Xilinx/kria-eeprom-gen) contains scripts to:
+
+1. generate EEPROM bins for different Starter kit SOMs and Carrier cards by processing user data
+2. generate user data from EEPROM bins which is useful for comparing the deltas
+
+Refer to readme in the repo for instructions.
 
 ## Record Type Summary for Kria SOM and Xilinx Carrier Cards
 

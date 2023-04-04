@@ -34,6 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Library Dependency" href="library_dependency.html" />
     <link rel="prev" title="Yocto Support" href="../index.html" /> 
 </head>
 
@@ -96,6 +97,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="library_dependency.html">Library Dependency</a></li>
 </ul>
 
         </div>
@@ -128,14 +130,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The example here was tested using smartcam and tool version 2022.1. It assumes that you have already familiar with the smartcam application either using <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/docs/app_deployment.html#">Ubuntu with tool version 2022.1</a> or <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/docs/smartcamera/docs/app_deployment.html">PetaLinux 2021.1</a>.</p>
 <p>There are 3 ways to port smartcam onto PetaLinux OS:</p>
 <p>Without having to use PetaLinux toolchain:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Build</span> <span class="n">on</span> <span class="n">target</span>
-</pre></div>
-</div>
+<ul class="simple">
+<li><p>Build on target</p></li>
+</ul>
 <p>Using PetaLinux toolchain, the following two methods has some overlap steps with eachother, therefore they are documented under the <a class="reference external" href="#building-a-wic-image-or-rpm-packages">same section</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Build</span> <span class="n">a</span> <span class="n">new</span> <span class="n">PetaLinux</span> <span class="n">wic</span> <span class="n">image</span> <span class="k">with</span> <span class="n">smartcam</span> <span class="n">baked</span> <span class="ow">in</span> <span class="n">using</span> <span class="n">recipes</span>
-<span class="o">*</span> <span class="n">Generate</span> <span class="n">an</span> <span class="n">RPM</span> <span class="n">using</span> <span class="n">PetaLinux</span> <span class="ow">and</span> <span class="n">recipes</span><span class="p">,</span> <span class="ow">and</span> <span class="n">move</span> <span class="n">to</span> <span class="n">target</span>
-</pre></div>
-</div>
+<ul class="simple">
+<li><p>Build a new PetaLinux wic image with smartcam baked in using recipes</p></li>
+<li><p>Generate an RPM using PetaLinux and recipes, and move to target</p></li>
+</ul>
 <div class="section" id="build-on-target">
 <h2>Build on Target<a class="headerlink" href="#build-on-target" title="Permalink to this heading">¶</a></h2>
 <p>This section outlines how to build smartcam on KV260 target running released 2022.1 wic image. First, download and boot with <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Starter-Kit-Linux">2022.1 PetaLinux Starter Kit Linux pre-built SD card image</a>. Once booted, download git, and repositories required for building smartcam - the FPGA firmware, AP1302 firmware, and smartcam application software:</p>
@@ -154,21 +156,25 @@ sudo cp ap1302-firmware/ap1302_ar1335_single_fw.bin /lib/firmware/
 </pre></div>
 </div>
 <p>Next, install runtime and build dependencies. Note that 2022.1 smartcam is compatible only with specific versions of zcol and xrt. Therefore install them first with the compatible versions to prevent latest version to be installed when other dependencies are installed. (Tip: copy below section to a .sh file on target and source the .sh file to save time.)</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># install specific versions of zocl and xrt:</span>
-sudo dnf install -y zocl-202210.2.13.479-r0.0
-sudo dnf install -y xrt-202210.2.13.479-r0.0
+<p>Note that the example applications are verified with specific versions of XRT, VVAS and Vitis-AI libraries, which may not be backward compatible. So you will need to first install specific versions per instructions below. Find more information in <a class="reference internal" href="library_dependency.html"><span class="doc">library dependency</span></a> page.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># install specific versions of zocl, xrt, VVAS, and Vitis-AI:</span>
+<span class="c1"># zocl needs to be installed before xrt - otherwise xrt will install latest zocl as dependency</span>
+sudo dnf install -y zocl-202210.2.13.479
+sudo dnf install -y xrt-202210.2.13.479
+sudo dnf install -y vitis-ai-library-2.5
+sudo dnf install -y vvas-accel-libs-2.0
+sudo dnf install -y vitis-ai-library-dev-2.5
+sudo dnf install -y vvas-accel-libs-dev-2.0
 
-
-<span class="c1"># Install the runtime dependencies</span>
-sudo dnf install -y vvas-accel-libs
+<span class="c1"># Install the rest of runtime dependencies</span>
 sudo dnf install -y glog
 sudo dnf install -y gstreamer1.0-rtsp-server
 sudo dnf install -y opencv
 
-<span class="c1"># Install the build time dependencies</span>
+<span class="c1"># Install the rest of build time dependencies</span>
 sudo dnf install -y packagegroup-petalinux-self-hosted
 sudo dnf install -y gst-perf-dev gstreamer1.0-omx-dev gstreamer1.0-python-dev
-sudo dnf install -y gstreamer1.0-rtsp-server-dev vvas-accel-libs-dev v4l-utils-dev
+sudo dnf install -y gstreamer1.0-rtsp-server-dev v4l-utils-dev
 sudo dnf install -y alsa-utils-dev opencv-dev
 sudo dnf install -y gst-perf gstreamer1.0-omx gstreamer1.0-plugins-bad-faac
 sudo dnf install -y gstreamer1.0-plugins-bad-mpegtsmux gstreamer1.0-plugins-good-rtp
@@ -451,13 +457,14 @@ sudo /opt/xilinx/kv260-smartcam/bin/smartcam -m <span class="c1"># Execute smart
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="Yocto Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="library_dependency.html" class="btn btn-neutral float-right" title="Library Dependency" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 6, 2023.
+      <span class="lastupdated">Last updated on April 4, 2023.
       </span></p>
   </div>
 

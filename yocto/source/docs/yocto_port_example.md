@@ -8,18 +8,18 @@ There are 3 ways to port smartcam onto PetaLinux OS:
 
 Without having to use PetaLinux toolchain:
 
-    * Build on target
+* Build on target
 
 Using PetaLinux toolchain, the following two methods has some overlap steps with eachother, therefore they are documented under the [same section](#building-a-wic-image-or-rpm-packages):
 
-    * Build a new PetaLinux wic image with smartcam baked in using recipes
-    * Generate an RPM using PetaLinux and recipes, and move to target
+* Build a new PetaLinux wic image with smartcam baked in using recipes
+* Generate an RPM using PetaLinux and recipes, and move to target
 
 ## Build on Target
 
 This section outlines how to build smartcam on KV260 target running released 2022.1 wic image. First, download and boot with [2022.1 PetaLinux Starter Kit Linux pre-built SD card image](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Starter-Kit-Linux). Once booted, download git, and repositories required for building smartcam - the FPGA firmware, AP1302 firmware, and smartcam application software:
 
-```shell
+``` shell
 sudo dnf install -y git
 git clone --branch xlnx-rel-v2022.1_update4 https://github.com/Xilinx/kria-apps-firmware.git
 git clone --branch xlnx_rel_v2022.1 https://github.com/Xilinx/ap1302-firmware.git
@@ -28,7 +28,7 @@ git clone --branch xlnx_rel_v2022.1 https://github.com/Xilinx/smartcam.git
 
 Next, copy the smartcam FPGA Firmware and AP1302 firmware to the correct location:
 
-```shell
+``` shell
 cd kria-apps-firmware/boards/kv260/smartcam/
 dtc -@ -O dtb -o kv260-smartcam.dtbo kv260-smartcam.dtsi # generate binary for device tree from .dtsi - errors can be ignored
 cd /home/petalinux/
@@ -38,22 +38,27 @@ sudo cp ap1302-firmware/ap1302_ar1335_single_fw.bin /lib/firmware/
 
 Next, install runtime and build dependencies. Note that 2022.1 smartcam is compatible only with specific versions of zcol and xrt. Therefore install them first with the compatible versions to prevent latest version to be installed when other dependencies are installed. (Tip: copy below section to a .sh file on target and source the .sh file to save time.)
 
-```shell
-# install specific versions of zocl and xrt:
-sudo dnf install -y zocl-202210.2.13.479-r0.0
-sudo dnf install -y xrt-202210.2.13.479-r0.0
+Note that the example applications are verified with specific versions of XRT, VVAS and Vitis-AI libraries, which may not be backward compatible. So you will need to first install specific versions per instructions below. Find more information in [library dependency](./library_dependency.md) page.
 
+``` shell
+# install specific versions of zocl, xrt, VVAS, and Vitis-AI:
+# zocl needs to be installed before xrt - otherwise xrt will install latest zocl as dependency
+sudo dnf install -y zocl-202210.2.13.479
+sudo dnf install -y xrt-202210.2.13.479
+sudo dnf install -y vitis-ai-library-2.5
+sudo dnf install -y vvas-accel-libs-2.0
+sudo dnf install -y vitis-ai-library-dev-2.5
+sudo dnf install -y vvas-accel-libs-dev-2.0
 
-# Install the runtime dependencies
-sudo dnf install -y vvas-accel-libs
+# Install the rest of runtime dependencies
 sudo dnf install -y glog
 sudo dnf install -y gstreamer1.0-rtsp-server
 sudo dnf install -y opencv
 
-# Install the build time dependencies
+# Install the rest of build time dependencies
 sudo dnf install -y packagegroup-petalinux-self-hosted
 sudo dnf install -y gst-perf-dev gstreamer1.0-omx-dev gstreamer1.0-python-dev
-sudo dnf install -y gstreamer1.0-rtsp-server-dev vvas-accel-libs-dev v4l-utils-dev
+sudo dnf install -y gstreamer1.0-rtsp-server-dev v4l-utils-dev
 sudo dnf install -y alsa-utils-dev opencv-dev
 sudo dnf install -y gst-perf gstreamer1.0-omx gstreamer1.0-plugins-bad-faac
 sudo dnf install -y gstreamer1.0-plugins-bad-mpegtsmux gstreamer1.0-plugins-good-rtp

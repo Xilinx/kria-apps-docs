@@ -579,7 +579,6 @@ FIR operation done
 ## Limitations / Known Issues
 
 - Multi-slot accelerator unloading/reloading using (xmutil loadapp/unloadapp commands) stress test will fail after 30 cycles. Reboot the platform or Restart dfx-mgr to recover from the state.
-- DPU and PP_PIPELINE (Video Pre Processing) firmware are included for reference but are not fully functional in this release.
 
 ## FAQ and Debug
 

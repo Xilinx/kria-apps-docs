@@ -68,6 +68,12 @@ The SCK-KR-G carrier card has 3 additional Ethernet interface (4 total including
 |     MAC ID 1     | SOM PL Ethernet #0 MAC ID           |
 |     MAC ID 2     | SOM PL Ethernet #1 MAC ID           |
 
+## EEPROM Binaries and Utilities
+
+The EEPROM binaries used in Kria SOM products can be found in  [xlnx-board-id-data repo](https://github.com/Xilinx/xlnx-board-id-data/).
+
+There is a Yocto recipe for an example Linux init script used in Kria Starter Kits that updates MAC address by getting the information from the Xilinx EEPROM MAC Address records. The script is located at [github](https://github.com/Xilinx/meta-som/tree/rel-v2022.2/recipes-bsp/misc-config).
+
 ## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
