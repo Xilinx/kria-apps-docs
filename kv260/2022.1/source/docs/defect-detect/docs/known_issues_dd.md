@@ -37,6 +37,14 @@ The known issues with the Defect Detection application are as follows:
 /opt/xilinx/kv260-defect-detect/bin/ar0144-sensor-calib.sh: 38: Syntax error: "(" unexpected
 ```
 
+* On some monitors user may see below error during modetest, it can be ignored:
+
+```
+ubuntu@kria:~$ modetest -M xlnx -D B0010000.v_mix -s 52@40:3840x2160@NV16
+setting mode 3840x2160-30.00Hz on connectors 52, crtc 40
+failed to set gamma: Function not implemented
+```
+
 ## Next Steps
 
 * [KV260 SOM Defect detect design start page](../defectdetect_landing)

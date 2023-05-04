@@ -14,11 +14,11 @@ Here are the three recommended ways:
 
 Note that with any ways of generating DTSI files - the generated .dtsi file will likely require user modification before they can be fully functional.
 
-## Using XSTC, DTG and DTC
+## Using XSCT, DTG and DTC
 
 ### Tools and Input Required
 
-1. XSTC (should be part of Vivado or Vitis installation)
+1. XSCT (part of Vivado or Vitis installation)
 2. DTG, make sure to check out the version that is aligned to rest of tool chain and BSP used:
 
    ```bash
@@ -27,7 +27,7 @@ Note that with any ways of generating DTSI files - the generated .dtsi file will
    git checkout xlnx_rel_v<version>
    ```
 
-3. DTC (should be part of Vitis installation, can also be obtained below:)
+3. DTC (part of Vitis installation, can also be obtained below:)
 
    ```bash
    git clone https://git.kernel.org/pub/scm/utils/dtc/dtc.git
@@ -51,6 +51,7 @@ hsi open_hw_design <design_name.xsa>
 hsi set_repo_path <path to device-tree-xlnx repository>
 hsi create_sw_design device-tree -os device_tree -proc psu_cortexa53_0
 hsi set_property CONFIG.dt_overlay true [hsi::get_os]
+hsi set_property CONFIG.dt_zocl true [hsi get_os]          # if ZOCL is used
 hsi generate_target -dir <desired_dts_filename>
 hsi close_hw_design [current_hw_design]
 ```
@@ -178,6 +179,10 @@ petalinux-build
 
 The newly generated .dtbo file can be found at ```$tmp_folder/sysroots-components/zynqmp_generic/user-firmware/lib/firmware/xilinx/user-firmware/user-firmware.dtbo```
 $tmp_folder location can be found at ```project-spec/configs/config CONFIG_TMP_DIR_LOCATION=$tmp_folder```
+
+## Example
+
+A step by step example for generating the .dtbo file for smartcam from its platform .xsa file can be found [here[]](./dtsi_dtbo_generation_smartcam_example.md).
 
 ## License
 

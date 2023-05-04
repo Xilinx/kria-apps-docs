@@ -13,3 +13,4 @@ Examples
    ./vitis_accel_flow_smartcam_filter2d_example
    ./vitis_platform_flow_smartcam_raspi_example
    ./custom_cc_flow_example
+   ./dtsi_dtbo_generation_smartcam_example

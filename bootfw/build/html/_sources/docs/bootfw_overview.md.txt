@@ -150,7 +150,9 @@ U-Boot is an open source Universal Boot Loader that is frequently used in the Li
 
 Read the [PMU configuration objects](./bootfw_pmu_config_obj.md) and [U-Boot handoff](./bootfw_uboot_handoff.md) for more details on dynamic carrier card configuration in Kria StarterKits.
 
-## QSPI update
+## QSPI Component and QSPI Update
+
+QSPI used in commercial grade SOM is [MT25QU512ABB8E12-0SIT](https://www.micron.com/products/nor-flash/serial-nor-flash/part-catalog/mt25qu512abb8e12-0sit), QSPI used in I-grade SOM is [MT25QU512ABB8E12-0AAT](https://www.micron.com/products/nor-flash/serial-nor-flash/part-catalog/mt25qu512abb8e12-0aat). The QSPI has locking functionality - refer to linked datasheets on Micron for details.
 
 If developers are developing on Xilinx released starter kits, QSPI image is locked and the only section that should need update is the Image A/B section along with the persistent registers.
 

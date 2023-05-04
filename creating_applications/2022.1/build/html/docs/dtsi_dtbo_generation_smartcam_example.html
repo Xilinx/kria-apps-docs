@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Example - Generating DTSI and DTBO Overlay Files for Smartcam &mdash; Kria™ SOM 2022.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bare-metal Flow Example" href="baremetal.html" />
+    <link rel="prev" title="Example - Creating a Platform for a Custom Carrier Card" href="custom_cc_flow_example.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Kria™ SOM
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Area Record</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Flows</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Development Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vitis_accel_flow.html">Vitis Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vitis_platform_flow.html">Vitis Platform Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vivado_accel_example.html">Vivado Accelerator Flow Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vitis_accel_flow_smartcam_filter2d_example.html">Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vitis_platform_flow_smartcam_raspi_example.html">Vitis Platform Flow Example - Adding Raspberry Pi Camera to SmartCam’s Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom_cc_flow_example.html">Example - Creating a Platform for a Custom Carrier Card</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Example - Generating DTSI and DTBO Overlay Files for Smartcam</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-dtsi-based-on-platform-xsa-file-using-dtg">Generating DTSI based on platform xsa file using DTG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modify-generated-pl-dtsi">Modify generated pl.dtsi</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#add-ap1302-node">Add AP1302 Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#i2c-mux">I2C MUX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mipi-csi-node">mipi csi node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#zocl-node">ZOCL node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#final-dtsi-file">Final dtsi file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#compile-the-dtsi-to-dtbo-using-dtc">Compile the .dtsi to .dtbo using DTC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2021.1/build/html/index.html">2021.1</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kria™ SOM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="examples.html">Examples</a> &raquo;</li>
+      <li>Example - Generating DTSI and DTBO Overlay Files for Smartcam</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/dtsi_dtbo_generation_smartcam_example.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="example-generating-dtsi-and-dtbo-overlay-files-for-smartcam">
+<h1>Example - Generating DTSI and DTBO Overlay Files for Smartcam<a class="headerlink" href="#example-generating-dtsi-and-dtbo-overlay-files-for-smartcam" title="Permalink to this heading">¶</a></h1>
+<p>In this example, we will show the steps to create a working SmartCam DTBO overlay file. We will first generate a pl.dtsi file using <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob">DTG</a>, and then explain the modifications required to make the .dtsi file fully functional. This example is based on <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/smartcamera_landing.html">2022.1 smartcam release</a>.</p>
+<div class="section" id="pre-requisites">
+<h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this heading">¶</a></h2>
+<p>First read through <a class="reference internal" href="dtsi_dtbo_generation.html"><span class="doc">Generating DTSI and DTBO Overlay Files</span></a> and install required tools.</p>
+<p>The XSA file required can be obtained using these <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vivado_design.html">instructions</a>. They are summarized below:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$workdir</span>
+git clone --recursive --branch xlnx_rel_v2022.1 https://github.com/Xilinx/kria-vitis-platforms.git
+<span class="nb">cd</span> <span class="nv">$workdir</span>/kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP
+make xsa
+</pre></div>
+</div>
+<p>The generated XSA will be located at: <code class="docutils literal notranslate"><span class="pre">$workdir/kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.xsa</span></code>.</p>
+</div>
+<div class="section" id="generating-dtsi-based-on-platform-xsa-file-using-dtg">
+<h2>Generating DTSI based on platform xsa file using DTG<a class="headerlink" href="#generating-dtsi-based-on-platform-xsa-file-using-dtg" title="Permalink to this heading">¶</a></h2>
+<p>Call XSCT:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$workdir</span>
+xsct
+</pre></div>
+</div>
+<p>In XSCT, perform the following commands which will extract the HW configuration information and generate a DTSI file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsi open_hw_design kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.xsa
+hsi set_repo_path &lt;path to device-tree-xlnx repository&gt;
+hsi create_sw_design device-tree -os device_tree -proc psu_cortexa53_0
+hsi set_property CONFIG.dt_overlay <span class="nb">true</span> <span class="o">[</span>hsi::get_os<span class="o">]</span>
+hsi set_property CONFIG.dt_zocl <span class="nb">true</span> <span class="o">[</span>hsi get_os<span class="o">]</span>
+hsi generate_target -dir smartcam_dtg_output
+hsi close_hw_design kv260_ispMipiRx_vcu_DP_wrapper
+</pre></div>
+</div>
+<p>A file <code class="docutils literal notranslate"><span class="pre">smartcam_dtg_output/pl.dtsi</span></code> will be created. It should look identical to <a class="reference external" href="./example_src/smartcam_dtsi_example/pl.dtsi">pl.dtsi here</a>, we will modify it in the next step to add the necessary information that cannot be automatically generated.</p>
+</div>
+<div class="section" id="modify-generated-pl-dtsi">
+<h2>Modify generated pl.dtsi<a class="headerlink" href="#modify-generated-pl-dtsi" title="Permalink to this heading">¶</a></h2>
+<p>Note that the released <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/boards/kv260/smartcam/kv260-smartcam.dtsi">kv260-smartcam.dtsi</a> is using sugar syntax while the generated <a class="reference external" href="./example_src/smartcam_dtsi_example/pl.dtsi">pl.dtsi</a> is using fragmented syntax - they both will work. We will continue the fragmented syntax for this tutorial.</p>
+<div class="section" id="add-ap1302-node">
+<h3>Add AP1302 Node<a class="headerlink" href="#add-ap1302-node" title="Permalink to this heading">¶</a></h3>
+<p>The AP1302 sensor is on the carrier card, and not something the .XSA platform is aware of as the FPGA/PL design only can infer the generic MIPI and I2C interfaces. Add the required information below to overlay2, for AP1302 clock and regulators:</p>
+<div class="highlight-dtsi notranslate"><div class="highlight"><pre><span></span>ap1302_clk: sensor_clk {
+   compatible = &quot;fixed-clock&quot;;
+   clock-frequency = &lt;0x48000000&gt;;
+};
+ap1302_vdd: fixedregulator@0 {
+   compatible = &quot;regulator-fixed&quot;;
+   regulator-name = &quot;ap1302_vdd&quot;;
+   regulator-min-microvolt = &lt;2800000&gt;;
+   regulator-max-microvolt = &lt;2800000&gt;;
+   enable-active-high;
+};
+
+ap1302_vaa: fixedregulator@1 {
+   compatible = &quot;regulator-fixed&quot;;
+   regulator-name = &quot;ap1302_vaa&quot;;
+   regulator-min-microvolt = &lt;1800000&gt;;
+   regulator-max-microvolt = &lt;1800000&gt;;
+};
+
+ap1302_vddio: fixedregulator@2 {
+   compatible = &quot;regulator-fixed&quot;;
+   regulator-name = &quot;ap1302_vddio&quot;;
+   regulator-min-microvolt = &lt;1200000&gt;;
+   regulator-max-microvolt = &lt;1200000&gt;;
+};
+</pre></div>
+</div>
+</div>
+<div class="section" id="i2c-mux">
+<h3>I2C MUX<a class="headerlink" href="#i2c-mux" title="Permalink to this heading">¶</a></h3>
+<p>The I2C mux connecting to control AP1302 also exist outside of zynq MPSoC and .xsa file does not have awareness, therefore they also need to be added manually. The device tree binding is documented <a class="reference external" href="https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/i2c/nxp%2Cpca9541.txt">here</a> and <a class="reference external" href="https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/media/i2c/onnn%2Cap1302.yaml">here</a>. Note that the port connection to mipi_csi_incapture_pipeline_mipi_csi2_rx_subsyst_0 on mipi_csi_portscapture_pipeline_mipi_csi2_rx_subsyst_0 (both names were auto generated by DTG) corresponds to the mipi_phy_if in the platform Vivado design.</p>
+<div class="highlight-dtsi notranslate"><div class="highlight"><pre><span></span>i2c_mux: i2c-mux@74 {
+   compatible = &quot;nxp,pca9546&quot;;
+   reg = &lt;0x74&gt;;
+   i2c@0 {
+      reg = &lt;0&gt;;
+      ap1302: isp@3c {
+         compatible = &quot;onnn,ap1302&quot;;
+         reg = &lt;0x3c&gt;;
+         reset-gpios = &lt;&amp;gpio 79 1&gt;;
+         clocks = &lt;&amp;ap1302_clk&gt;;
+         sensors {
+            onnn,model = &quot;onnn,ar1335&quot;;
+            sensor@0 {
+               reg = &lt;0&gt;;
+               vdd-supply = &lt;&amp;ap1302_vdd&gt;;
+               vaa-supply = &lt;&amp;ap1302_vaa&gt;;
+               vddio-supply = &lt;&amp;ap1302_vddio&gt;;
+            };
+         };
+         ports {
+            port@0 {
+               reg = &lt;2&gt;;
+               isp_out: endpoint {
+               remote-endpoint = &lt;&amp;mipi_csi_incapture_pipeline_mipi_csi2_rx_subsyst_0&gt;;
+               data-lanes = &lt;1 2 3 4&gt;;
+               };
+            };
+         };
+      };
+   };
+};
+</pre></div>
+</div>
+</div>
+<div class="section" id="mipi-csi-node">
+<h3>mipi csi node<a class="headerlink" href="#mipi-csi-node" title="Permalink to this heading">¶</a></h3>
+<p>The mipi_csi2_rx_subsystem&#64;80000000 node requires a few modification. the device tree binding information for Xilinx MIPI CSI-2 Receiver Subsystem is<a class="reference external" href="https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/media/xilinx/xlnx%2Ccsi2rxss.yaml">here</a>
+Add property:</p>
+<div class="highlight-dtsi notranslate"><div class="highlight"><pre><span></span>xlnx,csi-pxl-format = &lt;0x18&gt;;
+xlnx,en-active-lanes;
+</pre></div>
+</div>
+<p>Remove xlnx,cfa-pattern, xlnx,video-format, and xlnx,video-width setting  - those are no longer used by driver and 2022.1 through 2023.1 DTG is not yet updated.</p>
+<p>Connect the remote end point to camera serial output:</p>
+<div class="highlight-dtsi notranslate"><div class="highlight"><pre><span></span>mipi_csi_incapture_pipeline_mipi_csi2_rx_subsyst_0: endpoint {
+   data-lanes = &lt;1 2 3 4&gt;;
+   remote-endpoint = &lt;&amp;isp_out&gt;;
+};
+</pre></div>
+</div>
+</div>
+<div class="section" id="zocl-node">
+<h3>ZOCL node<a class="headerlink" href="#zocl-node" title="Permalink to this heading">¶</a></h3>
+<p>Lastly, in 2022.1 through 2023.1, ZOCL node need to specify the interrupts reserved for the platform (as seen in platform setting tab in Vivado) if interrupts are directly connected to GIC (instead of through a axi_intc).</p>
+<div class="highlight-dtsi notranslate"><div class="highlight"><pre><span></span>zyxclmm_drm {
+   compatible = &quot;xlnx,zocl&quot;;
+   status = &quot;okay&quot;;
+   interrupt-parent = &lt;&amp;gic&gt;;
+   interrupts = &lt;0 89  4&gt;, &lt;0 90  4&gt;, &lt;0 91  4&gt;, &lt;0 92  4&gt;,
+               &lt;0 93  4&gt;, &lt;0 94  4&gt;, &lt;0 95  4&gt;, &lt;0 96  4&gt;;
+};
+</pre></div>
+</div>
+</div>
+<div class="section" id="final-dtsi-file">
+<h3>Final dtsi file<a class="headerlink" href="#final-dtsi-file" title="Permalink to this heading">¶</a></h3>
+<p>The final dtsi file should look like <a class="reference external" href="./example_src/smartcam_dtsi_example/pl_modify.dtsi">pl_modify.dtsi</a>.</p>
+</div>
+</div>
+<div class="section" id="compile-the-dtsi-to-dtbo-using-dtc">
+<h2>Compile the .dtsi to .dtbo using DTC<a class="headerlink" href="#compile-the-dtsi-to-dtbo-using-dtc" title="Permalink to this heading">¶</a></h2>
+<p>Now generate the .dtbo file using command below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dtc -@ -O dtb -o pl_modify.dtbo pl_modify.dtsi
+</pre></div>
+</div>
+<p>As a sanity test rename the generated pl.dtbo to a unique name for tracking purposes, move it to the kv260 target and confirm that replacing the kv260_smartcam.dtbo with the generated one that the SmartCam app still works.</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="custom_cc_flow_example.html" class="btn btn-neutral float-left" title="Example - Creating a Platform for a Custom Carrier Card" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="baremetal.html" class="btn btn-neutral float-right" title="Bare-metal Flow Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on May 4, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
