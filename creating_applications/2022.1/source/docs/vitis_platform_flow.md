@@ -45,9 +45,12 @@ Once Zynq_ultra_ps_e_0 block is added to a design, make sure to click "Run Block
 
 ![Board Files](./media/tool_flow_block_automation_marked.PNG)
 
-Developers then indicate that the platform is an Extensible Vitis Platform. More details on how to create Extensible Platform can be found [here](https://www.xilinx.com/html_docs/xilinx2021_1/vitis_doc/create_embedded_platforms.html).
+Developers then indicate that the platform is an Extensible Vitis Platform. More details on how to create Extensible Platform can be found in [UG1393](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces)
 Project Manager -> Settings -> General -> check "Project is an extensible Vitis Platform"
 ![Extensible Platform](./media/extensible_check.PNG)
+
+Then check window -> platform setup to select interfaces to be exposed as a platform. Below is an example snapshot indicating Vivado is reserving pl_ps_irq0 for the platform to interface with Vitis accelerators.
+![Platform setup](./media/tool_flow_vivado_platform_setup.PNG)
 
 ### Vivado Starter Project in BSP
 

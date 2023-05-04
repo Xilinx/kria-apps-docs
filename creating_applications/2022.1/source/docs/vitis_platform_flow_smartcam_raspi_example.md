@@ -202,7 +202,7 @@ mv kv260_ispMipiRx_vcu_DP_wrapper.bit.bin kv260-smartcam-raspi.bit.bin
 
 ## Creating dtsi file
 
-We will base our .dtsi file from the [smartcam .dtsi file](https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/kv260/smartcam/kv260-smartcam.dtsi). We will need to remove the isp and audio devices, as well as ap1302 on i2c port 0.
+We will base our .dtsi file from the [smartcam .dtsi file](https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/boards/kv260/smartcam/kv260-smartcam.dtsi). We will need to remove the isp and audio devices, as well as ap1302 on i2c port 0.
 
 In their stead, we will need to add the imx devices and their associated support functions. The resulting dtsi file can be found in [kv260-smartcam-raspi.dtsi](./example_src/raspi_example/kv260-smartcam-raspi_2022.1.dtsi). There are a few things to correlate to the PL design:
 

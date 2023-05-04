@@ -123,6 +123,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="custom_cc_flow_example.html">Example - Creating a Platform for a Custom Carrier Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dtsi_dtbo_generation_smartcam_example.html">Example - Generating DTSI and DTBO Overlay Files for Smartcam</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
@@ -316,7 +317,7 @@ mv kv260_ispMipiRx_vcu_DP_wrapper.bit.bin kv260-smartcam-raspi.bit.bin
 </div>
 <div class="section" id="creating-dtsi-file">
 <h2>Creating dtsi file<a class="headerlink" href="#creating-dtsi-file" title="Permalink to this heading">¶</a></h2>
-<p>We will base our .dtsi file from the <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/kv260/smartcam/kv260-smartcam.dtsi">smartcam .dtsi file</a>. We will need to remove the isp and audio devices, as well as ap1302 on i2c port 0.</p>
+<p>We will base our .dtsi file from the <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/boards/kv260/smartcam/kv260-smartcam.dtsi">smartcam .dtsi file</a>. We will need to remove the isp and audio devices, as well as ap1302 on i2c port 0.</p>
 <p>In their stead, we will need to add the imx devices and their associated support functions. The resulting dtsi file can be found in <a class="reference external" href="./example_src/raspi_example/kv260-smartcam-raspi_2022.1.dtsi">kv260-smartcam-raspi.dtsi</a>. There are a few things to correlate to the PL design:</p>
 <div class="section" id="base-address">
 <h3>Base Address<a class="headerlink" href="#base-address" title="Permalink to this heading">¶</a></h3>
@@ -594,7 +595,7 @@ sudo docker run --env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 27, 2023.
+      <span class="lastupdated">Last updated on May 4, 2023.
       </span></p>
   </div>
 

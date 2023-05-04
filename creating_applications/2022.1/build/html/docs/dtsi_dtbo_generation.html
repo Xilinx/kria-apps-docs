@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Generating DTSI and DTBO Overlay Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#using-xstc-dtg-and-dtc">Using XSTC, DTG and DTC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-xsct-dtg-and-dtc">Using XSCT, DTG and DTC</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#tools-and-input-required">Tools and Input Required</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#generate-dtsi-from-xsa-using-dtg">Generate .dtsi from .xsa using DTG</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#compile-the-dtsi-to-dtbo-using-dtc">Compile the .dtsi to .dtbo using DTC</a></li>
@@ -107,6 +107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#id3">Generate .dtbo file</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
@@ -154,12 +155,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>In PetaLinux, use fpgamanger_dtg bbclass tools and petalinux-build to generate .dtsi file from .xsa file, and compiling it into .dtbo.</p></li>
 </ol>
 <p>Note that with any ways of generating DTSI files - the generated .dtsi file will likely require user modification before they can be fully functional.</p>
-<div class="section" id="using-xstc-dtg-and-dtc">
-<h2>Using XSTC, DTG and DTC<a class="headerlink" href="#using-xstc-dtg-and-dtc" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="using-xsct-dtg-and-dtc">
+<h2>Using XSCT, DTG and DTC<a class="headerlink" href="#using-xsct-dtg-and-dtc" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="tools-and-input-required">
 <h3>Tools and Input Required<a class="headerlink" href="#tools-and-input-required" title="Permalink to this heading">¶</a></h3>
 <ol>
-<li><p>XSTC (should be part of Vivado or Vitis installation)</p></li>
+<li><p>XSCT (part of Vivado or Vitis installation)</p></li>
 <li><p>DTG, make sure to check out the version that is aligned to rest of tool chain and BSP used:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/Xilinx/device-tree-xlnx
 <span class="nb">cd</span> device-tree-xlnx
@@ -167,7 +168,7 @@ git checkout xlnx_rel_v&lt;version&gt;
 </pre></div>
 </div>
 </li>
-<li><p>DTC (should be part of Vitis installation, can also be obtained below:)</p>
+<li><p>DTC (part of Vitis installation, can also be obtained below:)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://git.kernel.org/pub/scm/utils/dtc/dtc.git
 <span class="nb">cd</span> dtc
 make
@@ -189,6 +190,7 @@ make
 hsi set_repo_path &lt;path to device-tree-xlnx repository&gt;
 hsi create_sw_design device-tree -os device_tree -proc psu_cortexa53_0
 hsi set_property CONFIG.dt_overlay <span class="nb">true</span> <span class="o">[</span>hsi::get_os<span class="o">]</span>
+hsi set_property CONFIG.dt_zocl <span class="nb">true</span> <span class="o">[</span>hsi get_os<span class="o">]</span>          <span class="c1"># if ZOCL is used</span>
 hsi generate_target -dir &lt;desired_dts_filename&gt;
 hsi close_hw_design <span class="o">[</span>current_hw_design<span class="o">]</span>
 </pre></div>
@@ -298,6 +300,10 @@ The .dtsi file can be found in <code class="docutils literal notranslate"><span 
 $tmp_folder location can be found at <code class="docutils literal notranslate"><span class="pre">project-spec/configs/config</span> <span class="pre">CONFIG_TMP_DIR_LOCATION=$tmp_folder</span></code></p>
 </div>
 </div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<p>A step by step example for generating the .dtbo file for smartcam from its platform .xsa file can be found <a class="reference internal" href="dtsi_dtbo_generation_smartcam_example.html"><span class="doc">here[]</span></a>.</p>
+</div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
@@ -329,7 +335,7 @@ $tmp_folder location can be found at <code class="docutils literal notranslate">
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 27, 2023.
+      <span class="lastupdated">Last updated on May 4, 2023.
       </span></p>
   </div>
 

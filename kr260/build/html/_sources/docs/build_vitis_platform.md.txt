@@ -2,15 +2,15 @@
 
 ## Introduction
 
-This tutorial shows how to build a Platform for applications running on KR260 Robotics Starter Kit.
+This tutorial shows how to build a Platform for applications running on the KR260 Robotics Starter Kit.
 
 ## Prerequisites
 
-* Vitis Unified Software Platform of the appropiate version
+* Vitis™­ Unified Software Platform of the appropriate version
 
 ### Accessing the Tutorial Reference Files
 
-> **Note**: Skip the following steps if the design files have already been cloned and extracted to a working repository
+> **Note**: Skip the following steps if the design files have already been cloned and extracted to a working repository.
 
 1. To access the reference files, type the following into a terminal:
 
@@ -18,9 +18,9 @@ This tutorial shows how to build a Platform for applications running on KR260 Ro
    git clone --branch xlnx_rel_v2022.1 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
    ```
 
-2. Navigate to the `kria-vitis-platforms/kr260-vitis` which is the working directory.
+2. Navigate to the `kria-vitis-platforms/kr260-vitis`, which is the working directory.
 
-## Generating an Vitis Extensible platform
+## Generating a Vitis Software Platform
 
 1. Go to the working directory
 
@@ -28,27 +28,27 @@ This tutorial shows how to build a Platform for applications running on KR260 Ro
    cd $working_dir/
    ```
 
-2. To build the platform, run the following command. The Makefile calls a lower level Makefile to generate a platform. If an XSA is not already available it builds that as well.
+2. To build the platform, run the following command. The Makefile calls a lower-level Makefile to generate a platform. If an XSA is not already available, it builds that as well.
 
    ```shell
    make platform PFM=<platform_name>
    ```
 
-   Applications and their corresponding platforms are listed in the table below
+   Applications and their corresponding platforms are listed in the following table.
 
    |Application |Platform|
    |----|----|
    |ROS 2 Multi-Node Communications via TSN |kr260_tsn_rs485pmod|
 
-3. The generated platform will be located at
+3. The generated platform is located here:
 
    ```shell
    $working_dir/platforms/xilinx_<platform_name>_<version_number>
    ```
 
-   The xpfm file in the above directory will be used as input when building the Vitis accelerator projects. It exposes all the essential Platform Interfaces like Clock, Interrupts, Master AXI interfaces and Slave AXI interfaces for the accelerator to connect to.
+   The `xpfm` file in this directory is used as an input when building the Vitis application acceleration projects. It exposes all the essential platform interfaces like clock, interrupts, master AXI interfaces, and slave AXI interfaces for the accelerator to connect to.
 
-> **Note**: The software components (boot, smp_linux etc) in this platform are empty. The software components will be generated later when building Petalinux.
+> **Note**: The software components (boot, smp_linux, etc.) in this platform are empty. The software components are generated later when building Petalinux.
 
 ## Next Step
 
@@ -66,4 +66,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 -->
 
-<p class="sphinxhide" align="center">Copyright&copy; 2022 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Xilinx</p>
