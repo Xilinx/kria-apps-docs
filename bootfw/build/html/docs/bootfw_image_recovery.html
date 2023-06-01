@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Boot Firmware Image Recovery &mdash; Boot SOM Firmware 2022.1 documentation</title>
+  <title>Boot Image Recovery Tool &mdash; Boot SOM Firmware 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -80,9 +80,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="bootfw_overview.html">Boot Firmware Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Boot Firmware - Image Selector</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Boot Firmware Image Recovery</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Boot Image Recovery Tool</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#image-recovery-compilation-procedure-makefile-flow">Image Recovery Compilation Procedure (Makefile Flow)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#boot-image-recovery-tool-compilation-procedure-makefile-flow">Boot Image Recovery Tool Compilation Procedure (Makefile Flow)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
@@ -106,7 +106,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Boot Firmware Image Recovery</li>
+      <li>Boot Image Recovery Tool</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/bootfw_image_recovery.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -116,20 +116,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="boot-firmware-image-recovery">
-<h1>Boot Firmware Image Recovery<a class="headerlink" href="#boot-firmware-image-recovery" title="Permalink to this heading">¶</a></h1>
+  <div class="section" id="boot-image-recovery-tool">
+<h1>Boot Image Recovery Tool<a class="headerlink" href="#boot-image-recovery-tool" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>The Kria Starter Kit solution stack includes an Ethernet based recovery tool called Image Recovery that can be used in conjunction with a standard web-browser on a Host PC to provide direct update of the Kria user A/B boot firmware partitions and the corresponding persistent register information. The recovery tool is maintained in a reserved section of the QSPI memory and is intended as a platform recovery mechanism is there is an issue with the normal A/B boot FW update mechanism.</p>
-<p>Image Recovery is an application that runs a simplified Ethernet stack for interacting with a user’s host machine (e.g. laptop) to allow a manual update/overwrite of Image A and Image B on QSPI on SOM.  The recovery tool updates the corresponding A/B persistent registers to an appropriate state based on the user actions in the web UI. A user can also override the QSPI persistent register states via the WebUI.</p>
-<p>The Image Recovery tool requires no incremental tools on the customer PC besides a web-browser with a fixed IP address of 192.168.0.111. The user PC must have access to the new firmware binary file (BOOT.BIN). Xilinx distributes boot FW and “factory boot file” updates to the Kria Wiki. The Image Recovery writes the a given BOOT.BIN to QSPI physical address based on the image target selection made in the web UI.</p>
-<p>The Image Recovery tool can read the sideband control EEPROMs to verify the make and model of the Kria target. The Image Recovery application is initiated by holding the FWUEN button during power-on/reset or if both Image A and Image B becomes unbootable.</p>
-<p>Because both Image Recovery and Image Update can update Image A/B persistent register, here’s a table explaining their differences.</p>
+<p>The Kria Starter Kit solution stack includes an Ethernet based recovery tool called Boot Image Recovery Tool that can be used in conjunction with a standard web-browser on a Host PC to provide direct update of the Kria user A/B boot firmware partitions and the corresponding persistent register information. The recovery tool is maintained in a reserved section of the QSPI memory and is intended as a platform recovery mechanism is there is an issue with the normal A/B boot FW update mechanism.</p>
+<p>Boot Image Recovery Tool is an application that runs a simplified Ethernet stack for interacting with a user’s host machine (e.g. laptop) to allow a manual update/overwrite of Image A and Image B on QSPI on SOM.  The recovery tool updates the corresponding A/B persistent registers to an appropriate state based on the user actions in the web UI. A user can also override the QSPI persistent register states via the WebUI.</p>
+<p>The Boot Image Recovery Tool requires no incremental tools on the customer PC besides a web-browser with a fixed IP address of 192.168.0.111. The user PC must have access to the new firmware binary file (BOOT.BIN). Xilinx distributes boot FW and “factory boot file” updates to the Kria Wiki. The Boot Image Recovery Tool writes the a given BOOT.BIN to QSPI physical address based on the image target selection made in the web UI.</p>
+<p>The Boot Image Recovery Tool can read the sideband control EEPROMs to verify the make and model of the Kria target. The Boot Image Recovery Tool is initiated by holding the FWUEN button during power-on/reset or if both Image A and Image B becomes unbootable.</p>
+<p>Because both Boot Image Recovery Tool and Image Update can update Image A/B persistent register, here’s a table explaining their differences.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
 <th></th>
-<th>Image Recovery App</th>
+<th>Boot Image Recovery Tool</th>
 <th>Image Update Utility</th>
 </tr>
 </thead>
@@ -166,8 +166,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table></div>
-<div class="section" id="image-recovery-compilation-procedure-makefile-flow">
-<h2>Image Recovery Compilation Procedure (Makefile Flow)<a class="headerlink" href="#image-recovery-compilation-procedure-makefile-flow" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="boot-image-recovery-tool-compilation-procedure-makefile-flow">
+<h2>Boot Image Recovery Tool Compilation Procedure (Makefile Flow)<a class="headerlink" href="#boot-image-recovery-tool-compilation-procedure-makefile-flow" title="Permalink to this heading">¶</a></h2>
 <p>Note that the Makefile below requires tools that are placed in the path by sourcing PetaLinux, or Vitis, or Vivado settings64.* file.</p>
 <p>Open a linux terminal</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v&lt;version&gt; https://github.com/Xilinx/embeddedsw.git
@@ -175,7 +175,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 make clean all
 </pre></div>
 </div>
-<p>Source code for Image Recovery can be browsed at <a class="reference external" href="https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/img_rcvry/src">github</a>.</p>
+<p>Source code for Boot Image Recovery Tool can be browsed at <a class="reference external" href="https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/img_rcvry/src">github</a>.</p>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
@@ -190,14 +190,6 @@ make clean all
            </div>
           </div>
           
-                  <style>
-                        .footer {
-                        position: fixed;
-                        left: 0;
-                        bottom: 0;
-                        width: 100%;
-                        }
-                  </style>
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="bootfw_image_selector.html" class="btn btn-neutral float-left" title="Boot Firmware - Image Selector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
@@ -208,7 +200,7 @@ make clean all
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 4, 2023.
+      <span class="lastupdated">Last updated on June 1, 2023.
       </span></p>
   </div>
 

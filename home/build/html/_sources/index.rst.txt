@@ -2,7 +2,7 @@
 SOM Landing Page
 ###############################################################################################################
 
-.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM/ with xilinx.github.io/kria-apps-docs/
+.. Before going public, replace xilinx.github.io/kria-apps-docs/ with xilinx.github.io/kria-apps-docs/
 
 
 
@@ -18,6 +18,7 @@ SOM Landing Page
    OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
    Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
    IPMI EEPROM Design Guide <https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html>
+   XEN Support <https://xilinx.github.io/kria-apps-docs/xen.html>
    Yocto Support <https://xilinx.github.io/kria-apps-docs/yocto.html>
    Frequently Asked Questions <https://xilinx.github.io/kria-apps-docs/faq.html>
 
@@ -90,6 +91,23 @@ The Intelligent Platform Management Interface (IPMI) is a set of computer interf
 
 
 A step by step example that ports Smartcam application to run on PetaLinux OS. 
+
+
+
+
+
+
+
+
+**********************************************************************************************************************************************************************************************
+`XEN Support <../../../xen/build/html/docs/xen_kria_support.html>`__
+**********************************************************************************************************************************************************************************************
+
+
+Starting in 2023.1, Kria Starter Kit Petalinux BSP contains support for XEN.
+
+
+
 
 
 **********************************************************************************************************************************************************************************************

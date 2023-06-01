@@ -94,7 +94,7 @@ There are two ways to program the eMMC - using image recovery application or usi
 
 #### 2A Program Production SOM eMMC with Image Recovery App
 
-The Image recovery tool has an option to upload an image file to eMMC on a production SOM. For details on set-up and use of the Recovery Tool, see [UG1089](https://docs.xilinx.com/r/en-US/ug1089-kv260-starter-kit) for KV260 and [UG1092](https://docs.xilinx.com/r/en-US/ug1092-kr260-starter-kit) for KR260.
+The Image recovery tool has an option to upload an image file to eMMC on a production SOM. For details on set-up and use of the Recovery Tool, see [Boot Image Recovery Tool on kria SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Image-Recovery-Tool).
 
 The recovery tool currently only support .wic image upload and has a limit of 4GB upload file size. In this example we will limit the wic image targeted to eMMC to 2GB, using 0.5G for the boot partition and 1.5G for rootfs. Update the build/rootfs.wks in PetaLinux work folder before generating the wic image:
 
@@ -162,8 +162,11 @@ Example commands to wipe mmc:
 
     ```bash
     ZynqMP> mmc part #check existing partition map
+    ZynqMP> mmc partconf 0 1 0 0 # set boot partition to user partition to allow writes/erase
     ZynqMP> mmc dev 0 1 #switch to the boot partition (should be partition 1 according to outputs from previous command)
     ZynqMP> mmc erase 0 0x200000 #erase the partition
+    ZynqMP> mmc dev 0 2 #switch to the rootfs partition (should be partition 2 according to outputs from previous command)
+    ZynqMP> mmc erase 0 0x800000 #erase the partition
     ```
 
 Example commands to force u-boot boot out of SD (alternatively you can just power cycle again and let u-boot automatically pick SD card to boot from, since eMMC has been wiped clean):

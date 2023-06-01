@@ -79,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="bootfw_overview.html">Boot Firmware Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Boot Firmware - Image Selector</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Firmware Image Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Image Recovery Tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">Boot Firmware - PMU Overlay Config Object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">Boot Firmware - U-Boot Handoff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Boot Firmware - Stitching QSPI Image</a></li>
@@ -220,7 +220,7 @@ ZynqMP&gt; sf write 0x80000 0x0 0x3000000
 <p>There are two ways to program the eMMC - using image recovery application or using Linux.</p>
 <div class="section" id="a-program-production-som-emmc-with-image-recovery-app">
 <h4>2A Program Production SOM eMMC with Image Recovery App<a class="headerlink" href="#a-program-production-som-emmc-with-image-recovery-app" title="Permalink to this heading">¶</a></h4>
-<p>The Image recovery tool has an option to upload an image file to eMMC on a production SOM. For details on set-up and use of the Recovery Tool, see <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1089-kv260-starter-kit">UG1089</a> for KV260 and <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1092-kr260-starter-kit">UG1092</a> for KR260.</p>
+<p>The Image recovery tool has an option to upload an image file to eMMC on a production SOM. For details on set-up and use of the Recovery Tool, see <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Image-Recovery-Tool">Boot Image Recovery Tool on kria SOM Wiki</a>.</p>
 <p>The recovery tool currently only support .wic image upload and has a limit of 4GB upload file size. In this example we will limit the wic image targeted to eMMC to 2GB, using 0.5G for the boot partition and 1.5G for rootfs. Update the build/rootfs.wks in PetaLinux work folder before generating the wic image:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```shell
 part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4 --fixed-size 500M
@@ -276,8 +276,11 @@ petalinux-package --wic --images-dir images/linux/ --bootfiles &quot;ramdisk.cpi
 <p>Example commands to wipe mmc:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```bash
 ZynqMP&gt; mmc part #check existing partition map
+ZynqMP&gt; mmc partconf 0 1 0 0 # set boot partition to user partition to allow writes/erase
 ZynqMP&gt; mmc dev 0 1 #switch to the boot partition (should be partition 1 according to outputs from previous command)
 ZynqMP&gt; mmc erase 0 0x200000 #erase the partition
+ZynqMP&gt; mmc dev 0 2 #switch to the rootfs partition (should be partition 2 according to outputs from previous command)
+ZynqMP&gt; mmc erase 0 0x800000 #erase the partition
 ```
 </pre></div>
 </div>
@@ -361,14 +364,6 @@ dd if=/nfsroot/&lt;image&gt; of=/dev/mmcblk0
            </div>
           </div>
           
-                  <style>
-                        .footer {
-                        position: fixed;
-                        left: 0;
-                        bottom: 0;
-                        width: 100%;
-                        }
-                  </style>
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="bootfw_qspi_stitching.html" class="btn btn-neutral float-left" title="Boot Firmware - Stitching QSPI Image" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
@@ -378,7 +373,7 @@ dd if=/nfsroot/&lt;image&gt; of=/dev/mmcblk0
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 4, 2023.
+      <span class="lastupdated">Last updated on June 1, 2023.
       </span></p>
   </div>
 

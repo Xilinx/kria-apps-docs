@@ -86,8 +86,9 @@ The following is QSPI memory map used for Kira SOM starter kits.
 | 0x02000000     | 0x200000     | R             | Image Recovery Application backup                       | 11        |
 | 0x02200000     | 0x20000      | R/W           | U-Boot storage variables                                | 12        |
 | 0x02220000     | 0x20000      | R/W           | U-Boot storage variables backup                         | 13        |
-| 0x02240000     | 0x10000      | R             | QSPI Image Version Information*                         | 14        |
-| 0x02250000     | 0x1db0000    | -             | End Address (User)                                      | 15        |
+| 0x02240000     | 0x40000      | R             | QSPI Image Version Information*                         | 14        |
+| 0x02280000     | 0x20000      | R/W           | Secure OS storage                                       | 15        |
+| 0x022A0000     | 0x1d60000    | R/W           | End Address (User)                                      | 16        |
 
 \*   QSPI Image Version Information Example: XilinxSom_QspiImage_v1.0_20201030 Last 32Bytes: HashValue Hash Algo: SHA256 It is only 256Bytes but has to be 64KB aligned - therefore size is 0x10000.
 

@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This page outlines the process to re-create a QSPI image for Kria SOM Starter kits to help developers create their own QSPI image to use with their custom carrier cards. [Yocto](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto) support for generating Kria SOM Starter Kit QSPI image only starts in 2022.2, previous versions do not have support.
+This page outlines the process to re-create a QSPI image for Kria SOM Starter kits to help developers create their own QSPI image to use with their custom carrier cards. [Yocto](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto) support for generating Kria SOM Starter Kit QSPI image only starts in 2023.1, previous versions do not have support.
 
 ## Requirements
 
@@ -37,7 +37,7 @@ repo init -u https://github.com/Xilinx/yocto-manifests.git -b <release-branch>
 repo sync
 #repo start a branch
 repo start <release-branch> --all
-#where current-release is rel-v2022.2 [note: will need to update this to 2022.2_update]
+#e.g. <release-branch> can be rel-v2023.1 etc
 ```
 
 Source environment:
@@ -49,13 +49,13 @@ source setupsdk
 
 ### Step 2: Build the image
 
-To build QSPI image use below command
+To build QSPI image use below command for 2023.1 and later:
 
 ```shell
-MACHINE=k26-som bitbake som-qspi 
+MACHINE=k26-som bitbake kria-qspi 
 ```
 
-The resulting QSPI image ```som-qspi-k26-som.bin``` and its artifacts can be found in ```$TMPDIR/deploy/images/k26-som```, and $TMPDIR is defined in ```build/conf/local.conf```. Note that the fsbl file ```fsbl-k26-som.elf``` may also be needed in the QSPI programming steps. This image universally supports both KV260 and KR260, as well as both StarterKit SOM and Production SOM.
+The resulting QSPI image ```kria-qspi-k26-som.bin``` and its artifacts can be found in ```$TMPDIR/deploy/images/k26-som```, and $TMPDIR is defined in ```build/conf/local.conf```. Note that the fsbl file ```fsbl-k26-som.elf``` may also be needed in the QSPI programming steps. This image universally supports both KV260 and KR260, as well as both StarterKit SOM and Production SOM.
 
 To only build the boot.bin:
 
