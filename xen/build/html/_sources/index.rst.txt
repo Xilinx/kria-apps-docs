@@ -1,5 +1,5 @@
 ########################################################################################
-XEN Kria Support
+Xen Kria SOM Starter Kits Support
 ########################################################################################
 
 
@@ -16,6 +16,7 @@ XEN Kria Support
    OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
    IPMI EEPROM Area Record <https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html>
    Yocto Support <https://xilinx.github.io/kria-apps-docs/yocto.html>
+   XEN Support <https://xilinx.github.io/kria-apps-docs/xen.html>
    Frequently Asked Questions <https://xilinx.github.io/kria-apps-docs/faq.html>
    Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
    Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
@@ -23,11 +24,11 @@ XEN Kria Support
 
 
 
-.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs/
+.. Before going public, replace xilinx.github.io/kria-apps-docs with xilinx.github.io/kria-apps-docs/
 
 .. toctree::
    :maxdepth: 3
-   :caption: XEN Kria Support
+   :caption: Xen Kria SOM Starter Kits Support
    :hidden:
 
    ./docs/xen_kria_support

@@ -1,12 +1,12 @@
-# Xen Kria Support
+# Xen Kria SOM Starter Kits Support
 
-[Xen](https://xenproject.org/) is a free and open-source hypervisor, providing services that allow multiple computer operating systems to execute on the same computer hardware concurrently. Starting in 2023.1, Kria Starter Kit Petalinux BSP contains support for XEN. Xilinx specific details about XEN hypervisor can be found on its [wiki page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842530/XEN+Hypervisor).
+[Xen](https://xenproject.org/) is a free and open-source hypervisor, providing services that allow multiple computer operating systems to execute on the same computer hardware concurrently. The 2023.1 Kria Starter Kit Petalinux BSP contains support for XEN. Xilinx specific details about XEN hypervisor can be found on its [wiki page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842530/XEN+Hypervisor).
 
-This page documents where to get XEN artifacts for Kria, and gives an example on how to boot Ubuntu as guest OS (a DOMU) on a  XEN DOM0. This particular combination requires about 4GB of memory, which K26 has. Therefore this can be done on either KV260 or KR260.
+This page documents where to get XEN artifacts for Kria, and gives an example on how to boot Ubuntu as guest OS (a DOMU) on a XEN DOM0. This particular combination requires about 4GB of memory, which K26 has. Therefore this can be done on either KV260 or KR260.
 
 ## Prerequisites
 
-1. Experience and equipments booting a regular PetaLinux on Kria SOM Starter Kit (you can follow [getting started with PetaLinux on KV260](https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/setting-up-the-sd-card-image.html), but use a wic image from 2023.1 BSP)
+1. Experience and equipments booting a regular PetaLinux on Kria SOM Starter Kit (you can follow [getting started with PetaLinux on KV260](https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/setting-up-the-sd-card-image.html), but use a wic image from 2023.1 BSP on a minimum 16GB SD Card)
 2. A Linux Desktop to create and program partitions
 3. PetaLinux tool
 
@@ -19,7 +19,7 @@ petalinux-create -t project -s xilinx-<hardware>-<version>-<timestamp>.bsp
 cd xilinx-<hardware>-<version>
 ```
 
-Un-compress the wic image in ```pre-built/linux/images/petalinux-sdimage.wic.xz``` and flash that into an SD card using Balena Etcher. This will set up the SD card to contain 2 partitions - partition 1 with boot images (accessible by Windows and Linux) that we will discard and partition 2 with PetaLinux rootfs (not accessible by Windows) that we will use for XEN DOM0 as well.
+Flash the wic image in ```pre-built/linux/images/petalinux-sdimage.wic.xz``` to an SD card using Balena Etcher. This will set up the SD card to contain 2 partitions - partition 1 with boot images (accessible by Windows and Linux) that we will discard and partition 2 with PetaLinux rootfs (not accessible by Windows) that will also be used for XEN DOM0.
 
 ### Partition 1
 
@@ -71,13 +71,13 @@ Created a new partition 3 of type 'Linux' and of size 8.9 GiB.
 
 Next, enter ```w``` to write the partition table and exit.
 
-Nex, format the newly created partition to support ext4 rootfs. Use following command to format it to a .ext4 format:
+Next, format the newly created partition to support ext4 rootfs. Use following command to format it to a .ext4 format:
 
 ```bash
 sudo mkfs.ext4 -L root /dev/sda3
 ```
 
-```/dev/sda3``` is the path for new partition that we will use for rootfs for DOMU. Run "sudo fdisk -l" again to verify all the partition. It should look like below with 3 partitions:
+```/dev/sda3``` is the path for new partition that we will use for rootfs for DOMU. Run "sudo fdisk -l" again to verify all the partition. It should look similar to what is shown below with 3 partitions:
 
 ```
 Device     Boot    Start      End  Sectors  Size Id Type
@@ -98,8 +98,17 @@ Now partition 3 is ready as well.
 
 Plug the SD card into Starter Kit and turn on the power. You should automatically get to u-boot command prompt. Enter this to load xen_boot_sd.scr to 0xc00000 and source the script to boot xen:
 
+For KV260, SD card is on mmc, therefore use the following commands to boot:
+
 ```bash
-load mmc 1:1 0xc00000 xen_boot_sd.scr
+load mmc 1:1 0xc00000 xen_boot_sd.scr #KV260 only!
+source 0xc00000
+```
+
+for KR260, SD Card is on USB, therefore use the following commands to boot:
+
+``` bash
+load usb 0 0xc00000 xen_boot_sd.scr #KR260 only!
 source 0xc00000
 ```
 
@@ -113,17 +122,20 @@ First, change to root:
 sudo -s
 ```
 
-Locate ```image.fit``` file, it should be in ```/run/media/boot-mmcblk1p1/image.fit``` for 2023.1. If its not there, one can search for it using ```find / -iname "image.fit"```.
+Locate ```image.fit``` file, it should be in ```/run/media/boot-mmcblk1p1/image.fit``` for 2023.1 KV260 and ```/run/media/boot-sda1/image.fit``` for 2023.1 KR260. If its not there, one can search for it using ```find / -iname "image.fit"```.
 
 extract the Ubuntu kernel image:
 
 ```bash
-dumpimage -T flat_dt -p 0 /run/media/boot-mmcblk1p1/image.fit -o /home/petalinux/ubuntu_Image
+dumpimage -T flat_dt -p 0 /run/media/boot-mmcblk1p1/image.fit -o /home/petalinux/ubuntu_Image # for KV260
+dumpimage -T flat_dt -p 0 /run/media/boot-sda1/image.fit -o /home/petalinux/ubuntu_Image # for KR260
 ```
 
 Next, check how much memory is dom0 consuming and available memory using ```xl info```. In our example we should have a little more than 1.9G left to use for DOMU and therefore we will allocate 1900MB for DOMU in next step.
 
 Create a ```guest0.cfg``` file with the following content:
+
+If runnign Xen on KV260:
 
 ```bash
 name = "guest0"
@@ -134,10 +146,22 @@ memory = 1900 # This can be increased if there is more free memory.
 vcpus = 2
 ```
 
-Next, check if /dev/mmcblk1p3 is mounted automatically by dom0 using ```df -h```, if its mounted, unmount it so that DOMU can use it:
+If runnign Xen on KR260:
 
 ```bash
-umount /dev/mmcblk1p3
+name = "guest0"
+kernel = "/home/petalinux/ubuntu_Image" # Ubuntu Kernel extracted
+disk = ['/dev/sda3,,xvda'] # Ubuntu Rootfs in partition 3
+extra = "console=hvc0 root=/dev/xvda"
+memory = 1900 # This can be increased if there is more free memory.
+vcpus = 2
+```
+
+Next, check if /dev/mmcblk1p3 or /dev/sda3 is mounted automatically by dom0 using ```df -h```, if its mounted, unmount it so that DOMU can use it:
+
+```bash
+umount /dev/mmcblk1p3 # KV260 only
+umount /dev/sda3 # KR260 only
 ```
 
 Start guest0/DOMU using:
@@ -165,7 +189,13 @@ To kill the guest0 DOMU, identify the <ID> from the prints, and then execute ```
 
 Another DOMU session can be started without having to re-boot XEN.
 
+## License
 
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p>
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
-<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>
+You may obtain a copy of the License at
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+<p align="center">Copyright&copy; 2021 Xilinx</p>
