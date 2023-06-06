@@ -182,7 +182,7 @@ $tmp_folder location can be found at ```project-spec/configs/config CONFIG_TMP_D
 
 ## Example
 
-A step by step example for generating the .dtbo file for smartcam from its platform .xsa file can be found [here[]](./dtsi_dtbo_generation_smartcam_example.md).
+A step by step example for generating the .dtbo file for smartcam from its platform .xsa file can be found [here](./dtsi_dtbo_generation_smartcam_example.md).
 
 ## License
 
