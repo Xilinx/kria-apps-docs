@@ -48,6 +48,7 @@ This tutorial shows how to build the hardware design for applications running on
    |Application |Platform name|
    |----|----|
    |ROS 2 Multi-Node Communications via TSN |kr260_tsn_rs485pmod|
+   |Precision time Management with Digilent PMOD GPS | kr260_pmod_gps |
 
 2. To build the XSA, Source Vivado and run the following command. The Makefile uses scripts/main.tcl file to create a Vivado project, populate the block design and finally build a XSA. The XSA generation may take couple of hours depending on the system specification
 

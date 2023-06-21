@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Library Dependency" href="library_dependency.html" />
-    <link rel="prev" title="Yocto Support" href="../index.html" /> 
+    <link rel="prev" title="Yocto Kria Support" href="yocto_kria_support.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -65,19 +65,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Area Record</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Yocto Port Example</span></p>
+<p class="caption" role="heading"><span class="caption-text">Yocto Support</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="yocto_kria_support.html">Yocto Kria Support</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Porting an Application to PetaLinux - Smartcam</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#build-on-target">Build on Target</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#building-a-wic-image-or-rpm-packages">Building a WIC image or RPM packages</a><ul>
@@ -140,7 +142,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <div class="section" id="build-on-target">
 <h2>Build on Target<a class="headerlink" href="#build-on-target" title="Permalink to this heading">¶</a></h2>
-<p>This section outlines how to build smartcam on KV260 target running released 2022.1 wic image. First, download and boot with <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Starter-Kit-Linux">2022.1 PetaLinux Starter Kit Linux pre-built SD card image</a>. Once booted, download git, and repositories required for building smartcam - the FPGA firmware, AP1302 firmware, and smartcam application software:</p>
+<p>This section outlines how to build smartcam on KV260 target running released 2022.1 wic image. First, download and boot with <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux">2022.1 PetaLinux Starter Kit Linux pre-built SD card image</a>. Once booted, download git, and repositories required for building smartcam - the FPGA firmware, AP1302 firmware, and smartcam application software:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo dnf install -y git
 git clone --branch xlnx-rel-v2022.1_update4 https://github.com/Xilinx/kria-apps-firmware.git
 git clone --branch xlnx_rel_v2022.1 https://github.com/Xilinx/ap1302-firmware.git
@@ -248,7 +250,9 @@ Upgrade the tool with new eSDK for ‘2022.1 update1’ release and source the t
 <span class="c1"># Specify the source of firmware</span>
 <span class="n">BRANCH</span> <span class="o">=</span> <span class="s2">&quot;xlnx_rel_v2022.1&quot;</span>
 <span class="n">SRC_URI</span> <span class="o">=</span> <span class="s2">&quot;git://github.com/Xilinx/kria-apps-firmware.git;protocol=https;branch=$</span><span class="si">{BRANCH}</span><span class="s2">&quot;</span>
-<span class="n">SRCREV</span> <span class="o">=</span> <span class="s2">&quot;9d7d92d8a89f911ae8c1b0a25316c924c1a4ff3f&quot;</span> <span class="c1"># this specifies the commit ID of the version of repo to use</span>
+<span class="c1"># the following specifies the commit ID of the version of repo to use</span>
+<span class="n">SRCREV</span> <span class="o">=</span> <span class="s2">&quot;9d7d92d8a89f911ae8c1b0a25316c924c1a4ff3f&quot;</span> 
+
 
 <span class="n">inherit</span> <span class="n">fpgamanager_custom</span>
 
@@ -290,8 +294,10 @@ do_configure[noexec] = &quot;1&quot;
 do_compile[noexec] = &quot;1&quot;
 
 do_install() {
-	install -d ${D}/lib/firmware  # create /lib/firmware
-	install -m 0644 ${FW_NAME} ${D}/lib/firmware/${FW_NAME} # copy firmware binary to /lib/firmware
+	# create /lib/firmware
+	install -d ${D}/lib/firmware
+	# copy firmware binary to /lib/firmware
+	install -m 0644 ${FW_NAME} ${D}/lib/firmware/${FW_NAME}
 }
 
 FILES:${PN} = &quot;/lib/firmware/${FW_NAME}&quot;
@@ -448,7 +454,7 @@ sudo /opt/xilinx/kv260-smartcam/bin/smartcam -m <span class="c1"># Execute smart
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Yocto Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="yocto_kria_support.html" class="btn btn-neutral float-left" title="Yocto Kria Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="library_dependency.html" class="btn btn-neutral float-right" title="Library Dependency" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

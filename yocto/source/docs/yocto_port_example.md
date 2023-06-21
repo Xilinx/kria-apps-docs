@@ -17,7 +17,7 @@ Using PetaLinux toolchain, the following two methods has some overlap steps with
 
 ## Build on Target
 
-This section outlines how to build smartcam on KV260 target running released 2022.1 wic image. First, download and boot with [2022.1 PetaLinux Starter Kit Linux pre-built SD card image](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Starter-Kit-Linux). Once booted, download git, and repositories required for building smartcam - the FPGA firmware, AP1302 firmware, and smartcam application software:
+This section outlines how to build smartcam on KV260 target running released 2022.1 wic image. First, download and boot with [2022.1 PetaLinux Starter Kit Linux pre-built SD card image](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux). Once booted, download git, and repositories required for building smartcam - the FPGA firmware, AP1302 firmware, and smartcam application software:
 
 ``` shell
 sudo dnf install -y git
@@ -148,7 +148,9 @@ LIC_FILES_CHKSUM = " \
 # Specify the source of firmware
 BRANCH = "xlnx_rel_v2022.1"
 SRC_URI = "git://github.com/Xilinx/kria-apps-firmware.git;protocol=https;branch=${BRANCH}"
-SRCREV = "9d7d92d8a89f911ae8c1b0a25316c924c1a4ff3f" # this specifies the commit ID of the version of repo to use
+# the following specifies the commit ID of the version of repo to use
+SRCREV = "9d7d92d8a89f911ae8c1b0a25316c924c1a4ff3f" 
+
 
 inherit fpgamanager_custom
 
@@ -195,8 +197,10 @@ do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 
 do_install() {
-	install -d ${D}/lib/firmware  # create /lib/firmware
-	install -m 0644 ${FW_NAME} ${D}/lib/firmware/${FW_NAME} # copy firmware binary to /lib/firmware
+	# create /lib/firmware
+	install -d ${D}/lib/firmware
+	# copy firmware binary to /lib/firmware
+	install -m 0644 ${FW_NAME} ${D}/lib/firmware/${FW_NAME}
 }
 
 FILES:${PN} = "/lib/firmware/${FW_NAME}"

@@ -135,7 +135,7 @@ Next, check how much memory is dom0 consuming and available memory using ```xl i
 
 Create a ```guest0.cfg``` file with the following content:
 
-If runnign Xen on KV260:
+If running Xen on KV260:
 
 ```bash
 name = "guest0"
@@ -146,7 +146,7 @@ memory = 1900 # This can be increased if there is more free memory.
 vcpus = 2
 ```
 
-If runnign Xen on KR260:
+If running Xen on KR260:
 
 ```bash
 name = "guest0"

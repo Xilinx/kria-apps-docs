@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>BIST Disk Test Module &mdash; Kria™ KR260 2022.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="BIST Display Test Module" href="display.html" />
+    <link rel="prev" title="BIST Overview" href="../overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../../index.html" class="icon icon-home"> Kria™ KR260
+            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KR260 Applications</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../10gige_vision_camera/10gige_vision_camera_landing.html">10GigE Vision Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications via TSN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_perception_node/ros2_perception_node_landing.html">ROS 2 Perception Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gps_1588_ptp/gps_1588_ptp_precision_time_mgmt.html">Precision Time Management</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../bist_landing.html">Built-In Self Test (BIST)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../bist_landing.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../bist_landing.html#overview">Overview</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../overview.html">Overview of BIST Application</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../overview.html#framework">Framework</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../overview.html#file-structure">File Structure</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../overview.html#test-modules">Test Modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bist_landing.html#other">Other</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Kria™ KR260</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../bist_landing.html">BIST</a> &raquo;</li>
+          <li><a href="../overview.html">BIST Overview</a> &raquo;</li>
+      <li>BIST Disk Test Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/bist/docs/modules/disk.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="bist-disk-test-module">
+<h1>BIST Disk Test Module<a class="headerlink" href="#bist-disk-test-module" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>The disk test module verifies the performance of USB and SD interfaces on the
+Kria starter kits.</p>
+</div>
+<div class="section" id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
+<p>The module contains self validating performance test. It uses “dd” command-line
+utility to check the performance of USB and SD disk interfaces and verifies
+if the measured read/write speeds are greater than the specified threshold speeds.
+The test provides performance verification for different modes such as read, write
+and read_write (optional) suites.</p>
+<p>The config parameters for the test are described below:</p>
+<ul class="simple">
+<li><p>label: The test label</p></li>
+<li><p>hw_path: The USB/SD hardware path enumeration on the device</p></li>
+<li><p>mode: The mode of the performance test (read, write or read_write)</p></li>
+</ul>
+<p>The disk performance test obtains port name and number from the test label
+and retrieves the disk partition, USB/SD device path and speed standard of
+the device connected to the interface using get_dev_path_speed() function.
+The module then verifies if the available space on the device is greater than
+128MiB using check_disk_space() function and mounts it for read and write transaction
+between the device and the starter kit.</p>
+<p>Depending on the mode of the test, read or write performance of the interfaces
+are verified using dd command-line utility by get_read_speed() or get_write_speed()
+functions and the result is logged by log_disk_performance(). The device is unmounted
+after the test execution.</p>
+<p>For KV260 and KR260 starter kits, there are four USB ports and one SD card port. The
+mapping for the test labels to the four USB ports is given below:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center">Test Label</th>
+<th align="center">USB Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">usb1_*</td>
+<td align="center">Top Left</td>
+</tr>
+<tr>
+<td align="center">usb2_*</td>
+<td align="center">Bottom Left</td>
+</tr>
+<tr>
+<td align="center">usb3_*</td>
+<td align="center">Top Right</td>
+</tr>
+<tr>
+<td align="center">usb4_*</td>
+<td align="center">Bottom Right</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="test-execution">
+<h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
+<p>Example commands for this module are provided below (KV260):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3 --board kv260 -m disk  // Run all tests <span class="k">in</span> this module
+pytest-3 --board kv260 -k usb1_read_performance  // Run <span class="nb">read</span> performance <span class="nb">test</span> <span class="k">for</span> USB1 port
+pytest-3 --board kv260 -k usb1_write_performance  // Run write performance <span class="nb">test</span> <span class="k">for</span> USB1 port
+pytest-3 --board kv260 -k sd_read_performance  // Run <span class="nb">read</span> performance <span class="nb">test</span> <span class="k">for</span> SD port
+pytest-3 --board kv260 -k sd_write_performance  // Run write performance <span class="nb">test</span> <span class="k">for</span> SD port
+</pre></div>
+</div>
+<p>For each interface, the test prints out the device path, speed standard of the device
+connected, along with minimum expected read/write speed and measured speed. The log indicates
+whether the performance test is passed or failed based on the measured and threshold speed
+comparison.</p>
+</div>
+<div class="section" id="test-debug">
+<h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Make sure the USB/SD card media is inserted correctly to the interface under test.</p></li>
+<li><p>Verify there is minimum of 128MiB of storage space available for performing read/write
+transaction on the device connected to the interface.</p></li>
+</ul>
+</div>
+<div class="section" id="known-issues-and-limitations">
+<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The disk test is limited to verifying the read and write performances of USB and SD
+ports only.</p></li>
+<li><p>Read and write performance speeds depend on the actual device under test and varies greatly
+on the manufacturer and model. The obtained performance numbers are to be reviewed by the
+user and not an indication of max achievable performance.</p></li>
+<li><p>There is a known issue that for some USB/SD ports read and write performance speeds fall
+slightly below the threshold speeds given in the table below. In this case, the performance
+can be verified manually based on the device manufacturer and model.</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center">Mode</th>
+<th align="center">SD Speed C-class</th>
+<th align="center">SD Speed UHS-class</th>
+<th align="center">USB-SD Speed class</th>
+<th align="center">USB 2.0</th>
+<th align="center">USB 3.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Read</td>
+<td align="center">6MB/s</td>
+<td align="center">12MB/s</td>
+<td align="center">6MB/s</td>
+<td align="center">9MB/s</td>
+<td align="center">80MB/s</td>
+</tr>
+<tr>
+<td align="center">Write</td>
+<td align="center">2MB/s</td>
+<td align="center">6MB/s</td>
+<td align="center">2MB/s</td>
+<td align="center">2MB/s</td>
+<td align="center">8MB/s</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>The threshold speeds are established based on experimentation conducted on different devices
+as shown in the tables below. The read and write speeds indicated are an average of multiple
+iterations with a 20% error margin.</p></li>
+</ul>
+<p>USB devices:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center">Model</th>
+<th align="center">Class</th>
+<th align="center">Read</th>
+<th align="center">Write</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">SanDisk Cruzer - SDCZ600-016G</td>
+<td align="center">USB 3.0</td>
+<td align="center">100MB/s</td>
+<td align="center">12MB/s</td>
+</tr>
+<tr>
+<td align="center">SanDisk Ultra - SDCZ48-016G</td>
+<td align="center">USB 3.0</td>
+<td align="center">102MB/s</td>
+<td align="center">8MB/s</td>
+</tr>
+<tr>
+<td align="center">SanDisk Ultra fair - SDCZ73-032G</td>
+<td align="center">USB 3.0</td>
+<td align="center">120MB/s</td>
+<td align="center">12MB/s</td>
+</tr>
+<tr>
+<td align="center">SanDisk Ultra Eco - SDCZ96-064G</td>
+<td align="center">USB 3.2</td>
+<td align="center">80MB/s</td>
+<td align="center">12MB/s</td>
+</tr>
+<tr>
+<td align="center">SanDisk Cruzer - SDCZ36-004G</td>
+<td align="center">USB 2.0</td>
+<td align="center">9MB/s</td>
+<td align="center">2MB/s</td>
+</tr>
+<tr>
+<td align="center">SanDisk Cruzer Blade - SDCZ50-016G</td>
+<td align="center">USB 2.0</td>
+<td align="center">24MB/s</td>
+<td align="center">7MB/s</td>
+</tr>
+<tr>
+<td align="center">DataTraveler 101 G2 - DT101G2-016G</td>
+<td align="center">USB 2.0</td>
+<td align="center">18MB/s</td>
+<td align="center">6MB/s</td>
+</tr>
+</tbody>
+</table><p>MicroSD devices:</p>
+<p>For the MicroSD devices, there are two variants in the same model that match both theoretical
+speeds of SD Speed C-class and SD Speed UHS-class.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center">Model</th>
+<th align="center">Class</th>
+<th align="center">Read</th>
+<th align="center">Write</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">SanDisk Ultra 16GB - HC Class 10 (White/Grey)</td>
+<td align="center">SD Speed C-class</td>
+<td align="center">6MB/s</td>
+<td align="center">2MB/s</td>
+</tr>
+<tr>
+<td align="center">SanDisk Ultra 16GB - HC Class 10 (Red/Grey)</td>
+<td align="center">SD Speed UHS-class</td>
+<td align="center">12MB/s</td>
+<td align="center">6MB/s</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
+</ol>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../overview.html" class="btn btn-neutral float-left" title="BIST Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="display.html" class="btn btn-neutral float-right" title="BIST Display Test Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on June 21, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

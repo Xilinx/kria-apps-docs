@@ -65,11 +65,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
@@ -88,6 +92,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Kria Starter Kit Linux Boot</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#boot-process">Boot Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#misc-information">Misc Information</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
@@ -102,6 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="defect-detect/defectdetect_landing.html">Defect Detect</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bist/bist_landing.html">Built-In Self Test (BIST)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
@@ -180,7 +187,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>For some applications it is required to work with commandline instead of GNOME Desktop.</p></li>
 </ul>
 </li>
-<li><p>If not done so yet, perform system update to pull in the latest kernel and Xilinx packages. There are two ways to do this.</p>
+<li><p>If not done so yet, perform system update to pull in the latest kernel and Xilinx packages. There can be some errors during install, refer to <a class="reference external" href="#known-issues">known issues</a> if you encounter issues. There are two ways to do this.</p>
 <p>Through snap install, for more information refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2057043969/Snaps+-+xlnx-config+Snap+for+Certified+Ubuntu+on+Xilinx+Devices">Xilinx config snap Wiki</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo snap install xlnx-config --classic --channel<span class="o">=</span><span class="m">2</span>.x
 </pre></div>
@@ -214,6 +221,64 @@ sudo usermod -a -G docker  <span class="nv">$USER</span>
 </ol>
 <p>This flow will only need to be done once if re-using the same SD card for multiple applications. However, user can choose to update and upgrade again to install newly available updates thats made available later.</p>
 </div>
+<div class="section" id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Sometimes Ubuntu has background process ongoing by the time it boots to command prompt and do not yet ask you to change your password. In those cases doing a snap install may result in a message like following:</p>
+<p><code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">too</span> <span class="pre">early</span> <span class="pre">for</span> <span class="pre">operation,</span> <span class="pre">device</span> <span class="pre">not</span> <span class="pre">yet</span> <span class="pre">seeded</span> <span class="pre">or</span> <span class="pre">device</span> <span class="pre">model</span> <span class="pre">not</span> <span class="pre">acknowledged</span></code></p>
+<p>Try again in a minute or two and you should be prompted to update password and above error should go away.</p>
+</li>
+<li><p>If a prompt like the following appears:</p>
+<p><img alt="kernel" src="../_images/kernelflash.png" /></p>
+<p>Choose “keep the local version currently installed”. For more details refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2116354051/Tips+Tricks+for+Certified+Ubuntu+AMD-Xilinx+Devices#Understanding-the-Configuring-flash-kernel-Prompts-When-Updating-the-Linux-Kernel">this wiki page</a>.</p>
+</li>
+<li><p>During <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xlnx-config.sysinit</span></code> or <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">upgrade</span></code> commands you may see the following errors and exit installation. Re-run the commands and installation should continue and complete.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>flash-kernel: deferring update (trigger activated)
+/etc/kernel/postinst.d/zz-flash-kernel:
+flash-kernel: deferring update (trigger activated)
+Errors were encountered while processing:
+flash-kernel
+need restart is being skipped since dpkg has failed
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="misc-information">
+<h2>Misc Information<a class="headerlink" href="#misc-information" title="Permalink to this heading">¶</a></h2>
+<p>The <em>ubuntu</em> user does not have root privileges. Most commands used in tutorials must be run using <em>sudo</em>, and it may be prompted to enter your password.</p>
+<p>For security, by default, the root user is disabled. If user want to login as root user, perform the following steps. Use the <em>ubuntu</em> user’s password on the first password prompt, then set a new password for the root user. User can now login as root user using the newly set root user password.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:<span class="se">\~\$</span> sudo -i
+sudo<span class="se">\]</span> password <span class="k">for</span> ubuntu:
+root@kria:<span class="se">\~</span><span class="c1">#</span>
+</pre></div>
+</div>
+<p>If needed, the these are commands to set System Timezone and locale:</p>
+<ul class="simple">
+<li><p>Set timezone</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-ntp <span class="nb">true</span>
+sudo timedatectl set-timezone America/Los_Angeles
+timedatectl
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Set locale</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo locale-gen en_US en_US.UTF-8
+sudo update-locale <span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8 <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+<span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+locale
+</pre></div>
+</div>
+<p>Below example command set the date and time.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">date</span> <span class="pre">--set</span> <span class="pre">&quot;11</span> <span class="pre">January</span> <span class="pre">2023</span> <span class="pre">16:47:00&quot;</span></code></p>
+<p>The storage volume on the SD card can be limited with multiple dockers. If there are space issues, use the following command to remove the existing container.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo docker rmi --force <span class="nv">$INSTALLED_DOCKER_IMAGE</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
@@ -237,7 +302,7 @@ sudo usermod -a -G docker  <span class="nv">$USER</span>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 4, 2023.
+      <span class="lastupdated">Last updated on June 21, 2023.
       </span></p>
   </div>
 

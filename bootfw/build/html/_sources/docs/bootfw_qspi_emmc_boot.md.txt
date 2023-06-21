@@ -86,6 +86,8 @@ example:
     ZynqMP> sf write 0x80000 0x0 0x3000000 
     ```
 
+Close XSDB - leaving it open/connected may interfere with ZynqMPSoC's operation.
+
 Now QSPI is programmed with an image that contains boot.bin files and image recovery app. They will be used in the following section.
 
 ### 2. Program Production SOM eMMC with Linux Image

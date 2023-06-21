@@ -65,12 +65,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Area Record</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
@@ -84,6 +85,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2 current"><a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html#quick-start">Quick Start</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../kria_starterkit_linux_boot.html">KR260 Starter Kit Linux Boot</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Setting up the Board and Application deployment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview-of-updates">Overview of updates</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisite">Pre-requisite</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#run-out-of-box-applications">Run Out Of Box Applications</a></li>
@@ -98,6 +100,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../ros2_perception_node/ros2_perception_node_landing.html">ROS 2 Perception Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gps_1588_ptp/gps_1588_ptp_precision_time_mgmt.html">Precision Time Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bist/bist_landing.html">Built-In Self Test (BIST)</a></li>
 </ul>
 
         </div>
@@ -135,6 +139,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </tr>
 </table><div class="section" id="board-setup-and-application-deployment">
 <h1>Board Setup and Application Deployment<a class="headerlink" href="#board-setup-and-application-deployment" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="overview-of-updates">
+<h2>Overview of updates<a class="headerlink" href="#overview-of-updates" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Optional feature to Enable Frame Packet pre-emption</p></li>
+<li><p>Enablement to use another machine as a CNC to set QBV schedule and FDB Cam entries onto the 2 KR260 Nodes</p></li>
+</ul>
+</div>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document shows how to set up the board and run TSN ROS application.</p>
@@ -149,6 +160,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Cat 5e Ethernet Cable (Included with KR260 Robotics Starter Kit)</p></li>
 <li><p>USB-A to micro-B Cable (Included with KR260 Robotics Starter Kit)</p></li>
 <li><p>16GB MicroSD Cards (Included with KR260 Robotics Starter Kit)</p></li>
+<li><p>CNC - Optional (KV260/KR260 or Linux Running Standalone machine)</p></li>
+<li><p>Ethernet Switch - Optional</p></li>
 <li><p><a class="reference external" href="https://digilent.com/shop/pmod-tph2-12-pin-test-point-header/">Digilent TPH2 Pmod - 12-pin Test Point Header</a> - Optional (Sold Separately)</p></li>
 <li><p><a class="reference external" href="https://www.amazon.com/gp/product/B00ESFF2JC/">I210-T1 Network Adapter</a> installed on a PC host machine - Optional (Sold Separately)</p></li>
 <li><p><a class="reference external" href="https://digilent.com/reference/test-and-measurement/analog-discovery-2/start">Oscilloscope or Analog Discovery 2</a> – Minimum 100MS/s USB Oscilloscope - Optional (Sold Separately)</p></li>
@@ -161,6 +174,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="initial-setup">
 <h3>Initial Setup<a class="headerlink" href="#initial-setup" title="Permalink to this heading">¶</a></h3>
 <ol>
+<li><p>Testing was performed with:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63.img.xz?_ga=2.229092828.1548870927.1684017553-434607567.1663082500">x07-20230302-63 Ubuntu 22.04 Linux Image</a></p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/member/forms/download/xef.html?filename=BOOT_xilinx-k26-starterkit-v2022.1-09152304_update3.BIN">v2022.1-09152304_update3 Boot Firmware</a></p></li>
+</ul>
+<p><strong>Note:</strong> The minimum Linux kernel version required is <code class="docutils literal notranslate"><span class="pre">5.15.0.1022.26</span></code></p>
+</li>
 <li><p>Go through  <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Booting Kria Starter Kit Linux</span></a> to complete minimum setup required to boot Linux before continuing with instructions in this page.</p></li>
 <li><p>Get the latest TSN-ROS application &amp; firmware package:</p>
 <ul>
@@ -182,12 +202,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Install firmware binaries and restart dfx-mgr</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install xlnx-firmware-kr260-tsn-rs485pmod
-sudo systemctl restart dfx-mgr.service
 </pre></div>
 </div>
-<blockquote>
-<div><p>Note : Installing firmware binaries (xlnx-firmware-kr260-tsn-pmod) causes dfx-mgr to crash and a restart is needed, which is listed in the known issues section. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed.</p>
-</div></blockquote>
 <ul class="simple">
 <li><p>Install dependencies and apps</p></li>
 </ul>
@@ -228,6 +244,11 @@ sudo apt install ros-humble-ros-base
 </pre></div>
 </div>
 </li>
+<li><p>Install network-manager related packages</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> sudo apt install -y lldpad ethtool
+</pre></div>
+</div>
+</li>
 </ul>
 </li>
 <li><p>Dynamically load the application package:</p>
@@ -257,7 +278,8 @@ sudo apt install ros-humble-ros-base
 <ul class="simple">
 <li><p>Master - Slave deterministic communication with 2 KR260 boards : Network Configuration 1</p></li>
 <li><p>KRS based DDS implementation on ROS 2 pub/sub definition : Network Configuration 1</p></li>
-<li><p>Master - Slave deterministic communication with I210 card 	 : Network Configuration 2</p></li>
+<li><p>CNC(KV260/KR260 or Linux Running Machine) and Master - Slave with 2 KR260 boards : Network Configuration 2</p></li>
+<li><p>Master - Slave deterministic communication with I210 card 	 : Network Configuration 3</p></li>
 <li><p>RS485 Temperature/humidity sensor demo 						 : Communicating using RS485</p></li>
 </ul>
 <div class="section" id="network-configuration-1-two-kr260-boards">
@@ -449,8 +471,532 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 </div>
 </div>
 </div>
-<div class="section" id="network-configuration-2-kr260-and-pc-workstation">
-<h3>Network Configuration 2 : KR260 and PC Workstation<a class="headerlink" href="#network-configuration-2-kr260-and-pc-workstation" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="network-configuration-2-network-manager-cnc-and-two-kr260-boards">
+<h3>Network Configuration 2 : Network Manager(CNC) and Two KR260 Boards<a class="headerlink" href="#network-configuration-2-network-manager-cnc-and-two-kr260-boards" title="Permalink to this heading">¶</a></h3>
+<p>This configuration requires either two KR260 units and one KV260/KR260 unit(CNC) OR two KR260 units and one Linux Running Machine(CNC). Images below represent these configurations:</p>
+<div class="section" id="two-kr260-and-one-kv260-kr260-cnc">
+<h4>Two KR260 and one KV260/KR260(CNC):<a class="headerlink" href="#two-kr260-and-one-kv260-kr260-cnc" title="Permalink to this heading">¶</a></h4>
+<p><img alt="NM_Setup_1" src="../../../_images/NM_Setup_1.JPG" /></p>
+</div>
+<div class="section" id="two-kr260-and-one-linux-running-machine-cnc">
+<h4>Two KR260 and one Linux Running Machine(CNC):<a class="headerlink" href="#two-kr260-and-one-linux-running-machine-cnc" title="Permalink to this heading">¶</a></h4>
+<p><img alt="NM_Setup_2" src="../../../_images/NM_Setup_2.JPG" /></p>
+</div>
+<div class="section" id="id1">
+<h4>Run TSN-ROS Out of Box Applications<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>Ensure to load the TSN accelerator/firmware (refer to step-7 ‘dynamically load the application package’ from initial setup) using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">kr260-tsn-rs485pmod</span></code> before testing example application. If the firmware is already loaded, ignore this step and proceed.</p></li>
+<li><p>Setup Ethernet ports by running the following commands on the serial terminal. This sets the MAC/IP/VLAN on the EP and ETH ports of the TSN switch IP.</p>
+<ul>
+<li><p><em>KR260 Board1 interface setup</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/usr/bin/net_setup.sh</span> <span class="pre">-b1</span></code></p>
+</li>
+<li><p><em>KR260 Board2 interface setup</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/usr/bin/net_setup.sh</span> <span class="pre">-b2</span></code></p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="run-instructions">
+<h5>Run Instructions<a class="headerlink" href="#run-instructions" title="Permalink to this heading">¶</a></h5>
+<ol>
+<li><p>Run parser on the both KR260 units</p>
+<ul class="simple">
+<li><p>Setup one board as Master and one as Slave. Run the following:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>   <span class="nb">source</span> /usr/bin/network-manager/tsn-parsers/xnm.sh -m <span class="p">&amp;</span>          // on Board1/Master
+   <span class="nb">source</span> /usr/bin/network-manager/tsn-parsers/xnm.sh -s <span class="p">&amp;</span>          // on Board2/Slave
+</pre></div>
+</div>
+</li>
+<li><p>Setup Network Manager</p>
+<ul class="simple">
+<li><p>For CNC as KR260/KV260 install xlnx-tsn-utils package.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    sudo add-apt-repository ppa:xilinx-apps
+    sudo apt update
+    sudo apt install xlnx-tsn-utils
+</pre></div>
+</div>
+<ul>
+<li><p>For CNC as a Linux Machine clone this <a class="reference external" href="https://github.com/Xilinx/tsn-utils">repo</a></p></li>
+<li><p>Discover the two nodes by pinging to them.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>  ping -c <span class="m">3</span> <span class="m">10</span>.0.0.106                                            //Board1 or Master
+
+  PING <span class="m">10</span>.0.0.106 <span class="o">(</span><span class="m">10</span>.0.0.106<span class="o">)</span> <span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span> bytes of data.              
+  <span class="m">64</span> bytes from <span class="m">10</span>.0.0.106: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.242 ms
+  <span class="m">64</span> bytes from <span class="m">10</span>.0.0.106: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.200 ms
+  <span class="m">64</span> bytes from <span class="m">10</span>.0.0.106: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.203 ms
+
+  --- <span class="m">10</span>.0.0.106 ping statistics ---
+  <span class="m">3</span> packets transmitted, <span class="m">3</span> received, <span class="m">0</span>% packet loss, <span class="nb">time</span> 2047ms
+  rtt min/avg/max/mdev <span class="o">=</span> <span class="m">0</span>.200/0.215/0.242/0.019 ms
+
+  ping -c <span class="m">3</span> <span class="m">10</span>.0.0.208                                           //Board2 or Slave
+
+  PING <span class="m">10</span>.0.0.208 <span class="o">(</span><span class="m">10</span>.0.0.208<span class="o">)</span> <span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span> bytes of data.              
+  <span class="m">64</span> bytes from <span class="m">10</span>.0.0.208: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.242 ms
+  <span class="m">64</span> bytes from <span class="m">10</span>.0.0.208: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.200 ms
+  <span class="m">64</span> bytes from <span class="m">10</span>.0.0.208: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.203 ms
+
+  --- <span class="m">10</span>.0.0.208 ping statistics ---
+  <span class="m">3</span> packets transmitted, <span class="m">3</span> received, <span class="m">0</span>% packet loss, <span class="nb">time</span> 2047ms
+  rtt min/avg/max/mdev <span class="o">=</span> <span class="m">0</span>.200/0.215/0.242/0.019 ms
+</pre></div>
+</div>
+</li>
+<li><p>Run the CNC setup script from the install location to create/modify nodes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">sudo</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">network</span><span class="o">-</span><span class="n">manager</span><span class="o">/</span><span class="n">xcnc_setup</span>
+</pre></div>
+</div>
+</li>
+<li><p>If a node is not already created, navigate through the options and create two new nodes using Master’s and Slave’s MAC Address(eth1).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  #Example
+
+  ubuntu@kria:~$ sudo python3 /usr/bin/network-manager/main.py
+
+                                Hi!
+            Welcome to the TSN Network Management Engine
+
+  Please choose one of the options below:
+  Option 1: Create new node
+  Option 2: Modify existing node
+  Option 3: Show current nodes
+  Option 4: Exit
+  Please enter a number:
+  1
+  Please enter the node&#39;s MAC address
+  00:0a:35:10:37:fa                           //Board1 or Master
+  Creating new node
+  Please choose one of the options below:
+  Option 1: Create new node
+  Option 2: Modify existing node
+  Option 3: Show current nodes
+  Option 4: Exit
+  Please enter a number:
+  1
+  Please enter the node&#39;s MAC address
+  00:0a:35:10:39:c2                           //Board2 or Slave
+  Creating new node
+  Please choose one of the options below:
+  Option 1: Create new node
+  Option 2: Modify existing node
+  Option 3: Show current nodes
+  Option 4: Exit
+  Please enter a number:
+  2
+  Nodes currently added:
+  node_000a351037fa                           //Board1 or Master
+  node_000a351039c2                           //Board2 or Slave
+</pre></div>
+</div>
+<p><strong>NOTE</strong>: Do not exit out and follow next steps</p>
+</li>
+<li><p>On CNC set qbv configs for swp0 for Board1/Master(70% Scheduled traffic and 30% Best Effort traffic)</p>
+<ul class="simple">
+<li><p>cycle_time in to be entered nS. Max cycle time is 1sec</p></li>
+<li><p>cycle start time. Should be ‘0’ which starts traffic as soon as talker is running.</p></li>
+<li><p>gate list length can have MAX 256 entries. (gate list length &gt; 0)</p></li>
+<li><p>time for gate list entry to be entered in nS, shouldn’t be more the 8000000nS. Sets the time for which gate-state-value that is set will occupy (time &gt; 0)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  # Example
+
+  ubuntu@kria:~$ sudo python3 /usr/bin/network-manager/main.py
+
+                                Hi!
+            Welcome to the TSN Network Management Engine
+  Please choose one of the options below:
+  Option 1: Create new node
+  Option 2: Modify existing node
+  Option 3: Show current nodes
+  Option 4: Exit
+  Please enter a number:
+  2
+
+  Please enter the node&#39;s MAC address
+  00:0a:35:10:37:fa                                   //Board1 or Master
+  /etc/tsn-networkmanager/node_000a351037fa
+  Qbv/fdb?
+  qbv
+  Enter the switch port whose qbv schedule needs to be modified:
+  swp0
+  Enter cycle time in nanoseconds, Maximum cycle time is 1 sec
+  1000000
+  Enter cycle start time (base time)
+  0
+  Enter gate list length:
+  2
+  Entry 1
+  To open BE use state : 1
+  To open ST use state : 4
+  To open RES use state : 2
+  Open both ST &amp; BE state: 5(1+4)
+  Enter gate state value
+  4
+  Enter time for the gate list entry
+  700000
+  Entry 2
+  To open BE use state : 1
+  To open ST use state : 4
+  To open RES use state : 2
+  Open both ST &amp; BE state: 5(1+4)
+  Enter gate state value
+  1
+  Enter time for the gate list entry
+  300000
+  10.0.0.106               ether   00:0a:35:10:37:fa   C                     eth0
+
+  Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json
+
+  curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json tftp://10.0.0.106
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                           Dload  Upload   Total   Spent    Left  Speed
+  100  9374    0     0  100  9374      0   767k --:--:-- --:--:-- --:--:--  767k
+  100  9374    0     0  100  9374      0   746k --:--:-- --:--:-- --:--:--  746k
+</pre></div>
+</div>
+<p><strong>NOTE</strong>: Do not exit and set fdb configs</p>
+</li>
+<li><p>On CNC set fdb configs for both the nodes</p>
+<ul class="simple">
+<li><p>While creating “fdb” configs destmac should be “e0:e0:e0:e0:e0:e0”, vlan ID should be 10, port should be swp1 for Master configs and swp0 for Slave configs.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Example configs for Board1/Master
+
+ubuntu@kria:~$ sudo python3 /usr/bin/network-manager/main.py
+
+                              Hi!
+            Welcome to the TSN Network Management Engine
+  Please choose one of the options below:
+  Option 1: Create new node
+  Option 2: Modify existing node
+  Option 3: Show current nodes
+  Option 4: Exit
+  Please enter a number:
+  2
+  Nodes currently added:
+  node_000a351037fa                           //Board1 or Master
+  node_000a351039c2                           //Board2 or Slave
+
+
+  Please enter the node&#39;s MAC address
+  00:0a:35:10:37:fa                           //Board1 or Master
+  /etc/tsn-networkmanager/node_000a351037fa
+  Qbv/fdb?
+  fdb
+  Please enter a destination MAC address for the CAM entry
+  e0:e0:e0:e0:e0:e0
+  Please enter a vlan ID(s)/range of vlan&#39;s for the CAM Entry
+  10
+  Please specify destination switch port/s:
+  swp0: 3, swp1: 1, swp2: 2
+  Multiple ports can be specified using a comma separated string
+  1
+  Static CAM entry added locally, Want to add more entries [Y/N]? If you enter N/n, device will be programmed immediately
+  n
+  10.0.0.106               ether   00:0a:35:10:37:fa   C                     eth0
+
+  Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json
+
+  curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json tftp://10.0.0.106
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                           Dload  Upload   Total   Spent    Left  Speed
+  100  2574    0     0  100  2574      0   440k --:--:-- --:--:-- --:--:--  440k
+  100  2574    0     0  100  2574      0   414k --:--:-- --:--:-- --:--:--  414k
+
+  # Example configs for Board2/Slave
+
+ubuntu@kria:~$ sudo python3 /usr/bin/network-manager/main.py
+
+                              Hi!
+            Welcome to the TSN Network Management Engine
+  Please choose one of the options below:
+  Option 1: Create new node
+  Option 2: Modify existing node
+  Option 3: Show current nodes
+  Option 4: Exit
+  Please enter a number:
+  2
+  Nodes currently added:
+  node_000a351037fa                           //Board1 or Master
+  node_000a351039c2                           //Board2 or Slave
+
+
+  Please enter the node&#39;s MAC address
+  00:0a:35:10:39:c2                           //Board1 or Master
+  /etc/tsn-networkmanager/node_000a351037fa
+  Qbv/fdb?
+  fdb
+  Please enter a destination MAC address for the CAM entry
+  e0:e0:e0:e0:e0:e0
+  Please enter a vlan ID(s)/range of vlan&#39;s for the CAM Entry
+  10
+  Please specify destination switch port/s:
+  swp0: 3, swp1: 1, swp2: 2
+  Multiple ports can be specified using a comma separated string
+  3
+  Static CAM entry added locally, Want to add more entries [Y/N]? If you enter N/n, device will be programmed immediately
+  n
+  10.0.0.208               ether   00:0a:35:10:39:c2   C                     eth0
+
+  Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json
+
+  curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json tftp://10.0.0.208
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                           Dload  Upload   Total   Spent    Left  Speed
+  100  2574    0     0  100  2574      0   440k --:--:-- --:--:-- --:--:--  440k
+  100  2574    0     0  100  2574      0   414k --:--:-- --:--:-- --:--:--  414k
+</pre></div>
+</div>
+<p><strong>NOTE</strong>: Exit after setting fdb configs</p>
+</li>
+</ul>
+</li>
+<li><p>Run Traffic</p>
+<ul class="simple">
+<li><p>Verify if schedule is set for ep(swp0) on Board1/Master</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">qbv_sched</span> <span class="o">-</span><span class="n">g</span> <span class="n">ep</span>
+
+    <span class="n">List</span> <span class="n">length</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="n">Cycle</span> <span class="n">time</span><span class="p">:</span> <span class="mi">1000000</span>
+    <span class="n">Base</span> <span class="n">time</span><span class="p">:</span> <span class="mi">1684277666</span><span class="n">s</span> <span class="mi">0</span><span class="n">ns</span>
+    <span class="n">List</span> <span class="mi">0</span><span class="p">:</span> <span class="n">Gate</span> <span class="n">State</span><span class="p">:</span> <span class="mi">4</span> <span class="n">Gate</span> <span class="n">Time</span><span class="p">:</span> <span class="mi">700000</span><span class="n">ns</span>
+    <span class="n">List</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Gate</span> <span class="n">State</span><span class="p">:</span> <span class="mi">1</span> <span class="n">Gate</span> <span class="n">Time</span><span class="p">:</span> <span class="mi">300000</span><span class="n">ns</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start talker on Board1/Master</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">sudo</span> <span class="n">tsn_talker</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="n">l</span> <span class="mi">900</span> <span class="o">-</span><span class="n">v</span> <span class="mi">10</span> <span class="o">-</span><span class="n">p</span> <span class="mi">4</span> <span class="o">&amp;</span>       <span class="o">//</span><span class="k">for</span> <span class="n">ST</span> <span class="n">Traffic</span>
+   <span class="n">sudo</span> <span class="n">tsn_talker</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="n">l</span> <span class="mi">900</span> <span class="o">-</span><span class="n">v</span> <span class="mi">10</span> <span class="o">-</span><span class="n">p</span> <span class="mi">1</span> <span class="o">&amp;</span>       <span class="o">//</span><span class="k">for</span> <span class="n">BE</span> <span class="n">Traffic</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start capture of received packets on Board2/Slave</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">sudo</span> <span class="n">tcpdump</span> <span class="o">-</span><span class="n">i</span> <span class="n">ep</span> <span class="o">-</span><span class="n">w</span> <span class="n">qbv</span><span class="o">.</span><span class="n">pcap</span> <span class="o">-</span><span class="n">vvv</span>
+
+   <span class="n">tcpdump</span><span class="p">:</span> <span class="n">listening</span> <span class="n">on</span> <span class="n">ep</span><span class="p">,</span> <span class="n">link</span><span class="o">-</span><span class="nb">type</span> <span class="n">EN10MB</span> <span class="p">(</span><span class="n">Ethernet</span><span class="p">),</span> <span class="n">snapshot</span> <span class="n">length</span> <span class="mi">262144</span> <span class="nb">bytes</span>
+   <span class="o">^</span><span class="n">C696566</span> <span class="n">packets</span> <span class="n">captured</span>
+   <span class="mi">768225</span> <span class="n">packets</span> <span class="n">received</span> <span class="n">by</span> <span class="nb">filter</span>
+   <span class="mi">71379</span> <span class="n">packets</span> <span class="n">dropped</span> <span class="n">by</span> <span class="n">kernel</span>
+</pre></div>
+</div>
+<p><strong>NOTE</strong>: Packet count should increment quickly as soon as you run tcpdump command</p>
+<ul class="simple">
+<li><p>Exit out of tcpdump after a few seconds using CTRL-c key combination to end capture on Board2</p></li>
+<li><p>qbv.pcap file saved in current directory will show packet distribution.</p></li>
+<li><p>Move the qbv.pcap file from the SD card to the host PC to analyze the packet distribution within Wireshark</p></li>
+</ul>
+</li>
+<li><p>Analyze the packet distribution on wireshark</p>
+<p>Wireshark trace will show a 70% Scheduled traffic 30 % Best Effort traffic distribution</p>
+<ul class="simple">
+<li><p>Start Wireshark on the host PC</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># For Linux</span>
+
+    <span class="n">wireshark</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+<p>For Windows download <a class="reference external" href="https://www.wireshark.org/download.html">Wireshark</a></p>
+<ul class="simple">
+<li><p>In the Wireshark GUI, select File → Open → Browse and select the qbv.pcap file</p></li>
+<li><p>Observe there are packets within the capture, with packet length=900
+<img alt="Wireshark" src="../../../_images/Packets.JPG" /></p></li>
+<li><p>Type the filter as ‘vlan.priority == 4’ in “Apply display filter” in Wireshark</p></li>
+<li><p>Click on a packet and observe the vlan ID=10, Priority (PCP/PRI=4) where a packet with PCP=4 indicates it is Scheduled traffic
+<img alt="ST Packet" src="../../../_images/PR_4_Packets.JPG" /></p></li>
+<li><p>Select the following from Wireshark Tab Statistics -&gt; Capture File Properties. You can see ~70% distribution for ST traffic
+<img alt="70%" src="../../../_images/ST_Traffic.JPG" /></p></li>
+<li><p>Type the filter as ‘vlan.priority == 1’ in “Apply display filter” in Wireshark</p></li>
+<li><p>Click on a packet and observe the vlan ID=4, Priority (PCP/PRI=1) where a packet with PCP=1 indicates it is Best Effort traffic
+<img alt="BE Packer" src="../../../_images/PR_1_Packets.JPG" /></p></li>
+<li><p>Select the following from Wireshark Tab Statistics -&gt; Capture File Properties. You can see ~30% distribution for BE traffic
+<img alt="30%" src="../../../_images/BE_Traffic.JPG" /></p></li>
+</ul>
+</li>
+<li><p>Notice frame-premption - Optional(if preemption was enabled)</p>
+<ul>
+<li><p>On CNC set qbv configs for swp0 for Master(70% Mixed traffic and 30% Scheduled traffic)</p>
+<ul class="simple">
+<li><p>cycle_time in to be entered nS. Max cycle time is 1sec</p></li>
+<li><p>cycle start time. Should be ‘0’ which starts traffic as soon as talker is running.</p></li>
+<li><p>gate list length can have MAX 256 entries. (gate list length &gt; 0)</p></li>
+<li><p>time for gate list entry to be entered in nS, shouldn’t be more the 8000000nS. Sets the time for which gate-state-value that is set will occupy (time &gt; 0)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  # Example
+
+  ubuntu@kria:~$ sudo python3 /usr/bin/network-manager/main.py
+
+                                Hi!
+            Welcome to the TSN Network Management Engine
+  Please choose one of the options below:
+  Option 1: Create new node
+  Option 2: Modify existing node
+  Option 3: Show current nodes
+  Option 4: Exit
+  Please enter a number:
+  2
+
+  Please enter the node&#39;s MAC address
+  00:0a:35:10:37:fa
+  /etc/tsn-networkmanager/node_000a351037fa
+  Qbv/fdb?
+  qbv
+  Enter the switch port whose qbv schedule needs to be modified:
+  swp0
+  Enter cycle time in nanoseconds, Maximum cycle time is 1 sec
+  1000000
+  Enter cycle start time (base time)
+  0
+  Enter gate list length:
+  2
+  Entry 1
+  To open BE use state : 1
+  To open ST use state : 4
+  To open RES use state : 2
+  Open both ST &amp; BE state: 5(1+4)
+  Enter gate state value
+  5
+  Enter time for the gate list entry
+  700000
+  Entry 2
+  To open BE use state : 1
+  To open ST use state : 4
+  To open RES use state : 2
+  Open both ST &amp; BE state: 5(1+4)
+  Enter gate state value
+  4
+  Enter time for the gate list entry
+  300000
+  10.0.0.106               ether   00:0a:35:10:37:fa   C                     eth0
+
+  Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json
+
+  curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json tftp://10.0.0.106
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                           Dload  Upload   Total   Spent    Left  Speed
+  100  9374    0     0  100  9374      0   767k --:--:-- --:--:-- --:--:--  767k
+  100  9374    0     0  100  9374      0   746k --:--:-- --:--:-- --:--:--  746k
+</pre></div>
+</div>
+</li>
+<li><p>Verify if schedule is set for ep(swp0) on Board1/Master</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">qbv_sched</span> <span class="o">-</span><span class="n">g</span> <span class="n">ep</span>
+
+    <span class="n">List</span> <span class="n">length</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="n">Cycle</span> <span class="n">time</span><span class="p">:</span> <span class="mi">1000000</span>
+    <span class="n">Base</span> <span class="n">time</span><span class="p">:</span> <span class="mi">1684357652</span><span class="n">s</span> <span class="mi">0</span><span class="n">ns</span>
+    <span class="n">List</span> <span class="mi">0</span><span class="p">:</span> <span class="n">Gate</span> <span class="n">State</span><span class="p">:</span> <span class="mi">3</span> <span class="n">Gate</span> <span class="n">Time</span><span class="p">:</span> <span class="mi">700000</span><span class="n">ns</span>
+    <span class="n">List</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Gate</span> <span class="n">State</span><span class="p">:</span> <span class="mi">4</span> <span class="n">Gate</span> <span class="n">Time</span><span class="p">:</span> <span class="mi">300000</span><span class="n">ns</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start listener on Board2/Slave</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">tsn_listener</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start talker on Board1/Master</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">tsn_talker</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="n">l</span> <span class="mi">900</span> <span class="o">-</span><span class="n">v</span> <span class="mi">10</span> <span class="o">-</span><span class="n">p</span> <span class="mi">4</span> <span class="o">&amp;</span>
+    <span class="n">sudo</span> <span class="n">tsn_talker</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="n">l</span> <span class="mi">1200</span> <span class="o">-</span><span class="n">v</span> <span class="mi">10</span> <span class="o">-</span><span class="n">p</span> <span class="mi">1</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Kill listener/talker after a few seconds</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">sudo</span> <span class="n">killall</span> <span class="n">tsn_listener</span>       <span class="o">//</span><span class="n">Board2</span>
+   <span class="n">sudo</span> <span class="n">killall</span> <span class="n">tsn_talker</span>         <span class="o">//</span><span class="n">Board1</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Check the ethtool stats</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Board1</span>
+<span class="n">ethtool</span> <span class="o">--</span><span class="n">include</span><span class="o">-</span><span class="n">statistics</span> <span class="o">--</span><span class="n">show</span><span class="o">-</span><span class="n">mm</span> <span class="n">eth2</span>
+
+<span class="n">MAC</span> <span class="n">Merge</span> <span class="n">layer</span> <span class="n">state</span> <span class="k">for</span> <span class="n">eth2</span><span class="p">:</span>
+<span class="n">pMAC</span> <span class="n">enabled</span><span class="p">:</span> <span class="n">on</span>
+<span class="n">TX</span> <span class="n">enabled</span><span class="p">:</span> <span class="n">on</span>
+<span class="n">TX</span> <span class="n">active</span><span class="p">:</span> <span class="n">on</span>
+<span class="n">TX</span> <span class="n">minimum</span> <span class="n">fragment</span> <span class="n">size</span><span class="p">:</span> <span class="mi">60</span>
+<span class="n">RX</span> <span class="n">minimum</span> <span class="n">fragment</span> <span class="n">size</span><span class="p">:</span> <span class="mi">60</span>
+<span class="n">Verify</span> <span class="n">enabled</span><span class="p">:</span> <span class="n">on</span>
+<span class="n">Verify</span> <span class="n">time</span><span class="p">:</span> <span class="mi">127</span>
+<span class="n">Max</span> <span class="n">verify</span> <span class="n">time</span><span class="p">:</span> <span class="mi">127</span>
+<span class="n">Verification</span> <span class="n">status</span><span class="p">:</span> <span class="n">SUCCEEDED</span>
+<span class="n">Statistics</span><span class="p">:</span>
+    <span class="n">MACMergeFrameAssErrorCount</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="n">MACMergeFrameSmdErrorCount</span><span class="p">:</span> <span class="mi">3</span>
+    <span class="n">MACMergeFrameAssOkCount</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="n">MACMergeFragCountRx</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="n">MACMergeFragCountTx</span><span class="p">:</span> <span class="mi">13808</span>
+    <span class="n">MACMergeHoldCount</span><span class="p">:</span> <span class="mi">1</span>
+
+<span class="c1"># Board2</span>
+<span class="n">ethtool</span> <span class="o">--</span><span class="n">include</span><span class="o">-</span><span class="n">statistics</span> <span class="o">--</span><span class="n">show</span><span class="o">-</span><span class="n">mm</span> <span class="n">eth2</span>
+<span class="n">MAC</span> <span class="n">Merge</span> <span class="n">layer</span> <span class="n">state</span> <span class="k">for</span> <span class="n">eth2</span><span class="p">:</span>
+<span class="n">pMAC</span> <span class="n">enabled</span><span class="p">:</span> <span class="n">on</span>
+<span class="n">TX</span> <span class="n">enabled</span><span class="p">:</span> <span class="n">on</span>
+<span class="n">TX</span> <span class="n">active</span><span class="p">:</span> <span class="n">on</span>
+<span class="n">TX</span> <span class="n">minimum</span> <span class="n">fragment</span> <span class="n">size</span><span class="p">:</span> <span class="mi">60</span>
+<span class="n">RX</span> <span class="n">minimum</span> <span class="n">fragment</span> <span class="n">size</span><span class="p">:</span> <span class="mi">60</span>
+<span class="n">Verify</span> <span class="n">enabled</span><span class="p">:</span> <span class="n">on</span>
+<span class="n">Verify</span> <span class="n">time</span><span class="p">:</span> <span class="mi">127</span>
+<span class="n">Max</span> <span class="n">verify</span> <span class="n">time</span><span class="p">:</span> <span class="mi">127</span>
+<span class="n">Verification</span> <span class="n">status</span><span class="p">:</span> <span class="n">SUCCEEDED</span>
+<span class="n">Statistics</span><span class="p">:</span>
+    <span class="n">MACMergeFrameAssErrorCount</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="n">MACMergeFrameSmdErrorCount</span><span class="p">:</span> <span class="mi">10</span>
+    <span class="n">MACMergeFrameAssOkCount</span><span class="p">:</span> <span class="mi">13488</span>
+    <span class="n">MACMergeFragCountRx</span><span class="p">:</span> <span class="mi">13808</span>
+    <span class="n">MACMergeFragCountTx</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="n">MACMergeHoldCount</span><span class="p">:</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>NOTE</strong>: MACMergeFragCountTx on board1/master and MACMergeFragCountRx on board2/slave should match on both sides</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="enable-frame-preemption-optional">
+<h3>Enable frame Preemption - Optional<a class="headerlink" href="#enable-frame-preemption-optional" title="Permalink to this heading">¶</a></h3>
+<ol>
+<li><p>Check current status</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">ethtool</span> <span class="o">--</span><span class="n">include</span><span class="o">-</span><span class="n">statistics</span> <span class="o">--</span><span class="n">show</span><span class="o">-</span><span class="n">mm</span> <span class="n">eth2</span>
+</pre></div>
+</div>
+<p><strong>NOTE:</strong> Verify pMAC enabled: on. This means preemption is available. Tx Enable and Active will be off at this point as boards are not communicating yet.</p>
+</li>
+<li><p>Restart lldpad service</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">lldpad</span>
+</pre></div>
+</div>
+</li>
+<li><p>Enable transmit capabilities</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">sudo</span> <span class="n">lldptool</span> <span class="o">-</span><span class="n">i</span> <span class="n">eth2</span> <span class="nb">set</span><span class="o">-</span><span class="n">lldp</span> <span class="n">adminStatus</span><span class="o">=</span><span class="n">rxtx</span>
+   <span class="n">sudo</span> <span class="n">lldptool</span> <span class="o">-</span><span class="n">i</span> <span class="n">eth2</span> <span class="nb">set</span><span class="o">-</span><span class="n">tlv</span> <span class="o">-</span><span class="n">V</span> <span class="n">addEthCaps</span> <span class="n">enableTx</span><span class="o">=</span><span class="n">yes</span>
+</pre></div>
+</div>
+<p><strong>NOTE:</strong> Now Tx Enable and Active should be ON automatically on both sides.</p>
+</li>
+<li><p>Check status</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">ethtool</span> <span class="o">--</span><span class="n">include</span><span class="o">-</span><span class="n">statistics</span> <span class="o">--</span><span class="n">show</span><span class="o">-</span><span class="n">mm</span> <span class="n">eth2</span>
+</pre></div>
+</div>
+<p><strong>NOTE:</strong> Notice Tx Enable and Tx Active are “on” now.
+Once preemption is enabled it will remain enabled on subsequent reboot as the configuration is stored in lldpad.conf. delete <code class="docutils literal notranslate"><span class="pre">/var/lib/lldpad/lldpad.conf</span></code> to reset the configuration.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="network-configuration-3-kr260-and-pc-workstation">
+<h3>Network Configuration 3 : KR260 and PC Workstation<a class="headerlink" href="#network-configuration-3-kr260-and-pc-workstation" title="Permalink to this heading">¶</a></h3>
 <p>A single KR260 board communicating with a PC workstation capable of TSN networking.  The PC workstation is using an I210 Ethernet Controller interface card to demonstrate functionality and features of TSN.</p>
 <div class="section" id="kr260-and-pc-workstation-board-setup">
 <h4>KR260 and PC Workstation: Board Setup<a class="headerlink" href="#kr260-and-pc-workstation-board-setup" title="Permalink to this heading">¶</a></h4>
@@ -628,21 +1174,6 @@ Oscilloscope Setup (optional)</p>
 <li><p>PTP timeouts with heavy traffic</p></li>
 </ul>
 <p>For the above two issues refer to the documentation provided under the section “Known issues and troubleshooting” from the Xilinx TSN solution wiki page <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/25034864/Xilinx+TSN+Solution">here</a></p>
-<ul class="simple">
-<li><p>DFX-Manager-Daemon crash</p></li>
-</ul>
-<p>dfx-manager daemon fails to load app after a fresh install or an upgrade of any accelerator/firmware package (xlnx-app-kr260-pmod-rs485-test) .If you see the below failure by xmutil after intall or upgrade of any package, make sure to restart the dfx-manger daemon and try again.</p>
-<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">dfx-mgr.service</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:$ sudo xmutil loadapp kr260-tsn-rs485pmod
-DFX-MGRD&gt; ERROR: initSocket:connect failed
-
-error sending message from client
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>kernel crash when unloading <code class="docutils literal notranslate"><span class="pre">kr260-tsn-rs485pmod</span></code> firmware binaries using kernel version 5.15.0-1010-xilinx-zynqmp</p></li>
-</ul>
-<p>The default kernel patch version for the Ubuntu image is <code class="docutils literal notranslate"><span class="pre">5.15.0-1010-xilinx-zynqmp</span></code>,to avoid a kernel crash when unloading the TSN firmware upgrade the kernel to patch version <code class="docutils literal notranslate"><span class="pre">5.15.0-1011-xilinx-zynqmp</span></code>.</p>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
@@ -676,7 +1207,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 4, 2023.
+      <span class="lastupdated">Last updated on June 21, 2023.
       </span></p>
   </div>
 
