@@ -33,7 +33,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Porting an Application to PetaLinux - Smartcam" href="yocto_port_example.html" />
+    <link rel="prev" title="Yocto Support" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -63,19 +65,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Area Record</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Yocto Port Example</span></p>
-<ul>
+<p class="caption" role="heading"><span class="caption-text">Yocto Support</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Yocto Kria Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#machine-configurations-for-kria">Machine Configurations for Kria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-host-requirements">Build Host Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-the-build-environment">Prepare the Build Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-the-artifacts">Build the Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qemu">QEMU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#variables-overrides-and-the-environment">Variables, Overrides and the Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-libraries">Working with Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-recipes">Working with recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="yocto_port_example.html">Porting an Application to PetaLinux - Smartcam</a></li>
 <li class="toctree-l1"><a class="reference internal" href="library_dependency.html">Library Dependency</a></li>
 </ul>
@@ -106,17 +122,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="yocto-kria-support">
 <h1>Yocto Kria Support<a class="headerlink" href="#yocto-kria-support" title="Permalink to this heading">¶</a></h1>
-<p>Yocto contains support to generate Kria artifacts starting in 2022.2. Note that PetaLinux is an abstraction of Yocto - it is Yocto + Xilinx meta layers + extra tools such as XSCT, XSDB, etc. The process and commands of generating artifacts from Yocto vs PetaLinux are different, but the backend is the same (e.g. both are Yocto based).</p>
+<p>Yocto contains support to generate Kria artifacts starting in 2023.1. Note that PetaLinux is an abstraction of Yocto - it is Yocto + Xilinx meta layers + extra tools such as XSCT, XSDB, etc. The process and commands of generating artifacts from Yocto vs PetaLinux are different, but the backend is the same (e.g. both are Yocto based).</p>
 <p>The Yocto Project provides <a class="reference external" href="https://docs.yoctoproject.org/">extensive documentation</a> and it is recommended to familiarize yourself with some of the core concepts before continuing. Xilinx specific Yocto information can be found on the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto">wiki</a>.</p>
 <div class="section" id="machine-configurations-for-kria">
 <h2>Machine Configurations for Kria<a class="headerlink" href="#machine-configurations-for-kria" title="Permalink to this heading">¶</a></h2>
-<p>The <a class="reference external" href="https://docs.yoctoproject.org/dev/dev-manual/new-machine.html">machine configurations</a> provided for Kria define the settings used for a given machine when building each recipe. For example, when building bitbake recipe <code class="docutils literal notranslate"><span class="pre">kria-image-full-cmdline</span></code> using <code class="docutils literal notranslate"><span class="pre">MACHINE=k26-kv</span></code> vs <code class="docutils literal notranslate"><span class="pre">MACHINE=k26-smk</span></code>, different output will be produced. Machine configuration files for Kria SOM and starter kits can be found in <a class="reference external" href="https://gitenterprise.xilinx.com/Yocto/meta-kria/tree/HEAD/conf/machine">github</a> in release branches for the perspective tool version.</p>
-<p>Please note that the names of machine names and recipes have changed between 2022.2 and 2023.1.</p>
+<p>The <a class="reference external" href="https://docs.yoctoproject.org/dev/dev-manual/new-machine.html">machine configurations</a> provided for Kria define the settings used for a given machine when building each recipe. Different artifacts would be built with each unique combination of machine name and bitbake recipe. Machine configuration files for Kria SOM and starter kits can be found in <a class="reference external" href="https://gitenterprise.xilinx.com/Yocto/meta-kria/tree/HEAD/conf/machine">github</a> in release branches for the perspective tool version.</p>
+<p>Machine names and recipes in 2023.1 and forward:</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
 <th>Machine Name</th>
-<th></th>
 <th>Bitbake Recipe</th>
 <th>QEMU Support</th>
 <th>Description</th>
@@ -124,43 +139,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </thead>
 <tbody>
 <tr>
-<td>2022.2</td>
-<td>2023.1 and later</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>k26-starter-kit</td>
 <td>k26-smk</td>
-<td>som-qspi</td>
+<td>kria-qspi</td>
 <td>NA</td>
 <td>QSPI image supporting K26 production SOM and Starter Kit SOM</td>
 </tr>
 <tr>
-<td>k26-starter-kit</td>
 <td>k26-smk</td>
 <td>kria-image-full-cmdline</td>
-<td>Supported only in 2023.1</td>
+<td>yes</td>
 <td>wic image that dynamically support both KV260 and KR260</td>
 </tr>
-<tr>
-<td>kv260-starter-kit</td>
-<td>*</td>
-<td>kria-image-full-cmdline</td>
-<td>Supported only in 2022.2</td>
-<td>wic image that support KV260 Starter Kit only</td>
-</tr>
-<tr>
-<td>kr260-starter-kit</td>
-<td>*</td>
-<td>kria-image-full-cmdline</td>
-<td>Supported only in 2022.2</td>
-<td>wic image that support KR260 Starter Kit only</td>
-</tr>
 </tbody>
-</table><p>*k26-kr and k26-kv flat wic image generation are not supported in 2023.1.</p>
-</div>
+</table></div>
 <div class="section" id="build-host-requirements">
 <h2>Build Host Requirements<a class="headerlink" href="#build-host-requirements" title="Permalink to this heading">¶</a></h2>
 <p>Before starting, make sure the build host PC meets <a class="reference external" href="https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#compatible-linux-distribution">these requirements</a>.</p>
@@ -169,7 +160,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="prepare-the-build-environment">
 <h2>Prepare the Build Environment<a class="headerlink" href="#prepare-the-build-environment" title="Permalink to this heading">¶</a></h2>
-<p>Install Repo.</p>
+<p>Install <a class="reference external" href="https://gerrit.googlesource.com/git-repo">Repo</a>.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#download the Repo script:</span>
 curl https://storage.googleapis.com/git-repo-downloads/repo &gt; repo
 <span class="c1">#Make it executable:</span>
@@ -185,11 +176,12 @@ repo --help
 <p>Fetch all sources</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#repo init to the Xilinx yocto project</span>
 repo init -u https://github.com/Xilinx/yocto-manifests.git -b &lt;release-branch&gt;
+<span class="c1">#example: repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2023.1</span>
 <span class="c1">#repo sync to get all sources</span>
 repo sync
 <span class="c1">#repo start a branch</span>
 repo start &lt;release-branch&gt; --all
-<span class="c1">#example:  repo start rel-v2022.2 --all</span>
+<span class="c1">#example:  repo start rel-v2023.1 --all</span>
 </pre></div>
 </div>
 <p>Source environment:</p>
@@ -204,16 +196,17 @@ repo start &lt;release-branch&gt; --all
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>&lt;machine name&gt; bitbake &lt;bitbake recipe&gt; 
 </pre></div>
 </div>
-<p>For an example, to build QSPI image and wic image for K26 starter kits use below command for 2022.2:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-starter-kit bitbake som-qspi
-<span class="nv">MACHINE</span><span class="o">=</span>k26-starter-kit bitbake kria-image-full-cmdline 
+<p>For an example, to build QSPI image and wic image for K26 starter kits use below command for 2023.1:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake kria-qspi
+<span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake kria-image-full-cmdline 
 </pre></div>
 </div>
-<p>The resulting QSPI image, wic image and their artifacts can be found in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k26-starter-kit</span></code>, and $TMPDIR is defined in <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code>, by default in <code class="docutils literal notranslate"><span class="pre">tmp/</span></code>.</p>
+<p>The resulting QSPI image(kria-qspi-k26-smk.bin), wic image(kria-image-full-cmdline-k26-smk.wic.xz) and their artifacts can be found in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k26-smk</span></code>, and $TMPDIR is defined in <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code>, by default in <code class="docutils literal notranslate"><span class="pre">tmp/</span></code>.</p>
+<p>Note that the username for Yocto generated image is petalinux and you will be prompted to update password right away.</p>
 </div>
 <div class="section" id="qemu">
 <h2>QEMU<a class="headerlink" href="#qemu" title="Permalink to this heading">¶</a></h2>
-<p>Yocto can boot each of the various MACHINEs using QEMU once a build completed. This is the command:</p>
+<p>Yocto can boot each of the various MACHINEs using QEMU once a build completes. This is the command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>&lt;machine name&gt; runqemu nographic slirp
 </pre></div>
 </div>
@@ -223,13 +216,8 @@ repo start &lt;release-branch&gt; --all
 </div>
 <div class="section" id="variables-overrides-and-the-environment">
 <h2>Variables, Overrides and the Environment<a class="headerlink" href="#variables-overrides-and-the-environment" title="Permalink to this heading">¶</a></h2>
-<p>Most of the Yocto recipes and configuration files assign values to <a class="reference external" href="https://docs.yoctoproject.org/dev/dev-manual/new-recipe.html">variables</a> in order to influence the build. Machine specific overrides can be used to replace default or previously defined values with ones that are specific to the machine you are building for. Each machine will have a series of overrides which defines, in order of priority, which overrides will be considered when parsing all of the recipes and config files. For example, here are a few assignments/overrides taken from a recipe in the codebase:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>KRIA_ARCH_PACKAGES:k26-smk <span class="o">=</span> <span class="s2">&quot;k26-starter-kits&quot;</span>
-SRC_URI:append:k26-smk <span class="o">=</span> <span class="s2">&quot; file://boot.cmd.</span><span class="si">${</span><span class="nv">BOOTFILE_EXT</span><span class="si">}</span><span class="s2">&quot;</span> <span class="c1"># :append is used to add to an existing list for this MACHINE</span>
-</pre></div>
-</div>
-<p>It is possible to get a list of the MACHINEOVERRIDEs that are used for a given recipe as well as the log of how the system came to the final value of a variable by using the “-e” flag on a build:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-starter-kit bitbake kria-image-full-cmdline -e 
+<p>Most of the Yocto recipes and configuration files assign values to <a class="reference external" href="https://docs.yoctoproject.org/dev/dev-manual/new-recipe.html">variables</a> in order to influence the build. Machine specific overrides can be used to replace default or previously defined values with ones that are specific to the machine you are building for. Each machine will have a series of overrides which defines, in order of priority, which overrides will be considered when parsing all of the recipes and config files. It is possible to get a list of the MACHINEOVERRIDEs that are used for a given recipe as well as the log of how the system came to the final value of a variable by using the “-e” flag on a build:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake kria-image-full-cmdline -e 
 </pre></div>
 </div>
 <p>You can see if you redirect the output of bitbake -e to a file how each of the variables in the build got to its final value, for example here is how SERIAL_CONSOLES was set for a recipe:</p>
@@ -250,14 +238,13 @@ SERIAL_CONSOLES=&quot;115200;ttyPS1&quot;
 </pre></div>
 </div>
 </div>
-<div class="section" id="working-with-llibraries">
-<h2>Working with Llibraries<a class="headerlink" href="#working-with-llibraries" title="Permalink to this heading">¶</a></h2>
-<p>[note: ask John: how to specifically bake in a specific library with a specific version?]</p>
+<div class="section" id="working-with-libraries">
+<h2>Working with Libraries<a class="headerlink" href="#working-with-libraries" title="Permalink to this heading">¶</a></h2>
+<p>In case some libraries have specific <a class="reference internal" href="library_dependency.html"><span class="doc">version dependencies</span></a>, they can be specified in recipes (.bb files). Refer to <a class="reference external" href="https://docs.yoctoproject.org/singleindex.html#term-PREFERRED_VERSION">Yocto documentation</a> for details.</p>
 </div>
 <div class="section" id="working-with-recipes">
 <h2>Working with recipes<a class="headerlink" href="#working-with-recipes" title="Permalink to this heading">¶</a></h2>
-<p>[note: ask john, where/how to find a list of relevant to krai recipes?]</p>
-<p>It is possible to work with individual components for the purpose of integration, debugging or updates. For example if we want to build the xmutil utility we can bitbake that recipe:</p>
+<p>It is possible to work with individual components (such as recipes in <a class="reference external" href="https://github.com/Xilinx/meta-kria">github meta-kria</a>) for the purpose of integration, debugging or updates. For example if we want to build the xmutil utility we can bitbake that recipe:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>MACHINE=k26-smk bitbake xmutil
 </pre></div>
 </div>
@@ -289,7 +276,7 @@ index f83bcb3..2839b62 <span class="m">100644</span>
 <div class="section" id="issues">
 <h2>Issues<a class="headerlink" href="#issues" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
-<li><p>If you see the error <code class="docutils literal notranslate"><span class="pre">error</span> <span class="pre">loading</span> <span class="pre">hsi</span> <span class="pre">package:</span> <span class="pre">couldn't</span> <span class="pre">load</span> <span class="pre">file</span> <span class="pre">&quot;libxv_commontasks.so&quot;</span> </code>, it maybe missing libtinfo5 library which can be installed with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libtinfo5</span></code></p></li>
+<li><p>If you see the error <code class="docutils literal notranslate"><span class="pre">error</span> <span class="pre">loading</span> <span class="pre">hsi</span> <span class="pre">package:</span> <span class="pre">couldn't</span> <span class="pre">load</span> <span class="pre">file</span> <span class="pre">&quot;libxv_commontasks.so&quot;</span></code>, it maybe missing libtinfo5 library which can be installed with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libtinfo5</span></code></p></li>
 </ol>
 </div>
 <div class="section" id="license">
@@ -306,7 +293,10 @@ index f83bcb3..2839b62 <span class="m">100644</span>
           </div>
           
 				  
-				  <footer>
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Yocto Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="yocto_port_example.html" class="btn btn-neutral float-right" title="Porting an Application to PetaLinux - Smartcam" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

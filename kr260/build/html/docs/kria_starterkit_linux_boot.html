@@ -65,12 +65,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Area Record</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
@@ -86,6 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3 current"><a class="current reference internal" href="#">KR260 Starter Kit Linux Boot</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#boot-process">Boot Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#misc-information">Misc Information</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#license">License</a></li>
 </ul>
@@ -97,6 +99,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3 current"><a class="current reference internal" href="#">KR260 Starter Kit Linux Boot</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#boot-process">Boot Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#misc-information">Misc Information</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#license">License</a></li>
 </ul>
@@ -108,6 +111,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="ros2_perception_node/ros2_perception_node_landing.html#other">Other</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="gps_1588_ptp/gps_1588_ptp_precision_time_mgmt.html">Precision Time Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bist/bist_landing.html">Built-In Self Test (BIST)</a></li>
 </ul>
 
         </div>
@@ -182,7 +187,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>For some applications it is required to work with commandline instead of GNOME Desktop.</p></li>
 </ul>
 </li>
-<li><p>If not done so yet, perform system update to pull in the latest kernel and Xilinx packages. There are two ways to do this.</p>
+<li><p>If not done so yet, perform system update to pull in the latest kernel and Xilinx packages. There can be some errors during install, refer to <a class="reference external" href="#known-issues">known issues</a> if you encounter issues. There are two ways to do this.</p>
 <p>Through snap install, for more information refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2057043969/Snaps+-+xlnx-config+Snap+for+Certified+Ubuntu+on+Xilinx+Devices">Xilinx config snap Wiki</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo snap install xlnx-config --classic --channel<span class="o">=</span><span class="m">2</span>.x
 </pre></div>
@@ -215,6 +220,30 @@ sudo usermod -a -G docker  <span class="nv">$USER</span>
 </li>
 </ol>
 <p>This flow will only need to be done once if re-using the same SD card for multiple applications. However, user can choose to update and upgrade again to install newly available updates thats made available later.</p>
+</div>
+<div class="section" id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Sometimes Ubuntu has background process ongoing by the time it boots to command prompt and do not yet ask you to change your password. In those cases doing a snap install may result in a message like following:</p>
+<p><code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">too</span> <span class="pre">early</span> <span class="pre">for</span> <span class="pre">operation,</span> <span class="pre">device</span> <span class="pre">not</span> <span class="pre">yet</span> <span class="pre">seeded</span> <span class="pre">or</span> <span class="pre">device</span> <span class="pre">model</span> <span class="pre">not</span> <span class="pre">acknowledged</span></code></p>
+<p>Try again in a minute or two and you should be prompted to update password and above error should go away.</p>
+</li>
+<li><p>If a prompt like the following appears:</p>
+<p><img alt="kernel" src="../_images/kernelflash.png" /></p>
+<p>Choose “keep the local version currently installed”. For more details refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2116354051/Tips+Tricks+for+Certified+Ubuntu+AMD-Xilinx+Devices#Understanding-the-Configuring-flash-kernel-Prompts-When-Updating-the-Linux-Kernel">this wiki page</a>.</p>
+</li>
+<li><p>During <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xlnx-config.sysinit</span></code> or <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">upgrade</span></code> commands you may see the following errors and exit installation. Re-run the commands and installation should continue and complete.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>flash-kernel: deferring update (trigger activated)
+/etc/kernel/postinst.d/zz-flash-kernel:
+flash-kernel: deferring update (trigger activated)
+Errors were encountered while processing:
+flash-kernel
+need restart is being skipped since dpkg has failed
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+</pre></div>
+</div>
+</li>
+</ol>
 </div>
 <div class="section" id="misc-information">
 <h2>Misc Information<a class="headerlink" href="#misc-information" title="Permalink to this heading">¶</a></h2>
@@ -273,7 +302,7 @@ locale
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 4, 2023.
+      <span class="lastupdated">Last updated on June 21, 2023.
       </span></p>
   </div>
 

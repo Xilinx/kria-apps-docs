@@ -53,7 +53,7 @@ This guide is targeted for Ubuntu 22.04 and Xilinx 2022.1 toolchain.
 
    * For some applications it is required to work with commandline instead of GNOME Desktop.
 
-5. If not done so yet, perform system update to pull in the latest kernel and Xilinx packages. There are two ways to do this.
+5. If not done so yet, perform system update to pull in the latest kernel and Xilinx packages. There can be some errors during install, refer to [known issues](#known-issues) if you encounter issues. There are two ways to do this.
 
    Through snap install, for more information refer to the [Xilinx config snap Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2057043969/Snaps+-+xlnx-config+Snap+for+Certified+Ubuntu+on+Xilinx+Devices):
 
@@ -96,6 +96,73 @@ This guide is targeted for Ubuntu 22.04 and Xilinx 2022.1 toolchain.
       ```
 
 This flow will only need to be done once if re-using the same SD card for multiple applications. However, user can choose to update and upgrade again to install newly available updates thats made available later.
+
+## Known issues
+
+1. Sometimes Ubuntu has background process ongoing by the time it boots to command prompt and do not yet ask you to change your password. In those cases doing a snap install may result in a message like following:
+
+   ```error: too early for operation, device not yet seeded or device model not acknowledged```
+
+   Try again in a minute or two and you should be prompted to update password and above error should go away.
+
+2. If a prompt like the following appears:
+
+   ![kernel](./media/kernelflash.png)
+
+   Choose "keep the local version currently installed". For more details refer to [this wiki page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2116354051/Tips+Tricks+for+Certified+Ubuntu+AMD-Xilinx+Devices#Understanding-the-Configuring-flash-kernel-Prompts-When-Updating-the-Linux-Kernel).
+
+3. During ```sudo xlnx-config.sysinit``` or ```sudo apt upgrade``` commands you may see the following errors and exit installation. Re-run the commands and installation should continue and complete.
+
+   ``` text
+   flash-kernel: deferring update (trigger activated)
+   /etc/kernel/postinst.d/zz-flash-kernel:
+   flash-kernel: deferring update (trigger activated)
+   Errors were encountered while processing:
+   flash-kernel
+   need restart is being skipped since dpkg has failed
+   E: Sub-process /usr/bin/dpkg returned an error code (1)
+   ```
+
+## Misc Information
+
+The *ubuntu* user does not have root privileges. Most commands used in tutorials must be run using *sudo*, and it may be prompted to enter your password.
+
+For security, by default, the root user is disabled. If user want to login as root user, perform the following steps. Use the *ubuntu* user's password on the first password prompt, then set a new password for the root user. User can now login as root user using the newly set root user password.
+
+```bash
+ubuntu@kria:\~\$ sudo -i
+sudo\] password for ubuntu:
+root@kria:\~#
+```
+
+If needed, the these are commands to set System Timezone and locale:
+
+* Set timezone
+
+```bash
+sudo timedatectl set-ntp true
+sudo timedatectl set-timezone America/Los_Angeles
+timedatectl
+```
+
+* Set locale
+
+```bash
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+locale
+```
+
+Below example command set the date and time.
+
+`sudo date --set "11 January 2023 16:47:00"`
+
+The storage volume on the SD card can be limited with multiple dockers. If there are space issues, use the following command to remove the existing container.
+
+```bash
+sudo docker rmi --force $INSTALLED_DOCKER_IMAGE
+```
 
 ## License
 

@@ -18,6 +18,7 @@ These are the specific library versions that was verified with released example 
 
 Note that ZOCL is a XRT dependency - always install ZOCL first, otherwise XRT installation will install the latest ZOCL as a dependency.
 Similarly, Vitis-AI is a VVAS dependency, always install Vitis-AI first, otherwise VVAS installation may install the latest version of Vitis-AI as a dependency.
+
 ## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.

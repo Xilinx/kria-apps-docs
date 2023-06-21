@@ -1,28 +1,13 @@
-﻿###############################################################################################################
+###############################################################################################################
 SOM Landing Page
 ###############################################################################################################
 
-.. Before going public, replace xilinx.github.io/kria-apps-docs/ with xilinx.github.io/kria-apps-docs/
+.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM/ with xilinx.github.io/kria-apps-docs/
 
 
 
 
-.. toctree::
-   :maxdepth: 3
-   :caption: Kria SOM
-   :hidden:
-
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications.html>
-   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
-   Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
-   OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
-   Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
-   IPMI EEPROM Design Guide <https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html>
-   XEN Support <https://xilinx.github.io/kria-apps-docs/xen.html>
-   Yocto Support <https://xilinx.github.io/kria-apps-docs/yocto.html>
-   Frequently Asked Questions <https://xilinx.github.io/kria-apps-docs/faq.html>
-
-
+.. include:: ../../shared/somtoctree.txt
 
 
 
@@ -75,6 +60,8 @@ The Kria SOM DFX examples provide two base designs with one implementing a singl
 
 
 
+
+
 **********************************************************************************************************************************************************************************************
 `IPMI EEPROM Design Guide <../../../ipmi_eeprom/build/html/docs/IPMI_EEPROM_design_guide.html>`__
 **********************************************************************************************************************************************************************************************
@@ -100,7 +87,7 @@ A step by step example that ports Smartcam application to run on PetaLinux OS.
 
 
 **********************************************************************************************************************************************************************************************
-`XEN Support <../../../xen/build/html/docs/xen_kria_support.html>`__
+`XEN Support <../../../xen/build/html/index.html>`__
 **********************************************************************************************************************************************************************************************
 
 
@@ -132,7 +119,7 @@ Common questions that you might encounter while using Kria SOM.
    :caption: Kria KV260
    :hidden:
 
-   Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
+   Vision AI Starter Kit Applications <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260-docs.html>
 
 
 
@@ -154,7 +141,7 @@ Enabled by a growing ecosystem of accelerated applications from the Xilinx App S
    :caption: Kria KR260
    :hidden:
 
-   Robotics Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
+   Robotics Starter Kit Applications <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260-docs.html>
 
 
 The Kria KR260 Robotics Starter Kit is the latest out-of-the box ready evaluation/development platform in the Xilinx `Kria <https://www.xilinx.com/products/som/kria.html>`_ portfolio of products. The Starter Kit is the platform of choice for development of robotics, machine vision, industrial communication & control target applications. It consists of a non-production K26 SOM plugged into a robotics carrier card and equipped with an active thermal solution of fan and heatsink. The SOM on the Starter Kit is based on `Zynq UltraScale+ MPSoC <https://www.xilinx.com/products/silicon-devices/soc/zynq-ultrascale-mpsoc.html>`_ EV architecture that is paired with 4 GB of DDR4 memory.
@@ -187,12 +174,9 @@ Xilinx Support
 GitHub issues will be used for tracking requests and bugs. For questions, go to `forums.xilinx.com <http://forums.xilinx.com/>`_.
 
 
-License
-========
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
-
-You may obtain a copy of the License at `apache.org/licenses/LICENSE-2.0 <https://creativecommons.org/licenses/by/4.0/>`_.
 
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+.. Copyright © 2020–2023 Advanced Micro Devices, Inc
+
+.. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.

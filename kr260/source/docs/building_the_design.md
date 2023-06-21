@@ -54,6 +54,7 @@ kria-vitis-platforms
 ¦  ¦   +-- scripts
 ¦  ¦   +-- vivado
 ¦  ¦   ¦   +-- kr260_tsn_rs485_pmod
+¦  ¦   ¦   +-- kr260_pmod_gps
 +--kv260
 +-- README
 ```

@@ -1,24 +1,19 @@
 # Yocto Kria Support
 
-Yocto contains support to generate Kria artifacts starting in 2022.2. Note that PetaLinux is an abstraction of Yocto - it is Yocto + Xilinx meta layers + extra tools such as XSCT, XSDB, etc. The process and commands of generating artifacts from Yocto vs PetaLinux are different, but the backend is the same (e.g. both are Yocto based).
+Yocto contains support to generate Kria artifacts starting in 2023.1. Note that PetaLinux is an abstraction of Yocto - it is Yocto + Xilinx meta layers + extra tools such as XSCT, XSDB, etc. The process and commands of generating artifacts from Yocto vs PetaLinux are different, but the backend is the same (e.g. both are Yocto based).
 
 The Yocto Project provides [extensive documentation](https://docs.yoctoproject.org/) and it is recommended to familiarize yourself with some of the core concepts before continuing. Xilinx specific Yocto information can be found on the [wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto).
 
 ## Machine Configurations for Kria
 
-The [machine configurations](https://docs.yoctoproject.org/dev/dev-manual/new-machine.html) provided for Kria define the settings used for a given machine when building each recipe. For example, when building bitbake recipe ```kria-image-full-cmdline``` using ```MACHINE=k26-kv``` vs ```MACHINE=k26-smk```, different output will be produced. Machine configuration files for Kria SOM and starter kits can be found in [github](https://gitenterprise.xilinx.com/Yocto/meta-kria/tree/HEAD/conf/machine) in release branches for the perspective tool version.
+The [machine configurations](https://docs.yoctoproject.org/dev/dev-manual/new-machine.html) provided for Kria define the settings used for a given machine when building each recipe. Different artifacts would be built with each unique combination of machine name and bitbake recipe. Machine configuration files for Kria SOM and starter kits can be found in [github](https://gitenterprise.xilinx.com/Yocto/meta-kria/tree/HEAD/conf/machine) in release branches for the perspective tool version.
 
-Please note that the names of machine names and recipes have changed between 2022.2 and 2023.1.
+Machine names and recipes in 2023.1 and forward:
 
-| Machine Name      |                  | Bitbake Recipe          | QEMU Support | Description                                                           |
-| ----------------- | ---------------- | ----------------------- | ------------ | --------------------------------------------------------------------- |
-| 2022.2            | 2023.1 and later |                         |     |                                                                       |
-| k26-starter-kit   | k26-smk          | som-qspi                |  NA |QSPI image supporting K26 production SOM and Starter Kit SOM |
-| k26-starter-kit   | k26-smk          | kria-image-full-cmdline | Supported only in 2023.1 | wic image that dynamically support both KV260 and KR260      |
-| kv260-starter-kit | *           | kria-image-full-cmdline | Supported only in 2022.2 | wic image that support KV260 Starter Kit only                |
-| kr260-starter-kit | *           | kria-image-full-cmdline | Supported only in 2022.2 | wic image that support KR260 Starter Kit only                |
-
-*k26-kr and k26-kv flat wic image generation are not supported in 2023.1.
+| Machine Name | Bitbake Recipe          | QEMU Support | Description                                                  |
+| ------------ | ----------------------- | ------------ | -------------------------------------------------------------|
+| k26-smk      | kria-qspi               | NA           | QSPI image supporting K26 production SOM and Starter Kit SOM |
+| k26-smk      | kria-image-full-cmdline | yes          | wic image that dynamically support both KV260 and KR260      |
 
 ## Build Host Requirements
 
@@ -30,7 +25,7 @@ Besides installing the packages/tools specified by the requirement page, look in
 
 ## Prepare the Build Environment
 
-Install Repo.
+Install [Repo](https://gerrit.googlesource.com/git-repo).
 
 ```shell
 #download the Repo script:
@@ -50,11 +45,12 @@ Fetch all sources
 ```shell
 #repo init to the Xilinx yocto project
 repo init -u https://github.com/Xilinx/yocto-manifests.git -b <release-branch>
+#example: repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2023.1
 #repo sync to get all sources
 repo sync
 #repo start a branch
 repo start <release-branch> --all
-#example:  repo start rel-v2022.2 --all
+#example:  repo start rel-v2023.1 --all
 ```
 
 Source environment:
@@ -72,18 +68,20 @@ To build the artifacts, use below command:
 MACHINE=<machine name> bitbake <bitbake recipe> 
 ```
 
-For an example, to build QSPI image and wic image for K26 starter kits use below command for 2022.2:
+For an example, to build QSPI image and wic image for K26 starter kits use below command for 2023.1:
 
 ```shell
-MACHINE=k26-starter-kit bitbake som-qspi
-MACHINE=k26-starter-kit bitbake kria-image-full-cmdline 
+MACHINE=k26-smk bitbake kria-qspi
+MACHINE=k26-smk bitbake kria-image-full-cmdline 
 ```
 
-The resulting QSPI image, wic image and their artifacts can be found in ```$TMPDIR/deploy/images/k26-starter-kit```, and $TMPDIR is defined in ```build/conf/local.conf```, by default in ```tmp/```.
+The resulting QSPI image(kria-qspi-k26-smk.bin), wic image(kria-image-full-cmdline-k26-smk.wic.xz) and their artifacts can be found in ```$TMPDIR/deploy/images/k26-smk```, and $TMPDIR is defined in ```build/conf/local.conf```, by default in ```tmp/```.
+
+Note that the username for Yocto generated image is petalinux and you will be prompted to update password right away.
 
 ## QEMU
 
-Yocto can boot each of the various MACHINEs using QEMU once a build completed. This is the command:
+Yocto can boot each of the various MACHINEs using QEMU once a build completes. This is the command:
 
 ```shell
 MACHINE=<machine name> runqemu nographic slirp
@@ -97,17 +95,10 @@ In 2023.1, the combined starterkit k26-smk supports QEMU, and the default hardwa
 
 ## Variables, Overrides and the Environment
 
-Most of the Yocto recipes and configuration files assign values to [variables](https://docs.yoctoproject.org/dev/dev-manual/new-recipe.html) in order to influence the build. Machine specific overrides can be used to replace default or previously defined values with ones that are specific to the machine you are building for. Each machine will have a series of overrides which defines, in order of priority, which overrides will be considered when parsing all of the recipes and config files. For example, here are a few assignments/overrides taken from a recipe in the codebase:
+Most of the Yocto recipes and configuration files assign values to [variables](https://docs.yoctoproject.org/dev/dev-manual/new-recipe.html) in order to influence the build. Machine specific overrides can be used to replace default or previously defined values with ones that are specific to the machine you are building for. Each machine will have a series of overrides which defines, in order of priority, which overrides will be considered when parsing all of the recipes and config files. It is possible to get a list of the MACHINEOVERRIDEs that are used for a given recipe as well as the log of how the system came to the final value of a variable by using the "-e" flag on a build:
 
 ```shell
-KRIA_ARCH_PACKAGES:k26-smk = "k26-starter-kits"
-SRC_URI:append:k26-smk = " file://boot.cmd.${BOOTFILE_EXT}" # :append is used to add to an existing list for this MACHINE
-```
-
-It is possible to get a list of the MACHINEOVERRIDEs that are used for a given recipe as well as the log of how the system came to the final value of a variable by using the "-e" flag on a build:
-
-```shell
-MACHINE=k26-starter-kit bitbake kria-image-full-cmdline -e 
+MACHINE=k26-smk bitbake kria-image-full-cmdline -e 
 ```
 
 You can see if you redirect the output of bitbake -e to a file how each of the variables in the build got to its final value, for example here is how SERIAL_CONSOLES was set for a recipe:
@@ -129,14 +120,13 @@ You can see if you redirect the output of bitbake -e to a file how each of the v
 SERIAL_CONSOLES="115200;ttyPS1"
 ```
 
-## Working with Llibraries
-[note: ask John: how to specifically bake in a specific library with a specific version?]
+## Working with Libraries
+
+In case some libraries have specific [version dependencies](./library_dependency.md), they can be specified in recipes (.bb files). Refer to [Yocto documentation](https://docs.yoctoproject.org/singleindex.html#term-PREFERRED_VERSION) for details.
 
 ## Working with recipes
 
-[note: ask john, where/how to find a list of relevant to krai recipes?]
-
-It is possible to work with individual components for the purpose of integration, debugging or updates. For example if we want to build the xmutil utility we can bitbake that recipe:
+It is possible to work with individual components (such as recipes in [github meta-kria](https://github.com/Xilinx/meta-kria)) for the purpose of integration, debugging or updates. For example if we want to build the xmutil utility we can bitbake that recipe:
 
 ```text
 MACHINE=k26-smk bitbake xmutil
@@ -172,14 +162,9 @@ It is also possible to clean in between builds to force a clean build:
 MACHINE=k26-smk bitbake xmutil -c clean
 ```
 
-
-
-
-
-
 ## Issues
 
-1. If you see the error ```error loading hsi package: couldn't load file "libxv_commontasks.so" ```, it maybe missing libtinfo5 library which can be installed with ```sudo apt-get install -y libtinfo5```
+1. If you see the error ```error loading hsi package: couldn't load file "libxv_commontasks.so"```, it maybe missing libtinfo5 library which can be installed with ```sudo apt-get install -y libtinfo5```
 
 ## License
 

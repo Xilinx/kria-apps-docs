@@ -1,4 +1,4 @@
-﻿########################################################################################
+########################################################################################
 Kria KR260 Robotics Starter Kit Applications
 ########################################################################################
 
@@ -25,25 +25,21 @@ Kria KR260 Robotics Starter Kit Applications
 
 
 
+.. image:: docs/media/precision-time.png
+   :width: 200
+   :alt: Precision Time Management
+   :target: ./docs/gps_1588_ptp/gps_1588_ptp_precision_time_mgmt.html
 
 
-.. toctree::
-   :maxdepth: 3
-   :caption: SOM
-   :hidden:
+.. image:: docs/media/bist.png
+   :width: 200
+   :alt: Built-In Self Test (BIST)
+   :target: ./docs/bist/bist_landing.html
 
-   Landing Page <https://xilinx.github.io/kria-apps-docs/>
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications.html>
-   Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
-   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
-   Dynamic Function eXchange <https://xilinx.github.io/kria-apps-docs/dfx.html>
-   OpenAMP <https://xilinx.github.io/kria-apps-docs/openamp.html>
-   IPMI EEPROM Area Record <https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html>
-   Yocto Support <https://xilinx.github.io/kria-apps-docs/yocto.html>
-   Frequently Asked Questions <https://xilinx.github.io/kria-apps-docs/faq.html>
-   Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
-   Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
-   Kria Robotics Stack <https://xilinx.github.io/KRS/>
+
+
+
+.. include:: ../../shared/somtoctree.txt
 
 
 .. toctree::
@@ -54,7 +50,8 @@ Kria KR260 Robotics Starter Kit Applications
    10GigE Vision Camera <docs/10gige_vision_camera/10gige_vision_camera_landing>
    ROS 2 Multi-Node Communications via TSN <docs/ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing>
    ROS 2 Perception Node <docs/ros2_perception_node/ros2_perception_node_landing>
-
+   Precision Time Management <docs/gps_1588_ptp/gps_1588_ptp_precision_time_mgmt>
+   Built-In Self Test (BIST) <docs/bist/bist_landing>
 
 
 
@@ -82,6 +79,8 @@ The DisplayPort 1.2a connector helps output video data on a supported DisplayPor
 Security is a must for any robot and the KR260 Starter Kit sets a higher standard for security through the MPSoC hardware root of trust (RoT) and Infineon TPM2.0, making it one of the most secured platforms for robotics.
 
 Enabled by a growing ecosystem of accelerated applications from the Xilinx App Store, developers of all types can get applications up and running in under 1 hour, with no FPGA experience needed. From there, customization and differentiation can be added via preferred design environments, at any level of abstraction—from hardware accelerated software applications to AI inference models to traditional FPGA design flows.
+
+
 
 ********************************************************
 ROS 2 Support

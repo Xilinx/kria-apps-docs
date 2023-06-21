@@ -12,6 +12,12 @@
 
 # Board Setup and Application Deployment
 
+## Overview of updates
+
+* Optional feature to Enable Frame Packet pre-emption
+
+* Enablement to use another machine as a CNC to set QBV schedule and FDB Cam entries onto the 2 KR260 Nodes
+
 ## Introduction
 
 This document shows how to set up the board and run TSN ROS application.
@@ -30,6 +36,10 @@ This document shows how to set up the board and run TSN ROS application.
 
 * 16GB MicroSD Cards (Included with KR260 Robotics Starter Kit)
 
+* CNC - Optional (KV260/KR260 or Linux Running Standalone machine)
+
+* Ethernet Switch - Optional
+
 * [Digilent TPH2 Pmod - 12-pin Test Point Header](https://digilent.com/shop/pmod-tph2-12-pin-test-point-header/) - Optional (Sold Separately)
 
 * [I210-T1 Network Adapter](https://www.amazon.com/gp/product/B00ESFF2JC/) installed on a PC host machine - Optional (Sold Separately)
@@ -46,9 +56,17 @@ This document shows how to set up the board and run TSN ROS application.
 
 ### Initial Setup
 
-1. Go through  [Booting Kria Starter Kit Linux](../../kria_starterkit_linux_boot.md) to complete minimum setup required to boot Linux before continuing with instructions in this page.
+1. Testing was performed with:
 
-2. Get the latest TSN-ROS application & firmware package:
+    * [x07-20230302-63 Ubuntu 22.04 Linux Image](https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63.img.xz?_ga=2.229092828.1548870927.1684017553-434607567.1663082500)
+
+    * [v2022.1-09152304_update3 Boot Firmware](https://www.xilinx.com/member/forms/download/xef.html?filename=BOOT_xilinx-k26-starterkit-v2022.1-09152304_update3.BIN)
+
+    **Note:** The minimum Linux kernel version required is `5.15.0.1022.26`
+
+2. Go through  [Booting Kria Starter Kit Linux](../../kria_starterkit_linux_boot.md) to complete minimum setup required to boot Linux before continuing with instructions in this page.
+
+3. Get the latest TSN-ROS application & firmware package:
 
     * Search package feed for packages compatible with KR260
 
@@ -72,10 +90,7 @@ This document shows how to set up the board and run TSN ROS application.
 
         ```bash
         sudo apt install xlnx-firmware-kr260-tsn-rs485pmod
-        sudo systemctl restart dfx-mgr.service
         ```
-
-        > Note : Installing firmware binaries (xlnx-firmware-kr260-tsn-pmod) causes dfx-mgr to crash and a restart is needed, which is listed in the known issues section. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed.
 
         * Install dependencies and apps
 
@@ -119,8 +134,13 @@ This document shows how to set up the board and run TSN ROS application.
         wget https://github.com/Xilinx/ros-tsn-pubsub/releases/download/v0.1/ros-humble-xlnx-pubsub_0.1.0-0jammy_arm64.deb -P ~/Downloads/
         sudo apt install ~/Downloads/ros-humble-xlnx-pubsub_0.1.0-0jammy_arm64.deb
        ```
+    
+    * Install network-manager related packages
+       ```bash
+        sudo apt install -y lldpad ethtool
+       ```
 
-3. Dynamically load the application package:
+4. Dynamically load the application package:
 
     The firmware consist of bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.
 
@@ -139,6 +159,7 @@ This document shows how to set up the board and run TSN ROS application.
         $ sudo xmutil loadapp kr260-tsn-rs485pmod
         ```
 
+
 ## Run Out Of Box Applications
 
 The TSN example applications will demonstrate Network Time Synchronization & Network Time Shaper Function that can be achieved through TSN based network infrastructure across a distributed system, which are two key features of the FPGA based TSN capabilities.
@@ -147,7 +168,8 @@ Two different configurations are shown below for deterministic communication. Af
 
 * Master - Slave deterministic communication with 2 KR260 boards : Network Configuration 1
 * KRS based DDS implementation on ROS 2 pub/sub definition : Network Configuration 1
-* Master - Slave deterministic communication with I210 card 	 : Network Configuration 2
+* CNC(KV260/KR260 or Linux Running Machine) and Master - Slave with 2 KR260 boards : Network Configuration 2
+* Master - Slave deterministic communication with I210 card 	 : Network Configuration 3
 * RS485 Temperature/humidity sensor demo 						 : Communicating using RS485
 
 ### Network Configuration 1 : Two KR260 boards
@@ -353,7 +375,511 @@ Wireshark trace will show a 70% Scheduled traffic 30 % Best Effort traffic distr
     ![wsn](../media/i210-wsn2.png)
 
 
-### Network Configuration 2 : KR260 and PC Workstation
+### Network Configuration 2 : Network Manager(CNC) and Two KR260 Boards
+
+This configuration requires either two KR260 units and one KV260/KR260 unit(CNC) OR two KR260 units and one Linux Running Machine(CNC). Images below represent these configurations:
+
+#### Two KR260 and one KV260/KR260(CNC):
+
+![NM_Setup_1](../media/NM_Setup_1.JPG)
+
+#### Two KR260 and one Linux Running Machine(CNC):
+
+![NM_Setup_2](../media/NM_Setup_2.JPG)
+
+#### Run TSN-ROS Out of Box Applications
+
+* Ensure to load the TSN accelerator/firmware (refer to step-7 'dynamically load the application package' from initial setup) using `xmutil loadapp kr260-tsn-rs485pmod` before testing example application. If the firmware is already loaded, ignore this step and proceed.
+
+* Setup Ethernet ports by running the following commands on the serial terminal. This sets the MAC/IP/VLAN on the EP and ETH ports of the TSN switch IP.
+
+    * _KR260 Board1 interface setup_
+
+        `source /usr/bin/net_setup.sh -b1`
+
+    * _KR260 Board2 interface setup_
+
+        `source /usr/bin/net_setup.sh -b2`
+
+
+##### Run Instructions
+
+1. Run parser on the both KR260 units
+
+    * Setup one board as Master and one as Slave. Run the following:
+     ```bash
+        source /usr/bin/network-manager/tsn-parsers/xnm.sh -m &          // on Board1/Master
+        source /usr/bin/network-manager/tsn-parsers/xnm.sh -s &          // on Board2/Slave
+     ```
+
+2. Setup Network Manager
+
+    * For CNC as KR260/KV260 install xlnx-tsn-utils package.
+    ```bash
+        sudo add-apt-repository ppa:xilinx-apps
+        sudo apt update
+        sudo apt install xlnx-tsn-utils
+    ```
+
+    * For CNC as a Linux Machine clone this [repo](https://github.com/Xilinx/tsn-utils)
+
+    * Discover the two nodes by pinging to them.
+      ```bash
+
+        ping -c 3 10.0.0.106                                            //Board1 or Master
+
+        PING 10.0.0.106 (10.0.0.106) 56(84) bytes of data.              
+        64 bytes from 10.0.0.106: icmp_seq=1 ttl=64 time=0.242 ms
+        64 bytes from 10.0.0.106: icmp_seq=2 ttl=64 time=0.200 ms
+        64 bytes from 10.0.0.106: icmp_seq=3 ttl=64 time=0.203 ms
+
+        --- 10.0.0.106 ping statistics ---
+        3 packets transmitted, 3 received, 0% packet loss, time 2047ms
+        rtt min/avg/max/mdev = 0.200/0.215/0.242/0.019 ms
+
+        ping -c 3 10.0.0.208                                           //Board2 or Slave
+
+        PING 10.0.0.208 (10.0.0.208) 56(84) bytes of data.              
+        64 bytes from 10.0.0.208: icmp_seq=1 ttl=64 time=0.242 ms
+        64 bytes from 10.0.0.208: icmp_seq=2 ttl=64 time=0.200 ms
+        64 bytes from 10.0.0.208: icmp_seq=3 ttl=64 time=0.203 ms
+
+        --- 10.0.0.208 ping statistics ---
+        3 packets transmitted, 3 received, 0% packet loss, time 2047ms
+        rtt min/avg/max/mdev = 0.200/0.215/0.242/0.019 ms
+      ```
+
+    * Run the CNC setup script from the install location to create/modify nodes:
+      ```
+        sudo /usr/bin/network-manager/xcnc_setup
+      ```
+
+    * If a node is not already created, navigate through the options and create two new nodes using Master's and Slave's MAC Address(eth1).
+      ```
+        #Example
+
+        ubuntu@kria:~$ sudo python3 /usr/bin/network-manager/main.py
+
+                                      Hi!
+                  Welcome to the TSN Network Management Engine
+
+        Please choose one of the options below:
+        Option 1: Create new node
+        Option 2: Modify existing node
+        Option 3: Show current nodes
+        Option 4: Exit
+        Please enter a number:
+        1
+        Please enter the node's MAC address
+        00:0a:35:10:37:fa                           //Board1 or Master
+        Creating new node
+        Please choose one of the options below:
+        Option 1: Create new node
+        Option 2: Modify existing node
+        Option 3: Show current nodes
+        Option 4: Exit
+        Please enter a number:
+        1
+        Please enter the node's MAC address
+        00:0a:35:10:39:c2                           //Board2 or Slave
+        Creating new node
+        Please choose one of the options below:
+        Option 1: Create new node
+        Option 2: Modify existing node
+        Option 3: Show current nodes
+        Option 4: Exit
+        Please enter a number:
+        2
+        Nodes currently added:
+        node_000a351037fa                           //Board1 or Master
+        node_000a351039c2                           //Board2 or Slave
+      ```
+      **NOTE**: Do not exit out and follow next steps
+      
+    * On CNC set qbv configs for swp0 for Board1/Master(70% Scheduled traffic and 30% Best Effort traffic)
+        * cycle_time in to be entered nS. Max cycle time is 1sec
+        * cycle start time. Should be '0' which starts traffic as soon as talker is running.
+        * gate list length can have MAX 256 entries. (gate list length > 0)
+        * time for gate list entry to be entered in nS, shouldn't be more the 8000000nS. Sets the time for which gate-state-value that is set will occupy (time > 0)
+      ```
+        # Example
+
+        ubuntu@kria:~$ sudo python3 /usr/bin/network-manager/main.py
+
+                                      Hi!
+                  Welcome to the TSN Network Management Engine
+        Please choose one of the options below:
+        Option 1: Create new node
+        Option 2: Modify existing node
+        Option 3: Show current nodes
+        Option 4: Exit
+        Please enter a number:
+        2
+
+        Please enter the node's MAC address
+        00:0a:35:10:37:fa                                   //Board1 or Master
+        /etc/tsn-networkmanager/node_000a351037fa
+        Qbv/fdb?
+        qbv
+        Enter the switch port whose qbv schedule needs to be modified:
+        swp0
+        Enter cycle time in nanoseconds, Maximum cycle time is 1 sec
+        1000000
+        Enter cycle start time (base time)
+        0
+        Enter gate list length:
+        2
+        Entry 1
+        To open BE use state : 1
+        To open ST use state : 4
+        To open RES use state : 2
+        Open both ST & BE state: 5(1+4)
+        Enter gate state value
+        4
+        Enter time for the gate list entry
+        700000
+        Entry 2
+        To open BE use state : 1
+        To open ST use state : 4
+        To open RES use state : 2
+        Open both ST & BE state: 5(1+4)
+        Enter gate state value
+        1
+        Enter time for the gate list entry
+        300000
+        10.0.0.106               ether   00:0a:35:10:37:fa   C                     eth0
+
+        Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json
+
+        curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json tftp://10.0.0.106
+        % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+        100  9374    0     0  100  9374      0   767k --:--:-- --:--:-- --:--:--  767k
+        100  9374    0     0  100  9374      0   746k --:--:-- --:--:-- --:--:--  746k
+      ```
+      **NOTE**: Do not exit and set fdb configs
+    
+    * On CNC set fdb configs for both the nodes
+        * While creating "fdb" configs destmac should be "e0:e0:e0:e0:e0:e0", vlan ID should be 10, port should be swp1 for Master configs and swp0 for Slave configs.
+      ```
+      # Example configs for Board1/Master
+
+      ubuntu@kria:~$ sudo python3 /usr/bin/network-manager/main.py
+
+                                    Hi!
+                  Welcome to the TSN Network Management Engine
+        Please choose one of the options below:
+        Option 1: Create new node
+        Option 2: Modify existing node
+        Option 3: Show current nodes
+        Option 4: Exit
+        Please enter a number:
+        2
+        Nodes currently added:
+        node_000a351037fa                           //Board1 or Master
+        node_000a351039c2                           //Board2 or Slave
+
+
+        Please enter the node's MAC address
+        00:0a:35:10:37:fa                           //Board1 or Master
+        /etc/tsn-networkmanager/node_000a351037fa
+        Qbv/fdb?
+        fdb
+        Please enter a destination MAC address for the CAM entry
+        e0:e0:e0:e0:e0:e0
+        Please enter a vlan ID(s)/range of vlan's for the CAM Entry
+        10
+        Please specify destination switch port/s:
+        swp0: 3, swp1: 1, swp2: 2
+        Multiple ports can be specified using a comma separated string
+        1
+        Static CAM entry added locally, Want to add more entries [Y/N]? If you enter N/n, device will be programmed immediately
+        n
+        10.0.0.106               ether   00:0a:35:10:37:fa   C                     eth0
+
+        Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json
+
+        curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json tftp://10.0.0.106
+        % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+        100  2574    0     0  100  2574      0   440k --:--:-- --:--:-- --:--:--  440k
+        100  2574    0     0  100  2574      0   414k --:--:-- --:--:-- --:--:--  414k
+
+        # Example configs for Board2/Slave
+
+      ubuntu@kria:~$ sudo python3 /usr/bin/network-manager/main.py
+
+                                    Hi!
+                  Welcome to the TSN Network Management Engine
+        Please choose one of the options below:
+        Option 1: Create new node
+        Option 2: Modify existing node
+        Option 3: Show current nodes
+        Option 4: Exit
+        Please enter a number:
+        2
+        Nodes currently added:
+        node_000a351037fa                           //Board1 or Master
+        node_000a351039c2                           //Board2 or Slave
+
+
+        Please enter the node's MAC address
+        00:0a:35:10:39:c2                           //Board1 or Master
+        /etc/tsn-networkmanager/node_000a351037fa
+        Qbv/fdb?
+        fdb
+        Please enter a destination MAC address for the CAM entry
+        e0:e0:e0:e0:e0:e0
+        Please enter a vlan ID(s)/range of vlan's for the CAM Entry
+        10
+        Please specify destination switch port/s:
+        swp0: 3, swp1: 1, swp2: 2
+        Multiple ports can be specified using a comma separated string
+        3
+        Static CAM entry added locally, Want to add more entries [Y/N]? If you enter N/n, device will be programmed immediately
+        n
+        10.0.0.208               ether   00:0a:35:10:39:c2   C                     eth0
+
+        Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json
+
+        curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json tftp://10.0.0.208
+        % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+        100  2574    0     0  100  2574      0   440k --:--:-- --:--:-- --:--:--  440k
+        100  2574    0     0  100  2574      0   414k --:--:-- --:--:-- --:--:--  414k
+      ```
+      **NOTE**: Exit after setting fdb configs
+
+3. Run Traffic
+    * Verify if schedule is set for ep(swp0) on Board1/Master
+    ```
+        sudo qbv_sched -g ep
+
+        List length: 2
+        Cycle time: 1000000
+        Base time: 1684277666s 0ns
+        List 0: Gate State: 4 Gate Time: 700000ns
+        List 1: Gate State: 1 Gate Time: 300000ns
+    ```
+    * Start talker on Board1/Master
+     ```
+        sudo tsn_talker -n -1 -l 900 -v 10 -p 4 &       //for ST Traffic
+        sudo tsn_talker -n -1 -l 900 -v 10 -p 1 &       //for BE Traffic
+     ```
+    * Start capture of received packets on Board2/Slave
+     ```
+        sudo tcpdump -i ep -w qbv.pcap -vvv
+
+        tcpdump: listening on ep, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+        ^C696566 packets captured
+        768225 packets received by filter
+        71379 packets dropped by kernel
+     ```
+     **NOTE**: Packet count should increment quickly as soon as you run tcpdump command
+
+    * Exit out of tcpdump after a few seconds using CTRL-c key combination to end capture on Board2
+
+    * qbv.pcap file saved in current directory will show packet distribution.
+
+    * Move the qbv.pcap file from the SD card to the host PC to analyze the packet distribution within Wireshark
+
+4. Analyze the packet distribution on wireshark
+
+    Wireshark trace will show a 70% Scheduled traffic 30 % Best Effort traffic distribution
+
+    * Start Wireshark on the host PC
+    ```
+        # For Linux
+
+        wireshark &
+    ```
+    For Windows download [Wireshark](https://www.wireshark.org/download.html)
+    * In the Wireshark GUI, select File → Open → Browse and select the qbv.pcap file
+    
+    * Observe there are packets within the capture, with packet length=900 
+    ![Wireshark](../media/Packets.JPG)
+
+    * Type the filter as 'vlan.priority == 4' in "Apply display filter" in Wireshark
+
+    * Click on a packet and observe the vlan ID=10, Priority (PCP/PRI=4) where a packet with PCP=4 indicates it is Scheduled traffic
+    ![ST Packet](../media/PR_4_Packets.JPG)
+
+    * Select the following from Wireshark Tab Statistics -> Capture File Properties. You can see ~70% distribution for ST traffic
+    ![70%](../media/ST_Traffic.JPG)
+    
+    * Type the filter as 'vlan.priority == 1' in "Apply display filter" in Wireshark
+
+    * Click on a packet and observe the vlan ID=4, Priority (PCP/PRI=1) where a packet with PCP=1 indicates it is Best Effort traffic
+    ![BE Packer](../media/PR_1_Packets.JPG)
+
+    * Select the following from Wireshark Tab Statistics -> Capture File Properties. You can see ~30% distribution for BE traffic
+    ![30%](../media/BE_Traffic.JPG)
+
+5. Notice frame-premption - Optional(if preemption was enabled)
+
+    * On CNC set qbv configs for swp0 for Master(70% Mixed traffic and 30% Scheduled traffic)
+        * cycle_time in to be entered nS. Max cycle time is 1sec
+        * cycle start time. Should be '0' which starts traffic as soon as talker is running.
+        * gate list length can have MAX 256 entries. (gate list length > 0)
+        * time for gate list entry to be entered in nS, shouldn't be more the 8000000nS. Sets the time for which gate-state-value that is set will occupy (time > 0)
+      ```
+        # Example
+
+        ubuntu@kria:~$ sudo python3 /usr/bin/network-manager/main.py
+
+                                      Hi!
+                  Welcome to the TSN Network Management Engine
+        Please choose one of the options below:
+        Option 1: Create new node
+        Option 2: Modify existing node
+        Option 3: Show current nodes
+        Option 4: Exit
+        Please enter a number:
+        2
+
+        Please enter the node's MAC address
+        00:0a:35:10:37:fa
+        /etc/tsn-networkmanager/node_000a351037fa
+        Qbv/fdb?
+        qbv
+        Enter the switch port whose qbv schedule needs to be modified:
+        swp0
+        Enter cycle time in nanoseconds, Maximum cycle time is 1 sec
+        1000000
+        Enter cycle start time (base time)
+        0
+        Enter gate list length:
+        2
+        Entry 1
+        To open BE use state : 1
+        To open ST use state : 4
+        To open RES use state : 2
+        Open both ST & BE state: 5(1+4)
+        Enter gate state value
+        5
+        Enter time for the gate list entry
+        700000
+        Entry 2
+        To open BE use state : 1
+        To open ST use state : 4
+        To open RES use state : 2
+        Open both ST & BE state: 5(1+4)
+        Enter gate state value
+        4
+        Enter time for the gate list entry
+        300000
+        10.0.0.106               ether   00:0a:35:10:37:fa   C                     eth0
+
+        Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json
+
+        curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json tftp://10.0.0.106
+        % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+        100  9374    0     0  100  9374      0   767k --:--:-- --:--:-- --:--:--  767k
+        100  9374    0     0  100  9374      0   746k --:--:-- --:--:-- --:--:--  746k
+      ```
+
+    * Verify if schedule is set for ep(swp0) on Board1/Master
+    ```
+        sudo qbv_sched -g ep
+
+        List length: 2
+        Cycle time: 1000000
+        Base time: 1684357652s 0ns
+        List 0: Gate State: 3 Gate Time: 700000ns
+        List 1: Gate State: 4 Gate Time: 300000ns
+    ```
+
+    * Start listener on Board2/Slave
+    ```
+        sudo tsn_listener &
+    ```
+
+    * Start talker on Board1/Master
+    ```
+        sudo tsn_talker -n -1 -l 900 -v 10 -p 4 &
+        sudo tsn_talker -n -1 -l 1200 -v 10 -p 1 &
+     ```
+
+     * Kill listener/talker after a few seconds
+     ```
+        sudo killall tsn_listener       //Board2
+        sudo killall tsn_talker         //Board1
+    ```
+
+    * Check the ethtool stats
+    ```
+    # Board1
+    ethtool --include-statistics --show-mm eth2
+
+    MAC Merge layer state for eth2:
+    pMAC enabled: on
+    TX enabled: on
+    TX active: on
+    TX minimum fragment size: 60
+    RX minimum fragment size: 60
+    Verify enabled: on
+    Verify time: 127
+    Max verify time: 127
+    Verification status: SUCCEEDED
+    Statistics:
+        MACMergeFrameAssErrorCount: 0
+        MACMergeFrameSmdErrorCount: 3
+        MACMergeFrameAssOkCount: 0
+        MACMergeFragCountRx: 0
+        MACMergeFragCountTx: 13808
+        MACMergeHoldCount: 1
+
+    # Board2
+    ethtool --include-statistics --show-mm eth2
+    MAC Merge layer state for eth2:
+    pMAC enabled: on
+    TX enabled: on
+    TX active: on
+    TX minimum fragment size: 60
+    RX minimum fragment size: 60
+    Verify enabled: on
+    Verify time: 127
+    Max verify time: 127
+    Verification status: SUCCEEDED
+    Statistics:
+        MACMergeFrameAssErrorCount: 0
+        MACMergeFrameSmdErrorCount: 10
+        MACMergeFrameAssOkCount: 13488
+        MACMergeFragCountRx: 13808
+        MACMergeFragCountTx: 0
+        MACMergeHoldCount: 0
+    ```
+    **NOTE**: MACMergeFragCountTx on board1/master and MACMergeFragCountRx on board2/slave should match on both sides
+
+
+### Enable frame Preemption - Optional
+
+1. Check current status
+     ```
+        ethtool --include-statistics --show-mm eth2
+     ```
+      **NOTE:** Verify pMAC enabled: on. This means preemption is available. Tx Enable and Active will be off at this point as boards are not communicating yet.
+
+2. Restart lldpad service
+     ```
+        sudo systemctl restart lldpad
+     ```
+3. Enable transmit capabilities
+     ```
+        sudo lldptool -i eth2 set-lldp adminStatus=rxtx
+        sudo lldptool -i eth2 set-tlv -V addEthCaps enableTx=yes
+     ```
+      **NOTE:** Now Tx Enable and Active should be ON automatically on both sides.
+4. Check status
+     ```
+        ethtool --include-statistics --show-mm eth2
+     ```
+      **NOTE:** Notice Tx Enable and Tx Active are "on" now.
+      Once preemption is enabled it will remain enabled on subsequent reboot as the configuration is stored in lldpad.conf. delete `/var/lib/lldpad/lldpad.conf` to reset the configuration.
+
+
+### Network Configuration 3 : KR260 and PC Workstation
 
 A single KR260 board communicating with a PC workstation capable of TSN networking.  The PC workstation is using an I210 Ethernet Controller interface card to demonstrate functionality and features of TSN.
 
@@ -480,6 +1006,7 @@ Oscilloscope Setup (optional)
 
     Wireshark trace shows a traffic distribution of 70% Scheduled traffic and 30% Best Effort traffic
 
+
 ### Communication using RS485
 
 The K26 SOM has capability to perform as an advanced and highly integrated gateway for legacy industrial networking protocols (those using RS485/Modbus) to more modern industrial networking infrastructure (such as TSN) and this application serves as an example of how to interface to a remote temperature sensor for capturing data.  This is analogous to integrating in legacy, but still functional, capital equipment in order to reduce total replacement costs within factory retrofits and technology upgrades.
@@ -540,22 +1067,6 @@ Following known issues and their remedies that can be encountered and implemente
 
 For the above two issues refer to the documentation provided under the section "Known issues and troubleshooting" from the Xilinx TSN solution wiki page [here](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/25034864/Xilinx+TSN+Solution)
 
-* DFX-Manager-Daemon crash
-
-dfx-manager daemon fails to load app after a fresh install or an upgrade of any accelerator/firmware package (xlnx-app-kr260-pmod-rs485-test) .If you see the below failure by xmutil after intall or upgrade of any package, make sure to restart the dfx-manger daemon and try again.
-
-`$ sudo systemctl restart dfx-mgr.service`
-
- ```bash
-ubuntu@kria:$ sudo xmutil loadapp kr260-tsn-rs485pmod
-DFX-MGRD> ERROR: initSocket:connect failed
-
-error sending message from client
- ```
-
-* kernel crash when unloading `kr260-tsn-rs485pmod` firmware binaries using kernel version 5.15.0-1010-xilinx-zynqmp
-
-The default kernel patch version for the Ubuntu image is `5.15.0-1010-xilinx-zynqmp`,to avoid a kernel crash when unloading the TSN firmware upgrade the kernel to patch version `5.15.0-1011-xilinx-zynqmp`.
 
 ## Next Steps
 
