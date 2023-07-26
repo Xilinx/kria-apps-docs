@@ -104,15 +104,15 @@ source settings.sh
 ```
 
 The eSDK can be used to update the petalinux tool for creating new images or SDKs. The eSDK updates are
-published [here](http://petalinux.xilinx.com/sswreleases/rel-v2022/sdkupdate/2022.1_update1/)
-Upgrade the tool with new eSDK for '2022.1 update1' release and source the tool's settings script.
+published [here](http://petalinux.xilinx.com/sswreleases/rel-v2022/sdkupdate/2022.1_update3/)
+Upgrade the tool with new eSDK for '2022.1 update3' release and source the tool's settings script.
 
 ```bash
-petalinux-upgrade -u 'http://petalinux.xilinx.com/sswreleases/rel-v2022/sdkupdate/2022.1_update1/' -p 'aarch64'
+petalinux-upgrade -u 'http://petalinux.xilinx.com/sswreleases/rel-v2022/sdkupdate/2022.1_update3/' -p 'aarch64'
 source settings.sh
 ```
 
-The petalinux tool is now updated with '2022.1 update1' Yocto eSDK.
+The petalinux tool is now updated with '2022.1 update3' Yocto eSDK.
 
 ### Step 1: Create PetaLinux Project
 

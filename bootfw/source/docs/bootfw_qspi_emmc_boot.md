@@ -115,13 +115,13 @@ Then generate the .wic image with the .wks file and targeting running out of eMM
 
 The wic image can now be uploaded through Image Recovery app.
 
-### 2B Program Production SOM eMMC with Linux Image using Linux
+#### 2B Program Production SOM eMMC with Linux Image using Linux
 
 To write to eMMC from Linux, we first need to boot Linux that has eMMC awareness and ethernet capabilities. This is because the Linux images can be bigger than DDR space. Therefore, traditional eMMC programming [through xsdb and ddr](https://support.xilinx.com/s/article/67157?language=en_US) will not work in this case. We need to boot to a Linux image from SD, then transfer the final image file directly from host computer to eMMC on the Starter Kit through the network.
 
 Please also note that the Starter Kit PetaLinux images (.wic files) and Ubuntu image (.img file) released are targeted to boot from SD card and not eMMC. The images targeted to eMMC will need to be re-generated with the appropriate hardware (eMMC enabled) and petalinux-package (with ```disk-name "mmcblk0"```). The production SOM (e.g. [Production K26 SOM](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages)) BSP's prebuilt wic image, however, are targeted to eMMC and can be used as an example image to be programmed into the eMMC.
 
-#### 2.B.a Boot Linux through SD
+##### 2.B.a Boot Linux through SD
 
 We need to boot a Linux with eMMC and Ethernet support from SD card. The released K26 production SOM BSP by default has eMMC support but no awareness of any Starter Kit peripherals including Ethernet. The Starter Kit BSPs has support for Ethernet, but no eMMC support as the default Starter Kit SOM do not have eMMC. Therefore, we will need to create our own Linux wic image that has both Ethernet and eMMC support. The easiest way is to start from a Starter Kit SOM.
 
@@ -187,7 +187,7 @@ For KR260, SD is behind the USB hub:
     ZynqMP> run bootcmd_usb0
     ```
 
-#### 2.B.b Write to eMMC in Linux
+##### 2.B.b Write to eMMC in Linux
 
 Once booted to Linux, you should be able to see  /dev/mmcblk0 -  the eMMC partition. Note on KV260 starter kit, SD is mapped to SD1, while on KR260, SD is mapped to USB. So on KV260 there is also /dev/mmcblk1 - the SD partition.  To double check, you can use this command:
 
