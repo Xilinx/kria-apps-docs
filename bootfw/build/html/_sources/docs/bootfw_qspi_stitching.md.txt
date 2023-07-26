@@ -52,18 +52,18 @@ source setupsdk
 To build QSPI image use below command for 2023.1 and later:
 
 ```shell
-MACHINE=k26-som bitbake kria-qspi 
+MACHINE=k26-smk bitbake kria-qspi 
 ```
 
-The resulting QSPI image ```kria-qspi-k26-som.bin``` and its artifacts can be found in ```$TMPDIR/deploy/images/k26-som```, and $TMPDIR is defined in ```build/conf/local.conf```. Note that the fsbl file ```fsbl-k26-som.elf``` may also be needed in the QSPI programming steps. This image universally supports both KV260 and KR260, as well as both StarterKit SOM and Production SOM.
+The resulting QSPI image ```kria-qspi-k26-smk.bin``` and its artifacts can be found in ```$TMPDIR/deploy/images/k26-smk```, and $TMPDIR is defined in ```build/conf/local.conf```. Note that the fsbl file ```fsbl-k26-smk.elf``` may also be needed in the QSPI programming steps. This image universally supports both KV260 and KR260, as well as both StarterKit SOM and Production SOM.
 
 To only build the boot.bin:
 
 ```shell
-MACHINE=k26-som bitbake xilinx-bootbin
+MACHINE=k26-smk bitbake xilinx-bootbin
 ```
 
-The resulting boot.bin image ```BOOT-k26-som.bin``` and its artifacts can be found in ```$TMPDIR/deploy/images/k26-som```, and $TMPDIR is defined in ```build/conf/local.conf```
+The resulting boot.bin image ```BOOT-k26-smk.bin``` and its artifacts can be found in ```$TMPDIR/deploy/images/k26-smk```, and $TMPDIR is defined in ```build/conf/local.conf```
 
 ## Issues
 

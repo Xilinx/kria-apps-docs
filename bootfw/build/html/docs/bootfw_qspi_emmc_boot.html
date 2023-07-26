@@ -94,11 +94,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#program-production-som-emmc-with-linux-image">2. Program Production SOM eMMC with Linux Image</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#a-program-production-som-emmc-with-image-recovery-app">2A Program Production SOM eMMC with Image Recovery App</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#b-program-production-som-emmc-with-linux-image-using-linux">2B Program Production SOM eMMC with Linux Image using Linux</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#b-a-boot-linux-through-sd">2.B.a Boot Linux through SD</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#b-b-write-to-emmc-in-linux">2.B.b Write to eMMC in Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#b-program-production-som-emmc-with-linux-image-using-linux">2B Program Production SOM eMMC with Linux Image using Linux</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#reboot-in-qspi-mode">3. Reboot in QSPI mode</a></li>
@@ -239,13 +235,12 @@ petalinux-package --wic --bootfiles &quot;ramdisk.cpio.gz.u-boot boot.scr Image 
 </div>
 <p>The wic image can now be uploaded through Image Recovery app.</p>
 </div>
-</div>
 <div class="section" id="b-program-production-som-emmc-with-linux-image-using-linux">
-<h3>2B Program Production SOM eMMC with Linux Image using Linux<a class="headerlink" href="#b-program-production-som-emmc-with-linux-image-using-linux" title="Permalink to this heading">¶</a></h3>
+<h4>2B Program Production SOM eMMC with Linux Image using Linux<a class="headerlink" href="#b-program-production-som-emmc-with-linux-image-using-linux" title="Permalink to this heading">¶</a></h4>
 <p>To write to eMMC from Linux, we first need to boot Linux that has eMMC awareness and ethernet capabilities. This is because the Linux images can be bigger than DDR space. Therefore, traditional eMMC programming <a class="reference external" href="https://support.xilinx.com/s/article/67157?language=en_US">through xsdb and ddr</a> will not work in this case. We need to boot to a Linux image from SD, then transfer the final image file directly from host computer to eMMC on the Starter Kit through the network.</p>
 <p>Please also note that the Starter Kit PetaLinux images (.wic files) and Ubuntu image (.img file) released are targeted to boot from SD card and not eMMC. The images targeted to eMMC will need to be re-generated with the appropriate hardware (eMMC enabled) and petalinux-package (with <code class="docutils literal notranslate"><span class="pre">disk-name</span> <span class="pre">&quot;mmcblk0&quot;</span></code>). The production SOM (e.g. <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">Production K26 SOM</a>) BSP’s prebuilt wic image, however, are targeted to eMMC and can be used as an example image to be programmed into the eMMC.</p>
 <div class="section" id="b-a-boot-linux-through-sd">
-<h4>2.B.a Boot Linux through SD<a class="headerlink" href="#b-a-boot-linux-through-sd" title="Permalink to this heading">¶</a></h4>
+<h5>2.B.a Boot Linux through SD<a class="headerlink" href="#b-a-boot-linux-through-sd" title="Permalink to this heading">¶</a></h5>
 <p>We need to boot a Linux with eMMC and Ethernet support from SD card. The released K26 production SOM BSP by default has eMMC support but no awareness of any Starter Kit peripherals including Ethernet. The Starter Kit BSPs has support for Ethernet, but no eMMC support as the default Starter Kit SOM do not have eMMC. Therefore, we will need to create our own Linux wic image that has both Ethernet and eMMC support. The easiest way is to start from a Starter Kit SOM.</p>
 <p>First, download the Starter Kit BSP (KV260/KR260 etc) pointed to from the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">Wiki page</a>. Extract the BSP. We will use KR260 2022.2 BSP as an example here:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```shell
@@ -303,7 +298,7 @@ ZynqMP&gt; run bootcmd_usb0
 </div>
 </div>
 <div class="section" id="b-b-write-to-emmc-in-linux">
-<h4>2.B.b Write to eMMC in Linux<a class="headerlink" href="#b-b-write-to-emmc-in-linux" title="Permalink to this heading">¶</a></h4>
+<h5>2.B.b Write to eMMC in Linux<a class="headerlink" href="#b-b-write-to-emmc-in-linux" title="Permalink to this heading">¶</a></h5>
 <p>Once booted to Linux, you should be able to see  /dev/mmcblk0 -  the eMMC partition. Note on KV260 starter kit, SD is mapped to SD1, while on KR260, SD is mapped to USB. So on KV260 there is also /dev/mmcblk1 - the SD partition.  To double check, you can use this command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```shell
 cat /sys/class/mmc_host/mmc0/*/uevent
@@ -347,6 +342,7 @@ dd if=/nfsroot/&lt;image&gt; of=/dev/mmcblk0
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="reboot-in-qspi-mode">
 <h3>3. Reboot in QSPI mode<a class="headerlink" href="#reboot-in-qspi-mode" title="Permalink to this heading">¶</a></h3>
 <p>Next, boot the board in QSPI - simply power cycle and it will boot from QSPI to eMMC.</p>
@@ -375,7 +371,7 @@ dd if=/nfsroot/&lt;image&gt; of=/dev/mmcblk0
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 19, 2023.
+      <span class="lastupdated">Last updated on July 21, 2023.
       </span></p>
   </div>
 

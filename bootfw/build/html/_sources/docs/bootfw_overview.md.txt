@@ -10,7 +10,7 @@ The overall boot device definition and firmware contents are outlined in the fol
 
 ![image](./media/boot_location.png)
 
-For advanced evaluation a user can customize boot firmware using the corresponding kit PetaLinux BSP. The BSP can be used to generate a new BOOT.BIN that is then loaded to the QSPI user A/B partition and custom SD card contents summarized in the following diagram:
+For advanced evaluation a user can customize boot firmware using the corresponding kit PetaLinux BSP. Refer to [BootFW BOOT.BIN Generation page](./bootfw_boot.bin_generation.md) for pointers on how to generate BOOT.BIN. The PetaLinux BSP or Yocto can be used to generate a new BOOT.BIN that is then loaded to the QSPI user A/B partition and custom SD card contents summarized in the following diagram:
 
 ![image](./media/bsp_products.png)
 
