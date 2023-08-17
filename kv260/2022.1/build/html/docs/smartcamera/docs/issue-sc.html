@@ -84,14 +84,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#quick-start">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#tutorials">Tutorials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#repository">Repository</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../smartcamera_landing.html#other">Other</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="debug-sc.html">Debugging</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Known Issues</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#limitations">Limitations</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#license">License</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../smartcamera_landing.html#xilinx-support">Xilinx Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations">Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../smartcamera_landing.html#amd-support">AMD Support</a></li>
 </ul>
 </li>
 </ul>
@@ -143,18 +142,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </tr>
 </table><div class="section" id="known-issues">
 <h1>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h1>
-<p>Please first review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across Kria SOM applications.</p>
+<p>First review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across the Kria SOM applications.</p>
 <ul>
-<li><p>The “-R” option of smartcam application for reporting FPS doesn’t print any info when the target “-t” is RTSP.</p></li>
-<li><p>When using VLC to play the RTSP stream sent out by the application, sometimes it doesn’t work on some client machines, while the FFplay works well.</p></li>
-<li><p>The KR260 carrier card does not power the AR1335 sensor module auto-focus feature. This is due to cross-sensor pin compatibility allowing the board to support other IAS Sensor modules. The result is that the AR1335 sensor module will not have a dynamic focus and depending on positioning of the objects to the lens the images may appear blurry.</p></li>
-<li><p>The smartcam application is only supported in desktop_disabled mode (direct display). This is because desktop mode requires RGB16 format, while smartcam assumes optimized input format NV12. Desktop rendering would require SW based color conversion that severely reduces system performance. Thus, it is not supported.</p></li>
-<li><p>If Logitech Brio camera is only producing 5fps and is enumerated only as a USB2.0 device, ensure to upgrade its firmware to 1.0.423 or later. See Logitech support website for firmware update utilities. Frame rate is reported by the application using the -R option.</p></li>
-<li><p>When using the MIPI input to the application if the system presents a very low frame-rate (&lt; 2 fps) please either reboot the platform and restart the application or stop the application and unload/load the kv260-smartcam firmware before restarting the application. Frame rate is reported by the application using the -R option.</p></li>
-<li><p>Jupyter notebook only supports MIPI/USB input, and DP/RTSP output.</p></li>
-<li><p>The latency of USB/MIPI camera to DP path varies depending on the source type and monitor type (DP monitor / HDMI monitor), because of different inherent latencies of the specific sources devices and display devices.
-Following is a table of our testing results.
-We measure the glass to glass latency, by putting a running stopwatch before the camera, and then take a screenshot containing both the original stopwatch and the image of the stopwatch in the monitor, so that we can calculate the latency with</p>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">-R</span></code> option of the smartcam application for reporting FPS does not print any information when the target <code class="docutils literal notranslate"><span class="pre">-t</span></code> is RTSP.</p></li>
+<li><p>When using VLC to play the RTSP stream sent out by the application, sometimes it does not work on some client machines, while the FFplay works well.</p></li>
+<li><p>The KR260 carrier card does not power the AR1335 sensor module auto-focus feature. This is due to cross-sensor pin compatibility allowing the board to support other IAS Sensor modules. The result is that the AR1335 sensor module will not have a dynamic focus and depending on positioning of the objects to the lens, the images might appear blurry.</p></li>
+<li><p>The smartcam application is only supported in desktop_disabled mode (direct display). This is because desktop mode requires RGB16 format, while smartcam assumes the optimized input format NV12. Desktop rendering would require software-based color conversion that severely reduces system performance. Thus, it is not supported.</p></li>
+<li><p>If Logitech Brio camera is only producing 5 fps and is enumerated only as a USB2.0 device, ensure to upgrade its firmware to 1.0.423 or later. See the Logitech support website for firmware update utilities. Frame rate is reported by the application using the <code class="docutils literal notranslate"><span class="pre">-R</span></code> option.</p></li>
+<li><p>When using the MIPI input to the application, if the system presents a very low frame-rate (&lt; 2 fps), either reboot the platform and restart the application, or stop the application and unload/load the kv260-smartcam firmware before restarting the application. The frame rate is reported by the application using the <code class="docutils literal notranslate"><span class="pre">-R</span></code> option.</p></li>
+<li><p>Jupyter notebook only supports MIPI/USB input and DP/RTSP output.</p></li>
+<li><p>The latency of the USB/MIPI camera to DP path varies depending on the source type and monitor type (DP monitor/HDMI monitor), because of different inherent latencies of the specific sources devices and display devices.
+The following table shows testing results. The glass to glass latency is measured by putting a running stopwatch before the camera, and then take a screenshot containing both the original stopwatch and the image of the stopwatch in the monitor, so that you can calculate the latency with</p>
 <p><strong>Time_of_stopwatch_in_monitor - Time_physical_stopwatch</strong></p>
 </li>
 </ul>
@@ -203,49 +201,49 @@ We measure the glass to glass latency, by putting a running stopwatch before the
 <td>260ms</td>
 </tr>
 </tbody>
-</table><p><strong>With AI</strong> Run smartcam without option “-n”
-<strong>NO AI</strong>  Run smartcam with option “-n”, turning off AI detection.
+</table><p><strong>With AI</strong> Run smartcam without option <code class="docutils literal notranslate"><span class="pre">-n</span></code>
+<strong>NO AI</strong>  Run smartcam with option <code class="docutils literal notranslate"><span class="pre">-n</span></code>, turning off AI detection.
 <strong>Monitor A</strong> Dell PC monitor P2317H 1080p
 <strong>Monitor B</strong> Skyworth 4K TV 50H9D</p>
 <ul>
-<li><p>After invoking the command <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span></code> to load firmware, it needs several seconds for the whole firmware to be ready. If you launch docker before the firmware is loaded, it will not be able to use DPU node properly and you may see the below error while launching application</p>
+<li><p>After invoking the command <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span></code> to load firmware, it needs several seconds for the whole firmware to be ready. If you launch docker before the firmware is loaded, it will not be able to use DPU node properly, and you might see the following error while launching application:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>WARNING: Logging before InitGoogleLogging<span class="o">()</span> is written to STDERR
 F0830 <span class="m">10</span>:01:34.758910 <span class="m">22</span> xrt_bin_stream.cpp:60<span class="o">]</span> Check failed: fd_ &gt; <span class="m">0</span> <span class="o">(</span>-1 vs. <span class="m">0</span><span class="o">)</span> , open<span class="o">(</span>/usr/lib/dpu.xclbin<span class="o">)</span> failed.
   Check failure stack trace: ***
 Aborted by signal Aborted...
 </pre></div>
 </div>
-<p>To resolve this issue, exit the docker container and unload the firmware using xmutil. Then delete folder /etc/vart.conf/ using <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">/etc/vart.conf/</span></code></p>
+<p>To resolve this issue, exit the Docker container, and unload the firmware using xmutil. Then delete the folder, <code class="docutils literal notranslate"><span class="pre">/etc/vart.conf/</span></code>, using <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">/etc/vart.conf/</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@xlnx-docker/# <span class="nb">exit</span>
 ubuntu@kria:~$ sudo xmutil unloadapp
 ubuntu@kria:~$ sudo rm -rf /etc/vart.conf/
 </pre></div>
 </div>
-<p>Now you can start with the app deployment steps from loading the firmware and launching docker.</p>
+<p>Now you can start with the app deployment steps from loading the firmware and launching the Docker.</p>
 </li>
-<li><p>A known issue with I2S driver will cause a random kernel crash when loading and unloading the kv260-smartcam firmware with the following commands several times.</p>
+<li><p>A known issue with the I2S driver will cause a random kernel crash when loading and unloading the kv260-smartcam firmware with the following commands several times:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmutil unloadapp
 xmutil loadapp kv260-smartcam
 </pre></div>
 </div>
-<p>So the audio feature of the application is disabled by disabling the I2S subsystem in the dtsi file, which means the “-A”/”–audio” option with RTSP target will not stream the audio.</p>
+<p>So the audio feature of the application is disabled by disabling the I2S subsystem in the dtsi file, which means the <code class="docutils literal notranslate"><span class="pre">-A&quot;/&quot;--audio</span></code> option with RTSP target will not stream the audio.</p>
 </li>
 </ul>
 </div>
 <div class="section" id="limitations">
 <h1>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
-<li><p>The model we use for SSD AI task through the option “–aitask ssd” is ssd_adas_pruned_0_95 from Vitis-AI-Library, which is not a general SSD model, but only for the ADAS scenario as showing by the <a class="reference external" href="https://bdd-data.berkeley.edu/">BDD dataset</a>.</p></li>
-<li><p>The model we use for Refinedet AI task through the option “–aitask refinedet” is refinedet_pruned_0_96 from Vitis-AI-Library, which is not a general object detection model, but only for the detection of pedestrian such as the person object in <a class="reference external" href="https://cocodataset.org/#explore">COCO dataset</a>.</p></li>
+<li><p>The model used for the solid-state disk (SSD) AI task through the option, <code class="docutils literal notranslate"><span class="pre">--aitask</span> <span class="pre">ssd</span></code>, is ssd_adas_pruned_0_95 from the Vitis-AI-Library, which is not a general SSD model, but only for the ADAS scenario as showed by the <a class="reference external" href="https://bdd-data.berkeley.edu/">BDD dataset</a>.</p></li>
+<li><p>The model used for the Refinedet AI task through the option <code class="docutils literal notranslate"><span class="pre">--aitask</span> <span class="pre">refinedet</span></code> is refinedet_pruned_0_96 from the Vitis-AI-Library, which is not a general object detection model, but only for the detection of pedestrian, such as the person object in <a class="reference external" href="https://cocodataset.org/#explore">COCO dataset</a>.</p></li>
 </ul>
+</div>
 <div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<h1>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h1>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2022 Xilinx</p></div>
-</div>
+<p align="center">Copyright&copy; 2022-2023 Advanced Micro Devices, Inc</p></div>
 
 
            </div>
@@ -261,7 +259,7 @@ xmutil loadapp kv260-smartcam
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 21, 2023.
+      <span class="lastupdated">Last updated on August 17, 2023.
       </span></p>
   </div>
 

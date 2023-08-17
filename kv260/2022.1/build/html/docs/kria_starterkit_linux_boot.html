@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Booting Kria Starter Kit Linux &mdash; Kria™ KV260 2022.1 documentation</title>
+  <title>Booting the Kria Starter Kit Linux &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Rebuilding Application Docker Containers Tutorial" href="build_application_docker_container.html" />
-    <link rel="prev" title="Generation of Firmware binaries" href="generating_custom_firmware.html" /> 
+    <link rel="prev" title="Generation of Firmware Binaries" href="generating_custom_firmware.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,17 +83,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#quick-start">Quick Start</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="smartcamera/smartcamera_landing.html#tutorials">Tutorials</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="smartcamera/docs/customize_ai_models.html">Customizing AI Models used in the Application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="building_the_design.html">Building the Design components</a></li>
-<li class="toctree-l3"><a class="reference internal" href="build_vivado_design.html">Building the Hardware design using Vivado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smartcamera/docs/customize_ai_models.html">Customizing AI Models Used in the Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_the_design.html">Building the Design Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
 <li class="toctree-l3"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="build_accel.html">Integrating an overlay into the platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_accel.html">Integrating an Overlay into the Platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generating_custom_firmware.html">Generating Custom Firmware</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Kria Starter Kit Linux Boot</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#boot-process">Boot Process</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#misc-information">Misc Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#miscellaneous-information">Miscellaneous Information</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
@@ -101,6 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -131,7 +132,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="smartcamera/smartcamera_landing.html">Smart Camera</a> &raquo;</li>
-      <li>Booting Kria Starter Kit Linux</li>
+      <li>Booting the Kria Starter Kit Linux</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/kria_starterkit_linux_boot.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -143,75 +144,72 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <table class="sphinxhide">
  <tr>
-   <td align="center"><img src="media/xilinx-logo.png" width="30%"/><h1>Kria&trade; Booting Kria Starter Kit Linux</h1>
+   <td align="center"><img src="media/xilinx-logo.png" width="30%"/><h1>Kria&trade; Booting the Kria Starter Kit Linux</h1>
    </td>
  </tr>
-</table><div class="section" id="booting-kria-starter-kit-linux">
-<h1>Booting Kria Starter Kit Linux<a class="headerlink" href="#booting-kria-starter-kit-linux" title="Permalink to this heading">¶</a></h1>
+</table><div class="section" id="booting-the-kria-starter-kit-linux">
+<h1>Booting the Kria Starter Kit Linux<a class="headerlink" href="#booting-the-kria-starter-kit-linux" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This document shows how to boot Kria Starter Kit Linux and perform common one-time updates and installations required prior to running any Xilinx released KV260 application in Linux.</p>
-<p>This guide is targeted for Ubuntu 22.04 and Xilinx 2022.1 toolchain.</p>
+<p>This document shows how to boot the Kria Starter Kit Linux and perform common one-time updates and installations required prior to running any AMD released KV260 application in Linux.</p>
+<p>This guide is targeted for Ubuntu® 22.04 and AMD 2022.1 toolchain.</p>
 </div>
 <div class="section" id="boot-process">
 <h2>Boot Process<a class="headerlink" href="#boot-process" title="Permalink to this heading">¶</a></h2>
 <ol>
-<li><p>Flash the Kria Starter Kit Linux image into the SD Card (minimum 16GB)</p>
-<p>Refer to <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started-ubuntu/setting-up-the-sd-card-image.html">KV260 Getting Started Page</a> to flash SD card with a Ubuntu 22.04 image.</p>
-<p>You can re-use the same SD card to evaluate all the applications released for Ubuntu 22.04.</p>
+<li><p>Flash the Kria Starter Kit Linux image into the SD card (minimum 16 GB).</p>
+<p>Refer to <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started-ubuntu/setting-up-the-sd-card-image.html">KV260 Getting Started Page</a> to flash SD card with an Ubuntu 22.04 image.</p>
+<p>You can reuse the same SD card to evaluate all the applications released for Ubuntu 22.04.</p>
 </li>
-<li><p>Set up the hardware. Each application will require a different set of peripherals, below lists the minimum required to boot Linux.</p>
+<li><p>Set up the hardware. Each application will require a different set of peripherals; the following lists the minimum required to boot Linux.</p>
 <p><img alt="GitHub Logo" src="../_images/som-board.png" /></p>
-<ul>
-<li><p>microSD:</p>
-<p>Insert the SD card into slot at J11.</p>
-</li>
-<li><p>Monitor:</p>
-<p>Connect the monitor to the board via either DP or HDMI port. Refer to each application documentation for monitor resolution requirement.</p>
-</li>
-<li><p>UART/JTAG interface:</p>
-<p>For interacting and seeing boot-time information, connect a USB debugger to J4. Some applications will only run through commands issued through UART interface.</p>
-</li>
-<li><p>Network connection:</p>
-<p>Connect the Ethernet cable to your local network with DHCP enabled to install Linux packages and run Jupyter Notebooks</p>
-</li>
-</ul>
-</li>
-<li><p>Ensure the Starter Kit Boot firmware is up to date</p>
-<p>The SOM Starter Kits have factory pre-programmed boot firmware that is installed and maintained in the SOM QSPI device. Update the boot firmware in the SOM QSPI device to ‘2022.1 Boot FW’ Image.</p>
-<p>See the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">Kria Wiki</a> to obtain boot firmware binary and instructions to update QSPI image using xmutil, after Linux boot.</p>
-<p>QSPI image update persists through power cycles or SD card changes.</p>
-</li>
-<li><p>Boot Linux on your Starter Kit (Ubuntu) following the instruction from <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started-ubuntu/booting-your-starter-kit.html">this page</a></p>
 <ul class="simple">
-<li><p>For some applications it is required to work with commandline instead of GNOME Desktop.</p></li>
+<li><p>microSD: Insert the SD card into slot at J11.</p></li>
+<li><p>Monitor: Connect the monitor to the board via either the DP or HDMI port. Refer to each application documentation for the monitor resolution requirement.</p></li>
+<li><p>UART/JTAG interface: For interacting and seeing boot-time information, connect a USB debugger to J4. Some applications will only run through commands issued through the universal asynchronous receiver-transmitter (UART) interface.</p></li>
+<li><p>Network connection: Connect the Ethernet cable to your local network with DHCP enabled to install the Linux packages, and run Jupyter Notebooks.</p></li>
 </ul>
 </li>
-<li><p>If not done so yet, perform system update to pull in the latest kernel and Xilinx packages. There can be some errors during install, refer to <a class="reference external" href="#known-issues">known issues</a> if you encounter issues. There are two ways to do this.</p>
-<p>Through snap install, for more information refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2057043969/Snaps+-+xlnx-config+Snap+for+Certified+Ubuntu+on+Xilinx+Devices">Xilinx config snap Wiki</a>:</p>
+<li><p>Ensure the Starter Kit Boot firmware is up-to-date.</p>
+<p>The SOM Starter Kits have factory preprogrammed boot firmware that is installed and maintained in the SOM quad SPI (QSPI) device. Update the boot firmware in the SOM QSPI device to the ‘2022.1 Boot FW’ Image.</p>
+<p>See the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">Kria Wiki</a> to obtain the boot firmware binary and instructions to update the QSPI image using xmutil, after the Linux boot.</p>
+<p>The QSPI image update persists through power cycles or SD card changes.</p>
+</li>
+<li><p>Boot Linux on your Starter Kit (Ubuntu) following the instructions from <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started-ubuntu/booting-your-starter-kit.html">this page</a>.</p>
+<ul class="simple">
+<li><p>For some applications, it is required to work with command line instead of GNOME Desktop.</p></li>
+</ul>
+</li>
+<li><p>If you have not done so yet, perform a system update to pull in the latest kernel and AMD packages. There can be some errors during install; refer to <a class="reference external" href="#known-issues">Known Issues</a> if you encounter issues. There are two ways to do this.</p>
+<p>Through snap install, for more information, refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2057043969/Snaps+-+xlnx-config+Snap+for+Certified+Ubuntu+on+Xilinx+Devices">AMD config snap Wiki</a>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo snap install xlnx-config --classic --channel<span class="o">=</span><span class="m">2</span>.x
 </pre></div>
 </div>
-<p>After xlnx-config snap has been installed, run the Xilinx platform setup script, and follow the prompts.</p>
+<p>After xlnx-config snap has been installed, run the AMD platform setup script, and follow the prompts.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xlnx-config.sysinit
 </pre></div>
 </div>
-<p>Alternatively, the above can be achieved by manually adding the Xilinx specific Ubuntu PPAs, and then performing a system update and upgrade to pull in the latest Xilinx libraries. Note the apt upgrade step may take some time.</p>
+<p>Alternatively, the above can be achieved by manually adding the AMD-specific Ubuntu PPAs, and then performing a system update and upgrade to pull in the latest AMD libraries.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The apt upgrade step can take some time.</p>
+</div></blockquote>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo add-apt-repository ppa:xilinx-apps
 sudo add-apt-repository ppa:ubuntu-xilinx/sdk
 sudo apt update
 sudo apt upgrade
 </pre></div>
 </div>
-<p>Note: if the kernel was updated, make sure to follow the apt upgrade command prompt to reboot the platform in order to boot with latest kernel.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> If the kernel was updated, make sure to follow the apt upgrade command prompt to reboot the platform to boot with the latest kernel.</p>
+</div></blockquote>
 </li>
-<li><p>KV260 Ubuntu 22.04 applications are deployed as Docker containers. Follow instructions from <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/">docker.com</a> to install Docker.</p>
+<li><p>The KV260 Ubuntu 22.04 applications are deployed as Docker containers. Follow the instructions from <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/">docker.com</a> to install Docker.</p>
 <p>Enable your user to properly use the Docker commands without using sudo for every docker command.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo groupadd docker
 sudo usermod -a -G docker  <span class="nv">$USER</span>
 </pre></div>
 </div>
-<p>This will only need to be done once if re-using the same SD card for running multiple applications.</p>
+<p>This will only need to be done once if reusing the same SD card for running multiple applications.</p>
 </li>
 <li><p>Install the latest xrt zocl driver:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install xrt-dkms
@@ -219,20 +217,20 @@ sudo usermod -a -G docker  <span class="nv">$USER</span>
 </div>
 </li>
 </ol>
-<p>This flow will only need to be done once if re-using the same SD card for multiple applications. However, user can choose to update and upgrade again to install newly available updates thats made available later.</p>
+<p>This flow will only need to be done once if reusing the same SD card for multiple applications. However, you can choose to update and upgrade again to install the newly available updates that are made available later.</p>
 </div>
 <div class="section" id="known-issues">
-<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
 <ol>
-<li><p>Sometimes Ubuntu has background process ongoing by the time it boots to command prompt and do not yet ask you to change your password. In those cases doing a snap install may result in a message like following:</p>
+<li><p>Sometimes Ubuntu has background processes ongoing by the time it boots to the command prompt and does not yet ask you to change your password. In those , doing a snap install might result in a message simliar to the following:</p>
 <p><code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">too</span> <span class="pre">early</span> <span class="pre">for</span> <span class="pre">operation,</span> <span class="pre">device</span> <span class="pre">not</span> <span class="pre">yet</span> <span class="pre">seeded</span> <span class="pre">or</span> <span class="pre">device</span> <span class="pre">model</span> <span class="pre">not</span> <span class="pre">acknowledged</span></code></p>
-<p>Try again in a minute or two and you should be prompted to update password and above error should go away.</p>
+<p>Try again in a minute or two, and you should be prompted to update your password and the above error should go away.</p>
 </li>
-<li><p>If a prompt like the following appears:</p>
+<li><p>If a prompt similar to the following appears:</p>
 <p><img alt="kernel" src="../_images/kernelflash.png" /></p>
-<p>Choose “keep the local version currently installed”. For more details refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2116354051/Tips+Tricks+for+Certified+Ubuntu+AMD-Xilinx+Devices#Understanding-the-Configuring-flash-kernel-Prompts-When-Updating-the-Linux-Kernel">this wiki page</a>.</p>
+<p>Choose “keep the local version currently installed”. For more details, refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2116354051/Tips+Tricks+for+Certified+Ubuntu+AMD-Xilinx+Devices#Understanding-the-Configuring-flash-kernel-Prompts-When-Updating-the-Linux-Kernel">this wiki page</a>.</p>
 </li>
-<li><p>During <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xlnx-config.sysinit</span></code> or <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">upgrade</span></code> commands you may see the following errors and exit installation. Re-run the commands and installation should continue and complete.</p>
+<li><p>During <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xlnx-config.sysinit</span></code> or <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">upgrade</span></code> commands, you might see the following errors and exit the installation. Rerun the commands, and the installation should continue and complete.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>flash-kernel: deferring update (trigger activated)
 /etc/kernel/postinst.d/zz-flash-kernel:
 flash-kernel: deferring update (trigger activated)
@@ -245,18 +243,18 @@ E: Sub-process /usr/bin/dpkg returned an error code (1)
 </li>
 </ol>
 </div>
-<div class="section" id="misc-information">
-<h2>Misc Information<a class="headerlink" href="#misc-information" title="Permalink to this heading">¶</a></h2>
-<p>The <em>ubuntu</em> user does not have root privileges. Most commands used in tutorials must be run using <em>sudo</em>, and it may be prompted to enter your password.</p>
-<p>For security, by default, the root user is disabled. If user want to login as root user, perform the following steps. Use the <em>ubuntu</em> user’s password on the first password prompt, then set a new password for the root user. User can now login as root user using the newly set root user password.</p>
+<div class="section" id="miscellaneous-information">
+<h2>Miscellaneous Information<a class="headerlink" href="#miscellaneous-information" title="Permalink to this heading">¶</a></h2>
+<p>The <em>Ubuntu</em> user does not have root privileges. Most commands used in these tutorials must be run using <em>sudo</em>, and you might be prompted to enter your password.</p>
+<p>For security, by default, the root user is disabled. If you want to log in as a root user, perform the following steps. Use the <em>ubuntu</em> user’s password on the first password prompt, then set a new password for the root user. You can now login as a root user using the newly set root user password.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:<span class="se">\~\$</span> sudo -i
 sudo<span class="se">\]</span> password <span class="k">for</span> ubuntu:
 root@kria:<span class="se">\~</span><span class="c1">#</span>
 </pre></div>
 </div>
-<p>If needed, the these are commands to set System Timezone and locale:</p>
+<p>If needed, these are the commands to set the system timezone and locale:</p>
 <ul class="simple">
-<li><p>Set timezone</p></li>
+<li><p>Set the timezone.</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-ntp <span class="nb">true</span>
 sudo timedatectl set-timezone America/Los_Angeles
@@ -264,7 +262,7 @@ timedatectl
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Set locale</p></li>
+<li><p>Set the locale.</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo locale-gen en_US en_US.UTF-8
 sudo update-locale <span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8 <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
@@ -272,9 +270,9 @@ sudo update-locale <span class="nv">LC_ALL</span><span class="o">=</span>en_US.U
 locale
 </pre></div>
 </div>
-<p>Below example command set the date and time.</p>
+<p>The following example command sets the date and time:</p>
 <p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">date</span> <span class="pre">--set</span> <span class="pre">&quot;11</span> <span class="pre">January</span> <span class="pre">2023</span> <span class="pre">16:47:00&quot;</span></code></p>
-<p>The storage volume on the SD card can be limited with multiple dockers. If there are space issues, use the following command to remove the existing container.</p>
+<p>The storage volume on the SD card can be limited with multiple dockers. If there are space issues, use the following command to remove the existing container:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo docker rmi --force <span class="nv">$INSTALLED_DOCKER_IMAGE</span>
 </pre></div>
 </div>
@@ -283,9 +281,9 @@ locale
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -294,7 +292,7 @@ locale
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="generating_custom_firmware.html" class="btn btn-neutral float-left" title="Generation of Firmware binaries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generating_custom_firmware.html" class="btn btn-neutral float-left" title="Generation of Firmware Binaries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="build_application_docker_container.html" class="btn btn-neutral float-right" title="Rebuilding Application Docker Containers Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -302,7 +300,7 @@ locale
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 21, 2023.
+      <span class="lastupdated">Last updated on August 17, 2023.
       </span></p>
   </div>
 

@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Setting up the Board and Application Deployment &mdash; Kria™ KV260 2022.1 documentation</title>
+  <title>Setting Up the Board and Application Deployment &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
@@ -90,7 +90,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#introduction-to-the-test-environment">Introduction to the Test Environment</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#application-specific-hardware-setup">Application Specific Hardware Setup</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#downloading-and-loading-application-firmware">Downloading and Loading Application Firmware</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#docker-based-application-preparation">Docker based application preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-based-application-preparation">Docker Based Application Preparation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#running-the-defect-detect-application">Running the Defect Detect Application</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
@@ -99,6 +99,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../defectdetect_landing.html#tutorials">Tutorials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../defectdetect_landing.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../defectdetect_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../defectdetect_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -127,7 +128,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../defectdetect_landing.html">Defect Detect</a> &raquo;</li>
-      <li>Setting up the Board and Application Deployment</li>
+      <li>Setting Up the Board and Application Deployment</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/docs/defect-detect/docs/app_deployment_dd.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -143,18 +144,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Setting up the Board and Application Deployment</h1> </td>
+ <td align="center"><h1>Setting Up the Board and Application Deployment</h1> </td>
  </tr>
 </table><div class="section" id="setting-up-the-board-and-application-deployment">
-<h1>Setting up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
+<h1>Setting Up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This document shows how to set up the board and run the defect-detect application.</p>
-<p>This guide and its prebuilt are targeted for Ubuntu 22.04 and Xilinx 2022.1 toolchain. The previous version of this application (on Xilinx 2021.1 toolchain) targeted to Petalinux is still available <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html">online</a>.</p>
+<p>This document shows how to set up the board, and run the defect-detect application.</p>
+<p>This guide and its prebuilt are targeted for Ubuntu® 22.04 and AMD 2022.1 toolchain. The previous version of this application (on AMD 2021.1 toolchain) targeted to PetaLinux is still available <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html">online</a>.</p>
 </div>
 <div class="section" id="booting-up-linux">
 <h2>Booting up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
-<p>Before continuing with defect-detect application specific instructions, if not yet done so, boot Linux with instructions from <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> page. Note that Defect Detect application requires starting the application using commandline through uart instead of GNOME Desktop.</p>
+<p>Before continuing with defect-detect application specific instructions, if not yet done so, boot Linux with the instructions from the <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> page.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The Defect Detect application requires starting the application using command line through universal asynchronous receiver-transmitter (UART) instead of GNOME Desktop.</p>
+</div></blockquote>
 <p>Defect Detect requires kernel version 5.15.0-1013 or newer.</p>
 </div>
 <div class="section" id="introduction-to-the-test-environment">
@@ -168,24 +172,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>In the test environment, keep the board at an appropriate distance (31 cm) from the monitor.</p></li>
 <li><p>According to the model of the monitor, set brightness and contrast to 45 and 17 respectively.</p></li>
 <li><p>Ensure that the room is closed. Only natural light should pass through the glass windows at daytime. At night, use artificial lights but that should not be opposite to the monitor.</p></li>
-<li><p>To avoid over exposure of light, do NOT place the monitor opposite to open door or window.</p></li>
-<li><p>Ensure that live source should be able to capture the mango completely.</p></li>
-<li><p>The camera should be focused ONLY on the mango image that is displayed.</p></li>
+<li><p>To avoid over exposure of light, do <em>not</em> place the monitor opposite to an open door or window.</p></li>
+<li><p>Ensure that the live source should be able to capture the mango completely.</p></li>
+<li><p>The camera should be focused <em>only</em> on the mango image that is displayed.</p></li>
 <li><p>In the test environment, the light intensity is to be ~08 LUX.</p>
-<p><strong>Note</strong>: If the preview image is not satisfactory, adjust the above mentioned parameters.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> If the preview image is not satisfactory, adjust the above mentioned parameters.</p>
+</div></blockquote>
 </li>
 </ul>
 </div>
 <div class="section" id="setting-up-the-test-environment">
 <h3>Setting Up the Test Environment<a class="headerlink" href="#setting-up-the-test-environment" title="Permalink to this heading">¶</a></h3>
-<p><strong>Note:</strong> Ensure that the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c">Gstreamer packages</a> installed on Linux PC. If Linux distribution is on Ubuntu, make sure its version is at least <strong>16.04</strong>.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> Ensure that the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c">Gstreamer packages</a> are installed on the Linux PC. If the Linux distribution is on Ubuntu, make sure its version is at least <strong>16.04</strong>.</p>
+</div></blockquote>
 <p>Download all the sample mango images from the <a class="reference external" href="http://www.cofilab.com/wp-content/downloads/DB_Mango.rar">Cofilab site</a> to the Linux PC.</p>
-<p><strong>Note:</strong> If the file fails to download, copy the link and open in a new browser tab to download the file.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> If the file fails to download, copy the link, and open in a new browser tab to download the file.</p>
+</div></blockquote>
 <p>As the downloaded images are in JPG format, convert them to GRAY 8 (Y8) format using the following steps.</p>
 <ol>
 <li><p>Unzip the downloaded rar file.</p></li>
 <li><p>In the Linux PC, go to <code class="docutils literal notranslate"><span class="pre">DB_mango</span></code>.</p></li>
-<li><p>Copy and save the following script as <strong>convert_jpeg_y8.sh</strong>:</p>
+<li><p>Copy and save the following script as <code class="docutils literal notranslate"><span class="pre">convert_jpeg_y8.sh</span></code>:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> file <span class="k">in</span> ./*<span class="p">;</span> <span class="k">do</span>       
 <span class="nv">f</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&quot;</span><span class="k">)</span><span class="p">;</span>
   <span class="nv">filename</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$f</span><span class="p">|</span> cut  -d<span class="s1">&#39;.&#39;</span> -f <span class="m">1</span><span class="k">)</span><span class="p">;</span> <span class="c1">#file has extension, it return only filename</span>
@@ -203,29 +213,29 @@ cat Mango_*.y8 &gt; input_video.y8
 </div>
 <p>Once the above command is completed, the script produces <code class="docutils literal notranslate"><span class="pre">input_video.y8</span></code> as input to the Defect Detect application.</p>
 </li>
-<li><p>Copy <code class="docutils literal notranslate"><span class="pre">input_video.y8</span></code> from the Linux PC to the SOM board. if copied to SD card, it can be found in <code class="docutils literal notranslate"><span class="pre">/boot/firmware/input_video.y8</span></code>. In order for containers to access the file, copy it to <code class="docutils literal notranslate"><span class="pre">/tmp/</span></code> and containers can then also access it from its /tmp/ folder. then copy it to <code class="docutils literal notranslate"><span class="pre">/home/</span></code> directory in container.</p>
+<li><p>Copy <code class="docutils literal notranslate"><span class="pre">input_video.y8</span></code> from the Linux PC to the SOM board. If copied to a SD card, it can be found in <code class="docutils literal notranslate"><span class="pre">/boot/firmw,are/input_video.y8</span></code>. In order for containers to access the file, copy it to <code class="docutils literal notranslate"><span class="pre">/tmp/</span></code> and containers can then also access it from its <code class="docutils literal notranslate"><span class="pre">/tmp/</span></code> folder. Then copy it to the <code class="docutils literal notranslate"><span class="pre">/home/</span></code> directory in container.</p>
 <blockquote>
 <div><p><strong>NOTE</strong>: Delete all files <em>except</em> <code class="docutils literal notranslate"><span class="pre">input_video.y8</span></code>.</p>
 </div></blockquote>
 </li>
 </ol>
-<p>The Defect Detection application’s design- takes, processes, and displays images on to the monitor.</p>
+<p>The Defect Detection application’s design takes, processes, and displays images on to the monitor.</p>
 <p>See <a class="reference internal" href="known_issues_dd.html"><span class="doc">Known Issues</span></a> with the Defect Detect application.</p>
 </div>
 </div>
 <div class="section" id="application-specific-hardware-setup">
 <h2>Application Specific Hardware Setup<a class="headerlink" href="#application-specific-hardware-setup" title="Permalink to this heading">¶</a></h2>
-<p>Besides the hardware configurations required in <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> for booting Linux, Defect Detect Application requires the following:</p>
+<p>Besides the hardware configurations required in the <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> for booting Linux, the Defect Detect Application requires the following:</p>
 <p><img alt="GitHub Logo" src="../../../_images/som-board.png" /></p>
 <ul class="simple">
-<li><p><strong>Monitor:</strong> Defect detect requires a 4k monitor, so before booting, connect a 4k monitor to the board using either DP or HDMI port.</p></li>
+<li><p><strong>Monitor:</strong> Defect detect requires a 4k monitor, so before booting, connect a 4k monitor to the board using either the DP or HDMI port.</p></li>
 <li><p><strong>Camera Connection:</strong> Ensure that the board is powered off, and then connect AR0144 to IAS connector J7.</p></li>
 </ul>
 </div>
 <div class="section" id="downloading-and-loading-application-firmware">
 <h2>Downloading and Loading Application Firmware<a class="headerlink" href="#downloading-and-loading-application-firmware" title="Permalink to this heading">¶</a></h2>
 <ol>
-<li><p>Search package feed for packages compatible with KR260</p>
+<li><p>Search the package feed for packages compatible with the KV260.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo apt search xlnx-firmware-kv260
 Sorting... Done
 Full Text Search... Done
@@ -246,33 +256,35 @@ xlnx-firmware-kv260-smartcam/jammy <span class="m">0</span>.1-0xlnx1 arm64
 </pre></div>
 </div>
 </li>
-<li><p>Install firmware binaries</p>
+<li><p>Install firmware binaries.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> sudo apt install xlnx-firmware-kv260-defect-detect
 </pre></div>
 </div>
 </li>
-<li><p>Dynamically load the application firmware:</p>
-<p>The firmware consist of bitstream, and device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.</p>
+<li><p>Dynamically load the application firmware.</p>
+<p>The firmware consist of bitstream and device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.</p>
 <ul>
-<li><p>Disable the desktop environment:</p>
+<li><p>Disable the desktop environment.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil desktop_disable
 </pre></div>
 </div>
 </li>
 </ul>
-<p><strong>Note:</strong> Executing “xmutil desktop_disable” will cause the desktop on the monitor to be disabled. Please use any serial terminal to continue issuing Linux commands via port J4 and not rely completely on the desktop environment.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> Executing “xmutil desktop_disable” will cause the desktop on the monitor to be disabled. Use any serial terminal to continue issuing Linux commands via port J4, and do not rely completely on the desktop environment.</p>
+</div></blockquote>
 <p>After running the application, the desktop environment can be enabled again with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> sudo xmutil desktop_enable
 </pre></div>
 </div>
 <ul>
-<li><p>After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.</p>
+<li><p>After installing the firmware, execute xmutil listapps to verify that it is captured under the listapps function and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil listapps
 </pre></div>
 </div>
 </li>
-<li><p>Switch to a different platform for different Application:</p>
-<p>When there is already another accelerator/firmware being activated, unload it first, then switch to xlnx-app-kv260-defect-detect.</p>
+<li><p>Switch to a different platform for a different application:</p>
+<p>When there is already another accelerator/firmware being activated, unload it first, then switch to <code class="docutils literal notranslate"><span class="pre">xlnx-app-kv260-defect-detect</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp
 sudo xmutil dp_unbind
 sudo xmutil loadapp kv260-defect-detect
@@ -280,33 +292,35 @@ sudo xmutil dp_bind
 modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV16
 </pre></div>
 </div>
-<p><strong>Note:</strong> 4K Monitor should always be connected.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> 4K Monitor should always be connected.</p>
+</div></blockquote>
 </li>
 </ul>
 </li>
 </ol>
 </div>
 <div class="section" id="docker-based-application-preparation">
-<h2>Docker based application preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
+<h2>Docker Based Application Preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
 <ol>
-<li><p>Pull the latest docker image for defect-detect using the below command.</p>
+<li><p>Pull the latest Docker image for defect-detect using the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/defect-detect:2022.1
 </pre></div>
 </div>
 <ul>
-<li><p>The storage volume on the SD card can be limited with multiple dockers. If there are space issues, you can use following command to remove the existing container.</p>
+<li><p>The storage volume on the SD card can be limited with multiple Dockers. If there are space issues, you can use following command to remove the existing container.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker rmi --force <span class="nv">$INSTALLED_DOCKER_IMAGE</span>
 </pre></div>
 </div>
 </li>
-<li><p>You can find the images installed with command:</p>
+<li><p>You can find the images installed with the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker images
 </pre></div>
 </div>
 </li>
 </ul>
 </li>
-<li><p>Launch the docker using the below command. The firmware must be loaded before launching docker container.</p>
+<li><p>Launch the Docker using the following command. The firmware must be loaded before launching the Docker container.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run <span class="se">\</span>
 --env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span> <span class="se">\</span>
     --env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span> <span class="se">\</span>
@@ -322,7 +336,7 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
     -it xilinx/defect-detect:2022.1 bash
 </pre></div>
 </div>
-<p>It launches the defect-detect docker image container</p>
+<p>It launches the defect-detect Docker image container.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@xlnx-docker/#
 </pre></div>
 </div>
@@ -334,8 +348,8 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 <p>There are two ways to invoke the Defect Detection application: Jupyter Notebook or command line.</p>
 <div class="section" id="jupyter-notebook">
 <h3>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">¶</a></h3>
-<p>Jupyter notebook works as an example to show the capability of the <strong>defect-detect</strong> application for specific configurations.</p>
-<p>Jupyter Notebook Defect Detect application supports the following modes:</p>
+<p>Jupyter Notebook works as an example to show the capability of the <strong>defect-detect</strong> application for specific configurations.</p>
+<p>The Jupyter Notebook Defect Detect application supports the following modes:</p>
 <ul class="simple">
 <li><p>0 ==&gt; File Input and File Sink</p></li>
 <li><p>1 ==&gt; Live Normal Mode. Live Source and Display Out Normal Mode</p></li>
@@ -344,22 +358,23 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 <li><p>4 ==&gt; Live In and File Out</p></li>
 <li><p>5 ==&gt; File In Display Out Demo Mode</p></li>
 </ul>
-<p>The default mode is Live source and display out (mode 1). Use the playback variable to change the mode.</p>
-<p><strong>Note</strong>:
-The defect-detection Jupyter notebook application is launched under the <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code> user.</p>
+<p>The default mode is live source and display out (mode 1). Use the playback variable to change the mode.</p>
+<blockquote>
+<div><p><strong>NOTE</strong>: The defect-detection Jupyter notebook application is launched under the <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code> user.</p>
+</div></blockquote>
 <p>To start the defect-detection Jupyter notebook application, perform the following steps:</p>
 <ol>
-<li><p>Get the list of running Jupyter servers, with the following command:</p>
+<li><p>Get the list of running Jupyter servers with the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-notebook list
 </pre></div>
 </div>
 </li>
-<li><p>Stop the default Jupyter notebook using the following command, If jupyter server is already running:</p>
+<li><p>Stop the default Jupyter Notebook using the following command, if jupyter server is already running:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-notebook stop <span class="m">8888</span>
 </pre></div>
 </div>
 </li>
-<li><p>Launch the Jupyter notebook using the following command:</p>
+<li><p>Launch the Jupyter Notebook using the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-notebook  --notebook-dir<span class="o">=</span>/opt/xilinx/kv260-defect-detect/share/notebooks/ --ip<span class="o">=</span>&lt;IP Address&gt; --allow-root
 
 // fill <span class="k">in</span> ip-address from ifconfig, eth0
@@ -367,10 +382,10 @@ The defect-detection Jupyter notebook application is launched under the <code cl
 </div>
 </li>
 </ol>
-<p>Jupyter Notebook requires an IP address. Perform the below steps if the IP address is not assigned by default.</p>
+<p>Jupyter Notebook requires an IP address. Perform the following steps if the IP address is not assigned by default.</p>
 <ol>
-<li><p>If using a direct connection (no DHCP), see public documentation on how to configure PC with a static IP on the same subnet.</p></li>
-<li><p>For the SOM target, set the desired IP address within the same subnet using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code>, like the following example:</p>
+<li><p>If using a direct connection (no DHCP), see the public documentation on how to configure a PC with a static IP on the same subnet.</p></li>
+<li><p>For the SOM target, set the desired IP address within the same subnet using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code> similar to the following example:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig eth0 &lt;user defined IP&gt; netmask &lt;user defined netmask&gt;
 </pre></div>
 </div>
@@ -385,60 +400,72 @@ The defect-detection Jupyter notebook application is launched under the <code cl
 </pre></div>
 </div>
 <p>To access the Defect Detection Jupyter Notebook, use the path returned by the <code class="docutils literal notranslate"><span class="pre">jupyter-notebook</span> <span class="pre">list</span></code> command.</p>
-<p>A Jupyter notebook user can run cell by cell or run the defect detection full pipeline in Jupyter Notebook. To do this, go to defect-detect.ipynb, then from the menu bar, select <strong>Kernel</strong>, and then select <strong>Restart Kernel &amp; Run All Cells</strong>. The notebook by default expects file source location to be <code class="docutils literal notranslate"><span class="pre">/home/input_video.y8</span></code> - make changes in the notebook if needed.</p>
-<p>When using a file sink, data is dumped in the <strong>rootfs (/home/)</strong>. Offload the output files to PC and play using a YUV player. In the YUV player select the color as <strong>Y</strong> and the custom size as <strong>1280x800</strong>.</p>
+<p>A Jupyter Notebook user can run cell by cell or run the defect detection full pipeline in Jupyter Notebook. To do this, go to <code class="docutils literal notranslate"><span class="pre">defect-detect.ipynb</span></code>, then from the menu bar, select <strong>Kernel</strong>, and then select <strong>Restart Kernel &amp; Run All Cells</strong>. The notebook by default expects file source location to be <code class="docutils literal notranslate"><span class="pre">/home/input_video.y8</span></code>. Make changes in the notebook if needed.</p>
+<p>When using a file sink, data is dumped in the <strong>rootfs (/home/)</strong>. Offload the output files to the PC and play using a YUV player. In the YUV player, select the color as <strong>Y</strong> and the custom size as <strong>1280x800</strong>.</p>
 </div>
 <div class="section" id="command-examples">
 <h3>Command Examples<a class="headerlink" href="#command-examples" title="Permalink to this heading">¶</a></h3>
 <p><strong>Examples:</strong></p>
-<p><strong>Note</strong>: Only one instance of the application can run at a time.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> Only one instance of the application can run at a time.</p>
+</div></blockquote>
 <ul>
-<li><p>For File-In and Display-Out playback in demo mode, run the following command.</p>
+<li><p>For File-In and Display-Out playback in demo mode, run the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect -i input_video.y8 -d <span class="m">1</span>
 </pre></div>
 </div>
-<p><strong>Note</strong>: The 3-stage outputs display on DP/HDMI with 4 fps rate. This mode is enabled to run the pipeline with a slower rate for the user to analyze the different outputs.</p>
+<blockquote>
+<div><p><strong>NOTE</strong>: The three-stage outputs display on the DP/HDMI with 4 fps rate. This mode is enabled to run the pipeline with a slower rate for you to analyze the different outputs.</p>
+</div></blockquote>
 </li>
-<li><p>For File-In and File-Out playback, run the following command.</p>
+<li><p>For File-In and File-Out playback, run the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect -i input_video.y8 -x raw.y8 -y pre_pros.y8 -z final.y8
 </pre></div>
 </div>
-<p><strong>Note</strong>: The 3-stage outputs dump into the files. It is mandatory to specify all the three output file names.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The three-stage outputs dump into the files. It is mandatory to specify all the three output file names.</p>
+</div></blockquote>
 </li>
-<li><p>For File-In and Display-Out playback, run the following command.</p>
+<li><p>For File-In and Display-Out playback, run the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect -i input_video.y8
 </pre></div>
 </div>
-<p><strong>Note</strong>: The 3-stage outputs display on DP/HDMI. Change the input file path as appropriate.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The 3-stage outputs display on the DP/HDMI. Change the input file path as appropriate.</p>
+</div></blockquote>
 </li>
-<li><p>For Live-In and File-Out playback, run the following command.</p>
+<li><p>For Live-In and File-Out playback, run the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect -x raw.y8 -y pre_pros.y8 -z final.y8
 </pre></div>
 </div>
-<p><strong>Note</strong>: The 3-stage outputs dump into the files. It is mandatory to specify all the three output file names.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The three-stage outputs dump into the files. It is mandatory to specify all the three output file names.</p>
+</div></blockquote>
 </li>
-<li><p>For Live-In and Display-Out playback, run the following command.</p>
+<li><p>For Live-In and Display-Out playback, run the following command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">defect-detect</span></code></p>
-<p><strong>Note</strong>: The 3-stage outputs display on DP/HDMI.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The three-stage outputs display on the DP/HDMI.</p>
+</div></blockquote>
 </li>
-<li><p>For Live-In and Display-Out playback in demo mode, run the following command.</p>
+<li><p>For Live-In and Display-Out playback in demo mode, run the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect -d <span class="m">1</span>
 </pre></div>
 </div>
 </li>
 </ul>
-<p>The 3-stage outputs display on DP/HDMI with 4 fps rate. This mode is enabled to run the pipeline with a slower rate for the user to analyze the different outputs.</p>
+<p>The three-stage outputs display on the DP/HDMI with a 4 fps rate. This mode is enabled to run the pipeline with a slower rate for you to analyze the different outputs.</p>
 </div>
 <div class="section" id="command-line">
 <h3>Command Line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h3>
-<p>Use the command line to set the resolution, configuration file path and more, using the <strong>defect-detect</strong> application.</p>
+<p>Use the command line to set the resolution, configuration file path, and more using the <strong>defect-detect</strong> application.</p>
 <p>More combinations could be made based on the options provided by the <strong>defect-detect</strong> application.</p>
 <p>Defect Detection Application Usage</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect --help
 </pre></div>
 </div>
 <p>Usage:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect <span class="o">[</span>OPTION?<span class="o">]</span> - Application to detect the defect of Mango on Xilinx board.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect <span class="o">[</span>OPTION?<span class="o">]</span> - Application to detect the defect of Mango on an Xilinx board.
 </pre></div>
 </div>
 <p>Help Options:</p>
@@ -462,7 +489,7 @@ The defect-detection Jupyter notebook application is launched under the <code cl
 </pre></div>
 </div>
 <p>The application is targeted to run an input source that supports GRAY8 (Y8) format with a resolution of <strong>1280x800</strong>.</p>
-<p>Once done with the Defect Detection application, To switch to another accelerator application after defect detection application, first exit out of the container using <code class="docutils literal notranslate"><span class="pre">exit</span></code>, then unload it by running the below command:</p>
+<p>Once done with the Defect Detection application, to switch to another accelerator application after defect detection application, first exit out of the container using <code class="docutils literal notranslate"><span class="pre">exit</span></code>, then unload it by running the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp kv260-defect-detect
 </pre></div>
 </div>
@@ -481,7 +508,7 @@ The defect-detection Jupyter notebook application is launched under the <code cl
 <li><p>GAMMA</p></li>
 </ul>
 <p>Make sure that the Defect Detection application is running in the background when calibrating the sensor.</p>
-<p>Save the values in the script and run the script to apply the new values. For example:</p>
+<p>Save the values in the script, and run the script to apply the new values. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ar0144</span><span class="o">-</span><span class="n">sensor</span><span class="o">-</span><span class="n">calib</span><span class="o">.</span><span class="n">sh</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">mediaX</span> <span class="p">(</span><span class="n">where</span> <span class="n">X</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">corresponding</span> <span class="n">media</span> <span class="n">node</span> <span class="k">for</span> <span class="n">the</span> <span class="n">AR0144</span> <span class="n">sensor</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -496,8 +523,8 @@ The defect-detection Jupyter notebook application is launched under the <code cl
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th>filename</th>
-<th>description</th>
+<th>Filename</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -512,8 +539,8 @@ The defect-detection Jupyter notebook application is launched under the <code cl
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th>filename</th>
-<th>description</th>
+<th>Filename</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -532,8 +559,8 @@ The defect-detection Jupyter notebook application is launched under the <code cl
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th>filename</th>
-<th>description</th>
+<th>Filename</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -555,13 +582,13 @@ The defect-detection Jupyter notebook application is launched under the <code cl
 </tr>
 </tbody>
 </table><ul class="simple">
-<li><p>Jupyter notebook file: =&gt; <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-defect-detect/share/notebooks/</span></code></p></li>
+<li><p>Jupyter Notebook file: =&gt; <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-defect-detect/share/notebooks/</span></code></p></li>
 </ul>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th>filename</th>
-<th>description</th>
+<th>Filename</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -576,15 +603,15 @@ The defect-detection Jupyter notebook application is launched under the <code cl
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="sw_arch_platform_dd.html"><span class="doc">Software Architecture</span></a></p></li>
-<li><p>Go back to the <a class="reference internal" href="../defectdetect_landing.html"><span class="doc">KV260 SOM Defect detect design start page</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../defectdetect_landing.html"><span class="doc">KV260 SOM Defect Detect Design Start Page</span></a>.</p></li>
 </ul>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p></div>
 </div>
 </div>
 
@@ -602,7 +629,7 @@ The defect-detection Jupyter notebook application is launched under the <code cl
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 21, 2023.
+      <span class="lastupdated">Last updated on August 17, 2023.
       </span></p>
   </div>
 
