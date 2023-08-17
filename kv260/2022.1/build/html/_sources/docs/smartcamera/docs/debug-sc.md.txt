@@ -12,17 +12,17 @@
 
 # Debugging
 
-Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across Kria SOM applications.
+First review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across the Kria SOM applications.
 
 ## Debugging Tips
 
-* Use the following command to load the firmware. If you do not, many drivers (including the MIPI and VCU) will not load, and when you run the application, you will have errors.
+* Use the following command to load the firmware. If you do not, many drivers (including the MIPI and VCU) will not load, and when you run the application, you will have errors:
 
    ```cpp
    xmutil      loadapp kv260-smartcam
    ```
 
-* The smartcam application has an option `--usb` to choose the USB media devices. You can list the media devices by
+* The smartcam application has an option `--usb` to choose the USB media devices. You can list the media devices using the following command:
 
    ```cpp
    ls /dev/media*
@@ -46,11 +46,13 @@ Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/
 
 ### Monitor
 
-Please review the [Debug Displays](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays) for debugging the monitor.
-### I2S Audio 
+Review the [Debug Displays](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays) for debugging the monitor.
+
+### I2S Audio
 
 <details>
  <summary>Click here to view the details.</summary>
+
 #### Determine the Enumeration for an I2S Audio Card
 
 ```cpp
@@ -62,9 +64,9 @@ cat /proc/asound/cards
                       xlnx-i2s-snd-card-0
 ```
 
-In the previous example, the enumeration of I2S audio card is 2.
+In the previous example, the enumeration of the I2S audio card is 2.
 
-#### Determine Capture and Playback Device Number
+#### Determine the Capture and Playback Device Number
 
 ```cpp
 cat /proc/asound/devices
@@ -72,7 +74,7 @@ cat /proc/asound/devices
  89: [ 2- 1]: digital audio capture
 ```
 
-In this example, [2- X]: the 2- is the card and the X is the device.
+In this example, [2- X]: the 2- is the card, and the X is the device.
 
 #### Sample Record and Playback
 
@@ -80,12 +82,15 @@ In this example, [2- X]: the 2- is the card and the X is the device.
 2. Ensure an active source is connected at the Pmod LINE IN.
 
 ##### Sample Record  
+
 `aplay -D hw:2,0 -fS24_LE -r 48000 -c 2  -d 30 -t raw file.raw`
 
-##### Sample Playback 
+##### Sample Playback
+
 `arecord -D hw:2,1  -fS24_LE -r 48000 -c 2  -d 30 -t raw file.raw`
 
 ##### Sample Pass-through 
+
 `arecord -D hw:2,1 -f S24_LE -r 48000 -c 2 -t raw | aplay -D hw:2,0 -c 2 -f S24_LE -r 48000 -t raw`
 
 </details>
@@ -107,7 +112,7 @@ Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 
 </details>
 
-### Obtain Media device information
+### Obtain the Media Device Information
 
 <details>
 
@@ -117,7 +122,7 @@ Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 ls /dev/media*
 ```
 
-Lists all media enumerations:
+List all media enumerations:
 
 ```cpp
 media-ctl -d /dev/mediaX -p
@@ -125,7 +130,7 @@ media-ctl -d /dev/mediaX -p
 
 Where the X in media is the enumerated value. This command prints the device topology and helps you identify the media device.
 
-Example for capture path of `ar1335 sensor`.
+Example for capture path of `ar1335 sensor`:
 
 ```cpp
 media-ctl -d /dev/media1 -p
@@ -193,7 +198,7 @@ Device topology
 <details>
  <summary>Click here to view details:</summary>
 
-You do not have to worry about errors logged by the Linux kernel while executing the following specified commands, they are benign and can be ignored.
+You do not have to worry about errors logged by the Linux kernel while executing the following specified commands; they are benign and can be ignored:
 
 ```cpp
 xmutil unloadapp
@@ -220,9 +225,8 @@ xmutil loadapp kv260-smartcam
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
 You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2022 Xilinx</p>
+<p align="center">Copyright&copy; 2022-2023 Advanced Micro Devices, Inc</p>

@@ -101,6 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="hw_arch_accel_nlp.html">Hardware Architecture - Accelerator</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp_smartvision_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_smartvision_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -150,10 +151,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This section describes the design implemented in Programmable Logic (PL). The following figure shows the top level hardware architecture of the reference design.</p>
+<p>This section describes the design implemented in the programmable logic (PL). The following figure shows the top-level hardware architecture of the reference design.</p>
 <p><b>Hardware Architecture: Top Level Diagram</b></p>
 <p><img alt="Hardware Architecture: Top Level Diagram" src="../../../_images/hw_arch.png" /></p>
-<p>At a high level, the design comprises of four pipelines</p>
+<p>At a high-level, the design comprises of four pipelines.</p>
 <p>Capture/Input pipeline: This comprises of pipelines through which audio/video data are captured.</p>
 <ul class="simple">
 <li><p>USB Audio capture pipeline (PS)</p></li>
@@ -164,49 +165,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Display Port pipeline (PS)</p></li>
 <li><p>Ethernet pipeline (PS)</p></li>
 </ul>
-<p>Accelerator pipeline : This comprises of overlay accelerator functions integrated into the platform using Vitis.</p>
+<p>Accelerator pipeline: This comprises of overlay accelerator functions integrated into the platform using AMD Vitis™.</p>
 <ul class="simple">
-<li><p>The Deep Learning Processing Unit (DPU) IP runs different Neural Network models (PL)</p></li>
+<li><p>The Deep Learning Processing Unit (DPU) IP runs different Neural Network models (PL).</p></li>
 </ul>
-<p><strong>Note:</strong>  The PS interconnects in the figure are conceptual.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The PS interconnects in the figure are conceptual.</p>
+</div></blockquote>
 </div>
 <div class="section" id="capture">
 <h2>Capture<a class="headerlink" href="#capture" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="mipi-capture-pipeline">
 <h3>MIPI Capture Pipeline<a class="headerlink" href="#mipi-capture-pipeline" title="Permalink to this heading">¶</a></h3>
-<p>A capture pipeline receives video frames from an external source and writes it into memory. This platform has 2 MIPI pipelines which captures video from AR1335 and IMX219 modules.</p>
-<p><b>AR1335 pipeline</b></p>
+<p>A capture pipeline receives video frames from an external source, and writes it into memory. This platform has two MIPI pipelines which captures video from the AR1335 and IMX219 modules.</p>
+<p><b>AR1335 Pipeline</b></p>
 <p><img alt="Capture Pipeline" src="../../../_images/hw_cap_pp.png" /></p>
-<p>This pipeline consists of five components, of which three are controlled by the APU via an AXI-Lite based register interface; one is controlled by the APU via an I2C register interface, and one is
-configured statically.</p>
+<p>This pipeline consists of five components, of which three are controlled by the application processing unit (APU) via an AXI4-Lite based register interface; one is controlled by the APU via an inter IC (I2C) register interface, and one is configured statically.</p>
 <ul class="simple">
-<li><p>The On Semi AR1335 is a CMOS active pixel image sensor with a pixel array of 4208H x 3120V.   It sends sensor data to the ISP through a 4-lane MIPI interface.  It is controlled and programmed by the ISP via a two-wire serial interface. The sensor is connected to the IAS 0 module connector on the ML carrier card. For more information refer to the datasheet from <a class="reference external" href="https://www.onsemi.com/products/sensors/image-sensors-processors/image-sensors/ar1335">https://www.onsemi.com/products/sensors/image-sensors-processors/image-sensors/ar1335</a></p></li>
-<li><p>The On Semi AP1302 ISP is a Image signal processor digital image sensor supporting image resolutions up to 4224x 3156V. AP1302 interfaces to CMOS imaging sensors and performs all the necessary operations required to capture video streams. It performs functions like Auto White Balancing (AWB),  Auto Exposure (AE), Auto Focus (AF) etc.  The ISP is controlled via an I2C interface using an AXI I2C controller in the PL. It is mounted on a ML carrier card and has a MIPI output interface that is connected to the MIPI CSI-2 RX subsystem inside the PL. A GPIO is used to reset the IP. For more information refer to the datasheet from <a class="reference external" href="https://www.onsemi.com/products/sensors/image-sensors-processors/image-processors/ap1302">https://www.onsemi.com/products/sensors/image-sensors-processors/image-processors/ap1302</a></p></li>
-<li><p>The MIPI CSI-2 receiver subsystem (CSI Rx) includes a MIPI D-PHY core that connects four data lanes and one clock lane to the ISP.  It implements a CSI-2 receive interface according to the MIPI CSI-2 standard v2.0 with underlying MIPI D-PHY standard v1.2. The subsystem captures images from the ISP in YUV 4:2:2 format and outputs AXI4-Stream video data.  At one pixels per clock (ppc) and 10 bits per pixel, the AXIS width is 24 bits. For more information see the MIPI CSI-2 Receiver Subsystem Product Guide (PG232).</p></li>
-<li><p>The AXI subset converter, see AXI4-Stream Infrastructure IP Suite LogiCORE IP Product Guide (PG085), is a statically-configured IP core that converts the 16 bit AXI4-Stream input data to 24 bit AXI4-Stream output data by adding zeros to the MSB of each data word. At pne ppc,  the AXIS width is 24 bits.</p></li>
+<li><p>The On Semi AR1335 is a CMOS active pixel image sensor with a pixel array of 4208H x 3120V.   It sends sensor data to the ISP through a four-lane MIPI interface. It is controlled and programmed by the ISP via a two-wire serial interface. The sensor is connected to the IAS 0 module connector on the ML carrier card. For more information, refer to the datasheet from <a class="reference external" href="https://www.onsemi.com/products/sensors/image-sensors-processors/image-sensors/ar1335">https://www.onsemi.com/products/sensors/image-sensors-processors/image-sensors/ar1335</a>.</p></li>
+<li><p>The On Semi AP1302 ISP is an image signal processor digital image sensor supporting image resolutions up to 4224x 3156V. AP1302 interfaces to CMOS imaging sensors and performs all the necessary operations required to capture video streams. It performs functions like Auto White Balancing (AWB), Auto Exposure (AE), Auto Focus (AF), etc. The ISP is controlled via an I2C interface using an AXI I2C controller in the PL. It is mounted on a ML carrier card and has a MIPI output interface that is connected to the MIPI CSI-2 RX subsystem inside the PL. A general purpose I/O (GPIO) is used to reset the IP. For more information, refer to the datasheet from <a class="reference external" href="https://www.onsemi.com/products/sensors/image-sensors-processors/image-processors/ap1302">https://www.onsemi.com/products/sensors/image-sensors-processors/image-processors/ap1302</a>.</p></li>
+<li><p>The MIPI CSI-2 receiver subsystem (CSI RX) includes a MIPI D-PHY core that connects four data lanes and one clock lane to the ISP. It implements a CSI-2 receive interface according to the MIPI CSI-2 standard v2.0 with underlying MIPI D-PHY standard v1.2. The subsystem captures images from the ISP in YUV 4:2:2 format and outputs AXI4-Stream video data. At one pixels per clock (ppc) and 10 bits per pixel, the AXI4-Stream width is 24-bits. For more information, see the <em>MIPI CSI-2 Receiver Subsystem Product Guide</em> (PG232).</p></li>
+<li><p>The AXI subset converter, see the <em>AXI4-Stream Infrastructure IP Suite LogiCORE IP Product Guide</em> (PG085), is a statically-configured IP core that converts the 16-bit AXI4-Stream input data to 24-bit AXI4-Stream output data by adding zeros to the MSB of each data word. At pne ppc, the AXI4-Stream width is 24-bits.</p></li>
 <li><p>The video processing subsystem is configured in scalar mode. It takes YUV 4:2:2 AXI4-Stream input data and converts it to RGB format.</p></li>
-<li><p>The video frame buffer takes RGB input data and converts it to AXI4-MM format which is written to memory in RGB format. The AXI-MM interface is connected to the S_AXI port of the PS.</p></li>
+<li><p>The video frame buffer takes RGB input data and converts it to AXI4-MM format which is written to memory in RGB format. The AXI-MM interface is connected to the <code class="docutils literal notranslate"><span class="pre">S_AXI</span></code> port of the PS.</p></li>
 </ul>
-<p>For each video frame transfer, an interrupt is generated. A GPIO is used to reset the IP between resolution changes.  For more information see Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide (PG278)</p>
-<p>All the IPs in this pipeline are configured to transport 1ppc &#64; 100 MHz, enabling up to 1920x1080 resolution at 30 frames per second (fps).</p>
+<p>For each video frame transfer, an interrupt is generated. A GPIO is used to reset the IP between resolution changes.  For more information, see Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide (PG278).</p>
+<p>All the IPs in this pipeline are configured to transport 1ppc at 100 MHz, enabling up to 1920x1080 resolution at 30 frames per second (fps).</p>
 <p><b>IMX219 pipeline</b></p>
 <p><img alt="Capture Pipeline" src="../../../_images/hw_cap_rpi.png" /></p>
-<p>This pipeline consists of five components, of which four are controlled by the APU via an AXI-Lite based register interface; one is controlled by the APU via an I2C register interface, and one is
-configured statically.</p>
+<p>This pipeline consists of five components, of which four are controlled by the APU via an AXI-Lite based register interface; one is controlled by the APU via an I2C register interface, and one is configured statically.</p>
 <ul class="simple">
-<li><p>The Raspberry Pi Camera Module 2 replaced the original Camera Module in April 2016. The v2 Camera Module has a Sony IMX219 8-megapixel sensor (compared to the 5-megapixel OmniVision OV5647 sensor of the original camera). The sensor is connected to the Raspberry pi module connector on the ML carrier card. For more information refer to the <a class="reference external" href="https://www.raspberrypi.com/products/camera-module-v2/">datasheet</a></p></li>
+<li><p>The Raspberry Pi Camera Module 2 replaced the original Camera Module in April 2016. The v2 Camera Module has a Sony IMX219 8-megapixel sensor (compared to the 5-megapixel OmniVision OV5647 sensor of the original camera). The sensor is connected to the Raspberry pi module connector on the ML carrier card. For more information refer to the <a class="reference external" href="https://www.raspberrypi.com/products/camera-module-v2/">datasheet</a>.</p></li>
 <li><p>The MIPI CSI-2 receiver subsystem (CSI Rx) includes a MIPI D-PHY core that connects four data lanes and one clock lane to the ISP.  It implements a CSI-2 receive interface according to the MIPI CSI-2 standard v2.0 with underlying MIPI D-PHY standard v1.2. The subsystem captures images from the RPI in RAW10 format and outputs AXI4-Stream video data.  At one pixels per clock (ppc) and 10 bits per pixel, the AXIS width is 16 bits. For more information see the MIPI CSI-2 Receiver Subsystem Product Guide (PG232).</p></li>
 <li><p>The Xilinx ISP is a Image Sensor Processing (ISP) of image processing functions processing the raw image from the sensor. It performs functions like Auto White Balancing (AWB),  Demosaicing, Gain Control and Bad pixel correction. A GPIO is used to reset the IP. For more information refer to the <a class="reference external" href="https://xilinx.github.io/Vitis_Libraries/vision/2021.2/overview.html#isp">ISP in Vitis Libraries</a></p></li>
 <li><p>The video processing subsystem is configured in scalar mode. It takes RGB AXI4-Stream input data and converts it to YUV/RGB formats with various resolutions.</p></li>
 <li><p>The video frame buffer takes RGB input data and converts it to AXI4-MM format which is written to memory in RGB format. The AXI-MM interface is connected to the S_AXI port of the PS.</p></li>
 </ul>
-<p>For each video frame transfer, an interrupt is generated. A GPIO is used to reset the IP between resolution changes.  For more information see Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide (PG278)</p>
-<p>All the IPs in this pipeline are configured to transport 1ppc &#64; 200 MHz, enabling up to 1920x1080 resolution at 30 frames per second (fps).</p>
+<p>For each video frame transfer, an interrupt is generated. A GPIO is used to reset the IP between resolution changes.  For more information, see the Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide (PG278).</p>
+<p>All the IPs in this pipeline are configured to transport 1 ppc at 200 MHz, enabling up to 1920x1080 resolution at 30 frames per second (fps).</p>
 </div>
 </div>
 <div class="section" id="display">
 <h2>Display<a class="headerlink" href="#display" title="Permalink to this heading">¶</a></h2>
-<p>The Video output pipelines and Video Processing pipelines are not covered in this section as they are not PL components. For more information refer to DisplayPort Controller and GEM Ethernet chapters in the Zynq UltraScale+ Device Technical Reference Manual (UG1085). For more information on Video Processing pipelines refer to Video Codec Unit LogiCORE IP Product Guide (PG252).</p>
+<p>The Video output pipelines and Video Processing pipelines are not covered in this section as they are not PL components. For more information, refer to DisplayPort Controller and GEM Ethernet chapters in the <em>Zynq UltraScale+ Device Technical Reference Manual</em> (UG1085). For more information on Video Processing pipelines, refer to the <em>Video Codec Unit LogiCORE IP Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=pg252-vcu&amp;ft:locale=en-US">PG252</a>).</p>
 </div>
 <div class="section" id="clocks-resets-and-interrupts">
 <h2>Clocks, Resets and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Permalink to this heading">¶</a></h2>
@@ -239,13 +240,13 @@ configured statically.</p>
 <td align="left">clk_100M*</td>
 <td align="center">Clocking wizard</td>
 <td align="center">100 MHz</td>
-<td align="left">AXI-Lite clock to configure the different audio and video IPs in the design.</td>
+<td align="left">AXI4-Lite clock to configure the different audio and video IPs in the design.</td>
 </tr>
 <tr>
 <td align="left">clk_200M</td>
 <td align="center">Clocking wizard</td>
 <td align="center">200 MHz</td>
-<td align="left">AXI MM clock and AXI Stream clock used in the capture pipeline, display pipeline, and processing pipeline</td>
+<td align="left">AXI MM clock and AXI4-Stream clock used in the capture pipeline, display pipeline, and processing pipeline</td>
 </tr>
 <tr>
 <td align="left">clk_300M*</td>
@@ -261,7 +262,7 @@ configured statically.</p>
 </tr>
 </tbody>
 </table><ul class="simple">
-<li><p>Clocks exposed as a Platform interface and can be used by an accelerator</p></li>
+<li><p>Clocks exposed as a Platform interface and can be used by an accelerator.</p></li>
 </ul>
 </div>
 <div class="section" id="resets">
@@ -347,7 +348,7 @@ configured statically.</p>
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="hw_arch_accel_nlp.html"><span class="doc">Hardware Architecture of the Accelerator</span></a></p></li>
-<li><p>Go back to the <a class="reference internal" href="../nlp_smartvision_landing.html"><span class="doc">KV260 SOM NLP SmartVision design start page</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../nlp_smartvision_landing.html"><span class="doc">KV260 SOM NLP SmartVision Design Start Page</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="references">
@@ -356,9 +357,9 @@ configured statically.</p>
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p></div>
 </div>
 </div>
 
@@ -376,7 +377,7 @@ configured statically.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 21, 2023.
+      <span class="lastupdated">Last updated on August 17, 2023.
       </span></p>
   </div>
 

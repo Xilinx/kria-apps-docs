@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#capture">Capture</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#display">Display</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#audio-transmit-and-receive">Audio Transmit and Receive</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#clocks-resets-and-interrupts">Clocks, Resets and Interrupts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clocks-resets-and-interrupts">Clocks, Resets, and Interrupts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#resource-utilization">Resource Utilization</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
@@ -99,6 +99,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="hw_arch_accel.html">Hardware Architecture - Accelerator</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -151,9 +152,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This section describes the design implemented in Programmable Logic (PL). The following figure shows the top level hardware architecture of the reference design.</p>
+<p>This section describes the design implemented in the programmable Logic (PL). The following figure shows the top-level hardware architecture of the reference design.</p>
 <p><img alt="Hardware Architecture block diagram" src="../../../_images/hw_arch1.png" /></p>
-<p>At a high level, the design comprises of four pipelines</p>
+<p>At a high-level, the design is comprised of four pipelines.</p>
 <p>Capture/Input pipeline: This comprises of pipelines through which audio/video data are captured.</p>
 <ul class="simple">
 <li><p>USB capture pipeline (PS)</p></li>
@@ -166,13 +167,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Ethernet pipeline (PS)</p></li>
 <li><p>I2S Audio transmit pipeline (PL)</p></li>
 </ul>
-<p>Video processing pipeline: This comprises of VCU encoder and decoder for compressing/decompressing video data.</p>
-<p>Accelerator pipeline : This comprises of overlay accelerator functions integrated into the platform using Vitis.</p>
+<p>Video processing pipeline: This comprises of a video codec unit (VCU) encoder and decoder for compressing/decompressing video data.</p>
+<p>Accelerator pipeline: This comprises of overlay accelerator functions integrated into the platform using AMD Vitis™.</p>
 <ul class="simple">
-<li><p>The Deep Learning Processing Unit (DPU) IP runs different Neural Network models (PL)</p></li>
-<li><p>The Pre-Processing block modifies the input data as required by the Network (PL)</p></li>
+<li><p>The Deep Learning Processing Unit (DPU) IP runs different neural network models (PL).</p></li>
+<li><p>The Pre-Processing block modifies the input data as required by the network (PL).</p></li>
 </ul>
-<p><strong>Note:</strong>  The PS interconnects in the figure are conceptual.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The PS interconnects in the figure are conceptual.</p>
+</div></blockquote>
 </div>
 <div class="section" id="capture">
 <h2>Capture<a class="headerlink" href="#capture" title="Permalink to this heading">¶</a></h2>
@@ -180,39 +183,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3>Single Sensor MIPI Capture<a class="headerlink" href="#single-sensor-mipi-capture" title="Permalink to this heading">¶</a></h3>
 <p>A capture pipeline receives video frames from an external source and writes it into memory. The single sensor MIPI CSI-2 receiver capture pipeline is shown in the following figure.</p>
 <p><img alt="Capture Pipeline" src="../../../_images/hw_cap_pp1.png" /></p>
-<p>This pipeline consists of four components, of which two are controlled by the APU via an AXI-Lite based register interface; one is controlled by the APU via an I2C register interface, and one is
-configured statically.</p>
-<ul class="simple">
-<li><p>The On Semi AR1335 is a CMOS active pixel image sensor with a pixel array of 4208H x 3120V.   It sends sensor data to the ISP through a 4-lane MIPI interface.  It is controlled and programmed by the ISP via a two-wire serial interface. The sensor is connected to the IAS 0 module connector on the ML carrier card. For more information refer to the datasheet from <a class="reference external" href="https://www.onsemi.com/products/sensors/image-sensors-processors/image-sensors/ar1335">https://www.onsemi.com/products/sensors/image-sensors-processors/image-sensors/ar1335</a></p></li>
-<li><p>The On Semi AP1302 ISP is a Image signal processor digital image sensor supporting image resolutions up to 4224x 3156V. AP1302 interfaces to CMOS imaging sensors and performs all the necessary operations required to capture video streams. It performs functions like Auto White Balancing (AWB),  Auto Exposure (AE), Auto Focus (AF) etc.  The ISP is controlled via an I2C interface using an AXI I2C controller in the PL. It is mounted on a ML carrier card and has a MIPI output interface that is connected to the MIPI CSI-2 RX subsystem inside the PL. A GPIO is used to reset the IP. For more information refer to the datasheet from <a class="reference external" href="https://www.onsemi.com/products/sensors/image-sensors-processors/image-processors/ap1302">https://www.onsemi.com/products/sensors/image-sensors-processors/image-processors/ap1302</a></p></li>
-<li><p>The MIPI CSI-2 receiver subsystem (CSI Rx) includes a MIPI D-PHY core that connects four data lanes and one clock lane to the ISP.  It implements a CSI-2 receive interface according to the MIPI CSI-2 standard v2.0 with underlying MIPI D-PHY standard v1.2. The subsystem captures images from the ISP in YUV 4:2:0 format and outputs AXI4-Stream video data.  At two pixels per clock (ppc) and 8 bits per pixel, the AXIS width is 32 bits. For more information see the MIPI CSI-2 Receiver Subsystem Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/mipi_csi2_rx_subsystem/v5_0/pg232-mipi-csi2-rx.pdf">PG232</a>.</p></li>
-<li><p>The AXI subset converter, see AXI4-Stream Infrastructure IP Suite LogiCORE IP Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/axis_infrastructure_ip_suite/v1_1/pg085-axi4stream-infrastructure.pdf">PG085</a>, is a statically-configured IP core that converts the 32 bit AXI4-Stream input data to 48 bit AXI4-Stream output data by adding zeros to the MSB of each data word. At two ppc,  the AXIS width is 48 bits.  The format on the AXI4-Stream is shown below for the even and odd lines.</p></li>
-</ul>
+<p>This pipeline consists of four components, of which two are controlled by the application processing unit (APU) via an AXI-Lite based register interface; one is controlled by the APU via an I2C register interface, and one is configured statically.</p>
+<ul>
+<li><p>The On Semi AR1335 is a complementary metal–oxide semiconductor (CMOS) active pixel image sensor with a pixel array of 4208H x 3120V. It sends sensor data to the ISP through a four-lane MIPI interface. It is controlled and programmed by the ISP via a two-wire serial interface. The sensor is connected to the IAS 0 module connector on the ML carrier card. For more information, refer to the datasheet from <a class="reference external" href="https://www.onsemi.com/products/sensors/image-sensors-processors/image-sensors/ar1335">https://www.onsemi.com/products/sensors/image-sensors-processors/image-sensors/ar1335</a>.</p></li>
+<li><p>The On Semi AP1302 ISP is an image signal processor digital image sensor supporting image resolutions up to 4224x 3156V. AP1302 interfaces to CMOS imaging sensors and performs all the necessary operations required to capture video streams. It performs functions like auto white balancing (AWB), auto exposure (AE), and auto focus (AF) etc.  The ISP is controlled via an I2C interface using an AXI I2C controller in the PL. It is mounted on a ML carrier card and has a MIPI output interface that is connected to the MIPI CSI-2 RX subsystem inside the PL. A general purpose I/O (GPIO) is used to reset the IP. For more information, refer to the datasheet from <a class="reference external" href="https://www.onsemi.com/products/sensors/image-sensors-processors/image-processors/ap1302">https://www.onsemi.com/products/sensors/image-sensors-processors/image-processors/ap1302</a>.</p></li>
+<li><p>The MIPI CSI-2 receiver subsystem (CSI Rx) includes a MIPI D-PHY core that connects four data lanes and one clock lane to the ISP. It implements a CSI-2 receive interface according to the MIPI CSI-2 standard v2.0 with underlying MIPI D-PHY standard v1.2. The subsystem captures images from the ISP in YUV 4:2:0 format and outputs AXI4-Stream video data.  At two pixels per clock (PPCS) and eight bits per pixel, the AXI4-Stream width is 32-bits. For more information, see the <em>MIPI CSI-2 Receiver Subsystem Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/framemaker/map?url=pg232-mipi-csi2-rx&amp;ft:locale=en-US">PG232</a>).</p></li>
+<li><p>The AXI subset converter, see the <em>AXI4-Stream Infrastructure IP Suite LogiCORE IP Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/framemaker/map?url=pg085-axi4stream-infrastructure&amp;ft:locale=en-US">PG085</a>), is a statically-configured IP core that converts the 32-bit AXI4-Stream input data to a 48-bit AXI4-Stream output data by adding zeros to themost significant bit (MSB) of each data word. At two PPC, the AXI4-Stream width is 48-bits. The format on the AXI4-Stream is shown for the even and odd lines:</p>
 <p><img alt="Format on AXI4-Stream Interface" src="../../../_images/fmt_axis1.png" /></p>
-<ul class="simple">
-<li><p>The video frame buffer takes YUV 4:2:0 AXI4-Stream input data and converts it to AXI4-MM format which is written to memory in semi-planar YUV 4:2:0 format. The Y and UV are stored in separate planes as shown below. The AXI-MM interface is connected to the S_AXI port of the PS.</p></li>
-</ul>
+</li>
+<li><p>The video frame buffer takes YUV 4:2:0 AXI4-Stream input data and converts it to AXI4-MM format which is written to memory in semi-planar YUV 4:2:0 format. The Y and UV are stored in separate planes as shown below. The AXI-MM interface is connected to the <code class="docutils literal notranslate"><span class="pre">S_AXI</span></code> port of the PS.</p>
 <p><img alt="Format on AXI4-Stream Interface" src="../../../_images/fmt_aximm1.png" /></p>
-<p>For each video frame transfer, an interrupt is generated. A GPIO is used to reset the IP between resolution changes.  For more information see Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/v_frmbuf/v1_0/pg278-v-frmbuf.pdf">PG278</a></p>
-<p>All the IPs in this pipeline are configured to transport 2ppc &#64; 300 MHz, enabling up to 3840x2160 resolution at 60 frames per second (fps). But the MIPI line rate of 896 Mbps doesn’t support 60 fps. Maximum throughput requirement is 3840x2160 resolution at 30 fps so the set MIPI line rate should be adequate.</p>
-<p>Note: MIPI video clock requirement for NV12 (YUV420) at line rate 896 Mbps is 221 MHz &#64; 2ppc, so we could run all the IPs at 221 MHz &#64; 2ppc.  For more information see the MIPI CSI-2 Receiver Subsystem Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/mipi_csi2_rx_subsystem/v5_0/pg232-mipi-csi2-rx.pdf">PG232</a>.</p>
+</li>
+</ul>
+<p>For each video frame transfer, an interrupt is generated. A GPIO is used to reset the IP between resolution changes. For more information, see <em>Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/framemaker/map?url=pg278-v-frmbuf&amp;ft:locale=en-US">PG278</a>).</p>
+<p>All the IPs in this pipeline are configured to transport 2 PPC at 300 MHz, enabling up to 3840x2160 resolution at 60 frames per second (FPS). But the MIPI line rate of 896 Mbps does not support 60 fps. The maximum throughput requirement is 3840x2160 resolution at 30 FPS, so the set MIPI line rate should be adequate.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The MIPI video clock requirement for NV12 (YUV420) at the line rate 896 Mbps is 221 MHz at 2ppc, so you could run all the IPs at 221 MHz at 2ppc. For more information, see the <em>MIPI CSI-2 Receiver Subsystem Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/framemaker/map?url=pg232-mipi-csi2-rx&amp;ft:locale=en-US">PG232</a>).</p>
+</div></blockquote>
 </div>
 </div>
 <div class="section" id="display">
 <h2>Display<a class="headerlink" href="#display" title="Permalink to this heading">¶</a></h2>
-<p>The Video output pipelines and Video Processing pipelines are not covered in this section as they are not PL components. For more information refer to DisplayPort Controller and GEM Ethernet chapters in the Zynq UltraScale+ Device Technical Reference Manual <a class="reference external" href="https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf">UG1085</a>. For more information on Video Processing pipelines refer to Video Codec Unit LogiCORE IP Product Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/pg252-vcu.pdf">PG252</a>.</p>
+<p>The video output pipelines and video processing pipelines are not covered in this section as they are not PL components. For more information, refer to DisplayPort Controller and GEM Ethernet chapters in the <em>Zynq UltraScale+ Device Technical Reference Manual</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/framemaker/map?isLatest=true&amp;ft:locale=en-US&amp;url=ug1085-zynq-ultrascale-trm">UG1085</a>). For more information on Video Processing pipelines, refer to <em>Video Codec Unit LogiCORE IP Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=pg252-vcu&amp;ft:locale=en-US">PG252</a>.)</p>
 </div>
 <div class="section" id="audio-transmit-and-receive">
 <h2>Audio Transmit and Receive<a class="headerlink" href="#audio-transmit-and-receive" title="Permalink to this heading">¶</a></h2>
-<p>This platform also supports capture and replay of audio. The I2S audio RX-to-TX pipeline is shown in the following figure. This pipeline consists of three components, all of which are controlled by the APU through an AXI4-Lite base register interface.</p>
+<p>This platform also supports the capture and replay of audio. The I2S audio RX-to-TX pipeline is shown in the following figure. This pipeline consists of three components, all of which are controlled by the APU through an AXI4-Lite base register interface.</p>
 <p><img alt="Audio pipeline" src="../../../_images/aud_pp.png" /></p>
 <ul class="simple">
-<li><p>The I2S Receiver/Transmitter IP can be connected to audio devices for receiving and transmitting PCM audio. The I2S IPs typically interface with the external ADC/DAC which facilitates the playback of audio. The IPs are configured to have two audio channels. The IPs supports any sampling rate and can be configure registers via the AXI Lite Salve interface. For more information refer to LogiCORE IP Product Guide for I2S Transmitter and I2S Receiver <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/i2s/v1_0/pg308-i2s.pdf">PG308</a>. In this reference design no acceleration function is run on the Audio data and it is in pass through mode.</p></li>
-<li><p>The audio formatter provides high-bandwidth direct memory access between memory and AXI4-Stream target peripherals. Initialization, status, and management registers are accessed  through an AXI4-Lite slave interface. It is configured with both read and write interface enabled for a maximum of two audio channels and  interleaved memory packing mode with memory data format configured as AES to PCM. The IP receives audio input from the I2S RX IP and writes the data to memory. It reads audio data from memory and sends  it out to the I2S TX IP, which forwards it to the output device. See the Audio Formatter Product Guide (PG330) for more information.</p></li>
+<li><p>The I2S Receiver/Transmitter IP can be connected to audio devices for receiving and transmitting PCM audio. The I2S IPs typically interface with the external analog-to-digital converter (ADC)/ digital-to-analog converter (DAC) which facilitates the playback of audio. The IPs are configured to have two audio channels. The IPs supports any sampling rate and can be configure registers via the AXI4-Lite Slave interface. For more information, refer to the <em>LogiCORE IP Product Guide for I2S Transmitter and I2S Receiver</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=pg308-i2s&amp;ft:locale=en-US">PG308</a>). In this reference design, no acceleration function is run on the Aaudio data and it is in pass through mode.</p></li>
+<li><p>The audio formatter provides high-bandwidth direct memory access between the memory and AXI4-Stream target peripherals. The initialization, status, and management registers are accessed through an AXI4-Lite slave interface. It is configured with both read and write interfaces enabled for a maximum of two audio channels and an interleaved memory packing mode with memory data format configured asadvanced encryption standard (AES) to PCM. The IP receives audio input from the I2S RX IP and writes the data to memory. It reads the audio data from the memory and sends it out to the I2S TX IP, which forwards it to the output device. See the Audio Formatter Product Guide (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=pg330-audio-formatter&amp;ft:locale=en-US">PG330</a>) for more information.</p></li>
 </ul>
 </div>
 <div class="section" id="clocks-resets-and-interrupts">
-<h2>Clocks, Resets and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Permalink to this heading">¶</a></h2>
+<h2>Clocks, Resets, and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="clocks">
 <h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this heading">¶</a></h3>
 <p>The following table identifies the main clocks of the PL design, their source, their clock frequency, and their function.</p>
@@ -222,7 +226,7 @@ configured statically.</p>
 <th align="left">Clock</th>
 <th align="center">Clock Source</th>
 <th align="center">Clock Frequency</th>
-<th align="left">Funtion</th>
+<th align="left">Function</th>
 </tr>
 </thead>
 <tbody>
@@ -242,13 +246,13 @@ configured statically.</p>
 <td align="left">clk_100M*</td>
 <td align="center">Clocking wizard</td>
 <td align="center">100 MHz</td>
-<td align="left">AXI-Lite clock to configure the different audio and video IPs in the design. It is also used as a AXI Stream clock for the stream connection between the I2S receiver IP and the Audio formatter IP</td>
+<td align="left">AXI4-Lite clock to configure the different audio and video IPs in the design. It is also used as a AXI4-Stream clock for the stream connection between the I2S receiver IP and the Audio formatter IP</td>
 </tr>
 <tr>
 <td align="left">clk_300M*</td>
 <td align="center">Clocking wizard</td>
 <td align="center">300 MHz</td>
-<td align="left">AXI MM clock and AXI Stream clock used in the capture pipeline, display pipeline, and processing pipeline</td>
+<td align="left">AXI4 MM clock and AXI4-Stream clock used in the capture pipeline, display pipeline, and processing pipeline</td>
 </tr>
 <tr>
 <td align="left">clk_50M</td>
@@ -272,7 +276,7 @@ configured statically.</p>
 <td align="left">clk_out1</td>
 <td align="center">Clocking wizard</td>
 <td align="center">18.43 MHz</td>
-<td align="left">AXI MM clock and AXI Stream clock used in the audio pipeline. Also drives the mclk_out_rx on the 12-PIN PMOD interface via an ODDR</td>
+<td align="left">AXI MM clock and AXI4-Stream clock used in the audio pipeline. Also drives the mclk_out_rx on the 12-PIN PMOD interface via an ODDR</td>
 </tr>
 <tr>
 <td align="left">clk_out2</td>
@@ -293,7 +297,7 @@ configured statically.</p>
 <td align="left">Drives clocks on the 12-PIN PMOD interface</td>
 </tr>
 </tbody>
-</table><p>*Clocks exposed as a Platform interface and can be used by an accelerator</p>
+</table><p>*Clocks exposed as a platform interface and can be used by an accelerator.</p>
 </div>
 <div class="section" id="resets">
 <h3>Resets<a class="headerlink" href="#resets" title="Permalink to this heading">¶</a></h3>
@@ -354,7 +358,7 @@ configured statically.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Inerrupt ID</th>
+<th align="left">Interrupt ID</th>
 <th align="left">Instance</th>
 </tr>
 </thead>
@@ -393,14 +397,14 @@ configured statically.</p>
 </tr>
 <tr>
 <td align="left">pl_ps_irq0</td>
-<td align="left">Exposed as a Platform interface and can be used by an accelerator</td>
+<td align="left">Exposed as a platform interface and can be used by an accelerator</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="section" id="resource-utilization">
 <h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this heading">¶</a></h2>
-<p>The resource utilization numbers on this platform post implementation is reported in the table below.</p>
+<p>The resource utilization numbers on this platform post implementation is reported in the following table.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -477,15 +481,15 @@ configured statically.</p>
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="hw_arch_accel.html"><span class="doc">Hardware Architecture of the Accelerator</span></a></p></li>
-<li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 SOM Smart camera design start page</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 SOM Smart Camera Design Start Page</span></a></p></li>
 </ul>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2022 Xilinx</p></div>
+<p align="center">Copyright&copy; 2022-2023 Advanced Micro Devices, Inc</p></div>
 </div>
 </div>
 
@@ -503,7 +507,7 @@ configured statically.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 21, 2023.
+      <span class="lastupdated">Last updated on August 17, 2023.
       </span></p>
   </div>
 

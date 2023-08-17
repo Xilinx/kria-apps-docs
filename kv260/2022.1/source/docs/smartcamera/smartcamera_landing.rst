@@ -5,7 +5,7 @@ Smart Camera
 
 
 
-The Smart camera implements face detection with network and display functionality. It comes with built-in machine learning for applications such as pedestrian detection, face detection, and people counting with local display and RTSP streaming.
+The Smart camera implements face detection with network and display functionality. It comes with built-in machine learning for applications such as pedstrian detection, face detection, and people counting with local display and RTSP streaming.
 
 .. image:: ../media/sc_image_landing.jpg
    :width: 800
@@ -30,7 +30,7 @@ Features
 ================================
 
 
-- 4K@30fps images from a sensor
+- 4K at 30 fps images from a sensor
 - H.264/H.265 encode/decode
 - HDMI or DisplayPort or RTSP out
 - User programmable Deep Learning models
@@ -43,7 +43,7 @@ Quick Start
 .. toctree::
   :maxdepth: 1
   
-  Setting up the Board and Application deployment <docs/app_deployment>
+  Setting Up the Board and Application Deployment <docs/app_deployment>
 
 
 ***************************
@@ -53,11 +53,11 @@ Tutorials
 .. toctree::
   :maxdepth: 1
   
-  Customizing AI Models used in the Application <docs/customize_ai_models>
-  Building the Design components <../building_the_design>
-  Building the Hardware design using Vivado <../build_vivado_design>
+  Customizing AI Models Used in the Application <docs/customize_ai_models>
+  Building the Design Components <../building_the_design>
+  Building the Hardware Design Using Vivado <../build_vivado_design>
   Creating a Vitis Platform <../build_vitis_platform>
-  Integrating an overlay into the platform <../build_accel>
+  Integrating an Overlay into the Platform <../build_accel>
   Generating Custom Firmware <../generating_custom_firmware>
   Kria Starter Kit Linux Boot <../kria_starterkit_linux_boot>
   Rebuilding Application Docker Containers <../build_application_docker_container>
@@ -76,6 +76,16 @@ Architecture
   Hardware Architecture - Accelerator <docs/hw_arch_accel>
 
 
+*******************************
+Repository
+*******************************
+
+.. toctree::
+   :maxdepth: 1
+  
+   Software Repository <https://github.com/Xilinx/smartcam>
+
+
 ******
 Other
 ******
@@ -88,7 +98,7 @@ Other
 
 
 
-Xilinx Support
+AMD Support
 ====================================
 
 GitHub issues will be used for tracking requests and bugs. For questions, go to `forums.xilinx.com <http://forums.xilinx.com/>`_.

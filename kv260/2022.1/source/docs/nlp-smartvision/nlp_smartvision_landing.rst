@@ -5,7 +5,7 @@ NLP SmartVision
 
 
 
-The natural language processing (NLP) SmartVision implements keyword spotting (KWS) on processing system (PS) and face detection, objectdetect, platedetect running on programmable logic (PL). It showcases keyword based dynamic switching between multiple tasks and modifying display properties.
+The natural language processing (NLP) SmartVision implements keyword spotting (KWS) on the processing system (PS) and face detection, objectdetect, platedetect running on the programmable logic (PL). It showcases keywords based on dynamic switching between multiple tasks and modifying display properties.
 
 .. image:: ../media/nlp_smartvision/nlp_image_landing.png
    :width: 800
@@ -26,7 +26,7 @@ Overview
 Features
 ===============================
 
-* Live video capture from Raspberry pi camera and USB webcam along with ar1335 
+* Live video capture from Raspberry Pi Camera and USB webcam along with AR1335 
 * Live audio capture from USB Microphone 
 * 1024x768 resolution images 
 * DisplayPort and HDMI out
@@ -40,7 +40,7 @@ Quick Start
 .. toctree::
   :maxdepth: 1
   
-  Setting up the Board and Application deployment <docs/app_deployment_nlp>
+  Setting Up the Board and Application Deployment <docs/app_deployment_nlp>
 
 
 ***************************
@@ -50,9 +50,9 @@ Tutorials
 .. toctree::
   :maxdepth: 1
   
-  Customizing AI Models used in the Application <docs/customize_ai_models_nlp>
-  Building the Design components <../building_the_design>
-  Building the Hardware design using Vivado <../build_vivado_design>
+  Customizing AI Models Used in the Application <docs/customize_ai_models_nlp>
+  Building the Design Components <../building_the_design>
+  Building the Hardware Design Using Vivado <../build_vivado_design>
   Creating a Vitis Platform <../build_vitis_platform>
   Generating Custom Firmware <../generating_custom_firmware>
   Kria Starter Kit Linux Boot <../kria_starterkit_linux_boot>
@@ -70,6 +70,15 @@ Architecture
   Hardware Architecture - Platform <docs/hw_arch_platform_nlp>
   Hardware Architecture - Accelerator <docs/hw_arch_accel_nlp>
 
+*******************************
+Repository
+*******************************
+
+.. toctree::
+   :maxdepth: 1
+  
+   Software Repository <https://github.com/Xilinx/nlp-smartvision>
+
 
 ******
 Other
@@ -84,7 +93,7 @@ Other
 
 
 
-Xilinx Support
+AMD Support
 ====================================
 
 This 22.1 guide and prebuilt is target for Ubuntu. The previous version of this application (21.1) is targeted to Petalinux and is still available at https://xilinx.github.io/kria-apps-docs/2020.2/build/html/index.html

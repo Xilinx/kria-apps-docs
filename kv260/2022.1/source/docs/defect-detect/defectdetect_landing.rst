@@ -74,6 +74,17 @@ Architecture
   Hardware Architecture - Accelerator <docs/hw_arch_accel_dd>
 
 
+*******************************
+Repository
+*******************************
+
+.. toctree::
+   :maxdepth: 1
+  
+   Software Repository <https://github.com/Xilinx/defect-detect>
+
+
+
 ******
 Other
 ******
