@@ -4,28 +4,8 @@ Kria SOM Ubuntu Support
 
 
 
-.. toctree::
-   :maxdepth: 3
-   :caption: SOM
-   :hidden:
+.. include:: ../../shared/somtoctree.txt
 
-   Landing Page <https://xilinx.github.io/kria-apps-docs/>
-   Application Development <https://pages.gitenterprise.xilinx.com/techdocs/SOM/creating_applications.html>
-   Boot Firmware <https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html>
-   Ubuntu Support <https://pages.gitenterprise.xilinx.com/techdocs/SOM/ubuntu_support.html>
-   Dynamic Function eXchange <https://pages.gitenterprise.xilinx.com/techdocs/SOM/dfx.html>
-   OpenAMP <https://pages.gitenterprise.xilinx.com/techdocs/SOM/openamp.html>
-   IPMI EEPROM Area Record <https://pages.gitenterprise.xilinx.com/techdocs/SOM/ipmi_eeprom.html>
-   Yocto Support <https://pages.gitenterprise.xilinx.com/techdocs/SOM/yocto.html>
-   Frequently Asked Questions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/faq.html>
-   Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>
-   Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
-   Kria Robotics Stack <https://xilinx.github.io/KRS/>
-
-
-
-
-.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs/
 
 
 ************************************************************
