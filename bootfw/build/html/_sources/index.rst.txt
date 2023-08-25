@@ -5,7 +5,7 @@ Boot Firmware
 
 .. include:: ../../shared/somtoctree.txt
 
-.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs/
+
 
 .. toctree::
    :maxdepth: 3
@@ -19,6 +19,7 @@ Boot Firmware
    ./docs/bootfw_uboot_handoff
    ./docs/bootfw_qspi_stitching
    ./docs/bootfw_qspi_emmc_boot
+   ./docs/bootfw_qspi_pxetftp_boot
 
 
 
