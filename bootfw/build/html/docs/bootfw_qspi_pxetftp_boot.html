@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Boot Firmware - QSPI to PXE/tftp boot &mdash; Boot SOM Firmware 2022.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Boot Firmware - QSPI to eMMC boot for Production SOM" href="bootfw_qspi_emmc_boot.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Boot SOM Firmware
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Boot Firmware</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bootfw_overview.html">Boot Firmware Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Boot Firmware - Image Selector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Image Recovery Tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">Boot Firmware - PMU Overlay Config Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">Boot Firmware - U-Boot Handoff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Boot Firmware - Stitching QSPI Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">Boot Firmware - QSPI to eMMC boot for Production SOM</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Boot Firmware - QSPI to PXE/tftp boot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-requirements">Setup Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux-host-computer-setup">Linux Host Computer Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#linux-host-computer-setup-for-petalinux">Linux Host Computer Setup for PetaLinux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#host-computer-setup-for-ubuntu">Host Computer Setup for Ubuntu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-tftp-on-the-server">Setting up TFTP on the Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#boot-starter-kit-using-pxe">Boot Starter Kit Using PXE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Boot SOM Firmware</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Boot Firmware - QSPI to PXE/tftp boot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/bootfw_qspi_pxetftp_boot.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="boot-firmware-qspi-to-pxe-tftp-boot">
+<h1>Boot Firmware - QSPI to PXE/tftp boot<a class="headerlink" href="#boot-firmware-qspi-to-pxe-tftp-boot" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>The prioritized boot order for U-Boot is specified in <a class="reference internal" href="bootfw_uboot_handoff.html"><span class="doc">BootFW U-Boot page</span></a>. The last device in the prioritized list is Ethernet using DHCP/PXE. There is <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx/blob/master/doc/README.pxe">existing PXE support in u-boot</a> to support Ethernet booting. This document provides instructions for tftp booting on Starter Kits using Ethernet/DHCP/PXE. Instructions are provided for booting both PetaLinux and Ubuntu via PXE. Their tftp server setup differs, but on-target steps are the same.</p>
+</div>
+<div class="section" id="setup-requirements">
+<h2>Setup Requirements<a class="headerlink" href="#setup-requirements" title="Permalink to this heading">¶</a></h2>
+<p>This document assumes that you have had experience booting Linux on Starter Kit via other boot methods (SD by default), familiar with how to interact with the Starter Kit via serial port, and have updated the bootfw on the Starter Kit. If not, please go through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html">booting Linux on KV260</a> or <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html">booting Linux on KR260</a> before following the steps in this document.</p>
+<p>If booting PetaLinux, this also assumes that you are familiar with PetaLinux and have installed the appropriate version of PetaLinux on the Linux host computer. Refer to <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html">UG1144</a> for more information on PetaLinux and <a class="reference external" href="https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html">download page</a> for installation files. Ubuntu booting do not need PetaLinux tools.</p>
+<p>In this example, we will use a host computer with a tftp server to host files required to boot Linux on Starter Kits. Connect the Starter Kit’s PS Ethernet port to local network. Connect a host computer to the same local network. If booting PetaLinux, this host computer needs to be a Linux host running PetaLinux toolchain. If booting Ubuntu, this host computer can be Windows or Linux. Lastly, connect the Starter Kit’s micro-USB port to a computer (can be the same host computer or a different one) to interact with u-boot through serial port.</p>
+<p><img alt="image" src="../_images/tftp_boot.png" /></p>
+</div>
+<div class="section" id="linux-host-computer-setup">
+<h2>Linux Host Computer Setup<a class="headerlink" href="#linux-host-computer-setup" title="Permalink to this heading">¶</a></h2>
+<p>Depending on if booting PetaLinux or Ubuntu - choose one of the sections below to follow:</p>
+<div class="section" id="linux-host-computer-setup-for-petalinux">
+<h3>Linux Host Computer Setup for PetaLinux<a class="headerlink" href="#linux-host-computer-setup-for-petalinux" title="Permalink to this heading">¶</a></h3>
+<p>On the Linux host computer, download a <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">PetaLinux BSP</a> for the target Stater Kit, create project, and configure it for TFTP:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;board&gt;-&lt;version&gt;-&lt;timestamp&gt;.bsp
+<span class="nb">cd</span> xilinx-&lt;board&gt;-&lt;version&gt;
+petalinux-config
+    <span class="c1"># in petalinux-config window, do:</span>
+        <span class="c1"># Image Packaging Configuration &gt; Root File System Type &gt; change to NFS</span>
+        <span class="c1"># exit out of config and let it configure</span>
+</pre></div>
+</div>
+<p>By default, PetaLinux uses <code class="docutils literal notranslate"><span class="pre">/tftpboot</span></code> folder for nfs/tftp. Create the folder and change permission before building:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkdir /tftpboot
+sudo chmod <span class="m">766</span> /tftpboot
+petalinux-build
+</pre></div>
+</div>
+<p>This will create a <code class="docutils literal notranslate"><span class="pre">/tftpboot/pxelinux.cfg/default</span></code> file with the following content:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>LABEL Linux
+KERNEL Image
+FDT system.dtb
+INITRD ramdisk.cpio.gz.u-boot
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">/tftpboot/pxelinux.cfg/default</span></code> refers to files that can be found in <code class="docutils literal notranslate"><span class="pre">/tftpboot</span></code>.</p>
+<p>Now <a class="reference external" href="#setting-up-tftp-on-the-server">set up a TFTP server</a> on the Linux host computer. Make sure to point to <code class="docutils literal notranslate"><span class="pre">/tftpboot/</span></code> as the TFTP folder and start the server. Note the IP address of the Linux host computer, we will refer to it as <code class="docutils literal notranslate"><span class="pre">&lt;host</span> <span class="pre">ip&gt;</span></code>.</p>
+</div>
+<div class="section" id="host-computer-setup-for-ubuntu">
+<h3>Host Computer Setup for Ubuntu<a class="headerlink" href="#host-computer-setup-for-ubuntu" title="Permalink to this heading">¶</a></h3>
+<p>Since Ubuntu do not require PetaLinux tool chain, either a Linux host or a windows host computer can be used for Ubuntu PXE booting. The released Ubuntu image packages the kernel image, initrd, and many device tree blobs into a flat image.fit. PXE booting does not use boot script to automatically select the device tree required for the board. Therefore, we need to regenerate an image.fit file that selects the right configuration for the target Starter Kit. This is done on target with the following steps.</p>
+<p>Program an <a class="reference external" href="https://ubuntu.com/download/amd-xilinx">Ubuntu image</a> into a SD card and boot. After booting, note the following files on target:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -s
+ls -l /boot/firmware/image.fit
+ls -l /boot/firmware/boot.scr.uimg
+ls -l /boot/initrd.img
+ls -l /usr/share/flash-kernel/its/image-kria.its
+</pre></div>
+</div>
+<p>Open the .its file, which is the recipe to build the flat image.fit file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi /usr/share/flash-kernel/its/image-kria.its
+</pre></div>
+</div>
+<p>There are pointers to kernel, initrd, and device trees. To update the default device tree PXE booting picks, this line needs to be updated <code class="docutils literal notranslate"><span class="pre">default</span> <span class="pre">=</span> <span class="pre">&quot;conf-zynqmp-smk-k26-revA&quot;;</span></code> to the configuration appropriate for the target Starter Kit. To figure out which configuration is appropriate for the target Starter Kit, find the Starter Kit type and revision and look at which configuration that revision uses in <code class="docutils literal notranslate"><span class="pre">/boot/firmware/boot.scr.uimg</span></code>.</p>
+<p>The type and revision of the starter kit is printed out by U-boot upon booting. For an example, this is the print-out for a KR260 board, rev1 Starter Kit SOM and rev1 carrier card:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>        U-Boot 2023.01 (Mar 29 2023 - 13:08:40 +0000)
+
+        CPU:   ZynqMP
+        Silicon: v3
+        Chip:  xck26
+        Detected name: zynqmp-smk-k26-xcl2g-rev1-sck-kr-g-rev1
+        Model: ZynqMP KR260 revB
+        Board: Xilinx ZynqMP
+        DRAM:  2 GiB (effective 4 GiB)
+        PMUFW:  v1.1
+        Xilinx I2C FRU format at nvmem0:
+        Manufacturer Name: XILINX
+        Product Name: SMK-K26-XCL2G
+        Serial No: XFL1WXS12XXF
+        Part Number: 5057-04
+        File ID: 0x0
+        Revision Number: 1
+        Xilinx I2C FRU format at nvmem1:
+        Manufacturer Name: XILINX
+        Product Name: SCK-KR-G
+        Serial No: XFL1ETNCCIJ4
+        Part Number: 5100-01
+        File ID: 0x0
+        Revision Number: 1
+        EL Level:       EL2
+        Secure Boot:    not authenticated, not encrypted
+        Core:  136 devices, 34 uclasses, devicetree: fit
+        NAND:  0 MiB
+        MMC:
+        Loading Environment from nowhere... OK
+        In:    serial
+        Out:   serial
+        Err:   serial
+        Bootmode: QSPI_MODE
+</pre></div>
+</div>
+<p>Note that in <code class="docutils literal notranslate"><span class="pre">/usr/share/flash-kernel/its/image-kria.its</span></code>, rev 1 doesn’t have its own specific configuration. To find the configuration that rev 1 KR260 uses, look at <code class="docutils literal notranslate"><span class="pre">/boot/firmware/boot.scr.uimg</span></code> file on target and observe the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                        elif test &quot;${card1_name}&quot; = &quot;SCK-KR-G&quot;; then
+                                if test &quot;${card1_rev}&quot; = &quot;B&quot; || test &quot;${card1_rev}&quot; = &quot;1&quot;; then
+                                        # revB dtb also supports rev1 dtb
+                                        boot_conf=#conf-smk-k26-revA-sck-kr-g-revB
+</pre></div>
+</div>
+<p>This means  the boot_conf <code class="docutils literal notranslate"><span class="pre">conf-smk-k26-revA-sck-kr-g-revB</span></code> supports rev1 KR260. Therefore, update <code class="docutils literal notranslate"><span class="pre">/usr/share/flash-kernel/its/image-kria.its</span></code></p>
+<p>from:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>        <span class="nv">default</span> <span class="o">=</span> <span class="s2">&quot;conf-zynqmp-smk-k26-revA&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>        <span class="nv">default</span> <span class="o">=</span> <span class="s2">&quot;conf-smk-k26-revA-sck-kr-g-revB&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Save and regenerate the image.fit with the right configuration using flash-kernel command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flash-kernel
+ls -l /boot/firmware/image.fit <span class="c1"># note new timestamp</span>
+reboot <span class="c1">#reboot to force write to SD card and test new kernel </span>
+</pre></div>
+</div>
+<p>Unplug the SD card from target and view the SD card content on the host computer. There is an image.fit file on the SD card’s boot partition. Copy that file into a <code class="docutils literal notranslate"><span class="pre">&lt;ubuntu_tftp&gt;/</span></code> folder on the host computer. In the same folder, create <code class="docutils literal notranslate"><span class="pre">&lt;ubuntu_tftp&gt;/pxelinux.cfg/default</span></code> file and populate the file with this content:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>LABEL Linux_ubuntu
+KERNEL image.fit
+</pre></div>
+</div>
+<p>Now <a class="reference external" href="#setting-up-tftp-on-the-server">set up a TFTP server</a> on the host computer. Make sure to point to <code class="docutils literal notranslate"><span class="pre">&lt;ubuntu_tftp&gt;/</span></code> as the TFTP folder and start the server. Note the IP address of the Linux host computer, we will refer to it as <code class="docutils literal notranslate"><span class="pre">&lt;host</span> <span class="pre">ip&gt;</span></code>.</p>
+</div>
+<div class="section" id="setting-up-tftp-on-the-server">
+<h3>Setting up TFTP on the Server<a class="headerlink" href="#setting-up-tftp-on-the-server" title="Permalink to this heading">¶</a></h3>
+<p>Each host computer may have different steps to setup TFTP servers.</p>
+<p>With a Windows host, this guide have been tested with using <a class="reference external" href="https://www.solarwinds.com/free-tools/free-tftp-server">SolarWinds’ TFTP server</a>. Please note that Windows’ firewall settings may need to be adjusted to allow TFTP servers.</p>
+<p>With a Ubuntu host, this guide was tested using <a class="reference external" href="https://help.ubuntu.com/community/TFTP">tftpd-hpa package</a>.</p>
+<p>You are free to use other TFTP server programs that works.</p>
+</div>
+</div>
+<div class="section" id="boot-starter-kit-using-pxe">
+<h2>Boot Starter Kit Using PXE<a class="headerlink" href="#boot-starter-kit-using-pxe" title="Permalink to this heading">¶</a></h2>
+<p>Make sure that the Starter Kit has the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">latest bootfw for the tool version</a> in QSPI. Power on the Starter Kit, it will boot from the boot images in QSPI. Observe serial port output on the computer with serial port connection. Press “enter” at u-boot to enter u-boot command line. On u-boot command line, set serverip variable to that of tftp server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setenv serverip &lt;host ip&gt;
+</pre></div>
+</div>
+<p>Note that by default, saveenv is not enabled in u-boot. This means that serverip will need to be set up every re-boot.</p>
+<p>The following step is optional. Verify connection to the server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dhcp <span class="c1"># setup Ethernet and ip address on target, this is done automatically during PXE booting</span>
+ping <span class="nv">$serverip</span> <span class="c1"># confirm ethernet connection to host</span>
+</pre></div>
+</div>
+<p>Note that in the <a class="reference external" href="./bootfw_uboot_handoff.md#prioritized-boot-order">boot priority order</a> (<a class="reference external" href="https://gitenterprise.xilinx.com/Linux/u-boot-xlnx/blob/master/include/configs/xilinx_zynqmp.h#L165-L175">code here</a>), PXE is the last priority. This means if there’s boot images in eMMC or SD or USB - they will be used to boot first. If there are no boot images on any of those devices, just a simple <code class="docutils literal notranslate"><span class="pre">boot</span></code> command would lead to PXE to be chosen and it will retrieve <code class="docutils literal notranslate"><span class="pre">pxelinux.cfg/default</span></code> from <code class="docutils literal notranslate"><span class="pre">/tftpboot</span></code> folder on host computer and start booting.</p>
+<p>If there are other images in other devices thats more prioritized by u-boot, then direct U-Boot to choose PXE boot using the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>run bootcmd_pxe
+</pre></div>
+</div>
+<p>If using PetaLinux, the kernel and rootfs should load and boot to log-in prompt to PetaLinux, indicating a successful PXE boot!</p>
+<p>If using Ubuntu, image.fit contains a small initram - the Starter Kit will boot into BusyBox and have limited functionality. If a SD card with full rootfs is plugged into the SD slot - the above steps will boot using kernel image from tftp server and grab the full rootfs image from the SD card instead of BusyBox initrd.</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bootfw_qspi_emmc_boot.html" class="btn btn-neutral float-left" title="Boot Firmware - QSPI to eMMC boot for Production SOM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on August 24, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

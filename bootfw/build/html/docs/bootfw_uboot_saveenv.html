@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Boot Image Recovery Tool &mdash; Boot SOM Firmware 2022.1 documentation</title>
+  <title>Boot Firmware - Enable saveenv in U-boot &mdash; Boot SOM Firmware 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -33,9 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Boot Firmware - PMU Overlay Config Object" href="bootfw_pmu_config_obj.html" />
-    <link rel="prev" title="Boot Firmware - Image Selector" href="bootfw_image_selector.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,15 +76,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Boot Firmware</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_overview.html">Boot Firmware Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Boot Firmware - Image Selector</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Boot Image Recovery Tool</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#boot-image-recovery-tool-compilation-procedure-makefile-flow">Boot Image Recovery Tool Compilation Procedure (Makefile Flow)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Image Recovery Tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">Boot Firmware - PMU Overlay Config Object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">Boot Firmware - U-Boot Handoff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Boot Firmware - Stitching QSPI Image</a></li>
@@ -108,9 +101,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Boot Image Recovery Tool</li>
+      <li>Boot Firmware - Enable saveenv in U-boot</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/docs/bootfw_image_recovery.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/docs/bootfw_uboot_saveenv.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -118,66 +111,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="boot-image-recovery-tool">
-<h1>Boot Image Recovery Tool<a class="headerlink" href="#boot-image-recovery-tool" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>The Kria Starter Kit solution stack includes an Ethernet based recovery tool called Boot Image Recovery Tool that can be used in conjunction with a standard web-browser on a Host PC to provide direct update of the Kria user A/B boot firmware partitions and the corresponding persistent register information. The recovery tool is maintained in a reserved section of the QSPI memory and is intended as a platform recovery mechanism is there is an issue with the normal A/B boot FW update mechanism.</p>
-<p>Boot Image Recovery Tool is an application that runs a simplified Ethernet stack for interacting with a user’s host machine (e.g. laptop) to allow a manual update/overwrite of Image A and Image B on QSPI on SOM.  The recovery tool updates the corresponding A/B persistent registers to an appropriate state based on the user actions in the web UI. A user can also override the QSPI persistent register states via the WebUI.</p>
-<p>The Boot Image Recovery Tool requires no incremental tools on the customer PC besides a web-browser with a fixed IP address of 192.168.0.111. The user PC must have access to the new firmware binary file (BOOT.BIN). Xilinx distributes boot FW and “factory boot file” updates to the Kria Wiki. The Boot Image Recovery Tool writes the a given BOOT.BIN to QSPI physical address based on the image target selection made in the web UI.</p>
-<p>The Boot Image Recovery Tool can read the sideband control EEPROMs to verify the make and model of the Kria target. The Boot Image Recovery Tool is initiated by holding the FWUEN button during power-on/reset or if both Image A and Image B becomes unbootable.</p>
-<p>Because both Boot Image Recovery Tool and Image Update can update Image A/B persistent register, here’s a table explaining their differences.</p>
-<table border="1" class="docutils">
-<thead>
-<tr>
-<th></th>
-<th>Boot Image Recovery Tool</th>
-<th>Image Update Utility</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Updates Image A/B?</td>
-<td>Y</td>
-<td>Y</td>
-</tr>
-<tr>
-<td>Updates Persistent Register?</td>
-<td>Y</td>
-<td>Y</td>
-</tr>
-<tr>
-<td>Reflash QSPI?</td>
-<td>N</td>
-<td>N</td>
-</tr>
-<tr>
-<td>Launched by FWUpdate Button</td>
-<td>Y</td>
-<td>N</td>
-</tr>
-<tr>
-<td>SW stack</td>
-<td>A baremetal application</td>
-<td>A Linux application that  runs under xmutil FWUpdate</td>
-</tr>
-<tr>
-<td>Usage</td>
-<td>Used when board is in  a bad state</td>
-<td>Used when board is in  functional state</td>
-</tr>
-</tbody>
-</table></div>
-<div class="section" id="boot-image-recovery-tool-compilation-procedure-makefile-flow">
-<h2>Boot Image Recovery Tool Compilation Procedure (Makefile Flow)<a class="headerlink" href="#boot-image-recovery-tool-compilation-procedure-makefile-flow" title="Permalink to this heading">¶</a></h2>
-<p>Note that the Makefile below requires tools that are placed in the path by sourcing PetaLinux, or Vitis, or Vivado settings64.* file.</p>
-<p>Open a linux terminal</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v&lt;version&gt; https://github.com/Xilinx/embeddedsw.git
-<span class="nb">cd</span> embeddedsw/lib/sw_apps/img_rcvry/src
-make clean all
+  <div class="section" id="boot-firmware-enable-saveenv-in-u-boot">
+<h1>Boot Firmware - Enable saveenv in U-boot<a class="headerlink" href="#boot-firmware-enable-saveenv-in-u-boot" title="Permalink to this heading">¶</a></h1>
+<p>To prevent users from accidentally overwriting bootfw environment variables and render starter kits un-bootable, saveenv is disabled by default. If a user wants to boot via PXE without any serial port interactions, they need to enable saveenv in order to save serverip variable.</p>
+<div class="section" id="enable-saveenv-on-u-boot-in-petalinux">
+<h2>Enable SaveEnv on u-boot in PetaLinux<a class="headerlink" href="#enable-saveenv-on-u-boot-in-petalinux" title="Permalink to this heading">¶</a></h2>
+<p>In order to enable saveenv in u-boot generated in PetaLinux, they can go through the following on PetaLinux with released BSP:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ petalinux-create -t project -s xilinx-&lt;starterkit name&gt;-&lt;tool version&gt;-&lt;timestamp&gt;.bsp
+$ <span class="nb">cd</span> xilinx-&lt;starterkit name&gt;-&lt;tool version&gt;
+$ petalinux-config –c u-boot <span class="c1">#---&gt; Environment ---&gt; [ ] Environment is not stored (press N to deselect )</span>
+$ petalinux-config –c u-boot <span class="c1">#---&gt; Environment ---&gt; [*] Environment is in SPI flash (press Y to select )</span>
+$ petalinux-config –c u-boot <span class="c1">#---&gt; Command line interface ---&gt; Environment commands ---&gt; [*] saveenv (press Y to select )</span>
+$ vim project-spec/meta-user/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend  <span class="c1"># workaround, currently new config file is not added correctly, fix in the file from:</span>
+<span class="c1"># SRC_URI += &quot;file://user_&lt;timestamp&gt;.cfg \</span>
+<span class="c1"># to:</span>
+<span class="c1"># SRC_URI:append = &quot; file://user_&lt;timestamp&gt;.cfg \&quot;</span>
+<span class="c1">#note :there is a space between the double quote and &quot;file://&quot;</span>
+
+$ petalinux-build -c u-boot -x cleanall
+$ petalinux-build -c u-boot
+$ petalinux-package --boot --fsbl images/linux/zynqmp_fsbl.elf --u-boot images/linux/u-boot.elf --pmufw images/linux/pmufw.elf --fpga images/linux/system.bit --force
 </pre></div>
 </div>
-<p>Source code for Boot Image Recovery Tool can be browsed at <a class="reference external" href="https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/img_rcvry/src">github</a>.</p>
+<p>This generates a new BOOT.BIN in image/linux that can be programmed via A/B update method using <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-management-via-xmutil">xmutil bootfw_update</a>.</p>
+</div>
+<div class="section" id="enable-saveenv-on-u-boot-in-yocto">
+<h2>Enable SaveEnv on u-boot in Yocto<a class="headerlink" href="#enable-saveenv-on-u-boot-in-yocto" title="Permalink to this heading">¶</a></h2>
+<p>If re-generating u-boot in Yocto, follow the commands below. This assumes you have already went through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Kria Yocto Support</a>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v&lt;tool version&gt;
+repo sync
+<span class="nb">source</span> setupsdk
+bitbake virtual/bootloader -c menuconfig 
+<span class="c1"># Environment ---&gt; [ ] Environment is not stored (press N to deselect )</span>
+<span class="c1"># Environment ---&gt; [*] Environment is in SPI flash (press Y to select ), and make sure any other &quot;Environment is in&quot; except for SPI is deselected *press N to deselect)</span>
+<span class="c1">#---&gt; Command line interface ---&gt; Environment commands ---&gt; [*] saveenv (press Y to select )</span>
+<span class="c1">#exit and save</span>
+<span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake kria-qspi
+</pre></div>
+</div>
+<p>This generates a new boot.bin in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k26-smk/</span></code>, and <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code> is defined in <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code>, by default in tmp/. The new boot.bin can be programmed via A/B update method using <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-management-via-xmutil">xmutil bootfw_update</a>.</p>
+</div>
+<div class="section" id="on-target-commands">
+<h2>On-target commands<a class="headerlink" href="#on-target-commands" title="Permalink to this heading">¶</a></h2>
+<p>With the new BOOT.bin programmed via A/B update, when booting with the new BOOT.bin, you can save environment variable. For an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setenv</span> <span class="n">serverip</span> <span class="o">&lt;</span><span class="n">host</span> <span class="n">ip</span><span class="o">&gt;</span>
+<span class="n">saveenv</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
@@ -193,10 +173,7 @@ make clean all
           </div>
           
 				  
-				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="bootfw_image_selector.html" class="btn btn-neutral float-left" title="Boot Firmware - Image Selector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="bootfw_pmu_config_obj.html" class="btn btn-neutral float-right" title="Boot Firmware - PMU Overlay Config Object" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+				  <footer>
 
   <hr/>
 
