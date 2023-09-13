@@ -26,7 +26,6 @@ Kria SOM Accelerator and Custom Carrier Card Firmware Development
 
 
 
-
 .. toctree::
    :maxdepth: 3
    :caption: Common Utilities

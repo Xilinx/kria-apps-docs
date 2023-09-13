@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Overview of VVAS Plugins &mdash; Kria™ SOM 2022.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Petalinux Firmware" href="petalinux-firmware.html" />
+    <link rel="prev" title="Vitis Compile and Link" href="vitis-compile-link.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../index.html" class="icon icon-home"> Kria™ SOM
+            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Flows</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Development Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vitis_accel_flow.html">Vitis Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vitis_platform_flow.html">Vitis Platform Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_cc_flow.html">Custom Carrier Card Flow</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../vivado_accel_example.html">Vivado Accelerator Flow Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vitis_accel_flow_smartcam_filter2d_example.html">Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vitis_platform_flow_smartcam_raspi_example.html">Vitis Platform Flow Example - Adding Raspberry Pi Camera to SmartCam’s Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom_cc_flow_example.html">Example - Creating a Platform for a Custom Carrier Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dtsi_dtbo_generation_smartcam_example.html">Example - Generating DTSI and DTBO Overlay Files for Smartcam</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="README.html">Kria Vitis Acceleration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vitis-extensible-platform.html">Vitis Acceleration Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vitis-Pl-development-flow.html">Vitis PL Kernel Development Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vitis-compile-link.html">Vitis Compile and Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vitis-compile-link.html#build-the-resize-kernel">Build the resize kernel.</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Overview of VVAS Plugins</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#smartcamera-vvas-code">Smartcamera VVAS Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-processing-application">Image Processing Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#video-capture-plugin">Video Capture Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-pre-processing-plugin">Image pre-processing Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-resizing-json-file">Image Resizing JSON FILE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#acceleration-development-guide-for-xmultisrc">Acceleration Development guide for XMULTISRC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-o-p-plugin">File O/p Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="petalinux-firmware.html">Petalinux Firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running-on-board.html">Running on the KV260 Board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml-inference.html">Adding ML Inference Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adding-dpu-ip.html">Adding DPU IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smartcam-plugins-overview.html">Overview of the Smartcam VVAS plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smartcam-petalinux.html">Petalinux Firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smartcam-petalinux.html#create-petalinux-project">Create PetaLinux Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running-smartcam-on-board.html">Running on the KV260 Board</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../baremetal.html">Bare-metal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../target.html">On-target Utilities and Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bitstream_management.html">Bitstream Management on Kria SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AI_customization.html">AI Customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2021.1/build/html/index.html">2021.1</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kria™ SOM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+          <li><a href="kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a> &raquo;</li>
+      <li>Overview of VVAS Plugins</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/kria_vitis_acceleration_flow/vvas-plugins.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="overview-of-vvas-plugins">
+<h1>Overview of VVAS Plugins<a class="headerlink" href="#overview-of-vvas-plugins" title="Permalink to this heading">¶</a></h1>
+<p>GStreamer is a pipeline-based multimedia framework linking various media processing systems to create workflows.  For example, GStreamer can build a system that reads files in one format, processes them, and exports them in another. The formats and processes can be changed in a plug-and-play fashion. Vitis Video Analytics SDK(VVAS) leverages the ease of use of the GStreamer framework to build seamless streaming pipelines for AI-based video and image analytics and several other solutions without needing any understanding of FPGA or other development environment complexities. VVAS provides several hardware accelerators for various functionalities and highly optimized GStreamer plugins meeting most of the requirements of Video Analytics and transcoding solutions. VVAS also provides an easy-to-use framework to integrate their own hardware accelerators/kernels into GStreamer framework-based applications.</p>
+<div class="section" id="smartcamera-vvas-code">
+<h2>Smartcamera VVAS Code<a class="headerlink" href="#smartcamera-vvas-code" title="Permalink to this heading">¶</a></h2>
+<p>The Smart Camera application VVAS code, uses the Video Capture , AI Pre-processing Plugin, AI Inference Plugin, AI Rendering Plugin, DP output Plugin to perform facedetect application. This step only performs the image-resizing kernel which can be performed using the AI pre-processing pluigin. It uses an xmultisrc infrastructure plugin which is used to invoke the image-resizing kernel. The AI Inference Plugin, AI Rendering Plugin, DP output Plugin are explained in the ML Inference step.</p>
+</div>
+<div class="section" id="image-processing-application">
+<h2>Image Processing Application<a class="headerlink" href="#image-processing-application" title="Permalink to this heading">¶</a></h2>
+<p>The graph below shows the Image Resizing application from input video to output. All the individual blocks are various plugins that are used. At the bottom are the different hardware engines that are utilized throughout the application. The  GStreamer pipeline works as follows:</p>
+<p><img alt="image-resizing" src="../../_images/image-resizing.png" /></p>
+<p><em><strong>Video Capture plugin:</strong></em> Streaming data comes over the MIPI camera directly. The meadiasrc bin plugin is a wrapper around GStreamer generic v4l2src plugin. The mediasrcbin plugin is designed to simplify using live video capture devices in this design.</p>
+<p><em><strong>Image Pre-processing plugin:</strong></em> The captured frames are sent to the image pre-processing step, where the input image can be pre-processed before inference. The pre-processing step will be performed by the vvas_xmultisrc plugin. The vvas_xmultisrc plugin calls the PP kernel on the hardware. The Pre-processor step converts the NV12 image to BGR format and resizes the image</p>
+<p><em><strong>File o/p plugin:</strong></em> Finally, filesink Gstreamer plugin is used to output to the local disk, etc.</p>
+</div>
+<div class="section" id="video-capture-plugin">
+<h2>Video Capture Plugin<a class="headerlink" href="#video-capture-plugin" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/docs/sw_arch_platform.html#video-capture">Video Capture</a> at the user-space level uses a Media source bin plugin. The <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/docs/sw_arch_platform.html#media-source-bin-gstreamer-plugin">mediasrcbin</a> plugin is designed to simplify the usage of live video capture devices in this design. The plugin is a bin element that includes the standard v4l2src GStreamer element. It allows you to configure the media pipeline and its sub-devices. It uses the libmediactl and libv4l2subdev libraries which provide the following functionality:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">Enumerate</span> <span class="n">entities</span><span class="p">,</span> <span class="n">pads</span> <span class="ow">and</span> <span class="n">links</span>
+<span class="o">-</span> <span class="n">Configure</span> <span class="n">sub</span><span class="o">-</span><span class="n">devices</span>
+	<span class="o">-</span> <span class="n">Set</span> <span class="n">media</span> <span class="n">bus</span> <span class="nb">format</span>
+	<span class="o">-</span> <span class="n">Set</span> <span class="n">dimensions</span> <span class="p">(</span><span class="n">width</span><span class="o">/</span><span class="n">height</span><span class="p">)</span>
+	<span class="o">-</span> <span class="n">Set</span> <span class="n">frame</span> <span class="n">rate</span>
+	<span class="o">-</span> <span class="n">Export</span> <span class="n">sub</span><span class="o">-</span><span class="n">device</span> <span class="n">controls</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="image-pre-processing-plugin">
+<h2>Image pre-processing Plugin<a class="headerlink" href="#image-pre-processing-plugin" title="Permalink to this heading">¶</a></h2>
+<p>Smart camera VVAS code uses the Xmultisrc plugin to perfom the <a class="reference external" href="https://github.com/Xilinx/smartcam/blob/xlnx_rel_v2022.1/src/vvas_xpp_pipeline.c">Image pre-processing step</a>. The <a class="reference external" href="https://xilinx.github.io/VVAS/2.0/build/html/docs/common/common_plugins.html#vvas-xmultisrc">Xmultisrc</a> is a generic infrastructure plugin that is used to build custom accelerations. The plug-in abstracts the GStreamer framework’s core/common functionality, such as caps negotiations, buffer management, etc.  The plugin can have one input pad and multiple-output pads. The Xmultisrc plug-in takes the configuration file as one of the input properties, kernels-config. This configuration file is in JSON format and contains the information the kernel requires. During the initialization step, the Xmultisrc parses the JSON file and performs the following tasks:</p>
+<ol class="simple">
+<li><p>Finds the VVAS acceleration software library in the path and loads the shared library.</p></li>
+<li><p>Understands the acceleration software library type and prepares the acceleration software library handle (VVASKernel) to be passed to the core APIs</p></li>
+</ol>
+<p><img alt="xmultisrc" src="../../_images/xmultisrc.png" /></p>
+</div>
+<div class="section" id="image-resizing-json-file">
+<h2>Image Resizing JSON FILE<a class="headerlink" href="#image-resizing-json-file" title="Permalink to this heading">¶</a></h2>
+<p>The smartcam VVAS xmultisrc plugin uses the following JSON file which will be used to control the image resizing kernel.The JSON file points to the xclbin, vvas library repo, kernel-name and libaray-name.
+In the <a class="reference internal" href="vitis-compile-link.html"><span class="doc">Vitis Compile and Link section</span></a>, the makefile outputs a <strong>xclbin and system.bit</strong> the binaries.  In the <a class="reference internal" href="petalinux-firmware.html"><span class="doc">petalinux firware step</span></a>, you will learn that the binarie will be loaded at the “/opt/xilinx location”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>  
+  <span class="n">xclbin</span><span class="o">-</span><span class="n">location</span><span class="s2">&quot;:&quot;</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">kv260</span><span class="o">-</span><span class="n">smartcam</span><span class="o">/</span><span class="n">kv260</span><span class="o">-</span><span class="n">smartcam</span><span class="o">.</span><span class="n">xclbin</span><span class="s2">&quot;,</span>
+  <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/kv260-smartcam/lib&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span> <span class="s2">&quot;transform&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;kernels&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;kernel-name&quot;</span><span class="p">:</span> <span class="s2">&quot;pp_pipeline_accel:</span><span class="si">{pp_pipeline_accel_1}</span><span class="s2">&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;library-name&quot;</span><span class="p">:</span> <span class="s2">&quot;libvvas_xpp.so&quot;</span><span class="p">,</span>       
+	   <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+
+	     
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>| Property Name         | Type          |  Default              | Description                                   |
+| :—                  |    :—-:     | :—-:                |   :—-:                                            |<br />| xclbin-location       | String        |   NULL                | The path of xclbin, including the xclbin name. The plug-in downloads this xclbin and creates an XRT handle for memory allocation and programming kernels.                                              |
+| vvas-library-repo     | String        |   /usr/lib            | The library path for the VVAS repository for all the acceleration software libraries.                                               |
+| kernels               | N/A           |    N/A                | The JSON tag for starting the kernel-specific configurations.                                              |
+| kernel-name           | String        |   NULL                | Name and instance of a kernel separated by “:” as mentioned in xclbin.                                              |
+| library-name          | String        |  NULL                 | The acceleration software library name for the kernel. This is appended to vvas-library-repo for an absolute path.                                             |
+| config                | N/A           |    N/A                | The JSON tag for kernel-specific configurations depends on the acceleration software library.                                              |</p>
+</div>
+<div class="section" id="acceleration-development-guide-for-xmultisrc">
+<h2>Acceleration Development guide for XMULTISRC<a class="headerlink" href="#acceleration-development-guide-for-xmultisrc" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://xilinx.github.io/VVAS/2.0/build/html/docs/common/common_plugins.html#vvas-xmultisrc">Xmultisrc</a> plugin interacts with the acceleration kernel through a set of Core APIs and utility APIs exposed by an acceleration software library. Smart camera VVAS code uses the Xmultisrc plugin to perfom the <a class="reference external" href="https://github.com/Xilinx/smartcam/blob/xlnx_rel_v2022.1/src/vvas_xpp_pipeline.c">Image pre-processing step</a>. We will use the same plugin for the Image processing Application. In this we will give an overview of the plugin development</p>
+<div class="section" id="vvas-core-apis">
+<h3>VVAS Core APIs<a class="headerlink" href="#vvas-core-apis" title="Permalink to this heading">¶</a></h3>
+<p>The GStreamer VVAS infrastructure plug-ins (vvas_xfilter and vvas_xmultisrc) call the core APIs to perform operations on the kernel. The core APIs will invoke the XRT, which sends the commands and manages the buffers to the kernel. The VVAS Core APIs have 4 API’s which will be called by the GStreamer in sequence.</p>
+<ol class="simple">
+<li><p>Plugin Initialization</p></li>
+<li><p>Starting the kernel.</p></li>
+<li><p>Waiting for the kernel done</p></li>
+<li><p>Denitilizating the plugin</p></li>
+</ol>
+</div>
+<div class="section" id="plugin-initialization">
+<h3>Plugin Initialization<a class="headerlink" href="#plugin-initialization" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>In this step, the XMultisrc plugin will invoke the xlnx_kernel_init function to perform a one-time initialization of any custom data structures. In this step, the smartcam xmultisrc plugin reads the JSON file, allocates memory, and initializes the struct. This is performed at the Line-77 of the xmultisrc plugin.</p></li>
+</ul>
+</div>
+<div class="section" id="starting-the-kernel">
+<h3>Starting the kernel<a class="headerlink" href="#starting-the-kernel" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="kernel-properties">
+<h4>Kernel Properties<a class="headerlink" href="#kernel-properties" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Before starting the kernel, the user should know about the Kernel mode and the type of kernels. This will define the set of APIs to be used for Starting of the kernel.</p></li>
+</ul>
+</div>
+<div class="section" id="kernel-modes">
+<h4>Kernel Modes<a class="headerlink" href="#kernel-modes" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>There are two types of kernel modes. These Modes are documented in the <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Execution-Modes">Execution Modes</a>. In this tutorial, we will use the XRT Managed kernel, where XRT manages the kernel executions by hiding the implementation details from the user.</p>
+<ul>
+<li><p>XRT Managed Kernel</p></li>
+<li><p>User Managed Kernel.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="type-of-kernel">
+<h4>Type of Kernel<a class="headerlink" href="#type-of-kernel" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>VVAS provides Hard and soft kernels. Embedded designs support only hard kernels written using HLS or RTL.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="kernel-start">
+<h3>Kernel Start<a class="headerlink" href="#kernel-start" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The next step is to start the kernel, which is done using the xlnx_kernel_start function. xlnx_kernel_start is called by infrastructure plug-in for each input frame/buffer it has received. This will invoke the hardware kernel for each buffer. In this step, we will use the <a class="reference external" href="https://xilinx.github.io/VVAS/main/build/html/docs/common/Acceleration-Software-Library-Development.html#vvas-kernel-start">vvas_kernel_start API</a> to invoke the image-resizing kernel. This is performed at the <a class="reference external" href="https://github.com/Xilinx/smartcam/blob/xlnx_rel_v2022.1/src/vvas_xpp_pipeline.c#L164">Line-164</a> of the xmultisrc plugin.</p></li>
+</ul>
+</div>
+<div class="section" id="waiting-for-the-kernel-to-finish">
+<h3>Waiting for the kernel to finish<a class="headerlink" href="#waiting-for-the-kernel-to-finish" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The next step is to check whether the task is completed. The user needs to call. <em><strong>vvas_kernel_done API</strong></em>. This API will return when the kernel finishes processing the current task. The developer can provide the “time-out” interval value indicating how long this API has to wait before it can return in case the kernel has not finished processing. The API can be called in the <em><strong>xlnx_kernel_start</strong></em> function or  <em><strong>xlnx_kernel_done</strong></em> function. This is performed at the <a class="reference external" href="https://github.com/Xilinx/smartcam/blob/xlnx_rel_v2022.1/src/vvas_xpp_pipeline.c#L182">Line-182</a> of the xmultisrc plugin.</p></li>
+</ul>
+</div>
+<div class="section" id="denitilizating-the-plugin">
+<h3>Denitilizating the plugin<a class="headerlink" href="#denitilizating-the-plugin" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><em><strong>xlnx_kernel_deinit API</strong></em> is called by the infrastructure plug-in when a plug-in is de-initializing, i.e., freeing the data structures allocated during the initialization step. This is performed at the <a class="reference external" href="https://github.com/Xilinx/smartcam/blob/xlnx_rel_v2022.1/src/vvas_xpp_pipeline.c#L68">Line-68</a> of the xmultisrc plugin.</p></li>
+</ul>
+</div>
+<div class="section" id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>This completes the overview of the vvas_xmultisrc plugin, which is used to invoke the resizing accelerator on the FPGA device.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="file-o-p-plugin">
+<h2>File O/p Plugin<a class="headerlink" href="#file-o-p-plugin" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The Filesink Gstreamer plugin writes incoming data to a file in the local file system.</p></li>
+</ul>
+</div>
+<div class="section" id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<p>This completes the VVAS overview. The next step is <a class="reference internal" href="petalinux-firmware.html"><span class="doc">Petalinux firmware</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vitis-compile-link.html" class="btn btn-neutral float-left" title="Vitis Compile and Link" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="petalinux-firmware.html" class="btn btn-neutral float-right" title="Petalinux Firmware" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 13, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
