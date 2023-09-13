@@ -272,7 +272,7 @@ Developers creating their own carrier card will create a Vivado project using th
 
 
 
-.. image:: docs/media/tool_flow_custom_cc.PNG
+.. image:: ../docs/media/tool_flow_custom_cc.PNG
    :alt: Tool Flow
 
 

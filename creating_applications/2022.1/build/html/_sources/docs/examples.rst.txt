@@ -14,3 +14,4 @@ Examples
    ./vitis_platform_flow_smartcam_raspi_example
    ./custom_cc_flow_example
    ./dtsi_dtbo_generation_smartcam_example
+   ./kria_vitis_acceleration_flow/kria-vitis-acceleration

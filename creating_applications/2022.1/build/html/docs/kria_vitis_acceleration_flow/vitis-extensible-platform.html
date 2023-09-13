@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Vitis Acceleration Flow &mdash; Kria™ SOM 2022.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Vitis PL Kernel Development Flow" href="vitis-Pl-development-flow.html" />
+    <link rel="prev" title="Kria Vitis Acceleration" href="README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../index.html" class="icon icon-home"> Kria™ SOM
+            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Flows</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Development Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vitis_accel_flow.html">Vitis Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vitis_platform_flow.html">Vitis Platform Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_cc_flow.html">Custom Carrier Card Flow</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../vivado_accel_example.html">Vivado Accelerator Flow Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vitis_accel_flow_smartcam_filter2d_example.html">Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vitis_platform_flow_smartcam_raspi_example.html">Vitis Platform Flow Example - Adding Raspberry Pi Camera to SmartCam’s Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom_cc_flow_example.html">Example - Creating a Platform for a Custom Carrier Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dtsi_dtbo_generation_smartcam_example.html">Example - Generating DTSI and DTBO Overlay Files for Smartcam</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="README.html">Kria Vitis Acceleration</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Vitis Acceleration Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#kria-vitis-acceleration-flow-overview">Kria Vitis Acceleration flow overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-resizing-application">Image Resizing Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kv260-extensible-platform">KV260 Extensible platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-step">Next step</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vitis-Pl-development-flow.html">Vitis PL Kernel Development Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vitis-compile-link.html">Vitis Compile and Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vitis-compile-link.html#build-the-resize-kernel">Build the resize kernel.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vvas-plugins.html">Overview of VVAS Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="petalinux-firmware.html">Petalinux Firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running-on-board.html">Running on the KV260 Board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml-inference.html">Adding ML Inference Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adding-dpu-ip.html">Adding DPU IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smartcam-plugins-overview.html">Overview of the Smartcam VVAS plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smartcam-petalinux.html">Petalinux Firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smartcam-petalinux.html#create-petalinux-project">Create PetaLinux Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running-smartcam-on-board.html">Running on the KV260 Board</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../baremetal.html">Bare-metal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../target.html">On-target Utilities and Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bitstream_management.html">Bitstream Management on Kria SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AI_customization.html">AI Customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2021.1/build/html/index.html">2021.1</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kria™ SOM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+          <li><a href="kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a> &raquo;</li>
+      <li>Vitis Acceleration Flow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/kria_vitis_acceleration_flow/vitis-extensible-platform.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="vitis-acceleration-flow">
+<h1>Vitis Acceleration Flow<a class="headerlink" href="#vitis-acceleration-flow" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="kria-vitis-acceleration-flow-overview">
+<h2>Kria Vitis Acceleration flow overview<a class="headerlink" href="#kria-vitis-acceleration-flow-overview" title="Permalink to this heading">¶</a></h2>
+<p>The K26 SOM is based on the UltraScale+ MPSoC technology, similar to the ZCU104 evaluation board. Vitis tool provides a unified flow for developing FPGA accelerated applications targeted to the Kria edge application. <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Introduction-to-Vitis-Tools-for-Embedded-System-Designers">Vitis Embedded Acceleration flow</a> provides software-like development experience on FPGA and SoC, such as real-time reloading applications without rebooting the system. The following graph gives an overview of the Kria Vitis acceleration flow, which is divided into the following steps:</p>
+<ol class="simple">
+<li><p><em><strong>Platform Design :</strong></em> Developing a Vitis extensible platform.</p></li>
+<li><p><em><strong>PL kernels :</strong></em> Developing PL Kernel/Overlays using Vitis HLS and Vitis Vision Libraries.</p></li>
+<li><p><em><strong>Vitis Linker/Packager :</strong></em> Integrating Vitis extensible platform, PL kernels/overlays to generate bit stream and XCLBIN description.</p></li>
+<li><p><em><strong>Petalinux firmware:</strong></em> Application development and integrating it into Petalinux/Ubuntu firmware.</p></li>
+<li><p><em><strong>SD Image:</strong></em> Generating an SD image and running the application on the Kria SOM Starter Kit.</p></li>
+</ol>
+<p><img alt="kria-vitis-flow" src="../../_images/vitis-flow.png" /></p>
+</div>
+<div class="section" id="image-resizing-application">
+<h2>Image Resizing Application<a class="headerlink" href="#image-resizing-application" title="Permalink to this heading">¶</a></h2>
+<p>In this step, we will build an Image resizing Application. The MIPI camera reads an input video of NV12 format, of size 1920x1080 pixels. The pre-processing acceleration kernel converts it to a BGR format and performs a resizing algorithm of user-defined size. The resizing algorithm is built using the  Vitis vision library.</p>
+<p><img alt="image-resizing-application" src="../../_images/image-resizing.png" /></p>
+<p>Building image resizing applications using the Vitis acceleration flow involves the following steps:</p>
+<ol class="simple">
+<li><p><em><strong>Platform Design :</strong></em>  Generate a KV260 Vitis Extensible Platform.</p></li>
+<li><p><em><strong>PL kernels :</strong></em> Develop a resizing PL kernel using the Vitis Vision library.</p></li>
+<li><p><em><strong>Vitis Linker/Packager :</strong></em> Compile and link the resizing PL kernel/Overlay with the KV260 Vitis extensible platform using the Vitis acceleration flow.</p></li>
+<li><p><em><strong>Petalinux firmware :</strong></em> Overview of VVAS Software stack and package the Petalinux firmware with VVAS components</p></li>
+<li><p><em><strong>SD Image:</strong></em> Generating an SD image and running the application on the Kria SOM Starter Kit.</p></li>
+</ol>
+</div>
+<div class="section" id="kv260-extensible-platform">
+<h2>KV260 Extensible platform<a class="headerlink" href="#kv260-extensible-platform" title="Permalink to this heading">¶</a></h2>
+<p>The first step in the Kria Vitis Acceleration platform is to generate a Vitis Extensible platform or XPFM. The Vitis extensible platform (XPFM) allows system designers to quickly develop and iterate the programmable components of the system on top of an available platform. This way, the platform and application development can be designed in parallel. The Vitis extensible platform (XPFM)  exposes all the essential Platform Interfaces like Clock, Interrupts, Master AXI interfaces, and Slave AXI interfaces for the accelerator to connect. The Vitis extensible platform(XPFM) is generated from an extensible hardware design (.XSA), which is a container with the hardware specifications like processor configuration properties, peripheral connection information, address map, and device initialization code.  In this step, we will use the KV260 starter kit platform to generate a KV260 Vitis extensible platform</p>
+<div class="section" id="download-the-kria-starter-kit-platform">
+<h3><em><strong>Download the Kria starter kit platform</strong></em><a class="headerlink" href="#download-the-kria-starter-kit-platform" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Download the Vitis Platform files of KV260 and KR260 on the host computer.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">kria_platform</span>
+<span class="n">cd</span> <span class="n">kria_platform</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">branch</span> <span class="n">xlnx_rel_v2022</span><span class="mf">.1</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Xilinx</span><span class="o">/</span><span class="n">kria</span><span class="o">-</span><span class="n">vitis</span><span class="o">-</span><span class="n">platforms</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-the-platform">
+<h3><em><strong>Build the platform</strong></em><a class="headerlink" href="#build-the-platform" title="Permalink to this heading">¶</a></h3>
+<p>The Image resizing application and smart camera application needs features such as encoder/decoder , Ethernet, HDMI/DP , MIPI support. To support this hardware requirement, we will be using the KV260_ispMIPI platform, as it supports all of the necessary features.  Navigate to the KV260 platform and run the following commands. The make command will build the extensible platform XPFM for the KV260_ispMIPI platform. During the build, an extensible hardware XSA is generated. This XSA is used to generate the final Vitis Extensible platform XPFM.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">&lt;</span><span class="n">vitis</span> <span class="n">path</span><span class="o">&gt;/</span><span class="n">settings64</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">cd</span> <span class="n">kria</span><span class="o">-</span><span class="n">vitis</span><span class="o">-</span><span class="n">platform</span><span class="o">/</span><span class="n">kv260</span><span class="o">/</span>
+<span class="n">make</span> <span class="n">platform</span> <span class="n">PFM</span><span class="o">=</span><span class="n">kv260_ispMipiRx_vcu_DP</span>
+</pre></div>
+</div>
+<p>The generated platform will be located at ./platforms/xilinx_kv260_ispMipiRx_vcu_DP_202210_1/.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="n">platform</span><span class="o">/</span><span class="n">xilinx_kv260_ispMipiRx_vcu_DP_202210_1</span><span class="o">/</span>
+<span class="n">hw</span>  <span class="n">kv260_ispMipiRx_vcu_DP</span><span class="o">.</span><span class="n">xpfm</span>  <span class="n">sw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="next-step">
+<h2>Next step<a class="headerlink" href="#next-step" title="Permalink to this heading">¶</a></h2>
+<p>The next step is <a class="reference internal" href="vitis-Pl-development-flow.html"><span class="doc">Vitis PL Kernel Development Flow</span></a></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="README.html" class="btn btn-neutral float-left" title="Kria Vitis Acceleration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vitis-Pl-development-flow.html" class="btn btn-neutral float-right" title="Vitis PL Kernel Development Flow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 13, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

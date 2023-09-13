@@ -204,7 +204,9 @@ Then create the project using BSP:</p>
 <span class="nb">cd</span> xilinx-k26-&lt;version&gt;
 </pre></div>
 </div>
-<p>The Vivado starter project can be found in <code class="docutils literal notranslate"><span class="pre">hardware/</span></code> folder, and developers can open the project using the .xpr file. This project is a k26 project only, and will not contain any information about the carrier card being used. However, it does have enough information to boot basic Linux.</p>
+<p>The Vivado starter project can be found in <code class="docutils literal notranslate"><span class="pre">hardware/</span></code> folder, and developers can open the project using the .xpr file. This project is a k26 project only, and will not contain any information about the carrier card being used. However, it does have enough information to boot basic Linux. It has all the peripherals that exist on production Kria SOM itself. For an example, on K26 Production SOM, it has DDR, eMMC, QSPI, UART, Display port, etc enabled, as highlighted in purple in the PCW snapshot here:</p>
+<p><img alt="pcw" src="../_images/tool_flow_k26_pcw.png" /></p>
+<p>User can then configure the PCW to enable carrier-card specific peripherals such as GEM, USB, etc.</p>
 </div>
 <div class="section" id="generate-bit-bin-and-xsa-file">
 <h3>Generate .bit.bin and .xsa file<a class="headerlink" href="#generate-bit-bin-and-xsa-file" title="Permalink to this heading">¶</a></h3>
@@ -279,7 +281,7 @@ petalinux-build
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 19, 2023.
+      <span class="lastupdated">Last updated on September 13, 2023.
       </span></p>
   </div>
 

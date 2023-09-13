@@ -73,7 +73,11 @@ petalinux-create -t project -s xilinx-k26-<version>.bsp
 cd xilinx-k26-<version>
 ```
 
-The Vivado starter project can be found in ```hardware/``` folder, and developers can open the project using the .xpr file. This project is a k26 project only, and will not contain any information about the carrier card being used. However, it does have enough information to boot basic Linux.
+The Vivado starter project can be found in ```hardware/``` folder, and developers can open the project using the .xpr file. This project is a k26 project only, and will not contain any information about the carrier card being used. However, it does have enough information to boot basic Linux. It has all the peripherals that exist on production Kria SOM itself. For an example, on K26 Production SOM, it has DDR, eMMC, QSPI, UART, Display port, etc enabled, as highlighted in purple in the PCW snapshot here:
+
+![pcw](./media/tool_flow_k26_pcw.png)
+
+User can then configure the PCW to enable carrier-card specific peripherals such as GEM, USB, etc.
 
 ### Generate .bit.bin and .xsa file
 
