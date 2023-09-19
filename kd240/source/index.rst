@@ -39,6 +39,16 @@ Kria KD240 Drives Starter Kit
 
 
 
+.. toctree::
+   :caption: KD240 Tutorials
+   :maxdepth: 1
+   :hidden:
+
+   ./docs/kria_starterkit_linux_boot
+   Building the Design components <./docs/building_the_design>
+   Building the Hardware design using Vivado <./docs/build_vivado_design>
+   Generate Custom Firmware <./docs/generating_custom_firmware>
+
 
 
 The AMD Kria™ KD240 Drives Starter Kit is the latest out-of-the box ready evaluation/development platform in the Kria portfolio. This starter kit is the platform of choice for development of electric drives and other size and cost-constrained applications. The kit consists of a non-production Kria K24 SOM plugged into a drives application carrier card and equipped with a passive heatsink. The K24 SOM included in the starter kit is based on the Zynq™ Ultra Scale+™ MPSoC and paired with 2 GB of LPDDR4 memory. The starter kit is also Drives application ready because it features a three-phase inverter, quadrature encoder interface, brake control, and torque sensor interface. Beyond the drives-specific interfaces, there are a host of other interfaces for general purpose developers including connectivity through Ethernet and USB ports, and flexible I/O expandability via a Pmod connector.
