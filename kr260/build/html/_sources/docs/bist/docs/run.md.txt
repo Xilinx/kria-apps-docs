@@ -5,33 +5,41 @@
 This document shows how to set up the board and run the Built-In Self Test
 (BIST) application.
 
-This guide and its prebuilts are targeted for Ubuntu 22.04 and Xilinx 2022.2
+This guide and its prebuilts are targeted for Ubuntu 22.04 and Xilinx 2023.1
 toolchain.
 
 ## Set up the Host Machine
 
-**Note:** Setting up the host machine is only required for testing the ethernet
-and SFP+ interfaces. If this is skipped, the tests for these interfaces will
+***Note***: Setting up the host machine is only required to test the ethernet
+and SFP+ interfaces. If this is skipped, the tests for these interfaces
 fail.
 
-* Install the NIC card into the host machine
+* Install the NIC card into the host machine.
 
-* Configure the host machine to have a static IP of 192.168.0.1 (If a different
-  IP is used, the `BIST_REMOTE_HOST_IP` environment variable needs to be set on
-  the Kria board to override the default host IP)
+* The host machine can be assigned an IP in two ways:
+  * DHCP IP Assignment
+  * Static IP Assignment
 
-* Install iperf3
+* Configure the host machine to have a DHCP/Static IP and set the 
+  `BIST_REMOTE_HOST_IP` environment variable on the AMD Kria &trade; board.
 
-  * For Ubuntu, use the command below
+  Example:
+  ```
+    export BIST_REMOTE_HOST_IP=<IP_Address>
+  ```
+
+* Install iperf3.
+
+  * For Ubuntu, use the following command:
 
     ```
     sudo apt install iperf3
     ```
 
   * For Windows, use the appropriate download link from
-    [this page](https://iperf.fr/iperf-download.php)
+    [this page](https://iperf.fr/iperf-download.php).
 
-* Start an iperf3 server on the host machine using the command below
+* Start an iperf3 server on the host machine using the following command:
 
    ```
    iperf3 -s -p 5201
@@ -42,45 +50,49 @@ fail.
 
 Supported Starter Kits
 
-The BIST application requires the following hardware setup for running
-the full suite of hardware tests, see board specific pages:
+The BIST application requires the following hardware setup to run
+the full suite of hardware tests. See the board specific pages:
 
 1. [KV260 Board Setup](setup_kv260.md)
 2. [KR260 Board Setup](setup_kr260.md)
+2. [KD240 Board Setup](setup_kd240.md)
 
-## Setup SSH with X-forwarding
-
-* To run the bist test suite test instructions should be running over an SSH
-  connection with X-forwarding enabled
-
-  Examples:
-
-  * On Linux, run:
-
-    ```bash
-    ssh -X <hostname>
-    ```
-
-  * On Windows download [Mobaxterm](https://mobaxterm.mobatek.net/download.html)
-    which automatically enables X-forwarding when creating a new ssh connection
 
 ## Boot Linux
 
 * Testing was performed with:
 
-  * [x07-20230302-63 Ubuntu 22.04 Linux Image](https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63.img.xz?_ga=2.229092828.1548870927.1684017553-434607567.1663082500)
+  * KD240 platform:
 
-  * [v2022.1-09152304_update3 Boot Firmware](https://www.xilinx.com/member/forms/download/xef.html?filename=BOOT_xilinx-k26-starterkit-v2022.1-09152304_update3.BIN)
+    | Platform     | Version                         |
+    | :----------: | :-----------------------------: |
+    | Linux Kernel | 5.15.0-9002                     |
+    | Boot Fiwmare | BOOT-k24-smk-20230912123632.bin |
+
+  * KR260/KV260 platform:
+
+    | Platform      | Version                                                 |
+    | :-----------: | :-----------------------------------------------------: | 
+    | Linux Kernel  | 5.15.0-1023                                             |
+    | Boot Firmware | BOOT_xilinx-k26-starterkit-v2022.1-09152304_update3.BIN |
+
+  * Application packages:
+
+    | Application               | Version     |
+    | :-----------------------: | :---------: |
+    | xlnx-kria-apps-bitstreams | 0.10-0xlnx1 |
 
 * Before continuing with the BIST application specific instructions, if not yet
-  done so, boot Linux with instructions from the
-  [Kria Starter Kit Linux Boot](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html)
+  done so, boot Linux with instructions from:
 
-  **Note:** The minimum Linux kernel version required is `5.15.0.1022.26`
+  1. [Kria Starter Kit Linux Boot on KV260](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html)
+  2. [Kria Starter Kit Linux Boot on KR260](https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html)
+  3. [Kria Starter Kit Linux Boot on KD240](https://xilinx.github.io/kria-apps-docs/kd240/linux_boot.html)
+
 
 ## Download and Load the BIST PL Firmware
 
-* Search the package feed for available bist firmware packages
+* Search the package feed for available bist firmware packages.
 
   ```bash
   apt search bist
@@ -88,95 +100,124 @@ the full suite of hardware tests, see board specific pages:
   Sorting... Done
   Full Text Search... Done
 
-  xlnx-firmware-kr260-bist/jammy 0.9-0xlnx1 arm64
+  xlnx-firmware-kr260-bist/jammy 0.10-0xlnx1 arm64
   FPGA firmware for Xilinx boards - kr260 bist application
-  xlnx-firmware-kv260-bist/jammy 0.9-0xlnx1 arm64
+  xlnx-firmware-kv260-bist/jammy 0.10-0xlnx1 arm64
   FPGA firmware for Xilinx boards - kv260 bist application
+  xlnx-firmware-kd240-bist/jammy 0.10-0xlnx1 arm64
+  FPGA firmware for Xilinx boards - kd240 bist application
   ```
 
-* Install firmware binaries
+* Install firmware binaries.
 
   ```bash
   sudo apt install xlnx-firmware-kv260-bist     // For kv260-bist
   sudo apt install xlnx-firmware-kr260-bist     // For kr260-bist
+  sudo apt install xlnx-firmware-kd240-bist     // For kd240-bist
   ```
 
-* List installed the application firmware binaries
+* List installed the application firmware binaries.
 
-  The firmware consist of bitstream, device tree overlay (dtbo) file. The
+  The firmware consists of bitstream, device tree overlay (dtbo) file. The
   firmware is loaded dynamically on user request once Linux is fully booted.
   The xmutil utility can be used for that purpose.
 
   After installing the FW, execute xmutil listapps to verify that it is
-  captured under the listapps function, and to have dfx-mgrd re-scan and
-  register all accelerators in the FW directory tree.
+  captured under the listapps function, and to have dfx-mgrd, re-scan and
+  register all accelerators in the firmware directory tree.
 
   ```bash
   sudo xmutil listapps
   ```
 
-* Load a new application firmware binary
+* Load a new application firmware binary.
 
-  When there's already another accelerator/firmware being activated, unload it
-  first, then load the desired BIST firmware
+  When there is already an another accelerator/firmware being activated, unload it
+  first, then load the desired BIST firmware.
 
   ```bash
   sudo xmutil unloadapp
   sudo xmutil loadapp kv260-bist      // For kv260-bist
   sudo xmutil loadapp kr260-bist      // For kr260-bist
+  sudo xmutil loadapp kd240-bist      // For kd240-bist
   ```
-
-* Dynamically load AR1335 kernel module (only for KV260)
-
+  **NOTE**: KD240 Firmware load `xmutil loadapp kd240-bist` will print following 
+  messages. These are safe to ignore.
   ```bash
-  sudo modprobe ar1335
+    [  112.802574] net eth1: Speed other than 10, 100
+    [  112.807227] net eth1: or 1Gbps is not supported
+    [  112.866305] net eth2: Speed other than 10, 100
+    [  112.871168] net eth2: or 1Gbps is not supported
   ```
+
+## Setup SSH with X-forwarding
+
+**NOTE**: Setting up an SSH connection is only required to test the ximagesink
+tests of the video module on KV260 board. If this is skipped, those tests will 
+fail
+
+* To run the bist test suite, the test instructions should run over an SSH
+  connection with X-forwarding enabled.
+
+  Examples:
+
+  * On Host, run:
+
+    ```bash
+    ssh -X ubuntu@<Kria Starter Kit IP address>
+    ```
+    **NOTE**: If all ethernet cables are plugged in, feel free to use any IP.
+
+  * On Windows, download [Mobaxterm](https://mobaxterm.mobatek.net/download.html),
+    which automatically enables X-forwarding when creating a new ssh connection.
 
 ## Miscellaneous Preparation
 
-* Verify if SSH terminal is using the correct authority file
-  * The output should look something like this
+* Verify if the SSH terminal is using the correct authority file.
+  * The output should look something like this.
    ```bash
    xauth -v list
    Using authority file /home/ubuntu/.Xauthority
    kria/unix:10  MIT-MAGIC-COOKIE-1  f5212118305f75678a69daa4a6eda703
    ```
-   * If incorrect or no authority file present, do the following steps:
+   * If incorrect or no authority file is present, do the following steps:
    ```bash
    rm -rf ~/.Xaut*
    ```
-   * Reboot the target board
+   * Reboot the target board.
    ```bash
    sudo reboot
    ```
    * Check the `xauth -v list` after reboot(in SSH terminal), it should display 
-   the correct authority file on output console
+   the correct authority file on the output console.
 
-* The BIST application tests the fan, therefore please stop the fancontrol
-  service before running the docker for the testing to function as intended
+* The BIST application tests the fan. Therefore, if a fan is present stop the 
+  fancontrol service before running the docker for the testing to function as 
+  intended.
 
   ```bash
   sudo systemctl stop fancontrol
   ```
 
-* Disable desktop environment before running the docker for the display testing
-  to function as intended
+* On KV260/KR260 disable desktop environment before running the docker 
+  for the display testing to function as intended. On KD240 this step can be 
+  skipped as we are using a headless Ubuntu Server image.
 
   ```bash
   sudo xmutil desktop_disable
   ```
 
-  **NOTE**: Executing “xmutil desktop_disable” will cause the monitor to go
+  ***NOTE***: Executing “xmutil desktop_disable” causes the monitor to go
   blank.
 
-* Remember to start the fancontrol service after exiting the docker container
+* Remember to start the fancontrol service after exiting the docker container.
 
   ```bash
   sudo systemctl start fancontrol
   ```
 
 * After running the application and exiting the docker container, the desktop
-  environment can be enabled again
+  environment can be enabled again.
 
   ```bash
   sudo xmutil desktop_enable
@@ -184,27 +225,27 @@ the full suite of hardware tests, see board specific pages:
 
 ## Download and Run the BIST Docker Image
 
-* Pull the docker image from dockerhub
+* Pull the docker image from dockerhub.
 
   ```bash
-  docker pull xilinx/kria-bist:2022.2
+  docker pull xilinx/kria-bist:2023.1
   ```
 
 * The storage volume on the SD card can be limited with multiple docker
-  images inbstalled. If there are space issues, you can use following command
+  images inbstalled. If there are space issues, use the following command
   to remove existing docker images.
 
   ```bash
   docker rmi --force <image>
   ```
 
-* You can find the images installed with command:
+* You can find the images installed with the following command:
 
   ```bash
   docker images
   ```
 
-* Launch the docker container using the below command
+* Launch the docker container using the following command:
 
   ```bash
   docker run \
@@ -219,20 +260,35 @@ the full suite of hardware tests, see board specific pages:
       -v /etc/vart.conf:/etc/vart.conf \
       -v /lib/firmware/xilinx:/lib/firmware/xilinx \
       -v /run:/run \
-      -it xilinx/kria-bist:2022.2 bash
+      -it xilinx/kria-bist:2023.1 bash
   ```
 
-* It will launch the bist image in a new container and drop the user into a bash
-  shell
+* It launches the bist image in a new container and drops the user into a bash
+  shell.
 
   ```
   root@xlnx-docker/#
   ```
 
+## Setup IP addresses on the Kria board
+
+* Set the `BIST_REMOTE_HOST_IP` environment variable on Kria board
+  
+  Example:
+  ```
+    export BIST_REMOTE_HOST_IP=<IP_Address>
+  ```
+
+* You can assign IP addresses in two ways:
+  * DHCP IP Assignment - IP addresses are auto-assigned.
+  * Static IP Assignment - You need to set a Static IP for the eth interfaces 
+    under test. Make sure that the Static IPs are in the same subnet as the 
+    remote host machine.
+
 ## Run the BIST Application
 
 The application is installed under `/opt/xilinx/kria-bist`. Navigate to the
-"tests" directory from where the BIST tests are to be run
+"tests" directory from where the BIST tests are to be run.
 
 ```bash
 cd /opt/xilinx/kria-bist/tests
@@ -240,7 +296,7 @@ cd /opt/xilinx/kria-bist/tests
 
 ### Usage
 
-Commonly used command line switches for BIST
+Commonly used command line switches for BIST.
 
 ```bash
 pytest-3 [OPTIONS]
@@ -254,12 +310,12 @@ OPTIONS:
 
 ### Output and Logs
 
-The pytest command line output will have two separate sessions as follows
+The pytest command line output has two separate sessions as follows:
 
 * Test session
 
-  It will display number of collected, deselected and selected tests. Current
-  running test will also be shown.
+  It displays the number of collected, deselected, and selected tests. Current
+  running test is also shown.
 
   For example:
 
@@ -277,11 +333,11 @@ The pytest command line output will have two separate sessions as follows
 
   This displays the current status of the test.
 
-  1. Start of test: Indicates test has started.
+  1. Start of test: Indicates that the test has started.
 
   2. Test observations: Prints the test observation on the command line.
 
-  3. Test passed/failed: Declares the test result ie passed/failed.
+  3. Test passed/failed: Declares the test result, that is, pass/fail.
 
   4. End of Test: Indicates that the test has ended.
 
@@ -302,20 +358,21 @@ The pytest command line output will have two separate sessions as follows
   ======================= 1 passed, 33 deselected in 1.02s =======================
   ```
 
-* A log file (`kria_bist_pytest.log`) will be created in the current directory.
+* A log file (`kria_bist_pytest.log`) is created in the current directory.
 
 ### Examples
 
-* Run the entire BIST test suite for a target board
+* Run the entire BIST test suite for a target board.
 
   ```bash
   pytest-3 --board kv260     // For KV260
   pytest-3 --board kr260     // For KR260
+  pytest-3 --board kd240     // For KD240
   ```
 
-* Run individual tests
+* Run individual tests.
 
-  The example below will run the pmod0 test on the KV260 as target board
+  The following example runs the pmod0 test on the KV260 as target board.
 
   ```bash
   pytest-3 -k pmod0 --board kv260
@@ -341,9 +398,9 @@ The pytest command line output will have two separate sessions as follows
   ======================= 1 passed, 33 deselected in 1.01s =======================
   ```
 
-* Collect test cases
+* Collect test cases.
 
-  Collect all the tests for a target board
+  Collect all the tests for a target board.
 
   ```bash
   pytest-3 --collect-only --board kv260
@@ -409,7 +466,7 @@ The pytest command line output will have two separate sessions as follows
   ====================== 40 tests collected in 1.02s ===========================
   ```
 
-* Collect all tests for a specific testmodule for a target board
+* Collect all tests for a specific testmodule for a target board.
 
   ```bash
   pytest-3 --collect-only --board kv260 -m video
@@ -433,7 +490,7 @@ The pytest command line output will have two separate sessions as follows
   ================ 8/34 tests collected (26 deselected) in 0.99s =================
   ```
 
-* Run all tests for a target board and module
+* Run all tests for a target board and the module.
 
   ```bash
   pytest-3 --board kv260 -m video
