@@ -10,19 +10,19 @@ Overview
 .. toctree::
    :maxdepth: 1
   
-   Introduction <docs/introduction.md>
+   Introduction <docs/introduction>
 
 
 Features
 ================================
 
-* ROS application to demonstrate publisher subscriber communication over Xilinx TSN.
-* Realtime demonstration of ongoing TSN traffic (Both best effort and Scheduled) through the oscilloscope.
+* ROS application to demonstrate publisher subscriber communication over Xilinx TSN
+* Realtime demonstration of ongoing TSN traffic (Both best effort and Scheduled) through the oscilloscope
 
   - Demonstrate Network Time Synchronization between master and slave
   - Demonstrate software latency for TSN traffic
   - Demonstrate Network Time Shaper Function (802.1Qbv) on TSN traffic
-* Demonstrate Modbus based RS485 communication over uart+pmod interface.
+* Demonstrate Modbus based RS485 communication over uart+pmod interface
 
 
 *******************************
@@ -32,8 +32,7 @@ Quick Start
 .. toctree::
    :maxdepth: 1
   
-   KR260 Starter Kit Linux Boot <../kria_starterkit_linux_boot>
-   Setting up the Board and Application deployment <docs/app_deployment.md>
+   Setting up the Board and Application deployment <./docs/app_deployment>
 
 ***************************
 Tutorials
@@ -42,13 +41,15 @@ Tutorials
 .. toctree::
    :maxdepth: 1
   
-   KR260 Starter Kit Linux Boot <../kria_starterkit_linux_boot>
+   ../kria_starterkit_linux_boot
    Building the Design components <../building_the_design>
    Building the Hardware design using Vivado <../build_vivado_design>
-   Creating a Vitis Platform <../build_vitis_platform>
    Generate Custom Firmware <../generating_custom_firmware>
 
-* Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq.html) for commonly encountered issues across Kria SOM applications.
+* Please first review the `FAQ <https://xilinx.github.io/kria-apps-docs/faq.html>`_ for commonly encountered issues across Kria SOM applications.
+
+
+
 
 ******************
 Architecture
@@ -60,6 +61,15 @@ Architecture
    Software Architecture - Platform <docs/sw_arch_platform>
    Hardware Architecture - Platform <docs/hw_arch_platform>
 
+
+*******************************
+Repository
+*******************************
+
+.. toctree::
+  :maxdepth: 1
+  
+  Software Repository <https://github.com/Xilinx/ros-tsn-pubsub>
 
 
 Xilinx Support

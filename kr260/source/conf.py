@@ -29,10 +29,10 @@ copyright = '2022-2023, Advanced Micro Devices, Inc'
 author = 'Advanced Micro Devices, Inc'
 
 # The short X.Y version
-version = '2022.1'
+#version = '2022.1'
 # The full version, including alpha/beta/rc tags
-release = '2022.1'
-html_last_updated_fmt = 'June 21, 2023'
+#release = '2022.1'
+html_last_updated_fmt = 'September 18, 2023'
 
 # -- General configuration ---------------------------------------------------
 

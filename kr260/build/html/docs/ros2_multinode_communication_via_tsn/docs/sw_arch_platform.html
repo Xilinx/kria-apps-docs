@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Software Architecture of the Platform &mdash; Kria™ KR260 2022.1 documentation</title>
+  <title>Software Architecture of the Platform &mdash; Kria™ KR260  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Hardware Architecture of the Platform" href="hw_arch_platform.html" />
-    <link rel="prev" title="Creating a Vitis Platform" href="../../build_vitis_platform.html" /> 
+    <link rel="prev" title="Using Vivado to Build the Hardware Design" href="../../build_vivado_design.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -50,9 +50,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
             <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                2022.1
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,6 +70,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -94,9 +92,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="hw_arch_platform.html">Hardware Architecture - Platform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html#xilinx-support">Xilinx Support</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html#repository">Repository</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../ros2_perception_node/ros2_perception_node_landing.html">ROS 2 Perception Node</a></li>
@@ -134,7 +132,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This section describes software components involved in the design and their relation with each other. The application requires hw platform as described in <a class="reference internal" href="hw_arch_platform.html"><span class="doc">Hardware Architecture of the Platform</span></a> for the stack explained in this section to work.</p>
-<p>Following diagram illustrate top level architecture and arrangement of various software components</p>
+<p>Following diagram illustrates the top-level architecture and arrangement of various software components:</p>
 <p><img alt="Software Architecture Overview" src="../../../_images/sw_arch_intro1.png" />]</p>
 <ul class="simple">
 <li><p>Operating System: Xilinx Linux kernel + Ubuntu env</p>
@@ -164,7 +162,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ul>
 <p>The details of each individual component can be obtained though the reference at the end of this section. The scope of this document is with respect to what is being demonstrated through the example application.</p>
-<p>Following list describes the top level application functions:</p>
+<p>The following list describes the top-level application functions:</p>
 <ul class="simple">
 <li><p>TSN demonstration</p></li>
 <li><p>ROS demonstration</p></li>
@@ -173,26 +171,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="tsn">
 <h2>TSN<a class="headerlink" href="#tsn" title="Permalink to this heading">¶</a></h2>
-<p>Time-Sensitive Networking (TSN) is a set of standards under development by the Time-Sensitive Networking task group of the IEEE 802.1 working group. This standards allows low latency transmission and time guaranteed packet delivery.</p>
+<p>Time-Sensitive Networking (TSN) is a set of standards under development by the Time-Sensitive Networking task group of the IEEE 802.1 working group. This standards allows low latency transmission and time-guaranteed packet delivery.</p>
 <div class="section" id="driver">
 <h3>Driver<a class="headerlink" href="#driver" title="Permalink to this heading">¶</a></h3>
-<p>Set of drivers used for the TSN solution is enabled in the staging area under <code class="docutils literal notranslate"><span class="pre">linux-xlnx/drivers/staging/xilinx-tsn</span></code>. These set of drivers provides tsn capability like vlan,scheduled traffic, best effort traffic, ptp, QBV shaper, etc. using standard ethernet framework and ip route tools.</p>
-<p>For details of the device tree for the driver can be found in the kernel documentation at <code class="docutils literal notranslate"><span class="pre">linux-xlnx/Documentation/devicetree/bindings/net/xilinx*tsn*.txt</span></code></p>
-<p>Refer <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/25034864/Xilinx+TSN+Solution">Xilinx TSN Solution</a> for details of various features supported by xilinx tsn drivers.</p>
+<p>Set of drivers used for the TSN solution is enabled in the staging area under <code class="docutils literal notranslate"><span class="pre">linux-xlnx/drivers/staging/xilinx-tsn</span></code>. These set of drivers provides TSN capability such as vlan,scheduled traffic, best effort traffic, ptp, QBV shaper, and so on using standard ethernet framework and IP route tools.</p>
+<p>The details of the device tree for the driver can be found in the kernel documentation at <code class="docutils literal notranslate"><span class="pre">linux-xlnx/Documentation/devicetree/bindings/net/xilinx*tsn*.txt</span></code>.</p>
+<p>Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/25034864/Xilinx+TSN+Solution">Xilinx TSN Solution</a> for details of various features supported by Xilinx TSN drivers.</p>
 </div>
 </div>
 <div class="section" id="ros2">
 <h2>ROS2<a class="headerlink" href="#ros2" title="Permalink to this heading">¶</a></h2>
-<p>Robot Operating System (ROS) is a set of open source algorithms, hardware driver, software and tools for developing robot control software. Contrary to it’s name, ROS isn’t an operating system but it is a library.</p>
-<p>In a full fledged ROS environment sensors in robots, motion controllers, detection and navigation algorithms, etc are all components of this distributed ROS architecture. Each individual component is referred as <strong>Node</strong>. ROS nodes (and applications) typically communicate through interfaces of one of three types: messages, services and actions. ROS 2 uses a simplified description language, the interface definition language (IDL), to describe these interfaces. This description makes it easy for ROS tools to automatically generate source code for the interface type in several target languages.</p>
-<p>Topics are the elements of ROS2 that acts as bus for nodes to exchange messages. In a simplest use case, message is published by a node on a given topic. Anyone subscribed to that topic can receive the message.</p>
+<p>Robot Operating System (ROS) is a set of open source algorithms, hardware driver, software, and tools for developing robot control software. Contrary to its name, ROS is not an operating system but a library.</p>
+<p>In a full-fledged ROS environment sensors in robots, motion controllers, detection, and navigation algorithms, and so on are all components of this distributed ROS architecture. Each individual component is referred as <strong>Node</strong>. ROS nodes (and applications) typically communicate through interfaces of one of three types: messages, services, and actions. ROS 2 uses a simplified description language, the interface definition language (IDL), to describe these interfaces. This description makes it easy for ROS tools to automatically generate the source code for the interface type in several target languages.</p>
+<p>Topics are the elements of ROS2 that act as bus for nodes to exchange messages. In the simplest use case, the message is published by a node on a given topic. Anyone subscribed to that topic can receive the message.</p>
 <p><img alt="TopicSingleNode" src="../../../_images/Topic-SinglePublisherandSingleSubscriber.gif" /></p>
 <p>A node may publish data to any number of topics and simultaneously have subscriptions to any number of topics.</p>
 <p><img alt="TopicMultiNodes" src="../../../_images/Topic-MultiplePublisherandMultipleSubscriber.gif" /></p>
-<p>These nodes can be on the same system or distributed across systems. The biggest improvement ROS2 provides over ROS1 is the how the communication is handled across various systems. ROS2 adopts the decentralized (as opposed to centralized in ROS1) DDS middleware. Instead of implementing its own DDS layer, ROS2 provides a middleware abstraction layer (rmw), which can be plugged on any standard DDS implementation.</p>
+<p>These nodes can be on the same system or distributed across systems. The biggest improvement ROS2 provides over ROS1 is how the communication is handled across various systems. ROS2 adopts the decentralized (as opposed to centralized in ROS1) DDS middleware. Instead of implementing its own DDS layer, ROS2 provides a middleware abstraction layer (rmw), which can be plugged on any standard DDS implementation.</p>
 <div class="section" id="dds">
 <h3>DDS<a class="headerlink" href="#dds" title="Permalink to this heading">¶</a></h3>
-<p>ROS 2 is built on top of DDS/RTPS as its middleware, which provides discovery, serialization and transportation. DDS is an end-to-end middleware that provides features which are relevant to ROS systems, such as distributed discovery (not centralized like in ROS 1) and control over different “Quality of Service” options for the transportation. There are many independent DDS implementation by various vendors. ROS2’s rmw abstraction allows to easily switch or adapt different implementations.</p>
+<p>ROS 2 is built on top of DDS/RTPS as its middleware, which provides discovery, serialization, and transportation. DDS is an end-to-end middleware that provides features that are relevant to ROS systems, such as distributed discovery (not centralized like in ROS 1) and control over different “Quality of Service” options for the transportation. There are many independent DDS implementation by various vendors. ROS2’s rmw abstraction allows to easily switch or adapt different implementations.</p>
 <p>Following are supported DDS implementation for ROS2 humble release:</p>
 <ul class="simple">
 <li><p>eProsima Fast DDS (Default RMW)</p></li>
@@ -200,16 +198,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>RTI Connext DDS</p></li>
 <li><p>GurumNetworks GurumDDS</p></li>
 </ul>
-<p>For this application, two separate nodes one running as publisher and other as subscriber on separate KR260 communicates over TSN network. The underlying middleware is default to FastDDS.</p>
+<p>For this application, two separate nodes, one running as publisher and the other as subscriber on separate KR260 communicate over the TSN network. The underlying middleware is default to FastDDS.</p>
 <div class="section" id="dds-configuration">
 <h4>DDS configuration<a class="headerlink" href="#dds-configuration" title="Permalink to this heading">¶</a></h4>
-<p>For demonstration, the message is sent as a scheduled traffic. The DDS is configured allow the message only from the whitelisted interface which is set to have <a class="reference external" href="https://tsn.readthedocs.io/vlan.html">vlan qos mapping</a> for all the outgoing traffic to be set as Scheduled Traffic (PCP=4).</p>
-<p>e.g.</p>
+<p>For demonstration, the message is sent as a scheduled traffic. The DDS is configured allow the message only from the whitelisted interface, which is set to have <a class="reference external" href="https://tsn.readthedocs.io/vlan.html">vlan qos mapping</a> for all the outgoing traffic to be set as Scheduled Traffic (PCP=4).</p>
+<p>For example,</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ip link add link ep name ep.40 <span class="nb">type</span> vlan id <span class="m">40</span> egress-qos-map <span class="m">0</span>:4
 ip addr add <span class="m">111</span>.222.0.10/24 broadcast + dev ep.40
 </pre></div>
 </div>
-<p>Now this new interface can be added to whitelist of the dds configuration for required topic through the xml configuration.</p>
+<p>Now this new interface can be added to whitelist of the DDS configuration for the required topic through the xml configuration.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&lt;transport_descriptor&gt;
     &lt;transport_id&gt;UdpVLANTransport&lt;/transport_id&gt;
     &lt;type&gt;UDPv4&lt;/type&gt;
@@ -219,13 +217,13 @@ ip addr add <span class="m">111</span>.222.0.10/24 broadcast + dev ep.40
 &lt;/transport_descriptor&gt;
 </pre></div>
 </div>
-<p>For more information various possible configuration refer <a class="reference external" href="https://fast-dds.docs.eprosima.com/en/latest/fastdds/ros2/ros2_configure.html">fast dds configuration</a>.</p>
+<p>For more information various possible configuration, refer to <a class="reference external" href="https://fast-dds.docs.eprosima.com/en/latest/fastdds/ros2/ros2_configure.html">fast dds configuration</a>.</p>
 </div>
 </div>
 </div>
 <div class="section" id="modbus-and-rs485">
 <h2>Modbus and RS485<a class="headerlink" href="#modbus-and-rs485" title="Permalink to this heading">¶</a></h2>
-<p>Modbus is open-source, client/server communication protocol widely used in remote monitoring, control and robotic applications. Because of its simple message structure, it is very easy to deploy. It supports multiple devices to be connected on the same bus and uses polling mechanism to acquire the status of each device on the bus.</p>
+<p>Modbus is an open-source, client/server communication protocol widely used in remote monitoring, control, and robotic applications. Because of its simple message structure, it is easy to deploy. It supports multiple devices to be connected on the same bus and uses polling mechanism to acquire the status of each device on the bus.</p>
 <p>Modbus data can be carried over serial ports or ethernet interface.</p>
 <p><strong>Modbus RTU</strong> (remote terminal unit), used in serial communication, is the most common implementation for modbus supporting devices. Modbus RTU makes use of a compact, binary representation of the data for protocol communication. The RTU format follows the commands/data with a cyclic redundancy check checksum as an error check mechanism to ensure the reliability of data.</p>
 <p><strong>RS485</strong> is a widely used serial communication standard, especially between the devices communicating over Modbus RTU protocol.</p>
@@ -253,7 +251,7 @@ ip addr add <span class="m">111</span>.222.0.10/24 broadcast + dev ep.40
 <tr>
 <td>Function</td>
 <td>8</td>
-<td>Indicates the function code e.g. "read coils"</td>
+<td>Indicates the function code. For example, "read coils"</td>
 </tr>
 <tr>
 <td>Data</td>
@@ -274,8 +272,8 @@ ip addr add <span class="m">111</span>.222.0.10/24 broadcast + dev ep.40
 </table></div>
 <div class="section" id="linux-driver">
 <h3>Linux driver<a class="headerlink" href="#linux-driver" title="Permalink to this heading">¶</a></h3>
-<p>In this application, uartlite IP in PL is patched to support RS485, by enabling/connect the DE line. To support this there is <strong>uartlite-rs485</strong> driver in the staging area. This driver is copy of original uartlite driver with additional advertised capability of RS485 support. No additional changes are required for the give IP patch.</p>
-<p>This new driver requires different compatibility string and hence the original device tree node’s compatible string needs to be overwritten as below.</p>
+<p>In this application, uartlite IP in PL is patched to support RS485, by enabling/connect the DE line. To support this, there is a <strong>uartlite-rs485</strong> driver in the staging area. This driver is copy of original uartlite driver with additional advertised capability of RS485 support. No additional changes are required for the given IP patch.</p>
+<p>This new driver requires different compatibility string and; hence, the original device tree node’s compatible string needs to be overwritten as below.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&amp;axi_uartlite_0 {
         compatible = &quot;xlnx,axi-uartlite-rs485&quot;;
 };
@@ -284,17 +282,17 @@ ip addr add <span class="m">111</span>.222.0.10/24 broadcast + dev ep.40
 </div>
 <div class="section" id="modbus-library">
 <h3>Modbus Library<a class="headerlink" href="#modbus-library" title="Permalink to this heading">¶</a></h3>
-<p><strong>libmodbus</strong> is a free software library to send/receive data according to the Modbus protocol. This library is written in C and supports RTU (serial) and TCP (Ethernet) communications. It is available on most of the platforms (OS) include Linux, FreeBSD, Mac and Windows.</p>
-<p>Once required communication channel is established, the library will take care of converting the regular message in modbus format.</p>
+<p><strong>libmodbus</strong> is a free software library to send/receive data according to the Modbus protocol. This library is written in C and supports RTU (serial) and TCP (Ethernet) communications. It is available on most of the platforms (OS) include Linux, FreeBSD, Mac, and Windows.</p>
+<p>Once the required communication channel is established, the library takes care of converting the regular message in the modbus format.</p>
 </div>
 <div class="section" id="application">
 <h3>Application<a class="headerlink" href="#application" title="Permalink to this heading">¶</a></h3>
-<p>To demonstrate Modbus &amp; RS485 capability an example C application, pmdo-rs485-test, is provided. The target device is modbus capable temperature sensor, connected over pmod interface. See connection and hardware details in <a class="reference internal" href="app_deployment.html"><span class="doc">Deployment</span></a> and <a class="reference internal" href="hw_arch_platform.html"><span class="doc">Hardware Arch</span></a> sections.</p>
+<p>To demonstrate Modbus and RS485 capability an example C application, pmdo-rs485-test is provided. The target device is modbus capable temperature sensor, connected over the pmod interface. See connection and hardware details in <a class="reference internal" href="app_deployment.html"><span class="doc">Deployment</span></a> and <a class="reference internal" href="hw_arch_platform.html"><span class="doc">Hardware Arch</span></a> sections.</p>
 <p><strong>pmod-rs485-test</strong> is the application that uses libmodbus to:</p>
 <ul class="simple">
 <li><p>Create modbus RTU channel over uartlite-rs485 device</p></li>
 <li><p>Adjust response time</p></li>
-<li><p>Read Temperature and Humidity values from the sensor.</p></li>
+<li><p>Read Temperature and Humidity values from the sensor</p></li>
 </ul>
 </div>
 </div>
@@ -308,7 +306,7 @@ ip addr add <span class="m">111</span>.222.0.10/24 broadcast + dev ep.40
 <li><p><a class="reference external" href="https://www.libmodbus.org/documentation/">Modbus</a></p></li>
 <li><p><a class="reference external" href="https://www.modbus.org/specs.php">Modbus Protocol</a></p></li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/RS-485">RS485</a></p></li>
-<li><p><a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842249/Uartlite+Driver">Xilinx Uartlite Driver</a> (Original driver)</p></li>
+<li><p><a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842249/Uartlite+Driver">Uartlite Driver</a> (Original driver)</p></li>
 </ul>
 <div class="section" id="next-steps">
 <h3>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h3>
@@ -324,7 +322,7 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright&copy; 2022 Xilinx</p></div>
+--><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></div>
 </div>
 </div>
 
@@ -334,7 +332,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../build_vitis_platform.html" class="btn btn-neutral float-left" title="Creating a Vitis Platform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../build_vivado_design.html" class="btn btn-neutral float-left" title="Using Vivado to Build the Hardware Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="hw_arch_platform.html" class="btn btn-neutral float-right" title="Hardware Architecture of the Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -342,7 +340,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 21, 2023.
+      <span class="lastupdated">Last updated on September 18, 2023.
       </span></p>
   </div>
 

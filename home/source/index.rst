@@ -107,6 +107,25 @@ Common questions that you might encounter while using Kria SOM.
 
 
 
+**********************************************************************************************************************************************************************************************
+`Kria KD240 Drives Starter Kit <../../../kd240/build/html/index.html>`__
+**********************************************************************************************************************************************************************************************
+
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Kria KD240
+   :hidden:
+
+   Drives Starter Kit <https://xilinx.github.io/kria-apps-docs/kd240-docs.html>
+
+
+
+The AMD Kria™ KD240 Drives Starter Kit is the latest out-of-the box ready evaluation/development platform in the Kria portfolio. This starter kit is the platform of choice for development of electric drives and other size and cost-constrained applications. The kit consists of a non-production Kria K24 SOM plugged into a drives application carrier card and equipped with a passive heatsink. The K24 SOM included in the starter kit is based on the Zynq™ Ultra Scale+™ MPSoC and paired with 2 GB of LPDDR4 memory. The starter kit is also Drives application ready because it features a three-phase inverter, quadrature encoder interface, brake control, and torque sensor interface. Beyond the drives-specific interfaces, there are a host of other interfaces for general purpose developers including connectivity through Ethernet and USB ports, and flexible I/O expandability via a Pmod connector.
+
+
+
 
 **********************************************************************************************************************************************************************************************
 `Kria KV260 Vision AI Starter Kit Applications <../../../kv260/2022.1/build/html/index.html>`__
@@ -145,6 +164,7 @@ Enabled by a growing ecosystem of accelerated applications from the Xilinx App S
 
 
 The Kria KR260 Robotics Starter Kit is the latest out-of-the box ready evaluation/development platform in the Xilinx `Kria <https://www.xilinx.com/products/som/kria.html>`_ portfolio of products. The Starter Kit is the platform of choice for development of robotics, machine vision, industrial communication & control target applications. It consists of a non-production K26 SOM plugged into a robotics carrier card and equipped with an active thermal solution of fan and heatsink. The SOM on the Starter Kit is based on `Zynq UltraScale+ MPSoC <https://www.xilinx.com/products/silicon-devices/soc/zynq-ultrascale-mpsoc.html>`_ EV architecture that is paired with 4 GB of DDR4 memory.
+
 
 
 **********************************************************************************************************************************************************************************************

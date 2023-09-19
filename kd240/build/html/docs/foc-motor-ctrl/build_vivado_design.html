@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Using Vivado to Build the Hardware Design &mdash; Kria™ KD240 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Generation of Firmware Binaries" href="generating_custom_firmware.html" />
+    <link rel="prev" title="Tool Flow Overview" href="building_the_design.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../index.html" class="icon icon-home"> Kria™ KD240
+            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KD240 Applications</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../bist/bist_landing.html">BIST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">TSN ROS Pub Sub</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="foc_motor_control_landing.html">FOC Motor Control Application</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="foc_motor_control_landing.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="foc_motor_control_landing.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="foc_motor_control_landing.html#tutorials">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">Booting Kria Starter Kit Linux on KD240</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_the_design.html">Building the Design components</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Building the Hardware design using Vivado</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generating-an-extensible-xsa">Generating an Extensible XSA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modifying-the-vivado-design-and-creating-a-new-xsa">Modifying the Vivado Design and Creating a New XSA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generating_custom_firmware.html">Generate Custom Firmware</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="foc_motor_control_landing.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="foc_motor_control_landing.html#repository">Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="foc_motor_control_landing.html#other">Other</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kria™ KD240</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="foc_motor_control_landing.html">FOC Motor Control Application</a> &raquo;</li>
+      <li>Using Vivado to Build the Hardware Design</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/foc-motor-ctrl/build_vivado_design.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide">
+ <tr>
+   <td align="center"><img src="media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KD240 Drives Starter Kit Tutorial</h1>
+   </td>
+ </tr>
+ <tr>
+ <td align="center"><h1>Using Vivado to Build the Hardware Design</h1> </td>
+ </tr>
+</table><div class="section" id="using-vivado-to-build-the-hardware-design">
+<h1>Using Vivado to Build the Hardware Design<a class="headerlink" href="#using-vivado-to-build-the-hardware-design" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This tutorial shows how to build the hardware design for applications running on the KD240 Drives Starter Kit.</p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>AMD Vivado Design Suite™ of the appropiate version</p></li>
+</ul>
+<div class="section" id="accessing-the-tutorial-reference-files">
+<h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p><strong>NOTE:</strong> Skip the following steps if the design files have already been cloned and extracted to a working repository.</p>
+</div></blockquote>
+<ol>
+<li><p>To access the reference files, type the following into a terminal:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v2023.1 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
+</pre></div>
+</div>
+</li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">kria-vitis-platforms/kd240</span></code>, which is the working directory.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="generating-an-extensible-xsa">
+<h2>Generating an Extensible XSA<a class="headerlink" href="#generating-an-extensible-xsa" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Go to the platform directory specific to the application.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;
+</pre></div>
+</div>
+<p>Applications and their corresponding platform names are listed in the following table:</p>
+</li>
+</ol>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Application</th>
+<th>Platform Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Built-in self test (BIST)</td>
+<td>kd240_bist</td>
+</tr>
+<tr>
+<td>FOC motor control with position sensor</td>
+<td>kd240_motor_ctrl_qei</td>
+</tr>
+</tbody>
+</table><ol>
+<li><p>To build the XSA, source Vivado, and run the following command. The Makefile uses the scripts/<code class="docutils literal notranslate"><span class="pre">main.tcl</span></code> file to create a Vivado project, populate the block design, and finally build a XSA. The XSA generation can take some time depending on the system specification.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make xsa
+</pre></div>
+</div>
+</li>
+<li><p>The generated XSA is located at:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;/project/&lt;platform_name&gt;.xsa
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><p><strong>NOTE:</strong> The steps under <em>Modifying the Vivado Design and Creating a new XSA</em> are optional and are required only if you need to change the platform design.</p>
+</div></blockquote>
+</div>
+<div class="section" id="modifying-the-vivado-design-and-creating-a-new-xsa">
+<h2>Modifying the Vivado Design and Creating a New XSA<a class="headerlink" href="#modifying-the-vivado-design-and-creating-a-new-xsa" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Go to the directory specific to the platform design.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>To open the Vivado project, open the Vivado GUI, then run the following command from the Vivado Tcl console:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>open_project ./project/&lt;platform_name&gt;.xpr
+</pre></div>
+</div>
+</li>
+<li><p>In the Flow Navigator pane on the left-hand side under IP integrator, click <strong>Open Block Design</strong>. An IP integrator block design becomes visible that contains the Processing System (PS) IP and other programmable logic (PL) IPs.</p></li>
+<li><p>To view the platform interfaces that are enabled for the AMD Vitis™ compiler to stitch in accelerators, click <strong>Window</strong> → <strong>Platform Setup</strong> on the toolbar at the top. Platform interfaces that are enabled are:</p>
+<ul class="simple">
+<li><p>Clocks: To drive clock inputs on the accelerator.</p></li>
+<li><p>Master AXI: AXI memory-mapped master ports on the Interconnect IP to drive the accelerator’s control port.</p></li>
+<li><p>Slave AXI: AXI memory-mapped slave ports driven by the accelerator’s read/write data ports.</p></li>
+<li><p>Interrupts: interrupt controller for the accelerator to drive interrupt signals.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>NOTE:</strong> Not every Vivado design has platform interfaces specified.</p>
+</div></blockquote>
+</li>
+<li><p>You can now modify the block design and validate it (toolbar at the top: <strong>Tools</strong> → <strong>Validate design</strong>). Then click <strong>Run Synthesis</strong> to complete the synthesis.</p></li>
+<li><p>To write out a new extensible platform XSA file, run the following command from the Vivado Tcl console:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>write_hw_platform -force -file &lt;platform_name&gt;.xsa
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The generated XSA or the modified XSA file can now be used to create a Vitis platform (optional).</p>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="generating_custom_firmware.html"><span class="doc">Generate Custom Firmware</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<p>For more information on how to set up platform interfaces, refer to the AMD Vitis Unified Software Platform Documentation <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces">UG1393</a>.</p>
+<!---
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+--><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="building_the_design.html" class="btn btn-neutral float-left" title="Tool Flow Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generating_custom_firmware.html" class="btn btn-neutral float-right" title="Generation of Firmware Binaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 18, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
