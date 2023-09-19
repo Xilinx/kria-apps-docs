@@ -34,20 +34,21 @@ Quick Start
   
    Setting up the Board and Application deployment <./docs/app_deployment>
 
+
 ***************************
 Tutorials
 ***************************
 
-.. toctree::
-   :maxdepth: 1
-  
-   ./kria_starterkit_linux_boot
-   Building the Design components <./building_the_design>
-   Building the Hardware design using Vivado <./build_vivado_design>
-   Generate Custom Firmware <./generating_custom_firmware>
 
-* Please first review the `FAQ <https://xilinx.github.io/kria-apps-docs/faq.html>`_ for commonly encountered issues across Kria SOM applications.
+* :doc:`Linux Boot <../kria_starterkit_linux_boot>`
+* :doc:`Building the Design components <../building_the_design>`
+* :doc:`Building the Hardware design using Vivado <../build_vivado_design>`
+* :doc:`Generate Custom Firmware <../generating_custom_firmware>`
 
+
+
+.. important::
+   Review the `FAQ <https://xilinx.github.io/kria-apps-docs/faq.html>`_ for commonly encountered issues across Kria SOM applications.
 
 
 ******************
