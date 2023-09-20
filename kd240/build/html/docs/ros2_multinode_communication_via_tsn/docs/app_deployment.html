@@ -178,38 +178,99 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p><strong>NOTE</strong>: This tutorial can be run with one KD240 and one KR260 configuration as well</p>
 </div>
+<div class="section" id="tested-artifacts">
+<h3>Tested Artifacts<a class="headerlink" href="#tested-artifacts" title="Permalink to this heading">¶</a></h3>
+<p>Testing was performed with the following artifacts:</p>
+<div class="section" id="kd240-platform-artifacts">
+<h4>KD240 platform artifacts<a class="headerlink" href="#kd240-platform-artifacts" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Component</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boot Firmware</td>
+<td>K24-BootFW-01.00.bin</td>
+</tr>
+<tr>
+<td>Linux Kernel</td>
+<td>5.15.0-9002</td>
+</tr>
+<tr>
+<td>xlnx-firmware-kd240-motor-ctrl-qei</td>
+<td>0.10.1-0xlnx1</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="kr260-platform-artifacts">
+<h4>KR260 platform artifacts<a class="headerlink" href="#kr260-platform-artifacts" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Component</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boot Firmware</td>
+<td>BOOT_xilinx-k26-starterkit-v2022.1-09152304_update3.BIN</td>
+</tr>
+<tr>
+<td>Linux Kernel</td>
+<td>5.15.0-1023</td>
+</tr>
+<tr>
+<td>xlnx-firmware-kr260-tsn-rs485pmod</td>
+<td>0.10.1-0xlnx1</td>
+</tr>
+</tbody>
+</table><p>Please refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">Kria Wiki</a>
+to obtain latest linux image and boot firmware.</p>
+</div>
+<div class="section" id="application-packages">
+<h4>Application packages<a class="headerlink" href="#application-packages" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xlnx-tsn-utils</td>
+<td>0.3-0xlnx1</td>
+</tr>
+<tr>
+<td>xlnx-app-kr260-tsn-examples</td>
+<td>0.2-0xlnx2</td>
+</tr>
+<tr>
+<td>xlnx-app-kr260-pmod-rs485-test</td>
+<td>0.1-0xlnx1</td>
+</tr>
+<tr>
+<td>ros-humble-xlnx-pubsub</td>
+<td>0.1.0-0jammy</td>
+</tr>
+<tr>
+<td>ethtool</td>
+<td>1:5.16+tsn-qbr-0ubuntu1xlnx1</td>
+</tr>
+<tr>
+<td>lldpad</td>
+<td>1.1+tsn-qbr-0ubuntu1xlnx2</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 <div class="section" id="initial-setup">
 <h3>Initial Setup<a class="headerlink" href="#initial-setup" title="Permalink to this heading">¶</a></h3>
-<ol class="simple">
-<li><p>Testing was performed with:</p>
-<ul class="simple">
-<li><p>KD240 platform:</p></li>
-</ul>
-</li>
-</ol>
-<pre><code>    | Platform     | Version                         |
-    | :----------: | :-----------------------------: |
-    | Linux Kernel | 5.15.0-9002                     |
-    | Boot Fiwmare | BOOT-k24-smk-20230912123632.bin |
-</code></pre><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">KR260</span> <span class="n">platform</span><span class="p">:</span>
-</pre></div>
-</div>
-<pre><code>    | Platform      | Version                                                 |
-    | :-----------: | :-----------------------------------------------------: |
-    | Linux Kernel  | 5.15.0-1023                                             |
-    | Boot Firmware | BOOT_xilinx-k26-starterkit-v2022.1-09152304_update3.BIN |
-</code></pre><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Application</span> <span class="n">packages</span><span class="p">:</span>
-</pre></div>
-</div>
-<pre><code>    | Application                    | Version                      |
-    | :----------------------------: | :--------------------------: |
-    | xlnx-kria-apps-bitstreams      | 0.10-0xlnx1                  |
-    | xlnx-tsn-utils                 | 0.3-0xlnx1                   |
-    | xlnx-app-kr260-tsn-examples    | 0.2-0xlnx2                   |
-    | xlnx-app-kr260-pmod-rs485-test | 0.1-0xlnx1                   |
-    | ethtool                        | 1:5.16+tsn-qbr-0ubuntu1xlnx1 |
-    | lldpad                         | 1.1+tsn-qbr-0ubuntu1xlnx2    |
-</code></pre><ol>
+<ol>
 <li><p>Go through the minimum setup required to boot Linux before continuing with instructions in this page:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html">Kria Starter Kit Linux Boot on KR260</a></p></li>
@@ -1364,7 +1425,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 18, 2023.
+      <span class="lastupdated">Last updated on September 20, 2023.
       </span></p>
   </div>
 
