@@ -1,0 +1,180 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" href="visio.css"/>
+<title>
+map
+</title>
+<script type="text/javascript" language="javascript">
+function UpdateTooltip(){};
+function OnShapeClick(){};
+</script>
+
+<script src="png_1.js" type="text/javascript" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+	if( (parent.isSVG) || 
+		(parent.isVML && parent.vmlSupported) || 
+		(parent.isXAML && parent.isUpLevel)) 
+	{
+		location.replace(parent.g_FileList[parent.g_CurPageIndex].PriImage);
+	}
+</script>
+
+
+<script type="text/javascript" language="javascript">
+var pageID = 6;
+var isUpLevel = parent.isUpLevel;
+var OnShapeClick = null;
+if (!parent.isMac)
+{
+	OnShapeClick = parent.OnShapeClick;
+}
+
+var OnShapeKey = parent.OnShapeKey;
+var UpdateTooltip = parent.UpdateTooltip;
+var clickMenu = parent.clickMenu;
+var toggleMenuDiv = parent.toggleMenuDiv;
+var toggleMenuLink = parent.toggleMenuLink;
+var GoToPage = parent.GoToPage;
+
+
+if (parent.isUpLevel)
+{
+
+	if (parent.g_FirstPageToLoad != null && parent.g_FirstPageToLoad.length > 0)
+	{
+		if (parent.g_FileList[parent.g_CurPageIndex].PageID != pageID)
+		{
+			var fileEntry = parent.g_FileList[parent.g_CurPageIndex];
+			var fileToLoad = fileToLoad = fileEntry.PriImage;
+			if (fileEntry.SecImage.length > 0)
+			{
+				fileToLoad = fileEntry.SecImage;
+			}
+
+			location.replace(fileToLoad);
+		}
+
+		parent.g_FirstPageToLoad = null;
+	}
+
+
+	var viewMgr = new parent.CViewMgr();
+	parent.viewMgr = viewMgr;
+
+	viewMgr.SupportsDetails = true;
+	viewMgr.SupportsSearch = true;
+
+	viewMgr.put_Location = ViewMgrSetRasterLocation;
+	viewMgr.visBBoxLeft = 0.248264;
+	viewMgr.visBBoxRight = 10.751736;
+	viewMgr.visBBoxBottom = 0.214770;
+	viewMgr.visBBoxTop = 8.251736;
+	viewMgr.highlightDiv = null;
+}
+
+function load ()
+{
+	if(isUpLevel)
+	{
+		arrowdiv.innerHTML = '<img id="arrowgif" alt="Shows the location of the selected shape" src="arrow.png"/>';
+
+		var pageIndex = parent.PageIndexFromID (pageID);
+		parent.CurPageUpdate (pageIndex);
+	}
+}
+
+function unload()
+{
+	if(isUpLevel)
+	{
+		viewMgr = null;
+		parent.viewMgr = null;
+	}
+}
+
+window.onload = load;
+window.onunload = unload;
+document.onclick = clickMenu;
+
+</script>
+<style type="text/css"> 
+body {
+	background:url(foo) fixed;
+	padding: 10px;
+}
+div.banner {
+	position: fixed;
+	_position: absolute;
+	top: 0;
+	left: 0;
+	_top: expression(eval(document.body.scrollTop));
+	_left: expression(eval(document.body.scrollLeft));
+	width: 100%;
+	_width: expression(eval(document.body.clientWidth));
+	margin: 0;
+	padding: 3px;
+	padding-left: 6px;
+	background:lime;
+	background-color: #FFFFC6;
+	font: 11px tahoma,arial,serif;
+	border-bottom: 2px ridge #FFFFC6;
+}
+</style>
+</head>
+
+<body class="pageView" bgcolor="#FFFFFF" style="margin: 0px">
+
+<script type="text/javascript" language="javascript">
+// Displays the banner prompt to install Silverlight
+if (parent.slSupported && !parent.slInstalled)
+{
+	var slBanner = document.createElement("div");
+	slBanner.className = "banner";
+	slBanner.innerHTML = 'To enable full functionality such as Pan and Zoom, <a href="https://www.microsoft.com/silverlight/resources/install.aspx" target="parent">click here</a> to install the Silverlight plug-in.';
+
+	document.body.appendChild(slBanner);
+	document.body.style.paddingTop = "2.5em";
+}
+</script>
+
+
+<div id="arrowdiv" style="position:absolute;top:0;left:0;visibility:hidden;z-index:5">
+</div>
+
+<div id="menu1" onclick="clickMenu()" class="hlMenu">
+</div>
+<DIV id="RasterDiv" style="margin:10px">
+
+<center>
+  <IMG id="ConvertedImage" SRC="png_4.png" ALT="World 2" name=RasterImage BORDER="0" USEMAP="#visImageMap">
+</center>
+
+<MAP NAME="visImageMap">
+  <AREA shape="POLYGON" tabindex="1" ALT="KRS  (Kria Robotics Stack)" origTitle="KRS  (Kria Robotics Stack)" TITLE="KRS  (Kria Robotics Stack)" HREF="https://xilinx.github.io/KRS/sphinx/build/html/index.html" target="_top" COORDS="837,519,838,524,841,529,845,534,851,538,858,542,866,545,876,547,885,549,895,549,906,549,915,547,925,545,933,542,940,538,946,534,950,529,953,524,954,519,953,514,950,509,946,504,940,499,933,496,925,493,915,490,906,489,895,489,885,489,876,490,866,493,858,496,851,499,845,504,841,509,838,514,837,519" onmouseover="UpdateTooltip(this,6,1047,event)" onfocus="UpdateTooltip(this,6,1047,event)" onclick="return OnShapeClick(6,1047,event);" onkeyup="OnShapeKey(6,1047,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Ubuntu vs. PetaLinux" origTitle="Ubuntu vs. PetaLinux" TITLE="Ubuntu vs. PetaLinux" HREF="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-%26-Ubuntu-LTS" target="_top" COORDS="51,300,52,304,55,308,59,312,65,315,72,318,81,321,91,323,101,324,111,325,122,325,133,324,143,323,153,321,161,318,169,315,175,312,179,308,182,304,183,300,182,296,179,292,175,288,169,284,161,281,153,279,143,277,133,275,122,275,111,275,101,275,91,277,81,279,72,281,65,284,59,288,55,292,52,296,51,300" onmouseover="UpdateTooltip(this,6,1043,event)" onfocus="UpdateTooltip(this,6,1043,event)" onclick="return OnShapeClick(6,1043,event);" onkeyup="OnShapeKey(6,1043,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="BOOT.bin Generation" origTitle="BOOT.bin Generation" TITLE="BOOT.bin Generation" HREF="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Regenerating-boot-firmware-from-BSP" target="_top" COORDS="72,683,73,690,76,697,80,704,86,711,94,716,103,721,113,724,124,727,135,728,146,728,157,727,168,724,178,721,187,716,195,711,201,704,205,697,208,690,209,683,208,675,205,668,201,661,195,654,187,649,178,644,168,641,157,638,146,637,135,637,124,638,113,641,103,644,94,649,86,654,80,661,76,668,73,675,72,683" onmouseover="UpdateTooltip(this,6,1042,event)" onfocus="UpdateTooltip(this,6,1042,event)" onclick="return OnShapeClick(6,1042,event);" onkeyup="OnShapeKey(6,1042,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Detailed Boot Firmware Guide" origTitle="Detailed Boot Firmware Guide" TITLE="Detailed Boot Firmware Guide" HREF="https://xilinx.github.io/kria-apps-docs/bootfw/build/html/docs/bootfw_overview.html" target="_top" COORDS="24,589,25,596,28,603,32,609,39,615,46,620,55,624,65,627,76,630,87,631,98,631,110,630,120,627,130,624,139,620,147,615,153,609,158,603,160,596,161,589,160,582,158,575,153,569,147,563,139,558,130,554,120,551,110,548,98,547,87,547,76,548,65,551,55,554,46,558,39,563,32,569,28,575,25,582,24,589" onmouseover="UpdateTooltip(this,6,1041,event)" onfocus="UpdateTooltip(this,6,1041,event)" onclick="return OnShapeClick(6,1041,event);" onkeyup="OnShapeKey(6,1041,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Step 2 – Update BootFW (optional)" origTitle="Step 2 – Update BootFW (optional)" TITLE="Step 2 – Update BootFW (optional)" HREF="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-%26-Ubuntu-LTS" target="_top" COORDS="18,751,221,751,221,499,18,499,18,751" onmouseover="UpdateTooltip(this,6,1039,event)" onfocus="UpdateTooltip(this,6,1039,event)" onclick="return OnShapeClick(6,1039,event);" onkeyup="OnShapeKey(6,1039,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Bitstream Management on Kria SOM" origTitle="Bitstream Management on Kria SOM" TITLE="Bitstream Management on Kria SOM" HREF="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/bitstream_management.html" target="_top" COORDS="287,336,288,343,290,350,295,356,300,361,308,366,316,370,326,373,335,375,346,376,356,375,366,373,375,370,384,366,391,361,397,356,401,350,404,343,405,336,404,329,401,323,397,316,391,311,384,306,375,302,366,299,356,297,346,297,335,297,326,299,316,302,308,306,300,311,295,316,290,323,288,329,287,336" onmouseover="UpdateTooltip(this,6,1038,event)" onfocus="UpdateTooltip(this,6,1038,event)" onclick="return OnShapeClick(6,1038,event);" onkeyup="OnShapeKey(6,1038,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Hypervisor Xen" origTitle="Hypervisor Xen" TITLE="Hypervisor Xen" HREF="https://xilinx.github.io/kria-apps-docs/xen.html" target="_top" COORDS="100,438,94,435,86,432,78,431,69,430,61,430,53,432,45,434,38,437,33,441,29,446,26,451,25,456,26,462,29,467,33,472,39,476,47,479,55,482,64,483,73,483,82,482,90,479,97,476,103,472,108,467,110,462,111,456,111,452,108,447,105,443,100,439,100,438,100,438" onmouseover="UpdateTooltip(this,6,1033,event)" onfocus="UpdateTooltip(this,6,1033,event)" onclick="return OnShapeClick(6,1033,event);" onkeyup="OnShapeKey(6,1033,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="PetaLinux" origTitle="PetaLinux" TITLE="PetaLinux" HREF="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Xilinx-Tools-Support" target="_top" COORDS="120,382,120,387,123,391,127,395,133,399,139,402,147,404,156,406,164,406,173,406,181,404,189,402,196,399,202,395,206,391,208,387,209,382,208,377,206,373,202,369,196,365,189,362,181,360,173,359,164,358,156,359,147,360,139,362,133,365,127,369,123,373,120,377,120,382" onmouseover="UpdateTooltip(this,6,1032,event)" onfocus="UpdateTooltip(this,6,1032,event)" onclick="return OnShapeClick(6,1032,event);" onkeyup="OnShapeKey(6,1032,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Ubuntu" origTitle="Ubuntu" TITLE="Ubuntu" HREF="https://ubuntu.com/download/amd-xilinx" target="_top" COORDS="25,383,26,388,28,393,33,397,39,401,46,404,54,406,62,407,71,407,79,406,87,404,94,401,100,397,105,393,107,388,108,383,107,378,105,374,100,369,94,366,87,363,79,361,71,360,62,360,54,361,46,363,39,366,33,369,28,374,26,378,25,383" onmouseover="UpdateTooltip(this,6,1031,event)" onfocus="UpdateTooltip(this,6,1031,event)" onclick="return OnShapeClick(6,1031,event);" onkeyup="OnShapeKey(6,1031,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Step 1 – Choose OS" origTitle="Step 1 – Choose OS" TITLE="Step 1 – Choose OS" HREF="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-%26-Ubuntu-LTS" target="_top" COORDS="18,490,221,490,221,251,18,251,18,490" onmouseover="UpdateTooltip(this,6,1030,event)" onfocus="UpdateTooltip(this,6,1030,event)" onclick="return OnShapeClick(6,1030,event);" onkeyup="OnShapeKey(6,1030,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Device Tree Generation" origTitle="Device Tree Generation" TITLE="Device Tree Generation" HREF="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/dtsi_dtbo_generation.html" target="_top" COORDS="763,334,764,340,767,346,772,351,778,356,786,361,795,364,805,367,815,369,826,370,838,370,849,369,860,367,870,364,879,361,886,356,892,351,897,346,900,340,901,334,900,328,897,323,892,317,886,312,879,308,870,304,860,302,849,300,838,299,826,299,815,300,805,302,795,304,786,308,778,312,772,317,767,323,764,328,763,334" onmouseover="UpdateTooltip(this,6,1029,event)" onfocus="UpdateTooltip(this,6,1029,event)" onclick="return OnShapeClick(6,1029,event);" onkeyup="OnShapeKey(6,1029,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="AI Customization" origTitle="AI Customization" TITLE="AI Customization" HREF="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/AI_customization.html" target="_top" COORDS="722,561,723,567,726,573,731,578,737,583,744,588,753,591,763,594,774,596,785,597,797,597,808,596,819,594,829,591,837,588,845,583,851,578,856,573,859,567,860,561,859,555,856,550,851,544,845,539,837,535,829,531,819,528,808,526,797,525,785,525,774,526,763,528,753,531,744,535,737,539,731,544,726,550,723,555,722,561" onmouseover="UpdateTooltip(this,6,1028,event)" onfocus="UpdateTooltip(this,6,1028,event)" onclick="return OnShapeClick(6,1028,event);" onkeyup="OnShapeKey(6,1028,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Yocto" origTitle="Yocto" TITLE="Yocto" HREF="https://xilinx.github.io/kria-apps-docs/yocto.html" target="_top" COORDS="123,464,123,468,126,472,130,476,136,480,143,482,151,484,160,485,169,485,177,484,185,482,192,480,198,476,202,472,205,468,206,464,205,459,202,455,198,451,192,447,185,445,177,443,169,442,160,442,151,443,143,445,136,447,130,451,126,455,123,459,123,464" onmouseover="UpdateTooltip(this,6,1026,event)" onfocus="UpdateTooltip(this,6,1026,event)" onclick="return OnShapeClick(6,1026,event);" onkeyup="OnShapeKey(6,1026,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="DFX (Partial Reconfiguation)" origTitle="DFX (Partial Reconfiguation)" TITLE="DFX (Partial Reconfiguation)" HREF="https://xilinx.github.io/kria-apps-docs/dfx/build/html/docs/DFX_Landing_Page.html" target="_top" COORDS="293,585,294,591,296,596,301,602,307,607,315,611,324,615,334,618,344,620,356,620,367,620,378,620,389,618,399,615,408,611,415,607,422,602,426,596,429,591,430,585,429,579,426,573,422,568,415,563,408,558,399,555,389,552,378,550,367,549,356,549,344,550,334,552,324,555,315,558,307,563,301,568,296,573,294,579,293,585" onmouseover="UpdateTooltip(this,6,1024,event)" onfocus="UpdateTooltip(this,6,1024,event)" onclick="return OnShapeClick(6,1024,event);" onkeyup="OnShapeKey(6,1024,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Vitis Software Guide" origTitle="Vitis Software Guide" TITLE="Vitis Software Guide" HREF="https://docs.xilinx.com/r/en-US/ug1400-vitis-embedded" target="_top" COORDS="707,478,708,484,711,489,716,495,722,500,730,504,739,508,748,510,759,512,770,513,782,513,793,512,804,510,814,508,823,504,830,500,836,495,841,489,844,484,845,478,844,472,841,466,836,461,830,456,823,451,814,448,804,445,793,443,782,442,770,442,759,443,748,445,739,448,730,451,722,456,716,461,711,466,708,472,707,478" onmouseover="UpdateTooltip(this,6,1022,event)" onfocus="UpdateTooltip(this,6,1022,event)" onclick="return OnShapeClick(6,1022,event);" onkeyup="OnShapeKey(6,1022,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="OpenAMP" origTitle="OpenAMP" TITLE="OpenAMP" HREF="https://xilinx.github.io/kria-apps-docs/openamp/build/html/openamp_landing.html" target="_top" COORDS="851,454,852,459,854,463,858,467,864,471,871,474,878,476,887,477,895,478,904,477,913,476,920,474,927,471,933,467,937,463,939,459,940,454,939,450,937,445,933,441,927,438,920,435,913,433,904,431,895,431,887,431,878,433,871,435,864,438,858,441,854,445,852,450,851,454" onmouseover="UpdateTooltip(this,6,1018,event)" onfocus="UpdateTooltip(this,6,1018,event)" onclick="return OnShapeClick(6,1018,event);" onkeyup="OnShapeKey(6,1018,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Vivado Acccelerator Flow" origTitle="Vivado Acccelerator Flow" TITLE="Vivado Acccelerator Flow" HREF="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/vitis_accel_flow.html" target="_top" COORDS="468,457,459,455,449,455,440,455,430,456,422,458,414,461,407,464,401,468,397,473,395,478,394,483,395,488,398,493,402,497,408,501,415,505,424,508,433,509,443,510,453,510,462,509,472,508,480,505,487,501,493,497,498,493,501,488,502,483,501,478,499,474,495,469,490,465,484,462,477,459,469,457,469,457,468,457" onmouseover="UpdateTooltip(this,6,1010,event)" onfocus="UpdateTooltip(this,6,1010,event)" onclick="return OnShapeClick(6,1010,event);" onkeyup="OnShapeKey(6,1010,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Vitis Acccelerator Flow" origTitle="Vitis Acccelerator Flow" TITLE="Vitis Acccelerator Flow" HREF="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/vivado_accel_flow.html" target="_top" COORDS="504,577,505,582,508,587,513,591,519,596,526,599,534,602,543,604,553,605,563,605,573,604,582,602,591,599,598,596,604,591,608,587,611,582,612,577,611,572,608,567,604,562,598,558,591,555,582,552,573,550,563,549,553,549,543,550,534,552,526,555,519,558,513,562,508,567,505,572,504,577" onmouseover="UpdateTooltip(this,6,1009,event)" onfocus="UpdateTooltip(this,6,1009,event)" onclick="return OnShapeClick(6,1009,event);" onkeyup="OnShapeKey(6,1009,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Vitis Platform Flow" origTitle="Vitis Platform Flow" TITLE="Vitis Platform Flow" HREF="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/vitis_platform_flow.html" target="_top" COORDS="504,483,505,488,508,493,513,497,519,501,526,505,534,508,543,509,553,510,563,510,573,509,582,508,591,505,598,501,604,497,608,493,611,488,612,483,611,477,608,473,604,468,598,464,591,460,582,458,573,456,563,455,553,455,543,456,534,458,526,460,519,464,513,468,508,473,505,477,504,483" onmouseover="UpdateTooltip(this,6,1008,event)" onfocus="UpdateTooltip(this,6,1008,event)" onclick="return OnShapeClick(6,1008,event);" onkeyup="OnShapeKey(6,1008,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Baremetal Flow" origTitle="Baremetal Flow" TITLE="Baremetal Flow" HREF="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/baremetal.html" target="_top" COORDS="284,483,285,488,287,493,292,497,298,501,305,505,313,508,323,509,332,510,342,510,352,509,361,508,370,505,377,501,383,497,387,493,390,488,391,483,390,477,387,473,383,468,377,464,370,460,361,458,352,456,342,455,332,455,323,456,313,458,305,460,298,464,292,468,287,473,285,477,284,483" onmouseover="UpdateTooltip(this,6,1007,event)" onfocus="UpdateTooltip(this,6,1007,event)" onclick="return OnShapeClick(6,1007,event);" onkeyup="OnShapeKey(6,1007,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="PL Firmware Development Overview" origTitle="PL Firmware Development Overview" TITLE="PL Firmware Development Overview" HREF="https://xilinx.github.io/kria-apps-docs/creating_applications.html" target="_top" COORDS="415,346,416,352,419,358,423,364,430,369,437,373,446,377,456,380,467,381,478,382,489,381,499,380,509,377,518,373,526,369,532,364,537,358,539,352,540,346,539,340,537,334,532,328,526,323,518,319,509,315,499,312,489,311,478,310,467,311,456,312,446,315,437,319,430,323,423,328,419,334,416,340,415,346" onmouseover="UpdateTooltip(this,6,1004,event)" onfocus="UpdateTooltip(this,6,1004,event)" onclick="return OnShapeClick(6,1004,event);" onkeyup="OnShapeKey(6,1004,event);">
+</MAP>
+
+
+</DIV>
+</body>
+</html>
