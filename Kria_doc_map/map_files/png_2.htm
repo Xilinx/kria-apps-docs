@@ -1,0 +1,174 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" href="visio.css"/>
+<title>
+map
+</title>
+<script type="text/javascript" language="javascript">
+function UpdateTooltip(){};
+function OnShapeClick(){};
+</script>
+
+<script src="png_1.js" type="text/javascript" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+	if( (parent.isSVG) || 
+		(parent.isVML && parent.vmlSupported) || 
+		(parent.isXAML && parent.isUpLevel)) 
+	{
+		location.replace(parent.g_FileList[parent.g_CurPageIndex].PriImage);
+	}
+</script>
+
+
+<script type="text/javascript" language="javascript">
+var pageID = 7;
+var isUpLevel = parent.isUpLevel;
+var OnShapeClick = null;
+if (!parent.isMac)
+{
+	OnShapeClick = parent.OnShapeClick;
+}
+
+var OnShapeKey = parent.OnShapeKey;
+var UpdateTooltip = parent.UpdateTooltip;
+var clickMenu = parent.clickMenu;
+var toggleMenuDiv = parent.toggleMenuDiv;
+var toggleMenuLink = parent.toggleMenuLink;
+var GoToPage = parent.GoToPage;
+
+
+if (parent.isUpLevel)
+{
+
+	if (parent.g_FirstPageToLoad != null && parent.g_FirstPageToLoad.length > 0)
+	{
+		if (parent.g_FileList[parent.g_CurPageIndex].PageID != pageID)
+		{
+			var fileEntry = parent.g_FileList[parent.g_CurPageIndex];
+			var fileToLoad = fileToLoad = fileEntry.PriImage;
+			if (fileEntry.SecImage.length > 0)
+			{
+				fileToLoad = fileEntry.SecImage;
+			}
+
+			location.replace(fileToLoad);
+		}
+
+		parent.g_FirstPageToLoad = null;
+	}
+
+
+	var viewMgr = new parent.CViewMgr();
+	parent.viewMgr = viewMgr;
+
+	viewMgr.SupportsDetails = true;
+	viewMgr.SupportsSearch = true;
+
+	viewMgr.put_Location = ViewMgrSetRasterLocation;
+	viewMgr.visBBoxLeft = 0.248264;
+	viewMgr.visBBoxRight = 10.751736;
+	viewMgr.visBBoxBottom = 0.263889;
+	viewMgr.visBBoxTop = 8.251736;
+	viewMgr.highlightDiv = null;
+}
+
+function load ()
+{
+	if(isUpLevel)
+	{
+		arrowdiv.innerHTML = '<img id="arrowgif" alt="Shows the location of the selected shape" src="arrow.png"/>';
+
+		var pageIndex = parent.PageIndexFromID (pageID);
+		parent.CurPageUpdate (pageIndex);
+	}
+}
+
+function unload()
+{
+	if(isUpLevel)
+	{
+		viewMgr = null;
+		parent.viewMgr = null;
+	}
+}
+
+window.onload = load;
+window.onunload = unload;
+document.onclick = clickMenu;
+
+</script>
+<style type="text/css"> 
+body {
+	background:url(foo) fixed;
+	padding: 10px;
+}
+div.banner {
+	position: fixed;
+	_position: absolute;
+	top: 0;
+	left: 0;
+	_top: expression(eval(document.body.scrollTop));
+	_left: expression(eval(document.body.scrollLeft));
+	width: 100%;
+	_width: expression(eval(document.body.clientWidth));
+	margin: 0;
+	padding: 3px;
+	padding-left: 6px;
+	background:lime;
+	background-color: #FFFFC6;
+	font: 11px tahoma,arial,serif;
+	border-bottom: 2px ridge #FFFFC6;
+}
+</style>
+</head>
+
+<body class="pageView" bgcolor="#FFFFFF" style="margin: 0px">
+
+<script type="text/javascript" language="javascript">
+// Displays the banner prompt to install Silverlight
+if (parent.slSupported && !parent.slInstalled)
+{
+	var slBanner = document.createElement("div");
+	slBanner.className = "banner";
+	slBanner.innerHTML = 'To enable full functionality such as Pan and Zoom, <a href="https://www.microsoft.com/silverlight/resources/install.aspx" target="parent">click here</a> to install the Silverlight plug-in.';
+
+	document.body.appendChild(slBanner);
+	document.body.style.paddingTop = "2.5em";
+}
+</script>
+
+
+<div id="arrowdiv" style="position:absolute;top:0;left:0;visibility:hidden;z-index:5">
+</div>
+
+<div id="menu1" onclick="clickMenu()" class="hlMenu">
+</div>
+<DIV id="RasterDiv" style="margin:10px">
+
+<center>
+  <IMG id="ConvertedImage" SRC="png_2.png" ALT="intro" name=RasterImage BORDER="0" USEMAP="#visImageMap">
+</center>
+
+<MAP NAME="visImageMap">
+  <AREA shape="POLYGON" tabindex="1" ALT="KD240 User Guide UG1093" origTitle="KD240 User Guide UG1093" TITLE="KD240 User Guide UG1093" HREF="https://docs.xilinx.com/r/en-US/ug1093-kd240-starter-kit" target="_top" COORDS="422,681,423,688,425,695,430,702,436,708,444,713,454,718,464,721,475,724,487,726,499,726,511,726,523,724,534,721,544,718,554,713,561,708,568,702,572,695,575,688,576,681,575,674,572,667,568,660,561,654,554,649,544,644,534,641,523,638,511,636,499,636,487,636,475,638,464,641,454,644,444,649,436,654,430,660,425,667,423,674,422,681" onmouseover="UpdateTooltip(this,7,1030,event)" onfocus="UpdateTooltip(this,7,1030,event)" onclick="return OnShapeClick(7,1030,event);" onkeyup="OnShapeKey(7,1030,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="KD240 Data Sheet DS984" origTitle="KD240 Data Sheet DS984" TITLE="KD240 Data Sheet DS984" HREF="https://docs.xilinx.com/r/en-US/ds984-kd240-starter-kit" target="_top" COORDS="422,593,423,600,425,607,430,613,436,619,444,624,454,628,464,632,475,634,487,636,499,636,511,636,523,634,534,632,545,628,554,624,562,619,568,613,573,607,576,600,577,593,576,587,573,580,568,574,562,568,554,563,545,559,534,555,523,552,511,551,499,550,487,551,475,552,464,555,454,559,444,563,436,568,430,574,425,580,423,587,422,593" onmouseover="UpdateTooltip(this,7,1029,event)" onfocus="UpdateTooltip(this,7,1029,event)" onclick="return OnShapeClick(7,1029,event);" onkeyup="OnShapeKey(7,1029,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="K24  Data Sheet DS985" origTitle="K24  Data Sheet DS985" TITLE="K24  Data Sheet DS985" HREF="https://docs.xilinx.com/r/en-US/ds985-k24-som" target="_top" COORDS="421,469,422,476,424,483,429,489,434,495,442,500,450,505,460,509,470,512,482,514,493,515,505,515,516,514,528,512,538,509,548,505,556,500,564,495,569,489,574,483,576,476,577,469,576,462,574,455,569,449,564,443,556,438,548,433,538,429,528,426,516,424,505,423,493,423,482,424,470,426,460,429,450,433,442,438,434,443,429,449,424,455,422,462,421,469" onmouseover="UpdateTooltip(this,7,1028,event)" onfocus="UpdateTooltip(this,7,1028,event)" onclick="return OnShapeClick(7,1028,event);" onkeyup="OnShapeKey(7,1028,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="KR260 User Guide UG1092" origTitle="KR260 User Guide UG1092" TITLE="KR260 User Guide UG1092" HREF="https://docs.xilinx.com/r/en-US/ug1092-kr260-starter-kit" target="_top" COORDS="220,680,221,687,224,694,229,700,235,706,243,712,252,716,263,720,274,723,286,725,298,725,310,725,322,723,333,720,343,716,352,712,360,706,367,700,371,694,374,687,375,680,374,673,371,666,367,659,360,653,352,648,343,643,333,639,322,637,310,635,298,634,286,635,274,637,263,639,252,643,243,648,235,653,229,659,224,666,221,673,220,680" onmouseover="UpdateTooltip(this,7,1027,event)" onfocus="UpdateTooltip(this,7,1027,event)" onclick="return OnShapeClick(7,1027,event);" onkeyup="OnShapeKey(7,1027,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="KV260 User Guide UG1089" origTitle="KV260 User Guide UG1089" TITLE="KV260 User Guide UG1089" HREF="https://docs.xilinx.com/r/en-US/ug1089-kv260-starter-kit" target="_top" COORDS="34,680,35,687,37,694,42,700,48,706,56,712,66,716,76,720,87,723,99,725,111,725,123,725,135,723,146,720,156,716,166,712,173,706,180,700,184,694,187,687,188,680,187,673,184,666,180,659,173,653,166,648,156,643,146,639,135,637,123,635,111,634,99,635,87,637,76,639,66,643,56,648,48,653,42,659,37,666,35,673,34,680" onmouseover="UpdateTooltip(this,7,1026,event)" onfocus="UpdateTooltip(this,7,1026,event)" onclick="return OnShapeClick(7,1026,event);" onkeyup="OnShapeKey(7,1026,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="KR260 Data Sheet DS988" origTitle="KR260 Data Sheet DS988" TITLE="KR260 Data Sheet DS988" HREF="https://docs.xilinx.com/r/en-US/ds988-kr260-starter-kit" target="_top" COORDS="220,589,220,596,223,603,227,609,233,615,240,620,249,625,259,629,269,632,280,634,292,635,303,635,315,634,326,632,337,629,346,625,355,620,362,615,368,609,372,603,375,596,376,589,375,582,372,576,368,569,362,563,355,558,346,553,337,549,326,546,315,544,303,543,292,543,280,544,269,546,259,549,249,553,240,558,233,563,227,569,223,576,220,582,220,589" onmouseover="UpdateTooltip(this,7,1025,event)" onfocus="UpdateTooltip(this,7,1025,event)" onclick="return OnShapeClick(7,1025,event);" onkeyup="OnShapeKey(7,1025,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="K26 Data Sheet DS987" origTitle="K26 Data Sheet DS987" TITLE="K26 Data Sheet DS987" HREF="https://docs.xilinx.com/r/en-US/ds987-k26-som" target="_top" COORDS="120,457,121,464,124,470,128,477,134,483,141,488,150,493,159,497,170,500,181,502,193,503,204,503,216,502,227,500,238,497,247,493,256,488,263,483,269,477,273,470,276,464,277,457,276,450,273,443,269,437,263,431,256,426,247,421,238,417,227,414,216,412,204,411,193,411,181,412,170,414,159,417,150,421,141,426,134,431,128,437,124,443,121,450,120,457" onmouseover="UpdateTooltip(this,7,1024,event)" onfocus="UpdateTooltip(this,7,1024,event)" onclick="return OnShapeClick(7,1024,event);" onkeyup="OnShapeKey(7,1024,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="KV260 Data Sheet DS986" origTitle="KV260 Data Sheet DS986" TITLE="KV260 Data Sheet DS986" HREF="https://docs.xilinx.com/r/en-US/ds986-kv260-starter-kit" target="_top" COORDS="33,589,34,596,37,603,41,609,47,615,54,620,63,625,72,629,83,632,94,634,106,635,117,635,129,634,140,632,150,629,160,625,169,620,176,615,182,609,186,603,189,596,189,589,189,582,186,576,182,569,176,563,169,558,160,553,150,549,140,546,129,544,117,543,106,543,94,544,83,546,72,549,63,553,54,558,47,563,41,569,37,576,34,582,33,589" onmouseover="UpdateTooltip(this,7,1023,event)" onfocus="UpdateTooltip(this,7,1023,event)" onclick="return OnShapeClick(7,1023,event);" onkeyup="OnShapeKey(7,1023,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Kria Accelerated Application List" origTitle="Kria Accelerated Application List" TITLE="Kria Accelerated Application List" HREF="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Accelerated-Applications" target="_top" COORDS="583,303,584,310,587,317,591,324,597,330,604,335,613,340,623,343,633,345,644,347,655,347,665,345,676,343,685,340,694,335,701,330,707,324,712,317,714,310,715,303,714,295,712,288,707,282,701,276,694,270,685,266,676,262,665,260,655,259,644,259,633,260,623,262,613,266,604,270,597,276,591,282,587,288,584,295,583,303" onmouseover="UpdateTooltip(this,7,1011,event)" onfocus="UpdateTooltip(this,7,1011,event)" onclick="return OnShapeClick(7,1011,event);" onkeyup="OnShapeKey(7,1011,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Kria SOM Prebuilt Software/OS" origTitle="Kria SOM Prebuilt Software/OS" TITLE="Kria SOM Prebuilt Software/OS" HREF="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Starter-Kit-Pre-Built-Software" target="_top" COORDS="427,303,428,310,430,317,435,324,441,330,448,335,457,340,466,343,477,345,488,347,498,347,509,345,520,343,529,340,538,335,545,330,551,324,556,317,558,310,559,303,558,295,556,288,551,282,545,276,538,270,529,266,520,262,509,260,498,259,488,259,477,260,466,262,457,266,448,270,441,276,435,282,430,288,428,295,427,303" onmouseover="UpdateTooltip(this,7,1009,event)" onfocus="UpdateTooltip(this,7,1009,event)" onclick="return OnShapeClick(7,1009,event);" onkeyup="OnShapeKey(7,1009,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Bitstream Management on Kria SOM" origTitle="Bitstream Management on Kria SOM" TITLE="Bitstream Management on Kria SOM" HREF="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/bitstream_management.html" target="_top" COORDS="807,473,808,481,810,489,815,496,821,503,828,509,836,514,846,519,857,522,868,524,879,525,891,525,902,524,914,522,924,519,934,514,942,509,950,503,955,496,960,489,962,481,963,473,962,466,960,458,955,451,950,444,942,438,934,433,924,428,914,425,902,423,891,422,879,422,868,423,857,425,846,428,836,433,828,438,821,444,815,451,810,458,808,466,807,473" onmouseover="UpdateTooltip(this,7,1005,event)" onfocus="UpdateTooltip(this,7,1005,event)" onclick="return OnShapeClick(7,1005,event);" onkeyup="OnShapeKey(7,1005,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Kria SOM Boot Firmware" origTitle="Kria SOM Boot Firmware" TITLE="Kria SOM Boot Firmware" HREF="https://xilinx.github.io/kria-apps-docs/bootfw/build/html/docs/bootfw_overview.html" target="_top" COORDS="912,272,904,270,895,268,885,268,876,268,867,270,858,272,855,272,855,274,848,277,842,282,838,287,834,292,832,298,831,304,832,310,835,317,839,323,845,328,853,332,861,336,871,338,880,340,890,340,900,338,910,336,918,332,925,328,931,323,936,317,939,310,940,304,939,297,936,291,932,285,926,280,919,276,919,272,912,272" onmouseover="UpdateTooltip(this,7,1004,event)" onfocus="UpdateTooltip(this,7,1004,event)" onclick="return OnShapeClick(7,1004,event);" onkeyup="OnShapeKey(7,1004,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="List of Documentation" origTitle="List of Documentation" TITLE="List of Documentation" HREF="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Documentation" target="_top" COORDS="260,303,260,310,263,317,268,324,274,330,282,335,291,340,301,343,311,345,323,347,334,347,345,345,356,343,366,340,375,335,382,330,389,324,393,317,396,310,397,303,396,295,393,288,389,282,382,276,375,270,366,266,356,262,345,260,334,259,323,259,311,260,301,262,291,266,282,270,274,276,268,282,263,288,260,295,260,303" onmouseover="UpdateTooltip(this,7,1003,event)" onfocus="UpdateTooltip(this,7,1003,event)" onclick="return OnShapeClick(7,1003,event);" onkeyup="OnShapeKey(7,1003,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="Kria SOM Introduction on AMD.com" origTitle="Kria SOM Introduction on AMD.com" TITLE="Kria SOM Introduction on AMD.com" HREF="https://www.xilinx.com/products/som/kria.html" target="_top" COORDS="24,304,25,311,28,317,32,324,38,330,45,335,54,340,63,343,74,346,85,348,96,350,108,350,120,348,131,346,141,343,151,340,160,335,167,330,173,324,177,317,180,311,180,304,180,297,177,290,173,284,167,278,160,273,151,268,141,264,131,261,120,259,108,258,96,258,85,259,74,261,63,264,54,268,45,273,38,278,32,284,28,290,25,297,24,304" onmouseover="UpdateTooltip(this,7,1002,event)" onfocus="UpdateTooltip(this,7,1002,event)" onclick="return OnShapeClick(7,1002,event);" onkeyup="OnShapeKey(7,1002,event);">
+  <AREA shape="POLYGON" tabindex="1" ALT="" origTitle="" TITLE="" HREF="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM" target="_top" COORDS="235,231,241,249,244,267,247,285,248,303,247,321,244,339,241,357,235,374,281,383,326,390,372,395,418,399,464,400,511,400,557,399,603,395,648,390,694,383,739,374,734,357,730,339,728,321,727,303,728,285,730,267,734,249,739,231,694,223,648,216,603,210,557,207,511,205,464,205,418,207,372,210,326,216,281,223,235,231" onmouseover="UpdateTooltip(this,7,1018,event)" onfocus="UpdateTooltip(this,7,1018,event)" onclick="return OnShapeClick(7,1018,event);" onkeyup="OnShapeKey(7,1018,event);">
+</MAP>
+
+
+</DIV>
+</body>
+</html>
