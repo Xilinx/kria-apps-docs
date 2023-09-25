@@ -56,40 +56,47 @@ This document shows how to set up the board and run the TSN ROS application.
 
 **NOTE**: This tutorial can be run with one KD240 and one KR260 configuration as well
 
+### Tested Artifacts
+
+Testing was performed with the following artifacts:
+
+#### KD240 platform artifacts
+
+| Component                          | Version              |
+|------------------------------------|----------------------|
+| Boot Firmware                      | K24-BootFW-01.00.bin |
+| Linux Kernel                       | 5.15.0-9002          |
+| xlnx-firmware-kd240-motor-ctrl-qei | 0.10.1-0xlnx1        |
+
+#### KR260 platform artifacts
+
+| Component                          | Version                                                 |
+|------------------------------------|---------------------------------------------------------|
+| Boot Firmware                      | BOOT_xilinx-k26-starterkit-v2022.1-09152304_update3.BIN |
+| Linux Kernel                       | 5.15.0-1023                                             |
+| xlnx-firmware-kr260-tsn-rs485pmod  | 0.10.1-0xlnx1                                           |
+
+Please refer to the [Kria Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates)
+to obtain latest linux image and boot firmware.
+
+#### Application packages
+
+| Package                        | Version                      |
+| ------------------------------ | ---------------------------- |
+| xlnx-tsn-utils                 | 0.3-0xlnx1                   |
+| xlnx-app-kr260-tsn-examples    | 0.2-0xlnx2                   |
+| xlnx-app-kr260-pmod-rs485-test | 0.1-0xlnx1                   |
+| ros-humble-xlnx-pubsub         | 0.1.0-0jammy                 |
+| ethtool                        | 1:5.16+tsn-qbr-0ubuntu1xlnx1 |
+| lldpad                         | 1.1+tsn-qbr-0ubuntu1xlnx2    |
+
 ### Initial Setup
 
-1. Testing was performed with:
-
-    * KD240 platform:
-
-    | Platform     | Version                         |
-    | :----------: | :-----------------------------: |
-    | Linux Kernel | 5.15.0-9002                     |
-    | Boot Fiwmare | BOOT-k24-smk-20230912123632.bin |
-
-    * KR260 platform:
-
-    | Platform      | Version                                                 |
-    | :-----------: | :-----------------------------------------------------: |
-    | Linux Kernel  | 5.15.0-1023                                             |
-    | Boot Firmware | BOOT_xilinx-k26-starterkit-v2022.1-09152304_update3.BIN |
-
-    * Application packages:
-
-    | Application                    | Version                      |
-    | :----------------------------: | :--------------------------: |
-    | xlnx-kria-apps-bitstreams      | 0.10-0xlnx1                  |
-    | xlnx-tsn-utils                 | 0.3-0xlnx1                   |
-    | xlnx-app-kr260-tsn-examples    | 0.2-0xlnx2                   |
-    | xlnx-app-kr260-pmod-rs485-test | 0.1-0xlnx1                   |
-    | ethtool                        | 1:5.16+tsn-qbr-0ubuntu1xlnx1 |
-    | lldpad                         | 1.1+tsn-qbr-0ubuntu1xlnx2    |
-
-2. Go through the minimum setup required to boot Linux before continuing with instructions in this page:
+1. Go through the minimum setup required to boot Linux before continuing with instructions in this page:
     * [Kria Starter Kit Linux Boot on KR260](https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html)
     * [Kria Starter Kit Linux Boot on KD240](https://xilinx.github.io/kria-apps-docs/kd240/linux_boot.html)
 
-3. Get the latest TSN-ROS application and firmware package:
+2. Get the latest TSN-ROS application and firmware package:
 
     * Search the package feed for packages compatible with KR260.
 
@@ -165,7 +172,7 @@ This document shows how to set up the board and run the TSN ROS application.
         sudo apt install -y lldpad ethtool
        ```
 
-4. Dynamically load the application package.
+3. Dynamically load the application package.
 
     The firmware consists of bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.
 
