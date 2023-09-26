@@ -9,7 +9,7 @@ The CC incremental PS subsystem peripherals using the PMU configuration overlay 
 
 ![image](./media/ubootflow.png)
 
-Xilinx also provides customers with "flat" KV260 and KR260 BSPs that contains a simpler U-Boot configuration without dynamic CC selection and peripheral enablement. However, U-Boot source code does have support for dynamic initialization of peripherals for users who needs more sophisticated setups.
+AMD also provides customers with "flat" KV260 and KR260 BSPs that contains a simpler U-Boot configuration without dynamic CC selection and peripheral enablement. However, U-Boot source code does have support for dynamic initialization of peripherals for users who needs more sophisticated setups.
 
 ## U-Boot support for Kria SOM Variants
 
@@ -23,7 +23,7 @@ U-Boot for Kria officially supports the Kria Starter Kits. The Starter Kit SOM a
 
 Prior to 21.2, U-Boot will search for both the SD card and eMMC secondary boot devices; if both are detected it will provide a menu interface to you to select the desired Linux boot target.
 
-From 22.1 onwards, there is no U-Boot boot menu during the boot process for SOM. The Xilinx pre-built BOOT.BIN implements a fixed device boot selection as defined by the CC identified. See the following boot device selection order for the KV and KR carrier cards. If a Production SOM is identified by its board-ID EEPROM then U-Boot first query the SOM local eMMC (mmc0) device for boot, before falling to the normal Starter Kit CC boot order.
+From 22.1 onwards, there is no U-Boot boot menu during the boot process for SOM. The AMD pre-built BOOT.BIN implements a fixed device boot selection as defined by the CC identified. See the following boot device selection order for the KV and KR carrier cards. If a Production SOM is identified by its board-ID EEPROM then U-Boot first query the SOM local eMMC (mmc0) device for boot, before falling to the normal Starter Kit CC boot order.
 
 ![image](./media/ubootflow_KVvsKR.png)
 
@@ -123,11 +123,11 @@ done
 
 ```
 
-The boot.scr can be found in the SD card after programming a .wic image, or it can be found in PetaLinux project (after petalinux-create command) in <petalinux_project>/pre-built/linux/images/boot.scr. the .scr file has been compiled, therefore there will be some binaries prior to the texted source code.
+The boot.scr can be found in the SD card after programming a .wic image, or it can be found in Yocto build folder ```build/tmp/deploy/images/<machine_name>/boot.scr```, or in PetaLinux project (after petalinux-create command) in <petalinux_project>/pre-built/linux/images/boot.scr. the .scr file has been compiled, therefore there will be some binaries prior to the texted source code.
 
 ### Compilation Procedure and Source Code
 
-U-Boot is compiled with Yocto, and its recipe can be found [here](https://github.com/Xilinx/meta-xilinx/blob/master/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx.inc). [PetaLinux documentation](https://docs.xilinx.com/v/u/2020.1-English/ug1144-petalinux-tools-reference-guide) contains information on U-Boot generation as well.
+U-Boot is compiled with Yocto, and its recipe can be found [here](https://github.com/Xilinx/meta-xilinx/blob/master/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx.inc) and instructions to build found [here](./bootfw_boot.bin_generation.md). [PetaLinux documentation](https://docs.xilinx.com/v/u/2020.1-English/ug1144-petalinux-tools-reference-guide) contains information on U-Boot generation as well.
 
 The [source code for U-Boot](github.com/Xilinx/u-boot-xlnx.git) is on Xilinx github site as well.
 
@@ -142,4 +142,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

@@ -5,9 +5,13 @@
 
 The prioritized boot order for U-Boot is specified in [BootFW U-Boot page](./bootfw_uboot_handoff.md). The last device in the prioritized list is Ethernet using DHCP/PXE. There is [existing PXE support in u-boot](https://github.com/Xilinx/u-boot-xlnx/blob/master/doc/README.pxe) to support Ethernet booting. This document provides instructions for tftp booting on Starter Kits using Ethernet/DHCP/PXE. Instructions are provided for booting both PetaLinux and Ubuntu via PXE. Their tftp server setup differs, but on-target steps are the same.
 
+This example uses K26 on KR260 as an example, but same steps can be taken for other starter kits as well as K24 - as long as names of the SOM or Starter Kits are replaced appropriately.
+
 ## Setup Requirements
 
 This document assumes that you have had experience booting Linux on Starter Kit via other boot methods (SD by default), familiar with how to interact with the Starter Kit via serial port, and have updated the bootfw on the Starter Kit. If not, please go through [booting Linux on KV260](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html) or [booting Linux on KR260](https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html) before following the steps in this document.
+
+If booting using Yocto, this assumes that you are familiar with generating artifacts with instructions from [Kria Yocto support](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html).
 
 If booting PetaLinux, this also assumes that you are familiar with PetaLinux and have installed the appropriate version of PetaLinux on the Linux host computer. Refer to [UG1144](https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html) for more information on PetaLinux and [download page](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html) for installation files. Ubuntu booting do not need PetaLinux tools.
 
@@ -17,7 +21,24 @@ In this example, we will use a host computer with a tftp server to host files re
 
 ## Linux Host Computer Setup
 
-Depending on if booting PetaLinux or Ubuntu - choose one of the sections below to follow:
+Depending on if booting with Yocto, PetaLinux or Ubuntu - choose one of the sections below to follow:
+
+### Linux Host Computer Setup for Yocto
+
+On the Linux host computer, follow instructions in [Kria Yocto support](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html), and generate bitbake recipe ```kria-image-full-cmdline ``` for the target machine. That will create a pxeboot config file in ```$yocto_workspace/build/tmp/deploy/images/<machine name>/pxelinux.cfg/default``` file with the following content:
+
+```text
+LABEL Linux
+KERNEL Image
+FDT system.dtb
+INITRD petalinux-initramfs-image-<machinename>.cpio.gz.u-boot
+```
+
+```pxelinux.cfg/default``` refers to files that can be found in ```$yocto_workspace/build/tmp/deploy/images/```. Note that it is using the initramfs generated - which is a smaller file system that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC, SD card. If you want to boot to log in prompt purely through pxeboot, replace ```petalinux-initramfs-image-<machinename>.cpio.gz.u-boot``` with ```kria-image-full-cmdline-<machinename>.cpio.gz.u-boot```.
+
+When using MACHINE = k26-smk or k24-smk, system.dtb by default is pointing to a shared dtb for the SOM that does not have information about the carrier card. Keeping the dtb as is will boot, but it will not have any CC peripheral support such as ethernet. The dtb files with CC peripheral support can be found in ```devicetree/SMK-zynqmp-sck-<CC_board>.dtb```. Pick the device tree for your target starter kit, and update the FDT in ```/tftpboot/pxelinux.cfg/default``` to point to that dtb file. If using MACHINE = k26-smk-kv, k26-smk-kr, or k24-smk-kd, system.dtb will point to the device tree blob that have CC peripheral support that you will not need to change it.
+
+Now [set up a TFTP server](#setting-up-tftp-on-the-server) on the Linux host computer. Make sure to point to ```$yocto_workspace/build/tmp/deploy/images/<machine name>/``` as the TFTP folder and start the server. Note the IP address of the Linux host computer, we will refer to it as ```<host ip>```.
 
 ### Linux Host Computer Setup for PetaLinux
 
@@ -50,6 +71,8 @@ INITRD ramdisk.cpio.gz.u-boot
 ```
 
 ```/tftpboot/pxelinux.cfg/default``` refers to files that can be found in ```/tftpboot```.
+
+Note that it is using the ramdisk generated - which is a smaller initram that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC, SD card. If you want to boot to log in prompt purely through pxeboot, replace ```ramdisk.cpio.gz.u-boot``` with ```rootfs.cpio.gz.u-boot```.
 
 Now [set up a TFTP server](#setting-up-tftp-on-the-server) on the Linux host computer. Make sure to point to ```/tftpboot/``` as the TFTP folder and start the server. Note the IP address of the Linux host computer, we will refer to it as ```<host ip>```.
 
@@ -191,9 +214,9 @@ If there are other images in other devices thats more prioritized by u-boot, the
 run bootcmd_pxe
 ```
 
-If using PetaLinux, the kernel and rootfs should load and boot to log-in prompt to PetaLinux, indicating a successful PXE boot!
+If using Yocto/PetaLinux and using the larger rootfs, the kernel and rootfs should load and boot to log-in prompt to PetaLinux, indicating a successful PXE boot! If using the initram, and a SD card with full rootfs is plugged into the SD slot - the above steps will boot using kernel image from tftp server and grab the full rootfs image from the SD card and boot to log-in prompt.
 
-If using Ubuntu, image.fit contains a small initram - the Starter Kit will boot into BusyBox and have limited functionality. If a SD card with full rootfs is plugged into the SD slot - the above steps will boot using kernel image from tftp server and grab the full rootfs image from the SD card instead of BusyBox initrd.
+If using Ubuntu, image.fit contains a small initram - the Starter Kit will boot into BusyBox and have limited functionality.If a SD card with full rootfs is plugged into the SD slot - the above steps will boot using kernel image from tftp server and grab the full rootfs image from the SD card instead of BusyBox initrd.
 
 ## License
 
@@ -204,4 +227,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

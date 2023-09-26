@@ -1,8 +1,8 @@
 # Xen Kria SOM Starter Kits Support
 
-[Xen](https://xenproject.org/) is a free and open-source hypervisor, providing services that allow multiple computer operating systems to execute on the same computer hardware concurrently. The 2023.1 Kria Starter Kit Petalinux BSP contains support for XEN. Xilinx specific details about XEN hypervisor can be found on its [wiki page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842530/XEN+Hypervisor).
+[Xen](https://xenproject.org/) is a free and open-source hypervisor, providing services that allow multiple computer operating systems to execute on the same computer hardware concurrently. The 2023.1 Kria Starter Kit Petalinux BSP contains support for XEN. AMD specific details about XEN hypervisor can be found on its [wiki page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842530/XEN+Hypervisor).
 
-This page documents where to get XEN artifacts for Kria, and gives an example on how to boot Ubuntu as guest OS (a DOMU) on a XEN DOM0. This particular combination requires about 4GB of memory, which K26 has. Therefore this can be done on either KV260 or KR260.
+This page documents where to get XEN artifacts for Kria, and gives an example on how to boot Ubuntu as guest OS (a DOMU) on a XEN DOM0. This particular combination requires about 4GB of memory, which K26 has. Therefore this can be done on either KV260 or KR260. K24 only has 2 GB of memory, therefore it does not support Xen.
 
 ## Prerequisites
 
@@ -198,4 +198,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

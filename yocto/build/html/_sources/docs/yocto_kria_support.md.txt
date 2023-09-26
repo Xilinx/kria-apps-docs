@@ -10,14 +10,20 @@ The [machine configurations](https://docs.yoctoproject.org/dev/dev-manual/new-ma
 
 Machine names and recipes in 2023.1 and forward:
 
-| Machine Name | Bitbake Recipe          | QEMU Support | Description                                                  |
-| ------------ | ----------------------- | ------------ | -------------------------------------------------------------|
-| k26-smk      | kria-qspi               | NA           | QSPI image supporting K26 production SOM and Starter Kit SOM |
-| k26-smk      | kria-image-full-cmdline | yes          | wic image that dynamically support both KV260 and KR260      |
+| Machine Name | Bitbake Recipe          | QEMU Support | Description                                                                                            |
+| ------------ | ----------------------- | ------------ | -------------------------------------------------------------------------------------------------------|
+| k26-smk      | kria-qspi               | NA           | QSPI image supporting K26 production SOM and Starter Kit SOM                                           |
+| k26-smk      | kria-image-full-cmdline | yes          | wic image that dynamically supports both KV260 and KR260                                               |
+| k24-smk      | kria-image-full-cmdline | yes          | wic image that dynamically supports KD240                                                              |
+| k26-smk-kv   | kria-image-full-cmdline | yes          | flat wic image that supports KV260, not fully validated on target and meant for development enablement |
+| k26-smk-kr   | kria-image-full-cmdline | yes          | flat wic image that supports KR260, not fully validated on target and meant for development enablement |
+| k24-smk-kd   | kria-image-full-cmdline | yes          | flat wic image that supports KD240, not fully validated on target and meant for development enablement |
 
 ## Build Host Requirements
 
 Before starting, make sure the build host PC meets [these requirements](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#compatible-linux-distribution).
+
+Besides installing the packages/tools specified by the requirement page, look in [issues](#issues) section for possible additional requirements.
 
 Note that building using an NFS mount is not supported - use a local or scratch disk.
 
@@ -175,4 +181,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

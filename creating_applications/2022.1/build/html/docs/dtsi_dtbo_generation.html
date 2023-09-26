@@ -73,6 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -86,6 +87,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul class="current">
@@ -146,12 +151,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="generating-dtsi-and-dtbo-overlay-files">
 <h1>Generating DTSI and DTBO Overlay Files<a class="headerlink" href="#generating-dtsi-and-dtbo-overlay-files" title="Permalink to this heading">¶</a></h1>
-<p>In this step the Xilinx HW description captured in the custom PL design must be translated into a Linux understandable format. In Linux HW is described using a concept called device trees (DT). The human readable form of these are dts and dtsi files. The PL design is loaded post Linux boot, therefore this step generates a DT overlay. The overlay DT is slightly different than the Linux boot DT - it must define “fragments” that are added dynamically by Linux at runtime.</p>
+<p>In this step the AMD HW description captured in the custom PL design must be translated into a Linux understandable format. In Linux HW is described using a concept called device trees (DT). The human readable form of these are dts and dtsi files. The PL design is loaded post Linux boot, therefore this step generates a DT overlay. The overlay DT is slightly different than the Linux boot DT - it must define “fragments” that are added dynamically by Linux at runtime.</p>
 <p>For reference, the .dtsi files associated with each platform (but organized by application) can be found in <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware">Kria app firmware</a></p>
 <p>The dts/dtsi files can be generated in a number of ways, all of which require the HW description data captured in the XSA or bit file. After a .dtsi file is generated, it is then compiled into a binary .dtbo file. The .dtbo file is expected in firmware folder for each applications.</p>
 <p>Here are the three recommended ways:</p>
 <ol class="simple">
-<li><p>In Xilinx Software Command-Line Tools (XSCT), use Device Tree Generator (DTG) and .xsa file to generate .dtsi, and Device Tree Compiler (DTC) to compile a .dtbo file</p></li>
+<li><p>In AMD Software Command-Line Tools (XSCT), use Device Tree Generator (DTG) and .xsa file to generate .dtsi, and Device Tree Compiler (DTC) to compile a .dtbo file</p></li>
 <li><p>Manually create .dtsi file, and in PetaLinux, use fpgamanger_custom bbclass to create .dtbo</p></li>
 <li><p>In PetaLinux, use fpgamanger_dtg bbclass tools and petalinux-build to generate .dtsi file from .xsa file, and compiling it into .dtbo.</p></li>
 </ol>
@@ -228,8 +233,7 @@ hsi close_hw_design <span class="o">[</span>current_hw_design<span class="o">]</
 <div class="section" id="generate-dtbo-file">
 <h3>Generate .dtbo file<a class="headerlink" href="#generate-dtbo-file" title="Permalink to this heading">¶</a></h3>
 <p>Please refer to <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware">Kria apps firmware</a> for example dtsi files
-based on the <code class="docutils literal notranslate"><span class="pre">fpgamanager_custom</span></code> class used in the Xilinx accelerated
-applications.</p>
+based on the <code class="docutils literal notranslate"><span class="pre">fpgamanager_custom</span></code> class used in the AMD accelerated applications.</p>
 <p>First, run the following command to create a new Petalinux project from the provided  SOM bsp file:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;board&gt;-&lt;version&gt;.bsp
 <span class="nb">cd</span> xilinx-&lt;board&gt;-&lt;version&gt;
@@ -257,7 +261,7 @@ $tmp_folder location can be found at <code class="docutils literal notranslate">
 </div>
 <div class="section" id="using-fpgamanger-dtg-bbclass-in-petalinux">
 <h2>Using fpgamanger_dtg bbclass in PetaLinux<a class="headerlink" href="#using-fpgamanger-dtg-bbclass-in-petalinux" title="Permalink to this heading">¶</a></h2>
-<p>Alternatively, you can use the <code class="docutils literal notranslate"><span class="pre">fpgamanager_dtg</span></code> bitbake class which uses the Xilinx device tree generator (dtg) to generate a device tree overlay from a Vivado or Vitis-generated XSA file.</p>
+<p>Alternatively, you can use the <code class="docutils literal notranslate"><span class="pre">fpgamanager_dtg</span></code> bitbake class which uses the AMD device tree generator (dtg) to generate a device tree overlay from a Vivado or Vitis-generated XSA file.</p>
 <div class="section" id="id2">
 <h3>Tools and Input required<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
 <ol class="simple">
@@ -275,7 +279,7 @@ file that will be appended to the dtg-generated device tree file</p></li>
 </div>
 <div class="section" id="id3">
 <h3>Generate .dtbo file<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
-<p>First, run the following command to create a new PetaLinux project from the provided K26 SOM bsp file:</p>
+<p>First, run the following command to create a new PetaLinux project from the provided SOM bsp file:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;board&gt;-&lt;version&gt;.bsp
 <span class="nb">cd</span> xilinx-&lt;board&gt;-&lt;version&gt;
 </pre></div>
@@ -311,7 +315,7 @@ $tmp_folder location can be found at <code class="docutils literal notranslate">
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -328,7 +332,7 @@ $tmp_folder location can be found at <code class="docutils literal notranslate">
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 13, 2023.
+      <span class="lastupdated">Last updated on June 19, 2023.
       </span></p>
   </div>
 

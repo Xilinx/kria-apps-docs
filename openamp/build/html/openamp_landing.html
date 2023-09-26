@@ -71,6 +71,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -104,7 +105,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>OpenAMP on Kria SOM<a class="headerlink" href="#openamp-on-kria-som" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p>Starting from 2022.1, <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP">OpenAMP</a> is integrated to the Kria SOM pre-built images. OpenAMP is an open-source standard infrastructure for applications to make use of heterogeneous co-processors, and in Kria allows the APU to offload tasks to the MPSoC dual-core RPUs.</p>
+<p>Starting from 2022.1, <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP">OpenAMP</a> support is available the Kria SOM pre-built images. OpenAMP is an open-source standard infrastructure for applications to make use of heterogeneous co-processors, and in Kria allows the APU to offload tasks to the MPSoC dual-core RPUs.</p>
 <p>The Kria Starter Kit OpenAMP PetaLinux implementation uses the Linux kernel implementation of RPMsg for leveraging the MPSoC RPUs as co-processors. The out-of-box Kria Linux OpenAMP only implements a Linux based master on APU with the RPU as a client processor with corresponding pre-built RPU examples.</p>
 <div class="section" id="rpmsg-implementation">
 <h2>RPMsg Implementation<a class="headerlink" href="#rpmsg-implementation" title="Permalink to this heading">¶</a></h2>
@@ -133,11 +134,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>remoteproc node</p></li>
 <li><p>rpmsg shared memory</p></li>
 </ul>
-<p>The Kria 2022.1 PetaLinux BSP and pre-built images (<cite>.wic</cite>) include the necessary device tree nodes and memory reservations. These can be found in the <cite>system.dtb</cite> of the 22.1 release BSP <cite>prebuilt</cite> folder.</p>
+<p>The Kria 2022.1 PetaLinux BSP and pre-built images folder include the necessary device tree nodes and memory reservations. These can be found in the <cite>openamp.dtb</cite> of the 22.1 release BSP <cite>prebuilt</cite> folder. In order to run openamp example, program SD card with the prebuilt .wic image, and replace system.dtb in the SD card’s boot folder with openamp.dtb (which should be renamed to system.dtb) and then boot as usual.</p>
 </div>
 <div class="section" id="openamp-demos">
 <h2>OpenAMP Demos<a class="headerlink" href="#openamp-demos" title="Permalink to this heading">¶</a></h2>
-<p>The 2022.1 based Kria Starter Kit Linux contains the existing OpenAMP community demos summarized below. These demos are included in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux">PetaLinux 22.1 wic image</a>. They are also included in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">22.1 BSPs</a>.</p>
+<p>The 2022.1 (and onward) based Kria Starter Kit Linux BSP contains support for the existing OpenAMP community demos summarized below.
+They require system.dtb to be replaced with openamp.dtb on the SD boot partition. Required wic image and openamp.dtb are included in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#PetaLinux-Board-Support-Packages">BSPs</a>.</p>
 <ul class="simple">
 <li><p>openamp-echo-test - Linux to RPU bare metal communication echo test using rpsmsg</p></li>
 <li><p>openamp-matrix-mul - Linux produces two matrices and sends them to the RPU for multiplication.</p></li>
@@ -284,6 +286,13 @@ Remote&gt; Firmware&#39;s rpmsg-rpc-channel going down!
 <li><p><a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP">Xilinx OpenAMP Wiki</a></p></li>
 <li><p><a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1186-zynq-openamp-gsg/Libmetal-and-OpenAMP-User-Guide">Libmetal and OpenAMP User Guide</a></p></li>
 </ul>
+</div>
+<div class="section" id="license">
+<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+[<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0</a>)</p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
 </div>
 </div>
 </div>

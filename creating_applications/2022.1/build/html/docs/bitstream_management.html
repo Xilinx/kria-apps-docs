@@ -73,6 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -86,6 +87,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul class="current">
@@ -129,7 +134,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="bitstream-management-on-kria-som">
 <h1>Bitstream Management on Kria SOM<a class="headerlink" href="#bitstream-management-on-kria-som" title="Permalink to this heading">¶</a></h1>
-<p>The Kria Starter Kits are deployed with primary and secondary boot devices to isolate core boot FW and the operating system. In Kria multiple application bitstreams are enabled without forcing OS reboots by managing bitstreams as a dynamic SW component within the Linux OS. This approach is different from Xilinx legacy MPSoC evaluation platforms that have used a monolithic boot device and managing the bitstream as a boot time component. This page provides a comparison of the dynamic bitstream management in Kria Starter Kit Linux to the legacy MPSoC evaluation board flow.</p>
+<p>The Kria Starter Kits are deployed with primary and secondary boot devices to isolate core boot FW and the operating system. In Kria multiple application bitstreams are enabled without forcing OS reboots by managing bitstreams as a dynamic SW component within the Linux OS. This approach is different from AMD legacy MPSoC evaluation platforms that have used a monolithic boot device and managing the bitstream as a boot time component. This page provides a comparison of the dynamic bitstream management in Kria Starter Kit Linux to the legacy MPSoC evaluation board flow.</p>
 <p>The following diagram summarizes the difference, and the table that follows details the difference.</p>
 <p><img alt="bitstream management" src="../_images/bitstream_management.PNG" /></p>
 <table border="1" class="docutils">
@@ -162,14 +167,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>The Kria Starter Kit references use an incremental HW configuration capability of PMU in order to support dynamic configuration of carrier card specific MIO (KV260 vs. KR260). This allows for a common boot FW which identifies the carrier card via the BoardID EEPROM and then U-Boot incrementally configures the corresponding CC card specific MIOs. Read more in <a href="https://xilinx.github.io/kria-apps-docs/bootfw/build/html/docs/bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></td>
 </tr>
 </tbody>
-</table><p>Note that the dynamic bitstream management described here is how AMD-Xilinx is deploying and managing the Kria Starter Kit pre-built OS and application designs. For production Kria SOM developers, they have full freedom to use the combination of boot partitioning and bitstream management that matches their application requirements.</p>
+</table><p>Note that the dynamic bitstream management described here is how AMD is deploying and managing the Kria Starter Kit pre-built OS and application designs. For production Kria SOM developers, they have full freedom to use the combination of boot partitioning and bitstream management that matches their application requirements.</p>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -186,7 +191,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 13, 2023.
+      <span class="lastupdated">Last updated on June 19, 2023.
       </span></p>
   </div>
 

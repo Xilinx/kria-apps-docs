@@ -12,14 +12,21 @@ As outlined in [bootfw overview](./bootfw_overview.md), Kria SOM Starter Kit BOO
  The bitbake recipe for BOOT.BIN in Yocto is ```xilinx-bootbin``` and command to build is:
 
  ``` shell
- MACHINE=k26-som bitbake xilinx-bootbin
+ MACHINE=k26-smk bitbake xilinx-bootbin # for K26
+ MACHINE=k24-smk bitbake xilinx-bootbin # for K24
+ ```
+
+ To set u-boot configuration, use this command before building:
+
+ ```shell
+ MACHINE=k26-smk bitbake virtual/bootloader -c menuconfig
  ```
 
 ## Generate BOOT.BIN using PetaLinux
 
 Go through [Xilinx Wiki PetaLinux Build Instructions](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Build-instructions) - there are instructions to generate BOOT.BIN from PetaLinux. To recap they are the following:
 
-``` 
+```shell
 petalinux-create -t project -s <kria_starterkit>.bsp
 cd <kria_starter_kit_petalinux_folder>
 petalinux-build
@@ -27,6 +34,12 @@ petalinux-package --boot --u-boot --force
 ```
 
 You will find new boot firmware at /image/linux/BOOT.BIN.
+
+To set configuration for u-boot, use this command before petalinux-build:
+
+```shell
+petalinux-config –c u-boot
+```
 
 The new BOOT.BIN can be loaded to the Starter Kit using the xmutil bootfw_update utility described in [Kria Wiki's Boot FW Update Process section](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-Update-Process).
 
@@ -39,4 +52,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

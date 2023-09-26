@@ -3,7 +3,7 @@
 
 ## Introduction
 
-The production SOM has an eMMC device populated, whereas the Starter Kit SOMs do not. Therefore, instead of Starter Kit's QSPI->SD two stage boot process, developer can do a QSPI -> eMMC two stage process on the production SOM. This page gives an example of how to boot from QSPI -> eMMC for a production SOM that is mounted on a KV260 or KR260 carrier card. Note that removal of the SOM from a Xilinx produced Starter Kit voids its warranty. This workflow is only intended to provide an example for customers creating their own carrier card design and wanting to make use of a similar two-stage boot methodology.
+The production SOM has an eMMC device populated, whereas the Starter Kit SOMs do not. Therefore, instead of Starter Kit's QSPI->SD two stage boot process, developer can do a QSPI -> eMMC two stage process on the production SOM. This page gives an example of how to boot from QSPI -> eMMC for a production SOM that is mounted on a KV260 or KR260 carrier card. Note that removal of the SOM from an AMD produced Starter Kit voids its warranty. This workflow is only intended to provide an example for customers creating their own carrier card design and wanting to make use of a similar two-stage boot methodology.
 
 User can also use the traditional monolithic boot (from eMMC) for production SOMs by using eMMC boot mode and placing boot files in eMMC. This method is not covered by this document and also requires user to set the BOOT_MODE pins to eMMC on their production carrier card.
 
@@ -38,7 +38,7 @@ Note that this tutorial assumes that you have generated an appropriate image to 
 
 Unlike the Starter Kit SOM, the production SOM is shipped without QSPI pre-populated. A developer must first program QSPI with the appropriate boot firmware so that SOM will boot to U-Boot via the QSPI contents and then hand off to the Linux OS image in eMMC. The full QSPI binary for Starter Kit SOM is not released, however, each components can be generated as outlined in [bootfw overview](./bootfw_overview.md) and its pages. As a reference and an example for this guide, developer can use [bootfw recipe in Yocto](./bootfw_qspi_stitching.md) to generate an example QSPI binary for either KV260 or KR260 and program the QSPI image to a Kria production SOM.
 
-Once you have a QSPI binary .bin file, it is time to program it to the board. Mount the Kria production SOM onto a carrier card, connect it to a host computer using micro-usb cable or a Xilinx Platform cable. Leave SD card slot empty and connect to power.
+Once you have a QSPI binary .bin file, it is time to program it to the board. Mount the Kria production SOM onto a carrier card, connect it to a host computer using micro-usb cable or a AMD Platform cable. Leave SD card slot empty and connect to power.
 
 #### Program QSPI using XSDB/XSCT and u-boot
 
@@ -247,4 +247,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

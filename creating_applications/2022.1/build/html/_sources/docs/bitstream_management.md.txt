@@ -1,6 +1,6 @@
 # Bitstream Management on Kria SOM
 
-The Kria Starter Kits are deployed with primary and secondary boot devices to isolate core boot FW and the operating system. In Kria multiple application bitstreams are enabled without forcing OS reboots by managing bitstreams as a dynamic SW component within the Linux OS. This approach is different from Xilinx legacy MPSoC evaluation platforms that have used a monolithic boot device and managing the bitstream as a boot time component. This page provides a comparison of the dynamic bitstream management in Kria Starter Kit Linux to the legacy MPSoC evaluation board flow.
+The Kria Starter Kits are deployed with primary and secondary boot devices to isolate core boot FW and the operating system. In Kria multiple application bitstreams are enabled without forcing OS reboots by managing bitstreams as a dynamic SW component within the Linux OS. This approach is different from AMD legacy MPSoC evaluation platforms that have used a monolithic boot device and managing the bitstream as a boot time component. This page provides a comparison of the dynamic bitstream management in Kria Starter Kit Linux to the legacy MPSoC evaluation board flow.
 
 The following diagram summarizes the difference, and the table that follows details the difference.
 
@@ -13,7 +13,7 @@ The following diagram summarizes the difference, and the table that follows deta
 | Boot Segmentation    | Legacy MPSoC examples focus on a monolithic boot device (e.g. QSPI or SD card or eMMC). In this flow all FW content is managed and searched by CSU ROM within the same physical device.                                                                                                | Kria Starter Kit uses a primary/secondary boot architecture to functionally segment the core boot FW from the OS image. They are detailed in [BootFW](https://xilinx.github.io/kria-apps-docs/bootfw/build/html/docs/bootfw_overview.html) page. The QSPI device serves as the primary boot device containing the platform BOOT.BIN which contains FSBL, PMU FW, and U-Boot. The SD card device serves as the secondary boot device containing the Linux OS artifacts include the kernel and rootfs. This allows for the platform to boot multiple Linux OS images without a user having to build or modify the core boot FW. A user can update the boot FW of QSPI with their own custom BOOT.BIN, and do this using the xmutil boot image update utility. U-Boot is used to support the hand-off between QSPI and the SD card based secondary boot device.  (See K26 SOM XSA & BSP Overview for reference) |
 | Dynamic MIO          | Legacy MPSoC designs used a static MIO configuration which locks in the configuration of the PS subsystem physical I/O at device boot time.                | The Kria Starter Kit references use an incremental HW configuration capability of PMU in order to support dynamic configuration of carrier card specific MIO (KV260 vs. KR260). This allows for a common boot FW which identifies the carrier card via the BoardID EEPROM and then U-Boot incrementally configures the corresponding CC card specific MIOs. Read more in [PMU Overlay Config Object](https://xilinx.github.io/kria-apps-docs/bootfw/build/html/docs/bootfw_pmu_config_obj.html)                       |
 
-Note that the dynamic bitstream management described here is how AMD-Xilinx is deploying and managing the Kria Starter Kit pre-built OS and application designs. For production Kria SOM developers, they have full freedom to use the combination of boot partitioning and bitstream management that matches their application requirements.
+Note that the dynamic bitstream management described here is how AMD is deploying and managing the Kria Starter Kit pre-built OS and application designs. For production Kria SOM developers, they have full freedom to use the combination of boot partitioning and bitstream management that matches their application requirements.
 
 ## License
 
@@ -24,4 +24,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

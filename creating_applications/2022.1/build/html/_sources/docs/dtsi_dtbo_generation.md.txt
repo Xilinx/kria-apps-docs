@@ -1,6 +1,6 @@
 # Generating DTSI and DTBO Overlay Files
 
-In this step the Xilinx HW description captured in the custom PL design must be translated into a Linux understandable format. In Linux HW is described using a concept called device trees (DT). The human readable form of these are dts and dtsi files. The PL design is loaded post Linux boot, therefore this step generates a DT overlay. The overlay DT is slightly different than the Linux boot DT - it must define "fragments" that are added dynamically by Linux at runtime.
+In this step the AMD HW description captured in the custom PL design must be translated into a Linux understandable format. In Linux HW is described using a concept called device trees (DT). The human readable form of these are dts and dtsi files. The PL design is loaded post Linux boot, therefore this step generates a DT overlay. The overlay DT is slightly different than the Linux boot DT - it must define "fragments" that are added dynamically by Linux at runtime.
 
 For reference, the .dtsi files associated with each platform (but organized by application) can be found in [Kria app firmware](https://github.com/Xilinx/kria-apps-firmware)
 
@@ -8,7 +8,7 @@ The dts/dtsi files can be generated in a number of ways, all of which require th
 
 Here are the three recommended ways:
 
-1. In Xilinx Software Command-Line Tools (XSCT), use Device Tree Generator (DTG) and .xsa file to generate .dtsi, and Device Tree Compiler (DTC) to compile a .dtbo file
+1. In AMD Software Command-Line Tools (XSCT), use Device Tree Generator (DTG) and .xsa file to generate .dtsi, and Device Tree Compiler (DTC) to compile a .dtbo file
 2. Manually create .dtsi file, and in PetaLinux, use fpgamanger_custom bbclass to create .dtbo
 3. In PetaLinux, use fpgamanger_dtg bbclass tools and petalinux-build to generate .dtsi file from .xsa file, and compiling it into .dtbo.
 
@@ -89,8 +89,7 @@ The following hardware design hand-off artifacts are required:
 ### Generate .dtbo file
 
 Please refer to [Kria apps firmware](https://github.com/Xilinx/kria-apps-firmware) for example dtsi files
-based on the `fpgamanager_custom` class used in the Xilinx accelerated
-applications.
+based on the `fpgamanager_custom` class used in the AMD accelerated applications.
 
 First, run the following command to create a new Petalinux project from the provided  SOM bsp file:
 
@@ -128,7 +127,7 @@ $tmp_folder location can be found at ```project-spec/configs/config CONFIG_TMP_D
 
 ## Using fpgamanger_dtg bbclass in PetaLinux
 
-Alternatively, you can use the `fpgamanager_dtg` bitbake class which uses the Xilinx device tree generator (dtg) to generate a device tree overlay from a Vivado or Vitis-generated XSA file.
+Alternatively, you can use the `fpgamanager_dtg` bitbake class which uses the AMD device tree generator (dtg) to generate a device tree overlay from a Vivado or Vitis-generated XSA file.
 
 ### Tools and Input required
 
@@ -145,7 +144,7 @@ The following hardware design hand-off artifacts are required:
 
 ### Generate .dtbo file
 
-First, run the following command to create a new PetaLinux project from the provided K26 SOM bsp file:
+First, run the following command to create a new PetaLinux project from the provided SOM bsp file:
 
 ```bash
 petalinux-create -t project -s xilinx-<board>-<version>.bsp
@@ -193,4 +192,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

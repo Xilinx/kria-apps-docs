@@ -4,7 +4,7 @@ This page documents common questions that developers may encounter while using K
 
 ## Released Linux Images Not Booting
 
-All Xilinx released images are verified on their supported Starter Kit. If an [released image](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Starter-Kit-Linux) does not boot on the Starter Kit, for an example you may see errors like this while booting, for an example, Ubuntu:
+All AMD released images are verified on their supported Starter Kit. If an [released image](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Starter-Kit-Linux) does not boot on the Starter Kit, for an example you may see errors like this while booting, for an example, Ubuntu:
 
 ```text
 [   17.644316] emc: device handler registered
@@ -204,3 +204,5 @@ You may obtain a copy of the License at
 [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

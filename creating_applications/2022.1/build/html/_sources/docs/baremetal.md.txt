@@ -2,7 +2,7 @@
 
 Developers who wish to use SOM without Linux will be creating a bare-metal(also called standalone) application. This example flow will detail the process of creating a simple PL design with a BRAM connected to the PS, running on the Vision AI Starter Kit. The flow will then create a standalone software in Vitis to read and write from BRAM. Lastly, the flow will suggest two ways to load and test the application on SOM.
 
-* Assumption: Xilinx built carrier cards with corresponding SOM Starter Kit board file
+* Assumption: AMD built carrier cards with corresponding SOM Starter Kit board file
 * Input: SOM Starter Kit board files (in Vivado), developer's own accelerator designs in Vivado (in this case, BRAM)
 * Output: ```<pl>```.bit, fsbl.elf, pmufw.elf, ```<application>```.elf, and boot.bin
 
@@ -12,12 +12,11 @@ This document assumes that developers will use 2021.1 or later tools and SOM con
 
 1. Vitis tools installation, which will include Vivado, Bootgen, and XSDB
 
-
 ### Vivado board file
 
-This flows starts with Vivado board files containing information on K26, KV260 CC or KR260 CC. The K26 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals. These board files are available in Vivado's board list in "Create Project" wizard.
+This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC or KD240 CC. The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the board peripherals. These board files are available in Vivado's board list in "Create Project" wizard.
 
-Refer to [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Vivado-Board-Support-Packages) for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.
+Refer to [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#Vivado-Board-Support-Packages) for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.
 
 ## Step 1: Generate PL design in Vivado
 
@@ -25,7 +24,7 @@ Start Vivado. Choose File -> Project -> New. Then choose RTL project:
 
 ![Tool Flow](./media/baremetal_example/01_vivado.png)
 
-Click next, then choose ```boards``` in ```Default Part``` section, choose K26* card, and then click on ```connections```:
+Click next, then choose ```boards``` in ```Default Part``` section, choose K26*/K24* card (in this case K26C), and then click on ```connections```:
 
 ![Tool Flow](./media/baremetal_example/02_vivado.png)
 
@@ -202,7 +201,7 @@ Then they need to run [bootgen](https://docs.xilinx.com/r/en-US/ug1283-bootgen-u
 bootgen -arch zynqmp -image test.bif -o boot.bin
 ```
 
-Then, use the FW update and recovery utility documented in [UG1089](https://docs.xilinx.com/v/u/en-US/ug1089-kv260-starter-kit#page=24) and [here](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-Update-Process)
+Then, use the FW update and recovery utility documented in [wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-FW-Update-Process)
 to update the boot firmware. In this example, we have decided to write boot.bin into image A. Make sure to mark Image A as bootable, and as the requested Boot Image so that SOM will boot image A on every power cycle.
 
 ![Tool Flow](./media/baremetal_example/25_img_recovery.png)
@@ -213,7 +212,7 @@ After step 3, .bit file and the .elf files will be programmed, and developers sh
 
 ### Optional: Restoring Linux booting image
 
-Developers may need to restore Starter Kit back to its default, Linux-booting setting after one of the image sectors had been overwriten with baremetal boot file. In that case, they can download the released Linux booting BOOT.bin from [SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates) and program it into one of the image sectors. They will then mark that image sector as bootable and requested image.
+Developers may want to restore a Starter Kit back to its default image and Linux boot FW after one of the image sectors has been overwriten with baremetal boot file. In that case, they can download the released Linux booting BOOT.bin from [SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-Firmware-Updates) and program it into one of the  boot image sectors. They will then mark that image sector as bootable and requested image.
 
 ## License
 
@@ -224,4 +223,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

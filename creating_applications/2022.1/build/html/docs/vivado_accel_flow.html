@@ -73,6 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -107,6 +108,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul>
@@ -149,7 +154,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Vivado Accelerator Flow<a class="headerlink" href="#vivado-accelerator-flow" title="Permalink to this heading">¶</a></h1>
 <p>Developers prefer a traditional HW design flow can generate their PL designs using Vivado. In this flow developers start from the Kria SOM starter kit board files in Vivado and implements their own PL design in Vivado to generate a .xsa file and bitstream. The resulting .xsa file is used to generate the device tree overlay. Once the PL design (.bit.bin) and HW/SW interface definition (.dtbo) files are created, they can be copied into the target and managed by dfx-mgr.</p>
 <ul class="simple">
-<li><p>Assumption: Xilinx built carrier cards with corresponding SOM Starter Kit board file</p></li>
+<li><p>Assumption: AMD built carrier cards with corresponding SOM Starter Kit board file</p></li>
 <li><p>Input: SOM Starter Kit board files (in Vivado) or Vivado project released with SOM BSP, developer’s own accelerator designs in Vivado</p></li>
 <li><p>Output: .dtbo, .bit.bin</p></li>
 </ul>
@@ -157,19 +162,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><img alt="Tool Flow" src="../_images/tool_flow_vivado_accel.PNG" /></p>
 <div class="section" id="prerequisites-and-assumptions">
 <h2>Prerequisites and Assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permalink to this heading">¶</a></h2>
-<p>This document assumes that developers will use 2021.1 or later tools and SOM content releases. The tool versions should match - e.g. use the same tool versions for released BSP, Vivado, as well as PetaLinux and/or Ubuntu. For Ubuntu version, refer to table in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Ubuntu-LTS">wiki</a>.</p>
+<p>This document assumes that developers will use 2021.1 or later tools and SOM content releases. The tool versions should match - e.g. use the same tool versions for released BSP, Vivado, as well as PetaLinux and/or Ubuntu. For Ubuntu version, refer to table in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Ubuntu-LTS">wiki</a>.</p>
 <ol>
 <li><p>Vivado tools installation</p></li>
 <li><p>Tool for generating and/or compiling .dtbo file:</p>
 <p>a. PetaLinux tools installation or
 b. <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2021_1/vitis_doc/XSCT.html">XSCT</a> (will be installed as part of Vivado or Vitis)</p>
 </li>
-<li><p>(Optional) PetaLinux <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">SOM Starter Kit BSP download</a></p></li>
+<li><p>(Optional) PetaLinux <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#PetaLinux-Board-Support-Packages">SOM Starter Kit BSP download</a></p></li>
 </ol>
 </div>
 <div class="section" id="step-1-aligning-kria-som-boot-som-starter-linux-infrastructure">
 <h2>Step 1 - Aligning Kria SOM boot &amp; SOM Starter Linux infrastructure<a class="headerlink" href="#step-1-aligning-kria-som-boot-som-starter-linux-infrastructure" title="Permalink to this heading">¶</a></h2>
-<p>Xilinx built Kria SOM Starter Kit applications on a shared, application-agnostic infrastructure in the SOM Starter Linux including kernel version, Yocto project dependent libraries, and baseline BSP. When using this tutorial, make sure to align tools, git repositories, OS and BSP released versions.</p>
+<p>AMD built Kria SOM Starter Kit applications on a shared, application-agnostic infrastructure in the SOM Starter Linux including kernel version, Yocto project dependent libraries, and baseline BSP. When using this tutorial, make sure to align tools, git repositories, OS and BSP released versions.</p>
 <div class="section" id="petalinux-bsp-alignment">
 <h3>PetaLinux BSP Alignment<a class="headerlink" href="#petalinux-bsp-alignment" title="Permalink to this heading">¶</a></h3>
 <p>The SOM Starter Linux image is generated using the corresponding SOM variant multi-carrier card PetaLinux board support package (BSP). Developers creating applications on the Starter Kit are recommended to use this BSP as a baseline for their application development as it ensures kernel, Yocto project libraries, and baseline configuration alignment. The multi-carrier card BSP defines a minimalistic BSP that has the primary function of providing an application-agnostic operating system, and can be updated and configured dynamically at runtime.</p>
@@ -180,12 +185,12 @@ b. <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx20
 <p>There are two ways to get started designing PL design for SOM Carrier cards. Developers can either start with the Vivado board file, or the released Vivado starter project in BSP.</p>
 <div class="section" id="vivado-board-file">
 <h3>Vivado board file<a class="headerlink" href="#vivado-board-file" title="Permalink to this heading">¶</a></h3>
-<p>This flows starts with Vivado board files containing information on K26, KV260 CC or KR260 CC. The K26 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals. These board files are available in Vivado’s board list in “Create Project” wizard.</p>
-<p>Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Vivado-Board-Support-Packages">Wiki</a> for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.</p>
+<p>This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC, KD240. The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals. These board files are available in Vivado’s board list in “Create Project” wizard.</p>
+<p>Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Vivado-Board-Support-Packages">Wiki</a> for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.</p>
 <div class="section" id="after-selecting-board">
 <h4>After selecting board<a class="headerlink" href="#after-selecting-board" title="Permalink to this heading">¶</a></h4>
 <p><img alt="Board Files" src="../_images/tool_flow_boardfile.PNG" /></p>
-<p>When selecting the Kria starter kit board file, make sure to click on “connections” to indicate that the K26 and carrier card are connected.</p>
+<p>When selecting the Kria starter kit board file, make sure to click on “connections” to indicate that the SOM and carrier card are connected.</p>
 <p>Once Zynq_ultra_ps_e_0 block is added to a design, make sure to click “Run Block Automation” to apply board file settings.</p>
 <p><img alt="Board Files" src="../_images/tool_flow_block_automation_marked.PNG" /></p>
 </div>
@@ -193,13 +198,13 @@ b. <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx20
 <div class="section" id="vivado-starter-project-in-bsp">
 <h3>Vivado Starter Project in BSP<a class="headerlink" href="#vivado-starter-project-in-bsp" title="Permalink to this heading">¶</a></h3>
 <p>Alternatively, developers can start from the Vivado project provided in the BSP file.
-First, download the SOM Starter Kit BSP from the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">SOM Wiki</a>
+First, download the SOM Starter Kit BSP from the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#PetaLinux-Board-Support-Packages">SOM Wiki</a>
 Then create the project using BSP:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;board&gt;-&lt;version&gt;.bsp
 <span class="nb">cd</span> xilinx-&lt;board&gt;-&lt;version&gt;
 </pre></div>
 </div>
-<p>The Vivado starter project can be found in <code class="docutils literal notranslate"><span class="pre">hardware/</span></code> folder, and developers can open the project using the .xpr file. If using a K26 bsp, the project is a k26 project only, and will not contain any information about the carrier card being used. However, it does have enough information to boot basic Linux. If using a KV260 Starter Kit or KR260 Starter Kit bsp, then the project contains information on the CC.</p>
+<p>The Vivado starter project can be found in <code class="docutils literal notranslate"><span class="pre">hardware/</span></code> folder, and developers can open the project using the .xpr file. If using a K26/K24 bsp, the project is a K26/K24 project only, and will not contain any information about the carrier card being used. However, it does have enough information to boot basic Linux. If using a KV260 Starter Kit, KR260 Starter Kit or KD240 Starter Kit bsp, then the project contains information on the CC.</p>
 <p>In 2022.1 or later, those project will also be available in <a class="reference external" href="https://github.com/Xilinx/kria-base-hardware">github repo</a> for those who do not wish to use PetaLinux.</p>
 </div>
 <div class="section" id="generate-bit-bin-and-xsa-file">
@@ -208,8 +213,9 @@ Then create the project using BSP:</p>
 <p><img alt="Board Files" src="../_images/tool_flow_binfile.PNG" /></p>
 <p>An updated .xsa file needs to be generated by using File -&gt; Export -&gt; Export Hardware , make sure to select “include bitstream” in the generation.</p>
 <p><img alt="Board Files" src="../_images/tool_flow_xsa_gen.PNG" /></p>
-<p>To access the example KV260 Vitis reference design, developers can follow the steps in the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vivado_design.html">Using Vivado to Build the Hardware Design</a> tutorial.</p>
-<p>To access the example KR260 Vitis reference design, developers can follow the steps in the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/build_vivado_design.html">Using Vivado to Build the Hardware Design</a> tutorial.</p>
+<p>To access the example KV260 Vivado reference design, developers can follow the steps in the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vivado_design.html">Using Vivado to Build the Hardware Design</a> tutorial.</p>
+<p>To access the example KR260 Vivado reference design, developers can follow the steps in the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/build_vivado_design.html">Using Vivado to Build the Hardware Design</a> tutorial.</p>
+<p>To access the example KD240 Vivado reference design, developers can follow the steps in the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/build/html/docs/build_vivado_design.html">Using Vivado to Build the Hardware Design</a> tutorial.</p>
 </div>
 </div>
 <div class="section" id="step-3-compile-a-device-tree-overlay-blob-dtbo">
@@ -238,7 +244,7 @@ Then create the project using BSP:</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -255,7 +261,7 @@ Then create the project using BSP:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 13, 2023.
+      <span class="lastupdated">Last updated on June 19, 2023.
       </span></p>
   </div>
 

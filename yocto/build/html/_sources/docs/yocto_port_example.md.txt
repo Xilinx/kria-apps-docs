@@ -94,7 +94,7 @@ sudo /opt/xilinx/kv260-smartcam/bin/smartcam -m
 
 ## Building a WIC image or RPM packages
 
-You need PetaLinux 2022.1 with eSDK update 1 or later, as vvas library is released asynchronously and not included in the main 2022.1 petalinux tools release. Download PetaLinux Tools Installer 2022.1 from [PetaLinux Download page](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html).
+You need PetaLinux 2022.1 with eSDK update 3 or later, as vvas library is released asynchronously and not included in the main 2022.1 petalinux tools release. Download PetaLinux Tools Installer 2022.1 from [PetaLinux Download page](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html).
 
 To install PetaLinux, extract the petalinux installer, accept the license and source the tool's settings script.
 
@@ -368,4 +368,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
