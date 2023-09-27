@@ -2,11 +2,11 @@
 
 GStreamer is a pipeline-based multimedia framework linking various media processing systems to create workflows.  For example, GStreamer can build a system that reads files in one format, processes them, and exports them in another. The formats and processes can be changed in a plug-and-play fashion. Vitis Video Analytics SDK(VVAS) leverages the ease of use of the GStreamer framework to build seamless streaming pipelines for AI-based video and image analytics and several other solutions without needing any understanding of FPGA or other development environment complexities. VVAS provides several hardware accelerators for various functionalities and highly optimized GStreamer plugins meeting most of the requirements of Video Analytics and transcoding solutions. VVAS also provides an easy-to-use framework to integrate their own hardware accelerators/kernels into GStreamer framework-based applications.
 
-## Smartcamera VVAS Code 
+## Smartcamera VVAS Code
 
 The Smart Camera application VVAS code, uses the Video Capture , AI Pre-processing Plugin, AI Inference Plugin, AI Rendering Plugin, DP output Plugin to perform facedetect application. This step only performs the image-resizing kernel which can be performed using the AI pre-processing pluigin. It uses an xmultisrc infrastructure plugin which is used to invoke the image-resizing kernel. The AI Inference Plugin, AI Rendering Plugin, DP output Plugin are explained in the ML Inference step.
 
-## Image Processing Application 
+## Image Processing Application
 
 The graph below shows the Image Resizing application from input video to output. All the individual blocks are various plugins that are used. At the bottom are the different hardware engines that are utilized throughout the application. The  GStreamer pipeline works as follows:
 
@@ -22,17 +22,16 @@ The graph below shows the Image Resizing application from input video to output.
 
 [Video Capture](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/docs/sw_arch_platform.html#video-capture) at the user-space level uses a Media source bin plugin. The [mediasrcbin](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/docs/sw_arch_platform.html#media-source-bin-gstreamer-plugin) plugin is designed to simplify the usage of live video capture devices in this design. The plugin is a bin element that includes the standard v4l2src GStreamer element. It allows you to configure the media pipeline and its sub-devices. It uses the libmediactl and libv4l2subdev libraries which provide the following functionality:
 
-```
+```text
 - Enumerate entities, pads and links
 - Configure sub-devices
-	- Set media bus format
-	- Set dimensions (width/height)
-	- Set frame rate
-	- Export sub-device controls
-
+  - Set media bus format
+  - Set dimensions (width/height)
+  - Set frame rate
+  - Export sub-device controls
 ```
 
-## Image pre-processing Plugin 
+## Image pre-processing Plugin
 
 Smart camera VVAS code uses the Xmultisrc plugin to perfom the [Image pre-processing step](https://github.com/Xilinx/smartcam/blob/xlnx_rel_v2022.1/src/vvas_xpp_pipeline.c). The [Xmultisrc](https://xilinx.github.io/VVAS/2.0/build/html/docs/common/common_plugins.html#vvas-xmultisrc) is a generic infrastructure plugin that is used to build custom accelerations. The plug-in abstracts the GStreamer framework's core/common functionality, such as caps negotiations, buffer management, etc.  The plugin can have one input pad and multiple-output pads. The Xmultisrc plug-in takes the configuration file as one of the input properties, kernels-config. This configuration file is in JSON format and contains the information the kernel requires. During the initialization step, the Xmultisrc parses the JSON file and performs the following tasks:
 
@@ -42,10 +41,12 @@ Smart camera VVAS code uses the Xmultisrc plugin to perfom the [Image pre-proces
 ![xmultisrc](./images/Images/xmultisrc.png)
 
 ## Image Resizing JSON FILE
-The smartcam VVAS xmultisrc plugin uses the following JSON file which will be used to control the image resizing kernel.The JSON file points to the xclbin, vvas library repo, kernel-name and libaray-name. 
+
+The smartcam VVAS xmultisrc plugin uses the following JSON file which will be used to control the image resizing kernel.The JSON file points to the xclbin, vvas library repo, kernel-name and libaray-name.
+
 In the [Vitis Compile and Link section](./vitis-compile-link.md), the makefile outputs a **xclbin and system.bit** the binaries.  In the [petalinux firware step](./petalinux-firmware.md), you will learn that the binarie will be loaded at the "/opt/xilinx location"  
 
-```
+```text
 {  
   xclbin-location":"/opt/xilinx/kv260-smartcam/kv260-smartcam.xclbin",
   "vvas-library-repo": "/opt/xilinx/kv260-smartcam/lib",
@@ -54,17 +55,17 @@ In the [Vitis Compile and Link section](./vitis-compile-link.md), the makefile 
     {
       "kernel-name": "pp_pipeline_accel:{pp_pipeline_accel_1}",
       "library-name": "libvvas_xpp.so",       
-	   "config": {
+      "config": {
 
-	     
+
       }
     }
   ]
 }
-
 ```
+
 | Property Name         | Type          |  Default              | Description                                   |
-| :---                  |    :----:     | :----:                |   :----:                                            |    
+| :---                  |    :----:     | :----:                |   :----:                                            |
 | xclbin-location       | String        |   NULL                | The path of xclbin, including the xclbin name. The plug-in downloads this xclbin and creates an XRT handle for memory allocation and programming kernels.                                              |
 | vvas-library-repo     | String        |   /usr/lib            | The library path for the VVAS repository for all the acceleration software libraries.                                               |
 | kernels               | N/A           |    N/A                | The JSON tag for starting the kernel-specific configurations.                                              |
@@ -81,9 +82,9 @@ In the [Vitis Compile and Link section](./vitis-compile-link.md), the makefile 
 The GStreamer VVAS infrastructure plug-ins (vvas_xfilter and vvas_xmultisrc) call the core APIs to perform operations on the kernel. The core APIs will invoke the XRT, which sends the commands and manages the buffers to the kernel. The VVAS Core APIs have 4 API's which will be called by the GStreamer in sequence.
 
 1. Plugin Initialization
-2. Starting the kernel. 
+2. Starting the kernel.
 3. Waiting for the kernel done
-4. Denitilizating the plugin 
+4. Denitilizating the plugin
 
 ### Plugin Initialization
 
@@ -92,11 +93,12 @@ The GStreamer VVAS infrastructure plug-ins (vvas_xfilter and vvas_xmultisrc) cal
 ### Starting the kernel
 
 #### Kernel Properties
+
 - Before starting the kernel, the user should know about the Kernel mode and the type of kernels. This will define the set of APIs to be used for Starting of the kernel.
 
 #### Kernel Modes
 
-- There are two types of kernel modes. These Modes are documented in the [Execution Modes](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Execution-Modes). In this tutorial, we will use the XRT Managed kernel, where XRT manages the kernel executions by hiding the implementation details from the user. 
+- There are two types of kernel modes. These Modes are documented in the [Execution Modes](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Execution-Modes). In this tutorial, we will use the XRT Managed kernel, where XRT manages the kernel executions by hiding the implementation details from the user.
   - XRT Managed Kernel
   - User Managed Kernel.
 
@@ -112,17 +114,15 @@ The GStreamer VVAS infrastructure plug-ins (vvas_xfilter and vvas_xmultisrc) cal
 
 - The next step is to check whether the task is completed. The user needs to call. ***vvas_kernel_done API***. This API will return when the kernel finishes processing the current task. The developer can provide the “time-out” interval value indicating how long this API has to wait before it can return in case the kernel has not finished processing. The API can be called in the ***xlnx_kernel_start*** function or  ***xlnx_kernel_done*** function. This is performed at the [Line-182](https://github.com/Xilinx/smartcam/blob/xlnx_rel_v2022.1/src/vvas_xpp_pipeline.c#L182) of the xmultisrc plugin.
 
-
-### Denitilizating the plugin 
+### Denitilizating the plugin
 
 - ***xlnx_kernel_deinit API*** is called by the infrastructure plug-in when a plug-in is de-initializing, i.e., freeing the data structures allocated during the initialization step. This is performed at the [Line-68](https://github.com/Xilinx/smartcam/blob/xlnx_rel_v2022.1/src/vvas_xpp_pipeline.c#L68) of the xmultisrc plugin.
-
 
 ### Conclusion
 
 - This completes the overview of the vvas_xmultisrc plugin, which is used to invoke the resizing accelerator on the FPGA device.
 
-## File O/p Plugin 
+## File O/p Plugin
 
 - The Filesink Gstreamer plugin writes incoming data to a file in the local file system.
 

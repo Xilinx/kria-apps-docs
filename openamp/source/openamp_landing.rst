@@ -10,7 +10,7 @@ OpenAMP on Kria SOM
 
 
 
-Starting from 2022.1, `OpenAMP <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP>`_ is integrated to the Kria SOM pre-built images. OpenAMP is an open-source standard infrastructure for applications to make use of heterogeneous co-processors, and in Kria allows the APU to offload tasks to the MPSoC dual-core RPUs.
+Starting from 2022.1, `OpenAMP <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP>`_ support is available the Kria SOM pre-built images. OpenAMP is an open-source standard infrastructure for applications to make use of heterogeneous co-processors, and in Kria allows the APU to offload tasks to the MPSoC dual-core RPUs.
 
 The Kria Starter Kit OpenAMP PetaLinux implementation uses the Linux kernel implementation of RPMsg for leveraging the MPSoC RPUs as co-processors. The out-of-box Kria Linux OpenAMP only implements a Linux based master on APU with the RPU as a client processor with corresponding pre-built RPU examples.
 
@@ -47,13 +47,14 @@ The Kria Starter Kit Linux includes the following device tree place-holders for 
 * remoteproc node
 * rpmsg shared memory
 
-The Kria 2022.1 PetaLinux BSP and pre-built images (`.wic`) include the necessary device tree nodes and memory reservations. These can be found in the `system.dtb` of the 22.1 release BSP `prebuilt` folder.
+The Kria 2022.1 PetaLinux BSP and pre-built images folder include the necessary device tree nodes and memory reservations. These can be found in the `openamp.dtb` of the 22.1 release BSP `prebuilt` folder. In order to run openamp example, program SD card with the prebuilt .wic image, and replace system.dtb in the SD card's boot folder with openamp.dtb (which should be renamed to system.dtb) and then boot as usual.
 
 ********************************************************
 OpenAMP Demos
 ********************************************************
 
-The 2022.1 based Kria Starter Kit Linux contains the existing OpenAMP community demos summarized below. These demos are included in `PetaLinux 22.1 wic image <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux>`_. They are also included in `22.1 BSPs <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages>`_.
+The 2022.1 (and onward) based Kria Starter Kit Linux BSP contains support for the existing OpenAMP community demos summarized below. 
+They require system.dtb to be replaced with openamp.dtb on the SD boot partition. Required wic image and openamp.dtb are included in `BSPs <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#PetaLinux-Board-Support-Packages>`_.
 
 * openamp-echo-test - Linux to RPU bare metal communication echo test using rpsmsg
 * openamp-matrix-mul - Linux produces two matrices and sends them to the RPU for multiplication.
@@ -207,5 +208,18 @@ Resources
 
 * `Xilinx OpenAMP Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP>`_
 * `Libmetal and OpenAMP User Guide <https://docs.xilinx.com/r/en-US/ug1186-zynq-openamp-gsg/Libmetal-and-OpenAMP-User-Guide>`_
+
+
+
+
+License
+-----------------------
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+
+You may obtain a copy of the License at
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 

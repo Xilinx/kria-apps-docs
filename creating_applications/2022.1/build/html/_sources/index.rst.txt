@@ -24,6 +24,12 @@ Kria SOM Accelerator and Custom Carrier Card Firmware Development
    docs/baremetal
 
 
+.. toctree::
+   :maxdepth: 3
+   :caption: Kria Vitis Acceleration Flow
+   :hidden:
+
+   docs/kria_vitis_acceleration_flow/kria-vitis-acceleration
 
 
 .. toctree::

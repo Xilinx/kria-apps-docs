@@ -3,11 +3,11 @@
 
 ## Introduction
 
-For Kria Starter Kits pre-built firmware and software, Xilinx uses a hierarchical boot process in order to support SOM and its multiple possible carrier cards. This concept of incremental HW configuration is used to have a common "SOM only" base configuration which is then extended after the carrier card (CC) hardware is identified. After CC identification the CC specific peripherals are enabled inclusive of the MPSoC MIO based peripherals. The FSBL loads the "SOM only" PMU configuration object after which the Kria Starter Kit boot FW then dynamically loads a "PMU object overlay" that extends the system configuration having PMU enable the corresponding subsystems and physical pin mappings. In Kria Starter Kits the CC identification and PMU configuration object overlay APIs are exercised as part of U-Boot.
+Kria Starter Kits pre-built firmware and software uses a hierarchical boot process in order to support SOM and its multiple possible carrier cards. This concept of incremental HW configuration is used to have a common "SOM only" base configuration which is then extended after the carrier card (CC) hardware is identified. After CC identification the CC specific peripherals are enabled inclusive of the MPSoC MIO based peripherals. The FSBL loads the "SOM only" PMU configuration object after which the Kria Starter Kit boot FW then dynamically loads a "PMU object overlay" that extends the system configuration having PMU enable the corresponding subsystems and physical pin mappings. In Kria Starter Kits the CC identification and PMU configuration object overlay APIs are exercised as part of U-Boot.
 
 ## Reference Overlay Config Object
 
-As an example, the overlay config object for KV260 and KR260 on top of "base SOM" configuration were created according to the table below. The top half of the table contains MIO definition for the base SOM and a set of shared MIO configurations for all Xilinx Kria carrier cards. The bottom half of the table defines MIO that are different between KV260 and KR260 and are enabled via a PMU overlay configuration API.
+As an example, the overlay config object for KV260 and KR260 on top of "base SOM" configuration were created according to the table below. The top half of the table contains MIO definition for the base SOM and a set of shared MIO configurations for all AMD Kria carrier cards. The bottom half of the table defines MIO that are different between KV260 and KR260 and are enabled via a PMU overlay configuration API.
 
 |               Interface Name              |                 Interface Type                 | Device Location |  KV260 |  KR260 |
 |:-----------------------------------------:|:----------------------------------------------:|:---------------:|:------:|:------:|
@@ -208,4 +208,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

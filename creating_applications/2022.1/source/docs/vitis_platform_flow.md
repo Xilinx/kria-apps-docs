@@ -1,8 +1,8 @@
 # Vitis Platform Flow
 
-Developers can create a custom Vitis platform if they require a different set of physical PL I/O peripherals than those provided in Xilinx generated platforms. Development starts with the Vivado tool to create an extensible hardware platform. In Vivado, the Kria SOM Starter Kit Vivado board files are provided. It automatically drives the PS subsystem HW configuration and provides pre-defined connectivity for commonly used PL IPs based on the selected carrier card (e.g. MIPI interfaces on KV260 carrier card). Developers use Vivado to generate a custom .xsa file to be ported into Vitis as a platform project. Once the platform project is created, then a corresponding device tree overlay is generated. With the extensible .xsa and .dtbo developers can now follow the same flow outlined in Vitis Accelerator flow. The resulting bitstream, .xclbin, and .dtbo files are copied into the target.
+Developers can create a custom Vitis platform if they require a different set of physical PL I/O peripherals than those provided in AMD generated platforms. Development starts with the Vivado tool to create an extensible hardware platform. In Vivado, the Kria SOM Starter Kit Vivado board files are provided. It automatically drives the PS subsystem HW configuration and provides pre-defined connectivity for commonly used PL IPs based on the selected carrier card (e.g. MIPI interfaces on KV260 carrier card). Developers use Vivado to generate a custom .xsa file to be ported into Vitis as a platform project. Once the platform project is created, then a corresponding device tree overlay is generated. With the extensible .xsa and .dtbo developers can now follow the same flow outlined in Vitis Accelerator flow. The resulting bitstream, .xclbin, and .dtbo files are copied into the target.
 
-* Assumption: Xilinx provided SOM carrier card with associated Vivado board file automation
+* Assumption: AMD provided SOM carrier card with associated Vivado board file automation
 * Input: Vivado SOM Starter Kit board files
 * Output: .dtbo, .bit.bin, .xclbin
 
@@ -10,16 +10,16 @@ Developers can create a custom Vitis platform if they require a different set of
 
 ## Prerequisites and Assumptions
 
-This document assumes that developers will use 2021.1 or later tools and SOM content releases. The tool versions should match - e.g. use the same tool versions for released BSP, Vivado, as well as PetaLinux and/or Ubuntu. For Ubuntu version, refer to table in [wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Ubuntu-LTS).
+This document assumes that developers will use 2021.1 or later tools and SOM content releases. The tool versions should match - e.g. use the same tool versions for released BSP, Vivado, as well as PetaLinux and/or Ubuntu. For Ubuntu version, refer to table in [wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Ubuntu-LTS).
 
 1. Vitis tools installation
-2. (Optional) PetaLinux [SOM Starter Kit BSP download](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages)
+2. (Optional) PetaLinux [SOM Starter Kit BSP download](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#PetaLinux-Board-Support-Packages)
 3. Vivado tools installation
 4. tool for generating and/or compiling .dtbo file: a. PetaLinux tools installation or b. XSCT (will be installed as part of Vivado or Vitis)
 
 ## Step 1 - Aligning Kria SOM boot & SOM Starter Linux infrastructure
 
-Xilinx built Kria SOM Starter Kit applications on a shared, application-agnostic infrastructure in the SOM Starter Linux including kernel version, Yocto project dependent libraries, and baseline BSP. When using this tutorial, make sure to align tools, git repositories, and BSP released versions.
+AMD built Kria SOM Starter Kit applications on a shared, application-agnostic infrastructure in the SOM Starter Linux including kernel version, Yocto project dependent libraries, and baseline BSP. When using this tutorial, make sure to align tools, git repositories, and BSP released versions.
 
 ### PetaLinux BSP Alignment
 
@@ -31,15 +31,15 @@ There are two ways to get started designing PL design for SOM Carrier cards. Dev
 
 ### Vivado board file
 
-This flows starts with Vivado board files containing information on K26, KV260 CC or KR260 CC. The K26 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals. These board files are available in Vivado's board list in "Create Project" wizard.
+This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC or KD240 CC. The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals. These board files are available in Vivado's board list in "Create Project" wizard.
 
-Refer to [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Vivado-Board-Support-Packages) for a list of board files required, tool versions that support them and how to download them from XHUB store correctly. 
+Refer to [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Vivado-Board-Support-Packages) for a list of board files required, tool versions that support them.
 
 #### After selecting board
 
 ![Board Files](./media/tool_flow_boardfile.PNG)
 
-When selecting the Kria starter kit board file, make sure to click on "connections" to indicate that the K26 and KV carrier card are connected.
+When selecting the Kria starter kit board file, make sure to click on "connections" to indicate that the SOM and carrier card are connected.
 
 Once Zynq_ultra_ps_e_0 block is added to a design, make sure to click "Run Block Automation" to apply board file settings.
 
@@ -55,7 +55,7 @@ Then check window -> platform setup to select interfaces to be exposed as a plat
 ### Vivado Starter Project in BSP
 
 Alternatively, developers can start from the Vivado project provided in the BSP file.
-First, download the SOM Starter Kit BSP from the [SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages)
+First, download the SOM Starter Kit BSP from the [SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#PetaLinux-Board-Support-Packages)
 Then create the project using BSP:
 
 ```bash
@@ -63,7 +63,7 @@ petalinux-create -t project -s xilinx-<board>-<version>.bsp
 cd xilinx--<board>-<version>
 ```
 
-The Vivado starter project can be found in ```hardware/``` folder, and developers can open the project using the .xpr file. If using the K26 BSP, the project is a k26 project only, and will not contain any information about the carrier card being used. However, it does have enough information to boot basic Linux. The KV260 and KR260 BSP have CC information.
+The Vivado starter project can be found in ```hardware/``` folder, and developers can open the project using the .xpr file. If using the K26/K24 BSP, the project is a K26/K24 project only, and will not contain any information about the carrier card being used. However, it does have enough information to boot basic Linux. The KV260,  KR260 KD240 BSP have CC information.
 
 In 2022.1 or later, those project will also be available in [github repo](https://github.com/Xilinx/kria-base-hardware) for those who do not wish to use PetaLinux.
 
@@ -73,13 +73,13 @@ Please refer to Vivado documentation to add custom IP blocks into your design. A
 
 ![Board Files](./media/tool_flow_xsa_gen.PNG)
 
-To access the example KV260 Vitis reference design, developers can follow the steps in the [Using Vivado to Build the Hardware Design](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vivado_design.html) tutorial.
+To access the example KV260 Vitis reference design, developers can follow the steps in the [Using Vivado to Build the Hardware Design](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vivado_design.html) tutorial that uses [Kria Vitis Platform repository](https://github.com/Xilinx/kria-vitis-platforms).
 
-To access the example KR260 Vitis reference design, developers can follow the steps in the [Using Vivado to Build the Hardware Design](https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/build_vivado_design.html) tutorial.
+Note that while KR260 and KD240 example project has Vivado projects in [Kria Vitis Platform repository](https://github.com/Xilinx/kria-vitis-platforms) that has Vitis platform hooks, they have not been validated to be used as Vitis platforms in other applications.
 
 ## Step 3 - Package the platform
 
-After generating the .xsa file, developers will need to package it into a a Xilinx Platform File (.xpfm file). Developers can use the script [pfm.tcl](https://github.com/Xilinx/vck190-base-trd/blob/2022.1/platforms/scripts/pfm.tcl)  to generate .xpfm file and its associated hw/ and sw/ folders:
+After generating the .xsa file, developers will need to package it into a Xilinx Platform File (.xpfm file). Developers can use the script [pfm.tcl](https://github.com/Xilinx/vck190-base-trd/blob/2022.1/platforms/scripts/pfm.tcl)  to generate .xpfm file and its associated hw/ and sw/ folders:
 
 ```bash
 xsct -sdx pfm.tcl -xsa <generated xsa file from step 2>.xsa
@@ -113,4 +113,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

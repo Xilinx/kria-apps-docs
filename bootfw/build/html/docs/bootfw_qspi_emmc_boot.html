@@ -73,6 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -135,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Boot Firmware - QSPI to eMMC boot for Production SOM<a class="headerlink" href="#boot-firmware-qspi-to-emmc-boot-for-production-som" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>The production SOM has an eMMC device populated, whereas the Starter Kit SOMs do not. Therefore, instead of Starter Kit’s QSPI-&gt;SD two stage boot process, developer can do a QSPI -&gt; eMMC two stage process on the production SOM. This page gives an example of how to boot from QSPI -&gt; eMMC for a production SOM that is mounted on a KV260 or KR260 carrier card. Note that removal of the SOM from a Xilinx produced Starter Kit voids its warranty. This workflow is only intended to provide an example for customers creating their own carrier card design and wanting to make use of a similar two-stage boot methodology.</p>
+<p>The production SOM has an eMMC device populated, whereas the Starter Kit SOMs do not. Therefore, instead of Starter Kit’s QSPI-&gt;SD two stage boot process, developer can do a QSPI -&gt; eMMC two stage process on the production SOM. This page gives an example of how to boot from QSPI -&gt; eMMC for a production SOM that is mounted on a KV260 or KR260 carrier card. Note that removal of the SOM from an AMD produced Starter Kit voids its warranty. This workflow is only intended to provide an example for customers creating their own carrier card design and wanting to make use of a similar two-stage boot methodology.</p>
 <p>User can also use the traditional monolithic boot (from eMMC) for production SOMs by using eMMC boot mode and placing boot files in eMMC. This method is not covered by this document and also requires user to set the BOOT_MODE pins to eMMC on their production carrier card.</p>
 <p>This tutorial is targeted for 2022.2 releases and tool chains.</p>
 </div>
@@ -165,7 +166,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="program-production-som-with-qspi-binary">
 <h3>1. Program Production SOM with QSPI binary<a class="headerlink" href="#program-production-som-with-qspi-binary" title="Permalink to this heading">¶</a></h3>
 <p>Unlike the Starter Kit SOM, the production SOM is shipped without QSPI pre-populated. A developer must first program QSPI with the appropriate boot firmware so that SOM will boot to U-Boot via the QSPI contents and then hand off to the Linux OS image in eMMC. The full QSPI binary for Starter Kit SOM is not released, however, each components can be generated as outlined in <a class="reference internal" href="bootfw_overview.html"><span class="doc">bootfw overview</span></a> and its pages. As a reference and an example for this guide, developer can use <a class="reference internal" href="bootfw_qspi_stitching.html"><span class="doc">bootfw recipe in Yocto</span></a> to generate an example QSPI binary for either KV260 or KR260 and program the QSPI image to a Kria production SOM.</p>
-<p>Once you have a QSPI binary .bin file, it is time to program it to the board. Mount the Kria production SOM onto a carrier card, connect it to a host computer using micro-usb cable or a Xilinx Platform cable. Leave SD card slot empty and connect to power.</p>
+<p>Once you have a QSPI binary .bin file, it is time to program it to the board. Mount the Kria production SOM onto a carrier card, connect it to a host computer using micro-usb cable or a AMD Platform cable. Leave SD card slot empty and connect to power.</p>
 <div class="section" id="program-qspi-using-xsdb-xsct-and-u-boot">
 <h4>Program QSPI using XSDB/XSCT and u-boot<a class="headerlink" href="#program-qspi-using-xsdb-xsct-and-u-boot" title="Permalink to this heading">¶</a></h4>
 <p>To program the QSPI using XSDB/XSCT, download <a class="reference external" href="./example_src/boot.tcl">boot.tcl</a> file and put them in a &lt;working_folder/&gt; along with <code class="docutils literal notranslate"><span class="pre">&lt;QSPI_image&gt;.bin</span></code>. Then download the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">appropriate production .bsp file</a> for production SOM card (e.g. <code class="docutils literal notranslate"><span class="pre">xilinx-k26-som-&lt;version&gt;.bsp</span></code>). Once downloaded, extract the bsp file and copy the artifacts needed for boot.tcl into &lt;working_folder/&gt;</p>
@@ -357,7 +358,7 @@ dd if=/nfsroot/&lt;image&gt; of=/dev/mmcblk0
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 

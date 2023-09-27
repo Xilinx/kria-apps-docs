@@ -38,7 +38,7 @@ Open the .xpr project in Vivado.
 
 ### Obtaining isp_single IP
 
-In this example, we use a Raspberry Pi pipeline that uses a ISP block. This is a custom IP that is not present in Xilinx IP catalog, so we will need to manually copy it to our project. This IP can be found in ```$kv260-vitis/platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/ip/isp_single_kv260/```, this is the platform for nlp_smartvision app that has support for Raspberry Pi.
+In this example, we use a Raspberry Pi pipeline that uses a ISP block. This is a custom IP that is not present in AMD IP catalog, so we will need to manually copy it to our project. This IP can be found in ```$kv260-vitis/platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/ip/isp_single_kv260/```, this is the platform for nlp_smartvision app that has support for Raspberry Pi.
 
 Do the following to generate ip:
 
@@ -493,4 +493,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

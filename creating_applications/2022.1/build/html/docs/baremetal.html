@@ -34,8 +34,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="On-target Utilities and Firmware" href="target.html" />
-    <link rel="prev" title="Running on the KV260 Board" href="kria_vitis_acceleration_flow/running-smartcam-on-board.html" /> 
+    <link rel="next" title="Kria Vitis Acceleration Tutorial" href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html" />
+    <link rel="prev" title="Example - Generating DTSI and DTBO Overlay Files for Smartcam" href="dtsi_dtbo_generation_smartcam_example.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -73,6 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -104,6 +105,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul>
@@ -146,7 +151,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Bare-metal Flow Example<a class="headerlink" href="#bare-metal-flow-example" title="Permalink to this heading">¶</a></h1>
 <p>Developers who wish to use SOM without Linux will be creating a bare-metal(also called standalone) application. This example flow will detail the process of creating a simple PL design with a BRAM connected to the PS, running on the Vision AI Starter Kit. The flow will then create a standalone software in Vitis to read and write from BRAM. Lastly, the flow will suggest two ways to load and test the application on SOM.</p>
 <ul class="simple">
-<li><p>Assumption: Xilinx built carrier cards with corresponding SOM Starter Kit board file</p></li>
+<li><p>Assumption: AMD built carrier cards with corresponding SOM Starter Kit board file</p></li>
 <li><p>Input: SOM Starter Kit board files (in Vivado), developer’s own accelerator designs in Vivado (in this case, BRAM)</p></li>
 <li><p>Output: <code class="docutils literal notranslate"><span class="pre">&lt;pl&gt;</span></code>.bit, fsbl.elf, pmufw.elf, <code class="docutils literal notranslate"><span class="pre">&lt;application&gt;</span></code>.elf, and boot.bin</p></li>
 </ul>
@@ -158,15 +163,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ol>
 <div class="section" id="vivado-board-file">
 <h3>Vivado board file<a class="headerlink" href="#vivado-board-file" title="Permalink to this heading">¶</a></h3>
-<p>This flows starts with Vivado board files containing information on K26, KV260 CC or KR260 CC. The K26 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals. These board files are available in Vivado’s board list in “Create Project” wizard.</p>
-<p>Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Vivado-Board-Support-Packages">Wiki</a> for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.</p>
+<p>This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC or KD240 CC. The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the board peripherals. These board files are available in Vivado’s board list in “Create Project” wizard.</p>
+<p>Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#Vivado-Board-Support-Packages">Wiki</a> for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.</p>
 </div>
 </div>
 <div class="section" id="step-1-generate-pl-design-in-vivado">
 <h2>Step 1: Generate PL design in Vivado<a class="headerlink" href="#step-1-generate-pl-design-in-vivado" title="Permalink to this heading">¶</a></h2>
 <p>Start Vivado. Choose File -&gt; Project -&gt; New. Then choose RTL project:</p>
 <p><img alt="Tool Flow" src="../_images/01_vivado.png" /></p>
-<p>Click next, then choose <code class="docutils literal notranslate"><span class="pre">boards</span></code> in <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">Part</span></code> section, choose K26* card, and then click on <code class="docutils literal notranslate"><span class="pre">connections</span></code>:</p>
+<p>Click next, then choose <code class="docutils literal notranslate"><span class="pre">boards</span></code> in <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">Part</span></code> section, choose K26*/K24* card (in this case K26C), and then click on <code class="docutils literal notranslate"><span class="pre">connections</span></code>:</p>
 <p><img alt="Tool Flow" src="../_images/02_vivado.png" /></p>
 <p>Choose the carrier card to connect the SOM to, in this case the Vision AI Starter Kit carrier card:</p>
 <p><img alt="Tool Flow" src="../_images/03_vivado.png" /></p>
@@ -291,7 +296,7 @@ con
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bootgen -arch zynqmp -image test.bif -o boot.bin
 </pre></div>
 </div>
-<p>Then, use the FW update and recovery utility documented in <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/ug1089-kv260-starter-kit#page=24">UG1089</a> and <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-Update-Process">here</a>
+<p>Then, use the FW update and recovery utility documented in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-FW-Update-Process">wiki</a>
 to update the boot firmware. In this example, we have decided to write boot.bin into image A. Make sure to mark Image A as bootable, and as the requested Boot Image so that SOM will boot image A on every power cycle.</p>
 <p><img alt="Tool Flow" src="../_images/25_img_recovery.png" /></p>
 </div>
@@ -301,7 +306,7 @@ to update the boot firmware. In this example, we have decided to write boot.bin 
 <p>After step 3, .bit file and the .elf files will be programmed, and developers should observe printouts from uart indicating the ability to write and read from BRAM.</p>
 <div class="section" id="optional-restoring-linux-booting-image">
 <h3>Optional: Restoring Linux booting image<a class="headerlink" href="#optional-restoring-linux-booting-image" title="Permalink to this heading">¶</a></h3>
-<p>Developers may need to restore Starter Kit back to its default, Linux-booting setting after one of the image sectors had been overwriten with baremetal boot file. In that case, they can download the released Linux booting BOOT.bin from <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">SOM Wiki</a> and program it into one of the image sectors. They will then mark that image sector as bootable and requested image.</p>
+<p>Developers may want to restore a Starter Kit back to its default image and Linux boot FW after one of the image sectors has been overwriten with baremetal boot file. In that case, they can download the released Linux booting BOOT.bin from <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-Firmware-Updates">SOM Wiki</a> and program it into one of the  boot image sectors. They will then mark that image sector as bootable and requested image.</p>
 </div>
 </div>
 <div class="section" id="license">
@@ -310,7 +315,7 @@ to update the boot firmware. In this example, we have decided to write boot.bin 
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -319,15 +324,15 @@ to update the boot firmware. In this example, we have decided to write boot.bin 
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="kria_vitis_acceleration_flow/running-smartcam-on-board.html" class="btn btn-neutral float-left" title="Running on the KV260 Board" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="target.html" class="btn btn-neutral float-right" title="On-target Utilities and Firmware" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dtsi_dtbo_generation_smartcam_example.html" class="btn btn-neutral float-left" title="Example - Generating DTSI and DTBO Overlay Files for Smartcam" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html" class="btn btn-neutral float-right" title="Kria Vitis Acceleration Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 13, 2023.
+      <span class="lastupdated">Last updated on June 19, 2023.
       </span></p>
   </div>
 

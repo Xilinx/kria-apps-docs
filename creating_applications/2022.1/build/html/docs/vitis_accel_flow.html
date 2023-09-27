@@ -73,6 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -104,6 +105,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul>
@@ -144,11 +149,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="vitis-accelerator-flow">
 <h1>Vitis Accelerator Flow<a class="headerlink" href="#vitis-accelerator-flow" title="Permalink to this heading">¶</a></h1>
-<p>This flow is for developers using Xilinx provided SOM Starter Kit Vitis Platforms as a basis for generating their own PL accelerators. Developers use a Vivado Extensible Platform (.xsa) file provided by Xilinx and import it into a Vitis Platform project. Developers then create their own overlay accelerator(s) within the bounds of the provided Vitis Platform, and generate a new bitstream (.bit file converted to .bit.bin) and metadata container file (.xclbin). Developers can use the existing device tree blob (.dtb) associated with the Xilinx provided Vitis platform. The resulting application accelerator files are then moved to the target SOM platform to be run.</p>
-<p>To access the .xsa files for different platforms released from Xilinx, refer to <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vitis_platform.html">KV260 Creating a Vitis Platform</a> or <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/build_vitis_platform.html">KR260 creating a Vitis Platform</a> tutorial to generate .xsa files from released reference design.</p>
+<p>This flow is for developers using AMD provided SOM Starter Kit Vitis Platforms as a basis for generating their own PL accelerators. Developers use a Vivado Extensible Platform (.xsa) file provided by AMD and import it into a Vitis Platform project. Developers then create their own overlay accelerator(s) within the bounds of the provided Vitis Platform, and generate a new bitstream (.bit file converted to .bit.bin) and metadata container file (.xclbin). Developers can use the existing device tree blob (.dtb) associated with the AMD provided Vitis platform. The resulting application accelerator files are then moved to the target SOM platform to be run.</p>
+<p>To access the .xsa files for different platforms released from AMD, refer to <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vitis_platform.html">KV260 Creating a Vitis Platform</a> tutorial to generate .xsa files from released reference design.</p>
 <ul class="simple">
-<li><p>Constraints: developers must use the same carrier card and physical interface definition as Xilinx provided SOM starter kits and associated Vitis platforms.</p></li>
-<li><p>Input: Xilinx provided Vitis platform (.xsa), Xilinx provided Vitis platform device tree (.dtbo)</p></li>
+<li><p>Constraints: developers must use the same carrier card and physical interface definition as AMD provided SOM starter kits and associated Vitis platforms.</p></li>
+<li><p>Input: AMD provided Vitis platform (.xsa), AMD provided Vitis platform device tree (.dtbo)</p></li>
 <li><p>Output: .bit.bin, .xclbin</p></li>
 </ul>
 <p><img alt="Tool Flow" src="../_images/tool_flow_vitis_accel.PNG" /></p>
@@ -163,7 +168,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="step-1-aligning-kria-som-boot-som-starter-linux-infrastructure">
 <h2>Step 1 - Aligning Kria SOM boot &amp; SOM Starter Linux infrastructure<a class="headerlink" href="#step-1-aligning-kria-som-boot-som-starter-linux-infrastructure" title="Permalink to this heading">¶</a></h2>
-<p>Xilinx built Kria SOM Starter Kit applications on a shared, application-agnostic infrastructure in the SOM Starter Linux including kernel version, Yocto project dependent libraries, and baseline BSP. When using this tutorial, make sure to align tools, git repositories, and BSP released versions.</p>
+<p>AMD built Kria SOM Starter Kit applications on a shared, application-agnostic infrastructure in the SOM Starter Linux including kernel version, Yocto project dependent libraries, and baseline BSP. When using this tutorial, make sure to align tools, git repositories, and BSP released versions.</p>
 <div class="section" id="petalinux-bsp-alignment">
 <h3>PetaLinux BSP Alignment<a class="headerlink" href="#petalinux-bsp-alignment" title="Permalink to this heading">¶</a></h3>
 <p>The SOM Starter Linux image is generated using the corresponding SOM variant multi-carrier card PetaLinux board support package (BSP). Developers creating applications on the Starter Kit are recommended to use this BSP as a baseline for their application development as it ensures kernel, Yocto project libraries, and baseline configuration alignment. The multi-carrier card BSP defines a minimalistic BSP that has the primary function of providing an application-agnostic operating system, and can be updated and configured dynamically at runtime.</p>
@@ -171,7 +176,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="step-2-obtain-platform-files-and-dtbo-files">
 <h2>Step 2 - Obtain Platform files and .dtbo files<a class="headerlink" href="#step-2-obtain-platform-files-and-dtbo-files" title="Permalink to this heading">¶</a></h2>
-<p>Developers will need to first decide on which Kria Starter Kit Vitis platform to develop on. The list of platforms can be found in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vitis_platform.html">KV260 Creating a Vitis Platform</a> or <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/build_vitis_platform.html">KR260 creating a Vitis Platform</a> , which also contains a tutorial to generate Platform files (including .xpfm, .xsa files) from the released reference designs.</p>
+<p>Developers will need to first decide on which Kria Starter Kit Vitis platform to develop on. The list of platforms can be found in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vitis_platform.html">KV260 Creating a Vitis Platform</a>, which also contains a tutorial to generate Platform files (including .xpfm, .xsa files) from the released reference designs.</p>
+<p>Note that while KR260 and KD240 example project has Vivado projects in <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms">Kria Vitis Platform repository</a> that has Vitis platform hooks, they have not been validated to be used as Vitis platforms.</p>
 <p>Applications and their corresponding platforms are listed in the table below</p>
 <table border="1" class="docutils">
 <thead>
@@ -196,10 +202,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <tr>
 <td>nlp-smartvision</td>
 <td>kv260_ispMipiRx_rpiMipiRx_DP</td>
-</tr>
-<tr>
-<td>ROS 2 Multi-Node Communications via TSN</td>
-<td>kr260_tsn_rs485pmod</td>
 </tr>
 </tbody>
 </table><p>Alternatively, developers can generate their own platform through <a class="reference internal" href="vitis_platform_flow.html"><span class="doc">Vitis Platform flow</span></a>.</p>
@@ -268,6 +270,8 @@ To generate a .bit.bin file, create a <code class="docutils literal notranslate"
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>A step by step Vitis Accelerator Flow example using Makefiles from released <a class="reference external" href="https://github.com/Xilinx/kv260-vitis">kv260_vitis</a> projects can be found <a class="reference internal" href="vitis_accel_flow_smartcam_filter2d_example.html"><span class="doc">here</span></a></p></li>
+<li><p>A step by step example to recreate the Smartcam application on existing platform, including software development, can be found <a class="reference external" href="./kria_vitis_acceleration_flow/kria-vitis-acceleration.rst">here</a></p></li>
+<li><p>A step by step example to recreate the Smartcam application on existing platform, including software development, can be found <a class="reference internal" href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html"><span class="doc">here</span></a></p></li>
 <li><p>A step by step example to create a KV260 model zoo application based on released platform can be found <a class="reference external" href="https://community.element14.com/technologies/fpga-group/b/blog/posts/kv260-vvas-sms-2021-1-blog">here</a></p></li>
 <li><p>Vitis hardware acceleration tutorials can be found <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration">here</a>. They are not specific to SOM.</p></li>
 </ul>
@@ -280,7 +284,7 @@ To generate a .bit.bin file, create a <code class="docutils literal notranslate"
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -297,7 +301,7 @@ To generate a .bit.bin file, create a <code class="docutils literal notranslate"
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 13, 2023.
+      <span class="lastupdated">Last updated on June 19, 2023.
       </span></p>
   </div>
 

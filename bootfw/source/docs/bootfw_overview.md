@@ -1,6 +1,6 @@
 # Boot Firmware Overview
 
-The SOM Starter Kits use a two stage boot process. The primary boot firmware is pre-installed at the factory on the QSPI device. The secondary boot device is an SD card containing the Linux kernel and Linux root filesystem (rootfs). The Xilinx Starter Kit carrier card hardware design sets the MPSoC boot mode to QSPI32. The SOM boots up to U-Boot using the QSPI contents and U-Boot then hand-off to the secondary boot device.
+The SOM Starter Kits use a two stage boot process. The primary boot firmware is pre-installed at the factory on the QSPI device. The secondary boot device is an SD card containing the Linux kernel and Linux root filesystem (rootfs). The AMD Starter Kit carrier card hardware design sets the MPSoC boot mode to QSPI32. The SOM boots up to U-Boot using the QSPI contents and U-Boot then hand-off to the secondary boot device.
 
 This document gives an overview to various components in the Kria SOM boot firmware, and points to source code available for customers to get started with their implementations for their Kria SOM  custom carrier card. For general information about boot of the Zynq MPSoC, refer to Zynq UltraScale TRM [Boot and Configuration](https://docs.xilinx.com/r/en-US/ug1085-zynq-ultrascale-trm/Boot-and-Configuration) chapter.
 
@@ -10,7 +10,7 @@ The overall boot device definition and firmware contents are outlined in the fol
 
 ![image](./media/boot_location.png)
 
-For advanced evaluation a user can customize boot firmware using the corresponding kit PetaLinux BSP. Refer to [BootFW BOOT.BIN Generation page](./bootfw_boot.bin_generation.md) for pointers on how to generate BOOT.BIN. The PetaLinux BSP or Yocto can be used to generate a new BOOT.BIN that is then loaded to the QSPI user A/B partition and custom SD card contents summarized in the following diagram:
+For advanced evaluation a user can customize boot firmware using Yocto or the corresponding kit PetaLinux BSP. Refer to [BootFW BOOT.BIN Generation page](./bootfw_boot.bin_generation.md) for pointers on how to generate BOOT.BIN. Yocto or PetaLinux BSP can be used to generate a new BOOT.BIN that is then loaded to the QSPI user A/B partition and custom SD card contents summarized in the following diagram:
 
 ![image](./media/bsp_products.png)
 
@@ -20,7 +20,7 @@ The primary boot device is a QSPI device physically located on the Kria SOM. The
 
 - FSBL: First-stage boot-loader firmware
   - [Source code](https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/zynqmp_fsbl)
-  - FSBL is generated in [PetaLinux](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/First-Stage-Boot-Loader-for-Zynq-UltraScale-and-Zynq-7000-Devices), the flow is not unique to Kria SOM. Released SOM BSP generates FSBL by default when executing ```petalinux-build```.
+  - FSBL is generated in [Yocto](https://xilinx.github.io/kria-apps-docs/yocto.html) or [PetaLinux](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/First-Stage-Boot-Loader-for-Zynq-UltraScale-and-Zynq-7000-Devices), the flow is not unique to Kria SOM. Released SOM BSP generates FSBL by default when executing ```petalinux-build```.
 - PMU: Platform management unit firmware
   - [Source code](https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/zynqmp_pmufw)
   - SOM specific PMU guidance can be found on [SOM wiki page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#MPSoC-PMU-FW)
@@ -56,9 +56,20 @@ ImgSel flow based on the QSPI persistent registers is shown in below figure.
 
 ![image](./media/imgsel.png)
 
-Xilinx A/B updates builds on top of the MPSoC multi-boot functionality and abstracts the A/B concept with two pre-defined boot partitions. The boot.bin A/B partitions are maintained and laid out in the QSPI primary boot device. The QSPI will have a dedicated region for maintaining persistent boot state registers and the associated boot image offsets.
+Kria SOM A/B updates builds on top of the MPSoC multi-boot functionality and abstracts the A/B concept with two pre-defined boot partitions. The boot.bin A/B partitions are maintained and laid out in the QSPI primary boot device. The QSPI will have a dedicated region for maintaining persistent boot state registers and the associated boot image offsets.
 
 To work within the functionality of the MPSoC CSU ROM the Image Selector application that is launched at power-on reset (POR) to select which boot.bin image is used by passing a different offset to the CSU multi-boot register. The ImgSel application can be copied after each of the boot image partitions at the a 32KB boundary such that if the boot fails, CSU ROM functionality immediately loads ImgSel as the next discovered image. This allows ImgSel to provide the failure recovery mechanism to point back to the last bootable image based on the state information in the A/B Persistent Register.
+
+Note that to see which image was selected for booting, read MultiBootOffset value from FSBL prints, for an example:
+
+```text
+  Zynq MP First Stage Boot Loader 
+  Release 2023.1   May  1 2023  -  00:38:12
+  MultiBootOffset: 0x40
+  Reset Mode    :    System Reset
+```
+
+If MultiBootOffset is 0x40, image A was selected. If MultiBootOffset is 0x1f0, then image B was selected.
 
 ## Boot FW QSPI Memory Map
 
@@ -147,7 +158,7 @@ Read the [Image Recovery](./bootfw_image_recovery.md) page for more details on t
 
 U-Boot provides the functionality for the hand-off between the primary boot device and the secondary boot device. It will select the appropriate boot devices, load the Linux kernel, select Linux device tree based on detected HW configuration, and then boot Linux.
 
-U-Boot is an open source Universal Boot Loader that is frequently used in the Linux community. Xilinx provides a Git tree located at [github](https://github.com/Xilinx/u-boot-xlnx) which includes [U-Boot to run on Xilinx boards](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842223/U-boot). U-Boot for SOM has been configured to support dynamic booting on different starter kits using MPSoC PMU configuration objects.
+U-Boot is an open source Universal Boot Loader that is frequently used in the Linux community. AMD provides a Git tree located at [github](https://github.com/Xilinx/u-boot-xlnx) which includes [U-Boot to run on Xilinx boards](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842223/U-boot). U-Boot for SOM has been configured to support dynamic booting on different starter kits using MPSoC PMU configuration objects.
 
 Read the [PMU configuration objects](./bootfw_pmu_config_obj.md) and [U-Boot handoff](./bootfw_uboot_handoff.md) for more details on dynamic carrier card configuration in Kria StarterKits.
 
@@ -155,7 +166,7 @@ Read the [PMU configuration objects](./bootfw_pmu_config_obj.md) and [U-Boot han
 
 QSPI used in commercial grade SOM is [MT25QU512ABB8E12-0SIT](https://www.micron.com/products/nor-flash/serial-nor-flash/part-catalog/mt25qu512abb8e12-0sit), QSPI used in I-grade SOM is [MT25QU512ABB8E12-0AAT](https://www.micron.com/products/nor-flash/serial-nor-flash/part-catalog/mt25qu512abb8e12-0aat). The QSPI has locking functionality - refer to linked datasheets on Micron for details.
 
-If developers are developing on Xilinx released starter kits, QSPI image is locked and the only section that should need update is the Image A/B section along with the persistent registers.
+If developers are developing on AMD released starter kits, QSPI image is locked and the only section that should need update is the Image A/B section along with the persistent registers.
 
 However, if developers are developing their own carrier cards, the production SOM's QSPI section is not locked. The entire QSPI can be customized by customers to meet their boot firmware requirements for their production designs.
 
@@ -168,4 +179,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

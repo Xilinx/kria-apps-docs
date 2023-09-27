@@ -116,7 +116,7 @@ i2c_mux: i2c-mux@74 {
 
 ### mipi csi node
 
-The mipi_csi2_rx_subsystem@80000000 node requires a few modification. the device tree binding information for Xilinx MIPI CSI-2 Receiver Subsystem is[here](https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/media/xilinx/xlnx%2Ccsi2rxss.yaml)
+The mipi_csi2_rx_subsystem@80000000 node requires a few modification. the device tree binding information for AMD MIPI CSI-2 Receiver Subsystem is[here](https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/media/xilinx/xlnx%2Ccsi2rxss.yaml)
 Add property:
 
 ```dtsi
@@ -172,4 +172,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

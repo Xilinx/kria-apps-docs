@@ -73,6 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -133,11 +134,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Boot Firmware - PMU Overlay Config Object<a class="headerlink" href="#boot-firmware-pmu-overlay-config-object" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>For Kria Starter Kits pre-built firmware and software, Xilinx uses a hierarchical boot process in order to support SOM and its multiple possible carrier cards. This concept of incremental HW configuration is used to have a common “SOM only” base configuration which is then extended after the carrier card (CC) hardware is identified. After CC identification the CC specific peripherals are enabled inclusive of the MPSoC MIO based peripherals. The FSBL loads the “SOM only” PMU configuration object after which the Kria Starter Kit boot FW then dynamically loads a “PMU object overlay” that extends the system configuration having PMU enable the corresponding subsystems and physical pin mappings. In Kria Starter Kits the CC identification and PMU configuration object overlay APIs are exercised as part of U-Boot.</p>
+<p>Kria Starter Kits pre-built firmware and software uses a hierarchical boot process in order to support SOM and its multiple possible carrier cards. This concept of incremental HW configuration is used to have a common “SOM only” base configuration which is then extended after the carrier card (CC) hardware is identified. After CC identification the CC specific peripherals are enabled inclusive of the MPSoC MIO based peripherals. The FSBL loads the “SOM only” PMU configuration object after which the Kria Starter Kit boot FW then dynamically loads a “PMU object overlay” that extends the system configuration having PMU enable the corresponding subsystems and physical pin mappings. In Kria Starter Kits the CC identification and PMU configuration object overlay APIs are exercised as part of U-Boot.</p>
 </div>
 <div class="section" id="reference-overlay-config-object">
 <h2>Reference Overlay Config Object<a class="headerlink" href="#reference-overlay-config-object" title="Permalink to this heading">¶</a></h2>
-<p>As an example, the overlay config object for KV260 and KR260 on top of “base SOM” configuration were created according to the table below. The top half of the table contains MIO definition for the base SOM and a set of shared MIO configurations for all Xilinx Kria carrier cards. The bottom half of the table defines MIO that are different between KV260 and KR260 and are enabled via a PMU overlay configuration API.</p>
+<p>As an example, the overlay config object for KV260 and KR260 on top of “base SOM” configuration were created according to the table below. The top half of the table contains MIO definition for the base SOM and a set of shared MIO configurations for all AMD Kria carrier cards. The bottom half of the table defines MIO that are different between KV260 and KR260 and are enabled via a PMU overlay configuration API.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -463,7 +464,7 @@ objcopy -O binary &lt;overlay-config-object.o&gt; &lt;overlay-config-object.bin&
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
