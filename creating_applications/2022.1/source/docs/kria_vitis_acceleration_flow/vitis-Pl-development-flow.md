@@ -75,18 +75,15 @@ xf::cv::xfMat2Array<OUTPUT_PTR_WIDTH, OUT_TYPE, NEWHEIGHT, NEWWIDTH, NPC>(resize
 
 ***Important: Replace the files***
 
-The smart camera application uses pre-processing pipeline, which performs Color Space Convertion, resizing, and quantization. In this step, we don't need quantization. Navigate to smartcam folder and replace the xf_pp_pipeline_accel.cpp  with the [resizing kernel](./code/kria_vitis_acceleration_flow/image_resizing/vitis_platform_files/xf_pp_pipeline_accel.cpp) which performs only ***color space convertion and resizing*** as shown above. 
+The smart camera application uses pre-processing pipeline, which performs Color Space Convertion, resizing, and quantization. In this step, we don't need quantization. Navigate to smartcam folder and replace the xf_pp_pipeline_accel.cpp  with the [resizing kernel](./code/image_resizing/vitis_platform_files/xf_pp_pipeline_accel.cpp) which performs only ***color space convertion and resizing*** as shown above.
 
-``` 
+```
 cd overlays/examples/smartcam
 cp ../../../../../../code_repo_kria_vitis_acceleration_flow_2022.1/image_resizing/vitis_platform_files/xf_pp_pipeline_accel.cpp .
 
-``` 
+```
 
 ## Next steps
 
 This completes the PL kernel development flow. The next step is [Vitis Compile and Link](./vitis-compile-link.md).
 
- 
-
- 
