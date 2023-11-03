@@ -64,6 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -89,6 +90,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="#variables-overrides-and-the-environment">Variables, Overrides and the Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#working-with-libraries">Working with Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#working-with-recipes">Working with recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#importing-a-new-xsa-file">Importing a New XSA File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
@@ -144,6 +146,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>kria-qspi</td>
 <td>NA</td>
 <td>QSPI image supporting K26 production SOM and Starter Kit SOM</td>
+</tr>
+<tr>
+<td>k24-smk</td>
+<td>kria-qspi</td>
+<td>NA</td>
+<td>QSPI image supporting KD240 Starter Kit SOM</td>
 </tr>
 <tr>
 <td>k26-smk</td>
@@ -299,6 +307,15 @@ index f83bcb3..2839b62 <span class="m">100644</span>
 </pre></div>
 </div>
 </div>
+<div class="section" id="importing-a-new-xsa-file">
+<h2>Importing a New XSA File<a class="headerlink" href="#importing-a-new-xsa-file" title="Permalink to this heading">¶</a></h2>
+<p>By default, Kria Yocto project downloads .xsa files from artifactory to generate artifacts. If you wanted to use a local .xsa file, then you need to modify the corresponding .conf file in <code class="docutils literal notranslate"><span class="pre">sources/meta-kria/conf/machine/&lt;MACHINE</span> <span class="pre">name&gt;.conf</span></code> for the target MACHINE. Add the following after the line that specified <code class="docutils literal notranslate"><span class="pre">HDF_MACHINE</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HDF_BASE = &quot;file://&quot;
+HDF_PATH = &quot;/path/to/XSA/file.xsa&quot;
+</pre></div>
+</div>
+<p>Note that default values for the .conf files come from <code class="docutils literal notranslate"><span class="pre">sources/meta-xilinx-tools/recipes-bsp/hdf/hdf-repository.inc</span></code>.</p>
+</div>
 <div class="section" id="issues">
 <h2>Issues<a class="headerlink" href="#issues" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
@@ -328,7 +345,7 @@ index f83bcb3..2839b62 <span class="m">100644</span>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 6, 2023.
+      <span class="lastupdated">Last updated on November 03, 2023.
       </span></p>
   </div>
 

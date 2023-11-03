@@ -1,5 +1,5 @@
 
-# Boot Firmware - QSPI to eMMC boot for Production SOM
+# QSPI to eMMC boot for Production SOM
 
 ## Introduction
 
@@ -27,6 +27,7 @@ There are many different ways to get a production SOM to boot from QSPI to eMMC.
     2.A Program the production SOM eMMC with Image Recovery App (does not support Ubuntu)
 
     2.B Program the production SOM eMMC with Linux image targeted for eMMC using Linux booted from SD card with two steps:
+
         2.B.a Boot Linux through SD
         2.B.a Write to eMMC in Linux
 
@@ -140,6 +141,10 @@ In the configuration wizard, go to ```I/O Configuration``` -> ```Low Speed``` ->
 
 Then click on ```OKAY```, save the project, and ```IP_ITEGRATOR``` -> ```Generate Block Design```. After that is finished, click on ```File``` -> ```Export``` -> ```Export Hardware```, leave the default settings, and choose a xsa file name such as ```kr260_starter_kit_emmc8bit```, and click ```next``` until ```finish```. This would generate an ```kr260_starter_kit_emmc8bit.xsa``` file.
 
+Next, we need to create a new .wic image to boot PetaLinux with both CC peripheral support and eMMC support. This can be done in either PetaLinux or Yocto. Follow either [Generate with new .xsa in PetaLinux](#generate-with-new-xsa-in-petalinux) or [Generate with new .xsa in Yocto](#generate-with-new-xsa-in-yocto) sections:
+
+###### Generate with new .xsa in PetaLinux
+
 Next, we need to import the new hardware configuration into the PetaLinux project. For more details review [UG1144](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Steps-to-Import-Hardware-Configuration).
 
 Here are the example commands to import the new .xsa and regenerate wic image:
@@ -156,19 +161,34 @@ Here are the example commands to import the new .xsa and regenerate wic image:
     petalinux-package --wic --images-dir images/linux/ --bootfiles "ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kr-g-revB.dtb" --disk-name "sda"
     ```
 
-Now you have a wic image in ```images/linux/``` to program into SD card. Plug the SD card into SD slot and power on.
+Now you have a wic image in ```$petalinux_project/images/linux/``` to program into SD card.
+
+###### Generate with new .xsa in Yocto
+
+Refer to [Importing a New XSA File](../../../yocto/source/docs/yocto_kria_support.md#importing-a-new-xsa-file) for steps to import new .xsa file. Now you have a wic image in ```$yocto_project/build/tmp/deploy/images/<machine name>/``` to program into SD card.
+
+###### Boot Linux with eMMC and Peripheral Support
+
+Plug the SD card into SD slot and power on.
 
 If doing this for the second time (e.g. if eMMC already have a Linux image), both u-boot and Linux will choose to boot to eMMC prior to try to boot to SD. In order to boot to SD instead of eMMC, press "enter" when u-boot prompts to stop autoboot. In u-boot, first wipe the eMMC, and then use commands to boot to PetaLinux image in sd:
 
-Example commands to wipe mmc:
+Example commands to wipe eMMC, it may vary depending on what was previously in eMMC:
 
     ```bash
     ZynqMP> mmc part #check existing partition map
     ZynqMP> mmc partconf 0 1 0 0 # set boot partition to user partition to allow writes/erase
+    ZynqMP> mmc dev 0 0 #switch to the user partition (should be partition 1 according to outputs from previous command)
+    ZynqMP> mmc read 0x80000 0x7fffffff 1 # read a large chunk so it display the max size as below:
+        # MMC read: dev # 0, block # 2147483647, count 1 ... MMC: block number 0x80000000 exceeds max(0x1da4000)
+        # 0 blocks read: ERROR
+    ZynqMP> mmc erase 0 0x1da4000 # or whatever max output from previous command    
     ZynqMP> mmc dev 0 1 #switch to the boot partition (should be partition 1 according to outputs from previous command)
-    ZynqMP> mmc erase 0 0x200000 #erase the partition
+    ZynqMP> mmc read 0x80000 0x7fffffff 1 # read a large chunk so it display the max size
+    ZynqMP> mmc erase 0 <max size> #erase the partition
     ZynqMP> mmc dev 0 2 #switch to the rootfs partition (should be partition 2 according to outputs from previous command)
-    ZynqMP> mmc erase 0 0x800000 #erase the partition
+    ZynqMP> mmc read 0x80000 0x7fffffff 1 # read a large chunk so it display the max size
+    ZynqMP> mmc erase 0 <max size> #erase the partition
     ```
 
 Example commands to force u-boot boot out of SD (alternatively you can just power cycle again and let u-boot automatically pick SD card to boot from, since eMMC has been wiped clean):

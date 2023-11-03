@@ -1,5 +1,5 @@
 
-# Boot Firmware - PMU Overlay Config Object
+# PMU Overlay Config Object
 
 ## Introduction
 

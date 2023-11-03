@@ -1,5 +1,5 @@
-
-# Boot Firmware - Enable saveenv in U-boot
+﻿
+# Enable saveenv in U-boot
 
 To prevent users from accidentally overwriting bootfw environment variables and render starter kits un-bootable, saveenv is disabled by default. If a user wants to boot via PXE without any serial port interactions, they need to enable saveenv in order to save serverip variable. This example uses K26, but can be used for K24 as well by replacing mentioning of K26 with K24.
 

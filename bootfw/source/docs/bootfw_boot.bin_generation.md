@@ -1,5 +1,5 @@
-
-# Boot Firmware - Generating BOOT.bin
+﻿
+# Generating `BOOT.bin`
 
 ## Introduction
 

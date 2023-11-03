@@ -1,4 +1,4 @@
-# Boot Firmware - Image Selector
+# Image Selector
 
 ## Introduction
 

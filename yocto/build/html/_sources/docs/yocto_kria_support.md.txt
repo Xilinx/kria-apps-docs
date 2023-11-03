@@ -13,6 +13,7 @@ Machine names and recipes in 2023.1 and forward:
 | Machine Name | Bitbake Recipe          | QEMU Support | Description                                                                                            |
 | ------------ | ----------------------- | ------------ | -------------------------------------------------------------------------------------------------------|
 | k26-smk      | kria-qspi               | NA           | QSPI image supporting K26 production SOM and Starter Kit SOM                                           |
+| k24-smk      | kria-qspi               | NA           | QSPI image supporting KD240 Starter Kit SOM                                 |
 | k26-smk      | kria-image-full-cmdline | yes          | wic image that dynamically supports both KV260 and KR260                                               |
 | k24-smk      | kria-image-full-cmdline | yes          | wic image that dynamically supports KD240                                                              |
 | k26-smk-kv   | kria-image-full-cmdline | yes          | flat wic image that supports KV260, not fully validated on target and meant for development enablement |
@@ -167,6 +168,17 @@ It is also possible to clean in between builds to force a clean build:
 ```shell
 MACHINE=k26-smk bitbake xmutil -c clean
 ```
+
+## Importing a New XSA File
+
+By default, Kria Yocto project downloads .xsa files from artifactory to generate artifacts. If you wanted to use a local .xsa file, then you need to modify the corresponding .conf file in ```sources/meta-kria/conf/machine/<MACHINE name>.conf``` for the target MACHINE. Add the following after the line that specified ```HDF_MACHINE```:
+
+```text
+HDF_BASE = "file://"
+HDF_PATH = "/path/to/XSA/file.xsa"
+```
+
+Note that default values for the .conf files come from ```sources/meta-xilinx-tools/recipes-bsp/hdf/hdf-repository.inc```.
 
 ## Issues
 

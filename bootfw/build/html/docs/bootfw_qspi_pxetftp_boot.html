@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Boot Firmware - QSPI to PXE/tftp boot &mdash; Boot SOM Firmware 2022.1 documentation</title>
+  <title>QSPI to PXE/tftp boot &mdash; Boot SOM Firmware 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Boot Firmware - QSPI to eMMC boot for Production SOM" href="bootfw_qspi_emmc_boot.html" /> 
+    <link rel="prev" title="QSPI to eMMC boot for Production SOM" href="bootfw_qspi_emmc_boot.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -63,6 +63,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -80,13 +81,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Boot Firmware</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="bootfw_overview.html">Boot Firmware Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Boot Firmware - Image Selector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Image Selector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Image Recovery Tool</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">Boot Firmware - PMU Overlay Config Object</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">Boot Firmware - U-Boot Handoff</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Boot Firmware - Stitching QSPI Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">Boot Firmware - QSPI to eMMC boot for Production SOM</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Boot Firmware - QSPI to PXE/tftp boot</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_boot.bin_generation.html">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching QSPI Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC boot for Production SOM</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">QSPI to PXE/tftp boot</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setup-requirements">Setup Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linux-host-computer-setup">Linux Host Computer Setup</a><ul>
@@ -116,7 +118,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Boot Firmware - QSPI to PXE/tftp boot</li>
+      <li>QSPI to PXE/tftp boot</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/bootfw_qspi_pxetftp_boot.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -126,8 +128,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="boot-firmware-qspi-to-pxe-tftp-boot">
-<h1>Boot Firmware - QSPI to PXE/tftp boot<a class="headerlink" href="#boot-firmware-qspi-to-pxe-tftp-boot" title="Permalink to this heading">¶</a></h1>
+  <div class="section" id="qspi-to-pxe-tftp-boot">
+<h1>QSPI to PXE/tftp boot<a class="headerlink" href="#qspi-to-pxe-tftp-boot" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>The prioritized boot order for U-Boot is specified in <a class="reference internal" href="bootfw_uboot_handoff.html"><span class="doc">BootFW U-Boot page</span></a>. The last device in the prioritized list is Ethernet using DHCP/PXE. There is <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx/blob/master/doc/README.pxe">existing PXE support in u-boot</a> to support Ethernet booting. This document provides instructions for tftp booting on Starter Kits using Ethernet/DHCP/PXE. Instructions are provided for booting both PetaLinux and Ubuntu via PXE. Their tftp server setup differs, but on-target steps are the same.</p>
@@ -310,14 +312,14 @@ ping <span class="nv">$serverip</span> <span class="c1"># confirm ethernet conne
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="bootfw_qspi_emmc_boot.html" class="btn btn-neutral float-left" title="Boot Firmware - QSPI to eMMC boot for Production SOM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bootfw_qspi_emmc_boot.html" class="btn btn-neutral float-left" title="QSPI to eMMC boot for Production SOM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 24, 2023.
+      <span class="lastupdated">Last updated on November 03, 2023.
       </span></p>
   </div>
 

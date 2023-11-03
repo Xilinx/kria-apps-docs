@@ -63,6 +63,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -81,6 +82,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Xen Kria SOM Starter Kits Support</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generating-xen-artifacts">Generating Xen Artifacts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generating-xen-artifacts-in-petalinux">Generating Xen Artifacts in PetaLinux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-xen-artifacts-in-yocto">Generating Xen Artifacts in Yocto</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#prepare-sd-card">Prepare SD Card</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#partition-1">Partition 1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#partition-2">Partition 2</a></li>
@@ -91,7 +97,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#boot-ubuntu-as-domu">Boot UBuntu as DOMU</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#petalinux-as-guest-os">PetaLinux as Guest OS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-limitations">Known Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -122,28 +129,61 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="xen-kria-som-starter-kits-support">
 <h1>Xen Kria SOM Starter Kits Support<a class="headerlink" href="#xen-kria-som-starter-kits-support" title="Permalink to this heading">¶</a></h1>
-<p><a class="reference external" href="https://xenproject.org/">Xen</a> is a free and open-source hypervisor, providing services that allow multiple computer operating systems to execute on the same computer hardware concurrently. The 2023.1 Kria Starter Kit Petalinux BSP contains support for XEN. AMD specific details about XEN hypervisor can be found on its <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842530/XEN+Hypervisor">wiki page</a>.</p>
+<p><a class="reference external" href="https://xenproject.org/">Xen</a> is a free and open-source hypervisor, providing services that allow multiple computer operating systems to execute on the same computer hardware concurrently. The 2023.2 Kria Starter Kit Petalinux BSP  as well as Yocto contains support for XEN. AMD specific details about XEN hypervisor can be found on its <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842530/XEN+Hypervisor">wiki page</a>.</p>
 <p>This page documents where to get XEN artifacts for Kria, and gives an example on how to boot Ubuntu as guest OS (a DOMU) on a XEN DOM0. This particular combination requires about 4GB of memory, which K26 has. Therefore this can be done on either KV260 or KR260. K24 only has 2 GB of memory, therefore it does not support Xen.</p>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
-<li><p>Experience and equipments booting a regular PetaLinux on Kria SOM Starter Kit (you can follow <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/setting-up-the-sd-card-image.html">getting started with PetaLinux on KV260</a>, but use a wic image from 2023.1 BSP on a minimum 16GB SD Card)</p></li>
+<li><p>Experience and equipments booting a regular PetaLinux on Kria SOM Starter Kit (you can follow <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/setting-up-the-sd-card-image.html">getting started with PetaLinux on KV260</a>, but use a wic image from 2023.2 BSP on a minimum 16GB SD Card)</p></li>
 <li><p>A Linux Desktop to create and program partitions</p></li>
-<li><p>PetaLinux tool</p></li>
+<li><p>PetaLinux or Yocto tool</p></li>
 </ol>
 </div>
-<div class="section" id="prepare-sd-card">
-<h2>Prepare SD Card<a class="headerlink" href="#prepare-sd-card" title="Permalink to this heading">¶</a></h2>
-<p>First, download a 2023.1 or later <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">Kria SOM Starter Kit BSP</a>. Extract the PetaLinux project:</p>
+<div class="section" id="generating-xen-artifacts">
+<h2>Generating Xen Artifacts<a class="headerlink" href="#generating-xen-artifacts" title="Permalink to this heading">¶</a></h2>
+<p>Xen artifacts can be generated by Yocto or found in PetaLinux BSP. You can choose to use one of the tools to create Xen artifacts.</p>
+<div class="section" id="generating-xen-artifacts-in-petalinux">
+<h3>Generating Xen Artifacts in PetaLinux<a class="headerlink" href="#generating-xen-artifacts-in-petalinux" title="Permalink to this heading">¶</a></h3>
+<p>First, download a 2023.2 or later <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">Kria SOM Starter Kit BSP</a>. Extract the PetaLinux project:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;hardware&gt;-&lt;version&gt;-&lt;timestamp&gt;.bsp
 <span class="nb">cd</span> xilinx-&lt;hardware&gt;-&lt;version&gt;
 </pre></div>
 </div>
-<p>Flash the wic image in <code class="docutils literal notranslate"><span class="pre">pre-built/linux/images/petalinux-sdimage.wic.xz</span></code> to an SD card using Balena Etcher. This will set up the SD card to contain 2 partitions - partition 1 with boot images (accessible by Windows and Linux) that we will discard and partition 2 with PetaLinux rootfs (not accessible by Windows) that will also be used for XEN DOM0.</p>
+<p>The wic image required is in <code class="docutils literal notranslate"><span class="pre">pre-built/linux/images/petalinux-sdimage.wic.xz</span></code>, and the XEN artifacts required can be found in <code class="docutils literal notranslate"><span class="pre">pre-built/linux/xen</span></code>.</p>
+</div>
+<div class="section" id="generating-xen-artifacts-in-yocto">
+<h3>Generating Xen Artifacts in Yocto<a class="headerlink" href="#generating-xen-artifacts-in-yocto" title="Permalink to this heading">¶</a></h3>
+<p>First, set up a Yocto project on a host with Yocto support using the instructions <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html">here</a>, stop after <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">setupsdk</span></code> step.</p>
+<p>Then append the following to the end of <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code> to enable Xen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">BOOTMODE</span> <span class="o">=</span> <span class="s2">&quot;xen&quot;</span>
+IMAGE_INSTALL:append <span class="o">=</span> <span class="s2">&quot;packagegroup-petalinux-xen&quot;</span>
+<span class="nv">ENABLE_XEN_DTSI</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+<span class="nv">ENABLE_XEN_QEMU_DTSI</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+<span class="nv">ENABLE_XEN_UBOOT_SCR</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+<span class="nv">XEN_SERIAL_CONSOLES</span> <span class="o">=</span> <span class="s2">&quot;serial1&quot;</span>
+</pre></div>
+</div>
+<p>Then build the image the usual way:</p>
+<p>To generate Xen support for KV260, use k26-smk-kv as the <code class="docutils literal notranslate"><span class="pre">&lt;machine</span> <span class="pre">name&gt;</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kv bitbake kria-image-full-cmdline
+</pre></div>
+</div>
+<p>To generate Xen support for KD260, use k26-smk-kd as the <code class="docutils literal notranslate"><span class="pre">&lt;machine</span> <span class="pre">name&gt;</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kv bitbake kria-image-full-cmdline
+</pre></div>
+</div>
+<p>There is no Xen support for combined MACHINE name <code class="docutils literal notranslate"><span class="pre">k26-smk</span></code>.</p>
+<p>Yocto generated wic that contains XENs support can be found in <code class="docutils literal notranslate"><span class="pre">&lt;yocto_project&gt;/build/tmp/deploy/images/&lt;machine</span> <span class="pre">name&gt;/kria-image-full-cmdline-&lt;machine</span> <span class="pre">name&gt;.wic</span></code> in the Yocto project.</p>
+</div>
+</div>
+<div class="section" id="prepare-sd-card">
+<h2>Prepare SD Card<a class="headerlink" href="#prepare-sd-card" title="Permalink to this heading">¶</a></h2>
+<p>Flash the wic image from either <a class="reference external" href="#generating-xen-artifacts-in-yocto">Yocto</a> or <a class="reference external" href="#generating-xen-artifacts-in-petalinux">PetaLinux flow</a> to an SD card using Balena Etcher. This will set up the SD card to contain 2 partitions - partition 1 with boot images (accessible by Windows and Linux) that we will discard and partition 2 with PetaLinux rootfs (not accessible by Windows) that will also be used for XEN DOM0.</p>
 <div class="section" id="partition-1">
 <h3>Partition 1<a class="headerlink" href="#partition-1" title="Permalink to this heading">¶</a></h3>
-<p>Artifacts required to boot XEN can be found in <code class="docutils literal notranslate"><span class="pre">pre-built/linux/xen/</span></code> in the PetaLinux project. Open the SD card on a host computer (can be Windows or Linux), go to partition 1, remove the boot images on that partition and copy all the files under <code class="docutils literal notranslate"><span class="pre">pre-built/linux/xen/</span></code> into partition 1.</p>
-<p>We also need to copy over the Ubuntu image that we want to boot as DOMU. Download the <a class="reference external" href="https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz?_ga=2.93916574.2043050383.1684286640-1062417632.1681766747">iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz</a> file from <a class="reference external" href="https://ubuntu.com/download/amd-xilinx">Kria Ubuntu download site</a>, un-compress it, and copy <code class="docutils literal notranslate"><span class="pre">image.fit</span></code> file into partition 1 for DOMU later. This file is not being used in XEN booting, but we use SD partition 1 as a place to transfer the file onto target.</p>
+<p>If you are using Yocto - partition 1 already contain XEN artifacts as the wic is generated with XEN support. Below step is for PetaLinux Flow only.</p>
+<p>PetaLinux only: Open the SD card on a host computer (can be Windows or Linux), go to partition 1, remove the boot images on that partition and copy all the XEN artifacts in <code class="docutils literal notranslate"><span class="pre">pre-built/linux/xen</span></code> into partition 1.</p>
+<p>We then need to copy over the Ubuntu image that we want to boot as DOMU. Download the <a class="reference external" href="https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz?_ga=2.93916574.2043050383.1684286640-1062417632.1681766747">iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz</a> file from <a class="reference external" href="https://ubuntu.com/download/amd-xilinx">Kria Ubuntu download site</a>, un-compress it, and copy <code class="docutils literal notranslate"><span class="pre">image.fit</span></code> file into partition 1 for DOMU later. This file is not being used in XEN booting, but we use SD partition 1 as a place to transfer the file onto target.</p>
 </div>
 <div class="section" id="partition-2">
 <h3>Partition 2<a class="headerlink" href="#partition-2" title="Permalink to this heading">¶</a></h3>
@@ -154,7 +194,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This step needs to be done a Linux host.</p>
 <p>Download the Ubuntu rootfs for DomU. Ubuntu image can be downloaded from <a class="reference external" href="https://ubuntu.com/download/amd-xilinx">Kria Ubuntu download site</a>. For this example, we will be using <a class="reference external" href="https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4.xz?_ga=2.22151480.2043050383.1684286640-1062417632.1681766747">iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4.xz</a> file.</p>
 <p>Unzip the downloaded rootfs file to .ext4 using following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xz -d iot-kria-classic-desktop-2004-x03-20211110-98-roofts.ext4.xz
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xz -d iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4.xz
 </pre></div>
 </div>
 <p>Plug the SD card into a Linux host machine, in this example we assume the sd card is found in <code class="docutils literal notranslate"><span class="pre">/dev/sda</span></code> but you may find it in different file path dependent on your machine. Observe the 2 partitions with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">fdisk</span> <span class="pre">-l</span> <span class="pre">/dev/sda</span></code>, it should look like the following with two partitions:</p>
@@ -191,7 +231,13 @@ Created a new partition <span class="m">3</span> of <span class="nb">type</span>
 </pre></div>
 </div>
 <p>lastly,  copy Ubuntu rootfs that we download and extracted earlier to partition <code class="docutils literal notranslate"><span class="pre">/dev/sda3</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dd <span class="k">if</span><span class="o">=</span>iot-kria-classic-desktop-2004-x03-20211110-98-roofts.ext4  <span class="nv">of</span><span class="o">=</span>/dev/sda3
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dd <span class="k">if</span><span class="o">=</span>iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4  <span class="nv">of</span><span class="o">=</span>/dev/sda3
+</pre></div>
+</div>
+<p>Quick tip: if dd gives error that “No space left on device” yet the file is smaller than space allocated, do the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo rm /dev/sda3
+sudo fdisk /dev/sda <span class="c1"># enter &quot;D&quot; and then &quot;3&quot; to delete partition 3</span>
+<span class="c1">#then remove the SD card and reinsert and go back to the beginning of this section to start from creating partition 3 again.</span>
 </pre></div>
 </div>
 <p>Now partition 3 is ready as well.</p>
@@ -217,7 +263,7 @@ Created a new partition <span class="m">3</span> of <span class="nb">type</span>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -s
 </pre></div>
 </div>
-<p>Locate <code class="docutils literal notranslate"><span class="pre">image.fit</span></code> file, it should be in <code class="docutils literal notranslate"><span class="pre">/run/media/boot-mmcblk1p1/image.fit</span></code> for 2023.1 KV260 and <code class="docutils literal notranslate"><span class="pre">/run/media/boot-sda1/image.fit</span></code> for 2023.1 KR260. If its not there, one can search for it using <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">/</span> <span class="pre">-iname</span> <span class="pre">&quot;image.fit&quot;</span></code>.</p>
+<p>Locate <code class="docutils literal notranslate"><span class="pre">image.fit</span></code> file, it should be in <code class="docutils literal notranslate"><span class="pre">/run/media/boot-mmcblk1p1/image.fit</span></code> for 2023.2 KV260 and <code class="docutils literal notranslate"><span class="pre">/run/media/boot-sda1/image.fit</span></code> for 2023.2 KR260. If its not there, one can search for it using <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">/</span> <span class="pre">-iname</span> <span class="pre">&quot;image.fit&quot;</span></code>.</p>
 <p>extract the Ubuntu kernel image:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dumpimage -T flat_dt -p <span class="m">0</span> /run/media/boot-mmcblk1p1/image.fit -o /home/petalinux/ubuntu_Image <span class="c1"># for KV260</span>
 dumpimage -T flat_dt -p <span class="m">0</span> /run/media/boot-sda1/image.fit -o /home/petalinux/ubuntu_Image <span class="c1"># for KR260</span>
@@ -266,12 +312,30 @@ guest0                                       <span class="m">1</span>  <span cla
 <p>Another DOMU session can be started without having to re-boot XEN.</p>
 </div>
 </div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<div class="section" id="petalinux-as-guest-os">
+<h2>PetaLinux as Guest OS<a class="headerlink" href="#petalinux-as-guest-os" title="Permalink to this heading">¶</a></h2>
+<p>If you would like to run PetaLinux instead of Ubuntu as guest OS, the steps are similar to that of Ubuntu OS as guest OS except for kernel image and root fs artifacts for the perspective OS, as well as the config file. The only 2 artifacts required in this example is in the image folder, file <code class="docutils literal notranslate"><span class="pre">Image</span></code> and file <code class="docutils literal notranslate"><span class="pre">rootfs.cpio.gz</span></code>, copy them into boot partition 1. For partition 3, skip the dd command and leave the partition empty.</p>
+<p>Once booted up and in root, copy the two artifacts to partition 3:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cp /run/media/boot-mmcblk1p1/Image /run/media/mmcblk1p3/
+cp /run/media/boot-mmcblk1p1/rootfs.cpio.gz /run/media/mmcblk1p3/
+</pre></div>
+</div>
+<p>Use the following as guest0.cfg:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>name = &quot;guest0&quot;
+kernel = &quot;/run/media/mmcblk1p3/Image&quot;
+ramdisk = &quot;/run/media/mmcblk1p3/rootfs.cpio.gz&quot;
+extra =&quot;console=hvc0 init=/bin/sh root=/dev/ram0&quot;
+memory = 1801
+vcpus = 1
+</pre></div>
+</div>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known Limitations<a class="headerlink" href="#known-limitations" title="Permalink to this heading">¶</a></h2>
+<ol class="simple">
+<li><p>With PetaLinux 2023.2 XEN + Ubuntu 22.04 x07 image - you will see cloud init errors upon booting the guest OS. Some of the peripheral access may not function.</p></li>
+<li><p>XEN on Kria currently do not save its state across reboot - e.g. the files in rootfs or password will not persist over power cycles or reboots.</p></li>
+</ol>
 <p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
@@ -288,7 +352,7 @@ guest0                                       <span class="m">1</span>  <span cla
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 1, 2023.
+      <span class="lastupdated">Last updated on November 03, 2023.
       </span></p>
   </div>
 

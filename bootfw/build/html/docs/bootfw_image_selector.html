@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Boot Firmware - Image Selector &mdash; Boot SOM Firmware 2022.1 documentation</title>
+  <title>Image Selector &mdash; Boot SOM Firmware 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -64,6 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -81,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Boot Firmware</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="bootfw_overview.html">Boot Firmware Overview</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Boot Firmware - Image Selector</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Image Selector</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code-flow">Code Flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#image-selector-usage-instructions">Image Selector Usage Instructions</a><ul>
@@ -94,11 +95,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Image Recovery Tool</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">Boot Firmware - PMU Overlay Config Object</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">Boot Firmware - U-Boot Handoff</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Boot Firmware - Stitching QSPI Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">Boot Firmware - QSPI to eMMC boot for Production SOM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">Boot Firmware - QSPI to PXE/tftp boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_boot.bin_generation.html">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching QSPI Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC boot for Production SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/tftp boot</a></li>
 </ul>
 
         </div>
@@ -115,7 +117,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Boot Firmware - Image Selector</li>
+      <li>Image Selector</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/bootfw_image_selector.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -125,8 +127,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="boot-firmware-image-selector">
-<h1>Boot Firmware - Image Selector<a class="headerlink" href="#boot-firmware-image-selector" title="Permalink to this heading">¶</a></h1>
+  <div class="section" id="image-selector">
+<h1>Image Selector<a class="headerlink" href="#image-selector" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>The Image Selector(ImgSel) is a small baremetal application running out of OCM after a POR/SRST that implements boot firmware selection used for the full platform boot. ImgSel extends native MPSoC CSU BootROM image search capability to have a more intelligent and flexible image selection including A/B boot firmware selection logic. In Kria Starter Kits the ImgSel application is loaded by CSU from QSPI to OCM to be run. Image Selector reads the persistent registers and based on the values it chooses the system boot image (either “A” or “B”) to be booted. ImgSel then updates the multiboot register with the corresponding image QSPI address and initiates a platform reset to boot the full system.</p>
@@ -218,7 +220,7 @@ The Makefile Flow above automatically updates the correct parameters for som wit
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 24, 2023.
+      <span class="lastupdated">Last updated on November 03, 2023.
       </span></p>
   </div>
 
