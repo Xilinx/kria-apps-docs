@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Boot Firmware - Generating BOOT.bin &mdash; Boot SOM Firmware 2022.1 documentation</title>
+  <title>Generating BOOT.bin &mdash; Boot SOM Firmware 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -33,7 +33,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Stitching QSPI Image" href="bootfw_qspi_stitching.html" />
+    <link rel="prev" title="U-Boot Handoff" href="bootfw_uboot_handoff.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -62,6 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -77,15 +80,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Boot Firmware</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="bootfw_overview.html">Boot Firmware Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Boot Firmware - Image Selector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Image Selector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Image Recovery Tool</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">Boot Firmware - PMU Overlay Config Object</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">Boot Firmware - U-Boot Handoff</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Boot Firmware - Stitching QSPI Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">Boot Firmware - QSPI to eMMC boot for Production SOM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">Boot Firmware - QSPI to PXE/tftp boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-boot-bin-using-yocto">Generate BOOT.BIN using Yocto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-boot-bin-using-petalinux">Generate BOOT.BIN using PetaLinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching QSPI Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC boot for Production SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/tftp boot</a></li>
 </ul>
 
         </div>
@@ -102,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Boot Firmware - Generating BOOT.bin</li>
+      <li>Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/bootfw_boot.bin_generation.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -112,8 +122,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="boot-firmware-generating-boot-bin">
-<h1>Boot Firmware - Generating BOOT.bin<a class="headerlink" href="#boot-firmware-generating-boot-bin" title="Permalink to this heading">¶</a></h1>
+  <div class="section" id="generating-boot-bin">
+<h1>Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code><a class="headerlink" href="#generating-boot-bin" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>As outlined in <a class="reference internal" href="bootfw_overview.html"><span class="doc">bootfw overview</span></a>, Kria SOM Starter Kit BOOT.BIN is part of QSPI image, and contains 4 components - FSBL, PMU_FW, TF-A, U-boot. This page outlines the process to re-create a BOOT.bin for Kria SOM Starter kits used in A/B image update. Both PetaLinux and Yocto supports BOOT.BIN Generation. <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto">Yocto</a> support for generating Kria SOM Starter Kit BOOT.BIN image only starts in 2023.1, previous versions do not have support.</p>
@@ -161,13 +171,16 @@ petalinux-package --boot --u-boot --force
           </div>
           
 				  
-				  <footer>
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bootfw_uboot_handoff.html" class="btn btn-neutral float-left" title="U-Boot Handoff" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bootfw_qspi_stitching.html" class="btn btn-neutral float-right" title="Stitching QSPI Image" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 24, 2023.
+      <span class="lastupdated">Last updated on November 03, 2023.
       </span></p>
   </div>
 

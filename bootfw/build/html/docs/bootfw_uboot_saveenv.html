@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Boot Firmware - Enable saveenv in U-boot &mdash; Boot SOM Firmware 2022.1 documentation</title>
+  <title>Enable saveenv in U-boot &mdash; Boot SOM Firmware 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -62,6 +62,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -79,13 +80,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Boot Firmware</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_overview.html">Boot Firmware Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Boot Firmware - Image Selector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Image Selector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Image Recovery Tool</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">Boot Firmware - PMU Overlay Config Object</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">Boot Firmware - U-Boot Handoff</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Boot Firmware - Stitching QSPI Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">Boot Firmware - QSPI to eMMC boot for Production SOM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">Boot Firmware - QSPI to PXE/tftp boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_boot.bin_generation.html">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching QSPI Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC boot for Production SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/tftp boot</a></li>
 </ul>
 
         </div>
@@ -102,7 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Boot Firmware - Enable saveenv in U-boot</li>
+      <li>Enable saveenv in U-boot</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/bootfw_uboot_saveenv.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -112,8 +114,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="boot-firmware-enable-saveenv-in-u-boot">
-<h1>Boot Firmware - Enable saveenv in U-boot<a class="headerlink" href="#boot-firmware-enable-saveenv-in-u-boot" title="Permalink to this heading">¶</a></h1>
+  <div class="section" id="enable-saveenv-in-u-boot">
+<h1>Enable saveenv in U-boot<a class="headerlink" href="#enable-saveenv-in-u-boot" title="Permalink to this heading">¶</a></h1>
 <p>To prevent users from accidentally overwriting bootfw environment variables and render starter kits un-bootable, saveenv is disabled by default. If a user wants to boot via PXE without any serial port interactions, they need to enable saveenv in order to save serverip variable. This example uses K26, but can be used for K24 as well by replacing mentioning of K26 with K24.</p>
 <div class="section" id="enable-saveenv-on-u-boot-in-petalinux">
 <h2>Enable SaveEnv on u-boot in PetaLinux<a class="headerlink" href="#enable-saveenv-on-u-boot-in-petalinux" title="Permalink to this heading">¶</a></h2>
@@ -186,7 +188,7 @@ saveenv
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 24, 2023.
+      <span class="lastupdated">Last updated on November 03, 2023.
       </span></p>
   </div>
 

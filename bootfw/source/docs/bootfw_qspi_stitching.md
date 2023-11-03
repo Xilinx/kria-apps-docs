@@ -1,5 +1,5 @@
 
-# Boot Firmware - Stitching QSPI Image
+# Stitching QSPI Image
 
 ## Introduction
 

@@ -4,7 +4,7 @@ Kria SOM Accelerator and Custom Carrier Card Firmware Development
 
 
 
-.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM/ with xilinx.github.io/kria-apps-docs/
+
 
 
 .. include:: ../../../shared/somtoctree.txt

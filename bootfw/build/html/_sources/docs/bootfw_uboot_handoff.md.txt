@@ -1,5 +1,5 @@
 
-# Boot Firmware - U-Boot Handoff
+# U-Boot Handoff
 
 ## Introduction
 

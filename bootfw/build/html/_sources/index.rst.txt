@@ -17,6 +17,7 @@ Boot Firmware
    ./docs/bootfw_image_recovery
    ./docs/bootfw_pmu_config_obj
    ./docs/bootfw_uboot_handoff
+   ./docs/bootfw_boot.bin_generation
    ./docs/bootfw_qspi_stitching
    ./docs/bootfw_qspi_emmc_boot
    ./docs/bootfw_qspi_pxetftp_boot

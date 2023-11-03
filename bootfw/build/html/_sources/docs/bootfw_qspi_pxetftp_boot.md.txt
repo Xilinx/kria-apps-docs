@@ -1,5 +1,5 @@
 
-# Boot Firmware - QSPI to PXE/tftp boot
+# QSPI to PXE/tftp boot
 
 ## Introduction
 

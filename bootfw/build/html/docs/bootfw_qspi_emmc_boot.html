@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Boot Firmware - QSPI to eMMC boot for Production SOM &mdash; Boot SOM Firmware 2022.1 documentation</title>
+  <title>QSPI to eMMC boot for Production SOM &mdash; Boot SOM Firmware 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -34,8 +34,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Boot Firmware - QSPI to PXE/tftp boot" href="bootfw_qspi_pxetftp_boot.html" />
-    <link rel="prev" title="Boot Firmware - Stitching QSPI Image" href="bootfw_qspi_stitching.html" /> 
+    <link rel="next" title="QSPI to PXE/tftp boot" href="bootfw_qspi_pxetftp_boot.html" />
+    <link rel="prev" title="Stitching QSPI Image" href="bootfw_qspi_stitching.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -64,6 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -81,12 +82,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Boot Firmware</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="bootfw_overview.html">Boot Firmware Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Boot Firmware - Image Selector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Image Selector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Image Recovery Tool</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">Boot Firmware - PMU Overlay Config Object</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">Boot Firmware - U-Boot Handoff</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Boot Firmware - Stitching QSPI Image</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Boot Firmware - QSPI to eMMC boot for Production SOM</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_boot.bin_generation.html">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching QSPI Image</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">QSPI to eMMC boot for Production SOM</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#steps">Steps</a><ul>
@@ -105,7 +107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">Boot Firmware - QSPI to PXE/tftp boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/tftp boot</a></li>
 </ul>
 
         </div>
@@ -122,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Boot Firmware - QSPI to eMMC boot for Production SOM</li>
+      <li>QSPI to eMMC boot for Production SOM</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/bootfw_qspi_emmc_boot.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -132,8 +134,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="boot-firmware-qspi-to-emmc-boot-for-production-som">
-<h1>Boot Firmware - QSPI to eMMC boot for Production SOM<a class="headerlink" href="#boot-firmware-qspi-to-emmc-boot-for-production-som" title="Permalink to this heading">¶</a></h1>
+  <div class="section" id="qspi-to-emmc-boot-for-production-som">
+<h1>QSPI to eMMC boot for Production SOM<a class="headerlink" href="#qspi-to-emmc-boot-for-production-som" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>The production SOM has an eMMC device populated, whereas the Starter Kit SOMs do not. Therefore, instead of Starter Kit’s QSPI-&gt;SD two stage boot process, developer can do a QSPI -&gt; eMMC two stage process on the production SOM. This page gives an example of how to boot from QSPI -&gt; eMMC for a production SOM that is mounted on a KV260 or KR260 carrier card. Note that removal of the SOM from an AMD produced Starter Kit voids its warranty. This workflow is only intended to provide an example for customers creating their own carrier card design and wanting to make use of a similar two-stage boot methodology.</p>
@@ -156,9 +158,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Program production SOM with a QSPI binary using XSDB/XSCT and u-boot</p></li>
 <li><p>Program production SOM eMMC with a Linux image, there are 2 ways to do this:</p>
 <p>2.A Program the production SOM eMMC with Image Recovery App (does not support Ubuntu)</p>
-<p>2.B Program the production SOM eMMC with Linux image targeted for eMMC using Linux booted from SD card with two steps:
-2.B.a Boot Linux through SD
-2.B.a Write to eMMC in Linux</p>
+<p>2.B Program the production SOM eMMC with Linux image targeted for eMMC using Linux booted from SD card with two steps:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mf">2.</span><span class="n">B</span><span class="o">.</span><span class="n">a</span> <span class="n">Boot</span> <span class="n">Linux</span> <span class="n">through</span> <span class="n">SD</span>
+ <span class="mf">2.</span><span class="n">B</span><span class="o">.</span><span class="n">a</span> <span class="n">Write</span> <span class="n">to</span> <span class="n">eMMC</span> <span class="ow">in</span> <span class="n">Linux</span>
+</pre></div>
+</div>
 </li>
 <li><p>Reboot in QSPI mode</p></li>
 </ol>
@@ -256,6 +260,9 @@ cd xilinx-kr260-starterkit-2022.2/
 <p>In the configuration wizard, go to <code class="docutils literal notranslate"><span class="pre">I/O</span> <span class="pre">Configuration</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Low</span> <span class="pre">Speed</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Interfaces</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">SD</span></code>, and check <code class="docutils literal notranslate"><span class="pre">SD0</span></code>, and match the configuration of SD 0 to that of the snippet below:</p>
 <p><img alt="image" src="../_images/enable_emmc_marked.png" /></p>
 <p>Then click on <code class="docutils literal notranslate"><span class="pre">OKAY</span></code>, save the project, and <code class="docutils literal notranslate"><span class="pre">IP_ITEGRATOR</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">Block</span> <span class="pre">Design</span></code>. After that is finished, click on <code class="docutils literal notranslate"><span class="pre">File</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Export</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Export</span> <span class="pre">Hardware</span></code>, leave the default settings, and choose a xsa file name such as <code class="docutils literal notranslate"><span class="pre">kr260_starter_kit_emmc8bit</span></code>, and click <code class="docutils literal notranslate"><span class="pre">next</span></code> until <code class="docutils literal notranslate"><span class="pre">finish</span></code>. This would generate an <code class="docutils literal notranslate"><span class="pre">kr260_starter_kit_emmc8bit.xsa</span></code> file.</p>
+<p>Next, we need to create a new .wic image to boot PetaLinux with both CC peripheral support and eMMC support. This can be done in either PetaLinux or Yocto. Follow either <a class="reference external" href="#generate-with-new-xsa-in-petalinux">Generate with new .xsa in PetaLinux</a> or <a class="reference external" href="#generate-with-new-xsa-in-yocto">Generate with new .xsa in Yocto</a> sections:</p>
+<div class="section" id="generate-with-new-xsa-in-petalinux">
+<h6>Generate with new .xsa in PetaLinux<a class="headerlink" href="#generate-with-new-xsa-in-petalinux" title="Permalink to this heading">¶</a></h6>
 <p>Next, we need to import the new hardware configuration into the PetaLinux project. For more details review <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Steps-to-Import-Hardware-Configuration">UG1144</a>.</p>
 <p>Here are the example commands to import the new .xsa and regenerate wic image:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```shell
@@ -271,16 +278,31 @@ petalinux-package --wic --images-dir images/linux/ --bootfiles &quot;ramdisk.cpi
 ```
 </pre></div>
 </div>
-<p>Now you have a wic image in <code class="docutils literal notranslate"><span class="pre">images/linux/</span></code> to program into SD card. Plug the SD card into SD slot and power on.</p>
+<p>Now you have a wic image in <code class="docutils literal notranslate"><span class="pre">$petalinux_project/images/linux/</span></code> to program into SD card.</p>
+</div>
+<div class="section" id="generate-with-new-xsa-in-yocto">
+<h6>Generate with new .xsa in Yocto<a class="headerlink" href="#generate-with-new-xsa-in-yocto" title="Permalink to this heading">¶</a></h6>
+<p>Refer to <a class="reference external" href="../../../yocto/source/docs/yocto_kria_support.md#importing-a-new-xsa-file">Importing a New XSA File</a> for steps to import new .xsa file. Now you have a wic image in <code class="docutils literal notranslate"><span class="pre">$yocto_project/build/tmp/deploy/images/&lt;machine</span> <span class="pre">name&gt;/</span></code> to program into SD card.</p>
+</div>
+<div class="section" id="boot-linux-with-emmc-and-peripheral-support">
+<h6>Boot Linux with eMMC and Peripheral Support<a class="headerlink" href="#boot-linux-with-emmc-and-peripheral-support" title="Permalink to this heading">¶</a></h6>
+<p>Plug the SD card into SD slot and power on.</p>
 <p>If doing this for the second time (e.g. if eMMC already have a Linux image), both u-boot and Linux will choose to boot to eMMC prior to try to boot to SD. In order to boot to SD instead of eMMC, press “enter” when u-boot prompts to stop autoboot. In u-boot, first wipe the eMMC, and then use commands to boot to PetaLinux image in sd:</p>
-<p>Example commands to wipe mmc:</p>
+<p>Example commands to wipe eMMC, it may vary depending on what was previously in eMMC:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```bash
 ZynqMP&gt; mmc part #check existing partition map
 ZynqMP&gt; mmc partconf 0 1 0 0 # set boot partition to user partition to allow writes/erase
+ZynqMP&gt; mmc dev 0 0 #switch to the user partition (should be partition 1 according to outputs from previous command)
+ZynqMP&gt; mmc read 0x80000 0x7fffffff 1 # read a large chunk so it display the max size as below:
+    # MMC read: dev # 0, block # 2147483647, count 1 ... MMC: block number 0x80000000 exceeds max(0x1da4000)
+    # 0 blocks read: ERROR
+ZynqMP&gt; mmc erase 0 0x1da4000 # or whatever max output from previous command    
 ZynqMP&gt; mmc dev 0 1 #switch to the boot partition (should be partition 1 according to outputs from previous command)
-ZynqMP&gt; mmc erase 0 0x200000 #erase the partition
+ZynqMP&gt; mmc read 0x80000 0x7fffffff 1 # read a large chunk so it display the max size
+ZynqMP&gt; mmc erase 0 &lt;max size&gt; #erase the partition
 ZynqMP&gt; mmc dev 0 2 #switch to the rootfs partition (should be partition 2 according to outputs from previous command)
-ZynqMP&gt; mmc erase 0 0x800000 #erase the partition
+ZynqMP&gt; mmc read 0x80000 0x7fffffff 1 # read a large chunk so it display the max size
+ZynqMP&gt; mmc erase 0 &lt;max size&gt; #erase the partition
 ```
 </pre></div>
 </div>
@@ -298,6 +320,7 @@ ZynqMP&gt; setenv boot_targets usb0
 ZynqMP&gt; run bootcmd_usb0
 ```
 </pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="b-b-write-to-emmc-in-linux">
@@ -367,15 +390,15 @@ dd if=/nfsroot/&lt;image&gt; of=/dev/mmcblk0
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="bootfw_qspi_stitching.html" class="btn btn-neutral float-left" title="Boot Firmware - Stitching QSPI Image" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="bootfw_qspi_pxetftp_boot.html" class="btn btn-neutral float-right" title="Boot Firmware - QSPI to PXE/tftp boot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="bootfw_qspi_stitching.html" class="btn btn-neutral float-left" title="Stitching QSPI Image" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bootfw_qspi_pxetftp_boot.html" class="btn btn-neutral float-right" title="QSPI to PXE/tftp boot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 24, 2023.
+      <span class="lastupdated">Last updated on November 03, 2023.
       </span></p>
   </div>
 
