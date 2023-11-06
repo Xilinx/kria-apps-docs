@@ -14,25 +14,28 @@
 #
 import os
 import sys
+from datetime import datetime
 import recommonmark
 from recommonmark.transform import AutoStructify
 from recommonmark.parser import CommonMarkParser
-
 # sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('_ext'))
 sys.path.insert(0, os.path.abspath('docs'))
 
 # -- Project information -----------------------------------------------------
-
-project = 'Kria™ KR260'
-copyright = '2022-2023, Advanced Micro Devices, Inc'
 author = 'Advanced Micro Devices, Inc'
+project = 'Kria™ KR260'
+project_u = project.replace(' ', '_')
+copyright = '2022-' + datetime.now().strftime("%Y") + ', ' + author
+# YYYY = First year of copyright
 
 # The short X.Y version
-#version = '2022.1'
+version = '2022.1'
 # The full version, including alpha/beta/rc tags
-#release = '2022.1'
-html_last_updated_fmt = 'September 18, 2023'
+release = '2022.1'
+
+html_last_updated_fmt = datetime.now().strftime("%B %d, %Y")
+
 
 # -- General configuration ---------------------------------------------------
 
@@ -111,7 +114,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

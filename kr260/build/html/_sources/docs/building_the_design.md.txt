@@ -20,17 +20,17 @@ This document provides an overview of how the hardware and software components a
 
 At a high level, the builds steps are as follows:
 
-1. Vivado platform design: The Vivado design is augmented with platform parameters that describe the meta data and physical interfaces available to the Vitis compiler for stitching in PL kernels.
+1. **AMD Vivado&trade; platform design**: The Vivado design is augmented with platform parameters that describe the metadata and physical interfaces available to the AMD Vitis&trade; compiler for stitching in PL kernels.
 
-2. Platform creation: The XSCT utility is used to create an extensible platform whose main component is the XSA created by Vivado in step 1.
+2. **Platform creation**: The XSCT utility is used to create an extensible platform whose main component is the XSA created by Vivado in step 1.
 
-3. PL kernels: The Vitis compiler is used to compile PL accelerator kernels from C/C++ using high-level synthesis (HLS) or to package RTL kernels. The kernels are compiled into xo files and consumed by the Vitis linker in the next step.
+3. **PL kernels**: The Vitis compiler is used to compile PL accelerator kernels from C/C++ using high-level synthesis (HLS) or to package RTL kernels. The kernels are compiled into xo files and consumed by the Vitis linker in the next step.
   
-    Vitis linker and packager: The Vitis linker integrates the PL kernels into the platform and implements the design. It generates a new device image (bitfile) as well as xclbin file containing meta data information about the PL kernels.
+    Vitis linker and packager: The Vitis linker integrates the PL kernels into the platform and implements the design. It generates a new device image (bitfile) as well as xclbin file containing metadata information about the PL kernels.
 
-    Note: Adding PL kernels to a platform is optional. If the system design needs certain acceleration or processing functions then this build step is needed.
+    ***Note***: Adding PL kernels to a platform is optional. If the system design needs certain acceleration or processing functions, this build step is needed.
 
-4. Firmware : Vitis created platform containing the PL kernel is a bitfile and the metadata is an xclbin. On ubuntu platform the bitstream  header is stripped to obtain fpga configuration data as a bin object (\*.bin), the metadata xclbin is consumed as is from Vitis. A runtime devicetree blob  corresponding to the PL bitstream is required (.dtbo) to be loaded as an overlay, which when loaded in kernel invokes all the drivers corresponding to the PL bitstream. Hence fpga configuration data ( *.bin), metadata (xclbin) and a device-tree overlay blob (*dtbo) together form the firmware binraries.
+4. **Firmware**: Vitis created platform containing the PL kernel is a bitfile and the metadata is an xclbin. On ubuntu platform, the bitstream  header is stripped to obtain fpga configuration data as a bin object (\*.bin), the metadata xclbin is consumed as is from Vitis. A runtime devicetree blob  corresponding to the PL bitstream is required (.dtbo) to be loaded as an overlay, which when loaded in kernel, invokes all the drivers corresponding to the PL bitstream. Hence, fpga configuration data ( *.bin), metadata (xclbin), and a device-tree overlay blob (*dtbo) together form the firmware binaries.
 
 ### Accessing the Tutorial Reference Files
 
@@ -42,7 +42,7 @@ At a high level, the builds steps are as follows:
 
 ## Directory Structure
 
-The directory structure of the repository is shown below
+The directory structure of the repository is shown below:
 
 ```text
 kria-vitis-platforms
@@ -70,7 +70,7 @@ git clone https://github.com/Xilinx/kria-apps-firmware
 * [Building the Hardware design using Vivado](build_vivado_design.md)
 * Go back to the [KR260 SOM designs start page](../index)
 
-<p class="sphinxhide" align="center">Copyright&copy; 2022 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p>
 
 <!---
 

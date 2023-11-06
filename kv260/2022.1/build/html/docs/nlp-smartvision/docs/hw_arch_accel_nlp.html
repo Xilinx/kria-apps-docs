@@ -21,7 +21,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <title>Hardware Architecture of the Accelerator &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -64,6 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -73,6 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -98,7 +102,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../nlp_smartvision_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nlp_smartvision_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -128,7 +131,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <li><a href="../nlp_smartvision_landing.html">NLP SmartVision</a> &raquo;</li>
       <li>Hardware Architecture of the Accelerator</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/docs/nlp-smartvision/docs/hw_arch_accel_nlp.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -156,14 +158,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Depth-wise convolution</p></li>
 <li><p>Average pooling</p></li>
 <li><p>Relu, LeakyRelu and Relu6</p></li>
-<li><p>UltraRAM enable</p></li>
+<li><p>URAM enable</p></li>
 </ul>
-<p>To learn more about the DPU, refer the <em>DPUCZDX8G for Zynq UltraScale+ MPSoCs Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=pg338-dpu&amp;ft:locale=en-US">PG338</a>).</p>
-<p>As shown in the following table, the DPU is integrated in the nlp_smartvision platform. The utilization is analyzed, and some optimizations of the whole hardware design is done.</p>
+<p>To learn more about the DPU, please refer the <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_2/pg338-dpu.pdf">PG338</a></p>
+<p>As shown in the following table, we integrate the DPU in the nlp_smartvision platform. We analysis the utilization and do some optimizations of the whole hardware design.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th>Resource Usage of Current Design (Estimated)</th>
+<th>Resource usage of current design (estimated)</th>
 </tr>
 </thead>
 <tbody>
@@ -211,11 +213,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>70.3%</td>
 </tr>
 </tbody>
-</table><p>As shown in the following table, the DPU performance and overall power on the K26 chip (including all the other IPs) is estimated. The DPU is assumed to run at 300 MHz.</p>
+</table><p>As shown in the following table, we estimated DPU performance and overall power on K26 chip (including all the other IPs). The DPU is assumed to run at 300MHz.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th>DPU Performance and Power (Estimated)</th>
+<th>DPU performance and power (estimated)</th>
 </tr>
 </thead>
 <tbody>
@@ -240,18 +242,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>7.9W</td>
 </tr>
 </tbody>
-</table><blockquote>
-<div><p><strong>NOTE:</strong></p>
+</table><p><strong>Note:</strong></p>
 <ol class="simple">
-<li><p>The DenseBox_640x360 model is used to estimate the real performance of DPU, and this model has 1.1GO Ps.</p></li>
-<li><p>The overall power of K26 (including DPU and other IPs) is only estimated.</p></li>
+<li><p>We use DenseBox_640x360 model to estimate the real performance of DPU, and this model has 1.1GOPs;</p></li>
+<li><p>We can only estimate the overall power of K26 (including DPU and other IPs)</p></li>
 </ol>
-</div></blockquote>
-<p>This is shown in Table 3, DPU B3136 Bandwidth Requirements.</p>
+<p>As shown in Table 3, DPU B3136 bandwidth requirements.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th>Table 3 – DPU B3136 Bandwidth Requirements</th>
+<th>Table 3 – DPU B3136 bandwidth requirements</th>
 </tr>
 </thead>
 <tbody>
@@ -284,7 +284,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="sw_arch_platform_nlp.html"><span class="doc">Software Architecture of the Platform</span></a></p></li>
-<li><p>Go back to the <a class="reference internal" href="../nlp_smartvision_landing.html"><span class="doc">KV260 NLP Smartvision Design Start Page</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../nlp_smartvision_landing.html"><span class="doc">KV260 NLP Smartvision design start page</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="references">
@@ -292,15 +292,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>DPU</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/Xilinx/Vitis-AI/tree/master/dsa/DPU-TRD">https://github.com/Xilinx/Vitis-AI/tree/master/dsa/DPU-TRD</a></p></li>
-<li><p><em>DPUCZDX8G for Zynq UltraScale+ MPSoCs Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=pg338-dpu&amp;ft:locale=en-US">PG338</a>)</p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_2/pg338-dpu.pdf">https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_2/pg338-dpu.pdf</a></p></li>
 </ul>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p></div>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
 </div>
 </div>
 
@@ -318,7 +318,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 17, 2023.
+      <span class="lastupdated">Last updated on November 06, 2023.
       </span></p>
   </div>
 

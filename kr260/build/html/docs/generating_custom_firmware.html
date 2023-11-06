@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Generation of Firmware binaries &mdash; Kria™ KR260  documentation</title>
+  <title>Generation of Firmware binaries &mdash; Kria™ KR260 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -50,6 +50,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <a href="../index.html" class="icon icon-home"> Kria™ KR260
             <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                2022.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -61,6 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -83,7 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="ros2_perception_node/ros2_perception_node_landing.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ros2_perception_node/ros2_perception_node_landing.html#quick-start">Quick Start</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="ros2_perception_node/ros2_perception_node_landing.html#tutorials">Tutorials</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">KR260 Starter Kit Linux Boot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">Linux Boot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Generate Custom Firmware</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#testing-custom-accelerator-firmware-binaries">Testing custom Accelerator/firmware binaries</a></li>
@@ -92,6 +96,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_perception_node/ros2_perception_node_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ros2_perception_node/ros2_perception_node_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -137,22 +142,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="testing-custom-accelerator-firmware-binaries">
 <h2>Testing custom Accelerator/firmware binaries<a class="headerlink" href="#testing-custom-accelerator-firmware-binaries" title="Permalink to this heading">¶</a></h2>
 <p>Customers requiring to test custom hardware/accelerator can do so by following the below steps on the ubuntu platform.</p>
-<p>It is assumed that a custom platform design has been generated using Vivado/Vitis and bitstream/xclbin is available. Similarly a correct device-tree overlay for the custom hardware is created or generated, Xilnx DTG could be used for device-tree generation. Refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob">link</a> for more info on DTG.</p>
+<p>It is assumed that a custom platform design has been generated using an AMD Vivado™/AMD Vitis™ and bitstream/xclbin is available. Similarly, a correct device-tree overlay for the custom hardware is created or generated. AMD  DTG could be used for the device-tree generation. Refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob">link</a> for more information on DTG.</p>
 <p>From previous steps, following binaries are available:</p>
 <ul class="simple">
 <li><p>custom-hardware.bit     (obtained by Vitis)</p></li>
 <li><p>custom-metadata.xclbin  (obtained by Vitis) (optional)</p></li>
 <li><p>custom-devicetree.dtsi  (obtained by DTG)</p></li>
 </ul>
-<p>On ubuntu platform the bitstream header is stripped to obtain fpga configuration data as a bin object (*.bin).
+<p>On the ubuntu platform, the bitstream header is stripped to obtain fpga configuration data as a bin object (<code class="docutils literal notranslate"><span class="pre">*.bin</span></code>).
 The metadata xclbin is consumed as is from Vitis.
-A runtime devicetree blob corresponding to the PL bitstream is required (.dtbo) to be loaded as an overlay, which when loaded in kernel invokes all the drivers corresponding to the PL bitstream.</p>
-<p>A makefile is provided to generate the required firmware binaries and install. This makefile take the above binaries and provides the following outputs as shown below. The artifacts of the makefile are installed on the target device at /lib/firmware/xilinx/&lt; accelerator-dir &gt;. The firmware is loaded at runtime using xmutil.</p>
+A runtime device-tree blob corresponding to the PL bitstream is required (<code class="docutils literal notranslate"><span class="pre">.dtbo</span></code>) to be loaded as an overlay, which when loaded in kernel, invokes all the drivers corresponding to the PL bitstream.</p>
+<p>A makefile is provided to generate the required firmware binaries and install. This makefile takes the above binaries and provides the following outputs as shown below. The artifacts of the makefile are installed on the target device at <code class="docutils literal notranslate"><span class="pre">/lib/firmware/xilinx/&lt;</span> <span class="pre">accelerator-dir</span> <span class="pre">&gt;</span></code>. The firmware is loaded at runtime using xmutil.</p>
 <ul class="simple">
 <li><p>custom-hardware.bit    -&gt; custom-hardware.bin</p></li>
 <li><p>custom-devicetree.dtsi -&gt; custom-devicetree.dtbo</p></li>
 </ul>
-<p>An example has been illustrated below for reference:</p>
+<p>An example has been illustrated below as a reference:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v2022.1 https://github.com/Xilinx/kria-apps-firmware.git
 mv custom-hardware.bit kria-apps-firmware/kr260/tsn-rs485pmod/kr260-tsn-rs485pmod.bit
 mv custom-device-tree.dtsi kria-apps-firmware/kr260/tsn-rs485pmod/kr260-tsn-rs485pmod.dtsi
@@ -160,14 +165,14 @@ mv custom-device-tree.dtsi kria-apps-firmware/kr260/tsn-rs485pmod/kr260-tsn-rs48
 make 
 </pre></div>
 </div>
-<p>For more info refer to the instructions provided in the readme file <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/README.md">here</a></p>
+<p>For more information, refer to the instructions provided in the readme file <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/README.md">here</a>.</p>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Go back to the <a class="reference internal" href="../index.html"><span class="doc">KR260 SOM designs start page</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../index.html"><span class="doc">KR260 SOM designs start page</span></a>.</p></li>
 </ul>
-<p class="sphinxhide" align="center">Copyright&copy; 2022 Xilinx</p><!---
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p><!---
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
@@ -192,7 +197,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 18, 2023.
+      <span class="lastupdated">Last updated on November 06, 2023.
       </span></p>
   </div>
 

@@ -4,53 +4,53 @@
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Setting Up the Board and Application Deployment</h1>
+ <td align="center"><h1>Setting up the Board and Application Deployment</h1>
 
  </td>
  </tr>
 </table>
 
-# Setting Up the Board and Application Deployment
+# Setting up the Board and Application Deployment
 
 ## Introduction
 
-This document shows how to set up the board, and run the nlp-smartvision application.
+This document shows how to set up the board and run the nlp-smartvision application.
 
-This guide and its prebuilt are targeted for Ubuntu&reg; 22.04 and AMD 2022.1 toolchain. The previous version of this application (on AMD 2021.1 toolchain) targeted to PetaLinux is still available [online](https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html).
+This guide and its prebuilt are targeted for Ubuntu 22.04 and Xilinx 2022.1 toolchain. The previous version of this application (on Xilinx 2021.1 toolchain) targeted to Petalinux is still available [online](https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html).
 
-## Booting Up Linux
+## Booting up Linux
 
-Before continuing with NLP application specific instructions, if not yet done so, boot Linux with instructions from the [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) page.
+Before continuing with NLP application specific instructions, if not yet done so, boot Linux with instructions from [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) page.
 
-## Setting Up the Board
+## Setting up the Board
 
 ## Application Specific Hardware Setup
 
-Besides the hardware configurations required in [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, AIBox application requires a 4k monitor to display up to four channels of 1080p video.
+Besides the hardware configurations required in [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, AIBox application requires a 4k  monitor to display up to 4 channels of 1080p video.
 
 ![GitHub Logo](../../media/som-board.png)
 
 * Monitor:
 
-  The monitor for this application must support 1024x768 resolution. Before booting, connect the monitor to the board via the DP/HDMI port.
+  The monitor for this application must support 1024x768 resolution. Before booting, connect the monitor to the board via DP/HDMI port.
 
 * Camera sensors:
 
-  This application supports the following three camera modules.
+  This application supports the below 3 camera modules
   * AR1335 sensor module in J7
   * Raspberry pi sensor module in J9
-  * USB webcam in any of the available USB ports
+  * USB webcam in any of the available USB ports.
 
-  Install the required sensor modules in their respective locations.
+  Install the required sensor modules in respective locations.
 
 * USB Microphone:
 
-  Connect the microphone to any of the USB ports. If you USB webcam has a build-in microphone, it will also acts as the USB microphone.
+  Connect the microphone to any of the USB ports. If you USB webcam has a build-in microphone , it will also acts as the USB microphone
 
-## Downloading and Loading the Application Firmware
+## Downloading and Loading Application Firmware
 
-1. Download the firmware.
-    * Search the package feed for packages compatible with the KV260.
+1. Download the firmware
+    * Search package feed for packages compatible with KV260
 
        ```bash
       ubuntu@kria:~$ sudo apt search xlnx-firmware-kv260
@@ -72,40 +72,40 @@ Besides the hardware configurations required in [Kria Starter Kit Linux boot](..
         FPGA firmware for Xilinx boards - kv260 smartcam application
        ```
 
-    * Install the firmware binaries.
+    * Install firmware binaries
 
       ```bash
       sudo apt install xlnx-firmware-kv260-nlp-smartvision
       ```
 
-2. Dynamically load the application package.
+2. Dynamically load the application package:
 
-    The firmware consists of a bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.
+    The firmware consists of bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.
 
-    * After installing the firmware, execute xmutil listapps to verify that it is captured under the listapps function and to have dfx-mgrd re-scan and register all accelerators in the firmeware directory tree.
+    * After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.
 
        ```bash
       sudo xmutil listapps
       ```
 
-    * Switch to a different platform for a different application.
+    * Switch to a different platform for different Application:
 
-       When there is already another accelerator/firmware being activated apart from xlnx-app-kv260-pmod-rs485-test, unload it first, then switch to xlnx-app-kv260-nlp-smartvision.
+       When there's already another accelerator/firmware being activated apart from xlnx-app-kv260-pmod-rs485-test, unload it first, then switch to xlnx-app-kv260-nlp-smartvision.
 
        ```bash
       sudo xmutil unloadapp
       sudo xmutil loadapp kv260-nlp-smartvision
       ```
 
-## Docker Based Application Preparation
+## Docker based application preparation
 
-1. Pull the 2022.1 Docker image for nlp-smartvision using the following command.
+1. Pull the 2022.1 docker image for nlp-smartvision using the below command.
 
     ```bash
     docker pull xilinx/nlp-smartvision:2022.1
     ```
 
-    Once the above step is done, you can check for the available images as follows.
+    Once the above step is done, you can check for the available images as shown below
 
     ```bash
     ubuntu@kria:~$ docker images -a
@@ -113,22 +113,22 @@ Besides the hardware configurations required in [Kria Starter Kit Linux boot](..
     xilinx/nlp-smartvision                                                      2022.1     3c16ce65624a   Less than a second ago   1.41GB
     ```
 
-    The storage volume on the SD card can be limited with multiple Dockers. If there are space issues, use the following command to remove the existing container:
+    The storage volume on the SD card can be limited with multiple dockers. If there are space issues, use following command to remove the existing container.
 
       ```bash
       docker rmi --force <other containers>
       ```
 
-2. This application features display output either on Ubuntu GUI or the entire monitor as mentioned in the follwoing table:
+2. This application features display output either on Ubuntu GUI or the entire monitor as mentioned in the below table
 
-    | S.No | Scenario   |      Display Sink      |  Note | Required Steps |
-    |:----:|:--------|:-------------:|:------|:-----|
-    | 1 | User runs the Docker on a terminal opened on Ubuntu GUI |  ximagesink | Opens new window on Ubuntu GUI to display output | Disable access control for local docker with ```xhost +local:docker``` |
-    | 2 | User runs the Docker on serial port or SSH session |    kmssink   |   Uses entire monitor to display the output | Disable Ubuntu GUI with ```sudo xmutil desktop_disable``` |
+| S.No | Scenario   |      Display sink      |  Note | Required steps |
+|:----:|:--------|:-------------:|:------|:-----|
+| 1 | User runs docker on a terminal opened on Ubuntu GUI |  ximagesink | opens new window on Ubuntu GUI to display output | disable access control for local docker with ```xhost +local:docker``` |
+| 2 | User runs docker on serial port or SSH session |    kmssink   |   Uses entire monitor to display the output | Disable Ubuntu GUI with ```sudo xmutil desktop_disable``` |
 
-    > **NOTE:**	Once you are done with running the application, enable the access control with ```xhost -local:docker```.
+  > **_NOTE:_**	Once you are done with running the application, please enable the access control with ```xhost -local:docker```
 
-3. Launch the Docker using the following command. You should launch the NLP Docker container as user “ubuntu” and not as other user or “sudo”:
+3. Launch the docker using the below command. User should launch the NLP Docker container as user “ubuntu” and not as other user or “sudo”.
 
     ```bash
     docker run \
@@ -146,7 +146,7 @@ Besides the hardware configurations required in [Kria Starter Kit Linux boot](..
     -it xilinx/nlp-smartvision:2022.1 bash
     ```
 
-    It will launch the nlp-smartvision image in a new container.
+    It will launch the nlp-smartvision image in a new container
 
     ```bash
     root@xlnx-docker/#
@@ -154,11 +154,11 @@ Besides the hardware configurations required in [Kria Starter Kit Linux boot](..
 
 ## Run the Application
 
-There are two ways to interact with application: via Jupyter Notebook or command line.
+There are two ways to interact with application, via Jupyter notebook or Command line
 
-### Jupyter nNtebook
+### Jupyter notebook
 
-* Launch the Jupyter Notebook with the `root` privilege using the following command:
+* Launch the Jupyter notebook with `root` privilege using the following command:
 
 ``` bash
    jupyter lab --allow-root --notebook-dir=/opt/xilinx/kv260-nlp-smartvision/share/notebooks/ --ip=<ip address> &
@@ -186,16 +186,16 @@ Output example:
      or http://127.0.0.1:8888/lab?token=9f7a9cd1477e8f8226d62bc026c85df23868a1d9860eb5d5
 ```
 
-* You can access the server by opening the server URL from the previous steps with a Chrome browser.
+* User can access the server by opening the server URL from previous steps with the Chrome browser.
 
-  In the notebook, the usage of app and the commands needed to run live usecase are explained.
+  In the notebook, we will explain the usage of app and the commands needed to run live usecase
 
-### Command Line
+### Command line
 
-This allows you to run the "nlp-smartvision" application on CLI. These are to be executed using the universal asynchronous receiver-transmitter (UART)/debug interface.
+This allow the user to run "nlp-smartvision" application on CLI. These are to be executed using the UART/debug interface.
 
-Run the following command to launch the application for live audio input via a USB microphone.
-You need to be silent for the first few seconds (2.5s apx.) for the application to dynamically decide the noise threshold value as per your input device and environment. Once you see the following message "*Noise Threshold is set. You can start speaking the keywords now..*" you are ready to start pronouncing any of the ten keywords (Yes, No, Off, On, Up, Down, Left, Right, Stop, Go).
+Run the following command to launch the application for live audio input via USB microphone.
+The user needs to be silent for the first few seconds (2.5s apx.) for the application to dynamically decide the noise threshold value as per user's input device and environment. Once you see the following message "*Noise Threshold is set. You can start speaking the keywords now..*" you are ready to start pronouncing any of the ten keywords (Yes, No, Off, On, Up, Down, Left, Right, Stop, Go).
 
 #### Application Usage
 
@@ -210,7 +210,7 @@ Usage: nlp-smartvision [OPTION] [arg1] [arg2]
 -v (or) --verbose  
 ```
 
-#### Run the App with Default MIPI Sensor (RPI)
+#### Run the app with default mipi sensor(RPI)
 
 ```bash
 nlp-smartvision -m
@@ -222,31 +222,29 @@ nlp-smartvision -m
 nlp-smartvision --mipi
 ```
 
-The detected keyword will be displayed on the terminal, and the corresponding action on the input video stream will be displayed on the monitor, which is connected to the board through a DP/HDMI cable.
+The detected keyword will be displayed on the terminal and the corresponding action on the input video stream will be displayed on the monitor, which is connected to the board through DP/HDMI cable.
 
-To print FPS along with the above application, use the `-v` or -`-verbose` flag shown in the following command. The FPS is measured as average over 90 consecutive frames. Also the latency of the keywords spotting and action is printed while the keyword is detected.
+To print FPS along with the above application use -v or --verbose flag shown in the below command. The FPS is measured as average over 90 consecutive frames. Also the latency of keywords spotting + action is printed while the keyword is detected.
 
 ```bash
 nlp-smartvision -m -v
 ```
 
-> You should be able to see the video the camera is capturing on the monitor connected to the board.
+> You should be able to see the video the camera is capturing on the monitor connected to the board
 >
 > * The application starts with facedetect. When there is a face captured by the camera, there should be a blue bounding box drawn around the face, and the box should follow the movement of the face.
-> * Speak the desired keyword into the microphone; the application will perform the following assigned tasks.
+> * Speak the desired keyword into the microphone, application will perform the following assigned tasks as mentioned below.
 
 ![Keyword action mapping](../../media/nlp_smartvision/keyword_mapping.png)
 
-> **NOTE:** 
->
-> * The Google Command dataset has audio clips of one second durations. Thus, the expectation by KWS task is that one keyword is spoken within a duration of one second.
-> * Stop command resets display setting, but does not change monitor on/off mode.
+> Note: Google Command dataset has audio clips of 1 second duration. Thus, the expectation by KWS task is that one keyword is spoken within a duration of 1 second.
+> Note: Stop command resets display setting, but does not change monitor on/off mode.
 
-## File Based Testing and Accuracy Measurement of KWS Only
+## File based Testing and Accuracy Measurement of KWS Only
 
-NLP SmartVision provides a mode which is dedicated for testing the accuracy of keyword spotting (no vision task is running during this mode) on pre-recorded audio files. You need to provide audio files along with a text file that consists of paths to the audio files which are to be tested. The application expects the audio files to be grouped under folders with keyword as the folder name. Thus, the text file will consist of lines with `keyword/*.wav` paths corresponding to each audio file (example: `yes/audio1.wav`). For more details, refer [Testing Accuracy on the Google Command Dataset](#testing-accuracy-on-the-google-command-dataset) and [Testing Custom Input Audio Files](#testing-custom-input-audio-files).
+NLP SmartVision provides a mode which is dedicated for testing the accuracy of keyword spotting (no vision task is running during this mode) on pre-recorded audio files. User needs to provide audio files along with a text file that consists of paths to the audio files which are to be tested. The application expects the audio files to be grouped under folders with keyword as the folder name. Thus, the text file will consist of lines with keyword/*.wav paths corresponding to each audio file (example: yes/audio1.wav). For more details please refer [Testing Accuracy on Google Command Dataset](#testing-accuracy-on-google-command-dataset) and [Testing Custom Input Audio Files](#testing-custom-input-audio-files).
 
-The following command tests the audio files listed in the `testing_list.txt` file.
+The following command tests the audio files listed in the testing_list.txt file.
 
 ```bash
 ## Change your dircetory to the dircetory where you have the testing_list.txt file having proper paths to the audio files.
@@ -259,11 +257,11 @@ nlp-smartvision -f testing_list.txt
 nlp-smartvision --file-audio testing_list.txt
 ```
 
-### Testing Accuracy on the Google Command Dataset
+### Testing Accuracy on Google Command Dataset
 
-You can download the open source Google speech command dataset for testing the application in file input mode. This dataset consists of pre-recorded audio files for 30 keywords, and the audio files that are separated for testing are listed in the `testing_list.txt` file. Use the following commands to download and extract this dataset. These commands also create the datafiles that are required for testing the application with 10 keywords for which the model has been trained.
+Users can download the open source Google’s speech command dataset for testing the application in file input mode. This dataset consists of pre-recorded audio files for 30 keywords and the audio files that are separated for testing are listed in the testing_list.txt file. Use the following commands to download and extract this dataset. These commands also create the datafiles that are required for testing the application with 10 keywords for which the model has been trained.
 
->**TIP:** You can copy the following commands and create a single script. Then directly executes that script to do all the required steps one after the other.
+**Tip :** You can copy the below commands and create a single script. Then directly execute that script to do all the required steps one after the other.
 
 ```bash
 mkdir Google_dataset
@@ -277,9 +275,9 @@ find . -maxdepth 1 ! -name keywords -print0|xargs -0 rm -r --
 ```
 
 These commands will create a directory with the name ``Google_dataset/keywords`` inside the current working directory.
->**NOTE:** The commands might take few minutes (depending on the internet speed) to download and process the dataset.
+**Note :** The commands may take few minutes (depending on the internet speed) to download and process the dataset.
 
-Output after running the command for file based testing will also report the accuracy. Sample output on the Google Command Dataset is as follows.
+Output after running the command for file based testing will also report the accuracy. Sample output on Google Command Dataset is shown below:
 
 ```bash
 Ground truth : yes            Predicted : yes
@@ -293,56 +291,56 @@ Accuracy = 93.3777%
 
 ### Testing Custom Input Audio Files
 
-The application expects audio file names to be stored as ``keyword/audio_filename.wav`` format into the audio files list file. For example, a prerecorded audio file of keyword ‘yes’ needs to be listed as ``yes/file_001.wav``. The application uses the main directory name (‘yes’ in this example) as ground truth to compare against the detected keyword. New line character must be placed after every audio file name to differentiate multiple audio files (even after the last file name). Moreover, the audio file needs to be copied to the SD card into the directory from which the application will be invoked. For example, ``/keywords/yes/file_001.wav``.
+The application expects audio file names to be stored as ``keyword/audio_filename.wav`` format into the audio files list file. For example, a pre-recorded audio file of keyword ‘yes’ needs to be listed as ``yes/file_001.wav``. The application uses main directory name (‘yes’ in this example) as ground truth to compare against the detected keyword. New line character must be placed after every audio file name to differentiate multiple audio files (even after the last file name).  Moreover, audio file needs to be copied to the SD card into the directory from which the application will be invoked. For example, ``/keywords/yes/file_001.wav``.
 
-The test audio files should have the following specifications.
+The test audio files should have the following specifications:
 
 * Sampling rate: 16 kHz
 * Sample width: 16 bits per sample
 * Sample encoding: Little endian
 * Number of channels: 1 (mono)
-* Supported format: S16_LE (PCM signed 16-bit Little-endian)
+* Supported format: S16_LE (PCM signed 16-bit little-endian)
 * Audio Length: 1 second
 
-## Image Based Testing of DPU Only
+## Image based Testing of DPU Only
 
-NLP SmartVision provides a mode which is dedicated for testing the Vision models on DPU (no KWS task is running during this mode) on image files. You need to provide image files along with the AI model that is under test.
+NLP SmartVision provides a mode which is dedicated for testing the Vision models on DPU (no KWS task is running during this mode) on image files. User needs to provide image files along with the AI model that's under test
 
-The following command tests the image files:
+The following command tests the image files.
 
 ```bash
 nlp-smartvision -t <image.jpg/image.png> <model>
 ```
 
-The command returns the metadata along with a jpg file containing a bounding box on the input image.
+The command returns the metadata along with a jpg file containing bounding box on the input image
 
-## Files Structure of the Application
+## Files structure of the application
 
 The application is installed as:
 
-* Binary File: => `/opt/xilinx/kv260-nlp-smartvision/bin`
+* Binary File: => /opt/xilinx/kv260-nlp-smartvision/bin
 
-  | Filename | Description |
+  | filename | description |
   |----------|-------------|
   | nlp-smartvision | Main application |
 
-* Script File: => `/opt/xilinx/kv260-nlp-smartvision/bin/`
+* Script File: => /opt/xilinx/kv260-nlp-smartvision/bin/
 
-  | Filename | Description |
+  | filename | description |
   |----------|-------------|
   | init-isp-smartvision.sh | Configures ISP media nodes to run 1024.768@RGB  |
   | init-imx-smartvision.sh | Configures RPI media nodes to run 1024.768@RGB  |
   | nlp-smartvision.app | Application executable  |
 
-* Jupyter Notebook file: => `/opt/xilinx/kv260-nlp-smartvision/share/notebooks/nlp-smartvision`
+* Jupyter notebook file: => /opt/xilinx/kv260-nlp-smartvision/share/notebooks/nlp-smartvision
 
-  | Filename | Description |
+  | filename | description |
   |----------|-------------|
-  | nlp-smartvision.ipynb | Jupyter Notebook file for nlp-smartvision demo.|
+  | nlp-smartvision.ipynb | Jupyter notebook file for nlp-smartvision demo.|
 
 ## Next Steps
 
-* Go back to the [KV260 SOM NLP Smartvision Design Start Page](../nlp_smartvision_landing)
+* Go back to the [KV260 SOM NLP Smartvision design start page](../nlp_smartvision_landing)
 * [Building the Design Tutorial](../../building_the_design.md)
 
 ### License
@@ -350,8 +348,8 @@ The application is installed as:
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
 You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p>
+<p align="center">Copyright&copy; 2021 Xilinx</p>

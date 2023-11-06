@@ -45,8 +45,8 @@ Kria KD240 Drives Starter Kit
    :hidden:
 
    ./docs/kria_starterkit_linux_boot
-   Building the Design components <./docs/building_the_design>
-   Building the Hardware design using Vivado <./docs/build_vivado_design>
+   Building the Design Components <./docs/building_the_design>
+   Building the Hardware Design Using Vivado <./docs/build_vivado_design>
    Generate Custom Firmware <./docs/generating_custom_firmware>
 
 
@@ -64,6 +64,7 @@ With both hardware and software development requirements simplified, the KD240 D
 
 
 .. image:: docs/media/KD240_Starter_Kit.png
+   :width: 800
    :alt: KD240 Starter Kit
 
 

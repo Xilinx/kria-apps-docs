@@ -21,7 +21,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <title>Software Architecture of the Accelerator &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -64,6 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -73,6 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -89,7 +93,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#software-platform-and-dependencies">Software Platform and Dependencies</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gstreamer-pipeline">GStreamer Pipeline</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#additional-gstreamer-component-used">Additional GStreamer Component Used</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-gstreamer-component-used">Additional GStreamer component used</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
@@ -97,7 +101,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="hw_arch_accel.html">Hardware Architecture - Accelerator</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -130,7 +133,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <li><a href="../smartcamera_landing.html">Smart Camera</a> &raquo;</li>
       <li>Software Architecture of the Accelerator</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/docs/smartcamera/docs/sw_arch_accel.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -154,80 +156,82 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="software-platform-and-dependencies">
 <h2>Software Platform and Dependencies<a class="headerlink" href="#software-platform-and-dependencies" title="Permalink to this heading">¶</a></h2>
-<p>Leverage the GStreamer multi-media orchestration platform for application software development. As described in following sections about GStreamer pipeline, all the processing units in the stream pipeline are presented to you as easily pluggable and changeable plugins, enabling a “low touch” customer adaptation of the reference design pipeline within the context of an open-source and non-vendor specific implementation.</p>
-<p><strong>AMD Vitis™ AI 2.5.0</strong> is the core underlying component to access the AI inference capability provides by AMD DPU.</p>
-<p>To access DPU and other programmable logic (PL) hardware accelerator functions from GStreamer, AMD developed the Vitis™ Video Analysis SDK (VVAS) to provide convenient and customizable GStreamer plugins for it.</p>
+<p>We leverage the GStreamer multi-media orchestration platform for application software development. As described in following sections about GStreamer pipeline, all the processing units in the stream pipeline are presented to the user as easily pluggable and changeable plugins, enabling a “low touch” customer adaptation of the reference design pipeline within the context of an open-source and non-vendor specific implementation.</p>
+<p><strong>Vitis AI 2.5.0</strong> is the core underlying component to access the AI inference capability provides by Xilinx DPU.</p>
+<p>To access DPU and other PL hardware accelerator functions from GStreamer, Xilinx developed Vitis Video Analysis SDK (VVAS) to provide convinient and customizable GStreamer plugins for it.</p>
 </div>
 <div class="section" id="gstreamer-pipeline">
 <h2>GStreamer Pipeline<a class="headerlink" href="#gstreamer-pipeline" title="Permalink to this heading">¶</a></h2>
-<p><img alt="dataflow" src="../../../_images/software-overall-data-flow1.png" /></p>
-<p>The Smart Camera Accelerated Application supports three types of inputs including MIPI, video file, and USB camera.</p>
-<p>For the MIPI source, the ISP will output frames with NV12 format directly, and for other sources, there are mature plugins in GStreamer serving to perform the conversion too.</p>
-<p><img alt="streamer pipeline" src="../../../_images/gstreamer-pipeline1.png" /></p>
-<p>Three AI tasks are supported: Facedetect, Refinedet, and SSD. ${AI_TASK} is used to refer to either of them in following part of this document.</p>
+<p><img alt="../../../_images/software-overall-data-flow1.png" src="../../../_images/software-overall-data-flow1.png" /></p>
+<p>Smart Camera Accelerated Application supports three types of inputs including MIPI, video file and USB camera.</p>
+<p>For MIPI source the ISP will output frames with NV12 format directly, and for other sources, there are mature plugins in GStreamer serving to perform the conversion too.</p>
+<p><img alt="../../../_images/gstreamer-pipeline1.png" src="../../../_images/gstreamer-pipeline1.png" /></p>
+<p>Three AI tasks are supported: Facedetect, Refinedet, SSD. We use ${AI_TASK} to refer to either of them in following part of this document.</p>
 <ul>
 <li><p>AI Preprocess</p>
-<p>NV12 to BGR conversion, image resizing, and input quantizing blocks are to meet the requirement of the DPU AI inference engine. These three steps are done in one dedicated preprocessing IP, which is detailed in the Accelerator IP Modules, to achieve the optimal framerate and latency.</p>
-<p>The vvas_xmultisrc GStreamer plugin with a customized kernel <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/lib/libvvas_xpp.so</span></code> are used to integrate the accelerator IP functionality into the pipeline.</p>
-<p>The configuration file, <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vvas/${AI_TASK}/preprocess.json</span></code>, contains the information to do quantization on the resized BGR images; these values might vary between different AI tasks configs as the core AI algorithm demands.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;mean_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;mean_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;mean_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;scale_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;scale_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;scale_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
+<p>NV12 to BGR conversion, image resizing, and input quantizing blocks are to meet the requirement of the DPU AI inference engine. These 3 steps are done in one dedicate preprocessing IP, which is detailed in the Accelerator IP Modules, to achieve the optimal framerate and latency.</p>
+<p>vvas_xmultisrc GStreamer plugin with customized kernel /opt/xilinx/kv260-smartcam/lib/libvvas_xpp.so are used to integrate the accelerator IP functionality into the pipeline.</p>
+<p>Configuration file: /opt/xilinx/kv260-smartcam/share/vvas/${AI_TASK}/preprocess.json, contains the info to do quantization on the resized BGR images, these values may vary between different AI tasks configs as the core AI algorithm demands.</p>
 </li>
-<li><p>AI Inference</p>
-<p>The vvas_xfilter GStreamer plugin with the kernel library, <code class="docutils literal notranslate"><span class="pre">/usr/lib/libvvas_dpuinfer.so</span></code>, works as middleware between the application which interfaces with the user and underlying Vitis AI library which interface with the DPU to do the actual AI inference tasks.</p>
-<p>For the three AI tasks already supported, no more customization is needed here. To change the underlying Vitis AI model or otherwise customize the plugin, refer to <a class="reference external" href="https://xilinx.github.io/VVAS/">VVAS documentation</a>.</p>
-</li>
-<li><p>AI Rendering</p>
-<p>The results from the AI Inference step (such as coordinates of detected faces) are passed to the AI Rendering plugin which is responsible for drawing bounding boxes around the objects in the original frame.</p>
-<p>The vvas_xfilter GStreamer plugin and kernel library, <code class="docutils literal notranslate"><span class="pre">/usr/lib/libvvas_xboundingbox.so</span></code>, do the AI results rendering work, based on the meta info passed down from AI Inference plugin to here with video buffers.</p>
-<ul>
-<li><p>Configuration file</p>
-<p><code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vvas/${AI_TASK}/drawresult.json</span></code> provides the way to customize the rendering properties, such as font of the label and colors of the bounding box for different classes.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Facedetect/drawresult.json</span></code></p>
+</ul>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;font_size&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;font&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;thickness&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;label_color&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;blue&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;green&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;red&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;label_filter&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;probability&quot;</span><span class="w"> </span><span class="p">],</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;classes&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">        </span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;mean_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;mean_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;mean_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;scale_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;scale_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;scale_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+<ul>
+<li><p>AI Inference</p>
+<p>vvas_xfilter GStreamer plugin with kernel library /usr/lib/libvvas_dpuinfer.so works as middleware between application which interface with user and underlying Vitis AI library which interface with DPU to do the actual AI inference tasks.</p>
+<p>For the 3 AI tasks already supported, no more customization is needed here. To change the underlying Vitis AI model or otherwise customize the plugin, refer to <a class="reference external" href="https://xilinx.github.io/VVAS/">VVAS documentation</a>.</p>
+</li>
+<li><p>AI Rendering</p>
+<p>The results from the AI Inference step (such as coordinates of detected faces) are passed to the AI Rendering plugin which is responsible for drawing bounding boxes around the objects in the original frame.</p>
+<p>vvas_xfilter GStreamer plugin and kernel library /usr/lib/libvvas_xboundingbox.so do the AI results rendering work, based on the meta info passed down from AI Inference plugin to here with video buffers.</p>
+<ul>
+<li><p>Configuration file:</p>
+<p>/opt/xilinx/kv260-smartcam/share/vvas/${AI_TASK}/drawresult.json, provide the way to customize the rendering properties such as font of the label, colours of the bounding box for different classes.</p>
+<p>Facedetect/drawresult.json</p>
 </li>
 </ul>
-<p>For detailed customization, refer to the <a class="reference external" href="https://xilinx.github.io/VVAS/">VVAS documentation</a>.</p>
 </li>
 </ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;font_size&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;font&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;thickness&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label_color&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;blue&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;green&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;red&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label_filter&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;probability&quot;</span><span class="w"> </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;classes&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For detailed customization, please refer to <a class="reference external" href="https://xilinx.github.io/VVAS/">VVAS documentation</a>.</p>
 </div>
 <div class="section" id="additional-gstreamer-component-used">
-<h2>Additional GStreamer Component Used<a class="headerlink" href="#additional-gstreamer-component-used" title="Permalink to this heading">¶</a></h2>
-<p>The Gst-Rtsp-Server lib is utilized to build up the RTSP server video stream with AI detection results.</p>
+<h2>Additional GStreamer component used<a class="headerlink" href="#additional-gstreamer-component-used" title="Permalink to this heading">¶</a></h2>
+<p>Gst-Rtsp-Server lib is utilized to build up the RTSP server video stream with AI detection results.</p>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Read <a class="reference internal" href="hw_arch_platform.html"><span class="doc">Hardware Architecture of the Platform</span></a></p></li>
-<li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 SOM Smart Camera Design Start Page</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 SOM Smart camera design start page</span></a></p></li>
 </ul>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2022-2023 Advanced Micro Devices, Inc</p></div>
+<p align="center">Copyright&copy; 2022 Xilinx</p></div>
 </div>
 </div>
 
@@ -245,7 +249,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 17, 2023.
+      <span class="lastupdated">Last updated on November 06, 2023.
       </span></p>
   </div>
 

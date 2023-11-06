@@ -21,7 +21,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <title>Hardware Architecture of the Accelerator &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -64,6 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -73,6 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -88,14 +92,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="sw_arch_accel.html">Software Architecture - Accelerator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hw_arch_platform.html">Hardware Architecture - Platform</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Hardware Architecture - Accelerator</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessing-ips-and-dpu">Preprocessing IPs and DPU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pre-processing-ips-and-dpu">Pre-processing IPs and DPU</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -128,7 +131,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <li><a href="../smartcamera_landing.html">Smart Camera</a> &raquo;</li>
       <li>Hardware Architecture of the Accelerator</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/docs/smartcamera/docs/hw_arch_accel.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -146,30 +148,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </tr>
 </table><div class="section" id="hardware-architecture-of-the-accelerator">
 <h1>Hardware Architecture of the Accelerator<a class="headerlink" href="#hardware-architecture-of-the-accelerator" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="preprocessing-ips-and-dpu">
-<h2>Preprocessing IPs and DPU<a class="headerlink" href="#preprocessing-ips-and-dpu" title="Permalink to this heading">¶</a></h2>
-<p>The AMD Vitis™ software platform overlay includes the preprocessing IPs and DPU.</p>
-<p>The preprocessing block as shown in the following figure includes the following functions:</p>
-<p><img alt="preprocessing block" src="../../../_images/preprocess_sc.png" /></p>
+<div class="section" id="pre-processing-ips-and-dpu">
+<h2>Pre-processing IPs and DPU<a class="headerlink" href="#pre-processing-ips-and-dpu" title="Permalink to this heading">¶</a></h2>
+<p>The Vitis™ software platform overlay includes the pre-processing IPs and DPU.</p>
+<p>The pre-processing block as shown in the figure below includes the following functions:</p>
+<p><img alt="../../../_images/preprocess_sc.png" src="../../../_images/preprocess_sc.png" /></p>
 <ul class="simple">
-<li><p>Cvtcolor: Reads an NV12 video frame, and converts the color format to BGR.</p></li>
-<li><p>Resizing: Scales down the original 4K/1080p frame to at most 720x720.</p></li>
-<li><p>Quantizing: Performs linear transformation (scaling and shifting) to each pixel of the BGR frame to satisfy the DPU input requirement</p></li>
+<li><p>Cvtcolor: Reads an NV12 video frame and converts the color format to BGR</p></li>
+<li><p>Resizing: Scales down the original 4K/1080p frame to at most 720x720</p></li>
+<li><p>Quantizing: Performs linear transformation (scaling and shifting) to each pixel of BGR frame to satisfy DPU input requirement</p></li>
 </ul>
 <p>The desgin uses Vitis Vision Library functions to build the pre-processing block. The Vitis functions used are, cvtcolor, resize, and blobfromimage.</p>
-<p>The DPU IP as shown in the following figure can be configured.</p>
-<p><img alt="dpu ip" src="../../../_images/dpu_sc.png" /></p>
+<p>The DPU IP as shown in the figure below can be configured.</p>
+<p><img alt="../../../_images/dpu_sc.png" src="../../../_images/dpu_sc.png" /></p>
 <p>For this design, the following features should be enabled:</p>
 <ul class="simple">
 <li><p>Channel augmentation</p></li>
 <li><p>Depth-wise convolution</p></li>
 <li><p>Average pooling</p></li>
 <li><p>Relu, LeakyRelu and Relu6</p></li>
-<li><p>UltraRAM enable</p></li>
+<li><p>URAM enable</p></li>
 </ul>
-<p>To learn more about the DPU, refer to DPUCZDX8G for <em>Zynq UltraScale+ MPSoCs Product Guide</em> (<a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_2/pg338-dpu.pdf">PG338</a>).</p>
-<p>Vitis integrates the preprocessing IP and DPU IP in the platform. The following table shows the utilization numbers after optimization of the hardware design.</p>
-<p><strong>Resource Usage of the Current Design</strong></p>
+<p>To learn more about the DPU, please refer the <a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_2/pg338-dpu.pdf">PG338</a></p>
+<p>Vitis integrates the pre-processing IP and DPU IP in the platform. The table below shows utilization numbers after optimization of the hardware design.</p>
+<p><strong>Resource usage of current design</strong></p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -231,9 +233,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>81.25%</td>
 </tr>
 </tbody>
-</table><p>Other*: AXI interconnects and Interrupt concat block added by Vitis.</p>
-<p>The following table shows the estimated DPU performance and overall power on the K26 chip (including 4K based pre-processing and other IPs). The DPU runs at 300 MHz/600 MHz.</p>
-<p><strong>DPU Performance and Power (Estimated)</strong></p>
+</table><p>Other* : AXI interconnects and Interrupt concat block added by Vitis</p>
+<p>The table below shows estimated DPU performance and overall power on the K26 chip (including 4K based pre-processing and other IPs). The DPU runs at 300MHz/600MHz.</p>
+<p><strong>DPU performance and power (estimated)</strong></p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -251,15 +253,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>7.9W</td>
 </tr>
 </tbody>
-</table><blockquote>
-<div><p><strong>NOTE:</strong></p>
+</table><p><strong>Note:</strong></p>
 <ol class="simple">
-<li><p>You use the DenseBox_640x360 model to estimate the real performance of DPU, and this model has 1.1 GOPs.</p></li>
-<li><p>You can only estimate the overall power of the K26 chip (including DPU and other IPs).</p></li>
+<li><p>We use DenseBox_640x360 model to estimate the real performance of DPU, and this model has 1.1GOPs;</p></li>
+<li><p>We can only estimate the overall power of K26 chip (including DPU and other IPs)</p></li>
 </ol>
-</div></blockquote>
-<p>DPU B3136 bandwidth estimates are shown in the following table.</p>
-<p><strong>DPU B3136 Bandwidth Estimates</strong></p>
+<p>DPU B3136 bandwidth estimates are shown in the table below</p>
+<p><strong>DPU B3136 bandwidth estimates</strong></p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -285,29 +285,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="sw_arch_platform.html"><span class="doc">Software Architecture of the Platform</span></a></p></li>
-<li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 AI Box Design Start Page</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 AI Box design start page</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
-<p>Vitis Vision Functions:</p>
+<p>Vitis Vision functions:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/Xilinx/Vitis_Libraries/tree/master/vision/L2/examples/cvtcolor">https://github.com/Xilinx/Vitis_Libraries/tree/master/vision/L2/examples/cvtcolor</a></p></li>
 <li><p><a class="reference external" href="https://github.com/Xilinx/Vitis_Libraries/tree/master/vision/L2/examples/resize">https://github.com/Xilinx/Vitis_Libraries/tree/master/vision/L2/examples/resize</a></p></li>
 <li><p><a class="reference external" href="https://github.com/Xilinx/Vitis_Libraries/tree/master/vision/L3/benchmarks/blobfromimage">https://github.com/Xilinx/Vitis_Libraries/tree/master/vision/L3/benchmarks/blobfromimage</a></p></li>
 </ul>
-<p>DPU:</p>
+<p>DPU</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/Xilinx/Vitis-AI/tree/master/dsa/DPU-TRD">https://github.com/Xilinx/Vitis-AI/tree/master/dsa/DPU-TRD</a></p></li>
-<li><p><em>DPUCZDX8G for Zynq UltraScale+ MPSoCs Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=pg338-dpu&amp;ft:locale=en-US">PG338</a>)</p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_2/pg338-dpu.pdf">https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_2/pg338-dpu.pdf</a></p></li>
 </ul>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2022-2023 Advanced Micro Devices, Inc</p></div>
+<p align="center">Copyright&copy; 2022 Xilinx</p></div>
 </div>
 </div>
 
@@ -325,7 +325,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 17, 2023.
+      <span class="lastupdated">Last updated on November 06, 2023.
       </span></p>
   </div>
 

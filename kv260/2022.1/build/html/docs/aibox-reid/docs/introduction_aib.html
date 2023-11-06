@@ -21,7 +21,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <title>Design Overview &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -34,7 +36,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Setting Up the Board and Application Deployment" href="app_deployment_aib.html" />
+    <link rel="next" title="Setting up the Board and Application Deployment" href="app_deployment_aib.html" />
     <link rel="prev" title="AIBox-ReID" href="../aibox_landing.html" /> 
 </head>
 
@@ -64,6 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -73,6 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -95,7 +99,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#quick-start">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#tutorials">Tutorials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#architecture">Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -127,7 +130,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <li><a href="../aibox_landing.html">AIBox-ReID</a> &raquo;</li>
       <li>Design Overview</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/docs/aibox-reid/docs/introduction_aib.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -147,15 +149,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Design Overview<a class="headerlink" href="#design-overview" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>The AI Box application design built on the KV260 Vision AI Starter Kit provides a framework for building and customizing video platforms that consist of four pipeline stages:</p>
+<p>The AI Box application design built on KV260 Vision AI Starter Kit provides a framework for building and customizing video platforms that consist of four pipeline stages:</p>
 <ul class="simple">
 <li><p>Capture pipeline</p></li>
 <li><p>Video processing pipeline</p></li>
 <li><p>Acceleration pipeline</p></li>
 <li><p>Output pipeline</p></li>
 </ul>
-<p>The design has a platform and integrated accelerator functions. The platform consists of Capture pipeline, Output pipeline and some video processing functions. This approach makes the design leaner and provides a use,r maximum programmable logic (PL) for the accelerator development. The platform supports input streams from IP camera as well as file sources. The output can be displayed on a DisplayPort/HDMI monitor.</p>
-<p>Some video processing functions are performed on hard blocks like the Video Codec Unit (VCU) because it is most performant to do so. Video decoding/decompression and encoding/compression is done using the VCU.</p>
+<p>The design has a platform and integrated accelerator functions. The platform consists of Capture pipeline, Output pipeline and some video processing functions. This approach makes the design leaner and provides a user maximum Programmable Logic (PL) for the accelerator development. The platform supports input streams from IP camera and as well as file sources. The output can be displayed on DisplayPort/HDMI monitor.</p>
+<p>Some video processing functions are performed on hard blocks like the Video Codec Unit (VCU) since it is most performant to do so. Video decoding/decompression and encoding/compression is done using the VCU.</p>
 <p>The following example acceleration functions can be run on this platform using programmable Deep Learning Processor Units (DPU).</p>
 <ul class="simple">
 <li><p>Pedestrian Detection - Network model: refinedet_pruned_0_96</p></li>
@@ -164,30 +166,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>An example usecase for this design is as an edge device with multiple cameras as endpoints for Smart cities or Retail Analytics.</p>
 <p>The following figure shows the various pipelines supported by the design.</p>
 <p><img alt="Pipelines Supported" src="../../../_images/pipelines_aib.png" /></p>
-<p>The application processing unit (APU) in the processing system (PS) consists of four Arm™ Cortex-A53 cores and is configured to run in symmetric multi-processing (SMP) Linux mode in the design. The application running on Linux is responsible for configuring and controlling the video pipelines and accelerators using Jupyter notebooks or the aibox-reid application.</p>
+<p>The application processing unit (APU) in the Processing Sytem (PS) consists of four ARM Cortex-A53 cores and is configured to run in symmetric multi-processing (SMP) Linux mode in the design. The application running on Linux is responsible for configuring and controlling the video pipelines and accelerators using Jupyter notebooks or the aibox-reid application.</p>
 <p>The APU application controls the following video data paths implemented in a combination of the PS and PL:</p>
 <ul class="simple">
-<li><p>Capture pipeline capturing video frames into double-data rate (DDR) memory from</p>
+<li><p>Capture pipeline capturing video frames into DDR memory from</p>
 <ul>
 <li><p>A file on a storage device such as an SD card</p></li>
 <li><p>An IP camera using the Ethernet interface inside the PS</p></li>
 </ul>
 </li>
-<li><p>Memory-to-memory (M2M) pipeline implementing a neural network inference application. In this design, the Neural Net is implemented in DPU, preprocessed video frames are read from DDR memory, processed by the DPU, and then written back to memory.</p></li>
-<li><p>An output pipeline reads video frames from the memory, and sends the frames to a sink.</p>
+<li><p>Memory-to-memory (M2M) pipeline implementing a neural network inference application. In this design the Neural Net is implemented in DPU, preprocessed video frames are read from DDR memory, processed by the DPU, and then written back to memory.</p></li>
+<li><p>An output pipeline reads video frames from memory and sends the frames to a sink.</p>
 <ul>
-<li><p>In the display pipeline sink is a monitor, the DP live port in the PS is coupled to Sthe TDP4320 Demultiplexer on the carrier card. STDP4320 consists of dual mode output ports configured as DP and HDMI.</p></li>
+<li><p>In the display pipeline sink is a monitor, DP live port in the PS is coupled to STDP4320 De-multiplexer on the carrier card. STDP4320 consists of dual mode output ports configured as DP and HDMI.</p></li>
 </ul>
 </li>
 </ul>
-<p>The following figure shows an example end-to-end pipeline which could be an IP camera as the video source and pre-process and DPU IPs for application NN Inference. The video frames are displayed via DP splitter onto a DP and HDMI port for display, as the video sink. The video format in the figure is the output format on each block. Details are described in the <a class="reference internal" href="hw_arch_platform_aib.html"><span class="doc">Hardware Architecture document</span></a>.</p>
+<p>The following figure shows an example end-to-end pipeline which could be an IP camera as the video source, Pre-process and DPU IPs for application NN Inference. The video frames are displayed via DP splitter onto a DP and HDMI port for display, as the video sink. The video format in the figure is the output format on each block. Details are described in the <a class="reference internal" href="hw_arch_platform_aib.html"><span class="doc">Hardware Architecture document</span></a>.</p>
 <p><img alt="End to end example pipelines" src="../../../_images/end_to_end_pp_aib.png" /></p>
 </div>
 <div class="section" id="design-components">
 <h2>Design Components<a class="headerlink" href="#design-components" title="Permalink to this heading">¶</a></h2>
 <details>
- <summary><b>Hardware Components</b></summary><ul class="simple">
-<li><p>KV260 Vision AI Starter Kit including:</p>
+ <summary><b>Hardware components</b></summary><ul class="simple">
+<li><p>KV260 Vision AI Starter Kit including</p>
 <ul>
 <li><p>HDMI-DP splitter on the carrier card</p></li>
 </ul>
@@ -203,7 +205,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li><p>Video outputs</p>
 <ul>
-<li><p>DisplayPort/HDMI</p></li>
+<li><p>DisplayPort/ HDMI</p></li>
 </ul>
 </li>
 <li><p>Video processing</p>
@@ -217,8 +219,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li><p>QSPI</p></li>
 <li><p>SD</p></li>
-<li><p>Inter IC (I2C)</p></li>
-<li><p>Universal asynchronous receiver-transmitter (UART)</p></li>
+<li><p>I2C</p></li>
+<li><p>UART</p></li>
 <li><p>Ethernet</p></li>
 <li><p>General purpose I/O (GPIO)</p></li>
 </ul>
@@ -226,7 +228,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </details><details>
  <summary><b>Software components</b></summary><ul class="simple">
-<li><p>Operating system (OS)</p>
+<li><p>Operating system</p>
 <ul>
 <li><p>APU: SMP Linux</p></li>
 </ul>
@@ -240,9 +242,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Linux user space frameworks</p>
 <ul>
 <li><p>Jupyter</p></li>
-<li><p>GStreamer/VVAS</p></li>
+<li><p>GStreamer / Xilinx VVAS</p></li>
 <li><p>Vitis AI</p></li>
-<li><p>Xilinx runtime (XRT)</p></li>
+<li><p>Xilinx run-time (XRT)</p></li>
 </ul>
 </li>
 </ul>
@@ -264,25 +266,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="app_deployment_aib.html"><span class="doc">Setting Up the Board and Application Deployment Tutorial</span></a></p></li>
-<li><p>Go back to the <a class="reference internal" href="../aibox_landing.html"><span class="doc">KV260 AI Box Design Start Page</span></a>.</p></li>
+<li><p><a class="reference internal" href="app_deployment_aib.html"><span class="doc">Setting up the Board and Application Deployment Tutorial</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../aibox_landing.html"><span class="doc">KV260 AI Box design start page</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><em>Kria KV260 Vision AI Starter Kit User Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=ug1089-kv260-starter-kit&amp;ft:locale=en-US">UG1089</a>)</p></li>
-<li><p><em>Kria SOM Carrier Card Design Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=ug1091-carrier-card-design&amp;ft:locale=en-US">UG1091</a>)</p></li>
-<li><p><em>Kria KV260 Vision AI Starter Kit Data Sheet</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=ds986-kv260-starter-kit&amp;ft:locale=en-US">DS986</a>)</p></li>
-<li><p><em>Kria K26 SOM Data Sheet</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=ds987-k26-som&amp;ft:locale=en-US">DS987</a>)</p></li>
+<li><p>Kria KV260 Vision AI Starter Kit User Guide (<a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/rdoc?t=som-doc%3Bv=latest%3Bd=ug1089-kv260-starter-kit.pdf">UG1089</a>)</p></li>
+<li><p>Kria SOM Carrier Card Design Guide (<a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/rdoc?t=som-doc%3Bd=ug1091-carrier-card-design.pdf">UG1091</a>)</p></li>
+<li><p>Kria KV260 Vision AI Starter Kit Data Sheet(<a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/ndoc?t=data_sheets%3Bd=ds986-kv260-starter-kit.pdf">DS986</a>)</p></li>
+<li><p>Kria K26 SOM Data Sheet(<a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/ndoc?t=data_sheets%3Bd=ds987-k26-som.pdf">DS987</a>)</p></li>
 </ul>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p></div>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
 </div>
 </div>
 
@@ -293,14 +295,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../aibox_landing.html" class="btn btn-neutral float-left" title="AIBox-ReID" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="app_deployment_aib.html" class="btn btn-neutral float-right" title="Setting Up the Board and Application Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="app_deployment_aib.html" class="btn btn-neutral float-right" title="Setting up the Board and Application Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 17, 2023.
+      <span class="lastupdated">Last updated on November 06, 2023.
       </span></p>
   </div>
 

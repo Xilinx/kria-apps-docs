@@ -21,7 +21,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <title>Software Architecture of the Accelerator &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -64,6 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -73,6 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -98,7 +102,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="hw_arch_accel_dd.html">Hardware Architecture - Accelerator</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../defectdetect_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../defectdetect_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -129,7 +132,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <li><a href="../defectdetect_landing.html">Defect Detect</a> &raquo;</li>
       <li>Software Architecture of the Accelerator</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/docs/defect-detect/docs/sw_arch_accel_dd.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -152,11 +154,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This document describes the software architecture of the Defect Detection accelerator application.</p>
 <div class="section" id="software-architecture">
 <h3>Software Architecture<a class="headerlink" href="#software-architecture" title="Permalink to this heading">¶</a></h3>
-<p>In the Defect Detection application, the Computer Vision Starter Kit can take video inputs from a live or a file source. As shown in the following figure, the video inputs will be in the Luma(Y) format, processed and displayed. The AMD Vitis™ overlay includes Vitis Vision libraries that process the frames and detect defects in mangoes.</p>
+<p>In the Defect Detection application, the Computer Vision Starter Kit can take video inputs from a live or a file source. As shown in the following figure, the video inputs will be in the Luma(Y) format, processed and displayed. Vitis overlay includes Vitis Vision libraries that process the frames and detect defects in mangoes.</p>
 <p>In this reference design, the resolution on the input frames is 1280 x 800, and the outputs are 3x1280x800 on a 4K display.</p>
-<p><img alt="defect process" src="../../../_images/defect-detection-process.png" /></p>
-<p>The parts before pre-process plugin and after the mixer for data source and sink respectively, use purely official GStreamer plugins, such as <em>filesrc</em> for file input, <em>v4l2src</em> for MIPI, and <em>Kmssink</em> for the display. Refer to the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/tutorials/index.html?gi-language=c">GStreamer documentation</a> for detailed usage.</p>
-<p>The core acceleration tasks are performed by the Pre-Process and CCA libraries, which are developed by AMD.</p>
+<p><img alt="../../../_images/defect-detection-process.png" src="../../../_images/defect-detection-process.png" /></p>
+<p>The parts before pre-process plugin and after mixer for data source and sink respectively, use purely official GStreamer plugins, such as <em>filesrc</em> for file input, <em>v4l2src</em> for MIPI, and <em>Kmssink</em> for the display. Refer to the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/tutorials/index.html?gi-language=c">GStreamer documentation</a> for detailed usage.</p>
+<p>The core acceleration tasks are performed by the Pre-Process and CCA libraries, which are developed by XILINX.</p>
 <details>
  <summary><b>The following table lists the GStreamer plugins used in the application.</b></summary><table border="1" class="docutils">
 <thead>
@@ -190,22 +192,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <tr>
 <td>VVAS xfilter</td>
 <td>Kernel Library: <em>gaussian_otsu</em>. Vitis Vision library for the Gaussian + OTSU detector. Preserves edges while smoothening and calculates the optimum threshold between foreground and background pixels.</td>
-<td>AMD Opensource Plugin</td>
+<td>Xilinx Opensource Plugin</td>
 </tr>
 <tr>
 <td>VVAS xfilter</td>
 <td>Kernel Library: <em>threshold_median</em>. Vitis Vision library to convert a grey-scale image to a binary image and filter out noise from the image.</td>
-<td>AMD Opensource Plugin</td>
+<td>Xilinx Opensource Plugin</td>
 </tr>
 <tr>
 <td>VVAS xfilter</td>
 <td>Kernel Library: <em>cca_accelerator</em>. Vitis Vision library to determine the defective pixels in the image.</td>
-<td>AMD Opensource Plugin</td>
+<td>Xilinx Opensource Plugin</td>
 </tr>
 <tr>
 <td>VVAS xfilter</td>
 <td>Kernel Library: <em>text2overlay</em>. <em>OpenCV</em> software library to calculate the defect density, determine the quality of the mango, and embed text as result into output images.</td>
-<td>AMD Opensource Plugin</td>
+<td>Xilinx Opensource Plugin</td>
 </tr>
 <tr>
 <td>____</td>
@@ -214,7 +216,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table></details><details>
- <summary><b>The following table lists the component types used in the application.</b></summary><table border="1" class="docutils">
+ <summary><b>The following table lists the Component types used in the application.</b></summary><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Pipeline</th>
@@ -251,7 +253,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>v4l2src<a class="headerlink" href="#v4l2src" title="Permalink to this heading">¶</a></h2>
 <details>
  <summary><b>Click here to view details</b></summary><p>v4l2src is an open source plugin. The underlying GStreamer plugin uses the AR0144 sensor and the AP1302 ISP. The data flow is as follows:</p>
-<p><img alt="plugin data flow" src="../../../_images/v4l2src-data-flow.png" /></p>
+<p><img alt="../../../_images/v4l2src-data-flow.png" src="../../../_images/v4l2src-data-flow.png" /></p>
 </details><div class="section" id="in-house-plugins">
 <h3>In-House Plugins<a class="headerlink" href="#in-house-plugins" title="Permalink to this heading">¶</a></h3>
 <p>The following are the in-house plugins:</p>
@@ -259,47 +261,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h4>Pre-process<a class="headerlink" href="#pre-process" title="Permalink to this heading">¶</a></h4>
 <details>
  <summary><b>Click here to view details</b></summary><p>The pre-process pipeline is as follows:</p>
-<p><img alt="pre-process pipeline" src="../../../_images/preprocessing_pipeline.png" /></p>
+<p><img alt="../../../_images/preprocessing_pipeline.png" src="../../../_images/preprocessing_pipeline.png" /></p>
 <p>The following figure depicts the Pre-Process plugin data flow.</p>
-<p><img alt="pre-process data flow" src="../../../_images/preprocess-plugin-data-flow.png" /></p>
-<h1>Gaussian_OTSU Accelerator</h1><p>This accelerator has two kernels—Gaussian + OTSU, stitched in streaming fashion.
-In general, any smoothing filter smooths the image and will affect the edges of the image. To
+<p><img alt="../../../_images/preprocess-plugin-data-flow.png" src="../../../_images/preprocess-plugin-data-flow.png" /></p>
+<h1>Gaussian_OTSU Accelerator</h1><p>This accelerator has two kernels - Gaussian &amp; OTSU, stitched in streaming fashion.
+In general, any smoothing filter smoothens the image and will affect the edges of the image. To
 preserve the edges while smoothing, you can use a bilateral filter. In an analogous way as the
 Gaussian filter, the bilateral filter also considers the neighboring pixels with weights assigned to each of them.</p>
 <p>These weights have two components, the first of which is the same weighing used
 by the Gaussian filter. The second component takes into account the difference in the intensity
-between the neighboring pixels and the evaluated one.</p>
-<p>The OTSU threshold is used to automatically perform clustering-based image thresholding or the
+between the neighbouring pixels and the evaluated one.</p>
+<p>OTSU threshold is used to automatically perform clustering-based image thresholding or the
 reduction of a gray-level image to a binary image. The algorithm assumes that the image contains
 two classes of pixels following bi-modal histogram (foreground pixels and background pixels), it
 then calculates the optimum threshold separating the two classes.</p>
 <p>The following figure depicts the Gaussian + OSTSU plugin software stack.</p>
-<p><img alt="OSTSU plugin stack" src="../../../_images/gaussian-plugin-sw-stack.png" /></p>
+<p><img alt="../../../_images/gaussian-plugin-sw-stack.png" src="../../../_images/gaussian-plugin-sw-stack.png" /></p>
 <p>The following figure depicts the Gaussian + OTSU plugin data flow.</p>
-<p><img alt="dataflow" src="../../../_images/gaussian-plugin-dataflow.png" /></p>
-<h1>Threshold_Median Accelerator</h1><p>The greyscale image should be converted to a binary image with an appropriate threshold value. The threshold function in the Vitis Vision library can perform the thresholding operation on the input image. This should yield an image that has a black background with the mango area in white.</p>
+<p><img alt="../../../_images/gaussian-plugin-dataflow.png" src="../../../_images/gaussian-plugin-dataflow.png" /></p>
+<h1>Threshold_Median Accelerator</h1><p>The grey-scale image should be converted to a binary image with an appropriate threshold value. The threshold function in the Vitis Vision library can perform the thresholding operation on the input image. This should yield an image that has a black background with the mango area in white.</p>
 <p>The median blur filter acts as a non-linear digital filter that reduces noise. A filter size of N outputs the median of the NxN neighborhood pixel values, for each pixel. In this design, N is 3.</p>
-<p>This plugin accepts the 1280x800 Y8 image as the input. The plugin applies the threshold binary algorithm to convert the Y8 image to binary image by using the threshold value of the pixel. Later, it applies the Median filter to remove salt and pepper noise.</p>
+<p>This plugin accepts the 1280x800 Y8 image as input. The plugin applies the threshold binary algorithm to convert the Y8 image to binary image by using the threshold value of the pixel. Later, it applies the Median filter to remove salt and pepper noise.</p>
 <p>The following figure depicts the Threshold + Median plugin software stack.</p>
-<p><img alt="plugin software stack" src="../../../_images/threshold-plugin-sw-stack.png" /></p>
+<p><img alt="../../../_images/threshold-plugin-sw-stack.png" src="../../../_images/threshold-plugin-sw-stack.png" /></p>
 <p>The following figure depicts the Threshold + Median plugin data flow.</p>
-<p><img alt="plugin dataflow" src="../../../_images/threshold-median-plugin-dataflow.png" /></p>
+<p><img alt="../../../_images/threshold-median-plugin-dataflow.png" src="../../../_images/threshold-median-plugin-dataflow.png" /></p>
 <p>Threshold and Median Blur kernels are connected together using AXI Stream interface.</p>
 </details></div>
 <div class="section" id="cca">
 <h4>CCA<a class="headerlink" href="#cca" title="Permalink to this heading">¶</a></h4>
 <details>
- <summary><b>Click here to view details</b></summary><p>The implemented Connected Component Analysis (CCA), is a custom solution to find the defective pixels in the problem object. This algorithm considers few assumptions that the background must to be easily separable from the foreground object.</p>
-<p>The custom CCA effectively analyzes the components that are connected to the background pixels and removes the background from the object and defective pixels. The aim is to send the following output information from the function:</p>
+ <summary><b>Click here to view details</b></summary><p>The implemented Connected Component Analysis (CCA), is a custom solution to find the defective pixels in the problem object. This algorithm considers few assumptions that the background must be easily separable from the foreground object.</p>
+<p>The custom CCA effectively analyses the components that are connected to the background pixels and removes the background from the object and defective pixels. The aim is to send the following output information from the function:</p>
 <ul class="simple">
-<li><p>defect image: Image with only defect pixels marked as ‘255’ and both object pixels and background as ‘0’</p></li>
-<li><p>object_pixels: Total non-defective pixels of the object</p></li>
-<li><p>defect_pixels: Total defective pixels</p></li>
+<li><p>defect image: image with only defect pixels marked as ‘255’ and both object pixels and background as ‘0’</p></li>
+<li><p>object_pixels: total non-defective pixels of the object</p></li>
+<li><p>defect_pixels: total defective pixels</p></li>
 </ul>
 <p>The following figure depicts the CCA plugin software stack.</p>
-<p><img alt="CCA plugin software stack" src="../../../_images/cca-plugin-sw-stack.png" /></p>
+<p><img alt="../../../_images/cca-plugin-sw-stack.png" src="../../../_images/cca-plugin-sw-stack.png" /></p>
 <p>The following figure depicts the CCA plugin data flow.</p>
-<p><img alt="CCA plugin data flow" src="../../../_images/cca-plugin-dataflow.png" /></p>
+<p><img alt="../../../_images/cca-plugin-dataflow.png" src="../../../_images/cca-plugin-dataflow.png" /></p>
 </details></div>
 <div class="section" id="defect-decision">
 <h4>Defect Decision<a class="headerlink" href="#defect-decision" title="Permalink to this heading">¶</a></h4>
@@ -307,13 +309,13 @@ then calculates the optimum threshold separating the two classes.</p>
  <summary><b>Click here to view details</b></summary><p>The output of the CCA plugin is fed into the Defect Decision block which determines the defect density and decides the quality of the mango. The block performs the following main operations:</p>
 <ul class="simple">
 <li><p>The ratio of blemished pixels to total mango pixels is calculated to determine how much of the mango’s surface area is covered with blemishes.</p></li>
-<li><p>The Defect Decision determines whether the ratio exceeds a user-defined threshold, to decide whether the mango is defected or not.</p></li>
-<li><p>The results will be embedded in the image, and the output will be fed to the next plugin for the display.</p></li>
+<li><p>Defect Decision determines whether the ratio exceeds a user-defined threshold, to decide whether the mango is defected or not.</p></li>
+<li><p>The results will be embedded in the image and output will be fed to the next plugin for the display.</p></li>
 </ul>
 <p>The following figure depicts the Defect Decision plugin software stack.</p>
-<p><img alt="Decision plugin software stack" src="../../../_images/defect-decision-plugin-sw-stack.png" /></p>
+<p><img alt="../../../_images/defect-decision-plugin-sw-stack.png" src="../../../_images/defect-decision-plugin-sw-stack.png" /></p>
 <p>The following figure depicts the Defect Decision plugin data flow.</p>
-<p><img alt="Decsiscion plugin flow" src="../../../_images/defect-decision-plugin-dataflow.png" /></p>
+<p><img alt="../../../_images/defect-decision-plugin-dataflow.png" src="../../../_images/defect-decision-plugin-dataflow.png" /></p>
 </details></div>
 </div>
 </div>
@@ -321,9 +323,10 @@ then calculates the optimum threshold separating the two classes.</p>
 <h2>Configuration Files<a class="headerlink" href="#configuration-files" title="Permalink to this heading">¶</a></h2>
 <details>
  <summary><b>Click here to view details</b></summary><p>The <strong>defect-detect</strong> application uses the following configuration files.</p>
-<ul>
-<li><p>Gaussian_OTSU Accelerator</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">otsu-accelerator.json</span></code> file is as follows:</p>
+<ul class="simple">
+<li><p>Gaussian_OTSU Accelerator</p></li>
+</ul>
+<p>The <em>otsu-accelerator.json</em> file is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
   <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/kv260-defect-detect/lib&quot;</span><span class="p">,</span>
@@ -338,13 +341,15 @@ then calculates the optimum threshold separating the two classes.</p>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
+
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>debug_level: Enable or disable debug log for the Kernel library.</p></li>
+<li><p>Preprocess Accelerator</p></li>
 </ul>
-</li>
-<li><p>Preprocess Accelerator</p>
 <p>The <em>preprocess-accelerator.json</em> file is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
@@ -361,14 +366,17 @@ then calculates the optimum threshold separating the two classes.</p>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
+
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">max_value</span><span class="p">:</span> <span class="n">Maximum</span> <span class="n">value</span> <span class="n">to</span> <span class="n">use</span> <span class="k">with</span> <span class="n">the</span> <span class="n">THRESH_BINARY</span> <span class="n">thresholding</span> <span class="n">types</span><span class="o">.</span>
+<span class="n">For</span> <span class="n">more</span> <span class="n">information</span><span class="p">,</span> <span class="n">see</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">opencv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">d7</span><span class="o">/</span><span class="n">d1b</span><span class="o">/</span><span class="n">group__imgproc__misc</span><span class="o">.</span><span class="n">html</span><span class="c1">#gae8a4a146d1ca78c626a53577199e9c57</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>debug_level: Enable or disable debug log for the Kernel library.</p></li>
-<li><p>max_value: Maximum value to use with the THRESH_BINARY thresholding types. For more information, see <a class="reference external" href="https://docs.opencv.org/master/d7/d1b/group__imgproc__misc.html#gae8a4a146d1ca78c626a53577199e9c57">https://docs.opencv.org/master/d7/d1b/group__imgproc__misc.html#gae8a4a146d1ca78c626a53577199e9c57</a>.</p></li>
+<li><p>CCA Accelerator</p></li>
 </ul>
-</li>
-<li><p>CCA Accelerator</p>
 <p>The <em>cca-accelarator.json</em> file is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
@@ -386,13 +394,14 @@ then calculates the optimum threshold separating the two classes.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
+</pre></div>
+</div>
 <ul class="simple">
-<li><p>debug_level: Enable or disable debug log for the Kernel library.</p></li>
+<li><p>Text2Overlay</p></li>
 </ul>
-</li>
-<li><p>Text2Overlay</p>
 <p>The <em>text2overlay.json</em> file is as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> 
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;xclbin-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/lib/firmware/xilinx/kv260-defect-detect/kv260-defect-detect.xclbin&quot;</span><span class="p">,</span>
   <span class="s2">&quot;vvas-library-repo&quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/kv260-defect-detect/lib&quot;</span><span class="p">,</span>
   <span class="s2">&quot;element-mode&quot;</span><span class="p">:</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span>
@@ -409,22 +418,20 @@ then calculates the optimum threshold separating the two classes.</p>
         <span class="s2">&quot;is_acc_result&quot;</span> <span class="p">:</span> <span class="mi">0</span>
       <span class="p">}</span>
     <span class="p">}</span>
- <span class="p">]</span>
+  <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>debug_level: Enable or disable debug log for the Kernel library.</p></li>
-<li><p>font_size: User configuration to change the font size.</p></li>
-<li><p>font: User configuration to change the supported font type.</p></li>
-<li><p>x_offset: The X co-ordinate from where the text starts writing.</p></li>
-<li><p>y_offset: The Y co-ordinate from where the text starts writing.</p></li>
-<li><p>defect_threshold: The defect density threshold to calculate the defect. If the defect value is more than the threshold, it falls under defect category.</p></li>
-<li><p>is_acc_result: Flag to display the accumulated result. If the value is 0, then the accumulated result will not be displayed.
-For more information see <a class="reference external" href="https://docs.opencv.org/3.4/d0/de1/group__core.html#ga0f9314ea6e35f99bb23f29567fc16e11">https://docs.opencv.org/3.4/d0/de1/group__core.html#ga0f9314ea6e35f99bb23f29567fc16e11</a>.</p></li>
-</ul>
-</li>
-</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">debug_level</span><span class="p">:</span> <span class="n">Enable</span> <span class="ow">or</span> <span class="n">disable</span> <span class="n">debug</span> <span class="n">log</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kernel</span> <span class="n">library</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">font_size</span><span class="p">:</span> <span class="n">User</span> <span class="n">configuration</span> <span class="n">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">font</span> <span class="n">size</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">font</span><span class="p">:</span> <span class="n">User</span> <span class="n">configuration</span> <span class="n">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">supported</span> <span class="n">font</span> <span class="nb">type</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">x_offset</span><span class="p">:</span> <span class="n">The</span> <span class="n">X</span> <span class="n">co</span><span class="o">-</span><span class="n">ordinate</span> <span class="kn">from</span> <span class="nn">where</span> <span class="n">the</span> <span class="n">text</span> <span class="n">starts</span> <span class="n">writing</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">y_offset</span><span class="p">:</span> <span class="n">The</span> <span class="n">Y</span> <span class="n">co</span><span class="o">-</span><span class="n">ordinate</span> <span class="kn">from</span> <span class="nn">where</span> <span class="n">the</span> <span class="n">text</span> <span class="n">starts</span> <span class="n">writing</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">defect_threshold</span><span class="p">:</span> <span class="n">The</span> <span class="n">defect</span> <span class="n">density</span> <span class="n">threshold</span> <span class="n">to</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">defect</span><span class="o">.</span> <span class="n">If</span> <span class="n">the</span> <span class="n">defect</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">more</span> <span class="n">than</span> <span class="n">the</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">it</span> <span class="n">falls</span> <span class="n">under</span> <span class="n">defect</span> <span class="n">category</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">is_acc_result</span><span class="p">:</span> <span class="n">Flag</span> <span class="n">to</span> <span class="n">display</span> <span class="n">the</span> <span class="n">accumulated</span> <span class="n">result</span><span class="o">.</span> <span class="n">If</span> <span class="n">the</span> <span class="n">value</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">accumulated</span> <span class="n">result</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">displayed</span><span class="o">.</span>
+<span class="n">For</span> <span class="n">more</span> <span class="n">information</span> <span class="n">see</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">opencv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mf">3.4</span><span class="o">/</span><span class="n">d0</span><span class="o">/</span><span class="n">de1</span><span class="o">/</span><span class="n">group__core</span><span class="o">.</span><span class="n">html</span><span class="c1">#ga0f9314ea6e35f99bb23f29567fc16e11.</span>
+</pre></div>
+</div>
 </details></div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
@@ -436,9 +443,9 @@ For more information see <a class="reference external" href="https://docs.opencv
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021-2023 Xilinx</p></div>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
 </div>
 </div>
 
@@ -456,7 +463,7 @@ For more information see <a class="reference external" href="https://docs.opencv
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 17, 2023.
+      <span class="lastupdated">Last updated on November 06, 2023.
       </span></p>
   </div>
 

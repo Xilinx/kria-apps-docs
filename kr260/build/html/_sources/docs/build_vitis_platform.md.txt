@@ -6,11 +6,11 @@ This tutorial shows how to build a Platform for applications running on the KR26
 
 ## Prerequisites
 
-* Vitis™­ Unified Software Platform of the appropriate version
+* AMD Vitis™­ Unified Software Platform of the appropriate version
 
 ### Accessing the Tutorial Reference Files
 
-> **Note**: Skip the following steps if the design files have already been cloned and extracted to a working repository.
+> ***Note***: Skip the following steps if the design files have already been cloned and extracted to a working repository.
 
 1. To access the reference files, type the following into a terminal:
 
@@ -22,13 +22,13 @@ This tutorial shows how to build a Platform for applications running on the KR26
 
 ## Generating a Vitis Software Platform
 
-1. Go to the working directory
+1. Go to the working directory.
 
    ```shell
    cd $working_dir/
    ```
 
-2. To build the platform, run the following command. The Makefile calls a lower-level Makefile to generate a platform. If an XSA is not already available, it builds that as well.
+2. To build the platform, run the following command. The Makefile calls a lower-level Makefile to generate a platform. It also builds an XSA if it is not already available.
 
    ```shell
    make platform PFM=<platform_name>
@@ -46,9 +46,9 @@ This tutorial shows how to build a Platform for applications running on the KR26
    $working_dir/platforms/xilinx_<platform_name>_<version_number>
    ```
 
-   The `xpfm` file in this directory is used as an input when building the Vitis application acceleration projects. It exposes all the essential platform interfaces like clock, interrupts, master AXI interfaces, and slave AXI interfaces for the accelerator to connect to.
+   The `xpfm` file in this directory is used as an input when building the Vitis application acceleration projects. It exposes all the essential platform interfaces like clock, interrupts, master AXI interfaces, and slave AXI interfaces, which allow the accelerator to connect to them.
 
-> **Note**: The software components (boot, smp_linux, etc.) in this platform are empty. The software components are generated later when building Petalinux.
+> ***Note***: The software components (boot, smp_linux, and so on.) in this platform are empty. The software components are generated later when building PetaLinux.
 
 ## Next Step
 
@@ -66,4 +66,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 -->
 
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p>

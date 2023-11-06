@@ -134,24 +134,6 @@ the full suite of hardware tests, see board specific pages:
 
 ## Miscellaneous Preparation
 
-* Verify if SSH terminal is using the correct authority file
-  * The output should look something like this
-   ```bash
-   xauth -v list
-   Using authority file /home/ubuntu/.Xauthority
-   kria/unix:10  MIT-MAGIC-COOKIE-1  f5212118305f75678a69daa4a6eda703
-   ```
-   * If incorrect or no authority file present, do the following steps:
-   ```bash
-   rm -rf ~/.Xaut*
-   ```
-   * Reboot the target board
-   ```bash
-   sudo reboot
-   ```
-   * Check the `xauth -v list` after reboot(in SSH terminal), it should display 
-   the correct authority file on output console
-
 * The BIST application tests the fan, therefore please stop the fancontrol
   service before running the docker for the testing to function as intended
 
@@ -348,11 +330,11 @@ The pytest command line output will have two separate sessions as follows
   ```bash
   pytest-3 --collect-only --board kv260
 
-  ========================== test session starts ===============================
+  ============================= test session starts ==============================
   platform linux -- Python 3.10.6, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
   rootdir: /opt/xilinx/kria-bist/tests, configfile: pytest.ini
   plugins: anyio-3.6.1
-  collected 40 items
+  collected 34 items
 
   <Module disk/test_bist_disk.py>
     <Function test_disk[usb1_read_performance]>
@@ -367,7 +349,6 @@ The pytest command line output will have two separate sessions as follows
     <Function test_disk[sd_write_performance]>
   <Module display/test_bist_display.py>
     <Function test_display[display_connectivity]>
-    <Function test_display[display_modetest]>
   <Module eeprom/test_bist_eeprom.py>
     <Function test_eeprom[som_eeprom]>
     <Function test_eeprom[carrier_card_eeprom]>
@@ -376,16 +357,10 @@ The pytest command line output will have two separate sessions as follows
     <Function test_eth[ethernet1_perf]>
   <Module gpio/test_bist_gpio.py>
     <Function test_gpio[pmod0]>
-  <Module i2c/test_bist_i2c.py>
-    <Function test_i2c[ps_i2c_bus_main]>
-    <Function test_i2c[axi_i2c_bus_main]>
-    <Function test_i2c[axi_i2c_bus_ch0]>
   <Module iio/test_bist_iio.py>
     <Function test_iio[ina260_current]>
   <Module mtd/test_bist_mtd.py>
-    <Function test_mtd[qspi_read_write]>
-    <Function test_mtd[qspi_read_performance]>
-    <Function test_mtd[qspi_write_performance]>
+    <Function test_mtd[mtd_read_write]>
   <Module pwm/test_bist_pwm.py>
     <Function test_pwm[fan]>
   <Module tpm/test_bist_tpm.py>
@@ -406,7 +381,7 @@ The pytest command line output will have two separate sessions as follows
     <Function test_video[ar1335_filesink]>
     <Function test_video[ar1335_perf]>
 
-  ====================== 40 tests collected in 1.02s ===========================
+  ========================= 34 tests collected in 0.98s ==========================
   ```
 
 * Collect all tests for a specific testmodule for a target board

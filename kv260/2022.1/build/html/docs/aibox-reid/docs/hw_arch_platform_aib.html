@@ -21,7 +21,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <title>Hardware Architecture of the Platform &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -64,6 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -73,6 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
@@ -91,7 +95,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#capture">Capture</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#display">Display</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#clocks-resets-and-interrupts">Clocks, Resets, and Interrupts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clocks-resets-and-interrupts">Clocks, Resets and Interrupts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#resource-utilization">Resource Utilization</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
@@ -99,7 +103,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="hw_arch_accel_aib.html">Hardware Architecture - Accelerator</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -131,7 +134,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <li><a href="../aibox_landing.html">AIBox-ReID</a> &raquo;</li>
       <li>Hardware Architecture of the Platform</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/docs/aibox-reid/docs/hw_arch_platform_aib.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -151,9 +153,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This section describes the design implemented in the programmable logic (PL). The following figure shows the top-level hardware architecture of the reference design.</p>
+<p>This section describes the design implemented in Programmable Logic (PL). The following figure shows the top level hardware architecture of the reference design.</p>
 <p><img alt="Hardware Architecture: Top Level Diagram" src="../../../_images/hw_arch_aib.png" /></p>
-<p>At a high-level, the design comprises of four pipelines.</p>
+<p>At a high level, the design comprises of four pipelines</p>
 <ul class="simple">
 <li><p>Capture/Input pipeline: This comprises of pipelines through which video data is captured.</p>
 <ul>
@@ -166,36 +168,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>DisplayPort pipeline (PL + PS)</p></li>
 </ul>
 </li>
-<li><p>Accelerator pipeline: This comprises of overlay accelerator functions integrated into the platform using AMD Vitis™.</p>
+<li><p>Accelerator pipeline : This comprises of overlay accelerator functions integrated into the platform using Vitis.</p>
 <ul>
-<li><p>The Deep Learning Processing Unit (DPU) IP runs different neural network models (PL).</p></li>
-<li><p>The Pre-Processing block modifies the input data as required by the network (PL).</p></li>
+<li><p>The Deep Learning Processing Unit (DPU) IP runs different Neural Network models (PL).</p></li>
+<li><p>The Pre-Processing block modifies the input data as required by the Network (PL).</p></li>
 </ul>
 </li>
 </ul>
-<blockquote>
-<div><p><strong>NOTE:</strong> The PS interconnects in the figure are conceptual.</p>
-</div></blockquote>
+<p><strong>Note:</strong>  The PS interconnects in the figure are conceptual.</p>
 </div>
 <div class="section" id="capture">
 <h2>Capture<a class="headerlink" href="#capture" title="Permalink to this heading">¶</a></h2>
-<p>The Video inout pipelines and Video Processing pipelines are not covered in this section as they are not PL components. For more information, refer to the GEM Ethernet chapters in the <em>Zynq UltraScale+ Device Technical Reference Manual</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/framemaker/map?isLatest=true&amp;ft:locale=en-US&amp;url=ug1085-zynq-ultrascale-trm">UG1085</a>). For more information on Video Processing pipelines, refer to the <em>Video Codec Unit LogiCORE IP Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=pg252-vcu&amp;ft:locale=en-US">PG252</a>).</p>
+<p>The Video inout pipelines and Video Processing pipelines are not covered in this section as they are not PL components. For more information refer to  GEM Ethernet chapters in the <em>Zynq UltraScale+ Device Technical Reference Manual</em> (<a class="reference external" href="https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf">UG1085</a>). For more information on Video Processing pipelines, refer to the <em>Video Codec Unit LogiCORE IP Product Guide</em> (<a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/pg252-vcu.pdf">PG252</a>).</p>
 </div>
 <div class="section" id="display">
 <h2>Display<a class="headerlink" href="#display" title="Permalink to this heading">¶</a></h2>
-<p>An output pipeline reads video frames from memory and sends the frames to a sink. In this case, the sink is a display port in the PS. The display pipeline is shown in the following figure.</p>
+<p>An output pipeline reads video frames from memory and sends the frames to a sink. In this case the sink is a display port in the  PS.  The display pipeline is shown in the following figure.</p>
 <p><img alt="Display Pipeline" src="../../../_images/display_pp.png" /></p>
-<p>This PL pipeline consists of four components, two of which are controlled by the application prcoessing unit (APU) via an AXI4-Lite base register interface, and the other two are statically configured.</p>
+<p>This PL pipeline consists of four components, two of which are controlled by the APU via an AXI Lite base register interface and the other two are statically configured.</p>
 <ul class="simple">
-<li><p>The Video Mixer IP core is configured to support the blending of up to four overlay layers into one single output video stream. The four layers are configured to be memory-mapped AXI4 interfaces connected to the PS via interconnects. The primary AXI4-MM layer has the resolution set to match the display. The other layers, whatever their resolution, is blended with this layer. In this design, the overlay layers are configured to be Y8, and the AXI4-Stream output from the mixer is set to YUV 422 format. A general purpose I/O (GPIO) is used to reset the subsystem between resolution changes. For more information, refer to the <em>Video Mixer LogiCORE IP Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/framemaker/map?url=pg243-v-mix&amp;ft:locale=en-US">PG243</a>).</p></li>
-<li><p>The AXIS subset converter passes the least significant bits (LSBs) to the Video Out converter and drops the most significant bit (MSB).</p></li>
-<li><p>All video systems require management of video timing signals, which are used to synchronize processes. The Video Timing Controller (VTC) serves the function of both detecting and generating these timing signals. In this design, it generates timing control signals which are used by the AXI4-Stream to Video Out converter to produce native video output signals. For more information, refer to the <em>Video Timing Controller Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/framemaker/map?url=pg016_v_tc&amp;ft:locale=en-US">PG016</a>).</p></li>
-<li><p>AXI4-Stream to Video Out core provides a bridge between video processing cores with AXI4-Stream interfaces and native video output (parallel video data, video syncs, and blanks). The core works with the Video Timing Controller (VTC) core. The synchronizer section of the core synchronizes timing from the VTC to the video data from the AXI4-Stream Bus. For more information, refer to the <em>AXI4-Stream to Video Out LogiCORE IP Product Guide</em> (<a class="reference external" href="https://www.xilinxhttps://docs.xilinx.com/access/sources/ud/document?url=pg044_v_axis_vid_out&amp;ft:locale=en-US">PG044</a>).</p></li>
-<li><p>The output from the AXI4-Stream to Video Out Converter goes through some slices and concat blocks to drive the DisplayPort Live signals on the PS. The slices and concat are required to the adhere to the Live Video data format. For more information on the DisplayPort Controller in Live mode, refer to the <em>Zynq UltraScale+ Device Technical Reference Manual</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/framemaker/map?isLatest=true&amp;ft:locale=en-US&amp;url=ug1085-zynq-ultrascale-trm">UG1085</a>).</p></li>
+<li><p>The Video Mixer IP core is configured to support blending of up to four overlay layers into one single output video stream. The four layers are configured to be memory-mapped AXI4 interfaces connected to the PS via interconnects. The primary AXI-MM layer has the resolution set to match the
+display. The other layers, whatever their resolution, is blended with this layer. In this design the overlay layers are configured to be Y8 and the  AXI4-Stream  output from the mixer is set to YUV 422 format.  A GPIO is used to reset the subsystem between resolution changes. For more information refer to the <em>Video Mixer LogiCORE IP Product Guide</em> (<a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/v_mix/v1_0/pg243-v-mix.pdf">PG243</a>).</p></li>
+<li><p>The AXIS subset converter passes the LSBs to the Video Out converter and drops the MSB.</p></li>
+<li><p>All video systems require management of video timing signals, which are used to synchronize processes. The Video Timing Controller (VTC) serves the function of both detecting and generating these timing signals. In this design it generates timing control signals which are used by the AXI4-Stream to Video Out converter to produce native video output signals. For more information refer to the <em>Video Timing Controller Product Guide</em> (<a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/v_tc/v6_2/pg016_v_tc.pdf">PG016</a>).</p></li>
+<li><p>AXI4-Stream to Video Out core  provides a bridge between video processing cores with AXI4-Stream interfaces and native video output (parallel video data, video syncs, and blanks). The core works with the Xilinx Video Timing Controller (VTC) core.  The synchronizer section of the core synchronizes timing from the VTC to the video data from the AXI4-Stream Bus. For more information refer to the <em>AXI4-Stream to Video Out LogiCORE IP Product Guide</em> (<a class="reference external" href="https://www.xilinx.com/support/documentation/ip_documentation/v_axi4s_vid_out/v4_0/pg044_v_axis_vid_out.pdf">PG044</a>).</p></li>
+<li><p>The output  from the AXI4-Stream to Video Out Converter goes through some slices and concat blocks to drive the DisplayPort Live signals on the PS. The slices and concat are required to the adhere to the Live Video data format.  For more information on DisplayPort Controller in Live mode refer to the <em>Zynq UltraScale+ Device Technical Reference Manual</em> (<a class="reference external" href="https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf">UG1085</a>).</p></li>
 </ul>
 </div>
 <div class="section" id="clocks-resets-and-interrupts">
-<h2>Clocks, Resets, and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Permalink to this heading">¶</a></h2>
+<h2>Clocks, Resets and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="clocks">
 <h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this heading">¶</a></h3>
 <p>The following table identifies the main clocks of the PL design, their source, their clock frequency, and their function.</p>
@@ -205,7 +206,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <th align="left">Clock</th>
 <th align="center">Clock Source</th>
 <th align="center">Clock Frequency</th>
-<th align="left">Function</th>
+<th align="left">Funtion</th>
 </tr>
 </thead>
 <tbody>
@@ -219,19 +220,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td align="left">clk_100M*</td>
 <td align="center">Clocking wizard</td>
 <td align="center">100 MHz</td>
-<td align="left">AXI4-Lite clock to configure the different video IPs in the design</td>
+<td align="left">AXI-Lite clock to configure the different video IPs in the design</td>
 </tr>
 <tr>
 <td align="left">clk_275M*</td>
 <td align="center">Clocking wizard</td>
 <td align="center">300 MHz</td>
-<td align="left">AXI4 MM clock and AXI4-Stream clock used in the display pipeline, and processing pipeline</td>
+<td align="left">AXI MM clock and AXI Stream clock used in the display pipeline, and processing pipeline</td>
 </tr>
 <tr>
 <td align="left">clk_50M</td>
 <td align="center">Clocking wizard</td>
 <td align="center">50 MHz</td>
-<td align="left">Phase-locked loop (PLL) reference clock for the VCU IP</td>
+<td align="left">PLL reference clock for the VCU IP</td>
 </tr>
 <tr>
 <td align="left">clk_550M*</td>
@@ -244,7 +245,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="resets">
 <h3>Resets<a class="headerlink" href="#resets" title="Permalink to this heading">¶</a></h3>
-<p>The following table summarizes the resets used in this design:</p>
+<p>The following table summarizes the resets used in this design.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -285,11 +286,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </table></div>
 <div class="section" id="interrupts">
 <h3>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this heading">¶</a></h3>
-<p>The following table lists the PL-to-PS interrupts used in this design:</p>
+<p>The following table lists the PL-to-PS interrupts used in this design.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Interrupt ID</th>
+<th align="left">Inerrupt ID</th>
 <th align="left">Instance</th>
 </tr>
 </thead>
@@ -308,20 +309,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr>
 <td align="left">pl_ps_irq0</td>
-<td align="left">Exposed as a platform interface and can be used by an accelerator</td>
+<td align="left">Exposed as a Platform interface and can be used by an accelerator</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="section" id="resource-utilization">
 <h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this heading">¶</a></h2>
-<p>The resource utilization numbers on this platform post implementation is reported in the following table:</p>
+<p>The resource utilization numbers on this platform post implementation is reported in the table below.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
 <th align="left">Resource</th>
 <th align="left">Utilization</th>
-<th align="left">Available</th>
+<th align="left">Avaialble</th>
 <th align="left">Utilization %</th>
 </tr>
 </thead>
@@ -380,16 +381,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <p>You can choose any of the following next steps:</p>
 <ul class="simple">
-<li><p>Read <a class="reference internal" href="hw_arch_accel_aib.html"><span class="doc">Hardware Architecture of the Accelerator</span></a>.</p></li>
-<li><p>Go back to the <a class="reference internal" href="../aibox_landing.html"><span class="doc">KV260 AI Box Design Start Page</span></a>.</p></li>
+<li><p>Read <a class="reference internal" href="hw_arch_accel_aib.html"><span class="doc">Hardware Architecture of the Accelerator</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../aibox_landing.html"><span class="doc">KV260 AI Box design start page</span></a></p></li>
 </ul>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p></div>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
 </div>
 </div>
 
@@ -407,7 +408,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 17, 2023.
+      <span class="lastupdated">Last updated on November 06, 2023.
       </span></p>
   </div>
 
