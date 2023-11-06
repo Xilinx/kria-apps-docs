@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Using Vivado to Build the Hardware Design &mdash; Kria™ KR260  documentation</title>
+  <title>Using Vivado to Build the Hardware Design &mdash; Kria™ KR260 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -34,8 +34,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Software Architecture of the Platform" href="ros2_multinode_communication_via_tsn/docs/sw_arch_platform.html" />
-    <link rel="prev" title="Board Setup and Application Deployment" href="ros2_multinode_communication_via_tsn/docs/app_deployment.html" /> 
+    <link rel="next" title="Creating a Vitis Platform" href="build_vitis_platform.html" />
+    <link rel="prev" title="Board Setup and Application Deployment" href="ros2_multinode_communication_via_tsn/src/app_deployment.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -50,6 +50,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <a href="../index.html" class="icon icon-home"> Kria™ KR260
             <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                2022.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -61,6 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -82,9 +86,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html#quick-start">Quick Start</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html#tutorials">Tutorials</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">Booting Kria Starter Kit Linux on KR260</a></li>
-<li class="toctree-l3"><a class="reference internal" href="building_the_design.html">Building the Design components</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Building the Hardware design using Vivado</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">Linux Boot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_the_design.html">Building the Design Components</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Building the Hardware Design Using Vivado</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#generating-an-extensible-xsa">Generating an Extensible XSA</a></li>
@@ -93,7 +97,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generating_custom_firmware.html">Generate Custom Firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ros2_multinode_communication_via_tsn/src/sw_build_instructions.html">Software Build Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html#architecture">Architecture</a></li>
@@ -119,7 +125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">TSN ROS Pub Sub</a> &raquo;</li>
+          <li><a href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications Via TSN</a> &raquo;</li>
       <li>Using Vivado to Build the Hardware Design</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/build_vivado_design.md.txt" rel="nofollow"> View page source</a>
@@ -147,7 +153,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Vivado Design Suite of the appropiate version</p></li>
+<li><p>AMD Vivado Design Suite™ of the appropiate version</p></li>
 <li><p>TSN Subsytem IP evaluation license when building the kr260_tsn_rs485pmod platform</p></li>
 </ul>
 <blockquote>
@@ -156,7 +162,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="accessing-the-tutorial-reference-files">
 <h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Permalink to this heading">¶</a></h3>
 <blockquote>
-<div><p><strong>Note</strong>: Skip the following steps if the design files have already been cloned and extracted to a working repository</p>
+<div><p><em><strong>Note</strong></em>: Skip the following steps if the design files have already been cloned and extracted to a working repository.</p>
 </div></blockquote>
 <ol>
 <li><p>To access the reference files, type the following into a terminal:</p>
@@ -164,18 +170,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 </div>
 </li>
-<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">kria-vitis-platforms/kr260</span></code> which is the working directory.</p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">kria-vitis-platforms/kr260</span></code>, which is the working directory.</p></li>
 </ol>
 </div>
 </div>
 <div class="section" id="generating-an-extensible-xsa">
 <h2>Generating an Extensible XSA<a class="headerlink" href="#generating-an-extensible-xsa" title="Permalink to this heading">¶</a></h2>
 <ol>
-<li><p>Go to the platform directory specific to the application</p>
+<li><p>Go to the platform directory specific to the application.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;
 </pre></div>
 </div>
-<p>Applications and their corresponding platform names are listed in the table below</p>
+<p>Applications and their corresponding platform names are listed in the following table.</p>
 </li>
 </ol>
 <table border="1" class="docutils">
@@ -196,25 +202,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><ol>
-<li><p>To build the XSA, Source Vivado and run the following command. The Makefile uses scripts/main.tcl file to create a Vivado project, populate the block design and finally build a XSA. The XSA generation may take couple of hours depending on the system specification</p>
+<li><p>To build the XSA, source an AMD Vivado™ and run the following command. The Makefile uses the scripts/main.tcl file to create a Vivado project, populate the block design and finally build a XSA. The XSA generation may take some time depending on the system specification.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make xsa
 </pre></div>
 </div>
 </li>
-<li><p>The generated XSA will be located at:</p>
+<li><p>The generated XSA is located at:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;/project/&lt;platform_name&gt;.xsa
 </pre></div>
 </div>
 </li>
 </ol>
 <blockquote>
-<div><p><strong>Note</strong>: The steps under <em>Modifying the Vivado design and creating a new XSA</em> are optinal and are required only if you need to change the platform design.</p>
+<div><p><em><strong>Note</strong></em>: The steps under <em>Modifying the Vivado design and creating a new XSA</em> are optional and are required only if you need to change the platform design.</p>
 </div></blockquote>
 </div>
 <div class="section" id="modifying-the-vivado-design-and-creating-a-new-xsa">
 <h2>Modifying the Vivado design and creating a new XSA<a class="headerlink" href="#modifying-the-vivado-design-and-creating-a-new-xsa" title="Permalink to this heading">¶</a></h2>
 <ol>
-<li><p>Go to the directory specific to the platform design</p>
+<li><p>Go to the directory specific to the platform design.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;
 </pre></div>
 </div>
@@ -225,7 +231,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </li>
 <li><p>In the Flow Navigator pane on the left-hand side under IP integrator, click on Open Block Design. An IP integrator block design becomes visible that contains the Processing System (PS) IP and other PL IPs.</p></li>
-<li><p>To view the Platform interfaces that are enabled for the Vitis compiler to stitch in accelerators, on the tool bar at the top click on Window &gt; Platform Setup. Platform interfaces that are enabled are</p>
+<li><p>To view the Platform interfaces that are enabled for the AMD Vitis™ compiler to stitch in accelerators, click on Window &gt; Platform Setup on the tool bar at the top. Platform interfaces that are enabled are:</p>
 <ul class="simple">
 <li><p>Clocks: To drive clock inputs on the accelerator.</p></li>
 <li><p>Master AXI: AXI memory-mapped master ports on the Interconnect IP to drive the accelerator’s control port.</p></li>
@@ -233,14 +239,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Interrupts: interrupt controller for the accelerator to drive interrupt signals.</p></li>
 </ul>
 </li>
-<li><p>You can now modify the block design and validate it (tool bar at the top: Tools → Validate design). Then, click on Run Synthesis to complete synthesis</p></li>
+<li><p>You can now modify the block design and validate it (tool bar at the top: Tools → Validate design). Then click on Run Synthesis to complete the synthesis.</p></li>
 <li><p>To write out a new extensible platform XSA file, run the following command from the Vivado tcl console:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>write_hw_platform -force -file &lt;platform_name&gt;.xsa
 </pre></div>
 </div>
 </li>
 </ol>
-<p>The generated XSA or the modified XSA file can now be used to create a Vitis Platform</p>
+<p>The generated XSA or the modified XSA file can now be used to create a Vitis Platform.</p>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
@@ -251,7 +257,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
-<p>For more information on how to setup Platform Interfaces refer to Xilinx Vitis Unified Software Platform Documentation <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces">UG1393</a></p>
+<p>For more information on how to setup Platform Interfaces, refer to Xilinx Vitis Unified Software Platform Documentation <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces">UG1393</a>.</p>
 <!---
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
@@ -260,7 +266,7 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright&copy; 2022 Xilinx</p></div>
+--><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></div>
 </div>
 
 
@@ -269,15 +275,15 @@ Unless required by applicable law or agreed to in writing, software distributed 
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ros2_multinode_communication_via_tsn/docs/app_deployment.html" class="btn btn-neutral float-left" title="Board Setup and Application Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ros2_multinode_communication_via_tsn/docs/sw_arch_platform.html" class="btn btn-neutral float-right" title="Software Architecture of the Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ros2_multinode_communication_via_tsn/src/app_deployment.html" class="btn btn-neutral float-left" title="Board Setup and Application Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="build_vitis_platform.html" class="btn btn-neutral float-right" title="Creating a Vitis Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 18, 2023.
+      <span class="lastupdated">Last updated on November 06, 2023.
       </span></p>
   </div>
 

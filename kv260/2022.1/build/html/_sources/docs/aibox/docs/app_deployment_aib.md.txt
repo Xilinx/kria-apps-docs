@@ -1,47 +1,46 @@
-<table class="sphinxhide">
+﻿<table class="sphinxhide">
  <tr>
    <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit Aibox-Dist Tutorial</h1>
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Setting 
- Up the Board and Application Deployment</h1>
+ <td align="center"><h1>Setting up the Board and Application Deployment</h1>
 
  </td>
  </tr>
 </table>
 
-# Setting Up the Board and Application Deployment
+# Setting up the Board and Application Deployment
 
 ## Introduction
 
-This document describes how to set up the board and run the aibox-dist application.
+This document shows how to set up the board and run the aibox-dist application.
 
-This guide and its prebuilt are targeted for Ubuntu&reg; 22.04 and AMD 22.1 toolchain.
+This guide and its prebuilt are targeted for Ubuntu 22.04 and Xilinx 22.1 toolchain.
 
-## Setting Up the Board
+## Setting up the Board
 
 The aibox-dist application requires one KV260 starter kit as the surveillance center (the client) and one to four KV260 starter kits as the distributed camera (the server).
 
-### Setting Up the Board for Distributed Camera
+### Setting up the Board for Distributed Camera
 
-  Refer to [Setting up the Board for Kria™ KV260 Vision AI Starter Kit Smart Camera](../../smartcamera/docs/app_deployment.md#Setting-up-the-Board), and follow the instructions until the kv260-smartcam firmware has been loaded.
+  Please refer to [Setting up the Board for Kria™ KV260 Vision AI Starter Kit Smart Camera](../../smartcamera/docs/app_deployment.md#Setting-up-the-Board) and follow instructions until kv260-smartcam firmware has been loaded.
 
-### Setting Up the Board for Surveillance Center Cross Tracking and Monitoring
+### Setting up the Board for Surveillance Center Cross Tracking and Monitoring
 
-  Refer to [Setting up the Board for Kria™ KV260 Vision AI Starter Kit Smart Camera AIBox-ReID Tutorial](../../aibox-reid/docs/app_deployment_aib.md#Setting-up-the-Board), and follow the instructions until the kv260-aibox-reid firmware has been loaded.
+  Please refer to [Setting up the Board for Kria™ KV260 Vision AI Starter Kit Smart Camera AIBox-ReID Tutorial](../../aibox-reid/docs/app_deployment_aib.md#Setting-up-the-Board) and follow instructions until kv260-aibox-reid firmware has been loaded.
 
-## Docker-based Application Preparation
+## Docker based application preparation
 
-  The two kinds of boards both need the same application package docker.
+  The 2 kinds of boards both need the same application package docker.
 
-* Pull the latest docker image for aibox-dist using the following command:
+* Pull the latest docker image for aibox-dist using the below command.
 
     ```bash
     docker pull xilinx/aibox-dist:latest
     ```
 
-* Launch the docker using the following command:
+* Launch the docker using the below command
 
     ```bash
     docker run \
@@ -60,13 +59,13 @@ The aibox-dist application requires one KV260 starter kit as the surveillance ce
     -it xilinx/aibox-dist:latest bash
     ```
 
-    It will launch the aibox-dist image in a new container.
+    It will launch the aibox-dist image in a new container
 
     ```bash
     root@xlnx-docker/#
     ```
 
-* The storage volume on the SD card is limited with multiple dockers. You can use following command to remove the existing container:
+* The storage volume on the SD card is limited with multiple dockers. You can use following command to remove the existing container.
 
     ```shell
     docker rmi --force <installed container>
@@ -75,175 +74,173 @@ The aibox-dist application requires one KV260 starter kit as the surveillance ce
 
 ## Camera Setup and Calibration for The Tracking Algorithm
 
-The cross camera tracking algorithm needs some information of the monitoring region and the relation to the position/view of the capturing cameras. This section will guide you to set it up.
+Cross camera tracking algorithm needs some info of the monitoring region and the relation to the position/view of the capturing cameras. This section will guide the user to set it up.
 
-1. The config file and demo videos
+0. The config file and demo videos
 
-    The config file, shipped with the application, `config/cam_setup.json` is calibrated for the three demo video files at following location.
+The config file shipped with the application `config/cam_setup.json` is calibrated for the three demo video files at following location.
 
-    [Camera 1 Video](https://www.xilinx.com/bin/public/openDownload?filename=cros.1.1080p.h264)
+[Camera 1 Video](https://www.xilinx.com/bin/public/openDownload?filename=cros.1.1080p.h264)
 
-    [Camera 2 Video](https://www.xilinx.com/bin/public/openDownload?filename=cros.2.1080p.h264)
+[Camera 2 Video](https://www.xilinx.com/bin/public/openDownload?filename=cros.2.1080p.h264)
 
-    [Camera 3 Video](https://www.xilinx.com/bin/public/openDownload?filename=cros.3.1080p.h264)
+[Camera 3 Video](https://www.xilinx.com/bin/public/openDownload?filename=cros.3.1080p.h264)
 
-    ```json
-    {
-      "floorplan": [
-        {"x": 0,"y": 0},
-        {"x": 0,"y": 1250},
-        {"x": 460,"y": 1250},
-        {"x": 460,"y": 680},
-        {"x": 1167,"y": 680},
-        {"x": 1167,"y": 440},
-        {"x": 460,"y": 440},
-        {"x": 460,"y": 0}
+```json
+{
+  "floorplan": [
+    {"x": 0,"y": 0},
+    {"x": 0,"y": 1250},
+    {"x": 460,"y": 1250},
+    {"x": 460,"y": 680},
+    {"x": 1167,"y": 680},
+    {"x": 1167,"y": 440},
+    {"x": 460,"y": 440},
+    {"x": 460,"y": 0}
+  ],
+  "camsres": {"w": 2304, "h":1296},
+  "cams": [
+      [
+          {
+              "image": {"x": 1573, "y":323},
+              "plan":  {"x": 0, "y":125 }
+          },
+          {
+              "image": {"x": 504, "y":475},
+              "plan":  {"x": 460, "y":70 }
+          },
+          {
+              "image": {"x": 358, "y":707 },
+              "plan":  {"x": 430, "y":418}
+          },
+          {
+              "image": {"x": 1689, "y":810},
+              "plan":  {"x": 0, "y":480}
+          }
       ],
-      "camsres": {"w": 2304, "h":1296},
-      "cams": [
-          [
-              {
-                  "image": {"x": 1573, "y":323},
-                  "plan":  {"x": 0, "y":125 }
-              },
-              {
-                  "image": {"x": 504, "y":475},
-                  "plan":  {"x": 460, "y":70 }
-              },
-              {
-                  "image": {"x": 358, "y":707 },
-                  "plan":  {"x": 430, "y":418}
-              },
-              {
-                  "image": {"x": 1689, "y":810},
-                  "plan":  {"x": 0, "y":480}
-              }
-          ],
-          [
-              {
-                  "image": {"x": 524, "y":476},
-                  "plan":  {"x": 0, "y":1250 }
-              },
-              {
-                  "image": {"x": 352, "y":727},
-                  "plan":  {"x": 0, "y":890}
-              },
-              {
-                  "image": {"x": 1274, "y":480},
-                  "plan":  {"x": 343, "y":1250}
-              },
-              {
-                  "image": {"x": 1931, "y":973},
-                  "plan":  {"x": 460, "y":680}
-              }
-          ],
-          [
-              {
-                  "image": {"x": 651, "y":1091},
-                  "plan":  {"x": 718, "y":680}
-              },
-              {
-                  "image": {"x": 1472, "y":1092},
-                  "plan":  {"x": 718, "y":440}
-              },
-              {
-                  "image": {"x": 1293, "y":727},
-                  "plan":  {"x": 1167, "y":440}
-              },
-              {
-                  "image": {"x": 775, "y":722},
-                  "plan":  {"x": 1167, "y":680}
-              }
-          ]
+      [
+          {
+              "image": {"x": 524, "y":476},
+              "plan":  {"x": 0, "y":1250 }
+          },
+          {
+              "image": {"x": 352, "y":727},
+              "plan":  {"x": 0, "y":890}
+          },
+          {
+              "image": {"x": 1274, "y":480},
+              "plan":  {"x": 343, "y":1250}
+          },
+          {
+              "image": {"x": 1931, "y":973},
+              "plan":  {"x": 460, "y":680}
+          }
+      ],
+      [
+          {
+              "image": {"x": 651, "y":1091},
+              "plan":  {"x": 718, "y":680}
+          },
+          {
+              "image": {"x": 1472, "y":1092},
+              "plan":  {"x": 718, "y":440}
+          },
+          {
+              "image": {"x": 1293, "y":727},
+              "plan":  {"x": 1167, "y":440}
+          },
+          {
+              "image": {"x": 775, "y":722},
+              "plan":  {"x": 1167, "y":680}
+          }
       ]
-    }
-    ```
+  ]
+}
+```
 
 * floorplan
 
   Array of vertices of the floorplan polygon.
 
-  In the following example, there are eight points.
+  In bellow example, there are 8 points.
 
-  ![refinedet-inference-data-flow](../../media/cam-config-floorplan.png)
+![refinedet-inference-data-flow](../../media/cam-config-floorplan.png)
 
 * camsres
 
-  Define the resolution of the camera view which is used in camera setup and calibration. >**NOTE:** This resolution need not to be 1080p which is configured for actual application running. For example, in above json example, "2304x1296" is used.
+  Define the resolution of the camera view which is used in camera setup and calibration. **Note** This resolution need not to be 1080p which is configured for actual application running. For example, in above json example, we use "2304x1296".
 
 * Cams
 
-  camview1
-  ![aibox-dist-cam1](../../media/cam-config-camview-1.png)
-
-  camview2
-  ![aibox-dist-cam2](../../media/cam-config-camview-2.png)
-
-  camview3
-  ![aibox-dist-cam3](../../media/cam-config-camview-3.png)
+camview1
+![aibox-dist-cam1](../../media/cam-config-camview-1.png)
+camview2
+![aibox-dist-cam2](../../media/cam-config-camview-2.png)
+camview3
+![aibox-dist-cam3](../../media/cam-config-camview-3.png)
 
   This is an array of camera mapping.
 
-  Each element defines the mapping relation of one camera view to the floorplan. It consists of **four pairs** of corresponding floorplan points and camera view points.
+  Each element defines the mapping relation of one camera view to the floorplan. It consists of **4 pairs** of corresponding floorplan point and camera view point.
 
-1. Define The Floorplan Region of Interest
+1. Define The Floorplan ROI
 
-    Based on the Region of Interest of the monitoring camera system, define the floorplan in whatever unit.
+  Based on the Region of Interest of the monitoring camera system, define the floorplan in whatever unit.
   
-    ![refinedet-inference-data-flow](../../media/cam-config-camview-with-axis.png)
+![refinedet-inference-data-flow](../../media/cam-config-camview-with-axis.png)
 
-    ![refinedet-inference-data-flow](../../media/cam-config-floorplan-axis.png)
+![refinedet-inference-data-flow](../../media/cam-config-floorplan-axis.png)
 
-    * Choose a point as origin o, and set the coordinate axis (x, y).
+  * Choose a point as origin o, set coordinate axis (x, y)
 
-    * Define the Region of Interest in the plan and only pedestrian in the Region of Interest will be tracked. For example, in camera 3, part of the corridor is very dark, so it is not included in the Region of Interest.
+  * Define ROI in the plan and only pedestrian in the ROI will be tracked. For example, in camera 3, part of the corridor is very dark, so it's not included in the ROI.
 
-    * The Region of Interest is a polygon; give the coordinates of angular points of the polygon in a clockwise direction or anti-clockwise direction so that the contour of plan map can be defined.
+  * The ROI is a polygon, give the coordinates of angular points of the polygon in a clockwise direction or anti-clockwise direction so that the contour of plan map can be defined.
 
-2. Mapping of the Camera View and Floorplan
+2. Mapping of Camera View and Floorplan
 
-    * For each camera, give **four points** coordinates in both plan and camera view (the reference points should be on the ground, and any three points are not collinear).
+  * For each camera, give **4 points**’ coordinates in both plan and camera view (the reference points should be on the ground, and any three points are not collinear)
 
-    * Take camera 1 as an example:
+  * Take camera 1 as an example,
 
-      ```
-        # coordinates in camera view (unit: pixel)
+```
+  # coordinates in camera view (unit: pixel)
 
-        Image_coords = [[1573,323],  [504,475], [358,707], [1689,810]]
+  Image_coords = [[1573,323],  [504,475], [358,707], [1689,810]]
 
-        # coordinates in plan map (unit: cm)
+  # coordinates in plan map (unit: cm)
 
-        Plan_coords = [[0,125], [460,70], [430,418], [0,480]]
-      ```
+  Plan_coords = [[0,125], [460,70], [430,418], [0,480]]
+```
 
-      ``` json
-            [
-                {
-                    "image": {"x": 1573, "y":323},
-                    "plan":  {"x": 0, "y":125 }
-                },
-                {
-                    "image": {"x": 504, "y":475},
-                    "plan":  {"x": 460, "y":70 }
-                },
-                {
-                    "image": {"x": 358, "y":707 },
-                    "plan":  {"x": 430, "y":418}
-                },
-                {
-                    "image": {"x": 1689, "y":810},
-                    "plan":  {"x": 0, "y":480}
-                }
-            ]
-      ```
+``` json
+      [
+          {
+              "image": {"x": 1573, "y":323},
+              "plan":  {"x": 0, "y":125 }
+          },
+          {
+              "image": {"x": 504, "y":475},
+              "plan":  {"x": 460, "y":70 }
+          },
+          {
+              "image": {"x": 358, "y":707 },
+              "plan":  {"x": 430, "y":418}
+          },
+          {
+              "image": {"x": 1689, "y":810},
+              "plan":  {"x": 0, "y":480}
+          }
+      ]
+```
 
-### Jupyter Notebook to Help Interactively Mark the Points on the Captured Images and Get the json Section
+### Jupyter notebook to help interactively mark the points on the captured images and get the json section
 
-* You need to run the following command to install the package shipped notebooks which reside in `/opt/xilinx/kv260-aibox-dist/share/notebooks` to the folder `/root/notebooks/aibox-dist`.
+* User need to run following command to install the package shipped notebooks which reside in `/opt/xilinx/kv260-aibox-dist/share/notebooks` to the folder `/root/notebooks/aibox-dist`.
 
   ``` $ aibox-dist-install.py ```
 
-  This script also provides more options to install the notebook of the current application to specified location.
+  This script also provides more options to install the notebook of current application to specified location.
 
     ``` text
     usage: aibox-dist-install [-h] [-d DIR] [-f]
@@ -256,9 +253,9 @@ The cross camera tracking algorithm needs some information of the monitoring reg
       -f, --force        Force to install the Jupyter notebook even if the destination directory exists.
     ```
 
-* Get the list of running Jupyter servers with the following command:
+* Please get the list of running Jupyter servers with command:
 
-    ```$ jupyter-server list```
+    ```$ jupyter-server list ```
 
   Output example:
 
@@ -266,47 +263,47 @@ The cross camera tracking algorithm needs some information of the monitoring reg
   >
   > `http://ip:port/?token=xxxxxxxxxxxxxxxxxx`  :: /root/notebooks/aibox-dist
 
-* Stop the currently running server with the following command:
+* Stop the currently running server with command:
 
-    ```$ jupyter-server stop 8888```
+    ```$ jupyter-server stop 8888 ```
 
-* To launch Jupyter notebook on the target, run the following command:
+* To launch Jupyter notebook on the target, run below command.
 
-  ``` bash
-  jupyter-lab --notebook-dir=/root/notebooks/aibox-dist --allow-root --ip=ip-address &
+``` bash
+    jupyter-lab --notebook-dir=/root/notebooks/aibox-dist --allow-root --ip=ip-address &
 
-  // fill in ip-address from ifconfig, eth0
-  ```
+    // fill in ip-address from ifconfig, eth0
+    
+```
 
-  Output example:
+Output example:
 
-  ``` bash
-  [I 2022-09-05 10:26:26.644 LabApp] JupyterLab extension loaded from /usr/local/lib/python3.10/dist-packages/jupyterlab
-  [I 2022-09-05 10:26:26.644 LabApp] JupyterLab application directory is /usr/local/share/jupyter/lab
-  [I 2022-09-05 10:26:26.664 ServerApp] jupyterlab | extension was successfully loaded.
-  [I 2022-09-05 10:26:26.683 ServerApp] nbclassic | extension was successfully loaded.
-  [I 2022-09-05 10:26:26.685 ServerApp] Serving notebooks from local directory: /root/notebooks/aibox-dist
-  [I 2022-09-05 10:26:26.685 ServerApp] Jupyter Server 1.18.1 is running at:
-  [I 2022-09-05 10:26:26.685 ServerApp] http://192.168.1.233:8888/lab?token=385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
-  [I 2022-09-05 10:26:26.686 ServerApp]  or http://127.0.0.1:8888/lab?token=385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
-  [I 2022-09-05 10:26:26.686 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-  [W 2022-09-05 10:26:26.702 ServerApp] No web browser found: could not locate runnable browser.
-  [C 2022-09-05 10:26:26.703 ServerApp]
+``` bash
+[I 2022-09-05 10:26:26.644 LabApp] JupyterLab extension loaded from /usr/local/lib/python3.10/dist-packages/jupyterlab
+[I 2022-09-05 10:26:26.644 LabApp] JupyterLab application directory is /usr/local/share/jupyter/lab
+[I 2022-09-05 10:26:26.664 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2022-09-05 10:26:26.683 ServerApp] nbclassic | extension was successfully loaded.
+[I 2022-09-05 10:26:26.685 ServerApp] Serving notebooks from local directory: /root/notebooks/aibox-dist
+[I 2022-09-05 10:26:26.685 ServerApp] Jupyter Server 1.18.1 is running at:
+[I 2022-09-05 10:26:26.685 ServerApp] http://192.168.1.233:8888/lab?token=385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+[I 2022-09-05 10:26:26.686 ServerApp]  or http://127.0.0.1:8888/lab?token=385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+[I 2022-09-05 10:26:26.686 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[W 2022-09-05 10:26:26.702 ServerApp] No web browser found: could not locate runnable browser.
+[C 2022-09-05 10:26:26.703 ServerApp]
 
-      To access the server, open this file in a browser:
-          file:///root/.local/share/jupyter/runtime/jpserver-40-open.html
-      Or copy and paste one of these URLs:
-          http://192.168.1.233:8888/lab?token=385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
-      or http://127.0.0.1:8888/lab?token=385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
-  ```
+    To access the server, open this file in a browser:
+        file:///root/.local/share/jupyter/runtime/jpserver-40-open.html
+    Or copy and paste one of these URLs:
+        http://192.168.1.233:8888/lab?token=385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+     or http://127.0.0.1:8888/lab?token=385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+```
 
-* You can access the server by opening the server URL from the previous steps with a Chrome browser.
+* User can access the server by opening the server URL from previous steps with the Chrome browser.
 
-* After opening the notebook, you can define the RTSP server IP and follow the steps described in the notebook. First you can get a interactive window with the captured image from RTSP server. You can click the image to mark the point you would like to used for "image" to "plan" mapping. Finally, you can run the cell to get a json snippet with the "image" fields filed with real coordinates you marked on the image and "plan" field filled with "todo" which you need to update yourself.
+* After open the notebook, you can define the RTSP server IP and follow the steps described in notebook, first you can get a interactive window with the captured image from RTSP server, you can click on the image to mark the point you would like to used for "image" to "plan" mapping. Finally you can run the cell to get a json snippet with the "image" fields filed with real coordinates you marked on the image and "plan" field filled with "todo" which you need to update yourself.
 
-Example output of the notebook:
-
-  ```json
+example output of the notebook:
+    ```json
       [
           {
               "image": {"x": 1573, "y":323},
@@ -325,35 +322,35 @@ Example output of the notebook:
               "plan":  {"x": todo, "y":todo }
           }
       ]
-```
+    ```
 
 ## How to Run The Application
 
-As described in [Software Architecture of the Application](./sw_arch_accel_aib.md), this application consists of up to four server side image capturing boards with a camera and one client side monitoring board. Accordingly, there are different binary executable to be run on **server** or **client**.
+As described in [Software Architecture of the Application](./sw_arch_accel_aib.md), this application consists of up to 4 server side image capturing boards with camera, and 1 client side monitoring board. So accordingly there are different binary executable to be run on **server** or **client**.
 
 ### Start The Server Application
 
 #### Examples
 
-  This example starts capturing by using the MIPI camera as an input source.
+  This example starts capturing by using the MIPI camera as input source.
 
   ```bash
   aibox-dist-cam -m 
   ```
 
-  You can also start the streaming by using video files as the input source; this is the recommended mode to start with.
+  You can also start the streaming by using video files as the input source, actually, this is the recommended mode to start with.
 
   ```bash
   aibox-dist-cam -f cros.1.1080.h264
   ```
 
->**NOTE:** Only one instance of the aibox-dist-cam application can run at a time because it requires exclusive access to a DPU engine, and there is only one instance of the DPU that exists in the aibox-cam platform.
+**Note**: Only one instance of aibox-dist-cam application can run at a time because it requires exclusive access to a DPU engine and there is only one instance of DPU that exists in the aibox-cam platform.
 
 ##### Command Options
 
 The example shows a simple way to invoke the server application.
 
-You can get more and detailed application options as following by invoking:
+User can get more and detailed application options as following by invoking
 
 `aibox-dist-cam --help`
 
@@ -399,17 +396,17 @@ Application Options:
   aibox-dist-monitor -s rtsp://address-of-cam-1 -s rtsp://address-of-cam-2 -S 1
   ```
 
->**NOTE:** The example above is for live steam capturing from camera; if you are starting with the video file streaming way, which is recommended as a start point, **remove the option "-S 1"** as:
+**Note** Above example is for live steam capturing from camera, if you are starting with the video file streaming way which we recommended as a start point, please **remove the option "-S 1"** as.
 
   ```bash
   aibox-dist-monitor -s rtsp://address-of-cam-1 -s rtsp://address-of-cam-2
   ```
 
->**NOTE:** Only one instance of the aibox-dist-monitor application can run at a time because it requires exclusive access to a DPU engine, and there is only one instance of DPU that exists in the aibox-monitor platform.
+**Note**: Only one instance of aibox-dist-monitor application can run at a time because it requires exclusive access to a DPU engine and there is only one instance of DPU that exists in the aibox-monitor platform.
 
 ##### Command Options
 
-You can get more and detailed application options as following by invoking the following:
+User can get more and detailed application options as following by invoking
 
 `aibox-dist-monitor --help`
 
@@ -435,20 +432,20 @@ Application Options:
 
 ```
 
-## Files Structure
+## Files structure
 
 The application is installed as:
 
-* Binary File Directory: `/opt/xilinx/kv260-aibox-dist/bin`
+* Binary File Directory: /opt/xilinx/kv260-aibox-dist/bin
 
-  | Filename | Description |
+  | filename | description |
   |----------|-------------|
-  |aibox-dist-cam | App for camera board|
-  |aibox-dist-monitor | App for monitor board|
+  |aibox-dist-cam | app for camera board|
+  |aibox-dist-monitor | app for monitor board|
 
-* Configuration file directory: `/opt/xilinx/kv260-aibox-dist/share/vvas`
+* Configuration file directory: /opt/xilinx/kv260-aibox-dist/share/vvas
 
-  | Filename | Description |
+  | filename | description |
   |-|-|
   |cam_setup.json       |           Config of camera set up and calibration.
   |ped_pp.json       |           Config of refinedet preprocess.
@@ -458,7 +455,7 @@ The application is installed as:
 
 ## Next Steps
 
-* Go back to the [KV260 SOM AIBox-Dist Design Start Page](../aibox-dist_landing).
+* Go back to the [KV260 SOM AIBox-Dist design start page](../aibox-dist_landing)
 
 ### License
 
@@ -469,4 +466,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p class="sphinxhide" align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p>

@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Tool Flow Overview &mdash; Kria™ KR260  documentation</title>
+  <title>Tool Flow Overview &mdash; Kria™ KR260 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -50,6 +50,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <a href="../index.html" class="icon icon-home"> Kria™ KR260
             <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                2022.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -61,6 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -82,16 +86,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html#quick-start">Quick Start</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html#tutorials">Tutorials</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">Booting Kria Starter Kit Linux on KR260</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Building the Design components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">Linux Boot</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Building the Design Components</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tool-flow">Tool Flow</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#directory-structure">Directory Structure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="build_vivado_design.html">Building the Hardware design using Vivado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generating_custom_firmware.html">Generate Custom Firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ros2_multinode_communication_via_tsn/src/sw_build_instructions.html">Software Build Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html#architecture">Architecture</a></li>
@@ -146,13 +152,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Tool Flow<a class="headerlink" href="#tool-flow" title="Permalink to this heading">¶</a></h2>
 <p>At a high level, the builds steps are as follows:</p>
 <ol>
-<li><p>Vivado platform design: The Vivado design is augmented with platform parameters that describe the meta data and physical interfaces available to the Vitis compiler for stitching in PL kernels.</p></li>
-<li><p>Platform creation: The XSCT utility is used to create an extensible platform whose main component is the XSA created by Vivado in step 1.</p></li>
-<li><p>PL kernels: The Vitis compiler is used to compile PL accelerator kernels from C/C++ using high-level synthesis (HLS) or to package RTL kernels. The kernels are compiled into xo files and consumed by the Vitis linker in the next step.</p>
-<p>Vitis linker and packager: The Vitis linker integrates the PL kernels into the platform and implements the design. It generates a new device image (bitfile) as well as xclbin file containing meta data information about the PL kernels.</p>
-<p>Note: Adding PL kernels to a platform is optional. If the system design needs certain acceleration or processing functions then this build step is needed.</p>
+<li><p><strong>AMD Vivado™ platform design</strong>: The Vivado design is augmented with platform parameters that describe the metadata and physical interfaces available to the AMD Vitis™ compiler for stitching in PL kernels.</p></li>
+<li><p><strong>Platform creation</strong>: The XSCT utility is used to create an extensible platform whose main component is the XSA created by Vivado in step 1.</p></li>
+<li><p><strong>PL kernels</strong>: The Vitis compiler is used to compile PL accelerator kernels from C/C++ using high-level synthesis (HLS) or to package RTL kernels. The kernels are compiled into xo files and consumed by the Vitis linker in the next step.</p>
+<p>Vitis linker and packager: The Vitis linker integrates the PL kernels into the platform and implements the design. It generates a new device image (bitfile) as well as xclbin file containing metadata information about the PL kernels.</p>
+<p><em><strong>Note</strong></em>: Adding PL kernels to a platform is optional. If the system design needs certain acceleration or processing functions, this build step is needed.</p>
 </li>
-<li><p>Firmware : Vitis created platform containing the PL kernel is a bitfile and the metadata is an xclbin. On ubuntu platform the bitstream  header is stripped to obtain fpga configuration data as a bin object (*.bin), the metadata xclbin is consumed as is from Vitis. A runtime devicetree blob  corresponding to the PL bitstream is required (.dtbo) to be loaded as an overlay, which when loaded in kernel invokes all the drivers corresponding to the PL bitstream. Hence fpga configuration data ( *.bin), metadata (xclbin) and a device-tree overlay blob (*dtbo) together form the firmware binraries.</p></li>
+<li><p><strong>Firmware</strong>: Vitis created platform containing the PL kernel is a bitfile and the metadata is an xclbin. On ubuntu platform, the bitstream  header is stripped to obtain fpga configuration data as a bin object (*.bin), the metadata xclbin is consumed as is from Vitis. A runtime devicetree blob  corresponding to the PL bitstream is required (.dtbo) to be loaded as an overlay, which when loaded in kernel, invokes all the drivers corresponding to the PL bitstream. Hence, fpga configuration data ( *.bin), metadata (xclbin), and a device-tree overlay blob (*dtbo) together form the firmware binaries.</p></li>
 </ol>
 <div class="section" id="accessing-the-tutorial-reference-files">
 <h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Permalink to this heading">¶</a></h3>
@@ -166,7 +172,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="directory-structure">
 <h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this heading">¶</a></h2>
-<p>The directory structure of the repository is shown below</p>
+<p>The directory structure of the repository is shown below:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kria-vitis-platforms
 +-- kr260
 ¦  +-- Makefile
@@ -192,7 +198,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference internal" href="build_vivado_design.html"><span class="doc">Building the Hardware design using Vivado</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="../index.html"><span class="doc">KR260 SOM designs start page</span></a></p></li>
 </ul>
-<p class="sphinxhide" align="center">Copyright&copy; 2022 Xilinx</p><!---
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p><!---
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
@@ -217,7 +223,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 18, 2023.
+      <span class="lastupdated">Last updated on November 06, 2023.
       </span></p>
   </div>
 

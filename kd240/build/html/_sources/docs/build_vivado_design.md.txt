@@ -46,6 +46,7 @@ This tutorial shows how to build the hardware design for applications running on
    |----|----|
    | Built-in self test (BIST) | kd240_bist |
    | FOC motor control with position sensor | kd240_motor_ctrl_qei |
+   | ROS TSN Pub Sub |  kd240_motor_ctrl_qei |
 
 2. To build the XSA, source Vivado, and run the following command. The Makefile uses the scripts/`main.tcl` file to create a Vivado project, populate the block design, and finally build a XSA. The XSA generation can take some time depending on the system specification.
 
@@ -99,6 +100,7 @@ The generated XSA or the modified XSA file can now be used to create a Vitis pla
 ## Next Steps
 
 * [Generate Custom Firmware](generating_custom_firmware.md)
+* Go back to the [KD240 SOM Designs Start Page](../index)
 
 ## References
 

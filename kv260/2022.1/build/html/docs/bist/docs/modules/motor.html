@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>BIST Motor Test Module &mdash; Kria™ KV260 2022.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="BIST MTD Test Module" href="mtd.html" />
+    <link rel="prev" title="BIST IIO Test Module" href="iio.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../../index.html" class="icon icon-home"> Kria™ KV260
+            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KV260 Applications</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../smartcamera/smartcamera_landing.html">Smart Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../aibox-reid/aibox_landing.html">AI Box ReID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../defect-detect/defectdetect_landing.html">Defect Detect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../bist_landing.html">Built-In Self Test (BIST)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../run.html">Install and Run BIST</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../overview.html">Overview of BIST Application</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#framework">Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#file-structure">File Structure</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../overview.html#test-modules">Test Modules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="can.html">CAN Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="disk.html">Disk Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display.html">Display Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eeprom.html">EEPROM Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eth.html">Ethernet Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gpio.html">GPIO Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="i2c.html">I2C Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="iio.html">IIO Test Module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Motor Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mtd.html">MTD Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pwm.html">PWM Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spi.html">SPI Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tpm.html">TPM Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tty.html">TTY Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="video.html">Video Test Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../overview.html#support">Support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../known_issues.html">Known Issues</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/Xilinx/kria-bist">Software Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bist_landing.html#support">Support</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/index.html">2021.1</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2020.2/build/html/index.html">2020.2</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Kria™ KV260</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../bist_landing.html">BIST</a> &raquo;</li>
+          <li><a href="../overview.html">BIST Overview</a> &raquo;</li>
+      <li>BIST Motor Test Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="bist-motor-test-module">
+<h1>BIST Motor Test Module<a class="headerlink" href="#bist-motor-test-module" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>The Motor test module verifies the functionality of KD240 starter kit.</p>
+</div>
+<div class="section" id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
+<p>The module contains seven self-validating functional tests. It uses py_foc_motor_ctrl
+library to create the motor control instance for calling member functions, such as getSpeed(),
+setOperationMode(), and so on.</p>
+<ol>
+<li><p>run_qei_gate_drive_test() - In this test, QEI interface and motor gate drive is
+validated. The motor is spun in ‘Speed’ mode with rpm set to 1000 and the set speed is
+then compared with an average of 10 measured motor speed readings obtained by getSpeed()
+motor control function. The measured motor speed is expected to be within the error
+margin of 20% of the set speed to pass the test.</p>
+<p>The config parameters for the test are described below:</p>
+<ul class="simple">
+<li><p>label: The test label</p></li>
+<li><p>speed: Motor speed to be set</p></li>
+</ul>
+</li>
+<li><p>run_motor_vlt_adc_fb_modeoff_test() - In this test, the ADC voltages are validated to
+read back near 0V when the motor is in the ‘Off’ mode. The ADC voltage feedback values of
+channels PhaseA, PhaseB, and PhaseC are measured using getVoltage() motor control function
+and verified to be below the predefined threshold value of 1V to pass the test.</p>
+<p>The config parameter for the test is described below:</p>
+<ul class="simple">
+<li><p>label: The test label</p></li>
+</ul>
+</li>
+<li><p>run_motor_vlt_adc_fb_modeopenloop_test() - In this test, the ADC voltages are validated to
+read back the voltage values in the predefined range in ‘Open Loop’ mode.
+The ADC voltage feedback values of channels PhaseA, PhaseB, and PhaseC are measured using
+getVoltage() motor control function. The measured voltages are averaged out of 100 samples
+of readings and verified to be in the range of 8V - 15V for each channel to pass the test.</p>
+<p>The config parameters for the test are described below:</p>
+<ul class="simple">
+<li><p>label: The test label</p></li>
+<li><p>speed: Motor speed to be set</p></li>
+</ul>
+</li>
+<li><p>run_motor_curr_adc_fb_modeoff_test() - In this test, the ADC currents are validated to
+read back near 0A when the motor is in ‘Off’ mode. The ADC current feedback values of
+channels PhaseA, PhaseB, and PhaseC are measured using getCurrent() motor control function.
+The measured currents are averaged out of 100 samples of readings for each channel and
+verified to be below predefined threshold value of 0.05A for the test to pass.</p>
+<p>The config parameter for the test is described below:</p>
+<ul class="simple">
+<li><p>label: The test label</p></li>
+</ul>
+</li>
+<li><p>run_motor_curr_adc_fb_modeopenloop_test() - In this test, the ADC currents are validated to
+read back the current values in the predefined range in the ‘Open Loop’ mode.
+The ADC current feedback values of channels PhaseA, PhaseB, and PhaseC are measured using
+getCurrent() motor control function. The measured currents are averaged out of 100 samples
+of readings for each channel and verified to be in the range of 0.01A - 0.5A for the test
+to pass.</p>
+<p>The config parameters for the test are described below:</p>
+<ul class="simple">
+<li><p>label: The test label</p></li>
+<li><p>speed: Motor speed to be set</p></li>
+</ul>
+</li>
+<li><p>run_motor_dc_link_volt_adc_fb_test() - In this test, the DC link voltage is validated to be
+near 24V when the power supply is plugged in the motor ‘Off’ mode. The DC link voltage is measured
+using getVoltage() motor control function. The measured voltage is averaged out of 10 samples
+of readings and verified to be in the range of 22.8V - 25.2V for the test to pass.</p>
+<p>The config parameter for the test is described below:</p>
+<ul class="simple">
+<li><p>label: The test label</p></li>
+</ul>
+</li>
+<li><p>run_motor_dc_link_curr_adc_fb_test() - In this test, the DC link current is validated to be
+near 0A in the ‘Off’ mode. The DC link current is measured using getCurrent() motor control
+function. The measured current is averaged out of 10 samples of readings and verified to be
+below predefined threshold value of 0.6A for the test to pass.</p>
+<p>The config parameter for the test is described below:</p>
+<ul class="simple">
+<li><p>label: The test label</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="test-dependencies">
+<h2>Test Dependencies<a class="headerlink" href="#test-dependencies" title="Permalink to this heading">¶</a></h2>
+<p>Some of the above tests include dependency tests that are run prior to the main test.
+The test dependencies are summarized in the following table. The dependency tests must
+pass before the main test is run to ensure the results from the main test are accurate.
+If a dependency test fails, the main test is aborted.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center">Test</th>
+<th align="center">Dependency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">qei_gate_drive_test</td>
+<td align="center">dc_link_volt_adc_fb_test</td>
+</tr>
+<tr>
+<td align="center">volt_adc_fb_modeopenloop_test</td>
+<td align="center">dc_link_volt_adc_fb_test, qei_gate_drive_test</td>
+</tr>
+<tr>
+<td align="center">curr_adc_fb_modeopenloop_test</td>
+<td align="center">dc_link_volt_adc_fb_test, qei_gate_drive_test</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="test-execution">
+<h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
+<p>The example commands for this module are provided below (KD240):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3 --board kd240 -m motor  // Run all tests <span class="k">in</span> this module
+pytest-3 --board kd240 -k qei_gate_drive_test  // Run QEI interface <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Speed&#39;</span> mode
+pytest-3 --board kd240 -k volt_adc_fb_modeoff_test  // Run motor voltage ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Off&#39;</span> mode
+pytest-3 --board kd240 -k volt_adc_fb_modeopenloop_test  // Run motor voltage ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Open Loop&#39;</span> mode
+pytest-3 --board kd240 -k curr_adc_fb_modeoff_test  // Run motor current ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Off&#39;</span> mode
+pytest-3 --board kd240 -k curr_adc_fb_modeopenloop_test  // Run motor current ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Open Loop&#39;</span> mode
+pytest-3 --board kd240 -k dc_link_volt_adc_fb_test  // Run DC link voltage ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Off&#39;</span> mode
+pytest-3 --board kd240 -k dc_link_curr_adc_fb_test  // Run DC link current ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Off&#39;</span> mode
+</pre></div>
+</div>
+<p>The test prints out the messages indicating the motor mode and readings of the motor object for each test.</p>
+</div>
+<div class="section" id="test-debug">
+<h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Make sure to load the BIST firmware before running the motor tests as motor hls_foc_periodic device
+is not detected otherwise.</p></li>
+</ul>
+</div>
+<div class="section" id="known-issues-and-limitations">
+<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The motor test is limited to verifying the functionalities specified in the configuration file on loading
+the BIST firmware only.</p></li>
+<li><p>The established threshold values or ranges are based on the outputs observed during experimentation.
+The values might differ slightly from board to board.</p></li>
+</ul>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
+</ol>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="iio.html" class="btn btn-neutral float-left" title="BIST IIO Test Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mtd.html" class="btn btn-neutral float-right" title="BIST MTD Test Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on November 06, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

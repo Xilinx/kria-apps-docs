@@ -1,5 +1,5 @@
 ##################################################
-TSN ROS Pub Sub 
+ROS 2 Multi-Node Communications Via TSN 
 ##################################################
 
 
@@ -10,19 +10,19 @@ Overview
 .. toctree::
    :maxdepth: 1
   
-   Introduction <docs/introduction>
+   Introduction <src/introduction.md>
 
 
 Features
 ================================
 
-* ROS application to demonstrate publisher subscriber communication over Xilinx TSN
-* Realtime demonstration of ongoing TSN traffic (Both best effort and Scheduled) through the oscilloscope
+* ROS application to demonstrate publisher subscriber communication over Xilinx TSN.
+* Realtime demonstration of ongoing TSN traffic (Both best effort and Scheduled) through the oscilloscope.
 
   - Demonstrate Network Time Synchronization between master and slave
   - Demonstrate software latency for TSN traffic
   - Demonstrate Network Time Shaper Function (802.1Qbv) on TSN traffic
-* Demonstrate Modbus based RS485 communication over uart+pmod interface
+* Demonstrate Modbus based RS485 communication over uart+pmod interface.
 
 
 *******************************
@@ -31,20 +31,21 @@ Quick Start
 
 .. toctree::
    :maxdepth: 1
-  
-   Setting up the Board and Application deployment <./docs/app_deployment>
 
+   Setting up the Board and Application Deployment <src/app_deployment.md>
 
 ***************************
 Tutorials
 ***************************
 
-
-* :doc:`Linux Boot <../kria_starterkit_linux_boot>`
-* :doc:`Building the Design components <../building_the_design>`
-* :doc:`Building the Hardware design using Vivado <../build_vivado_design>`
-* :doc:`Generate Custom Firmware <../generating_custom_firmware>`
-
+.. toctree::
+   :maxdepth: 1
+  
+   Linux Boot <../kria_starterkit_linux_boot>
+   Building the Design Components <../building_the_design>
+   Building the Hardware Design Using Vivado <../build_vivado_design>
+   Generate Custom Firmware <../generating_custom_firmware>
+   Software Build Instructions <src/sw_build_instructions>
 
 
 .. important::
@@ -58,8 +59,8 @@ Architecture
 .. toctree::
    :maxdepth: 1
   
-   Software Architecture - Platform <docs/sw_arch_platform>
-   Hardware Architecture - Platform <docs/hw_arch_platform>
+   Software Architecture - Platform <src/sw_arch_platform>
+   Hardware Architecture - Platform <src/hw_arch_platform>
 
 
 *******************************

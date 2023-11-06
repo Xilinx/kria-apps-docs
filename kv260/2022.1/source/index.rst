@@ -3,6 +3,10 @@ Kria KV260 Vision AI Starter Kit Applications
 ###############################################################################################################
 
 
+.. include:: ../../../shared/somtoctree.txt
+
+
+
 .. image:: docs/media/sc_rdme.png
    :width: 200
    :alt: Smart Camera
@@ -45,7 +49,7 @@ The Kria KV260 Vision AI Starter Kit is the first out-of-the box ready evaluatio
 
 Enabled by a growing ecosystem of accelerated applications from the Xilinx App Store, developers of all types can get applications up and running in under 1 hour, with no FPGA experience needed. From there, customization and differentiation can be added via preferred design environments, at any level of abstraction—from application software to AI model to FPGA design.
 
-With both hardware and software development requirements simplified, the KV260 Vision AI Starter Kit is the fastest and easiest platform for application development with the goal of heading towards production volume deployment with the Kria K26 SOMs. The KV260 Vision AI Starter Kit is very accessible and competitively priced, it is a perfect vehicle to leverage during the development phase of your vision applications and further accelerates your time to market.
+With both hardware and software development requirements simplified, the KV260 Vision AI Starter Kit is the fastest and easiest platform for application development with the goal of heading towards production volume deployment with the Kria K26 SOMs. The KV260 Vision AI Starter Kit is very accessible and priced at $199, it is a perfect vehicle to leverage during the development phase of your vision applications and further accelerates your time to market.
 
 
 
@@ -63,7 +67,7 @@ With both hardware and software development requirements simplified, the KV260 V
 
 
 
-.. include:: ../../../shared/somtoctree.txt
+
 
 
 
@@ -99,3 +103,13 @@ Xilinx Support
 
 GitHub issues will be used for tracking requests and bugs. For questions, go to `forums.xilinx.com <http://forums.xilinx.com/>`_.
 
+
+License
+========
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+
+You may obtain a copy of the License at `apache.org/licenses/LICENSE-2.0 <https://creativecommons.org/licenses/by/4.0/>`_.
+
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

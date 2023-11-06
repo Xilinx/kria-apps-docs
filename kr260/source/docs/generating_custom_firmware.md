@@ -1,4 +1,4 @@
-﻿<table class="sphinxhide">
+<table class="sphinxhide">
  <tr>
    <td align="center"><img src="media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KR260 Robotics Starter Kit Tutorial</h1>
    </td>
@@ -16,7 +16,7 @@
 
 Customers requiring to test custom hardware/accelerator can do so by following the below steps on the ubuntu platform.
 
-It is assumed that a custom platform design has been generated using Vivado/Vitis and bitstream/xclbin is available. Similarly a correct device-tree overlay for the custom hardware is created or generated, Xilnx DTG could be used for device-tree generation. Refer to the [link](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob) for more info on DTG.
+It is assumed that a custom platform design has been generated using an AMD Vivado&trade;/AMD Vitis&trade; and bitstream/xclbin is available. Similarly, a correct device-tree overlay for the custom hardware is created or generated. AMD  DTG could be used for the device-tree generation. Refer to the [link](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob) for more information on DTG.
 
 From previous steps, following binaries are available:
 
@@ -24,16 +24,16 @@ From previous steps, following binaries are available:
 * custom-metadata.xclbin  (obtained by Vitis) (optional)
 * custom-devicetree.dtsi  (obtained by DTG)
 
-On ubuntu platform the bitstream header is stripped to obtain fpga configuration data as a bin object (*.bin).
+On the ubuntu platform, the bitstream header is stripped to obtain fpga configuration data as a bin object (`*.bin`).
 The metadata xclbin is consumed as is from Vitis.
-A runtime devicetree blob corresponding to the PL bitstream is required (.dtbo) to be loaded as an overlay, which when loaded in kernel invokes all the drivers corresponding to the PL bitstream.
+A runtime device-tree blob corresponding to the PL bitstream is required (`.dtbo`) to be loaded as an overlay, which when loaded in kernel, invokes all the drivers corresponding to the PL bitstream.
 
-A makefile is provided to generate the required firmware binaries and install. This makefile take the above binaries and provides the following outputs as shown below. The artifacts of the makefile are installed on the target device at /lib/firmware/xilinx/< accelerator-dir >. The firmware is loaded at runtime using xmutil.
+A makefile is provided to generate the required firmware binaries and install. This makefile takes the above binaries and provides the following outputs as shown below. The artifacts of the makefile are installed on the target device at `/lib/firmware/xilinx/< accelerator-dir >`. The firmware is loaded at runtime using xmutil.
 
 * custom-hardware.bit    -> custom-hardware.bin
 * custom-devicetree.dtsi -> custom-devicetree.dtbo
 
-An example has been illustrated below for reference:
+An example has been illustrated below as a reference:
 
 ```shell
 git clone --branch xlnx_rel_v2022.1 https://github.com/Xilinx/kria-apps-firmware.git
@@ -43,13 +43,13 @@ cd kria-apps-firmware
 make 
 ```
 
-For more info refer to the instructions provided in the readme file [here](https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/README.md)
+For more information, refer to the instructions provided in the readme file [here](https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/README.md).
 
 ## Next Steps
 
-* Go back to the [KR260 SOM designs start page](../index)
+* Go back to the [KR260 SOM designs start page](../index).
 
-<p class="sphinxhide" align="center">Copyright&copy; 2022 Xilinx</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p>
 
 <!---
 

@@ -1,16 +1,16 @@
-<table class="sphinxhide">
+﻿<table class="sphinxhide">
  <tr>
    <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit<br>Smart Camera Tutorial</h1>
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Customizing the AI Models Used in the Application</h1>
+ <td align="center"><h1>Customizing the AI Models used in the application</h1>
 
  </td>
  </tr>
 </table>
 
-# Customizing the AI Models Used in the Application
+# Customizing the AI Models used in the application
 
 ## Introduction
 
@@ -18,28 +18,27 @@ This document provides an overview of how to customize the default smartcam appl
 
 ## Prerequisites
 
-Other than the three models provided via the command line option, `--aitask`, as documented [here](app_deployment.md).
+Other than the 3 models provided via command line option `--aitask` as documented [here](app_deployment.md),
 
 * facedetect (densebox_320_320)
 * refinedet (refinedet_pruned_0_96)
 * ssd (ssd_adas_pruned_0_95)
 
-Customization can be made to use other AMD Vitis&trade; AI models or retrained model by the users of the same class.
+customization can be made to use other Vitis AI models or retrained model by the users of the same class.
 
 ### Model Preparation
 
->**NOTE:**
- >
- > * The design currently only supports **Vitis AI 2.5.0**.
- > * As described in the Hardware Accelerator section, the data-processing unit (DPU) integrated in the platform uses the **B3136** configuration.
+**Note** The design currently only supports **Vitis AI 2.5.0**
 
-The `arch.json` used to compile the xmodel for THE B3136 DPU can be obtained by building the accelerator, but if you will not build all from the start, you can obtain the DPU fingerprint by using the following commands on the target SOM:
+**Note** As described in the Hardware Accelerator section, the DPU integrated in the platform uses the **B3136** configuration.
+
+The arch.json used to compile the xmodel for B3136 DPU can be obtained by build the accelerator, but if you won't build all from the start, you can obtain the DPU fingerprint by using the following commands on target SOM:
 
 ```bash
     xdputil query
 ```
 
-You will get output similar to the following:
+You will get some output like this:
 
 ```bash
 ...
@@ -52,7 +51,7 @@ You will get output similar to the following:
 ]
 ```
 
-Save the fingerprint as `arch.json`.
+Save the fingerprint as arch.json.
 
 ```json
 {
@@ -60,15 +59,15 @@ Save the fingerprint as `arch.json`.
 }
 ```
 
-For detailed instructions on obtaining an alternative model from the AMD model zoo or training, pruning, quantizing, and compiling a new model, refer to the *Vitis AI User Guide* ([UG1414](https://docs.xilinx.com/access/sources/dita/map?isLatest=true&ft:locale=en-US&url=ug1414-vitis-ai)).
+For detailed instructions on obtaining an alternative model from the Xilinx model zoo or training, pruning, quantizing, and compiling a new model, please refer to the [Vitis AI documentation](https://docs.xilinx.com/r/en-US/ug1414-vitis-ai).
 
-### Configuration Files
+### Configuration files
 
-To integrate a different .xmodel into the smartcam application, the following configuration files must be updated accordingly.
+To integrate a different .xmodel into the smartcam application, the following configuration files must be updated accordingly:
 
 * AI Inference Config:
 
-    Take the refinedet aiinference.json `/opt/xilinx/kv260-smartcam/share/vvas/refinedet/aiinference.json` as an example:
+    Take the refinedet aiinference.json `/opt/xilinx/kv260-smartcam/share/vvas/refinedet/aiinference.json` as an example,
 
 ```json
     {
@@ -91,97 +90,98 @@ To integrate a different .xmodel into the smartcam application, the following co
     }
 ```
 
-   You can change the `model-name` and `model-path` fields to use the customized xmdel file at `${model-path}/${model-name}/${model-name}.xmodel`.
+   You can change the "model-name" and "model-path" fields to use the customized xmdel file at `${model-path}/${model-name}/${model-name}.xmodel`.
 
-   Pay attention to the field "need_preprocess", which is now "false", which tells the Vitis AI Library the input buffer is already the resized and the quantized BGR image as required by the model. And the preprocess is done by the preprocess plugin with the proper configuration which will be detailed in next section.
+   Pay attention to the field "need_preprocess", which is now "false", tells Vitis AI Library the input buffer is already the resized and quantized BGR image as required by the model. And the preprocess is done by the preprocess plugin with the proper configuration which will be detailed in next section.
 
-   When you set the "need_preprocess" here to "true" for some reason, you should also make change to the process configuration to ask the preprocess IP works just as color conversion and resizing.
+   When you set the "need_preprocess" here to "true" for some reason, you should also make change to the process configuration to ask the preprocess IP works just as colour conversion and resizing.
 
 * Preprocess Config:
 
-  ```json
-      "config": {
-          "debug_level" : 1,
-          "mean_r": 123,
-          "mean_g": 117,
-          "mean_b": 104,
-          "scale_r": 0.5,
-          "scale_g": 0.5,
-          "scale_b": 0.5
-      }
-  ```
+```json
+    "config": {
+        "debug_level" : 1,
+        "mean_r": 123,
+        "mean_g": 117,
+        "mean_b": 104,
+        "scale_r": 0.5,
+        "scale_g": 0.5,
+        "scale_b": 0.5
+    }
+```
 
-  The configuration value of the mean for r/g/b channels should be the same as the ones specified in the Vitis AI Model prototxt file.
+The configuration value of mean for r/g/b channels should be the same as the ones specified in Vitis AI Model prototxt file.
 
-  ```prototxt
-  model {
-  name : "refinedet_480x360_5G"
-      kernel {
-      name: "refinedet_480x360_5G"
-      mean: 104.0
-      mean: 117.0
-      mean: 123.0
-      scale: 1.0
-      scale: 1.0
-      scale: 1.0
-      }
-  }
-  ```
+```prototxt
+model {
+name : "refinedet_480x360_5G"
+    kernel {
+    name: "refinedet_480x360_5G"
+    mean: 104.0
+    mean: 117.0
+    mean: 123.0
+    scale: 1.0
+    scale: 1.0
+    scale: 1.0
+    }
+}
+```
 
-  >**NOTE:** The channel sequence in the Vitis AI model prototxt file is B, G, R, not R, G, B, as the above samples show.
+**Notice** the channels sequence in the Vitis AI model prototxt file is B, G, R, not R, G, B, as the above samples show.
 
-  The configuration value of the scale is determined by both the prototxt and input tensor's fixpos info contained in compiled xmodel file.
+The configuration value of scale is determined by both prototxt and input tensor's fixpos info contained in compiled xmodel file.
 
-  First, use the following command to get input tensor's fixpos:
+First use the following command to get input tensor's fixpos.
 
-  ```bash
-      xdputil xmodel Path-to-xmodelfile -l
-  ```
+```bash
+    xdputil xmodel Path-to-xmodelfile -l
+```
 
-  You will get some output similar to the following:
+You will get some output like this: 
+```bash
+{
+ "subgraphs":[
+     {
+         "index":0,
+         "name":"subgraph_data",
+         "device":"USER"
+     },
+     {
+         "index":0,
+         "name":"subgraph_Elt3",
+         "device":"DPU",
+         "fingerprint":"0x101000016010406",
+         "DPU Arch":"DPUCZDX8G_ISA1_B3136",
+         "input_tensor":[
+             {
+                 "name":"data_fixed",
+                 "shape":"[1, 360, 480, 3]",
+                 "fixpos":-1
+             }
+         ],
+     }
+ ]
+}
+```
 
-  ```bash
-  {
-  "subgraphs":[
-      {
-          "index":0,
-          "name":"subgraph_data",
-          "device":"USER"
-      },
-      {
-          "index":0,
-          "name":"subgraph_Elt3",
-          "device":"DPU",
-          "fingerprint":"0x101000016010406",
-          "DPU Arch":"DPUCZDX8G_ISA1_B3136",
-          "input_tensor":[
-              {
-                  "name":"data_fixed",
-                  "shape":"[1, 360, 480, 3]",
-                  "fixpos":-1
-              }
-          ],
-      }
-  ]
-  }
-  ```
+So the input tensor's fixpos is "-1" here.
 
-  So the input tensor's fixpos is "-1" here.
+The configured scale = prototxt_scale \* (2 ^ fixpos) = 1 \* (2^-1) = 0.5.
 
-  The configured scale = prototxt_scale \* (2 ^ fixpos) = 1 \* (2^-1) = 0.5.
 
 ## Example
 
-Take the Vitis AI model yolov3_coco_416_tf2 as example; detailed steps are provided to add an AI task for the smartcam application.
+Take Vitis AI model yolov3_coco_416_tf2 as example, we provide the detailed steps to add an AI task for smartcam application.
 
-1. Create the folder, `yolov3_coco`, under `/opt/xilinx/kv260-smartcam/share/vvas/`, so that `yolov3_coco` can be used as the value for argument, `--AItask`.
+1. Create folder `yolov3_coco` under `/opt/xilinx/kv260-smartcam/share/vvas/`, so that `yolov3_coco` can be used as the value for argument --AItask.
 
-2. <a name="download-model"></a> Download the model file for `GPU` and `zcu102 & zcu104 & kv260` from the link provided in <https://github.com/Xilinx/Vitis-AI/blob/master/model_zoo/model-list/tf2_yolov3_coco_416_416_65.9G_2.5/model.yaml>.
- After extraction, you get the following file structure:
+2. <a name="download-model"></a> Download model file for `GPU` and `zcu102 & zcu104 & kv260` from the link provided by <https://github.com/Xilinx/Vitis-AI/blob/master/model_zoo/model-list/tf2_yolov3_coco_416_416_65.9G_2.5/model.yaml> 
 
-	<details>
+After extraction, we get such file structure:
+    
+<details>
 
-	```
+```
 	│   README.md
 	│   requirements.txt
 	│
@@ -466,452 +466,451 @@ Take the Vitis AI model yolov3_coco_416_tf2 as example; detailed steps are provi
 	├───float
 	│       yolov3.h5
 	└───quantized
-			quantized.h5
-	```
-
+	        quantized.h5
+```
+	
 </details>
 
-  3. Prepare the `yolov3_coco_416_tf2.xmodel` file for DPU 3136.
+3. Prepare `yolov3_coco_416_tf2.xmodel` file for DPU 3136.
 
-	The file `quantized.h5` is the quantized model generated by quantizer. It can be used to generate xmodel file.
+The file `quantized.h5` is the quantized model generated by quantizer. It can be used to generate xmodel file.
 
-  Start the vitis-ai model compile docker and copy `quantized.h5` and `arch.json` into it. Using the following command to compile .xmodel file.
+Start the vitis-ai model compile docker and copy `quantized.h5` and `arch.json` into it. Using the following command to compile .xmodel file.
 
-  ```bash
+```bash
     conda activate vitis-ai-tensorflow2
     vai_c_tensorflow2 -m /PATH/TO/quantized.h5 -a /PATH/TO/arch.json -o /OUTPUTPATH -n yolov3_coco_416_tf2
 ```
+The yolov3_coco_416_tf2.prototxt can be found in existing file from [`zcu102 & zcu104 & kv260`](#download-model). 
 
-  The y`olov3_coco_416_tf2.prototxt` can be found in existing file from [`zcu102 & zcu104 & kv260`](#download-model).
+The YOLOv3 object detection model provides prediction of multiple classes in the [label file](https://github.com/iArunava/YOLOv3-Object-Detection-with-OpenCV/blob/master/yolov3-coco/coco-labels).
 
-  The YOLOv3 object detection model provides prediction of multiple classes in the [label file](https://github.com/iArunava/YOLOv3-Object-Detection-with-OpenCV/blob/master/yolov3-coco/coco-labels).
-
-  ```
-      person
-      bicycle
-      car
-      motorbike
-      aeroplane
-      bus
-      ...
-  ```
-
-You need to convert the above label info to a json file as requested by the VVAS framework as follows, and name it `label.json`:
-
-<details>
-
-```json
-    {
-     "model-name": "yolov3_coco_416_tf2",
-     "num-labels": 80,
-     "labels": [
-      {
-       "label": 0,
-       "name": "person",
-       "display_name": "person"
-      },
-      {
-       "label": 1,
-       "name": "bicycle",
-       "display_name": "bicycle"
-      },
-      {
-       "label": 2,
-       "name": "car",
-       "display_name": "car"
-      },
-      {
-       "label": 3,
-       "name": "motorbike",
-       "display_name": "motorbike"
-      },
-      {
-       "label": 4,
-       "name": "aeroplane",
-       "display_name": "aeroplane"
-      },
-      {
-       "label": 5,
-       "name": "bus",
-       "display_name": "bus"
-      },
-      {
-       "label": 6,
-       "name": "train",
-       "display_name": "train"
-      },
-      {
-       "label": 7,
-       "name": "truck",
-       "display_name": "truck"
-      },
-      {
-       "label": 8,
-       "name": "boat",
-       "display_name": "boat"
-      },
-      {
-       "label": 9,
-       "name": "traffic light",
-       "display_name": "traffic light"
-      },
-      {
-       "label": 10,
-       "name": "fire hydrant",
-       "display_name": "fire hydrant"
-      },
-      {
-       "label": 11,
-       "name": "stop sign",
-       "display_name": "stop sign"
-      },
-      {
-       "label": 12,
-       "name": "parking meter",
-       "display_name": "parking meter"
-      },
-      {
-       "label": 13,
-       "name": "bench",
-       "display_name": "bench"
-      },
-      {
-       "label": 14,
-       "name": "bird",
-       "display_name": "bird"
-      },
-      {
-       "label": 15,
-       "name": "cat",
-       "display_name": "cat"
-      },
-      {
-       "label": 16,
-       "name": "dog",
-       "display_name": "dog"
-      },
-      {
-       "label": 17,
-       "name": "horse",
-       "display_name": "horse"
-      },
-      {
-       "label": 18,
-       "name": "sheep",
-       "display_name": "sheep"
-      },
-      {
-       "label": 19,
-       "name": "cow",
-       "display_name": "cow"
-      },
-      {
-       "label": 20,
-       "name": "elephant",
-       "display_name": "elephant"
-      },
-      {
-       "label": 21,
-       "name": "bear",
-       "display_name": "bear"
-      },
-      {
-       "label": 22,
-       "name": "zebra",
-       "display_name": "zebra"
-      },
-      {
-       "label": 23,
-       "name": "giraffe",
-       "display_name": "giraffe"
-      },
-      {
-       "label": 24,
-       "name": "backpack",
-       "display_name": "backpack"
-      },
-      {
-       "label": 25,
-       "name": "umbrella",
-       "display_name": "umbrella"
-      },
-      {
-       "label": 26,
-       "name": "handbag",
-       "display_name": "handbag"
-      },
-      {
-       "label": 27,
-       "name": "tie",
-       "display_name": "tie"
-      },
-      {
-       "label": 28,
-       "name": "suitcase",
-       "display_name": "suitcase"
-      },
-      {
-       "label": 29,
-       "name": "frisbee",
-       "display_name": "frisbee"
-      },
-      {
-       "label": 30,
-       "name": "skis",
-       "display_name": "skis"
-      },
-      {
-       "label": 31,
-       "name": "snowboard",
-       "display_name": "snowboard"
-      },
-      {
-       "label": 32,
-       "name": "sports ball",
-       "display_name": "sports ball"
-      },
-      {
-       "label": 33,
-       "name": "kite",
-       "display_name": "kite"
-      },
-      {
-       "label": 34,
-       "name": "baseball bat",
-       "display_name": "baseball bat"
-      },
-      {
-       "label": 35,
-       "name": "baseball glove",
-       "display_name": "baseball glove"
-      },
-      {
-       "label": 36,
-       "name": "skateboard",
-       "display_name": "skateboard"
-      },
-      {
-       "label": 37,
-       "name": "surfboard",
-       "display_name": "surfboard"
-      },
-      {
-       "label": 38,
-       "name": "tennis racket",
-       "display_name": "tennis racket"
-      },
-      {
-       "label": 39,
-       "name": "bottle",
-       "display_name": "bottle"
-      },
-      {
-       "label": 40,
-       "name": "wine glass",
-       "display_name": "wine glass"
-      },
-      {
-       "label": 41,
-       "name": "cup",
-       "display_name": "cup"
-      },
-      {
-       "label": 42,
-       "name": "fork",
-       "display_name": "fork"
-      },
-      {
-       "label": 43,
-       "name": "knife",
-       "display_name": "knife"
-      },
-      {
-       "label": 44,
-       "name": "spoon",
-       "display_name": "spoon"
-      },
-      {
-       "label": 45,
-       "name": "bowl",
-       "display_name": "bowl"
-      },
-      {
-       "label": 46,
-       "name": "banana",
-       "display_name": "banana"
-      },
-      {
-       "label": 47,
-       "name": "apple",
-       "display_name": "apple"
-      },
-      {
-       "label": 48,
-       "name": "sandwich",
-       "display_name": "sandwich"
-      },
-      {
-       "label": 49,
-       "name": "orange",
-       "display_name": "orange"
-      },
-      {
-       "label": 50,
-       "name": "broccoli",
-       "display_name": "broccoli"
-      },
-      {
-       "label": 51,
-       "name": "carrot",
-       "display_name": "carrot"
-      },
-      {
-       "label": 52,
-       "name": "hot dog",
-       "display_name": "hot dog"
-      },
-      {
-       "label": 53,
-       "name": "pizza",
-       "display_name": "pizza"
-      },
-      {
-       "label": 54,
-       "name": "donut",
-       "display_name": "donut"
-      },
-      {
-       "label": 55,
-       "name": "cake",
-       "display_name": "cake"
-      },
-      {
-       "label": 56,
-       "name": "chair",
-       "display_name": "chair"
-      },
-      {
-       "label": 57,
-       "name": "sofa",
-       "display_name": "sofa"
-      },
-      {
-       "label": 58,
-       "name": "pottedplant",
-       "display_name": "pottedplant"
-      },
-      {
-       "label": 59,
-       "name": "bed",
-       "display_name": "bed"
-      },
-      {
-       "label": 60,
-       "name": "diningtable",
-       "display_name": "diningtable"
-      },
-      {
-       "label": 61,
-       "name": "toilet",
-       "display_name": "toilet"
-      },
-      {
-       "label": 62,
-       "name": "tvmonitor",
-       "display_name": "tvmonitor"
-      },
-      {
-       "label": 63,
-       "name": "laptop",
-       "display_name": "laptop"
-      },
-      {
-       "label": 64,
-       "name": "mouse",
-       "display_name": "mouse"
-      },
-      {
-       "label": 65,
-       "name": "remote",
-       "display_name": "remote"
-      },
-      {
-       "label": 66,
-       "name": "keyboard",
-       "display_name": "keyboard"
-      },
-      {
-       "label": 67,
-       "name": "cell phone",
-       "display_name": "cell phone"
-      },
-      {
-       "label": 68,
-       "name": "microwave",
-       "display_name": "microwave"
-      },
-      {
-       "label": 69,
-       "name": "oven",
-       "display_name": "oven"
-      },
-      {
-       "label": 70,
-       "name": "toaster",
-       "display_name": "toaster"
-      },
-      {
-       "label": 71,
-       "name": "sink",
-       "display_name": "sink"
-      },
-      {
-       "label": 72,
-       "name": "refrigerator",
-       "display_name": "refrigerator"
-      },
-      {
-       "label": 73,
-       "name": "book",
-       "display_name": "book"
-      },
-      {
-       "label": 74,
-       "name": "clock",
-       "display_name": "clock"
-      },
-      {
-       "label": 75,
-       "name": "vase",
-       "display_name": "vase"
-      },
-      {
-       "label": 76,
-       "name": "scissors",
-       "display_name": "scissors"
-      },
-      {
-       "label": 77,
-       "name": "teddy bear",
-       "display_name": "teddy bear"
-      },
-      {
-       "label": 78,
-       "name": "hair drier",
-       "display_name": "hair drier"
-      },
-      {
-       "label": 79,
-       "name": "toothbrush",
-       "display_name": "toothbrush"
-      }
-     ]
-    }
+```
+    person
+    bicycle
+    car
+    motorbike
+    aeroplane
+    bus
+    ...
 ```
 
+We need to convert the above label info to json file as requested by VVAS framework as bellow and named it 'label.json'.
+
+<details>
+	
+```json
+    {
+    	"model-name": "yolov3_coco_416_tf2",
+    	"num-labels": 80,
+    	"labels": [
+    		{
+    			"label": 0,
+    			"name": "person",
+    			"display_name": "person"
+    		},
+    		{
+    			"label": 1,
+    			"name": "bicycle",
+    			"display_name": "bicycle"
+    		},
+    		{
+    			"label": 2,
+    			"name": "car",
+    			"display_name": "car"
+    		},
+    		{
+    			"label": 3,
+    			"name": "motorbike",
+    			"display_name": "motorbike"
+    		},
+    		{
+    			"label": 4,
+    			"name": "aeroplane",
+    			"display_name": "aeroplane"
+    		},
+    		{
+    			"label": 5,
+    			"name": "bus",
+    			"display_name": "bus"
+    		},
+    		{
+    			"label": 6,
+    			"name": "train",
+    			"display_name": "train"
+    		},
+    		{
+    			"label": 7,
+    			"name": "truck",
+    			"display_name": "truck"
+    		},
+    		{
+    			"label": 8,
+    			"name": "boat",
+    			"display_name": "boat"
+    		},
+    		{
+    			"label": 9,
+    			"name": "traffic light",
+    			"display_name": "traffic light"
+    		},
+    		{
+    			"label": 10,
+    			"name": "fire hydrant",
+    			"display_name": "fire hydrant"
+    		},
+    		{
+    			"label": 11,
+    			"name": "stop sign",
+    			"display_name": "stop sign"
+    		},
+    		{
+    			"label": 12,
+    			"name": "parking meter",
+    			"display_name": "parking meter"
+    		},
+    		{
+    			"label": 13,
+    			"name": "bench",
+    			"display_name": "bench"
+    		},
+    		{
+    			"label": 14,
+    			"name": "bird",
+    			"display_name": "bird"
+    		},
+    		{
+    			"label": 15,
+    			"name": "cat",
+    			"display_name": "cat"
+    		},
+    		{
+    			"label": 16,
+    			"name": "dog",
+    			"display_name": "dog"
+    		},
+    		{
+    			"label": 17,
+    			"name": "horse",
+    			"display_name": "horse"
+    		},
+    		{
+    			"label": 18,
+    			"name": "sheep",
+    			"display_name": "sheep"
+    		},
+    		{
+    			"label": 19,
+    			"name": "cow",
+    			"display_name": "cow"
+    		},
+    		{
+    			"label": 20,
+    			"name": "elephant",
+    			"display_name": "elephant"
+    		},
+    		{
+    			"label": 21,
+    			"name": "bear",
+    			"display_name": "bear"
+    		},
+    		{
+    			"label": 22,
+    			"name": "zebra",
+    			"display_name": "zebra"
+    		},
+    		{
+    			"label": 23,
+    			"name": "giraffe",
+    			"display_name": "giraffe"
+    		},
+    		{
+    			"label": 24,
+    			"name": "backpack",
+    			"display_name": "backpack"
+    		},
+    		{
+    			"label": 25,
+    			"name": "umbrella",
+    			"display_name": "umbrella"
+    		},
+    		{
+    			"label": 26,
+    			"name": "handbag",
+    			"display_name": "handbag"
+    		},
+    		{
+    			"label": 27,
+    			"name": "tie",
+    			"display_name": "tie"
+    		},
+    		{
+    			"label": 28,
+    			"name": "suitcase",
+    			"display_name": "suitcase"
+    		},
+    		{
+    			"label": 29,
+    			"name": "frisbee",
+    			"display_name": "frisbee"
+    		},
+    		{
+    			"label": 30,
+    			"name": "skis",
+    			"display_name": "skis"
+    		},
+    		{
+    			"label": 31,
+    			"name": "snowboard",
+    			"display_name": "snowboard"
+    		},
+    		{
+    			"label": 32,
+    			"name": "sports ball",
+    			"display_name": "sports ball"
+    		},
+    		{
+    			"label": 33,
+    			"name": "kite",
+    			"display_name": "kite"
+    		},
+    		{
+    			"label": 34,
+    			"name": "baseball bat",
+    			"display_name": "baseball bat"
+    		},
+    		{
+    			"label": 35,
+    			"name": "baseball glove",
+    			"display_name": "baseball glove"
+    		},
+    		{
+    			"label": 36,
+    			"name": "skateboard",
+    			"display_name": "skateboard"
+    		},
+    		{
+    			"label": 37,
+    			"name": "surfboard",
+    			"display_name": "surfboard"
+    		},
+    		{
+    			"label": 38,
+    			"name": "tennis racket",
+    			"display_name": "tennis racket"
+    		},
+    		{
+    			"label": 39,
+    			"name": "bottle",
+    			"display_name": "bottle"
+    		},
+    		{
+    			"label": 40,
+    			"name": "wine glass",
+    			"display_name": "wine glass"
+    		},
+    		{
+    			"label": 41,
+    			"name": "cup",
+    			"display_name": "cup"
+    		},
+    		{
+    			"label": 42,
+    			"name": "fork",
+    			"display_name": "fork"
+    		},
+    		{
+    			"label": 43,
+    			"name": "knife",
+    			"display_name": "knife"
+    		},
+    		{
+    			"label": 44,
+    			"name": "spoon",
+    			"display_name": "spoon"
+    		},
+    		{
+    			"label": 45,
+    			"name": "bowl",
+    			"display_name": "bowl"
+    		},
+    		{
+    			"label": 46,
+    			"name": "banana",
+    			"display_name": "banana"
+    		},
+    		{
+    			"label": 47,
+    			"name": "apple",
+    			"display_name": "apple"
+    		},
+    		{
+    			"label": 48,
+    			"name": "sandwich",
+    			"display_name": "sandwich"
+    		},
+    		{
+    			"label": 49,
+    			"name": "orange",
+    			"display_name": "orange"
+    		},
+    		{
+    			"label": 50,
+    			"name": "broccoli",
+    			"display_name": "broccoli"
+    		},
+    		{
+    			"label": 51,
+    			"name": "carrot",
+    			"display_name": "carrot"
+    		},
+    		{
+    			"label": 52,
+    			"name": "hot dog",
+    			"display_name": "hot dog"
+    		},
+    		{
+    			"label": 53,
+    			"name": "pizza",
+    			"display_name": "pizza"
+    		},
+    		{
+    			"label": 54,
+    			"name": "donut",
+    			"display_name": "donut"
+    		},
+    		{
+    			"label": 55,
+    			"name": "cake",
+    			"display_name": "cake"
+    		},
+    		{
+    			"label": 56,
+    			"name": "chair",
+    			"display_name": "chair"
+    		},
+    		{
+    			"label": 57,
+    			"name": "sofa",
+    			"display_name": "sofa"
+    		},
+    		{
+    			"label": 58,
+    			"name": "pottedplant",
+    			"display_name": "pottedplant"
+    		},
+    		{
+    			"label": 59,
+    			"name": "bed",
+    			"display_name": "bed"
+    		},
+    		{
+    			"label": 60,
+    			"name": "diningtable",
+    			"display_name": "diningtable"
+    		},
+    		{
+    			"label": 61,
+    			"name": "toilet",
+    			"display_name": "toilet"
+    		},
+    		{
+    			"label": 62,
+    			"name": "tvmonitor",
+    			"display_name": "tvmonitor"
+    		},
+    		{
+    			"label": 63,
+    			"name": "laptop",
+    			"display_name": "laptop"
+    		},
+    		{
+    			"label": 64,
+    			"name": "mouse",
+    			"display_name": "mouse"
+    		},
+    		{
+    			"label": 65,
+    			"name": "remote",
+    			"display_name": "remote"
+    		},
+    		{
+    			"label": 66,
+    			"name": "keyboard",
+    			"display_name": "keyboard"
+    		},
+    		{
+    			"label": 67,
+    			"name": "cell phone",
+    			"display_name": "cell phone"
+    		},
+    		{
+    			"label": 68,
+    			"name": "microwave",
+    			"display_name": "microwave"
+    		},
+    		{
+    			"label": 69,
+    			"name": "oven",
+    			"display_name": "oven"
+    		},
+    		{
+    			"label": 70,
+    			"name": "toaster",
+    			"display_name": "toaster"
+    		},
+    		{
+    			"label": 71,
+    			"name": "sink",
+    			"display_name": "sink"
+    		},
+    		{
+    			"label": 72,
+    			"name": "refrigerator",
+    			"display_name": "refrigerator"
+    		},
+    		{
+    			"label": 73,
+    			"name": "book",
+    			"display_name": "book"
+    		},
+    		{
+    			"label": 74,
+    			"name": "clock",
+    			"display_name": "clock"
+    		},
+    		{
+    			"label": 75,
+    			"name": "vase",
+    			"display_name": "vase"
+    		},
+    		{
+    			"label": 76,
+    			"name": "scissors",
+    			"display_name": "scissors"
+    		},
+    		{
+    			"label": 77,
+    			"name": "teddy bear",
+    			"display_name": "teddy bear"
+    		},
+    		{
+    			"label": 78,
+    			"name": "hair drier",
+    			"display_name": "hair drier"
+    		},
+    		{
+    			"label": 79,
+    			"name": "toothbrush",
+    			"display_name": "toothbrush"
+    		}
+    	]
+    }
+```
+	
 </details>
 
-Put the prototxt file together with the `xmodel` and `label.json` file to `/opt/xilinx/kv260-smartcam/share/vitis_ai_library/models/yolov3_coco_416_tf2/`.
+Put the prototxt file together with xmodel and label.json file to `/opt/xilinx/kv260-smartcam/share/vitis_ai_library/models/yolov3_coco_416_tf2/`.
 
 ```
     opt
@@ -926,11 +925,11 @@ Put the prototxt file together with the `xmodel` and `label.json` file to `/opt/
                             └── label.json
 ```
 
-4. Create the configuration files for yolov3_coco_416_tf2.
+4. Create configuration files for yolov3_coco_416_tf2.
 
-* `preprocess.json`
+* preprocess.json
 
-    The mean and scale of the B, G, R channel is taken from the prototxt of the model.
+    The mean and scale of B, G, R channel is taken from the prototxt of the model.
 
     ```prototxt
     model {
@@ -973,30 +972,29 @@ Put the prototxt file together with the `xmodel` and `label.json` file to `/opt/
       }
     }
     ```
-
-  Use the following command to get the fixpos:
-
-  ```bash
-      xdputil xmodel ./yolov3_coco_416_tf2.xmodel -l
-  
-  ...
-  "input_tensor":[
-                  {
-                      "index":0,
-                      "name":"quant_image_input",
-                      "shape":[
-                          1,
-                          416,
-                          416,
-                          3
-                      ],
-                      "fixpos":6
-                  }
-              ],
-  ...
-      ```
-  
-The configured scale = prototxt_scale \* (2 ^ fixpos) = 0.00390625 \* (2^6) = 0.25.
+	
+	Using the following command to get the fixpos.
+	```bash
+    xdputil xmodel ./yolov3_coco_416_tf2.xmodel -l
+	
+	...
+	"input_tensor":[
+                {
+                    "index":0,
+                    "name":"quant_image_input",
+                    "shape":[
+                        1,
+                        416,
+                        416,
+                        3
+                    ],
+                    "fixpos":6
+                }
+            ],
+	...
+    ```
+	
+	The configured scale = prototxt_scale \* (2 ^ fixpos) = 0.00390625 \* (2^6) = 0.25.
 
     ```json
     {
@@ -1022,7 +1020,7 @@ The configured scale = prototxt_scale \* (2 ^ fixpos) = 0.00390625 \* (2^6) = 0.
 
     ```
 
-* `aiinference.json`
+* aiinference.json:
 
    ```json
    {
@@ -1045,10 +1043,10 @@ The configured scale = prototxt_scale \* (2 ^ fixpos) = 0.00390625 \* (2^6) = 0.
     ]
   }
   ```
+	
+* drawresult.json
 
-* `drawresult.json`
-
-  Here you pick up four classes to be shown: car, person, truck, bicycle; and customize the color for each class as follows:
+  Here we pick up 4 classes to be shown: car, person, truck, bicycle; and customize the color for each class as bellow.
 
     ```json
     {
@@ -1099,19 +1097,19 @@ The configured scale = prototxt_scale \* (2 ^ fixpos) = 0.00390625 \* (2^6) = 0.
 
 ## Next Steps
 
-* Go back to the [KV260 SOM Smart Camera Design Start Page](../smartcamera_landing).
+* Go back to the [KV260 SOM Smart camera design start page](../smartcamera_landing)
 
 ## References
 
-* *Vitis AI User Guide* ([UG1414](https://docs.xilinx.com/access/sources/dita/map?isLatest=true&ft:locale=en-US&url=ug1414-vitis-ai))
+* Vitis AI User Guide [UG1414](https://docs.xilinx.com/r/en-US/ug1414-vitis-ai)
 
 ### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
 You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2022-2023 Advanced Micro Devices, Inc</p>
+<p align="center">Copyright&copy; 2022 Xilinx</p>

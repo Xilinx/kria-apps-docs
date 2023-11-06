@@ -6,11 +6,11 @@
 
  The PL design provides a platform to support transmission of Ethernet traffic based on traffic shaping protocols. The traffic can be control information to be passed between different nodes in a Robotics system or between various Industrial Field devices. The requirement in these systems would be that the traffic is deterministic.
 
- It also has an RS485 PMOD interface, which can be used to connect to RS485 peripherals such as actuators, sensors, and so on. These could be components in a Robotics system or  part of a Field device.
+ It also has an RS485 PMOD interface, which can be used to connect to RS485 peripherals such as actuators, sensors, and so on. These could be components in a Robotics system or  part of a Field device.  
 
  The following figure shows the top-level hardware architecture of the reference design.
 
-![Hardware Architecture block diagram](media/hw_arch_tsn.png)
+![Hardware Architecture block diagram](../media/hw_arch_tsn.png)
 
 ## TSN IP
 
@@ -67,9 +67,9 @@ The Test PMOD controller is a user IP that drives the [Digilent Test PMOD](https
 
 The TSN application can support multiple publishers and subscribers. When the publisher queues up a packet for transmission, it writes a unique 8-bit word to slv_reg*, which is then transmitted on the PMOD pins. Similarly, when the subscriber receives a packet, it writes a unique 8-bit word to slv_reg*, which is then transmitted on the PMOD pins. The PMOD pins of the publisher and the subscriber are hooked up to a scope and are used to measure an end-to-end application latency. The TSN pub sub application sets the MUX (slv_reg0) to 0 before writing the signature value. The figure below shows the mapping on the PMOD pins when MUX is set to 0 and 1.
 
-![Test PMOD pin mapping](media/test_pmod.png)
+![Test PMOD pin mapping](../media/test_pmod.png)
 
-To view scheduled and best effort traffic, the MUX value is set to 1. If Qbv schedule is set, for example, a time slot is programmed with 70% scheduled traffic and 30% best effort traffic, then viewing tlast signal of received scheduled traffic and tlast signal of received best effort traffic on a scope confirms that Qbv is working as expected. Tlast indicates the end of a packet. Transmit signals can also be monitored, but note these signals are on the outside of the TSN IP and the traffic is yet to be scheduled.
+To view scheduled and best effort traffic, the MUX value is set to 1. If Qbv schedule is set, for example, a time slot is programmed with 70% scheduled traffic and 30% best effort traffic, then viewing tlast signal of received scheduled traffic and tlast signal of received best effort traffic on a scope confirms that Qbv is working as expected. Tlast indicates the end of a packet. Transmit signals can also be monitored, but note these signals are on the outside of the TSN IP and the traffic is yet to be scheduled. 
 
 The other signal that is monitored to see if the Transmitter and Receiver clocks are in sync is the PTP clock.
 

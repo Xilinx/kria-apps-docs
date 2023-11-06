@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Creating a Vitis Platform &mdash; Kria™ KR260  documentation</title>
+  <title>Creating a Vitis Platform &mdash; Kria™ KR260 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -34,8 +34,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Known Issues" href="ros2_perception_node/docs/issue-perception.html" />
-    <link rel="prev" title="Board Setup and Application Deployment" href="ros2_perception_node/docs/app_deployment.html" /> 
+    <link rel="next" title="Build and Instructions" href="ros2_multinode_communication_via_tsn/src/sw_build_instructions.html" />
+    <link rel="prev" title="Using Vivado to Build the Hardware Design" href="build_vivado_design.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -50,6 +50,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <a href="../index.html" class="icon icon-home"> Kria™ KR260
             <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                2022.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -61,6 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
@@ -83,7 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="ros2_perception_node/ros2_perception_node_landing.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ros2_perception_node/ros2_perception_node_landing.html#quick-start">Quick Start</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="ros2_perception_node/ros2_perception_node_landing.html#tutorials">Tutorials</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">KR260 Starter Kit Linux Boot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">Linux Boot</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Creating a Vitis Platform</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
@@ -94,6 +98,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="generating_custom_firmware.html">Generate Custom Firmware</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_perception_node/ros2_perception_node_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ros2_perception_node/ros2_perception_node_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -115,7 +120,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="ros2_perception_node/ros2_perception_node_landing.html">Perception Stack Application</a> &raquo;</li>
+          <li><a href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications Via TSN</a> &raquo;</li>
       <li>Creating a Vitis Platform</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/build_vitis_platform.md.txt" rel="nofollow"> View page source</a>
@@ -135,12 +140,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Vitis™­ Unified Software Platform of the appropriate version</p></li>
+<li><p>AMD Vitis™­ Unified Software Platform of the appropriate version</p></li>
 </ul>
 <div class="section" id="accessing-the-tutorial-reference-files">
 <h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Permalink to this heading">¶</a></h3>
 <blockquote>
-<div><p><strong>Note</strong>: Skip the following steps if the design files have already been cloned and extracted to a working repository.</p>
+<div><p><em><strong>Note</strong></em>: Skip the following steps if the design files have already been cloned and extracted to a working repository.</p>
 </div></blockquote>
 <ol>
 <li><p>To access the reference files, type the following into a terminal:</p>
@@ -155,12 +160,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="generating-a-vitis-software-platform">
 <h2>Generating a Vitis Software Platform<a class="headerlink" href="#generating-a-vitis-software-platform" title="Permalink to this heading">¶</a></h2>
 <ol>
-<li><p>Go to the working directory</p>
+<li><p>Go to the working directory.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$working_dir</span>/
 </pre></div>
 </div>
 </li>
-<li><p>To build the platform, run the following command. The Makefile calls a lower-level Makefile to generate a platform. If an XSA is not already available, it builds that as well.</p>
+<li><p>To build the platform, run the following command. The Makefile calls a lower-level Makefile to generate a platform. It also builds an XSA if it is not already available.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make platform <span class="nv">PFM</span><span class="o">=</span>&lt;platform_name&gt;
 </pre></div>
 </div>
@@ -185,11 +190,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$working_dir</span>/platforms/xilinx_&lt;platform_name&gt;_&lt;version_number&gt;
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">xpfm</span></code> file in this directory is used as an input when building the Vitis application acceleration projects. It exposes all the essential platform interfaces like clock, interrupts, master AXI interfaces, and slave AXI interfaces for the accelerator to connect to.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">xpfm</span></code> file in this directory is used as an input when building the Vitis application acceleration projects. It exposes all the essential platform interfaces like clock, interrupts, master AXI interfaces, and slave AXI interfaces, which allow the accelerator to connect to them.</p>
 </li>
 </ol>
 <blockquote>
-<div><p><strong>Note</strong>: The software components (boot, smp_linux, etc.) in this platform are empty. The software components are generated later when building Petalinux.</p>
+<div><p><em><strong>Note</strong></em>: The software components (boot, smp_linux, and so on.) in this platform are empty. The software components are generated later when building PetaLinux.</p>
 </div></blockquote>
 </div>
 <div class="section" id="next-step">
@@ -205,7 +210,7 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright&copy; 2023 Xilinx</p></div>
+--><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></div>
 </div>
 
 
@@ -214,15 +219,15 @@ Unless required by applicable law or agreed to in writing, software distributed 
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ros2_perception_node/docs/app_deployment.html" class="btn btn-neutral float-left" title="Board Setup and Application Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ros2_perception_node/docs/issue-perception.html" class="btn btn-neutral float-right" title="Known Issues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="build_vivado_design.html" class="btn btn-neutral float-left" title="Using Vivado to Build the Hardware Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ros2_multinode_communication_via_tsn/src/sw_build_instructions.html" class="btn btn-neutral float-right" title="Build and Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 18, 2023.
+      <span class="lastupdated">Last updated on November 06, 2023.
       </span></p>
   </div>
 
