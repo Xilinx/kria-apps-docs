@@ -19,9 +19,9 @@ Overview
 *******************************
 
 .. toctree::
-  :maxdepth: 1
-  
-  Introduction <docs/introduction_aib>
+   :maxdepth: 1
+
+   Introduction <docs/introduction_aib>
 
 
 Features
@@ -39,9 +39,9 @@ Quick Start
 *******************************
 
 .. toctree::
-  :maxdepth: 1
-  
-  Setting up the Board and Application deployment <docs/app_deployment_aib>
+   :maxdepth: 1
+
+   Setting Up the Board and Application Deployment <docs/app_deployment_aib>
 
 
 ***************************
@@ -49,16 +49,16 @@ Tutorials
 ***************************
 
 .. toctree::
-  :maxdepth: 1
-  
-  Customizing AI Models used in the Application <docs/customize_ai_models-aib>
-  Building the Design components <../building_the_design>
-  Building the Hardware design using Vivado <../build_vivado_design>
-  Creating a Vitis Platform <../build_vitis_platform>
-  Integrating an overlay into the platform <../build_accel>
-  Generating Custom Firmaware <../generating_custom_firmware>
-  Kria Starter Kit Linux Boot <../kria_starterkit_linux_boot>
-  Rebuilding Application Docker Containers <../build_application_docker_container>
+   :maxdepth: 1
+
+   Customizing AI Models Used in the Application <docs/customize_ai_models-aib>
+   Building the Design Components <../building_the_design>
+   Building the Hardware Design Using Vivado <../build_vivado_design>
+   Creating a Vitis Platform <../build_vitis_platform>
+   Integrating an Overlay into the Platform <../build_accel>
+   Generating Custom Firmware <../generating_custom_firmware>
+   Kria Starter Kit Linux Boot <../kria_starterkit_linux_boot>
+   Rebuilding Application Docker Containers <../build_application_docker_container>
 
 
 ********************
@@ -66,12 +66,24 @@ Architecture
 ********************
 
 .. toctree::
-  :maxdepth: 1
+   :maxdepth: 1
+
+   Software Architecture - Platform <docs/sw_arch_platform_aib>
+   Software Architecture - Accelerator <docs/sw_arch_accel_aib>
+   Hardware Architecture - Platform <docs/hw_arch_platform_aib>
+   Hardware Architecture - Accelerator <docs/hw_arch_accel_aib>
+
+
+
+*******************************
+Repository
+*******************************
+
+.. toctree::
+   :maxdepth: 1
   
-  Software Architecture - Platform <docs/sw_arch_platform_aib>
-  Software Architecture - Accelerator <docs/sw_arch_accel_aib>
-  Hardware Architecture - Platform <docs/hw_arch_platform_aib>
-  Hardware Architecture - Accelerator <docs/hw_arch_accel_aib>
+   Software Repository for aibox-reid <https://github.com/Xilinx/aibox-reid>
+   Software Repository for aibox-dist <https://github.com/Xilinx/aibox-dist>
 
 
 ******
@@ -79,10 +91,10 @@ Other
 ******
 
 .. toctree::
-  :maxdepth: 1
-  
-  Debugging <docs/debug-aib>
-  Known Issues <docs/issue-aib>
+   :maxdepth: 1
+
+   Debugging <docs/debug-aib>
+   Known Issues <docs/issue-aib>
 
 
 
@@ -92,13 +104,3 @@ Xilinx Support
 
 GitHub issues will be used for tracking requests and bugs. For questions, go to `forums.xilinx.com <http://forums.xilinx.com/>`_.
 
-
-License
-------------------------------
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
-
-You may obtain a copy of the License at `apache.org/licenses/LICENSE-2.0 <http://www.apache.org/licenses/LICENSE-2.0>`_.
-
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
