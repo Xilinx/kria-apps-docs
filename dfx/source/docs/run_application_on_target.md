@@ -59,7 +59,7 @@ ubuntu@kria:~$ sudo xmutil listapps
                 k26-starter-kits            XRT_FLAT                k26-starter-kits            XRT_FLAT               (0+0)                  -1
 ```
 
-The required accelerator can be loaded using the command "sudo xmutil loadapp". By default, running loadapp the first time will load the accelerator to slot 0, and running loadapp the second time will load it to slot 1.
+The required accelerator can be loaded using the command "sudo xmutil loadapp". By default, running loadapp the first time will load the accelerator to slot 0, and running loadapp the second time will load it to slot 1. Running loadapp for an accelerator will also load the required shell bitstream/firmware (e.g. xlnx-firmware-k26-dfx-2rp) prior to loading the accelerator into the slot.
 
 ```text
 ubuntu@kria:~$ sudo xmutil loadapp AES128
@@ -101,12 +101,13 @@ ubuntu@kria:~$ sudo xmutil listapps
                 k26-starter-kits            XRT_FLAT                k26-starter-kits            XRT_FLAT               (0+0)                  -1
 ```
 
-**Note**: After the DFX shell is loaded, the accelerator in each slot can be unloaded by running the unloadapp command along with the slot number.
+**Note**: After the DFX shell is loaded, the accelerator in each slot can be unloaded by running the unloadapp command along with the slot number. This will keep the shell bitstream (k26_2rp) loaded, allowing other RMs(partial bitstreams) to be loaded. It is also required to unload the shell firmware/bitstream (e.g. xlnx-firmware-k26-dfx-2rp) in order to load another flat bitstream(e.g. kv260-smartcam).
 
 Example:
 
 - Unload accelerator from slot 0 using "sudo xmutil unloadapp 0"
 - Unload accelerator from slot 1 using "sudo xmutil unloadapp 1"
+- Unload base shell firmware/bitstream using "sudo xmutil unloadapp base" before loading flat accelerator such as k26-starter-kits
 
 ## Jupyter Notebook with pre-built accelerators
 
