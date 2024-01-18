@@ -104,14 +104,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#compile-the-dtsi-to-dtbo-using-dtc">Compile the .dtsi to .dtbo using DTC</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#using-fpgamanger-custom-bbclass-in-petalinux">Using fpgamanger_custom bbclass in PetaLinux</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-dfx-user-dts-bbclass-in-yocto">Using dfx_user_dts bbclass in Yocto</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Tools and Input required</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-dtbo-file">Creating .dtbo file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-fpgamanger-custom-bbclass-in-petalinux">Using fpgamanger_custom bbclass in PetaLinux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Tools and Input required</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-dtbo-file-yocto">Generate .dtbo file (Yocto)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#generate-dtbo-file">Generate .dtbo file</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#using-fpgamanger-dtg-bbclass-in-petalinux">Using fpgamanger_dtg bbclass in PetaLinux</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Tools and Input required</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Generate .dtbo file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Tools and Input required</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Generate .dtbo file</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
@@ -120,6 +126,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
@@ -158,6 +165,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Here are the three recommended ways:</p>
 <ol class="simple">
 <li><p>In AMD Software Command-Line Tools (XSCT), use Device Tree Generator (DTG) and .xsa file to generate .dtsi, and Device Tree Compiler (DTC) to compile a .dtbo file</p></li>
+<li><p>Manually create .dtsi file, and in Yocto, use dfx_user_dts bbclass to create .dtbo</p></li>
 <li><p>Manually create .dtsi file, and in PetaLinux, use fpgamanger_custom bbclass to create .dtbo</p></li>
 <li><p>In PetaLinux, use fpgamanger_dtg bbclass tools and petalinux-build to generate .dtsi file from .xsa file, and compiling it into .dtbo.</p></li>
 </ol>
@@ -214,11 +222,68 @@ hsi close_hw_design <span class="o">[</span>current_hw_design<span class="o">]</
 <p>Rename the pl.dtbo to the appropriate name.</p>
 </div>
 </div>
-<div class="section" id="using-fpgamanger-custom-bbclass-in-petalinux">
-<h2>Using fpgamanger_custom bbclass in PetaLinux<a class="headerlink" href="#using-fpgamanger-custom-bbclass-in-petalinux" title="Permalink to this heading">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">fpgamanager_custom</span></code> bitbake class is a helper class to generate a set of FPGA firmware binaries. This method requires that user hand write their own .dtsi file.</p>
+<div class="section" id="using-dfx-user-dts-bbclass-in-yocto">
+<h2>Using dfx_user_dts bbclass in Yocto<a class="headerlink" href="#using-dfx-user-dts-bbclass-in-yocto" title="Permalink to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">dfx_user_dts</span></code> bitbake class is a helper class that can be used by Yocto to generate a set of FPGA firmware binaries. This method requires that user hand write their own .dtsi file. This has been supported starting in 2024.1. The same bitbake class applies for PetaLinux, but this section aims to provide an example of how to use this bitbake class in Yocto.</p>
 <div class="section" id="id1">
 <h3>Tools and Input required<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<ol class="simple">
+<li><p>Yocto of the appropriate version (but must be 2023.2 and later)</p></li>
+<li><p>Yocto project for Kria SOM of the appropriate version, created by following instructions in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html#prepare-the-build-environment">Prepare the Build Environment</a></p></li>
+</ol>
+<p>The following hardware design hand-off artifacts are required:</p>
+<ol class="simple">
+<li><p>PL bitstream - applies to Vivado or Vitis designs</p></li>
+<li><p>Device tree overlay source file - the user needs to create this file based on the PL hardware design</p></li>
+<li><p>json file - specifies if the overlay is slotted or flat and required by dfx-mgr. More information can be found <a class="reference internal" href="target.html"><span class="doc">here</span></a></p></li>
+<li><p>Xclbin file - only applies to Vitis designs</p></li>
+</ol>
+</div>
+<div class="section" id="creating-dtbo-file">
+<h3>Creating .dtbo file<a class="headerlink" href="#creating-dtbo-file" title="Permalink to this heading">¶</a></h3>
+<p>After following <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html#prepare-the-build-environment">Prepare the Build Environment</a> instructions, you should be in <code class="docutils literal notranslate"><span class="pre">$yocto_workspace/build</span></code>.</p>
+<p>Create a folder <code class="docutils literal notranslate"><span class="pre">$yocto_workspace/sources/meta-kria/recipes-firmware/&lt;firmware-name&gt;/files</span></code>. Put the artifacts, <code class="docutils literal notranslate"><span class="pre">&lt;firmware-name&gt;.dtsi</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;firmware-name&gt;.bit</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;firmware-name&gt;.xclbin</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;firmware-name&gt;.dtsi</span></code> in the folder created.</p>
+<p>Create a file <code class="docutils literal notranslate"><span class="pre">$yocto_workspace/sources/meta-kria/recipes-firmware/&lt;firmware-name&gt;/&lt;firmware-name&gt;.bb</span></code> with the following content. You can find the appropriate <code class="docutils literal notranslate"><span class="pre">&lt;machine-name&gt;</span></code> in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html">Kria Yocto Support page</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>LICENSE = &quot;MIT&quot;
+LIC_FILES_CHKSUM = &quot;file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302&quot;
+
+inherit dfx_user_dts
+
+SRC_URI = &quot;\
+    file://&lt;firmware-name&gt;.bit \
+    file://&lt;firmware-name&gt;.dtsi \
+    file://shell.json \
+    file://&lt;firmware-name&gt;.xclbin \
+    &quot;
+
+COMPATIBLE_MACHINE ?= &quot;^$&quot;
+COMPATIBLE_MACHINE:&lt;machine-name&gt; = &quot;&lt;machine-name&gt;&quot;
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">$yocto_workspace/build/conf/local.conf</span></code>, add the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MACHINE_FEATURES</span> <span class="o">+=</span> <span class="s2">&quot;fpga-overlay&quot;</span>
+<span class="n">IMAGE_INSTALL</span><span class="p">:</span><span class="n">append</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="se">\</span>
+<span class="s2">        &lt;firmware-name&gt; </span><span class="se">\</span>
+<span class="s2">        fpga-manager-script </span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+</pre></div>
+</div>
+<p>You can then bitbake the recipe with the command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="n">MACHINE</span><span class="o">=&lt;</span><span class="n">machine</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span> <span class="n">bitbake</span> <span class="o">&lt;</span><span class="n">firmware</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span> 
+</pre></div>
+</div>
+<p>You can find the compiled .dtbo files in various locations in <code class="docutils literal notranslate"><span class="pre">$yocto_workspace/build</span></code> using command <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">*</span> <span class="pre">-iname</span> <span class="pre">&lt;firmware-name&gt;.dtbo</span></code>.</p>
+<p>If you build the wic image using command below, you will then find the firmware(.bit.bin, .dtbo, .xclbin, .json files) on target in <code class="docutils literal notranslate"><span class="pre">/lib/firmware/xilinx/&lt;firmware-name&gt;</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MACHINE</span><span class="o">=&lt;</span><span class="n">machine</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span> <span class="n">bitbake</span> <span class="n">kria</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">full</span><span class="o">-</span><span class="n">cmdline</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="using-fpgamanger-custom-bbclass-in-petalinux">
+<h2>Using fpgamanger_custom bbclass in PetaLinux<a class="headerlink" href="#using-fpgamanger-custom-bbclass-in-petalinux" title="Permalink to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">fpgamanager_custom</span></code> bitbake class is a helper class to generate a set of FPGA firmware binaries. This method requires that user hand write their own .dtsi file. This has been depreciated starting in 2024.1. The same bitbake class applies for Yocto, but this section aims to provide an example of how to use this bitbake class in PetaLinux.</p>
+<div class="section" id="id2">
+<h3>Tools and Input required<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
 <ol class="simple">
 <li><p>Petalinux of the appropriate version</p></li>
 <li><p>SOM BSP of the appropriate release</p></li>
@@ -230,6 +295,12 @@ hsi close_hw_design <span class="o">[</span>current_hw_design<span class="o">]</
 <li><p>json file - specifies if the overlay is slotted or flat and required by dfx-mgr. More information can be found <a class="reference internal" href="target.html"><span class="doc">here</span></a></p></li>
 <li><p>Xclbin file - only applies to Vitis designs</p></li>
 </ol>
+</div>
+<div class="section" id="generate-dtbo-file-yocto">
+<h3>Generate .dtbo file (Yocto)<a class="headerlink" href="#generate-dtbo-file-yocto" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware">Kria apps firmware</a> for example dtsi files
+based on the <code class="docutils literal notranslate"><span class="pre">fpgamanager_custom</span></code> class used in the AMD accelerated applications.</p>
+<p>First. create</p>
 </div>
 <div class="section" id="generate-dtbo-file">
 <h3>Generate .dtbo file<a class="headerlink" href="#generate-dtbo-file" title="Permalink to this heading">¶</a></h3>
@@ -263,8 +334,8 @@ $tmp_folder location can be found at <code class="docutils literal notranslate">
 <div class="section" id="using-fpgamanger-dtg-bbclass-in-petalinux">
 <h2>Using fpgamanger_dtg bbclass in PetaLinux<a class="headerlink" href="#using-fpgamanger-dtg-bbclass-in-petalinux" title="Permalink to this heading">¶</a></h2>
 <p>Alternatively, you can use the <code class="docutils literal notranslate"><span class="pre">fpgamanager_dtg</span></code> bitbake class which uses the AMD device tree generator (dtg) to generate a device tree overlay from a Vivado or Vitis-generated XSA file.</p>
-<div class="section" id="id2">
-<h3>Tools and Input required<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="id3">
+<h3>Tools and Input required<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
 <ol class="simple">
 <li><p>Petalinux of the appropriate version</p></li>
 <li><p>SOM BSP of the appropriate release</p></li>
@@ -278,8 +349,8 @@ $tmp_folder location can be found at <code class="docutils literal notranslate">
 file that will be appended to the dtg-generated device tree file</p></li>
 </ol>
 </div>
-<div class="section" id="id3">
-<h3>Generate .dtbo file<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="id4">
+<h3>Generate .dtbo file<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
 <p>First, run the following command to create a new PetaLinux project from the provided SOM bsp file:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;board&gt;-&lt;version&gt;.bsp
 <span class="nb">cd</span> xilinx-&lt;board&gt;-&lt;version&gt;
@@ -332,8 +403,8 @@ $tmp_folder location can be found at <code class="docutils literal notranslate">
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 03, 2023.
+    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 18, 2024.
       </span></p>
   </div>
 

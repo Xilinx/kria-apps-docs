@@ -19,6 +19,9 @@ This tutorial shows how to build the hardware design for applications running on
 ## Prerequisites
 
 * AMD Vivado Design Suite&trade; of the appropiate version
+* TSN Subsytem IP evaluation license when building the kd240_motor_ctrl_qei platform.
+
+> **Info**: To request TSN Subsystem IP evaluation license, send an email to [1gtsn_eval_request@amd.com](1gtsn_eval_request@amd.com).
 
 ### Accessing the Tutorial Reference Files
 
@@ -47,6 +50,8 @@ This tutorial shows how to build the hardware design for applications running on
    | Built-in self test (BIST) | kd240_bist |
    | FOC motor control with position sensor | kd240_motor_ctrl_qei |
    | ROS TSN Pub Sub |  kd240_motor_ctrl_qei |
+
+   Note that the FOC motor control with position sensor and ROS TSN Pub Sub shares a single platform that requires a license for the TSN IP. However, the FOC motor control with position sensor can be used without TSN IP, they are grouped together as that can be a usecase. The TSN IP can be removed for FOC motor control with position sensor application if getting a license is undesireable.
 
 2. To build the XSA, source Vivado, and run the following command. The Makefile uses the scripts/`main.tcl` file to create a Vivado project, populate the block design, and finally build a XSA. The XSA generation can take some time depending on the system specification.
 
