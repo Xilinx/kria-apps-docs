@@ -9,8 +9,9 @@ The dts/dtsi files can be generated in a number of ways, all of which require th
 Here are the three recommended ways:
 
 1. In AMD Software Command-Line Tools (XSCT), use Device Tree Generator (DTG) and .xsa file to generate .dtsi, and Device Tree Compiler (DTC) to compile a .dtbo file
-2. Manually create .dtsi file, and in PetaLinux, use fpgamanger_custom bbclass to create .dtbo
-3. In PetaLinux, use fpgamanger_dtg bbclass tools and petalinux-build to generate .dtsi file from .xsa file, and compiling it into .dtbo.
+2. Manually create .dtsi file, and in Yocto, use dfx_user_dts bbclass to create .dtbo
+3. Manually create .dtsi file, and in PetaLinux, use fpgamanger_custom bbclass to create .dtbo
+4. In PetaLinux, use fpgamanger_dtg bbclass tools and petalinux-build to generate .dtsi file from .xsa file, and compiling it into .dtbo.
 
 Note that with any ways of generating DTSI files - the generated .dtsi file will likely require user modification before they can be fully functional.
 
@@ -70,9 +71,74 @@ dtc -@ -O dtb -o pl.dtbo pl.dtsi
 
 Rename the pl.dtbo to the appropriate name.
 
+## Using dfx_user_dts bbclass in Yocto
+
+The `dfx_user_dts` bitbake class is a helper class that can be used by Yocto to generate a set of FPGA firmware binaries. This method requires that user hand write their own .dtsi file. This has been supported starting in 2024.1. The same bitbake class applies for PetaLinux, but this section aims to provide an example of how to use this bitbake class in Yocto.
+
+### Tools and Input required
+
+1. Yocto of the appropriate version (but must be 2023.2 and later)
+2. Yocto project for Kria SOM of the appropriate version, created by following instructions in [Prepare the Build Environment](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html#prepare-the-build-environment)
+
+The following hardware design hand-off artifacts are required:
+
+1. PL bitstream - applies to Vivado or Vitis designs
+2. Device tree overlay source file - the user needs to create this file based on the PL hardware design
+3. json file - specifies if the overlay is slotted or flat and required by dfx-mgr. More information can be found [here](./target.md)
+4. Xclbin file - only applies to Vitis designs
+
+### Creating .dtbo file
+
+After following [Prepare the Build Environment](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html#prepare-the-build-environment) instructions, you should be in ```$yocto_workspace/build```.
+
+Create a folder ```$yocto_workspace/sources/meta-kria/recipes-firmware/<firmware-name>/files```. Put the artifacts, ```<firmware-name>.dtsi```, ```<firmware-name>.bit```, ```<firmware-name>.xclbin```, ```<firmware-name>.dtsi``` in the folder created.
+
+Create a file ```$yocto_workspace/sources/meta-kria/recipes-firmware/<firmware-name>/<firmware-name>.bb``` with the following content. You can find the appropriate ```<machine-name>``` in [Kria Yocto Support page](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html).
+
+```python
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+
+inherit dfx_user_dts
+
+SRC_URI = "\
+    file://<firmware-name>.bit \
+    file://<firmware-name>.dtsi \
+    file://shell.json \
+    file://<firmware-name>.xclbin \
+    "
+
+COMPATIBLE_MACHINE ?= "^$"
+COMPATIBLE_MACHINE:<machine-name> = "<machine-name>"
+```
+
+In ```$yocto_workspace/build/conf/local.conf```, add the following:
+
+```python
+MACHINE_FEATURES += "fpga-overlay"
+IMAGE_INSTALL:append = " \
+        <firmware-name> \
+        fpga-manager-script \
+        "
+```
+
+You can then bitbake the recipe with the command:
+
+```python
+   MACHINE=<machine-name> bitbake <firmware-name> 
+```
+
+You can find the compiled .dtbo files in various locations in ```$yocto_workspace/build``` using command ```find * -iname <firmware-name>.dtbo```.
+
+If you build the wic image using command below, you will then find the firmware(.bit.bin, .dtbo, .xclbin, .json files) on target in ```/lib/firmware/xilinx/<firmware-name>```
+
+```python
+MACHINE=<machine-name> bitbake kria-image-full-cmdline 
+```
+
 ## Using fpgamanger_custom bbclass in PetaLinux
 
-The `fpgamanager_custom` bitbake class is a helper class to generate a set of FPGA firmware binaries. This method requires that user hand write their own .dtsi file.
+The `fpgamanager_custom` bitbake class is a helper class to generate a set of FPGA firmware binaries. This method requires that user hand write their own .dtsi file. This has been depreciated starting in 2024.1. The same bitbake class applies for Yocto, but this section aims to provide an example of how to use this bitbake class in PetaLinux.
 
 ### Tools and Input required
 
@@ -85,6 +151,13 @@ The following hardware design hand-off artifacts are required:
 2. Device tree overlay source file - the user needs to create this file based on the PL hardware design
 3. json file - specifies if the overlay is slotted or flat and required by dfx-mgr. More information can be found [here](./target.md)
 4. Xclbin file - only applies to Vitis designs
+
+### Generate .dtbo file (Yocto)
+
+Please refer to [Kria apps firmware](https://github.com/Xilinx/kria-apps-firmware) for example dtsi files
+based on the `fpgamanager_custom` class used in the AMD accelerated applications.
+
+First. create 
 
 ### Generate .dtbo file
 

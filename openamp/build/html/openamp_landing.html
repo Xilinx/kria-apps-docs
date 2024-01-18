@@ -139,14 +139,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="openamp-demos">
 <h2>OpenAMP Demos<a class="headerlink" href="#openamp-demos" title="Permalink to this heading">¶</a></h2>
-<p>The 2022.1 (and onward) based Kria Starter Kit Linux BSP contains support for the existing OpenAMP community demos summarized below.
-They require system.dtb to be replaced with openamp.dtb on the SD boot partition. Required wic image and openamp.dtb are included in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#PetaLinux-Board-Support-Packages">BSPs</a>.</p>
+<p>The 2022.1 (and onward) based Kria Starter Kit Linux BSP contains support for the existing OpenAMP community demos summarized below.</p>
 <ul class="simple">
 <li><p>openamp-echo-test - Linux to RPU bare metal communication echo test using rpsmsg</p></li>
 <li><p>openamp-matrix-mul - Linux produces two matrices and sends them to the RPU for multiplication.</p></li>
 <li><p>openamp-rpc-demo - Shows proxy behavior of the RPU as a co-processor to the APU</p></li>
 </ul>
 <p>Details about each example applications can be found in <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1186-zynq-openamp-gsg/OpenAMP-Demos">UG1186</a>.</p>
+<p>In 2022.1 and 2022.2, the PetaLinux BSPs with openamp support require system.dtb to be replaced with openamp.dtb on the SD boot partition. Required wic image and openamp.dtb are included in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#PetaLinux-Board-Support-Packages">BSPs</a>.</p>
+<p>In 2023.1 and newer, both Yocto built PetaLinux and BSP based PetaLinux has OpenAmp packages available for installation on target. To download support, do the following on target:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="nb">open</span><span class="o">-</span><span class="n">amp</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">tree</span>
+<span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">packagegroup</span><span class="o">-</span><span class="n">petalinux</span><span class="o">-</span><span class="n">openamp</span><span class="o">-</span><span class="n">echo</span><span class="o">-</span><span class="n">test</span>
+<span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">packagegroup</span><span class="o">-</span><span class="n">petalinux</span><span class="o">-</span><span class="n">openamp</span><span class="o">-</span><span class="n">matrix</span><span class="o">-</span><span class="n">mul</span>
+<span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">packagegroup</span><span class="o">-</span><span class="n">petalinux</span><span class="o">-</span><span class="n">openamp</span><span class="o">-</span><span class="n">rpc</span><span class="o">-</span><span class="n">demo</span>
+<span class="n">sudo</span> <span class="n">reboot</span>
+</pre></div>
+</div>
+<p>A reboot is required to pick up the OpenAmp device tree.</p>
 <p>To run the OpenAMP applications reference below commands. Note that the <cite>echo start</cite> and <cite>end stop</cite> commands are required for each execution of the example application.</p>
 <p>Echo Test application:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">s</span>                                                             <span class="c1"># This is required so that the ELF loading can occur.</span>
@@ -308,8 +317,8 @@ Remote&gt; Firmware&#39;s rpmsg-rpc-channel going down!
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 03, 2023.
+    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 18, 2024.
       </span></p>
   </div>
 

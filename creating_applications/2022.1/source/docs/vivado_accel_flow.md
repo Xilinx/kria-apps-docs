@@ -39,15 +39,7 @@ This flows starts with Vivado board files containing information on K26, K24, KV
 
 Refer to [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Vivado-Board-Support-Packages) for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.
 
-#### After selecting board
-
-![Board Files](./media/tool_flow_boardfile.PNG)
-
-When selecting the Kria starter kit board file, make sure to click on "connections" to indicate that the SOM and carrier card are connected.
-
-Once Zynq_ultra_ps_e_0 block is added to a design, make sure to click "Run Block Automation" to apply board file settings.
-
-![Board Files](./media/tool_flow_block_automation_marked.PNG)
+Details of how to generate a Vivado design from board file can be found [here](./Generate_vivado_project_from_boardfile.md).
 
 ### Vivado Starter Project in BSP
 

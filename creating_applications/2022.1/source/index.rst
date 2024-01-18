@@ -42,6 +42,7 @@ Kria SOM Accelerator and Custom Carrier Card Firmware Development
    docs/dtsi_dtbo_generation
    docs/bitstream_management
    docs/AI_customization
+   docs/Generate_vivado_project_from_boardfile
 
 
 .. toctree::

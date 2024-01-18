@@ -54,13 +54,25 @@ OpenAMP Demos
 ********************************************************
 
 The 2022.1 (and onward) based Kria Starter Kit Linux BSP contains support for the existing OpenAMP community demos summarized below. 
-They require system.dtb to be replaced with openamp.dtb on the SD boot partition. Required wic image and openamp.dtb are included in `BSPs <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#PetaLinux-Board-Support-Packages>`_.
 
 * openamp-echo-test - Linux to RPU bare metal communication echo test using rpsmsg
 * openamp-matrix-mul - Linux produces two matrices and sends them to the RPU for multiplication.
 * openamp-rpc-demo - Shows proxy behavior of the RPU as a co-processor to the APU
 
 Details about each example applications can be found in `UG1186 <https://docs.xilinx.com/r/en-US/ug1186-zynq-openamp-gsg/OpenAMP-Demos>`_.
+
+
+In 2022.1 and 2022.2, the PetaLinux BSPs with openamp support require system.dtb to be replaced with openamp.dtb on the SD boot partition. Required wic image and openamp.dtb are included in `BSPs <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#PetaLinux-Board-Support-Packages>`_.
+
+In 2023.1 and newer, both Yocto built PetaLinux and BSP based PetaLinux has OpenAmp packages available for installation on target. To download support, do the following on target::
+
+   sudo dnf install open-amp-device-tree
+   sudo dnf install packagegroup-petalinux-openamp-echo-test
+   sudo dnf install packagegroup-petalinux-openamp-matrix-mul
+   sudo dnf install packagegroup-petalinux-openamp-rpc-demo
+   sudo reboot
+
+A reboot is required to pick up the OpenAmp device tree.
 
 To run the OpenAMP applications reference below commands. Note that the `echo start` and `end stop` commands are required for each execution of the example application.
 
