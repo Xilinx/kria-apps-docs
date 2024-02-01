@@ -130,13 +130,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="machine-configurations-for-kria">
 <h2>Machine Configurations for Kria<a class="headerlink" href="#machine-configurations-for-kria" title="Permalink to this heading">¶</a></h2>
 <p>The <a class="reference external" href="https://docs.yoctoproject.org/dev/dev-manual/new-machine.html">machine configurations</a> provided for Kria define the settings used for a given machine when building each recipe. Different artifacts would be built with each unique combination of machine name and bitbake recipe. Machine configuration files for Kria SOM and starter kits can be found in <a class="reference external" href="https://gitenterprise.xilinx.com/Yocto/meta-kria/tree/HEAD/conf/machine">github</a> in release branches for the perspective tool version.</p>
-<p>Machine names and recipes in 2023.1 and forward:</p>
+<p>Machine names and recipes in 2023.1 and forward, for QSPI / boot image generation:</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
 <th>Machine Name</th>
 <th>Bitbake Recipe</th>
-<th>QEMU Support</th>
+<th>Availability</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -144,47 +144,105 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <tr>
 <td>k26-smk</td>
 <td>kria-qspi</td>
-<td>NA</td>
+<td>2023.1 and newer</td>
 <td>QSPI image supporting K26 production SOM and Starter Kit SOM</td>
 </tr>
 <tr>
 <td>k24-smk</td>
 <td>kria-qspi</td>
-<td>NA</td>
+<td>2023.1 and newer</td>
 <td>QSPI image supporting KD240 Starter Kit SOM</td>
 </tr>
 <tr>
+<td>k26-sm</td>
+<td>xilinx-bootbin</td>
+<td>2023.1 and newer</td>
+<td>boot.bin that supports production SOM K26i and K26c</td>
+</tr>
+<tr>
+<td>k24i-sm</td>
+<td>xilinx-bootbin</td>
+<td>2023.2* and newer</td>
+<td>boot.bin that supports production SOM K24i</td>
+</tr>
+<tr>
+<td>k24c-sm</td>
+<td>xilinx-bootbin</td>
+<td>2023.2* and newer</td>
+<td>boot.bin that supports production SOM K24c</td>
+</tr>
+</tbody>
+</table><p>For .wic PetaLinux image generation:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Machine Name</th>
+<th>Bitbake Recipe</th>
+<th>Availability</th>
+<th>QEMU Support</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td>k26-smk</td>
 <td>kria-image-full-cmdline</td>
+<td>2023.1 and newer</td>
 <td>yes</td>
 <td>wic image that dynamically supports both KV260 and KR260</td>
 </tr>
 <tr>
 <td>k24-smk</td>
 <td>kria-image-full-cmdline</td>
+<td>2023.1 and newer</td>
 <td>yes</td>
 <td>wic image that dynamically supports KD240</td>
 </tr>
 <tr>
 <td>k26-smk-kv</td>
 <td>kria-image-full-cmdline</td>
+<td>2023.1 and newer</td>
 <td>yes</td>
 <td>flat wic image that supports KV260, not fully validated on target and meant for development enablement</td>
 </tr>
 <tr>
 <td>k26-smk-kr</td>
 <td>kria-image-full-cmdline</td>
+<td>2023.1 and newer</td>
 <td>yes</td>
 <td>flat wic image that supports KR260, not fully validated on target and meant for development enablement</td>
 </tr>
 <tr>
 <td>k24-smk-kd</td>
 <td>kria-image-full-cmdline</td>
+<td>2023.1 and newer</td>
 <td>yes</td>
 <td>flat wic image that supports KD240, not fully validated on target and meant for development enablement</td>
 </tr>
+<tr>
+<td>k26-sm</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 and newer</td>
+<td>no</td>
+<td>flat wic image that supports production SOM K26i and K26c, not fully validated on target and meant for development enablement</td>
+</tr>
+<tr>
+<td>k24i-sm</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.2* and newer</td>
+<td>no</td>
+<td>flat wic image that supports production SOM K24i, not fully validated on target and meant for development enablement</td>
+</tr>
+<tr>
+<td>k24c-sm</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.2* and newer</td>
+<td>no</td>
+<td>flat wic image that supports production SOM K24c, not fully validated on target and meant for development enablement</td>
+</tr>
 </tbody>
-</table></div>
+</table><p><code class="docutils literal notranslate"><span class="pre">*</span></code> 2023.2 support for production is on repository <a class="reference external" href="https://github.com/Xilinx/yocto-manifests/releases/tag/xlnx-rel-v2023.2_update1">tag xlnx-rel-v2023.2_update1</a></p>
+</div>
 <div class="section" id="build-host-requirements">
 <h2>Build Host Requirements<a class="headerlink" href="#build-host-requirements" title="Permalink to this heading">¶</a></h2>
 <p>Before starting, make sure the build host PC meets <a class="reference external" href="https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#compatible-linux-distribution">these requirements</a>.</p>
@@ -208,14 +266,16 @@ repo --help
 </pre></div>
 </div>
 <p>Fetch all sources</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#repo init to the Xilinx yocto project</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># repo init to the Xilinx yocto project</span>
 repo init -u https://github.com/Xilinx/yocto-manifests.git -b &lt;release-branch&gt;
-<span class="c1">#example: repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2023.1</span>
-<span class="c1">#repo sync to get all sources</span>
+<span class="c1"># Example: repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2023.2</span>
+<span class="c1"># or for tags instead of branch: repo init -u https://github.com/Xilinx/yocto-manifests.git -b refs/tags/xlnx-rel-v2023.2_update1</span>
+<span class="c1"># repo sync to get all sources</span>
 repo sync
-<span class="c1">#repo start a branch</span>
+<span class="c1"># repo start a branch</span>
 repo start &lt;release-branch&gt; --all
-<span class="c1">#example:  repo start rel-v2023.1 --all</span>
+<span class="c1"># example:  repo start rel-v2023.2 --all</span>
+<span class="c1"># or for tags instead of branch: repo start xlnx-rel-v2023.2_update1 --all</span>
 </pre></div>
 </div>
 <p>Source environment:</p>
@@ -344,8 +404,8 @@ HDF_PATH = &quot;/path/to/XSA/file.xsa&quot;
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 03, 2023.
+    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 01, 2024.
       </span></p>
   </div>
 

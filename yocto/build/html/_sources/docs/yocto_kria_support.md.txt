@@ -8,17 +8,30 @@ The Yocto Project provides [extensive documentation](https://docs.yoctoproject.o
 
 The [machine configurations](https://docs.yoctoproject.org/dev/dev-manual/new-machine.html) provided for Kria define the settings used for a given machine when building each recipe. Different artifacts would be built with each unique combination of machine name and bitbake recipe. Machine configuration files for Kria SOM and starter kits can be found in [github](https://gitenterprise.xilinx.com/Yocto/meta-kria/tree/HEAD/conf/machine) in release branches for the perspective tool version.
 
-Machine names and recipes in 2023.1 and forward:
+Machine names and recipes in 2023.1 and forward, for QSPI / boot image generation:
 
-| Machine Name | Bitbake Recipe          | QEMU Support | Description                                                                                            |
-| ------------ | ----------------------- | ------------ | -------------------------------------------------------------------------------------------------------|
-| k26-smk      | kria-qspi               | NA           | QSPI image supporting K26 production SOM and Starter Kit SOM                                           |
-| k24-smk      | kria-qspi               | NA           | QSPI image supporting KD240 Starter Kit SOM                                 |
-| k26-smk      | kria-image-full-cmdline | yes          | wic image that dynamically supports both KV260 and KR260                                               |
-| k24-smk      | kria-image-full-cmdline | yes          | wic image that dynamically supports KD240                                                              |
-| k26-smk-kv   | kria-image-full-cmdline | yes          | flat wic image that supports KV260, not fully validated on target and meant for development enablement |
-| k26-smk-kr   | kria-image-full-cmdline | yes          | flat wic image that supports KR260, not fully validated on target and meant for development enablement |
-| k24-smk-kd   | kria-image-full-cmdline | yes          | flat wic image that supports KD240, not fully validated on target and meant for development enablement |
+| Machine Name | Bitbake Recipe          | Availability      | Description                                                                                            |
+| ------------ | ----------------------- | ----------------- | -------------------------------------------------------------------------------------------------------|
+| k26-smk      | kria-qspi               | 2023.1 and newer  | QSPI image supporting K26 production SOM and Starter Kit SOM                                           |
+| k24-smk      | kria-qspi               | 2023.1 and newer  | QSPI image supporting KD240 Starter Kit SOM                                                            |
+| k26-sm       | xilinx-bootbin          | 2023.1 and newer  | boot.bin that supports production SOM K26i and K26c                                              |
+| k24i-sm      | xilinx-bootbin          | 2023.2* and newer | boot.bin that supports production SOM K24i                                                       |
+| k24c-sm      | xilinx-bootbin          | 2023.2* and newer | boot.bin that supports production SOM K24c                                                       |
+
+For .wic PetaLinux image generation:
+
+| Machine Name | Bitbake Recipe          | Availability      | QEMU Support | Description                                                                                            |
+| ------------ | ----------------------- | ----------------- | ------------ | -------------------------------------------------------------------------------------------------------|
+| k26-smk      | kria-image-full-cmdline | 2023.1 and newer  | yes          | wic image that dynamically supports both KV260 and KR260                                               |
+| k24-smk      | kria-image-full-cmdline | 2023.1 and newer  | yes          | wic image that dynamically supports KD240                                                              |
+| k26-smk-kv   | kria-image-full-cmdline | 2023.1 and newer  | yes          | flat wic image that supports KV260, not fully validated on target and meant for development enablement |
+| k26-smk-kr   | kria-image-full-cmdline | 2023.1 and newer  | yes          | flat wic image that supports KR260, not fully validated on target and meant for development enablement |
+| k24-smk-kd   | kria-image-full-cmdline | 2023.1 and newer  | yes          | flat wic image that supports KD240, not fully validated on target and meant for development enablement |
+| k26-sm       | kria-image-full-cmdline | 2023.1 and newer  | no           | flat wic image that supports production SOM K26i and K26c, not fully validated on target and meant for development enablement|
+| k24i-sm      | kria-image-full-cmdline | 2023.2* and newer | no           | flat wic image that supports production SOM K24i, not fully validated on target and meant for development enablement|
+| k24c-sm      | kria-image-full-cmdline | 2023.2* and newer | no           | flat wic image that supports production SOM K24c, not fully validated on target and meant for development enablement|
+
+```*``` 2023.2 support for production is on repository [tag xlnx-rel-v2023.2_update1](https://github.com/Xilinx/yocto-manifests/releases/tag/xlnx-rel-v2023.2_update1)
 
 ## Build Host Requirements
 
@@ -50,14 +63,16 @@ repo --help
 Fetch all sources
 
 ```shell
-#repo init to the Xilinx yocto project
+# repo init to the Xilinx yocto project
 repo init -u https://github.com/Xilinx/yocto-manifests.git -b <release-branch>
-#example: repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2023.1
-#repo sync to get all sources
+# Example: repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2023.2
+# or for tags instead of branch: repo init -u https://github.com/Xilinx/yocto-manifests.git -b refs/tags/xlnx-rel-v2023.2_update1
+# repo sync to get all sources
 repo sync
-#repo start a branch
+# repo start a branch
 repo start <release-branch> --all
-#example:  repo start rel-v2023.1 --all
+# example:  repo start rel-v2023.2 --all
+# or for tags instead of branch: repo start xlnx-rel-v2023.2_update1 --all
 ```
 
 Source environment:

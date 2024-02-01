@@ -62,7 +62,7 @@ Use Vivado and open  ```hardware/xilinx-kr260-starterkit-2022.2/kr260_starter_ki
 
 ##### Board Files
 
-Alternatively, follow instructions in [Generate Vivado Project from Board Files](../../../creating_applications/source/docs/Generate_vivado_project_from_boardfile.md) to generate a base hardware project from board files.
+Alternatively, follow instructions in [Generate Vivado Project from Board Files](https://xilinx.github.io/kria-apps-docs/creating_applications/generate_vivado_project_boardfile.html) to generate a base hardware project from board files.
 
 #### Add Production SOM only Features
 
