@@ -5,25 +5,27 @@ In this step, we will be creating the firmware for running the Image resizing ap
 ***IMPORTANT : A ***prerequisite*** for this step is the user should know about the Petalinux flow and familar with Yocto recipes***
 
 
-## Petalinux eSDK update 
+## Petalinux eSDK update
 
 You need PetaLinux 2022.1 with eSDK update 1 or later, as the vvas library is released asynchronously and not included in the main 2022.1 petalinux tools release. Download [PetaLinux Tools Installer 2022.1](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html) 
 
 To install PetaLinux, extract the petalinux installer, accept the license, and source the tool's settings script.
 
-1. Set up the PetaLinux environment. 
+1. Set up the PetaLinux environment.
 
 ```
 source <petaLinux_tool_install_dir>/settings.sh
 ```
+
 The eSDK can be used to update the petalinux tool for creating new images or SDKs. The eSDK updates are published here. Upgrade the tool with new eSDK for the '2022.1 update1' release and source the tool's settings script.
 
 ```
 petalinux-upgrade -u 'http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2022.1_update3/' -p 'aarch64'
 ```
+
 The petalinux tool is now updated with '2022.1 update1' Yocto eSDK.
 
-## Platform outputs 
+## Platform outputs
 
 Before creating the petalinux firmware, lets bring all the platform outputs inside a platform_outputs directory. 
 
@@ -74,9 +76,9 @@ The dfx-mgr requires that the files required for an application be loaded in the
 
 ```
 firmware-name = "system.bit.bin";
-``` 
+```
 
-### Generating shell.json 
+### Generating shell.json
 
 - The shell.json file is a metadata file for dfx-mgr. The shell.json only needs the following content. Touch and copy it to the *platform_outputs directory*
 
@@ -87,7 +89,7 @@ firmware-name = "system.bit.bin";
 }
 ```
 
-### fpgamanager Class 
+### fpgamanager Class
 
 - The fpgamanager provides an interface to Linux for configuring the programmable logic (PL). It packs the dtbos and bitstreams in the /lib/firmware/xilinx directory in the root file system. Use the following command to generate the firmware recipe. The recipe will be generated at "project-spec/meta-user/recipes-firmware/tutorial/"
 
@@ -99,9 +101,10 @@ system.bit
 shell.json
 tut_1.dtsi
 dpu.xclbin
-
 ```
+
 Run the following command to creare a tutorial.bb file. It will be created at this location ***project-spec/meta-user/recipes-apps/tutorial/tutorial.bb***. 
+
 ```
 petalinux-create -t apps --template fpgamanager -n tutorial --enable --srcuri " ../../platform_outputs/system.bit  ../../platform_outputs/shell.json   ../../platform_outputs/tut_1.dtsi ../../platform_outputs/dpu.xclbin" --force
 ```
@@ -128,6 +131,7 @@ Smartcam uses an AR1335 MIPI sensor, which requires AP1302 firmware. AP1302 is r
 ```
 mkdir -p project-spec/meta-user/recipes-firmware/ap1302-firmware/
 ```
+
 Create a new file [ap1302-ar1335-single-firmware.bb](./code/kria_vitis_acceleration_flow/image_resizing/petalinux_firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb) and add the below  content for project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb:
 
 ```
@@ -220,11 +224,12 @@ FILES:${PN} += " \
 ```
 
 ##  Create Packagegroup
-Next, we want to create the package group to include both the firmware and software, as well as the AR1335 driver that is needed for this application. [UG1144](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Adding-a-Package-Group) also details this step. 
+Next, we want to create the package group to include both the firmware and software, as well as the AR1335 driver that is needed for this application. [UG1144](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Adding-a-Package-Group) also details this step.
 
 ```
 mkdir -p project-spec/meta-user/recipes-core/packagegroups/
 ```
+
 Create a new file [packagegroup-kv260-example.bb](./code/kria_vitis_acceleration_flow/image_resizing/firmware/packagegroups/packagegroup-kv260-example.bb) and add the following content to file project-spec/meta-user/recipes-core/packagegroups/packagegroup-kv260-example.bb
 
 ```
@@ -255,8 +260,8 @@ Enable the package group by using the below command to get to the configuration 
 
 ```
 petalinux-config -c rootfs
-
 ```
+
 Go to "user packages" dir and select "packagegroup-kv260-example". Click Yes to save the configurations and Exit.
 
 
@@ -264,7 +269,8 @@ Go to "user packages" dir and select "packagegroup-kv260-example". Click Yes to 
 
 
 ## Build the Petalinux WIC Image
-Build the image using the following commands. 
+
+Build the image using the following commands.
 
 
 ```
@@ -272,24 +278,13 @@ petalinux-build
 petalinux-package --wic --bootfiles "ramdisk.cpio.gz.u-boot boot.scr Image system.dtb"
 ```
 
-## Image SD card 
+## Image SD card
 
 Petalinux Image will be generated in the "xilinx-kv260-starterkit-2022.1/images/linux" folder. Navigate to the folder. Using a GUI like balenaEtcher, flash a microSD card with the "petalinux-sdimage.wic" image:
 
 ![](./images/Images/balenca-ethcher.png)
 
 ## Next steps
+
 This completes the Petalinux WIC Image generation. The next step is [running image application on the board](./running-on-board.md).
-
-
-
-
-
-
-
-
-
-
-
-
 
