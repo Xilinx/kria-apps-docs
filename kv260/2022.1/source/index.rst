@@ -3,10 +3,6 @@ Kria KV260 Vision AI Starter Kit Applications
 ###############################################################################################################
 
 
-.. include:: ../../../shared/somtoctree.txt
-
-
-
 .. image:: docs/media/sc_rdme.png
    :width: 200
    :alt: Smart Camera
@@ -49,7 +45,7 @@ The Kria KV260 Vision AI Starter Kit is the first out-of-the box ready evaluatio
 
 Enabled by a growing ecosystem of accelerated applications from the Xilinx App Store, developers of all types can get applications up and running in under 1 hour, with no FPGA experience needed. From there, customization and differentiation can be added via preferred design environments, at any level of abstraction—from application software to AI model to FPGA design.
 
-With both hardware and software development requirements simplified, the KV260 Vision AI Starter Kit is the fastest and easiest platform for application development with the goal of heading towards production volume deployment with the Kria K26 SOMs. The KV260 Vision AI Starter Kit is very accessible and priced at $199, it is a perfect vehicle to leverage during the development phase of your vision applications and further accelerates your time to market.
+With both hardware and software development requirements simplified, the KV260 Vision AI Starter Kit is the fastest and easiest platform for application development with the goal of heading towards production volume deployment with the Kria K26 SOMs. The KV260 Vision AI Starter Kit is very accessible and competitively priced, it is a perfect vehicle to leverage during the development phase of your vision applications and further accelerates your time to market.
 
 
 
@@ -67,12 +63,12 @@ With both hardware and software development requirements simplified, the KV260 V
 
 
 
-
+.. include:: ../../../shared/somtoctree.txt
 
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: KV260 Applications
    :hidden:
 
@@ -84,8 +80,6 @@ With both hardware and software development requirements simplified, the KV260 V
    Built-In Self Test (BIST) <docs/bist/bist_landing>
 
 
-
-
 .. toctree::
    :maxdepth: 3
    :caption: Other Releases
@@ -94,16 +88,14 @@ With both hardware and software development requirements simplified, the KV260 V
    2021.1 <https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/index.html>
    2020.2 <https://xilinx.github.io/kria-apps-docs/kv260/2020.2/build/html/index.html>
 
-
-
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
 
 
 
-
+************************
 Xilinx Support
-=====================================================
+************************
 
 GitHub issues will be used for tracking requests and bugs. For questions, go to `forums.xilinx.com <http://forums.xilinx.com/>`_.
 

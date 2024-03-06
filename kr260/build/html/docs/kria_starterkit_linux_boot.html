@@ -179,20 +179,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>For some applications, it is required to work with commandline instead of GNOME Desktop.</p></li>
 </ul>
 </li>
-<li><p>If not done so yet, perform system update to pull in the latest kernel and AMD packages. There might be some errors during installation. Refer to <a class="reference external" href="#known-issues">known issues</a> if you encounter issues. There are two ways to do this.</p>
-<p>Through snap install, for more information, refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2057043969/Snaps+-+xlnx-config+Snap+for+Certified+Ubuntu+on+Xilinx+Devices">Xilinx config snap Wiki</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo snap install xlnx-config --classic --channel<span class="o">=</span><span class="m">2</span>.x
-</pre></div>
-</div>
-<p>After xlnx-config snap has been installed, run the Xilinx platform setup script, and follow the prompts.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xlnx-config.sysinit
-</pre></div>
-</div>
-<p>Alternatively, the above can be achieved by manually adding the AMD-specific Ubuntu PPAs, and then performing a system update and upgrade to pull in the latest Xilinx libraries. An apt upgrade step might take some time.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo add-apt-repository ppa:xilinx-apps
-sudo add-apt-repository ppa:ubuntu-xilinx/sdk
-sudo apt update
-sudo apt upgrade
+<li><p>If not done so yet, perform system update to pull in the latest kernel and AMD packages. There might be some errors during installation. Refer to <a class="reference external" href="#known-issues">known issues</a> if you encounter issues. In this step we manually add the AMD-specific Ubuntu PPAs, and then perform a system update and upgrade to pull in the latest Xilinx libraries. The apt upgrade step might take some time.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo add-apt-repository ppa:xilinx-apps --yes <span class="o">&amp;&amp;</span>
+sudo add-apt-repository ppa:ubuntu-xilinx/sdk --yes <span class="o">&amp;&amp;</span>
+sudo add-apt-repository ppa:xilinx-apps/xilinx-drivers --yes <span class="o">&amp;&amp;</span>
+sudo apt update --yes <span class="o">&amp;&amp;</span>
+sudo apt upgrade --yes
 </pre></div>
 </div>
 <p><em><strong>Note</strong></em>: if the kernel was updated, make sure to follow the apt upgrade instruction (and command such as <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">reboot</span></code>) to reboot the platform to boot with the latest kernel.</p>
@@ -293,8 +285,8 @@ locale
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 06, 2023.
+    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 

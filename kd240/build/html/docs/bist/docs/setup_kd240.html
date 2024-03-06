@@ -130,7 +130,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Ethernet Switch</p></li>
 <li><p>One <a class="reference external" href="https://digilent.com/reference/pmod/pmodcan/start">PMOD CAN</a></p></li>
 <li><p>10 Male to Male,Female to Female,Female to Male Jumper Wires</p></li>
-<li><p>One RS485 Temperature and Humidity Sensor from <a class="reference external" href="https://www.aliexpress.us/item/2251832868368800.html?gatewayAdapt=glo2usa4itemAdapt">here</a> or <a class="reference external" href="https://www.amazon.com/Temperature-Humidity-Sensor-Display-Modbus/dp/B078NRYBVZ">here</a></p></li>
+<li><p>One RS485 Temperature and Humidity Sensor from <a class="reference external" href="https://www.aliexpress.us/item/2251832868368800.html?gatewayAdapt=glo2usa4itemAdapt">here</a> or <a class="reference external" href="https://www.amazon.com/Temperature-Humidity-Sensor-Display-Modbus/dp/B078NRYBVZ">here</a></p>
+<ul class="simple">
+<li><p>Note: Ubuntu 22.04 kd05 image does not yet have RS485 driver and this test may fail - refer to <a class="reference internal" href="known_issues.html"><span class="doc">known issues</span></a> page for more details.</p></li>
+</ul>
+</li>
 <li><p>Two USB Flash Drives</p></li>
 </ol>
 </div>
@@ -139,9 +143,259 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This page shows how to set up the KD240 before running the BIST application.</p>
 <p>Refer to the KD240 Board and the Interface layout below for connector reference numbers:</p>
 <p><img alt="KD240-Interfaces" src="../../../_images/KD240-Interfaces.png" /></p>
-<p>The following image shows a KD240 with all the hardware connected.</p>
-<p><img alt="KD240-Image" src="../../../_images/KD240-Image.jpg" /></p>
-<p>The BIST application requires the following hardware setup to run
+<p>Test case mapping to board interfaces:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Interface</th>
+<th>External Hardware</th>
+<th>Test Module</th>
+<th>Test Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CAN - J18, PMOD - J2</td>
+<td>MCP25625 PMOD CAN, 3x Male-Male Jumper Wires</td>
+<td>CAN</td>
+<td>can_bus_send</td>
+</tr>
+<tr>
+<td>CAN - J18, PMOD - J2</td>
+<td>MCP25625 PMOD CAN, 3x Male-Male Jumper Wires</td>
+<td>CAN</td>
+<td>can_bus_receive</td>
+</tr>
+<tr>
+<td>USB3.0 (Top port) - U44</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb1_read_performance</td>
+</tr>
+<tr>
+<td>USB3.0 (Top port) - U44</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb1_write_performance</td>
+</tr>
+<tr>
+<td>USB3.0 (Bottom port) - U44</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb2_read_performance</td>
+</tr>
+<tr>
+<td>USB3.0 (Bottom port) - U44</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb2_write_performance</td>
+</tr>
+<tr>
+<td>MicroSD port - J11</td>
+<td>MicroSD Card</td>
+<td>Disk</td>
+<td>sd_read_performance</td>
+</tr>
+<tr>
+<td>MicroSD port - J11</td>
+<td>MicroSD Card</td>
+<td>Disk</td>
+<td>sd_write_performance</td>
+</tr>
+<tr>
+<td>SOM EEPROM</td>
+<td>None</td>
+<td>EEPROM</td>
+<td>som_eeprom</td>
+</tr>
+<tr>
+<td>Carrier Card EEPROM</td>
+<td>None</td>
+<td>EEPROM</td>
+<td>carrier_card_eeprom</td>
+</tr>
+<tr>
+<td>GEM1 PL RJ45 Ethernet - J25B</td>
+<td>Ethernet Cable</td>
+<td>Ethernet</td>
+<td>ethernet1_ping</td>
+</tr>
+<tr>
+<td>GEM1 PL RJ45 Ethernet - J25B</td>
+<td>Ethernet Cable</td>
+<td>Ethernet</td>
+<td>ethernet1_perf</td>
+</tr>
+<tr>
+<td>GEM2 PL RJ45 Ethernet - J25A</td>
+<td>Ethernet Cable</td>
+<td>Ethernet</td>
+<td>ethernet2_ping</td>
+</tr>
+<tr>
+<td>GEM2 PL RJ45 Ethernet - J25A</td>
+<td>Ethernet Cable</td>
+<td>Ethernet</td>
+<td>ethernet2_perf</td>
+</tr>
+<tr>
+<td>GEM0 PS RJ45 Ethernet - J24</td>
+<td>Ethernet Cable</td>
+<td>Ethernet</td>
+<td>ethernet3_ping</td>
+</tr>
+<tr>
+<td>GEM0 PS RJ45 Ethernet - J24</td>
+<td>Ethernet Cable</td>
+<td>Ethernet</td>
+<td>ethernet3_perf</td>
+</tr>
+<tr>
+<td>Brake Connector - J46, 1-Wire Interface -   J47</td>
+<td>Male-Male Jumper Wire</td>
+<td>GPIO</td>
+<td>brake_ctrl_1wire_loopback</td>
+</tr>
+<tr>
+<td>PS I2C Main Bus</td>
+<td>None</td>
+<td>I2C</td>
+<td>ps_i2c_bus_main</td>
+</tr>
+<tr>
+<td>INA260</td>
+<td>None</td>
+<td>IIO</td>
+<td>ina260_current</td>
+</tr>
+<tr>
+<td>Single-ended QEI Connector - J42</td>
+<td>Motor Kit with 24V Power Supply</td>
+<td>Motor</td>
+<td>qei_gate_drive_test</td>
+</tr>
+<tr>
+<td>3-phase Inverter Connector - J32</td>
+<td>Motor Kit with 24V Power Supply</td>
+<td>Motor</td>
+<td>volt_adc_fb_modeopenloop_test</td>
+</tr>
+<tr>
+<td>3-phase Inverter Connector - J32</td>
+<td>Motor Kit with 24V Power Supply</td>
+<td>Motor</td>
+<td>curr_adc_fb_modeopenloop_test</td>
+</tr>
+<tr>
+<td>3-phase Inverter Connector - J32</td>
+<td>Motor Kit with 24V Power Supply</td>
+<td>Motor</td>
+<td>volt_adc_fb_modeoff_test</td>
+</tr>
+<tr>
+<td>3-phase Inverter Connector - J32</td>
+<td>Motor Kit with 24V Power Supply</td>
+<td>Motor</td>
+<td>curr_adc_fb_modeoff_test</td>
+</tr>
+<tr>
+<td>DC Link Connector - J29</td>
+<td>Motor Kit with 24V Power Supply</td>
+<td>Motor</td>
+<td>dc_link_volt_adc_fb_test</td>
+</tr>
+<tr>
+<td>DC Link Connector - J29</td>
+<td>Motor Kit with 24V Power Supply</td>
+<td>Motor</td>
+<td>dc_link_curr_adc_fb_test</td>
+</tr>
+<tr>
+<td>QSPI MTD Device</td>
+<td>None</td>
+<td>MTD</td>
+<td>qspi_read_write</td>
+</tr>
+<tr>
+<td>QSPI MTD Device</td>
+<td>None</td>
+<td>MTD</td>
+<td>qspi_read_performance</td>
+</tr>
+<tr>
+<td>QSPI MTD Device</td>
+<td>None</td>
+<td>MTD</td>
+<td>qspi_write_performance</td>
+</tr>
+<tr>
+<td>PWM   Fan - J13</td>
+<td>Board Fan</td>
+<td>PWM</td>
+<td>fan</td>
+</tr>
+<tr>
+<td>AXI SPI Bus</td>
+<td>None</td>
+<td>SPI</td>
+<td>ad7797_torque_sensor_id_read</td>
+</tr>
+<tr>
+<td>AXI SPI Bus</td>
+<td>None</td>
+<td>SPI</td>
+<td>ad7797_torque_sensor_temperature_read</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_getcap</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_selftest</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_getrandom</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_hash</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_pcrread</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_pcrextend</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_pcrreset</td>
+</tr>
+<tr>
+<td>RS485 - J22</td>
+<td>RS485 Temperature Sensor, Humidity Sensor, 4x Male-Male Jumper Wires, 1x 12V Power Supply</td>
+<td>TTY</td>
+<td>rs485_temp_humidity_sensor_read</td>
+</tr>
+</tbody>
+</table><p>The BIST application requires the following hardware setup to run
 the full suite of hardware tests:</p>
 <ul>
 <li><p>USB Flash Drive (x2)</p>
@@ -186,6 +440,9 @@ Connect the PMOD-CAN(J2) to CAN 2.0(J18) using jumper wires as shown below:</p>
 <li><p>Connect Motor’s AC power jack to J32</p></li>
 </ul>
 </li>
+<li><p>The following image shows a KD240 with all the hardware connected.</p>
+<p><img alt="KD240-Image" src="../../../_images/KD240-Image.jpg" /></p>
+</li>
 </ul>
 </div>
 <div class="section" id="next-steps">
@@ -207,7 +464,7 @@ Connect the PMOD-CAN(J2) to CAN 2.0(J18) using jumper wires as shown below:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 18, 2024.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 

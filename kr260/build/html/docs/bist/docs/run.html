@@ -90,6 +90,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#set-up-the-host-machine">Set up the Host Machine</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#set-up-the-board">Set up the Board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tested-artifacts">Tested Artifacts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#kd240-platform-artifacts">KD240 platform artifacts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kr260-platform-artifacts">KR260 platform artifacts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kv260-platform-artifacts">KV260 platform artifacts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application-docker-image">Application docker image</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#boot-linux">Boot Linux</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#download-and-load-the-bist-pl-firmware">Download and Load the BIST PL Firmware</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setup-ssh-with-x-forwarding">Setup SSH with X-forwarding</a></li>
@@ -196,42 +203,109 @@ the full suite of hardware tests. See the board specific pages:</p>
 <li><p><a class="reference internal" href="setup_kd240.html"><span class="doc">KD240 Board Setup</span></a></p></li>
 </ol>
 </div>
+<div class="section" id="tested-artifacts">
+<h2>Tested Artifacts<a class="headerlink" href="#tested-artifacts" title="Permalink to this heading">¶</a></h2>
+<p>Testing was performed with the following artifacts:</p>
+<div class="section" id="kd240-platform-artifacts">
+<h3>KD240 platform artifacts<a class="headerlink" href="#kd240-platform-artifacts" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Component</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boot Fiwmare</td>
+<td>K24-BootFW-01.00.bin</td>
+</tr>
+<tr>
+<td>Linux Kernel</td>
+<td>5.15.0-9002</td>
+</tr>
+<tr>
+<td>xlnx-firmware-kd240-bist</td>
+<td>0.10.1-0xlnx1</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="kr260-platform-artifacts">
+<h3>KR260 platform artifacts<a class="headerlink" href="#kr260-platform-artifacts" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Component</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boot Firmware</td>
+<td>BOOT_xilinx-k26-starterkit-v2022.1-09152304_update3.BIN</td>
+</tr>
+<tr>
+<td>Linux Kernel</td>
+<td>5.15.0-1023</td>
+</tr>
+<tr>
+<td>xlnx-firmware-kr260-bist</td>
+<td>0.10.1-0xlnx1</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="kv260-platform-artifacts">
+<h3>KV260 platform artifacts<a class="headerlink" href="#kv260-platform-artifacts" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Component</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boot Firmware</td>
+<td>BOOT_xilinx-k26-starterkit-v2022.1-09152304_update3.BIN</td>
+</tr>
+<tr>
+<td>Linux Kernel</td>
+<td>5.15.0-1023</td>
+</tr>
+<tr>
+<td>xlnx-firmware-kv260-bist</td>
+<td>0.10.1-0xlnx1</td>
+</tr>
+</tbody>
+</table><p>Please refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">Kria Wiki</a>
+to obtain latest linux image and boot firmware.</p>
+</div>
+<div class="section" id="application-docker-image">
+<h3>Application docker image<a class="headerlink" href="#application-docker-image" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Docker Image</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xilinx/kria-bist</td>
+<td>2023.1</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 <div class="section" id="boot-linux">
 <h2>Boot Linux<a class="headerlink" href="#boot-linux" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>Testing was performed with:</p>
-<ul>
-<li><p>KD240 platform:</p></li>
-</ul>
-</li>
-</ul>
-<pre><code>| Platform     | Version                         |
-| :----------: | :-----------------------------: |
-| Linux Kernel | 5.15.0-9002                     |
-| Boot Fiwmare | BOOT-k24-smk-20230912123632.bin |
-</code></pre><ul class="simple">
-<li><p>KR260/KV260 platform:</p></li>
-</ul>
-<pre><code>| Platform      | Version                                                 |
-| :-----------: | :-----------------------------------------------------: | 
-| Linux Kernel  | 5.15.0-1023                                             |
-| Boot Firmware | BOOT_xilinx-k26-starterkit-v2022.1-09152304_update3.BIN |
-</code></pre><ul class="simple">
-<li><p>Application packages:</p></li>
-</ul>
-<pre><code>| Application               | Version     |
-| :-----------------------: | :---------: |
-| xlnx-kria-apps-bitstreams | 0.10-0xlnx1 |
-</code></pre><ul class="simple">
-<li><p>Before continuing with the BIST application specific instructions, if not yet
+<p>Before continuing with the BIST application specific instructions, if not yet
 done so, boot Linux with instructions from:</p>
 <ol class="simple">
 <li><p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html">Kria Starter Kit Linux Boot on KV260</a></p></li>
 <li><p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html">Kria Starter Kit Linux Boot on KR260</a></p></li>
 <li><p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/linux_boot.html">Kria Starter Kit Linux Boot on KD240</a></p></li>
 </ol>
-</li>
-</ul>
 </div>
 <div class="section" id="download-and-load-the-bist-pl-firmware">
 <h2>Download and Load the BIST PL Firmware<a class="headerlink" href="#download-and-load-the-bist-pl-firmware" title="Permalink to this heading">¶</a></h2>
@@ -742,8 +816,8 @@ PASSED                                                                   <span c
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 06, 2023.
+    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 

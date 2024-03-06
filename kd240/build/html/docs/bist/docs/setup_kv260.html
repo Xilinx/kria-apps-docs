@@ -137,11 +137,261 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="board-setup">
 <h2>Board Setup<a class="headerlink" href="#board-setup" title="Permalink to this heading">¶</a></h2>
 <p>This page shows how to set up the KV260 before running the BIST application.</p>
-<p>Refer to the KR260 Board and the Interface layout below for connector reference numbers:</p>
+<p>Refer to the KV260 Board and the Interface layout below for connector reference numbers:</p>
 <p><img alt="GitHub Logo" src="../../../_images/KV260-Interfaces.png" /></p>
-<p>The following image shows a KV260 with all the hardware connected.</p>
-<p><img alt="GitHub Logo" src="../../../_images/KV260-Image.png" /></p>
-<p>The BIST application requires the following hardware setup to run
+<p>Test case mapping to board interfaces:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Interface</th>
+<th>External Hardware</th>
+<th>Test Module</th>
+<th>Test Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>USB3.0 (Top port) - U44</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb1_read_performance</td>
+</tr>
+<tr>
+<td>USB3.0 (Top port) - U44</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb1_write_performance</td>
+</tr>
+<tr>
+<td>USB3.0 (Bottom port) - U44</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb2_read_performance</td>
+</tr>
+<tr>
+<td>USB3.0 (Bottom port) - U44</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb2_write_performance</td>
+</tr>
+<tr>
+<td>USB3.0 (Top port) - U46</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb3_read_performance</td>
+</tr>
+<tr>
+<td>USB3.0 (Top port) - U46</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb3_write_performance</td>
+</tr>
+<tr>
+<td>USB3.0 (Bottom port) - U46</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb4_read_performance</td>
+</tr>
+<tr>
+<td>USB3.0 (Bottom port) - U46</td>
+<td>USB Flash Drive</td>
+<td>Disk</td>
+<td>usb4_write_performance</td>
+</tr>
+<tr>
+<td>MicroSD port - J11</td>
+<td>MicroSD Card</td>
+<td>Disk</td>
+<td>sd_read_performance</td>
+</tr>
+<tr>
+<td>MicroSD port - J11</td>
+<td>MicroSD Card</td>
+<td>Disk</td>
+<td>sd_write_performance</td>
+</tr>
+<tr>
+<td>HDMI - J5 and/or Display Port - J6</td>
+<td>1080p/4k Monitor and Power Cable, Display Port/HDMI Cable</td>
+<td>Display</td>
+<td>display_connectivity</td>
+</tr>
+<tr>
+<td>HDMI - J5 and/or Display Port - J6</td>
+<td>1080p/4k Monitor and Power Cable, Display Port/HDMI Cable</td>
+<td>Display</td>
+<td>display_modetest</td>
+</tr>
+<tr>
+<td>SOM EEPROM</td>
+<td>None</td>
+<td>EEPROM</td>
+<td>som_eeprom</td>
+</tr>
+<tr>
+<td>Carrier Card EEPROM</td>
+<td>None</td>
+<td>EEPROM</td>
+<td>carrier_card_eeprom</td>
+</tr>
+<tr>
+<td>RJ45 Ethernet - J10</td>
+<td>Ethernet Cable</td>
+<td>Ethernet</td>
+<td>ethernet1_ping</td>
+</tr>
+<tr>
+<td>RJ45 Ethernet - J10</td>
+<td>Ethernet Cable</td>
+<td>Ethernet</td>
+<td>ethernet1_perf</td>
+</tr>
+<tr>
+<td>PMOD - J2</td>
+<td>PMOD TPH2 Test Header, 4x Female-Female Jumper Wires</td>
+<td>GPIO</td>
+<td>pmod0</td>
+</tr>
+<tr>
+<td>PS I2C Main Bus</td>
+<td>None</td>
+<td>I2C</td>
+<td>ps_i2c_bus_main</td>
+</tr>
+<tr>
+<td>AXI I2C Main Bus</td>
+<td>None</td>
+<td>I2C</td>
+<td>axi_i2c_bus_main</td>
+</tr>
+<tr>
+<td>AXI I2C Channel 0 Bus</td>
+<td>None</td>
+<td>I2C</td>
+<td>axi_i2c_bus_ch0</td>
+</tr>
+<tr>
+<td>INA260</td>
+<td>None</td>
+<td>IIO</td>
+<td>ina260_current</td>
+</tr>
+<tr>
+<td>QSPI MTD Device</td>
+<td>None</td>
+<td>MTD</td>
+<td>qspi_read_write</td>
+</tr>
+<tr>
+<td>QSPI MTD Device</td>
+<td>None</td>
+<td>MTD</td>
+<td>qspi_read_performance</td>
+</tr>
+<tr>
+<td>QSPI MTD Device</td>
+<td>None</td>
+<td>MTD</td>
+<td>qspi_write_performance</td>
+</tr>
+<tr>
+<td>PWM   Fan - J13</td>
+<td>Board Fan</td>
+<td>PWM</td>
+<td>fan</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_getcap</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_selftest</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_getrandom</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_hash</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_pcrread</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_pcrextend</td>
+</tr>
+<tr>
+<td>TPM Hardware</td>
+<td>None</td>
+<td>TPM</td>
+<td>tpm2_pcrreset</td>
+</tr>
+<tr>
+<td>IAS Connector - J7 &amp; AP1302</td>
+<td>AR1335 Sensor</td>
+<td>Video</td>
+<td>ar1335_ap1302_ximagesink</td>
+</tr>
+<tr>
+<td>IAS Connector - J7 &amp; AP1302</td>
+<td>AR1335 Sensor</td>
+<td>Video</td>
+<td>ar1335_ap1302_perf</td>
+</tr>
+<tr>
+<td>IAS Connector - J7 &amp; AP1302</td>
+<td>AR1335 Sensor</td>
+<td>Video</td>
+<td>tpg_ap1302_ximagesink</td>
+</tr>
+<tr>
+<td>IAS Connector - J7 &amp; AP1302</td>
+<td>AR1335 Sensor</td>
+<td>Video</td>
+<td>tpg_ap1302_perf</td>
+</tr>
+<tr>
+<td>Raspberry Pi Camera Connector - J9</td>
+<td>Raspberry Pi Camera Module 2</td>
+<td>Video</td>
+<td>imx219_filesink</td>
+</tr>
+<tr>
+<td>Raspberry Pi Camera Connector - J9</td>
+<td>Raspberry Pi Camera Module 2</td>
+<td>Video</td>
+<td>imx219_perf</td>
+</tr>
+<tr>
+<td>IAS Connector - J8</td>
+<td>AR1335 Sensor</td>
+<td>Video</td>
+<td>ar1335_filesink</td>
+</tr>
+<tr>
+<td>IAS Connector - J8</td>
+<td>AR1335 Sensor</td>
+<td>Video</td>
+<td>ar1335_perf</td>
+</tr>
+</tbody>
+</table><p>The BIST application requires the following hardware setup to run
 the full suite of hardware tests:</p>
 <ul>
 <li><p>USB Flash Drive (x4)</p>
@@ -166,7 +416,7 @@ the host machine.</p>
 </li>
 <li><p>Monitor</p>
 <p><img alt="GitHub Logo" src="../../../_images/KV260-DP_HDMI.png" /></p>
-<p>Before booting, connect a 1080P/4K monitor to the board via either DP and/or
+<p>Before booting, connect a 1080P/4K monitor to the board via either Display Port and/or
 HDMI port.</p>
 </li>
 <li><p>AR1335 IAS-ISP Image Sensor Module</p>
@@ -180,6 +430,9 @@ HDMI port.</p>
 <li><p>RaspberryPi Camera v2 module</p>
 <p><img alt="GitHub Logo" src="../../../_images/KV260-RPi.png" /></p>
 <p>Connect the Raspberry Pi Camera Module to J9 on the KV260.</p>
+</li>
+<li><p>The following image shows a KV260 setup with all the hardware connected.</p>
+<p><img alt="GitHub Logo" src="../../../_images/KV260-Image.png" /></p>
 </li>
 </ul>
 </div>
@@ -202,7 +455,7 @@ HDMI port.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 18, 2024.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 

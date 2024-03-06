@@ -154,6 +154,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>This module tests the tty interface(s) on the AMD Kria™ starter kits.</p>
+<p>Note that this test is expected to fail in on KD240 with Ubuntu classic-22.04-kd05 version as the RS485 driver is in the process of being upstreamed for certified Ubuntu image. This test will still pass with Ubuntu 22.04-kd03 image on KD240, and it will also pass for KR260’s RS485 over AXI lite interface.</p>
 </div>
 <div class="section" id="tests">
 <h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
@@ -194,6 +195,8 @@ points to improper connections.</p>
 <li><p>Occasionally, erroneous values (for example 3276.8) are reported for
 temperature/humidity sensor data and this is due to error in the sensor itself,
 which can be ignored and the test rerun to clear the error.</p></li>
+<li><p>RS485 does not function in Ubuntu 22.04 kd05 as the driver is in the process of
+being upstreamed. The driver is also <a class="reference external" href="https://support.xilinx.com/s/article/000035701?language=en_US">not present in PetaLinux 2023.2 KD240 BSP</a>. Thus, this test is expected to fail in that version.</p></li>
 </ul>
 </div>
 <div class="section" id="next-steps">
@@ -218,7 +221,7 @@ which can be ignored and the test rerun to clear the error.</p></li>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 18, 2024.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 

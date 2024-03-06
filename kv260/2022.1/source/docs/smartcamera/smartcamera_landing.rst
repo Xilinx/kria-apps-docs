@@ -5,7 +5,7 @@ Smart Camera
 
 
 
-The Smart Camera implements face detection with network and display functionality. It comes with built-in machine learning for applications such as pedestrian detection, face detection, and people counting with local display and RTSP streaming.
+The Smart camera implements face detection with network and display functionality. It comes with built-in machine learning for applications such as pedestrian detection, face detection, and people counting with local display and RTSP streaming.
 
 .. image:: ../media/sc_image_landing.jpg
    :width: 800
@@ -30,7 +30,7 @@ Features
 ================================
 
 
-- 4K\@30fps images from a sensor
+- 4K at 30 fps images from a sensor
 - H.264/H.265 encode/decode
 - HDMI or DisplayPort or RTSP out
 - User programmable Deep Learning models
@@ -43,7 +43,7 @@ Quick Start
 .. toctree::
    :maxdepth: 1
   
-   Setting up the Board and Application Deployment <docs/app_deployment>
+   Setting Up the Board and Application Deployment <docs/app_deployment>
 
 
 ***************************
@@ -57,7 +57,7 @@ Tutorials
    Building the Design Components <../building_the_design>
    Building the Hardware Design Using Vivado <../build_vivado_design>
    Creating a Vitis Platform <../build_vitis_platform>
-   Integrating an Overlay Into the Platform <../build_accel>
+   Integrating an Overlay into the Platform <../build_accel>
    Generating Custom Firmware <../generating_custom_firmware>
    Kria Starter Kit Linux Boot <../kria_starterkit_linux_boot>
    Rebuilding Application Docker Containers <../build_application_docker_container>
@@ -86,25 +86,6 @@ Repository
    Software Repository <https://github.com/Xilinx/smartcam>
 
 
-
-******************************
-Related Tutorials
-******************************
-
-These are some examples developing on Kria SOM based on the Smart Camera application.
-
-.. toctree::
-   :maxdepth: 1
-
-   Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application <https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/vitis_accel_flow_smartcam_filter2d_example.html>
-   Vitis Platform Flow Example - Adding Raspberry Pi Camera to SmartCam's Platform <https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/vitis_platform_flow_smartcam_raspi_example.html>
-   Generating DTSI and DTBO Overlay Files for Smartcam <https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/dtsi_dtbo_generation_smartcam_example.html>
-   Vitis Accelerator Flow Example - Rebuilding Smartcam Application On Top of Released Platform, Including Software Development <https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/kria_vitis_acceleration_flow/kria-vitis-acceleration.html>
-
-
-
-
-
 ******
 Other
 ******
@@ -116,8 +97,23 @@ Other
    Known Issues & Limitations <docs/issue-sc>
 
 
+******************************
+Related Tutorials
+******************************
 
-Xilinx Support
+These are some examples developing on Kria SOM based on Smartcam application.
+
+.. toctree::
+   :maxdepth: 1
+  
+   Vitis Accelerator Flow Example - Replacing DPU with Filter2d accelerator in Smartcam application <https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/vitis_accel_flow_smartcam_filter2d_example.html>
+   Vitis Platform Flow Example - Adding Raspberry Pi Camera to SmartCam's Platform <https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/vitis_platform_flow_smartcam_raspi_example.html>
+   Generating DTSI and DTBO Overlay Files for Smartcam <https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/dtsi_dtbo_generation_smartcam_example.html>
+   Vitis Accelerator Flow Example - Rebuilding Smartcam application on top of released platform, including software development <https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/kria_vitis_acceleration_flow/kria-vitis-acceleration.html>
+
+
+
+AMD Support
 ====================================
 
 GitHub issues will be used for tracking requests and bugs. For questions, go to `forums.xilinx.com <http://forums.xilinx.com/>`_.

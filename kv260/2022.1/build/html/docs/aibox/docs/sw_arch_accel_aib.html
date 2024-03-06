@@ -96,7 +96,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Software Architecture - Accelerator</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#software-platform-and-dependencies">Software Platform and Dependencies</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#overview-of-the-distributed-application">Overview of The Distributed Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#overview-of-the-distributed-application">Overview of the Distributed Application</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#server-application-image-capturing-and-streaming">Server Application: Image Capturing and Streaming</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#client-application-monitor-center-tracking-and-rendering">Client Application: Monitor Center Tracking and Rendering</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-step">Next Step</a></li>
@@ -159,34 +159,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="software-platform-and-dependencies">
 <h2>Software Platform and Dependencies<a class="headerlink" href="#software-platform-and-dependencies" title="Permalink to this heading">¶</a></h2>
-<p>We leverage the GStreamer multi-media orchestration platform for application software development. As described in following sections about GStreamer pipeline, all the processing units in the stream pipeline are presented to the user as easily pluggable and changeable plugins, enabling a “low touch” developer adaptation of the reference design pipeline within the context of an open-source and non-vendor specific implementation.</p>
-<p><strong>Vitis AI 2.5.0</strong> is the core underlying component to access the AI inference capability provided by Xilinx DPU.</p>
-<p>To access DPU and other PL hardware accelerator functions from GStreamer, Xilinx developed Vitis Video Analysis SDK (VVAS) to provide convenient and customizable GStreamer plugins for it.</p>
+<p>The GStreamer multimedia orchestration platform is leveraged for application software development. As described in following sections about the GStreamer pipeline, all the processing units in the stream pipeline are presented to you as easily pluggable and changeable plugins, enabling a “low touch” developer adaptation of the reference design pipeline within the context of an open-source and non-vendor specific implementation.</p>
+<p><strong>AMD Vitis™ AI 2.5.0</strong> is the core underlying component to access the AI inference capability provided by the DPU.</p>
+<p>To access the DPU and other programmable (PL) hardware accelerator functions from GStreamer, AMD developed Vitis Video Analysis SDK (VVAS) to provide convenient and customizable GStreamer plugins for it.</p>
 </div>
 <div class="section" id="overview-of-the-distributed-application">
-<h2>Overview of The Distributed Application<a class="headerlink" href="#overview-of-the-distributed-application" title="Permalink to this heading">¶</a></h2>
+<h2>Overview of the Distributed Application<a class="headerlink" href="#overview-of-the-distributed-application" title="Permalink to this heading">¶</a></h2>
 <p><img alt="Overall video data flow" src="../../../_images/aibox-dist-diagram.png" /></p>
-<p>The AI Box Distributed application supports up to 4 distributed SOM with Camera to capture, inference and stream(<strong>1080p, H264/H265</strong>), and 1 dedicated monitoring center SOM with application which accepts up to 4 channels of RTSP streams from the remote IP Cameras.</p>
+<p>The AI Box Distributed application supports up to four distributed SOM with Camera to capture, inference and stream (<strong>1080p, H264/H265</strong>), and one dedicated monitoring center SOM with an application which accepts up to four channels of RTSP streams from the remote IP cameras.</p>
 </div>
 <div class="section" id="server-application-image-capturing-and-streaming">
 <h2>Server Application: Image Capturing and Streaming<a class="headerlink" href="#server-application-image-capturing-and-streaming" title="Permalink to this heading">¶</a></h2>
-<p>The distributed camera application supports capturing images (<strong>1080p, NV12</strong>) from MIPI/USB camera or decoding from on-disk video files, then performs pedestrian detection and pedestrian feature extraction on the stream using the AI inference accelerator (DPU). Next, orientation detection is performed on each detect pedestrian. Finally, the 3 kinds of info, bounding boxes, feature, and orientation are sent together with the encoded H264/H265 as RTSP stream.</p>
-<p>As shown in following figures, decoded NV12 buffers are first pre-processed to prepare the buffer for ingestion by the pedestrian detection model in DPU. This includes color space conversion and resize operations.</p>
-<p>The DPU then performs the inference with <strong>RefineDet</strong> on the incoming buffer, whose results are post-processed to get bounding box around and feature of each pedestrian. The bounding box information is then used to crop the region of interest for the detected person and DPU will run <strong>Orientation</strong> model on it to get orientation info of the pedestrian.</p>
+<p>The distributed camera application supports capturing images (<strong>1080p, NV12</strong>) from MIPI/USB camera or decoding from on-disk video files, then performs pedestrian detection and pedestrian feature extraction on the stream using the AI inference accelerator (DPU). Next, orientation detection is performed on each detect pedestrian. Finally, the three kinds of information, bounding boxes, feature, and orientation are sent together with the encoded H264/H265 as a RTSP stream.</p>
+<p>As shown in following figures, the decoded NV12 buffers are first pre-processed to prepare the buffer for ingestion by the pedestrian detection model in the DPU. This includes color space conversion and resize operations.</p>
+<p>The DPU then performs the inference with <strong>RefineDet</strong> on the incoming buffer, whose results are post-processed to get a bounding box around and feature of each pedestrian. The bounding box information is then used to crop the region of interest for the detected person, and DPU will run the <strong>Orientation</strong> model on it to get orientation information of the pedestrian.</p>
 <p><img alt="refinedet-inference-data-flow" src="../../../_images/aibox-dist-data_flow_refinedet.png" /></p>
-<p>The figure above shows the GStreamer pipeline used in this application. There are 5 main components described below: Pedestrian Preprocess, Pedestrian Detection, Crop, ReID and Orientation, Meta Data Attaching.</p>
+<p>The figure above shows the GStreamer pipeline used in this application. There are five main components described: Pedestrian Preprocess, Pedestrian Detection, Crop, ReID and Orientation, and Meta Data Attaching.</p>
 <ul>
 <li><p>Pedestrian Preprocess</p>
-<p>The pedestrian detection model requires downscaled BGR frames so the received decoded NV12 frames need to be pre-processed to do color space conversion and resizing. For best performance, these steps are performed using a dedicated pre-processing hardware accelerator IP, as described in the <a class="reference internal" href="hw_arch_accel_aib.html"><span class="doc">Hardware Accelerator Architecture</span></a></p>
-<p>NV12 to BGR conversion and image resizing, are to meet the requirement of the DPU AI inference engine. These steps are done in one dedicate preprocessing IP, which is detailed in the <a class="reference external" href="../../smartcamera/docs/hw_arch_accel.md#pre-processing-ips-and-dpu">Accelerator IP Modules</a>, to achieve the optimal framerate and latency.</p>
-<p>vvas_xmultisrc GStreamer plugin from VVAS with customized kernel /opt/xilinx/kv260-aibox-dist/lib/libvvas_pedpp.so are used to integrate the accelerator IP functionality into the pipeline.</p>
-<p>Configuration file: /opt/xilinx/kv260-aibox-dist/share/vvas/ped_pp.json, contains the PL kernel and software kernel library info, which will do the colour conversion and resize.</p>
-</li>
-</ul>
+<p>The pedestrian detection model requires downscaled BGR frames, so the received decoded NV12 frames need to be preprocessed to do color space conversion and resizing. For best performance, these steps are performed using a dedicated preprocessing hardware accelerator IP, as described in the <a class="reference internal" href="hw_arch_accel_aib.html"><span class="doc">Hardware Accelerator Architecture</span></a>.</p>
+<p>NV12 to BGR conversion and image resizing are to meet the requirement of the DPU AI inference engine. These steps are done in one dedicated preprocessing IP, which is detailed in the <a class="reference external" href="../../smartcamera/docs/hw_arch_accel.md#pre-processing-ips-and-dpu">Accelerator IP Modules</a>, to achieve the optimal framerate and latency.</p>
+<p>The vvas_xmultisrc GStreamer plugin from VVAS with the customized kernel <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/lib/libvvas_pedpp.so</span></code> are used to integrate the accelerator IP functionality into the pipeline.</p>
+<p>The configuration file, <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/share/vvas/ped_pp.json</span></code>, contains the PL kernel and software kernel library info, which will do the color conversion and resize.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;kernel-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pp_pipeline_accel:{pp_pipeline_accel_1}&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;library-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;libvvas_pedpp.so&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;kernel-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pp_pipeline_accel:{pp_pipeline_accel_1}&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;library-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;libvvas_pedpp.so&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;mean_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;mean_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
@@ -194,16 +192,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="w">        </span><span class="nt">&quot;scale_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;scale_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;scale_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<ul>
-<li><p>Pedestrian Detection</p>
-<p>vvas_xfilter GStreamer plugin with kernel library /usr/lib/libvvas_dpuinfer.so works as middleware between the application which interfaces with user and underlying Vitis AI library. The Vits AI library then interfaces with DPU to feed the actual AI inference tasks.</p>
-<p>Configuration file: /opt/xilinx/kv260-aibox-dist/share/vvas/refinedet.json, contains the actual model info we will run in this plugin.</p>
 </li>
-</ul>
+<li><p>Pedestrian Detection</p>
+<p>The vvas_xfilter GStreamer plugin with the <code class="docutils literal notranslate"><span class="pre">/usr/lib/libvvas_dpuinfer.so</span></code> kernel library works as middleware between the application which interfaces with the user and underlying Vitis AI library. The Vits AI library then interfaces with DPU to feed the actual AI inference tasks.</p>
+<p>The configuration file, <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/share/vvas/refinedet.json</span></code>, contains the actual model info you will run in this plugin.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;model-name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refinedet_pruned_0_96&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;model-class&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REFINEDET&quot;</span><span class="p">,</span><span class="w"></span>
@@ -215,63 +211,63 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<ul>
+</li>
 <li><p>Crop Plugin</p>
-<p>Ivas_xfilter GStreamer plugin with kernel library /opt/xilinx/kv260-aibox-dist/lib/libvvas_crop.so will do the crop and resize on the input BGR image from previous pedestrian detection, based on the bbox info contained in the inference meta data, and attach the preprocessed images to the incoming inference meta data which will be passed down.</p>
-<p>Configuration file: /opt/xilinx/kv260-aibox-dist/share/vvas/crop.json.</p>
+<p>The Ivas_xfilter GStreamer plugin with the kernel library <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/lib/libvvas_crop.so</span></code> will do the crop and resize on the input BGR image from the previous pedestrian detection, based on the bbox info contained in the inference meta data, and attach the preprocessed images to the incoming inference meta data which will be passed down.</p>
+<p>Configuration file: <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/share/vvas/crop.json</span></code></p>
 </li>
 <li><p>ReID and Orientation</p>
-<p>vvas_xfilter GStreamer plugin with kernel library /opt/xilinx/kv260-aibox-dist/lib/libvvas_reid.so will run ReID on the incoming pedestrian images, get the ReID features, together with the coordinates of each person</p>
-<p>Configuration file: /opt/xilinx/kv260-aibox-dist/share/vvas/reid.json.</p>
+<p>The vvas_xfilter GStreamer plugin with the kernel library <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/lib/libvvas_reid.so</span></code> will run ReID on the incoming pedestrian images, and get the ReID features together with the coordinates of each person.</p>
+<p>Configuration file: <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/share/vvas/reid.json</span></code></p>
 </li>
 <li><p>Meta Data Attaching</p>
-<p>This plugin will send the AI inference results including the bounding boxes, pedestrian features and pedestrian orientation through ZMQ to the monitoring client board. These info will be used to do cross camera tracking.</p>
+<p>This plugin will send the AI inference results including the bounding boxes, pedestrian features, and pedestrian orientation through ZMQ to the monitoring client board. This information will be used to do cross camera tracking.</p>
 </li>
 </ul>
-<div class="section" id="additional-gstreamer-component-used-in-server-app">
-<h3>Additional GStreamer component used in Server App<a class="headerlink" href="#additional-gstreamer-component-used-in-server-app" title="Permalink to this heading">¶</a></h3>
-<p>Gst-Rtsp-Server lib is utilized to build up the RTSP server video stream with AI detection results.</p>
+<div class="section" id="additional-gstreamer-component-used-in-the-server-app">
+<h3>Additional GStreamer Component Used in the Server App<a class="headerlink" href="#additional-gstreamer-component-used-in-the-server-app" title="Permalink to this heading">¶</a></h3>
+<p>The Gst-Rtsp-Server lib is utilized to build up the RTSP server video stream with AI detection results.</p>
 </div>
 </div>
 <div class="section" id="client-application-monitor-center-tracking-and-rendering">
 <h2>Client Application: Monitor Center Tracking and Rendering<a class="headerlink" href="#client-application-monitor-center-tracking-and-rendering" title="Permalink to this heading">¶</a></h2>
-<p>At the monitor center, the application accepts the RTSP streams together with the AI inference meta data (bounding box, pedestrian feature and orientation) from remote camera, then decode the image stream, and perform the tracking algorithm on the meta data to obtain the cross camera ID for each pedestrian. Finally, bounding boxes and ID text are rendered over the original video frames and displayed on a <strong>4K</strong> monitor in a 2x2 grid.</p>
+<p>At the monitor center, the application accepts the RTSP streams together with the AI inference metadata (bounding box, pedestrian feature and orientation) from remote camera, then decode the image stream, and perform the tracking algorithm on the meta data to obtain the cross camera ID for each pedestrian. Finally, bounding boxes and ID text are rendered over the original video frames and displayed on a <strong>4K</strong> monitor in a 2x2 grid.</p>
 <p><img alt="client_monitor_data_flow" src="../../../_images/aibox-dist-monitor-data-flow.png" /></p>
-<div class="section" id="xilinx-gstreamer-plugins">
-<h3>Xilinx GStreamer Plugins<a class="headerlink" href="#xilinx-gstreamer-plugins" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="amd-gstreamer-plugins">
+<h3>AMD GStreamer Plugins<a class="headerlink" href="#amd-gstreamer-plugins" title="Permalink to this heading">¶</a></h3>
 <ul>
-<li><p>Meta Parser</p>
-<p>MetaParser plugin receives the AI inference results and frame index info from server side and embeds it to the decoded buffers as meta data.</p>
+<li><p>MetaParser</p>
+<p>The MetaParser plugin receives the AI inference results and frame index info from server side and embeds it to the decoded buffers as metadata.</p>
 </li>
 <li><p>Cross Cameras Tracking</p>
-<p>Accepts incominig buffers from the N (N&lt;=4) streams, and syncs them according to either timestamp or frame index, then feeds to the cross camera tracking algorithm to get the final ID info, and pass this info down to next stage.</p>
+<p>Accepts incominig buffers from the N (N&lt;=4) streams, and syncs them according to either timestamp or frame index, then feeds to the cross camera tracking algorithm to get the final ID information, and pass this information down to the next stage.</p>
 </li>
 <li><p>AI Rendering</p>
-<p>vvas_xfilter GStreamer plugin with kernel library /opt/xilinx/kv260-aibox-dist/lib/libvvas_drawreid.so will just draw the bounding box and ID for each detected person.</p>
-<p>Configuration file: /opt/xilinx/kv260-aibox-dist/share/vvas/draw_reid.json.</p>
+<p>The vvas_xfilter GStreamer plugin with the kernel library <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/lib/libvvas_drawreid.so</span></code> will just draw the bounding box and ID for each detected person.</p>
+<p>Configuration file: <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/share/vvas/draw_reid.json</span></code></p>
 </li>
 </ul>
 </div>
 <div class="section" id="additional-gstreamer-component-used-in-client-app">
 <h3>Additional GStreamer component used in Client App<a class="headerlink" href="#additional-gstreamer-component-used-in-client-app" title="Permalink to this heading">¶</a></h3>
-<p>The rtspsrc and omxh264dec are the standard GStreamer plugin which accept the RTSP stream and decode to NV12.</p>
+<p>The rtspsrc and omxh264dec are the standard GStreamer plugins which accept the RTSP stream and decode to NV12.</p>
 </div>
 </div>
 <div class="section" id="next-step">
 <h2>Next Step<a class="headerlink" href="#next-step" title="Permalink to this heading">¶</a></h2>
 <p>You can choose any of the following next steps:</p>
 <ul class="simple">
-<li><p>Read <a class="reference internal" href="hw_arch_platform_aib.html"><span class="doc">Hardware Architecture of the Platform</span></a></p></li>
-<li><p>Go back to the <a class="reference internal" href="../aibox-dist_landing.html"><span class="doc">KV260 AI Box design start page</span></a></p></li>
+<li><p>Read <a class="reference internal" href="hw_arch_platform_aib.html"><span class="doc">Hardware Architecture of the Platform</span></a>.</p></li>
+<li><p>Go back to the <a class="reference internal" href="../aibox-dist_landing.html"><span class="doc">KV260 AI Box Design Start Page</span></a>.</p></li>
 </ul>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2022 Xilinx</p></div>
+<p align="center">Copyright&copy; 2022-2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -288,7 +284,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 15, 2024.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 

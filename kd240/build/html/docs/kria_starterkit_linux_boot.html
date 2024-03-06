@@ -160,20 +160,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The QSPI image update persists through power cycles or SD card changes.</p>
 </li>
 <li><p>Boot Linux on your Starter Kit (Ubuntu) following the instruction from <a class="reference external" href="https://www.amd.com/kd240-start/booting-your-starter-kit.html">this page</a>.</p></li>
-<li><p>If not done so yet, perform a system update to pull in the latest kernel and AMD packages. There might be some errors during installation. If you encounter issues, refer to <a class="reference external" href="#known-issues">Known Issues</a>. There are two ways to do this.</p>
-<p>Through snap install, for more information, refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2057043969/Snaps+-+xlnx-config+Snap+for+Certified+Ubuntu+on+Xilinx+Devices">Xilinx config snap Wiki</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo snap install xlnx-config --classic --channel<span class="o">=</span><span class="m">2</span>.x
-</pre></div>
-</div>
-<p>After xlnx-config snap has been installed, run the Xilinx platform setup script, and follow the prompts.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xlnx-config.sysinit
-</pre></div>
-</div>
-<p>Alternatively, the above can be achieved by manually adding the AMD-specific Ubuntu PPAs, and then performing a system update and upgrade to pull in the latest AMD libraries. An apt upgrade step might take some time.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo add-apt-repository ppa:xilinx-apps
-sudo add-apt-repository ppa:ubuntu-xilinx/sdk
-sudo apt update
-sudo apt upgrade
+<li><p>If not done so yet, perform a system update to pull in the latest kernel and AMD packages. There might be some errors during installation. If you encounter issues, refer to <a class="reference external" href="#known-issues">Known Issues</a>. In this step, we manually add the AMD-specific Ubuntu PPAs, and then perform a system update and upgrade to pull in the latest AMD libraries. The apt upgrade step might take some time.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>   sudo add-apt-repository ppa:xilinx-apps --yes <span class="o">&amp;&amp;</span>
+   sudo add-apt-repository ppa:ubuntu-xilinx/sdk --yes <span class="o">&amp;&amp;</span>
+   sudo add-apt-repository ppa:xilinx-apps/xilinx-drivers --yes <span class="o">&amp;&amp;</span>
+   sudo apt update --yes <span class="o">&amp;&amp;</span>
+   sudo apt upgrade --yes
 </pre></div>
 </div>
 <blockquote>
@@ -265,7 +257,7 @@ locale
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 18, 2024.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 

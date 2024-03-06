@@ -12,28 +12,28 @@
 
 # Debugging
 
-Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across Kria SOM applications.
+First review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html) for commonly encountered issues across the Kria SOM applications.
 
 ## This section list some debugging tips for the application
 
-* Make sure you use
+* Make sure you use:
 
     `sudo xmutil      loadapp kv260-nlp-smartvision`
 
-    to load the firmware properly, otherwise many drivers including the MIPI will not loaded, so there will be many errors pops up when you run the application.
+    to load the firmware properly; otherwise, many drivers including the MIPI will not load, so there will be many errors when you run the application.
 
 ## This section list some debugging tips for platform peripherals
 
 ### Monitor
 
-Please review the [Debug Displays](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays) for debugging the monitor.
+Review the [Debug Displays](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays) for debugging the monitor.
 
 ### Audio
 
 <details>
  <summary>Click here to view details</summary>
 
-#### Determine the enumeration for audio card
+#### Determine the Enumeration for Audio Card
 
 `cat /proc/asound/cards`
 
@@ -42,9 +42,9 @@ Please review the [Debug Displays](https://xilinx.github.io/kria-apps-docs/faq/b
                       xlnx-i2s-snd-card-0
 ```
 
-In the above example, enumeration of audio card is 2.
+In the above example, the enumeration of audio card is 2.
 
-#### Determine capture and playback device number
+#### Determine Capture and Playback Device Number
 
 `cat /proc/asound/devices`
 
@@ -53,12 +53,12 @@ In the above example, enumeration of audio card is 2.
  89: [ 2- 1]: digital audio capture
 ```
 
-In the above example [2- X]: 2- is card, X is device.
+In the above example [2- X]: 2- is card, X is the device.
 
-#### Sample record and playback
+#### Sample Record and Playback
 
 1. `dnf install alsa-utils.aarch64`
-2. ensure an active source is connected at the Pmod LINE IN.
+2. Ensure an active source is connected at the Pmod LINE IN.
 
 </details>
 
@@ -77,17 +77,18 @@ Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 
 </details>
 
-### Obtain Media device information
+### Obtain Media Device Information
 
 <details>
  <summary>Click here to view details</summary>
 `ls /dev/media*`
 
-lists all media enumerations
+Lists all media enumerations
 
 `media-ctl -d /dev/mediaX -p`
 
-where X in media is the enumerated value. the above command will print the Device topology and help user identify the media device.
+where X in media is the enumerated value. The above command will print the Device topology and help you identify the media device.
+
 Here is an example for capture path of 'ar1335 sensor'.
 
 `media-ctl -d /dev/media0 -p`
@@ -161,14 +162,13 @@ Device topology
 
 </details>
 
-
 ### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
 You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p align="center">Copyright&copy; 2021 Xilinx</p>
+<p align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p>

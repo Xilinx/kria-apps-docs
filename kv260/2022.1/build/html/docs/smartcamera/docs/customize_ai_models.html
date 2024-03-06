@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Customizing the AI Models used in the application &mdash; Kria™ KV260 2022.1 documentation</title>
+  <title>Customizing the AI Models Used in the Application &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
@@ -37,7 +37,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Tool Flow Overview" href="../../building_the_design.html" />
-    <link rel="prev" title="Setting up the Board and Application Deployment" href="app_deployment.html" /> 
+    <link rel="prev" title="Setting Up the Board and Application Deployment" href="app_deployment.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,7 +98,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="../../building_the_design.html">Building the Design Components</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../build_vitis_platform.html">Creating a Vitis Platform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../build_accel.html">Integrating an Overlay Into the Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../build_accel.html">Integrating an Overlay into the Platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../generating_custom_firmware.html">Generating Custom Firmware</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../kria_starterkit_linux_boot.html">Kria Starter Kit Linux Boot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../build_application_docker_container.html">Rebuilding Application Docker Containers</a></li>
@@ -106,8 +106,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#architecture">Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#repository">Repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#related-tutorials">Related Tutorials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#other">Other</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#related-tutorials">Related Tutorials</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../aibox-reid/aibox_landing.html">AI Box ReID</a></li>
@@ -137,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../smartcamera_landing.html">Smart Camera</a> &raquo;</li>
-      <li>Customizing the AI Models used in the application</li>
+      <li>Customizing the AI Models Used in the Application</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -152,32 +152,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Customizing the AI Models used in the application</h1> </td>
+ <td align="center"><h1>Customizing the AI Models Used in the Application</h1> </td>
  </tr>
 </table><div class="section" id="customizing-the-ai-models-used-in-the-application">
-<h1>Customizing the AI Models used in the application<a class="headerlink" href="#customizing-the-ai-models-used-in-the-application" title="Permalink to this heading">¶</a></h1>
+<h1>Customizing the AI Models Used in the Application<a class="headerlink" href="#customizing-the-ai-models-used-in-the-application" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document provides an overview of how to customize the default smartcam application to use other AI models.</p>
 </div>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
-<p>Other than the 3 models provided via command line option <code class="docutils literal notranslate"><span class="pre">--aitask</span></code> as documented <a class="reference internal" href="app_deployment.html"><span class="doc">here</span></a>,</p>
+<p>Other than the three models provided via the command line option, <code class="docutils literal notranslate"><span class="pre">--aitask</span></code>, as documented <a class="reference internal" href="app_deployment.html"><span class="doc">here</span></a>.</p>
 <ul class="simple">
 <li><p>facedetect (densebox_320_320)</p></li>
 <li><p>refinedet (refinedet_pruned_0_96)</p></li>
 <li><p>ssd (ssd_adas_pruned_0_95)</p></li>
 </ul>
-<p>customization can be made to use other Vitis AI models or retrained model by the users of the same class.</p>
+<p>Customization can be made to use other AMD Vitis™ AI models or retrained model by the users of the same class.</p>
 <div class="section" id="model-preparation">
 <h3>Model Preparation<a class="headerlink" href="#model-preparation" title="Permalink to this heading">¶</a></h3>
-<p><strong>Note</strong> The design currently only supports <strong>Vitis AI 2.5.0</strong></p>
-<p><strong>Note</strong> As described in the Hardware Accelerator section, the DPU integrated in the platform uses the <strong>B3136</strong> configuration.</p>
-<p>The arch.json used to compile the xmodel for B3136 DPU can be obtained by build the accelerator, but if you won’t build all from the start, you can obtain the DPU fingerprint by using the following commands on target SOM:</p>
+<blockquote>
+<div><p><strong>NOTE:</strong></p>
+<ul class="simple">
+<li><p>The design currently only supports <strong>Vitis AI 2.5.0</strong>.</p></li>
+<li><p>As described in the Hardware Accelerator section, the data-processing unit (DPU) integrated in the platform uses the <strong>B3136</strong> configuration.</p></li>
+</ul>
+</div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">arch.json</span></code> used to compile the xmodel for THE B3136 DPU can be obtained by building the accelerator, but if you will not build all from the start, you can obtain the DPU fingerprint by using the following commands on the target SOM:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    xdputil query
 </pre></div>
 </div>
-<p>You will get some output like this:</p>
+<p>You will get output similar to the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
 <span class="s2">&quot;kernels&quot;</span>:<span class="o">[</span>
   <span class="o">{</span>
@@ -188,20 +193,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="o">]</span>
 </pre></div>
 </div>
-<p>Save the fingerprint as arch.json.</p>
+<p>Save the fingerprint as <code class="docutils literal notranslate"><span class="pre">arch.json</span></code>.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;fingerprint&quot;</span><span class="p">:</span><span class="s2">&quot;0x101000016010406&quot;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>For detailed instructions on obtaining an alternative model from the Xilinx model zoo or training, pruning, quantizing, and compiling a new model, please refer to the <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1414-vitis-ai">Vitis AI documentation</a>.</p>
+<p>For detailed instructions on obtaining an alternative model from the AMD model zoo or training, pruning, quantizing, and compiling a new model, refer to the <em>Vitis AI User Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?isLatest=true&amp;ft:locale=en-US&amp;url=ug1414-vitis-ai">UG1414</a>).</p>
 </div>
 <div class="section" id="configuration-files">
-<h3>Configuration files<a class="headerlink" href="#configuration-files" title="Permalink to this heading">¶</a></h3>
-<p>To integrate a different .xmodel into the smartcam application, the following configuration files must be updated accordingly:</p>
+<h3>Configuration Files<a class="headerlink" href="#configuration-files" title="Permalink to this heading">¶</a></h3>
+<p>To integrate a different .xmodel into the smartcam application, the following configuration files must be updated accordingly.</p>
 <ul>
 <li><p>AI Inference Config:</p>
-<p>Take the refinedet aiinference.json <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vvas/refinedet/aiinference.json</span></code> as an example,</p>
+<p>Take the refinedet aiinference.json <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vvas/refinedet/aiinference.json</span></code> as an example:</p>
 </li>
 </ul>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span><span class="w"></span>
@@ -224,12 +229,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>You can change the “model-name” and “model-path” fields to use the customized xmdel file at <code class="docutils literal notranslate"><span class="pre">${model-path}/${model-name}/${model-name}.xmodel</span></code>.</p>
-<p>Pay attention to the field “need_preprocess”, which is now “false”, tells Vitis AI Library the input buffer is already the resized and quantized BGR image as required by the model. And the preprocess is done by the preprocess plugin with the proper configuration which will be detailed in next section.</p>
-<p>When you set the “need_preprocess” here to “true” for some reason, you should also make change to the process configuration to ask the preprocess IP works just as colour conversion and resizing.</p>
-<ul class="simple">
-<li><p>Preprocess Config:</p></li>
-</ul>
+<p>You can change the <code class="docutils literal notranslate"><span class="pre">model-name</span></code> and <code class="docutils literal notranslate"><span class="pre">model-path</span></code> fields to use the customized xmdel file at <code class="docutils literal notranslate"><span class="pre">${model-path}/${model-name}/${model-name}.xmodel</span></code>.</p>
+<p>Pay attention to the field “need_preprocess”, which is now “false”, which tells the Vitis AI Library the input buffer is already the resized and the quantized BGR image as required by the model. And the preprocess is done by the preprocess plugin with the proper configuration which will be detailed in next section.</p>
+<p>When you set the “need_preprocess” here to “true” for some reason, you should also make change to the process configuration to ask the preprocess IP works just as color conversion and resizing.</p>
+<ul>
+<li><p>Preprocess Config:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;mean_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"></span>
@@ -241,7 +245,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The configuration value of mean for r/g/b channels should be the same as the ones specified in Vitis AI Model prototxt file.</p>
+<p>The configuration value of the mean for r/g/b channels should be the same as the ones specified in the Vitis AI Model prototxt file.</p>
 <div class="highlight-prototxt notranslate"><div class="highlight"><pre><span></span>model {
 name : &quot;refinedet_480x360_5G&quot;
     kernel {
@@ -256,347 +260,354 @@ name : &quot;refinedet_480x360_5G&quot;
 }
 </pre></div>
 </div>
-<p><strong>Notice</strong> the channels sequence in the Vitis AI model prototxt file is B, G, R, not R, G, B, as the above samples show.</p>
-<p>The configuration value of scale is determined by both prototxt and input tensor’s fixpos info contained in compiled xmodel file.</p>
-<p>First use the following command to get input tensor’s fixpos.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The channel sequence in the Vitis AI model prototxt file is B, G, R, not R, G, B, as the above samples show.</p>
+</div></blockquote>
+<p>The configuration value of the scale is determined by both the prototxt and input tensor’s fixpos info contained in compiled xmodel file.</p>
+<p>First, use the following command to get input tensor’s fixpos:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    xdputil xmodel Path-to-xmodelfile -l
 </pre></div>
 </div>
-<p>You will get some output like this:</p>
+<p>You will get some output similar to the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
- <span class="s2">&quot;subgraphs&quot;</span>:<span class="o">[</span>
-     <span class="o">{</span>
-         <span class="s2">&quot;index&quot;</span>:0,
-         <span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;subgraph_data&quot;</span>,
-         <span class="s2">&quot;device&quot;</span>:<span class="s2">&quot;USER&quot;</span>
-     <span class="o">}</span>,
-     <span class="o">{</span>
-         <span class="s2">&quot;index&quot;</span>:0,
-         <span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;subgraph_Elt3&quot;</span>,
-         <span class="s2">&quot;device&quot;</span>:<span class="s2">&quot;DPU&quot;</span>,
-         <span class="s2">&quot;fingerprint&quot;</span>:<span class="s2">&quot;0x101000016010406&quot;</span>,
-         <span class="s2">&quot;DPU Arch&quot;</span>:<span class="s2">&quot;DPUCZDX8G_ISA1_B3136&quot;</span>,
-         <span class="s2">&quot;input_tensor&quot;</span>:<span class="o">[</span>
-             <span class="o">{</span>
-                 <span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;data_fixed&quot;</span>,
-                 <span class="s2">&quot;shape&quot;</span>:<span class="s2">&quot;[1, 360, 480, 3]&quot;</span>,
-                 <span class="s2">&quot;fixpos&quot;</span>:-1
-             <span class="o">}</span>
-         <span class="o">]</span>,
-     <span class="o">}</span>
- <span class="o">]</span>
+<span class="s2">&quot;subgraphs&quot;</span>:<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">&quot;index&quot;</span>:0,
+        <span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;subgraph_data&quot;</span>,
+        <span class="s2">&quot;device&quot;</span>:<span class="s2">&quot;USER&quot;</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">&quot;index&quot;</span>:0,
+        <span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;subgraph_Elt3&quot;</span>,
+        <span class="s2">&quot;device&quot;</span>:<span class="s2">&quot;DPU&quot;</span>,
+        <span class="s2">&quot;fingerprint&quot;</span>:<span class="s2">&quot;0x101000016010406&quot;</span>,
+        <span class="s2">&quot;DPU Arch&quot;</span>:<span class="s2">&quot;DPUCZDX8G_ISA1_B3136&quot;</span>,
+        <span class="s2">&quot;input_tensor&quot;</span>:<span class="o">[</span>
+            <span class="o">{</span>
+                <span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;data_fixed&quot;</span>,
+                <span class="s2">&quot;shape&quot;</span>:<span class="s2">&quot;[1, 360, 480, 3]&quot;</span>,
+                <span class="s2">&quot;fixpos&quot;</span>:-1
+            <span class="o">}</span>
+        <span class="o">]</span>,
+    <span class="o">}</span>
+<span class="o">]</span>
 <span class="o">}</span>
 </pre></div>
 </div>
 <p>So the input tensor’s fixpos is “-1” here.</p>
 <p>The configured scale = prototxt_scale * (2 ^ fixpos) = 1 * (2^-1) = 0.5.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
-<p>Take Vitis AI model yolov3_coco_416_tf2 as example, we provide the detailed steps to add an AI task for smartcam application.</p>
-<ol class="simple">
-<li><p>Create folder <code class="docutils literal notranslate"><span class="pre">yolov3_coco</span></code> under <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vvas/</span></code>, so that <code class="docutils literal notranslate"><span class="pre">yolov3_coco</span></code> can be used as the value for argument –AItask.</p></li>
-<li><p><a name="download-model"></a> Download model file for <code class="docutils literal notranslate"><span class="pre">GPU</span></code> and <code class="docutils literal notranslate"><span class="pre">zcu102</span> <span class="pre">&amp;</span> <span class="pre">zcu104</span> <span class="pre">&amp;</span> <span class="pre">kv260</span></code> from the link provided by <a class="reference external" href="https://github.com/Xilinx/Vitis-AI/blob/master/model_zoo/model-list/tf2_yolov3_coco_416_416_65.9G_2.5/model.yaml">https://github.com/Xilinx/Vitis-AI/blob/master/model_zoo/model-list/tf2_yolov3_coco_416_416_65.9G_2.5/model.yaml</a></p></li>
-</ol>
-<p>After extraction, we get such file structure:</p>
-<details><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>	│   README.md
-	│   requirements.txt
-	│
-	├───code
-	│   └───test
-	│       │   cocoval.py
-	│       │   convert_data.sh
-	│       │   Dockerfile
-	│       │   download_data.sh
-	│       │   eval.py
-	│       │   LICENSE
-	│       │   README.md
-	│       │   requirements.txt
-	│       │   run_eval.sh
-	│       │   train.py
-	│       │   yolo.py
-	│       │
-	│       ├───cfg
-	│       │       csdarknet53-omega.cfg
-	│       │       darknet19_448_body.cfg
-	│       │       darknet53.cfg
-	│       │       yolo-fastest-xl.cfg
-	│       │       yolo-fastest.cfg
-	│       │       yolov2-tiny-voc.cfg
-	│       │       yolov2-tiny.cfg
-	│       │       yolov2-voc.cfg
-	│       │       yolov2.cfg
-	│       │       yolov3-spp.cfg
-	│       │       yolov3-tiny.cfg
-	│       │       yolov3.cfg
-	│       │       yolov4-csp.cfg
-	│       │       yolov4-csp_fixed.cfg
-	│       │       yolov4-sam-mish.cfg
-	│       │       yolov4-tiny.cfg
-	│       │       yolov4.cfg
-	│       │
-	│       ├───common
-	│       │   │   callbacks.py
-	│       │   │   data_utils.py
-	│       │   │   model_utils.py
-	│       │   │   utils.py
-	│       │   │   wbf_postprocess.py
-	│       │   │   yolo_postprocess_np.py
-	│       │   │
-	│       │   └───backbones
-	│       │       │   efficientnet.py
-	│       │       │   ghostnet.py
-	│       │       │   layers.py
-	│       │       │   mobilenet.py
-	│       │       │   mobilenet_v2.py
-	│       │       │   mobilenet_v3.py
-	│       │       │   mobilevit.py
-	│       │       │   peleenet.py
-	│       │       │   shufflenet.py
-	│       │       │   shufflenet_v2.py
-	│       │       │   squeezenet.py
-	│       │       │
-	│       │       └───imagenet_training
-	│       │           │   data_utils.py
-	│       │           │   heatmap_check.py
-	│       │           │   README.md
-	│       │           │   train_imagenet.py
-	│       │           │
-	│       │           └───imagenet_preprocess
-	│       │                   imagenet_2012_label_map.txt
-	│       │                   imagenet_2012_validation_synset_labels.txt
-	│       │                   preprocess_imagenet_train_data.py
-	│       │                   preprocess_imagenet_validation_data.py
-	│       │
-	│       ├───configs
-	│       │       coco2017_origin_classes.txt
-	│       │       coco_classes.txt
-	│       │       objects365_classes.txt
-	│       │       scaled-yolo4-csp_anchors.txt
-	│       │       tiny_yolo3_anchors.txt
-	│       │       VOC2012_person_test.txt
-	│       │       voc_classes.txt
-	│       │       yolo2-tiny-voc_anchors.txt
-	│       │       yolo2-tiny_anchors.txt
-	│       │       yolo2-voc_anchors.txt
-	│       │       yolo2_anchors.txt
-	│       │       yolo3_anchors.txt
-	│       │       yolo4_anchors.txt
-	│       │       yolo5_anchors.txt
-	│       │       yolo_fastest_anchors.txt
-	│       │
-	│       ├───inference
-	│       │   │   eval_inference.sh
-	│       │   │   README.md
-	│       │   │
-	│       │   ├───MNN
-	│       │   │   │   CMakeLists.txt
-	│       │   │   │   yoloDetection.cpp
-	│       │   │   │
-	│       │   │   └───configs
-	│       │   │           quantizeConfig.json
-	│       │   │
-	│       │   └───tflite
-	│       │           CMakeLists.txt
-	│       │           stb_image.h
-	│       │           stb_image_resize.h
-	│       │           yoloDetection.cpp
-	│       │           yoloDetection.h
-	│       │
-	│       ├───scaled_yolo4
-	│       │   └───models
-	│       │           layers.py
-	│       │           scaled_yolo4_csp_darknet.py
-	│       │
-	│       ├───tools
-	│       │   ├───dataset_converter
-	│       │   │       coco_annotation.py
-	│       │   │       coco_annotation_val.py
-	│       │   │       coco_dataset_to_voc.py
-	│       │   │       coco_to_pascal_voc.py
-	│       │   │       dataset_visualize.py
-	│       │   │       openimage_annotation.py
-	│       │   │       pascal_voc_to_coco.py
-	│       │   │       voc_annotation.py
-	│       │   │       voc_obj_similarity.py
-	│       │   │       voc_to_darknet.py
-	│       │   │       yolo_annotation.py
-	│       │   │
-	│       │   ├───evaluation
-	│       │   │       model_statistics.py
-	│       │   │       pycoco_eval.py
-	│       │   │       tide_eval.py
-	│       │   │       validate_yolo.py
-	│       │   │
-	│       │   ├───misc
-	│       │   │       augment_test.py
-	│       │   │       gif_create.py
-	│       │   │       kmeans.py
-	│       │   │       rotate_gridmask_test.py
-	│       │   │       tensor_compare.py
-	│       │   │       yuv_convert.py
-	│       │   │
-	│       │   └───model_converter
-	│       │       │   convert.py
-	│       │       │   custom_tflite_convert.py
-	│       │       │   keras_to_onnx.py
-	│       │       │   keras_to_tensorflow.py
-	│       │       │   keras_to_tensorflow_bk.py
-	│       │       │   post_train_quant_convert.py
-	│       │       │   tensorflow_to_coreml.py
-	│       │       │   tensorflow_to_rknn.py
-	│       │       │
-	│       │       └───ghostnet_convertor
-	│       │               convertor.py
-	│       │               ghostnet_pytorch.py
-	│       │
-	│       ├───tracking
-	│       │   │   mot_tracker.py
-	│       │   │   README.md
-	│       │   │   requirements.txt
-	│       │   │
-	│       │   ├───cpp_inference
-	│       │   │   │   README.md
-	│       │   │   │
-	│       │   │   └───yoloSort
-	│       │   │       │   CMakeLists.txt
-	│       │   │       │   Hungarian.cpp
-	│       │   │       │   Hungarian.h
-	│       │   │       │   KalmanTracker.cpp
-	│       │   │       │   KalmanTracker.h
-	│       │   │       │   Sort.cpp
-	│       │   │       │   Sort.h
-	│       │   │       │   yoloSort.cpp
-	│       │   │       │
-	│       │   │       └───kalman_demo
-	│       │   │               CMakeLists.txt
-	│       │   │               kalman_demo.cpp
-	│       │   │               kalman_demo.py
-	│       │   │               README.md
-	│       │   │
-	│       │   ├───eval
-	│       │   │   │   formatchecker.py
-	│       │   │   │   importers.py
-	│       │   │   │   pymot.py
-	│       │   │   │   README.md
-	│       │   │   │   rect.py
-	│       │   │   │   utilities.py
-	│       │   │   │
-	│       │   │   ├───example
-	│       │   │   │       groundtruth.json
-	│       │   │   │       hypotheses.json
-	│       │   │   │
-	│       │   │   └───tools
-	│       │   │           mot16_annotation.py
-	│       │   │
-	│       │   └───model
-	│       │       ├───deep_sort
-	│       │       │       detection.py
-	│       │       │       generate_detections.py
-	│       │       │       iou_matching.py
-	│       │       │       kalman_filter.py
-	│       │       │       linear_assignment.py
-	│       │       │       nn_matching.py
-	│       │       │       preprocessing.py
-	│       │       │       track.py
-	│       │       │       tracker.py
-	│       │       │       __init__.py
-	│       │       │
-	│       │       └───sort
-	│       │               sort.py
-	│       │
-	│       ├───weights
-	│       │       .gitignore
-	│       │
-	│       ├───yolo2
-	│       │   │   data.py
-	│       │   │   loss.py
-	│       │   │   model.py
-	│       │   │   postprocess.py
-	│       │   │   postprocess_np.py
-	│       │   │   __init__.py
-	│       │   │
-	│       │   └───models
-	│       │           layers.py
-	│       │           yolo2_darknet.py
-	│       │           yolo2_efficientnet.py
-	│       │           yolo2_mobilenet.py
-	│       │           yolo2_mobilenetv2.py
-	│       │           yolo2_mobilenetv3_large.py
-	│       │           yolo2_mobilenetv3_small.py
-	│       │           yolo2_xception.py
-	│       │
-	│       ├───yolo3
-	│       │   │   data.py
-	│       │   │   loss.py
-	│       │   │   model.py
-	│       │   │   postprocess.py
-	│       │   │   postprocess_np.py
-	│       │   │   __init__.py
-	│       │   │
-	│       │   └───models
-	│       │           layers.py
-	│       │           ultralite_layers.py
-	│       │           yolo3_darknet.py
-	│       │           yolo3_efficientnet.py
-	│       │           yolo3_ghostnet.py
-	│       │           yolo3_mobilenet.py
-	│       │           yolo3_mobilenetv2.py
-	│       │           yolo3_mobilenetv3_large.py
-	│       │           yolo3_mobilenetv3_small.py
-	│       │           yolo3_nano.py
-	│       │           yolo3_peleenet.py
-	│       │           yolo3_resnet50.py
-	│       │           yolo3_resnet50v2.py
-	│       │           yolo3_shufflenetv2.py
-	│       │           yolo3_vgg16.py
-	│       │           yolo3_xception.py
-	│       │
-	│       ├───yolo4
-	│       │   └───models
-	│       │           layers.py
-	│       │           yolo4_darknet.py
-	│       │           yolo4_efficientnet.py
-	│       │           yolo4_mobilenet.py
-	│       │           yolo4_mobilenetv2.py
-	│       │           yolo4_mobilenetv3_large.py
-	│       │           yolo4_mobilenetv3_small.py
-	│       │           yolo4_resnet50.py
-	│       │           yolo4_resnet50v2.py
-	│       │
-	│       └───yolo5
-	│           │   data.py
-	│           │   loss.py
-	│           │   model.py
-	│           │   postprocess.py
-	│           │   postprocess_np.py
-	│           │
-	│           └───models
-	│                   layers.py
-	│                   yolo5_darknet.py
-	│                   yolo5_mobilenet.py
-	│                   yolo5_mobilenetv2.py
-	│
-	├───data
-	│       .gitignore
-	│       demo_list.txt
-	├───float
-	│       yolov3.h5
-	└───quantized
-	        quantized.h5
+<p>Take the Vitis AI model yolov3_coco_416_tf2 as example; detailed steps are provided to add an AI task for the smartcam application.</p>
+<ol>
+<li><p>Create the folder, <code class="docutils literal notranslate"><span class="pre">yolov3_coco</span></code>, under <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vvas/</span></code>, so that <code class="docutils literal notranslate"><span class="pre">yolov3_coco</span></code> can be used as the value for argument, <code class="docutils literal notranslate"><span class="pre">--AItask</span></code>.</p></li>
+<li><p><a name="download-model"></a> Download the model file for <code class="docutils literal notranslate"><span class="pre">GPU</span></code> and <code class="docutils literal notranslate"><span class="pre">zcu102</span> <span class="pre">&amp;</span> <span class="pre">zcu104</span> <span class="pre">&amp;</span> <span class="pre">kv260</span></code> from the link provided in <a class="reference external" href="https://github.com/Xilinx/Vitis-AI/blob/master/model_zoo/model-list/tf2_yolov3_coco_416_416_65.9G_2.5/model.yaml">https://github.com/Xilinx/Vitis-AI/blob/master/model_zoo/model-list/tf2_yolov3_coco_416_416_65.9G_2.5/model.yaml</a>.
+After extraction, you get the following file structure:</p>
+ <details><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>│   README.md
+│   requirements.txt
+│
+├───code
+│   └───test
+│       │   cocoval.py
+│       │   convert_data.sh
+│       │   Dockerfile
+│       │   download_data.sh
+│       │   eval.py
+│       │   LICENSE
+│       │   README.md
+│       │   requirements.txt
+│       │   run_eval.sh
+│       │   train.py
+│       │   yolo.py
+│       │
+│       ├───cfg
+│       │       csdarknet53-omega.cfg
+│       │       darknet19_448_body.cfg
+│       │       darknet53.cfg
+│       │       yolo-fastest-xl.cfg
+│       │       yolo-fastest.cfg
+│       │       yolov2-tiny-voc.cfg
+│       │       yolov2-tiny.cfg
+│       │       yolov2-voc.cfg
+│       │       yolov2.cfg
+│       │       yolov3-spp.cfg
+│       │       yolov3-tiny.cfg
+│       │       yolov3.cfg
+│       │       yolov4-csp.cfg
+│       │       yolov4-csp_fixed.cfg
+│       │       yolov4-sam-mish.cfg
+│       │       yolov4-tiny.cfg
+│       │       yolov4.cfg
+│       │
+│       ├───common
+│       │   │   callbacks.py
+│       │   │   data_utils.py
+│       │   │   model_utils.py
+│       │   │   utils.py
+│       │   │   wbf_postprocess.py
+│       │   │   yolo_postprocess_np.py
+│       │   │
+│       │   └───backbones
+│       │       │   efficientnet.py
+│       │       │   ghostnet.py
+│       │       │   layers.py
+│       │       │   mobilenet.py
+│       │       │   mobilenet_v2.py
+│       │       │   mobilenet_v3.py
+│       │       │   mobilevit.py
+│       │       │   peleenet.py
+│       │       │   shufflenet.py
+│       │       │   shufflenet_v2.py
+│       │       │   squeezenet.py
+│       │       │
+│       │       └───imagenet_training
+│       │           │   data_utils.py
+│       │           │   heatmap_check.py
+│       │           │   README.md
+│       │           │   train_imagenet.py
+│       │           │
+│       │           └───imagenet_preprocess
+│       │                   imagenet_2012_label_map.txt
+│       │                   imagenet_2012_validation_synset_labels.txt
+│       │                   preprocess_imagenet_train_data.py
+│       │                   preprocess_imagenet_validation_data.py
+│       │
+│       ├───configs
+│       │       coco2017_origin_classes.txt
+│       │       coco_classes.txt
+│       │       objects365_classes.txt
+│       │       scaled-yolo4-csp_anchors.txt
+│       │       tiny_yolo3_anchors.txt
+│       │       VOC2012_person_test.txt
+│       │       voc_classes.txt
+│       │       yolo2-tiny-voc_anchors.txt
+│       │       yolo2-tiny_anchors.txt
+│       │       yolo2-voc_anchors.txt
+│       │       yolo2_anchors.txt
+│       │       yolo3_anchors.txt
+│       │       yolo4_anchors.txt
+│       │       yolo5_anchors.txt
+│       │       yolo_fastest_anchors.txt
+│       │
+│       ├───inference
+│       │   │   eval_inference.sh
+│       │   │   README.md
+│       │   │
+│       │   ├───MNN
+│       │   │   │   CMakeLists.txt
+│       │   │   │   yoloDetection.cpp
+│       │   │   │
+│       │   │   └───configs
+│       │   │           quantizeConfig.json
+│       │   │
+│       │   └───tflite
+│       │           CMakeLists.txt
+│       │           stb_image.h
+│       │           stb_image_resize.h
+│       │           yoloDetection.cpp
+│       │           yoloDetection.h
+│       │
+│       ├───scaled_yolo4
+│       │   └───models
+│       │           layers.py
+│       │           scaled_yolo4_csp_darknet.py
+│       │
+│       ├───tools
+│       │   ├───dataset_converter
+│       │   │       coco_annotation.py
+│       │   │       coco_annotation_val.py
+│       │   │       coco_dataset_to_voc.py
+│       │   │       coco_to_pascal_voc.py
+│       │   │       dataset_visualize.py
+│       │   │       openimage_annotation.py
+│       │   │       pascal_voc_to_coco.py
+│       │   │       voc_annotation.py
+│       │   │       voc_obj_similarity.py
+│       │   │       voc_to_darknet.py
+│       │   │       yolo_annotation.py
+│       │   │
+│       │   ├───evaluation
+│       │   │       model_statistics.py
+│       │   │       pycoco_eval.py
+│       │   │       tide_eval.py
+│       │   │       validate_yolo.py
+│       │   │
+│       │   ├───misc
+│       │   │       augment_test.py
+│       │   │       gif_create.py
+│       │   │       kmeans.py
+│       │   │       rotate_gridmask_test.py
+│       │   │       tensor_compare.py
+│       │   │       yuv_convert.py
+│       │   │
+│       │   └───model_converter
+│       │       │   convert.py
+│       │       │   custom_tflite_convert.py
+│       │       │   keras_to_onnx.py
+│       │       │   keras_to_tensorflow.py
+│       │       │   keras_to_tensorflow_bk.py
+│       │       │   post_train_quant_convert.py
+│       │       │   tensorflow_to_coreml.py
+│       │       │   tensorflow_to_rknn.py
+│       │       │
+│       │       └───ghostnet_convertor
+│       │               convertor.py
+│       │               ghostnet_pytorch.py
+│       │
+│       ├───tracking
+│       │   │   mot_tracker.py
+│       │   │   README.md
+│       │   │   requirements.txt
+│       │   │
+│       │   ├───cpp_inference
+│       │   │   │   README.md
+│       │   │   │
+│       │   │   └───yoloSort
+│       │   │       │   CMakeLists.txt
+│       │   │       │   Hungarian.cpp
+│       │   │       │   Hungarian.h
+│       │   │       │   KalmanTracker.cpp
+│       │   │       │   KalmanTracker.h
+│       │   │       │   Sort.cpp
+│       │   │       │   Sort.h
+│       │   │       │   yoloSort.cpp
+│       │   │       │
+│       │   │       └───kalman_demo
+│       │   │               CMakeLists.txt
+│       │   │               kalman_demo.cpp
+│       │   │               kalman_demo.py
+│       │   │               README.md
+│       │   │
+│       │   ├───eval
+│       │   │   │   formatchecker.py
+│       │   │   │   importers.py
+│       │   │   │   pymot.py
+│       │   │   │   README.md
+│       │   │   │   rect.py
+│       │   │   │   utilities.py
+│       │   │   │
+│       │   │   ├───example
+│       │   │   │       groundtruth.json
+│       │   │   │       hypotheses.json
+│       │   │   │
+│       │   │   └───tools
+│       │   │           mot16_annotation.py
+│       │   │
+│       │   └───model
+│       │       ├───deep_sort
+│       │       │       detection.py
+│       │       │       generate_detections.py
+│       │       │       iou_matching.py
+│       │       │       kalman_filter.py
+│       │       │       linear_assignment.py
+│       │       │       nn_matching.py
+│       │       │       preprocessing.py
+│       │       │       track.py
+│       │       │       tracker.py
+│       │       │       __init__.py
+│       │       │
+│       │       └───sort
+│       │               sort.py
+│       │
+│       ├───weights
+│       │       .gitignore
+│       │
+│       ├───yolo2
+│       │   │   data.py
+│       │   │   loss.py
+│       │   │   model.py
+│       │   │   postprocess.py
+│       │   │   postprocess_np.py
+│       │   │   __init__.py
+│       │   │
+│       │   └───models
+│       │           layers.py
+│       │           yolo2_darknet.py
+│       │           yolo2_efficientnet.py
+│       │           yolo2_mobilenet.py
+│       │           yolo2_mobilenetv2.py
+│       │           yolo2_mobilenetv3_large.py
+│       │           yolo2_mobilenetv3_small.py
+│       │           yolo2_xception.py
+│       │
+│       ├───yolo3
+│       │   │   data.py
+│       │   │   loss.py
+│       │   │   model.py
+│       │   │   postprocess.py
+│       │   │   postprocess_np.py
+│       │   │   __init__.py
+│       │   │
+│       │   └───models
+│       │           layers.py
+│       │           ultralite_layers.py
+│       │           yolo3_darknet.py
+│       │           yolo3_efficientnet.py
+│       │           yolo3_ghostnet.py
+│       │           yolo3_mobilenet.py
+│       │           yolo3_mobilenetv2.py
+│       │           yolo3_mobilenetv3_large.py
+│       │           yolo3_mobilenetv3_small.py
+│       │           yolo3_nano.py
+│       │           yolo3_peleenet.py
+│       │           yolo3_resnet50.py
+│       │           yolo3_resnet50v2.py
+│       │           yolo3_shufflenetv2.py
+│       │           yolo3_vgg16.py
+│       │           yolo3_xception.py
+│       │
+│       ├───yolo4
+│       │   └───models
+│       │           layers.py
+│       │           yolo4_darknet.py
+│       │           yolo4_efficientnet.py
+│       │           yolo4_mobilenet.py
+│       │           yolo4_mobilenetv2.py
+│       │           yolo4_mobilenetv3_large.py
+│       │           yolo4_mobilenetv3_small.py
+│       │           yolo4_resnet50.py
+│       │           yolo4_resnet50v2.py
+│       │
+│       └───yolo5
+│           │   data.py
+│           │   loss.py
+│           │   model.py
+│           │   postprocess.py
+│           │   postprocess_np.py
+│           │
+│           └───models
+│                   layers.py
+│                   yolo5_darknet.py
+│                   yolo5_mobilenet.py
+│                   yolo5_mobilenetv2.py
+│
+├───data
+│       .gitignore
+│       demo_list.txt
+├───float
+│       yolov3.h5
+└───quantized
+		quantized.h5
 </pre></div>
 </div>
+</li>
+</ol>
 </details><ol class="simple">
-<li><p>Prepare <code class="docutils literal notranslate"><span class="pre">yolov3_coco_416_tf2.xmodel</span></code> file for DPU 3136.</p></li>
+<li><p>Prepare the <code class="docutils literal notranslate"><span class="pre">yolov3_coco_416_tf2.xmodel</span></code> file for DPU 3136.</p></li>
 </ol>
-<p>The file <code class="docutils literal notranslate"><span class="pre">quantized.h5</span></code> is the quantized model generated by quantizer. It can be used to generate xmodel file.</p>
-<p>Start the vitis-ai model compile docker and copy <code class="docutils literal notranslate"><span class="pre">quantized.h5</span></code> and <code class="docutils literal notranslate"><span class="pre">arch.json</span></code> into it. Using the following command to compile .xmodel file.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    conda activate vitis-ai-tensorflow2
-    vai_c_tensorflow2 -m /PATH/TO/quantized.h5 -a /PATH/TO/arch.json -o /OUTPUTPATH -n yolov3_coco_416_tf2
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The file `quantized.h5` is the quantized model generated by quantizer. It can be used to generate xmodel file.
 </pre></div>
 </div>
-<p>The yolov3_coco_416_tf2.prototxt can be found in existing file from <a class="reference external" href="#download-model"><code class="docutils literal notranslate"><span class="pre">zcu102</span> <span class="pre">&amp;</span> <span class="pre">zcu104</span> <span class="pre">&amp;</span> <span class="pre">kv260</span></code></a>.</p>
+<p>Start the vitis-ai model compile docker and copy <code class="docutils literal notranslate"><span class="pre">quantized.h5</span></code> and <code class="docutils literal notranslate"><span class="pre">arch.json</span></code> into it. Using the following command to compile .xmodel file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>  conda activate vitis-ai-tensorflow2
+  vai_c_tensorflow2 -m /PATH/TO/quantized.h5 -a /PATH/TO/arch.json -o /OUTPUTPATH -n yolov3_coco_416_tf2
+</pre></div>
+</div>
+<p>The y<code class="docutils literal notranslate"><span class="pre">olov3_coco_416_tf2.prototxt</span></code> can be found in existing file from <a class="reference external" href="#download-model"><code class="docutils literal notranslate"><span class="pre">zcu102</span> <span class="pre">&amp;</span> <span class="pre">zcu104</span> <span class="pre">&amp;</span> <span class="pre">kv260</span></code></a>.</p>
 <p>The YOLOv3 object detection model provides prediction of multiple classes in the <a class="reference external" href="https://github.com/iArunava/YOLOv3-Object-Detection-with-OpenCV/blob/master/yolov3-coco/coco-labels">label file</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">person</span>
     <span class="n">bicycle</span>
@@ -607,416 +618,416 @@ name : &quot;refinedet_480x360_5G&quot;
     <span class="o">...</span>
 </pre></div>
 </div>
-<p>We need to convert the above label info to json file as requested by VVAS framework as bellow and named it ‘label.json’.</p>
+<p>You need to convert the above label info to a json file as requested by the VVAS framework as follows, and name it <code class="docutils literal notranslate"><span class="pre">label.json</span></code>:</p>
 <details><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">    	</span><span class="nt">&quot;model-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yolov3_coco_416_tf2&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    	</span><span class="nt">&quot;num-labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"></span>
-<span class="w">    	</span><span class="nt">&quot;labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bicycle&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bicycle&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;car&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;car&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;motorbike&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;motorbike&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aeroplane&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aeroplane&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bus&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bus&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;train&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;train&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;truck&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;truck&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boat&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boat&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;traffic light&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;traffic light&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fire hydrant&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fire hydrant&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stop sign&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stop sign&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;parking meter&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;parking meter&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bench&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bench&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bird&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bird&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dog&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dog&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;horse&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;horse&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sheep&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sheep&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cow&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cow&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;elephant&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;elephant&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bear&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bear&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;zebra&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;zebra&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;giraffe&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;giraffe&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;backpack&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;backpack&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;umbrella&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;umbrella&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;handbag&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;handbag&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tie&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tie&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;suitcase&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;suitcase&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;frisbee&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;frisbee&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;skis&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;skis&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;snowboard&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;snowboard&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sports ball&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sports ball&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kite&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kite&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;baseball bat&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;baseball bat&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;baseball glove&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;baseball glove&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;skateboard&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;skateboard&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;surfboard&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;surfboard&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tennis racket&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tennis racket&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bottle&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bottle&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wine glass&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wine glass&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cup&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cup&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fork&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fork&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;knife&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;knife&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;spoon&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;spoon&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bowl&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bowl&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;banana&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;banana&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;apple&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;apple&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sandwich&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sandwich&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">49</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;orange&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;orange&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;broccoli&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;broccoli&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;carrot&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;carrot&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hot dog&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hot dog&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pizza&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pizza&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;donut&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;donut&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cake&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cake&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chair&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chair&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">57</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sofa&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sofa&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pottedplant&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pottedplant&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bed&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bed&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;diningtable&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;diningtable&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">61</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toilet&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toilet&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tvmonitor&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tvmonitor&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;laptop&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;laptop&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mouse&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mouse&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;keyboard&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;keyboard&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cell phone&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cell phone&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">68</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microwave&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microwave&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">69</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;oven&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;oven&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toaster&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toaster&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sink&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sink&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">72</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refrigerator&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refrigerator&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">73</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;book&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;book&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clock&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clock&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vase&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vase&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;scissors&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;scissors&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;teddy bear&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;teddy bear&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hair drier&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hair drier&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">},</span><span class="w"></span>
-<span class="w">    		</span><span class="p">{</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">79</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toothbrush&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    			</span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toothbrush&quot;</span><span class="w"></span>
-<span class="w">    		</span><span class="p">}</span><span class="w"></span>
-<span class="w">    	</span><span class="p">]</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;model-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yolov3_coco_416_tf2&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;num-labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bicycle&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bicycle&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;car&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;car&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;motorbike&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;motorbike&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aeroplane&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aeroplane&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bus&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bus&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;train&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;train&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;truck&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;truck&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boat&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boat&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;traffic light&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;traffic light&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fire hydrant&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fire hydrant&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stop sign&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stop sign&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;parking meter&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;parking meter&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bench&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bench&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bird&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bird&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dog&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dog&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;horse&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;horse&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sheep&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sheep&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cow&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cow&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;elephant&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;elephant&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bear&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bear&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;zebra&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;zebra&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;giraffe&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;giraffe&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;backpack&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;backpack&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;umbrella&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;umbrella&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;handbag&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;handbag&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tie&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tie&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;suitcase&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;suitcase&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;frisbee&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;frisbee&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;skis&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;skis&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;snowboard&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;snowboard&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sports ball&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sports ball&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kite&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kite&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;baseball bat&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;baseball bat&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;baseball glove&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;baseball glove&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;skateboard&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;skateboard&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;surfboard&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;surfboard&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tennis racket&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tennis racket&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bottle&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bottle&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wine glass&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wine glass&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cup&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cup&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fork&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fork&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;knife&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;knife&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;spoon&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;spoon&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bowl&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bowl&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;banana&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;banana&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;apple&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;apple&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sandwich&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sandwich&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">49</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;orange&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;orange&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;broccoli&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;broccoli&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;carrot&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;carrot&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hot dog&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hot dog&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pizza&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pizza&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;donut&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;donut&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cake&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cake&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chair&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chair&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">57</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sofa&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sofa&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pottedplant&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pottedplant&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bed&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bed&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;diningtable&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;diningtable&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">61</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toilet&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toilet&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tvmonitor&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tvmonitor&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;laptop&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;laptop&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mouse&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mouse&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;keyboard&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;keyboard&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cell phone&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cell phone&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">68</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microwave&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microwave&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">69</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;oven&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;oven&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toaster&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toaster&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sink&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sink&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">72</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refrigerator&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refrigerator&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">73</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;book&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;book&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clock&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clock&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vase&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vase&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;scissors&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;scissors&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;teddy bear&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;teddy bear&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hair drier&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hair drier&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">79</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toothbrush&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;toothbrush&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">     </span><span class="p">]</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</details><p>Put the prototxt file together with xmodel and label.json file to <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vitis_ai_library/models/yolov3_coco_416_tf2/</span></code>.</p>
+</details><p>Put the prototxt file together with the <code class="docutils literal notranslate"><span class="pre">xmodel</span></code> and <code class="docutils literal notranslate"><span class="pre">label.json</span></code> file to <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vitis_ai_library/models/yolov3_coco_416_tf2/</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    opt
     └── xilinx
      └── kv260-smartcam
@@ -1030,11 +1041,11 @@ name : &quot;refinedet_480x360_5G&quot;
 </pre></div>
 </div>
 <ol class="simple">
-<li><p>Create configuration files for yolov3_coco_416_tf2.</p></li>
+<li><p>Create the configuration files for yolov3_coco_416_tf2.</p></li>
 </ol>
 <ul>
-<li><p>preprocess.json</p>
-<p>The mean and scale of B, G, R channel is taken from the prototxt of the model.</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">preprocess.json</span></code></p>
+<p>The mean and scale of the B, G, R channel is taken from the prototxt of the model.</p>
 <div class="highlight-prototxt notranslate"><div class="highlight"><pre><span></span>model {
   kernel {
      mean: 0.0
@@ -1076,51 +1087,57 @@ name : &quot;refinedet_480x360_5G&quot;
 }
 </pre></div>
 </div>
-<p>Using the following command to get the fixpos.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdputil xmodel ./yolov3_coco_416_tf2.xmodel -l
+<p>Use the following command to get the fixpos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    xdputil xmodel ./yolov3_coco_416_tf2.xmodel -l
 
 ...
 <span class="s2">&quot;input_tensor&quot;</span>:<span class="o">[</span>
-            <span class="o">{</span>
-                <span class="s2">&quot;index&quot;</span>:0,
-                <span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;quant_image_input&quot;</span>,
-                <span class="s2">&quot;shape&quot;</span>:<span class="o">[</span>
-                    <span class="m">1</span>,
-                    <span class="m">416</span>,
-                    <span class="m">416</span>,
-                    <span class="m">3</span>
-                <span class="o">]</span>,
-                <span class="s2">&quot;fixpos&quot;</span>:6
-            <span class="o">}</span>
-        <span class="o">]</span>,
+                <span class="o">{</span>
+                    <span class="s2">&quot;index&quot;</span>:0,
+                    <span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;quant_image_input&quot;</span>,
+                    <span class="s2">&quot;shape&quot;</span>:<span class="o">[</span>
+                        <span class="m">1</span>,
+                        <span class="m">416</span>,
+                        <span class="m">416</span>,
+                        <span class="m">3</span>
+                    <span class="o">]</span>,
+                    <span class="s2">&quot;fixpos&quot;</span>:6
+                <span class="o">}</span>
+            <span class="o">]</span>,
 ...
-</pre></div>
-</div>
-<p>The configured scale = prototxt_scale * (2 ^ fixpos) = 0.00390625 * (2^6) = 0.25.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;xclbin-location&quot;</span><span class="p">:</span><span class="s2">&quot;/lib/firmware/xilinx/kv260-smartcam/kv260-smartcam.xclbin&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;vvas-library-repo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/lib&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;element-mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;transform&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;kernels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;kernel-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pp_pipeline_accel:{pp_pipeline_accel_1}&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;library-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;libvvas_xpp.so&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;mean_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;mean_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;mean_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;scale_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;scale_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;scale_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">]</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    <span class="sb">```</span>
 </pre></div>
 </div>
 </li>
-<li><p>aiinference.json:</p>
+</ul>
+<p>The configured scale = prototxt_scale * (2 ^ fixpos) = 0.00390625 * (2^6) = 0.25.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```json
+{
+  &quot;xclbin-location&quot;:&quot;/lib/firmware/xilinx/kv260-smartcam/kv260-smartcam.xclbin&quot;,
+  &quot;vvas-library-repo&quot;: &quot;/opt/xilinx/kv260-smartcam/lib&quot;,
+  &quot;element-mode&quot;: &quot;transform&quot;,
+  &quot;kernels&quot;: [
+    {
+      &quot;kernel-name&quot;: &quot;pp_pipeline_accel:{pp_pipeline_accel_1}&quot;,
+      &quot;library-name&quot;: &quot;libvvas_xpp.so&quot;,
+      &quot;config&quot;: {
+        &quot;debug_level&quot; : 1,
+        &quot;mean_r&quot;: 0,
+        &quot;mean_g&quot;: 0,
+        &quot;mean_b&quot;: 0,
+        &quot;scale_r&quot;: 0.25,
+        &quot;scale_g&quot;: 0.25,
+        &quot;scale_b&quot;: 0.25
+      }
+    }
+  ]
+}
+
+```
+</pre></div>
+</div>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">aiinference.json</span></code></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w"> </span><span class="nt">&quot;xclbin-location&quot;</span><span class="p">:</span><span class="s2">&quot;/lib/firmware/xilinx/kv260-smartcam/kv260-smartcam.xclbin&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w"> </span><span class="nt">&quot;vvas-library-repo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/lib/aarch64-linux-gnu/&quot;</span><span class="p">,</span><span class="w"></span>
@@ -1143,8 +1160,8 @@ name : &quot;refinedet_480x360_5G&quot;
 </pre></div>
 </div>
 </li>
-<li><p>drawresult.json</p>
-<p>Here we pick up 4 classes to be shown: car, person, truck, bicycle; and customize the color for each class as bellow.</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">drawresult.json</span></code></p>
+<p>Here you pick up four classes to be shown: car, person, truck, bicycle; and customize the color for each class as follows:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nt">&quot;xclbin-location&quot;</span><span class="p">:</span><span class="s2">&quot;/usr/lib/dpu.xclbin&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">  </span><span class="nt">&quot;vvas-library-repo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/lib&quot;</span><span class="p">,</span><span class="w"></span>
@@ -1197,21 +1214,21 @@ name : &quot;refinedet_480x360_5G&quot;
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 SOM Smart camera design start page</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 SOM Smart Camera Design Start Page</span></a>.</p></li>
 </ul>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Vitis AI User Guide <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1414-vitis-ai">UG1414</a></p></li>
+<li><p><em>Vitis AI User Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?isLatest=true&amp;ft:locale=en-US&amp;url=ug1414-vitis-ai">UG1414</a>)</p></li>
 </ul>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2022 Xilinx</p></div>
+<p align="center">Copyright&copy; 2022-2023 Advanced Micro Devices, Inc</p></div>
 </div>
 </div>
 
@@ -1221,7 +1238,7 @@ name : &quot;refinedet_480x360_5G&quot;
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="app_deployment.html" class="btn btn-neutral float-left" title="Setting up the Board and Application Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="app_deployment.html" class="btn btn-neutral float-left" title="Setting Up the Board and Application Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../../building_the_design.html" class="btn btn-neutral float-right" title="Tool Flow Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -1229,7 +1246,7 @@ name : &quot;refinedet_480x360_5G&quot;
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 15, 2024.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 

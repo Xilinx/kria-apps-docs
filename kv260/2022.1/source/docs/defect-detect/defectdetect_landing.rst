@@ -16,7 +16,6 @@ The Defect Detection accelerated application is a machine vision application tha
 .. note::
    The test mango image is taken from the `COFILAB site <http://www.cofilab.com/wp-content/downloads/DB_Mango.rar>`_.
 
-
 *******************************
 Overview
 *******************************
@@ -43,7 +42,7 @@ Quick Start
 .. toctree::
   :maxdepth: 1
   
-  Setting up the Board and Application Deployment <docs/app_deployment_dd>
+  Setting up the Board and Application deployment <docs/app_deployment_dd>
 
 
 ***************************
@@ -51,15 +50,15 @@ Tutorials
 ***************************
 
 .. toctree::
-   :maxdepth: 1
+  :maxdepth: 1
   
-   Building the Design Components <../building_the_design>
-   Building the Hardware Design Using Vivado <../build_vivado_design>
-   Creating a Vitis Platform <../build_vitis_platform>
-   Integrating an Overlay Into the Platform <../build_accel>
-   Generating Custom Firmware <../generating_custom_firmware>
-   Kria Starter Kit Linux Boot <../kria_starterkit_linux_boot>
-   Rebuilding Application Docker Containers <../build_application_docker_container>
+  Building the Design components <../building_the_design>
+  Building the Hardware design using Vivado <../build_vivado_design>
+  Creating a Vitis Platform <../build_vitis_platform>
+  Integrating an overlay into the platform <../build_accel>
+  Generating Custom Firmware <../generating_custom_firmware>
+  Kria Starter Kit Linux Boot <../kria_starterkit_linux_boot>
+  Rebuilding Application Docker Containers <../build_application_docker_container>
 
 
 ********************
@@ -67,13 +66,12 @@ Architecture
 ********************
 
 .. toctree::
-   :maxdepth: 1
+  :maxdepth: 1
   
-   Software Architecture - Platform <docs/sw_arch_platform_dd>
-   Software Architecture - Accelerator <docs/sw_arch_accel_dd>
-   Hardware Architecture - Platform <docs/hw_arch_platform_dd>
-   Hardware Architecture - Accelerator <docs/hw_arch_accel_dd>
-
+  Software Architecture - Platform <docs/sw_arch_platform_dd>
+  Software Architecture - Accelerator <docs/sw_arch_accel_dd>
+  Hardware Architecture - Platform <docs/hw_arch_platform_dd>
+  Hardware Architecture - Accelerator <docs/hw_arch_accel_dd>
 
 
 *******************************
@@ -87,16 +85,15 @@ Repository
 
 
 
-
 ******
 Other
 ******
 
 .. toctree::
-   :maxdepth: 1
+  :maxdepth: 1
   
-   Debugging <docs/debug_dd>
-   Known Issues <docs/known_issues_dd>
+  Debugging <docs/debug_dd>
+  Known Issues <docs/known_issues_dd>
 
 
 
@@ -105,3 +102,14 @@ Xilinx Support
 ====================================
 
 GitHub issues will be used for tracking requests and bugs. For questions, go to `forums.xilinx.com <http://forums.xilinx.com/>`_.
+
+
+License
+------------------------------
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+
+You may obtain a copy of the License at `apache.org/licenses/LICENSE-2.0 <http://www.apache.org/licenses/LICENSE-2.0>`_.
+
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

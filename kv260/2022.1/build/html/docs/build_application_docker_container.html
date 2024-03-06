@@ -37,7 +37,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Software Architecture of the Platform" href="smartcamera/docs/sw_arch_platform.html" />
-    <link rel="prev" title="Booting Kria Starter Kit Linux" href="kria_starterkit_linux_boot.html" /> 
+    <link rel="prev" title="Booting the Kria Starter Kit Linux" href="kria_starterkit_linux_boot.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="building_the_design.html">Building the Design Components</a></li>
 <li class="toctree-l3"><a class="reference internal" href="build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
 <li class="toctree-l3"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="build_accel.html">Integrating an Overlay Into the Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_accel.html">Integrating an Overlay into the Platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generating_custom_firmware.html">Generating Custom Firmware</a></li>
 <li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">Kria Starter Kit Linux Boot</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Rebuilding Application Docker Containers</a><ul>
@@ -105,8 +105,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#architecture">Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#repository">Repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#related-tutorials">Related Tutorials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#other">Other</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#related-tutorials">Related Tutorials</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="aibox-reid/aibox_landing.html">AI Box ReID</a></li>
@@ -157,16 +157,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Rebuilding Application Docker Containers Tutorial<a class="headerlink" href="#rebuilding-application-docker-containers-tutorial" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This tutorial provides the steps required to rebuild Docker containers for Kria SOM. Developer can build individual application images, but a full set of Docker files are provided to build the example Docker images in <a class="reference external" href="https://github.com/Xilinx/kria-docker.git">Kria Docker git repo</a>.</p>
+<p>This tutorial provides the steps required to rebuild Docker containers for the Kria SOM. You can build the individual application images, but a full set of Docker files are provided to build the example Docker images in the <a class="reference external" href="https://github.com/Xilinx/kria-docker.git">Kria Docker git repo</a>.</p>
 <p>There are two Docker images used to rebuild Docker containers. They make use of a Docker incremental build approach to reduce final image size.</p>
 <ol class="simple">
-<li><p>The kria-developer Docker image can be found on <a class="reference external" href="https://hub.docker.com/r/xilinx/kria-developer">Docker hub</a>. It contains all the development libraries user needs to build against.</p></li>
-<li><p>The kria-runtime Docker image is a subset of the kria-developer Docker image, it can also be found on <a class="reference external" href="https://hub.docker.com/r/xilinx/kria-runtime">Docker hub</a>. It contains only the runtime library dependencies, thus is a smaller footprint base image by which to install a pre-built app.</p></li>
+<li><p>The kria-developer Docker image can be found on <a class="reference external" href="https://hub.docker.com/r/xilinx/kria-developer">Docker hub</a>. It contains all the development libraries you needs to build against.</p></li>
+<li><p>The kria-runtime Docker image is a subset of the kria-developer Docker image; it can also be found on <a class="reference external" href="https://hub.docker.com/r/xilinx/kria-runtime">Docker hub</a>. It contains only the runtime library dependencies, thus is a smaller footprint base image to install a pre-built app.</p></li>
 </ol>
 </div>
 <div class="section" id="requirement">
 <h2>Requirement<a class="headerlink" href="#requirement" title="Permalink to this heading">¶</a></h2>
-<p>The Docker container can be rebuilt on target (Kria SOM) or on a host machine. If rebuilding on a host machine, it must be a ARM-based CPU.</p>
+<p>The Docker container can be rebuilt on target (the Kria SOM) or on a host machine. If rebuilding on a host machine, it must be a Arm®-based processor.</p>
 </div>
 <div class="section" id="steps-to-build">
 <h2>Steps to Build<a class="headerlink" href="#steps-to-build" title="Permalink to this heading">¶</a></h2>
@@ -177,8 +177,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 </div>
 </li>
-<li><p>build the application of interest.</p>
-<p>Command : <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">-f</span> <span class="pre">&lt;dockerfile</span> <span class="pre">name&gt;</span> <span class="pre">.</span> <span class="pre">-t</span> <span class="pre">&lt;Name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">image&gt;</span></code></p>
+<li><p>Build the application of interest.</p>
+<p>Command: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">-f</span> <span class="pre">&lt;dockerfile</span> <span class="pre">name&gt;</span> <span class="pre">.</span> <span class="pre">-t</span> <span class="pre">&lt;Name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">image&gt;</span></code></p>
 <p>Example commands:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker build -f aibox-reid . -t aibox-reid 
 docker build -f nlp-smartvision . -t nlp-smartvision
@@ -188,47 +188,47 @@ docker build -f defect-detect . -t defect-detect
 </div>
 </li>
 </ol>
-<p>The Docker script will pull in the kria-developer and kria-runtime Docker image on build machine, and appropiate git repos to build the application images.</p>
+<p>The Docker script will pull in the kria-developer and kria-runtime Docker image on the build machine and the appropiate git repos to build the application images.</p>
 </div>
 <div class="section" id="steps-to-load">
 <h2>Steps to Load<a class="headerlink" href="#steps-to-load" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="built-on-target">
 <h3>Built on Target<a class="headerlink" href="#built-on-target" title="Permalink to this heading">¶</a></h3>
-<p>If the Docker image was built on target, issue below command to see that its present:</p>
+<p>If the Docker image was built on target, issue the following command to see that it is present:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker images
 </pre></div>
 </div>
-<p>The image can be then ran using docker run command.</p>
+<p>The image can be then run using the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command.</p>
 </div>
 <div class="section" id="built-on-host">
 <h3>Built on Host<a class="headerlink" href="#built-on-host" title="Permalink to this heading">¶</a></h3>
 <p>If the Docker image was built on host, it needs to be moved over to the target.</p>
 <ol>
-<li><p>Once Docker image is created, save the image to tar ball with:</p>
+<li><p>Once the Docker image is created, save the image to tar ball with:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker save -o &lt;filename.tar&gt; &lt;image_name&gt;:&lt;tag_name&gt;
 </pre></div>
 </div>
 </li>
-<li><p>Copy the tar ball to target then load the Docker image</p>
+<li><p>Copy the tar ball to target, then load the Docker image:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker load -i &lt;filename.tar&gt;
 </pre></div>
 </div>
 </li>
-<li><p>Issue below command to see that its present:</p>
+<li><p>Issue the following command to see that it is present:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker images
 </pre></div>
 </div>
 </li>
 </ol>
-<p>The image can be then ran using docker run command.</p>
+<p>The image can be then run using the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command.</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p></div>
 </div>
 </div>
 
@@ -238,7 +238,7 @@ docker build -f defect-detect . -t defect-detect
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="kria_starterkit_linux_boot.html" class="btn btn-neutral float-left" title="Booting Kria Starter Kit Linux" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="kria_starterkit_linux_boot.html" class="btn btn-neutral float-left" title="Booting the Kria Starter Kit Linux" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="smartcamera/docs/sw_arch_platform.html" class="btn btn-neutral float-right" title="Software Architecture of the Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -246,7 +246,7 @@ docker build -f defect-detect . -t defect-detect
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 15, 2024.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 

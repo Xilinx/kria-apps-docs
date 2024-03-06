@@ -89,7 +89,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#tutorials">Tutorials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#architecture">Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#repository">Repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#related-tutorials">Related Tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../smartcamera_landing.html#other">Other</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Debugging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#debugging-tips">Debugging Tips</a></li>
@@ -99,9 +98,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="toctree-l3"><a class="reference internal" href="issue-sc.html">Known Issues</a></li>
 <li class="toctree-l3"><a class="reference internal" href="issue-sc.html#limitations">Limitations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../smartcamera_landing.html#xilinx-support">Xilinx Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="issue-sc.html#license">License</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../smartcamera_landing.html#related-tutorials">Related Tutorials</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../aibox-reid/aibox_landing.html">AI Box ReID</a></li>
@@ -150,16 +150,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </tr>
 </table><div class="section" id="debugging">
 <h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading">¶</a></h1>
-<p>Please first review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across Kria SOM applications.</p>
+<p>First review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across the Kria SOM applications.</p>
 <div class="section" id="debugging-tips">
 <h2>Debugging Tips<a class="headerlink" href="#debugging-tips" title="Permalink to this heading">¶</a></h2>
 <ul>
-<li><p>Use the following command to load the firmware. If you do not, many drivers (including the MIPI and VCU) will not load, and when you run the application, you will have errors.</p>
+<li><p>Use the following command to load the firmware. If you do not, many drivers (including the MIPI and VCU) will not load, and when you run the application, you will have errors:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">xmutil</span><span class="w">      </span><span class="n">loadapp</span><span class="w"> </span><span class="n">kv260</span><span class="o">-</span><span class="n">smartcam</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
-<li><p>The smartcam application has an option <code class="docutils literal notranslate"><span class="pre">--usb</span></code> to choose the USB media devices. You can list the media devices by</p>
+<li><p>The smartcam application has an option <code class="docutils literal notranslate"><span class="pre">--usb</span></code> to choose the USB media devices. You can list the media devices using the following command:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">media</span><span class="o">*</span><span class="w"></span>
 </pre></div>
 </div>
@@ -193,28 +193,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Platform Peripheral Debug Tips<a class="headerlink" href="#platform-peripheral-debug-tips" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="monitor">
 <h3>Monitor<a class="headerlink" href="#monitor" title="Permalink to this heading">¶</a></h3>
-<p>Please review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays">Debug Displays</a> for debugging the monitor.</p>
+<p>Review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays">Debug Displays</a> for debugging the monitor.</p>
 </div>
 <div class="section" id="i2s-audio">
 <h3>I2S Audio<a class="headerlink" href="#i2s-audio" title="Permalink to this heading">¶</a></h3>
 <details>
- <summary>Click here to view the details.</summary>
-#### Determine the Enumeration for an I2S Audio Card<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">asound</span><span class="o">/</span><span class="n">cards</span><span class="w"></span>
+ <summary>Click here to view the details.</summary><div class="section" id="determine-the-enumeration-for-an-i2s-audio-card">
+<h4>Determine the Enumeration for an I2S Audio Card<a class="headerlink" href="#determine-the-enumeration-for-an-i2s-audio-card" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">asound</span><span class="o">/</span><span class="n">cards</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">[</span><span class="n">xlnxi2ssndcard0</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="n">xlnx</span><span class="o">-</span><span class="n">i2s</span><span class="o">-</span><span class="n">snd</span><span class="o">-</span><span class="n">ca</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xlnx</span><span class="o">-</span><span class="n">i2s</span><span class="o">-</span><span class="n">snd</span><span class="o">-</span><span class="n">card</span><span class="mi">-0</span><span class="w"></span>
 <span class="w">                      </span><span class="n">xlnx</span><span class="o">-</span><span class="n">i2s</span><span class="o">-</span><span class="n">snd</span><span class="o">-</span><span class="n">card</span><span class="mi">-0</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In the previous example, the enumeration of I2S audio card is 2.</p>
-<div class="section" id="determine-capture-and-playback-device-number">
-<h4>Determine Capture and Playback Device Number<a class="headerlink" href="#determine-capture-and-playback-device-number" title="Permalink to this heading">¶</a></h4>
+<p>In the previous example, the enumeration of the I2S audio card is 2.</p>
+</div>
+<div class="section" id="determine-the-capture-and-playback-device-number">
+<h4>Determine the Capture and Playback Device Number<a class="headerlink" href="#determine-the-capture-and-playback-device-number" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">asound</span><span class="o">/</span><span class="n">devices</span><span class="w"></span>
 <span class="w"> </span><span class="mi">80</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="n">digital</span><span class="w"> </span><span class="n">audio</span><span class="w"> </span><span class="n">playback</span><span class="w"></span>
 <span class="w"> </span><span class="mi">89</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="n">digital</span><span class="w"> </span><span class="n">audio</span><span class="w"> </span><span class="n">capture</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In this example, [2- X]: the 2- is the card and the X is the device.</p>
+<p>In this example, [2- X]: the 2- is the card, and the X is the device.</p>
 </div>
 <div class="section" id="sample-record-and-playback">
 <h4>Sample Record and Playback<a class="headerlink" href="#sample-record-and-playback" title="Permalink to this heading">¶</a></h4>
@@ -248,17 +250,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 </div>
 </details></div>
-<div class="section" id="obtain-media-device-information">
-<h3>Obtain Media device information<a class="headerlink" href="#obtain-media-device-information" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="obtain-the-media-device-information">
+<h3>Obtain the Media Device Information<a class="headerlink" href="#obtain-the-media-device-information" title="Permalink to this heading">¶</a></h3>
 <details> <summary>Click here to view the details.</summary><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">media</span><span class="o">*</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Lists all media enumerations:</p>
+<p>List all media enumerations:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">media</span><span class="o">-</span><span class="n">ctl</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">mediaX</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Where the X in media is the enumerated value. This command prints the device topology and helps you identify the media device.</p>
-<p>Example for capture path of <code class="docutils literal notranslate"><span class="pre">ar1335</span> <span class="pre">sensor</span></code>.</p>
+<p>Example for capture path of <code class="docutils literal notranslate"><span class="pre">ar1335</span> <span class="pre">sensor</span></code>:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">media</span><span class="o">-</span><span class="n">ctl</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">media1</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"></span>
 </pre></div>
 </div>
@@ -321,7 +323,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="known-benign-error-messages">
 <h2>Known Benign Error Messages<a class="headerlink" href="#known-benign-error-messages" title="Permalink to this heading">¶</a></h2>
 <details>
- <summary>Click here to view details:</summary><p>You do not have to worry about errors logged by the Linux kernel while executing the following specified commands, they are benign and can be ignored.</p>
+ <summary>Click here to view details:</summary><p>You do not have to worry about errors logged by the Linux kernel while executing the following specified commands; they are benign and can be ignored:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">xmutil</span><span class="w"> </span><span class="n">unloadapp</span><span class="w"></span>
 </pre></div>
 </div>
@@ -340,9 +342,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2022 Xilinx</p></div>
+<p align="center">Copyright&copy; 2022-2023 Advanced Micro Devices, Inc</p></div>
 </div>
 </div>
 
@@ -360,7 +362,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 15, 2024.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 
