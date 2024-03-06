@@ -99,7 +99,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="issue-nlp.html">Known Issues</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nlp_smartvision_landing.html#xilinx-support">Xilinx Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nlp_smartvision_landing.html#amd-support">AMD Support</a></li>
 </ul>
 </li>
 </ul>
@@ -147,13 +147,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </tr>
 </table><div class="section" id="debugging">
 <h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading">¶</a></h1>
-<p>Please first review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across Kria SOM applications.</p>
+<p>First review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across the Kria SOM applications.</p>
 <div class="section" id="this-section-list-some-debugging-tips-for-the-application">
 <h2>This section list some debugging tips for the application<a class="headerlink" href="#this-section-list-some-debugging-tips-for-the-application" title="Permalink to this heading">¶</a></h2>
 <ul>
-<li><p>Make sure you use</p>
+<li><p>Make sure you use:</p>
 <p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xmutil</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">loadapp</span> <span class="pre">kv260-nlp-smartvision</span></code></p>
-<p>to load the firmware properly, otherwise many drivers including the MIPI will not loaded, so there will be many errors pops up when you run the application.</p>
+<p>to load the firmware properly; otherwise, many drivers including the MIPI will not load, so there will be many errors when you run the application.</p>
 </li>
 </ul>
 </div>
@@ -161,34 +161,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>This section list some debugging tips for platform peripherals<a class="headerlink" href="#this-section-list-some-debugging-tips-for-platform-peripherals" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="monitor">
 <h3>Monitor<a class="headerlink" href="#monitor" title="Permalink to this heading">¶</a></h3>
-<p>Please review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays">Debug Displays</a> for debugging the monitor.</p>
+<p>Review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays">Debug Displays</a> for debugging the monitor.</p>
 </div>
 <div class="section" id="audio">
 <h3>Audio<a class="headerlink" href="#audio" title="Permalink to this heading">¶</a></h3>
 <details>
  <summary>Click here to view details</summary><div class="section" id="determine-the-enumeration-for-audio-card">
-<h4>Determine the enumeration for audio card<a class="headerlink" href="#determine-the-enumeration-for-audio-card" title="Permalink to this heading">¶</a></h4>
+<h4>Determine the Enumeration for Audio Card<a class="headerlink" href="#determine-the-enumeration-for-audio-card" title="Permalink to this heading">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">/proc/asound/cards</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="m">2</span> <span class="o">[</span>xlnxi2ssndcard0<span class="o">]</span>: xlnx-i2s-snd-ca - xlnx-i2s-snd-card-0
                       xlnx-i2s-snd-card-0
 </pre></div>
 </div>
-<p>In the above example, enumeration of audio card is 2.</p>
+<p>In the above example, the enumeration of audio card is 2.</p>
 </div>
 <div class="section" id="determine-capture-and-playback-device-number">
-<h4>Determine capture and playback device number<a class="headerlink" href="#determine-capture-and-playback-device-number" title="Permalink to this heading">¶</a></h4>
+<h4>Determine Capture and Playback Device Number<a class="headerlink" href="#determine-capture-and-playback-device-number" title="Permalink to this heading">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">/proc/asound/devices</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="m">80</span>: <span class="o">[</span> <span class="m">2</span>- <span class="m">0</span><span class="o">]</span>: digital audio playback
  <span class="m">89</span>: <span class="o">[</span> <span class="m">2</span>- <span class="m">1</span><span class="o">]</span>: digital audio capture
 </pre></div>
 </div>
-<p>In the above example [2- X]: 2- is card, X is device.</p>
+<p>In the above example [2- X]: 2- is card, X is the device.</p>
 </div>
 <div class="section" id="sample-record-and-playback">
-<h4>Sample record and playback<a class="headerlink" href="#sample-record-and-playback" title="Permalink to this heading">¶</a></h4>
+<h4>Sample Record and Playback<a class="headerlink" href="#sample-record-and-playback" title="Permalink to this heading">¶</a></h4>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">alsa-utils.aarch64</span></code></p></li>
-<li><p>ensure an active source is connected at the Pmod LINE IN.</p></li>
+<li><p>Ensure an active source is connected at the Pmod LINE IN.</p></li>
 </ol>
 </details></div>
 </div>
@@ -203,13 +203,13 @@ Bus <span class="m">002</span> Device <span class="m">001</span>: ID 1d6b:0003 L
 </div>
 </details></div>
 <div class="section" id="obtain-media-device-information">
-<h3>Obtain Media device information<a class="headerlink" href="#obtain-media-device-information" title="Permalink to this heading">¶</a></h3>
+<h3>Obtain Media Device Information<a class="headerlink" href="#obtain-media-device-information" title="Permalink to this heading">¶</a></h3>
 <details>
  <summary>Click here to view details</summary>
-`ls /dev/media*`<p>lists all media enumerations</p>
+`ls /dev/media*`<p>Lists all media enumerations</p>
 <p><code class="docutils literal notranslate"><span class="pre">media-ctl</span> <span class="pre">-d</span> <span class="pre">/dev/mediaX</span> <span class="pre">-p</span></code></p>
-<p>where X in media is the enumerated value. the above command will print the Device topology and help user identify the media device.
-Here is an example for capture path of ‘ar1335 sensor’.</p>
+<p>where X in media is the enumerated value. The above command will print the Device topology and help you identify the media device.</p>
+<p>Here is an example for capture path of ‘ar1335 sensor’.</p>
 <p><code class="docutils literal notranslate"><span class="pre">media-ctl</span> <span class="pre">-d</span> <span class="pre">/dev/media0</span> <span class="pre">-p</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Media controller API version <span class="m">5</span>.4.0
 
@@ -282,9 +282,9 @@ Device topology
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p></div>
 </div>
 </div>
 
@@ -302,7 +302,7 @@ Device topology
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 15, 2024.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 

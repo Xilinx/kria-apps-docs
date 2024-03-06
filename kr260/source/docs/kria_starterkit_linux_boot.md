@@ -54,28 +54,15 @@ This guide is targeted for Ubuntu 22.04 and Xilinx 2022.1 toolchain.
 
    * For some applications, it is required to work with commandline instead of GNOME Desktop.
 
-5. If not done so yet, perform system update to pull in the latest kernel and AMD packages. There might be some errors during installation. Refer to [known issues](#known-issues) if you encounter issues. There are two ways to do this.
+5. If not done so yet, perform system update to pull in the latest kernel and AMD packages. There might be some errors during installation. Refer to [known issues](#known-issues) if you encounter issues. In this step we manually add the AMD-specific Ubuntu PPAs, and then perform a system update and upgrade to pull in the latest Xilinx libraries. The apt upgrade step might take some time.
 
-   Through snap install, for more information, refer to the [Xilinx config snap Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2057043969/Snaps+-+xlnx-config+Snap+for+Certified+Ubuntu+on+Xilinx+Devices):
-
-      ```bash
-      sudo snap install xlnx-config --classic --channel=2.x
-      ```
-
-      After xlnx-config snap has been installed, run the Xilinx platform setup script, and follow the prompts.
-
-      ```bash
-      sudo xlnx-config.sysinit
-      ```
-
-   Alternatively, the above can be achieved by manually adding the AMD-specific Ubuntu PPAs, and then performing a system update and upgrade to pull in the latest Xilinx libraries. An apt upgrade step might take some time.
-
-      ```bash
-      sudo add-apt-repository ppa:xilinx-apps
-      sudo add-apt-repository ppa:ubuntu-xilinx/sdk
-      sudo apt update
-      sudo apt upgrade
-      ```
+   ```bash
+   sudo add-apt-repository ppa:xilinx-apps --yes &&
+   sudo add-apt-repository ppa:ubuntu-xilinx/sdk --yes &&
+   sudo add-apt-repository ppa:xilinx-apps/xilinx-drivers --yes &&
+   sudo apt update --yes &&
+   sudo apt upgrade --yes
+   ```
 
    ***Note***: if the kernel was updated, make sure to follow the apt upgrade instruction (and command such as ```sudo reboot```) to reboot the platform to boot with the latest kernel.
 

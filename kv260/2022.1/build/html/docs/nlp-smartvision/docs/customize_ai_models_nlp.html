@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Customizing the AI Models used in the application &mdash; Kria™ KV260 2022.1 documentation</title>
+  <title>Customizing the AI Models Used in the Application &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
@@ -37,7 +37,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Software Architecture of the Platform" href="sw_arch_platform_nlp.html" />
-    <link rel="prev" title="Setting up the Board and Application Deployment" href="app_deployment_nlp.html" /> 
+    <link rel="prev" title="Setting Up the Board and Application Deployment" href="app_deployment_nlp.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -134,7 +134,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../nlp_smartvision_landing.html">NLP SmartVision</a> &raquo;</li>
-      <li>Customizing the AI Models used in the application</li>
+      <li>Customizing the AI Models Used in the Application</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -149,55 +149,60 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Customizing the AI Models used in the application</h1>
+ <td align="center"><h1>Customizing the AI Models Used in the Application</h1>
   </td>
  </tr>
 </table><div class="section" id="customizing-the-ai-models-used-in-the-application">
-<h1>Customizing the AI Models used in the application<a class="headerlink" href="#customizing-the-ai-models-used-in-the-application" title="Permalink to this heading">¶</a></h1>
+<h1>Customizing the AI Models Used in the Application<a class="headerlink" href="#customizing-the-ai-models-used-in-the-application" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document provide an overview of how to customize the NLP SmartVision application to use other AI models other than the default ones.</p>
 </div>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
-<p>Other than the 3 models provided via keywords “up” &amp; “down” as documented <a class="reference internal" href="app_deployment_nlp.html"><span class="doc">here</span></a>,</p>
+<p>Other than the three models provided via the keywords “up” and “down” as documented <a class="reference internal" href="app_deployment_nlp.html"><span class="doc">here</span></a>,</p>
 <ul class="simple">
 <li><p>facedetect (densebox_640_360)</p></li>
 <li><p>object Detect (yolov2_voc_pruned_0_77)</p></li>
 <li><p>plate Detect (plate_detect)</p></li>
 </ul>
-<p>customization can be made to use other Vitis AI models or retrained model by the users of the same class.</p>
+<p>Customization can be made to use other AMD Vitis™ AI models or retrained model by the users of the same class.</p>
 <div class="section" id="model-preparation">
 <h3>Model Preparation<a class="headerlink" href="#model-preparation" title="Permalink to this heading">¶</a></h3>
-<p><strong>Note</strong> The design currently only supports <strong>Vitis AI 2.5.0</strong></p>
-<p><strong>Note</strong> As described in the Hardware Accelerator section, the DPU integrated in the platform uses the <strong>B3136</strong> configuration.</p>
-<p>The arch.json used to compile the xmodel for B3136 DPU can be obtained by build the accelerator, but if you won’t build all from the start, you can save following code as arch.json</p>
+<blockquote>
+<div><p><strong>NOTE:</strong></p>
+<ul class="simple">
+<li><p>The design currently only supports <strong>Vitis AI 2.5.0</strong>.</p></li>
+<li><p>As described in the Hardware Accelerator section, the DPU integrated in the platform uses the <strong>B3136</strong> configuration.</p></li>
+</ul>
+</div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">arch.json</span></code> used to compile the xmodel for B3136 DPU can be obtained by build the accelerator, but if you will not build all from the start, you can save the following code as <code class="docutils literal notranslate"><span class="pre">arch.json</span></code>:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;fingerprint&quot;</span><span class="p">:</span><span class="s2">&quot;0x1000020F6014405&quot;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>For detailed instructions on obtaining an alternative model from the Xilinx model zoo or training, pruning, quantizing, and compiling a new model, please refer to the <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_4/ug1414-vitis-ai.pdf">Vitis AI documentation</a>.</p>
+<p>For detailed instructions on obtaining an alternative model from the model zoo or training, pruning, quantizing, and compiling a new model, refer to the <em>Vitis AI User Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?isLatest=true&amp;ft:locale=en-US&amp;url=ug1414-vitis-ai">UG1414</a>).</p>
 </div>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Go back to the <a class="reference internal" href="../nlp_smartvision_landing.html"><span class="doc">KV260 SOM NLP SmartVision design start page</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../nlp_smartvision_landing.html"><span class="doc">KV260 SOM NLP SmartVision Design Start Page</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Vitis AI User Guide <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/2_5/ug1414-vitis-ai.pdf">UG1414</a></p></li>
+<li><p><em>Vitis AI User Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?isLatest=true&amp;ft:locale=en-US&amp;url=ug1414-vitis-ai">UG1414</a>)</p></li>
 </ul>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+<p align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p></div>
 </div>
 </div>
 
@@ -207,7 +212,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="app_deployment_nlp.html" class="btn btn-neutral float-left" title="Setting up the Board and Application Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="app_deployment_nlp.html" class="btn btn-neutral float-left" title="Setting Up the Board and Application Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="sw_arch_platform_nlp.html" class="btn btn-neutral float-right" title="Software Architecture of the Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -215,7 +220,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 15, 2024.
+      <span class="lastupdated">Last updated on March 06, 2024.
       </span></p>
   </div>
 
