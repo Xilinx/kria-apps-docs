@@ -73,19 +73,13 @@ The following table shows testing results. The glass to glass latency is measure
 
   So the audio feature of the application is disabled by disabling the I2S subsystem in the dtsi file, which means the `-A"/"--audio` option with RTSP target will not stream the audio.
 
-# Limitations
+## Limitations
 
 * The model used for the solid-state disk (SSD) AI task through the option, `--aitask ssd`, is ssd_adas_pruned_0_95 from the Vitis-AI-Library, which is not a general SSD model, but only for the ADAS scenario as showed by the [BDD dataset](https://bdd-data.berkeley.edu/).
 
 * The model used for the Refinedet AI task through the option `--aitask refinedet` is refinedet_pruned_0_96 from the Vitis-AI-Library, which is not a general object detection model, but only for the detection of pedestrian, such as the person object in [COCO dataset](https://cocodataset.org/#explore).
 
-# License
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p align="center">Copyright&copy; 2022-2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

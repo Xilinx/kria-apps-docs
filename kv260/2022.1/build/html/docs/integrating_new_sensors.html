@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Integrating new Sensor Cameras &mdash; Kria™ KV260 2022.1 documentation</title>
+  <title>Integrating New IAS Sensor Modules &mdash; Kria™ KV260 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -35,7 +35,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Software Architecture of the Platform" href="smartcamera/docs/sw_arch_platform.html" />
+    <link rel="prev" title="Rebuilding Application Docker Containers Tutorial" href="build_application_docker_container.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,8 +82,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">KV260 Applications</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="smartcamera/smartcamera_landing.html">Smart Camera</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="smartcamera/smartcamera_landing.html">Smart Camera</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="smartcamera/smartcamera_landing.html#tutorials">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="smartcamera/docs/customize_ai_models.html">Customizing AI Models Used in the Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_the_design.html">Building the Design Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_accel.html">Integrating an Overlay into the Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generating_custom_firmware.html">Generating Custom Firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">Kria Starter Kit Linux Boot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_application_docker_container.html">Rebuilding Application Docker Containers</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Integrating New Sensors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#support-for-new-sensors-on-kv260-j7">Support for new sensors on KV260 J7</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#support-for-new-sensors-on-kv260-j8">Support for new sensors on KV260 J8</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#repository">Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#other">Other</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcamera/smartcamera_landing.html#related-tutorials">Related Tutorials</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="aibox-reid/aibox_landing.html">AI Box ReID</a></li>
 <li class="toctree-l1"><a class="reference internal" href="defect-detect/defectdetect_landing.html">Defect Detect</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
@@ -108,7 +134,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Integrating new Sensor Cameras</li>
+          <li><a href="smartcamera/smartcamera_landing.html">Smart Camera</a> &raquo;</li>
+      <li>Integrating New IAS Sensor Modules</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -122,28 +149,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    <td align="center"><img src="media/xilinx-logo.png" width="30%"/><h1>Kria&trade; Booting the Kria Starter Kit Linux</h1>
    </td>
  </tr>
-</table><div class="section" id="integrating-new-sensor-cameras">
-<h1>Integrating new Sensor Cameras<a class="headerlink" href="#integrating-new-sensor-cameras" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="support-for-new-sensors-on-j7">
-<h2>Support for new sensors on J7<a class="headerlink" href="#support-for-new-sensors-on-j7" title="Permalink to this heading">¶</a></h2>
-<p>The KV260 example applications currently support for two onsemi camera sensors - AR1335 and AR0144 connected via J7 IAS connector. This connector links to a dedicated onsemi 13 MP AP1302 Image Sensor Processor (ISP). To integrate a new onsemi sensor for use with J7, obtain the required firmware blob via <a class="reference external" href="https://www.onsemi.com/support/sales">onsemi sales support</a>. Place the new firmware blob alongside  <code class="docutils literal notranslate"><span class="pre">/usr/lib/firmware/ap1302_ar1335_single_fw.bin</span></code> and <code class="docutils literal notranslate"><span class="pre">/usr/lib/firmware/ap1302_ar0144_single_fw.bin</span></code> in <code class="docutils literal notranslate"><span class="pre">/usr/lib/firmware/</span></code> on the target device.</p>
+</table><div class="section" id="integrating-new-ias-sensor-modules">
+<h1>Integrating New IAS Sensor Modules<a class="headerlink" href="#integrating-new-ias-sensor-modules" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="support-for-new-sensors-on-kv260-j7">
+<h2>Support for new sensors on KV260 J7<a class="headerlink" href="#support-for-new-sensors-on-kv260-j7" title="Permalink to this heading">¶</a></h2>
+<p>KV260 J7 is an IAS connector connected to a dedicated onsemi AP1302 Image Sensor Processor (ISP). Each sensor module (e.g. AR1335) requires its own firmware blob on target.</p>
+<p>The KV260 example applications currently support two onsemi camera sensors on J7 IAS connector - AR1335 or AR0144 depending on the example application. If integrating a new onsemi sensor for use with the AP1302 ISP, obtain the required firmware blob via <a class="reference external" href="https://www.onsemi.com/support/sales">onsemi sales support</a>. The AP1302 Linux driver will load the new firmware blob from <code class="docutils literal notranslate"><span class="pre">/usr/lib/firmware/</span></code> on the target device.</p>
 </div>
-<div class="section" id="support-for-new-sensors-on-j8">
-<h2>Support for new sensors on J8<a class="headerlink" href="#support-for-new-sensors-on-j8" title="Permalink to this heading">¶</a></h2>
-<p>J8 also features an IAS connector but lacks a dedicated ISP. Integration via this path requires different drivers. KV260 currently supports the AR1335 sensor on J8, with driver modules located at:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">linux</span><span class="o">-</span><span class="n">headers</span><span class="o">-</span><span class="mf">5.15.0</span><span class="o">-</span><span class="mi">1025</span><span class="o">-</span><span class="n">xilinx</span><span class="o">-</span><span class="n">zynqmp</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">VIDEO_AR1335</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="mf">5.15.0</span><span class="o">-</span><span class="mi">1025</span><span class="o">-</span><span class="n">xilinx</span><span class="o">-</span><span class="n">zynqmp</span><span class="o">/</span><span class="n">kernel</span><span class="o">/</span><span class="n">drivers</span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">i2c</span><span class="o">/</span><span class="n">ar1335</span><span class="o">.</span><span class="n">ko</span>
-</pre></div>
-</div>
-<p>To bring support of new sensors on J8, contact <a class="reference external" href="https://www.onsemi.com/support/sales">onsemi sales support</a> for details.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2021-2023 Advanced Micro Devices, Inc</p></div>
+<div class="section" id="support-for-new-sensors-on-kv260-j8">
+<h2>Support for new sensors on KV260 J8<a class="headerlink" href="#support-for-new-sensors-on-kv260-j8" title="Permalink to this heading">¶</a></h2>
+<p>KV260 J8 is an IAS connector interfaced directly to the FPGA. Integration of new sensor modules via this path requires a supporting PL implementation.</p>
+<p>To bring support for new sensors on J8, contact <a class="reference external" href="https://www.onsemi.com/support/sales">onsemi sales support</a> for details.</p>
+<p>An example application featuring a direct sensor module interface (J8) with a custom PL implementation can be found <a class="reference external" href="https://xfuse.ai/phoenix-isp-for-kria-som-3/">here</a>.</p>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -151,13 +169,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
           
 				  
-				  <footer>
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="build_application_docker_container.html" class="btn btn-neutral float-left" title="Rebuilding Application Docker Containers Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="smartcamera/docs/sw_arch_platform.html" class="btn btn-neutral float-right" title="Software Architecture of the Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 06, 2024.
+      <span class="lastupdated">Last updated on March 21, 2024.
       </span></p>
   </div>
 
