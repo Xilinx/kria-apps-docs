@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Known issues &amp; limitations &mdash; Kria™ KD240 1.0 documentation</title>
+  <title>Known Issues and Limitations &mdash; Kria™ KD240 1.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
@@ -89,7 +89,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="../foc_motor_control_landing.html#architecture">Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../foc_motor_control_landing.html#repository">Repository</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../foc_motor_control_landing.html#other">Other</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Known issues &amp; limitations</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Known Issues and Limitations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#debugging-motor-control-application">Debugging Motor Control Application</a></li>
 </ul>
 </li>
@@ -119,7 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../foc_motor_control_landing.html">FOC Motor Control Application</a> &raquo;</li>
-      <li>Known issues &amp; limitations</li>
+      <li>Known Issues and Limitations</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/docs/foc-motor-ctrl/docs/known_issues.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -135,95 +135,66 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Known Issues and Debug help</h1> </td>
+ <td align="center"><h1>Known Issues and Debug Help</h1> </td>
  </tr>
-</table><div class="section" id="known-issues-limitations">
-<h1>Known issues &amp; limitations<a class="headerlink" href="#known-issues-limitations" title="Permalink to this heading">¶</a></h1>
+</table><div class="section" id="known-issues-and-limitations">
+<h1>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
-<li><p>QEI reported speed is showing glitches. QEI library computation of the speed
-has a known issue and will be addressed with a QEI library update.</p></li>
+<li><p>QEI reported speed is showing glitches. The QEI library computation of the speed has a known issue and will be addressed with a QEI library update.</p></li>
 <li><p>Motor lower speed mode control capability is approximately 250 rpms.</p></li>
-<li><p>Default motor tuning values are provided for the KD240 Motor Accessory Kit
-based the Anaheim motor with the plastic disk visual load. This load disk
-primarily acts as an inertial load and thus if users are connecting other loads
-to their motor they should plan on conducting their own tuning process and
-defining custom tuning defaults based on their load testing.</p></li>
-<li><p>Open-loop control mode is intended as a test mode and thus does not implement
-any SW based ramp control. Users will see fault protections triggered if immediately
-trying to set open-loop mode control with a Vq voltage &gt; ~10V. If using open-loop
-user is responsible for incrementally stepping up the Vq command to their desired
-voltage setting.  Typical use-cases of open-loop mode have Vd set to 0V.</p></li>
-<li><p>DC link current reading is limited to reading analog values &gt; ~0.5A due to a
-limitation in the KD240 HW. Users should not assume DC link current feedback is
-accurate until it is &gt; ~0.5A.</p></li>
-<li><p>If the bokeh server is stopped while the motor is running, the motor will not
-stop. The motor should be stopped through the GUI by switching to Off mode
-before stopping the bokeh server.</p></li>
+<li><p>Default motor tuning values are provided for the KD240 Motor Accessory Kit based the Anaheim motor with the plastic disk visual load. This load disk primarily acts as an inertial load and thus if you are connecting other loads to your motor, you should plan on conducting your own tuning process and defining custom tuning defaults based on your load testing.</p></li>
+<li><p>Open-loop control mode is intended as a test mode and thus does not implement any software based ramp control. You will see fault protections triggered if immediately trying to set open-loop mode control with a Vq voltage &gt; ~10V. If using an open-loop, you are responsible for incrementally stepping up the Vq command to your desired voltage setting. Typical use cases of open-loop mode have Vd set to 0V.</p></li>
+<li><p>DC link current reading is limited to reading analog values &gt; ~0.5A due to a limitation in the KD240 hardware. You should not assume the DC link current feedback is accurate until it is &gt; ~0.5A.</p></li>
+<li><p>If the bokeh server is stopped while the motor is running, the motor will not stop. The motor should be stopped through the GUI by switching to Off mode before stopping the bokeh server.</p></li>
 </ul>
 </div>
 <div class="section" id="debugging-motor-control-application">
 <h1>Debugging Motor Control Application<a class="headerlink" href="#debugging-motor-control-application" title="Permalink to this heading">¶</a></h1>
-<p>If the motor control application is not functioning as intended, follow these
-debugging steps to diagnose and resolve issues.</p>
+<p>If the motor control application is not functioning as intended, follow these debugging steps to diagnose and resolve issues.</p>
 <ol>
 <li><p><strong>Check Wire Connections</strong></p>
 <ul class="simple">
-<li><p>Ensure that wire connections matches the configuration shown in
-the application deployment page.</p></li>
+<li><p>Ensure that wire connections matches the configuration shown in the application deployment page.</p></li>
 <li><p>Verify that the 24V DC supply is connected and the wall power is up.</p></li>
 <li><p>Check DS9 LED, which represents the DC link; it should be in a high state.</p></li>
-<li><p>Confirm that the Quadrature Encoder Interface (QEI) encoder from the motor
-is properly connected to the board.</p></li>
+<li><p>Confirm that the Quadrature Encoder Interface (QEI) encoder from the motor is properly connected to the board.</p></li>
 </ul>
 </li>
 <li><p><strong>Read DC Link Voltage</strong></p>
 <ul>
-<li><p>If the application repeatedly fails to start with system faults,
-measure the DC link voltage by reading data from the ADC interface
-(ADC-HUB voltage channel 6).</p></li>
-<li><p>Use the command <code class="docutils literal notranslate"><span class="pre">iio_attr</span> <span class="pre">-c</span> <span class="pre">xilinx_adc_hub</span> <span class="pre">voltage6</span></code> to check the
-voltage reading and should read around 24V.</p>
+<li><p>If the application repeatedly fails to start with system faults, measure the DC link voltage by reading data from the ADC interface (ADC-HUB voltage channel 6).</p></li>
+<li><p>Use the command <code class="docutils literal notranslate"><span class="pre">iio_attr</span> <span class="pre">-c</span> <span class="pre">xilinx_adc_hub</span> <span class="pre">voltage6</span></code> to check the voltage reading and should read around 24V.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iio_attr -c xilinx_adc_hub voltage6
 dev <span class="s1">&#39;xilinx_adc_hub&#39;</span>, channel <span class="s1">&#39;voltage6&#39;</span> <span class="o">(</span>input<span class="o">)</span>, attr <span class="s1">&#39;input&#39;</span>, value <span class="s1">&#39;25.116806030&#39;</span>
 </pre></div>
 </div>
+<p>A reading significantly lower or higher than the tolerance range of the power supply could indicate a hardware failure on the board.</p>
 </li>
 </ul>
-<p>A reading significantly lower or higher than the tolerance range of the power
-supply could indicate a hardware failure on the board.</p>
 </li>
 <li><p><strong>Debug PL Interfaces</strong></p>
 <ul class="simple">
-<li><p>If unexpected behavior occurs, start probing different blocks of the
-Programmable Logic (PL) interfaces for debugging.</p></li>
-<li><p>Utilize IIO utilities or the IIO driver sysfs for the specific hardware
-interface.</p></li>
-<li><p>Refer to the <a class="reference external" href="./sw_arch.md#device-and-channel-attributes">Device and Channel Attributes</a>
-section for detailed information on debugging hardware interfaces.</p></li>
+<li><p>If unexpected behavior occurs, start probing different blocks of the programmable logic (PL) interfaces for debugging.</p></li>
+<li><p>Utilize the IIO utilities or the IIO driver sysfs for the specific hardware interface.</p></li>
+<li><p>For detailed information on debugging hardware interfaces, refer to the <a class="reference external" href="./sw_arch.md#device-and-channel-attributes">Device and  Channel Attributes</a> section.</p></li>
 </ul>
 </li>
 <li><p><strong>Gate Drive Mode</strong></p>
 <ul class="simple">
-<li><p>Ensure that the software application is set to a valid mode that turns
-the Gate Drive ON, except for the off mode.</p></li>
-<li><p>Monitor DS10 LED; it should go high in modes other than off.</p></li>
+<li><p>Ensure that the software application is set to a valid mode that turns the Gate Drive ON, except for the off mode.</p></li>
+<li><p>Monitor DS10 LED: it should go high in modes other than off.</p></li>
 </ul>
 </li>
 <li><p><strong>Observe Errors and Messages from the Application</strong></p>
 <ul class="simple">
-<li><p>Keep an eye on the serial console for error messages or other relevant
-information.</p></li>
-<li><p>Review <code class="docutils literal notranslate"><span class="pre">dmesg</span></code> logs, which provide valuable information from the respective
-hardware drivers. These logs can be a helpful source of diagnostic information.</p></li>
+<li><p>Keep an eye on the serial console for error messages or other relevant information.</p></li>
+<li><p>Review the <code class="docutils literal notranslate"><span class="pre">dmesg</span></code> logs, which provide valuable information from the respective hardware drivers. These logs can be a helpful source of diagnostic information.</p></li>
 </ul>
 </li>
 <li><p><strong>Network Connection</strong></p>
 <ul class="simple">
-<li><p>If the application doesn’t respond to changes from the GUI, verify the network
-connection by pinging the host address.</p></li>
-<li><p>Sometimes, a web socket disconnection message may appear, indicating a
-communication issue. If you encounter such disconnection issues, try killing the
-Bokeh server and relaunching the server and the dashboard.</p></li>
+<li><p>If the application does not respond to changes from the GUI, verify the network connection by pinging the host address.</p></li>
+<li><p>Sometimes, a web socket disconnection message may appear, indicating a communication issue. If you encounter such disconnection issues, try killing the Bokeh server and relaunching the server and the dashboard.</p></li>
 </ul>
 <p>Sample Disconnection Message:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2023</span>-09-13 <span class="m">18</span>:47:32,361 WebSocket connection closed: <span class="nv">code</span><span class="o">=</span>None, <span class="nv">reason</span><span class="o">=</span>None
@@ -233,15 +204,11 @@ Bokeh server and relaunching the server and the dashboard.</p></li>
 </ol>
 <!---
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
 
-Unless required by applicable law or agreed to in writing, software distributed
-under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-CONDITIONS OF ANY KIND, either express or implied. See the License for the
-specific language governing permissions and limitations under the License.
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 --><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 
@@ -258,7 +225,7 @@ specific language governing permissions and limitations under the License.
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 06, 2024.
+      <span class="lastupdated">Last updated on March 21, 2024.
       </span></p>
   </div>
 
