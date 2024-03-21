@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Known issues &amp; limitations" href="known_issues.html" />
+    <link rel="next" title="Known Issues and Limitations" href="known_issues.html" />
     <link rel="prev" title="Hardware Architecture of the Platform" href="hw_description.html" /> 
 </head>
 
@@ -93,7 +93,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#kernel-drivers">Kernel Drivers</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#middleware">Middleware</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#application-library">Application &amp; Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application-and-library">Application and Library</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
@@ -149,24 +149,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Software Architecture of the Platform<a class="headerlink" href="#software-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This section describes software components involved in the design and their
-relation with each other. The application requires hw platform as described in
-<a class="reference internal" href="hw_description.html"><span class="doc">Hardware Architecture of the Platform</span></a> for the stack
-explained in this section to work.</p>
-<p>The software stack here provides a comprehensive library that can be
-interfaced using various user interfaces and efficiently driver the motor
-through Kria Drive SOM board.</p>
-<p>Following diagram illustrates the top-level architecture and arrangement of
-various software components:</p>
-<p><img alt="Software Architecture Overview" src="../../../_images/sw_arch.jpg" />]</p>
+<p>This section describes software components involved in the design and their relation with each other. The application requires a hardware platform as described in <a class="reference internal" href="hw_description.html"><span class="doc">Hardware Architecture of the Platform</span></a> for the stack explained in this section to work.</p>
+<p>The software stack here provides a comprehensive library that can be interfaced using various user interfaces and efficiently drive the motor through the Kria Drive SOM board.</p>
+<p>The following diagram illustrates the top-level architecture and arrangement of various software components:</p>
+<p><img alt="Software Architecture Overview" src="../../../_images/sw_arch.jpg" /></p>
 <ul class="simple">
 <li><p>Kernel: Ubuntu Linux kernel</p>
 <ul>
 <li><p>Drivers:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">xilinx_adc_hub</span></code>: IIO driver for ADC HUB</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">hls_qei_axi</span></code>: IIO driver for QEI Sensor</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">hsl_foc_periodic</span></code>: IIO driver for Sensor based field oriented controller.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xilinx_adc_hub</span></code>: IIO driver for analog-to-digital converter (ADC) HUB</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hls_qei_axi</span></code>: IIO driver for the QEI sensor</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hsl_foc_periodic</span></code>: IIO driver for the sensor based field oriented controller</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">hls_pwm_gen</span></code>: IIO driver for PWM GEN</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">hsl_svpwm_duty</span></code>: IIO driver for SVPWM</p></li>
 </ul>
@@ -175,11 +169,11 @@ various software components:</p>
 </li>
 <li><p>Middleware</p>
 <ul>
-<li><p>IIO Framework &amp; libiio library</p></li>
+<li><p>IIO Framework and libiio library</p></li>
 <li><p>Generic UIO framework</p></li>
 </ul>
 </li>
-<li><p>Application &amp; library</p>
+<li><p>Application and library</p>
 <ul>
 <li><p>Motor Control Library (includes UIO driver for the custom Motor Control IP)</p></li>
 <li><p>Bokeh dashboard</p></li>
@@ -189,60 +183,35 @@ various software components:</p>
 </div>
 <div class="section" id="kernel-drivers">
 <h2>Kernel Drivers<a class="headerlink" href="#kernel-drivers" title="Permalink to this heading">¶</a></h2>
-<p>All the kernel drivers developed for the platform hardware are IIO based and
-adhere to IIO kernel framework. The IIO (Industrial I/O) subsystem covers many
-sensor and ADC devices in the industry. It provides following features to fetch
-and control various parameters:</p>
+<p>All the kernel drivers developed for the platform hardware are Industial I/O (IIO) based and adhere to the IIO kernel framework. The IIO subsystem covers many sensor and ADC devices in the industry. It provides the following features to fetch and control various parameters:</p>
 <ul class="simple">
-<li><p>Divide stream and type of data into logical channels.</p></li>
-<li><p>Each channel can have specific attributes along with device attributes to
-fine tune the behavior.</p></li>
-<li><p>Efficient data collection using buffers to get deterministic data with
-timestamps and sync with other channels.</p></li>
+<li><p>Divide the stream and type of data into logical channels.</p></li>
+<li><p>Each channel can have specific attributes along with device attributes to fine-tune the behavior.</p></li>
+<li><p>Efficient data collection using buffers to get deterministic data with timestamps and sync with other channels.</p></li>
 <li><p>Interrupt handling to provide user side event handling.</p></li>
 </ul>
-<p>Following drivers are added to support this APP:</p>
+<p>The following drivers are added to support this app:</p>
 <ul class="simple">
-<li><p>ADC Hub (xilinx_adc_hub): Provides interface to monitor current, voltage and
-related faults that occur during the operation of the motor.</p></li>
-<li><p>QEI Encoder (hls_qei_axi): External encoder to monitor the real time speed
-and position of the motor.</p></li>
-<li><p>FOC (hsl_foc_periodic): Field oriented controller driver to support various
-operational modes and state of the motor.</p></li>
-<li><p>PWM_GEN (hls_pwm_gen): PWM_GEN provides PWM signal generation for motor
-control.</p></li>
-<li><p>SVPWM_GEN (hsl_svpwm_duty): SVPWM provides space vector PWM to calcualte
-phase ratio for the motor.</p></li>
+<li><p>ADC Hub (<code class="docutils literal notranslate"><span class="pre">xilinx_adc_hub</span></code>): Provides an interface to monitor current, voltage, and related faults that occur during the operation of the motor.</p></li>
+<li><p>QEI Encoder (<code class="docutils literal notranslate"><span class="pre">hls_qei_axi</span></code>): External encoder to monitor the real-time speed and position of the motor.</p></li>
+<li><p>FOC (<code class="docutils literal notranslate"><span class="pre">hsl_foc_periodic</span></code>): Field oriented controller driver to support various operational modes and state of the motor.</p></li>
+<li><p>PWM_GEN (<code class="docutils literal notranslate"><span class="pre">hls_pwm_gen</span></code>): PWM_GEN provides PWM signal generation for motor control.</p></li>
+<li><p>SVPWM_GEN (<code class="docutils literal notranslate"><span class="pre">hsl_svpwm_duty</span></code>): SVPWM provides space vector PWM to calcualte phase ratio for the motor.</p></li>
 </ul>
-<p>There is also custom Motor control IP, which is responsible for the design
-specific glue logic and driving the motor’s Gate Driver. The driver for this
-IP is a UIO based and the device will instantiate the uio device for this IP.
-The userspace driver for this is implemented inside the motor
-control library in the control block.</p>
+<p>There is also custom Motor control IP, which is responsible for the design specific glue logic and driving the motor’s Gate Driver. The driver for this IP is a UIO based and the device will instantiate the UIO device for this IP. The userspace driver for this is implemented inside the motor control library in the control block.</p>
 <div class="section" id="device-and-channel-attributes">
 <h3>Device and Channel Attributes<a class="headerlink" href="#device-and-channel-attributes" title="Permalink to this heading">¶</a></h3>
-<p>As explained in <a class="reference external" href="#Userspace-Access-toIIO-Drivers">next section</a>, the attributes
-exposed by each drivers can be accessed through sysfs interface or through
-libraries like libIIO.</p>
-<p>Most of the attribute names are self-explanatory. If a channel attribute is named
-<code class="docutils literal notranslate"><span class="pre">input</span></code>, it indicates that the device requires raw data for processing, and the
-final processed data can be read from the ‘input’ channel attribute. If the <code class="docutils literal notranslate"><span class="pre">input</span></code>
-channel attribute is not present, the raw data itself represents the final value
-from the device.</p>
-<p>Couple of common device attributes accross iio drivers in this application are:</p>
+<p>As explained in the <a class="reference external" href="#userspace-access-to-iio-drivers">next section</a>, the attributes exposed by each drivers can be accessed through sysfs interface or through libraries like libIIO.</p>
+<p>Most of the attribute names are self-explanatory. If a channel attribute is named <code class="docutils literal notranslate"><span class="pre">input</span></code>, it indicates that the device requires raw data for processing, and the final processed data can be read from the <code class="docutils literal notranslate"><span class="pre">input</span></code> channel attribute. If the <code class="docutils literal notranslate"><span class="pre">input</span></code> channel attribute is not present, the raw data itself represents the final value from the device.</p>
+<p>A couple of common device attributes accross IIO drivers in this application are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sample_interval_us</span></code>: This parameter represents the time period in microseconds.
-It determines the rate at which data is sampled and stored into the buffer.
-Only channel data is captured within the buffer.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ap_ctrl</span></code>: This attribute conforms to the standard Xilinx HLS interface for IP,
-enabling the initiation of its operation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sample_interval_us</span></code>: This parameter represents the time period in microseconds. It determines the rate at which data is sampled and stored into the buffer. Only channel data is captured within the buffer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ap_ctrl</span></code>: This attribute conforms to the standard AMD HLS interface for IP, enabling the initiation of its operation.</p></li>
 </ul>
-<p>The device attributes applies to entire device for all the channels. The Channel
-attributes are per channel configurations or data. Here are some of the attributes
-exposed by above drivers:</p>
+<p>The device attributes applies to entire device for all the channels. The channel attributes are per channel configurations or data. Here are some of the attributes exposed by above drivers:</p>
 <div class="section" id="xilinx-adc-hub-channels">
-<h4>Xilinx ADC-HUB Channels<a class="headerlink" href="#xilinx-adc-hub-channels" title="Permalink to this heading">¶</a></h4>
-<p>List of available channels for the device xilinx_adc_hub</p>
+<h4>Xilinx ADC Hub Channels<a class="headerlink" href="#xilinx-adc-hub-channels" title="Permalink to this heading">¶</a></h4>
+<p>List of available channels for the device <code class="docutils literal notranslate"><span class="pre">xilinx_adc_hub</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:# iio_attr -c xilinx_adc_hub
 dev <span class="s1">&#39;xilinx_adc_hub&#39;</span>, channel <span class="s1">&#39;voltage0&#39;</span> <span class="o">(</span>input, index: <span class="m">0</span>, format: le:S32/32&gt;&gt;0<span class="o">)</span>, found <span class="m">9</span> channel-specific attributes
 dev <span class="s1">&#39;xilinx_adc_hub&#39;</span>, channel <span class="s1">&#39;current1&#39;</span> <span class="o">(</span>input, index: <span class="m">1</span>, format: le:S32/32&gt;&gt;0<span class="o">)</span>, found <span class="m">9</span> channel-specific attributes
@@ -255,7 +224,7 @@ dev <span class="s1">&#39;xilinx_adc_hub&#39;</span>, channel <span class="s1">&
 dev <span class="s1">&#39;xilinx_adc_hub&#39;</span>, channel <span class="s1">&#39;timestamp&#39;</span> <span class="o">(</span>input, index: <span class="m">16</span>, format: le:S64/64&gt;&gt;0<span class="o">)</span>, found <span class="m">0</span> channel-specific attributes
 </pre></div>
 </div>
-<p>Individual Channel Properties for Voltage0 in Xilinx ADC-HUB</p>
+<p>Individual Channel Properties for Voltage0 in <code class="docutils literal notranslate"><span class="pre">xilinx_adc_hub</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:# iio_attr -c xilinx_adc_hub voltage0
 dev <span class="s1">&#39;xilinx_adc_hub&#39;</span>, channel <span class="s1">&#39;voltage0&#39;</span> <span class="o">(</span>input<span class="o">)</span>, attr <span class="s1">&#39;calibrate&#39;</span>,
 dev <span class="s1">&#39;xilinx_adc_hub&#39;</span>, channel <span class="s1">&#39;voltage0&#39;</span> <span class="o">(</span>input<span class="o">)</span>, attr <span class="s1">&#39;fault_clear&#39;</span>,
@@ -270,8 +239,8 @@ dev <span class="s1">&#39;xilinx_adc_hub&#39;</span>, channel <span class="s1">&
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">calibrate</span></code>: One-time calibration at the very start to offset any residual value in the system.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">fault_clear</span></code>: Clears all faults on the channel</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code>: The final voltage value read by the ADC in volts (raw * scale factor).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fault_clear</span></code>: Clears all faults on the channel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code>: Final voltage value read by the ADC in volts (raw * scale factor).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: Automatically populated after calibration.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">over_range_fault_status</span></code>: Status indicating if an over-range fault occurred (0 - for no fault).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">raw</span></code>: The ADC raw value.</p></li>
@@ -279,11 +248,11 @@ dev <span class="s1">&#39;xilinx_adc_hub&#39;</span>, channel <span class="s1">&
 <li><p><code class="docutils literal notranslate"><span class="pre">set_filter_tap</span></code>: Number of filter taps.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">under_range_fault_status</span></code>: Status indicating if an under-range fault occurred (0 for no fault).</p></li>
 </ul>
-<p>The attributes for the currentX channel would be similar to voltage0, but the readings are in Amperes (Amps).</p>
+<p>The attributes for the currentX channel would be similar to <code class="docutils literal notranslate"><span class="pre">voltage0</span></code>, but the readings are in amperes (amps).</p>
 </div>
 <div class="section" id="hls-pwm-generator-channels">
 <h4>HLS PWM Generator Channels<a class="headerlink" href="#hls-pwm-generator-channels" title="Permalink to this heading">¶</a></h4>
-<p>List of available channels for the device hls_pwm_gen</p>
+<p>List of available channels for the device <code class="docutils literal notranslate"><span class="pre">hls_pwm_gen</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:# iio_attr -c hls_pwm_gen
 dev <span class="s1">&#39;hls_pwm_gen&#39;</span>, channel <span class="s1">&#39;voltage0&#39;</span>, id <span class="s1">&#39;Va_duty_ratio&#39;</span> <span class="o">(</span>input, index: <span class="m">0</span>, format: le:U32/32&gt;&gt;0<span class="o">)</span>, found <span class="m">3</span> channel-specific attributes
 dev <span class="s1">&#39;hls_pwm_gen&#39;</span>, channel <span class="s1">&#39;voltage1&#39;</span>, id <span class="s1">&#39;Vb_duty_ratio&#39;</span> <span class="o">(</span>input, index: <span class="m">1</span>, format: le:U32/32&gt;&gt;0<span class="o">)</span>, found <span class="m">3</span> channel-specific attributes
@@ -291,7 +260,7 @@ dev <span class="s1">&#39;hls_pwm_gen&#39;</span>, channel <span class="s1">&#39
 dev <span class="s1">&#39;hls_pwm_gen&#39;</span>, channel <span class="s1">&#39;timestamp&#39;</span> <span class="o">(</span>input, index: <span class="m">3</span>, format: le:S64/64&gt;&gt;0<span class="o">)</span>, found <span class="m">0</span> channel-specific attributes
 </pre></div>
 </div>
-<p>Individual Channel Properties for Va_duty_ratio in HLS PWM Generator</p>
+<p>Individual Channel Properties for Va_duty_ratio in the HLS PWM Generator:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:# iio_attr -c hls_pwm_gen voltage0
 dev <span class="s1">&#39;hls_pwm_gen&#39;</span>, channel <span class="s1">&#39;voltage0&#39;</span> <span class="o">(</span>input<span class="o">)</span>, id <span class="s1">&#39;Va_duty_ratio&#39;</span>, attr <span class="s1">&#39;label&#39;</span>, value <span class="s1">&#39;Va_duty_ratio&#39;</span>
 dev <span class="s1">&#39;hls_pwm_gen&#39;</span>, channel <span class="s1">&#39;voltage0&#39;</span> <span class="o">(</span>input<span class="o">)</span>, id <span class="s1">&#39;Va_duty_ratio&#39;</span>, attr <span class="s1">&#39;raw&#39;</span>, value <span class="s1">&#39;0.000000000&#39;</span>
@@ -307,7 +276,7 @@ dev <span class="s1">&#39;hls_pwm_gen&#39;</span>, channel <span class="s1">&#39
 </div>
 <div class="section" id="hls-svpwm-duty-channels">
 <h4>HLS SVPWM Duty Channels<a class="headerlink" href="#hls-svpwm-duty-channels" title="Permalink to this heading">¶</a></h4>
-<p>List of available channels for the device hls_svpwm_duty</p>
+<p>List of available channels for the device <code class="docutils literal notranslate"><span class="pre">hls_svpwm_duty</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:# iio_attr -c hls_svpwm_duty
 dev <span class="s1">&#39;hls_svpwm_duty&#39;</span>, channel <span class="s1">&#39;voltage0&#39;</span>, id <span class="s1">&#39;Va_cmd&#39;</span> <span class="o">(</span>input, index: <span class="m">0</span>, format: le:U32/32&gt;&gt;0<span class="o">)</span>, found <span class="m">3</span> channel-specific attributes
 dev <span class="s1">&#39;hls_svpwm_duty&#39;</span>, channel <span class="s1">&#39;voltage1&#39;</span>, id <span class="s1">&#39;Vb_cmd&#39;</span> <span class="o">(</span>input, index: <span class="m">1</span>, format: le:U32/32&gt;&gt;0<span class="o">)</span>, found <span class="m">3</span> channel-specific attributes
@@ -315,7 +284,7 @@ dev <span class="s1">&#39;hls_svpwm_duty&#39;</span>, channel <span class="s1">&
 dev <span class="s1">&#39;hls_svpwm_duty&#39;</span>, channel <span class="s1">&#39;timestamp&#39;</span> <span class="o">(</span>input, index: <span class="m">3</span>, format: le:S64/64&gt;&gt;0<span class="o">)</span>, found <span class="m">0</span> channel-specific attributes
 </pre></div>
 </div>
-<p>Individual Channel Properties for Va_cmd in HLS SVPWM Duty</p>
+<p>Individual Channel Properties for <code class="docutils literal notranslate"><span class="pre">Va_cmd</span></code> in HLS SVPWM Duty:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:# iio_attr -c hls_svpwm_duty voltage0
 dev <span class="s1">&#39;hls_svpwm_duty&#39;</span>, channel <span class="s1">&#39;voltage0&#39;</span> <span class="o">(</span>input<span class="o">)</span>, id <span class="s1">&#39;Va_cmd&#39;</span>, attr <span class="s1">&#39;label&#39;</span>, value <span class="s1">&#39;Va_cmd&#39;</span>
 dev <span class="s1">&#39;hls_svpwm_duty&#39;</span>, channel <span class="s1">&#39;voltage0&#39;</span> <span class="o">(</span>input<span class="o">)</span>, id <span class="s1">&#39;Va_cmd&#39;</span>, attr <span class="s1">&#39;raw&#39;</span>, value <span class="s1">&#39;0.000000000&#39;</span>
@@ -323,22 +292,22 @@ dev <span class="s1">&#39;hls_svpwm_duty&#39;</span>, channel <span class="s1">&
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">label</span></code>: The label of the channel is ‘Va_cmd’.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">raw</span></code>: The raw value for this channel is ‘0.000000000’, and in this case, it represents the final reading for the channel.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: The scaling factor for this channel is ‘1’.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">label</span></code>: The label of the channel is <code class="docutils literal notranslate"><span class="pre">Va_cmd</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raw</span></code>: The raw value for this channel is <code class="docutils literal notranslate"><span class="pre">0.000000000</span></code>, and in this case, it represents the final reading for the channel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: The scaling factor for this channel is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
 </ul>
 <p>The attributes are similar to the other channels from the SVPWM driver.</p>
 </div>
 <div class="section" id="qei-channels">
 <h4>QEI Channels<a class="headerlink" href="#qei-channels" title="Permalink to this heading">¶</a></h4>
-<p>List of available channels for the device hls_qei_axi</p>
+<p>List of available channels for the device <code class="docutils literal notranslate"><span class="pre">hls_qei_axi</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:# iio_attr -c hls_qei_axi
 dev <span class="s1">&#39;hls_qei_axi&#39;</span>, channel <span class="s1">&#39;rot0&#39;</span>, id <span class="s1">&#39;rpm&#39;</span> <span class="o">(</span>input, index: <span class="m">0</span>, format: le:U32/32&gt;&gt;0<span class="o">)</span>, found <span class="m">3</span> channel-specific attributes
 dev <span class="s1">&#39;hls_qei_axi&#39;</span>, channel <span class="s1">&#39;rot1&#39;</span>, id <span class="s1">&#39;theta_degree&#39;</span> <span class="o">(</span>input, index: <span class="m">1</span>, format: le:U32/32&gt;&gt;0<span class="o">)</span>, found <span class="m">3</span> channel-specific attributes
 dev <span class="s1">&#39;hls_qei_axi&#39;</span>, channel <span class="s1">&#39;timestamp&#39;</span> <span class="o">(</span>input, index: <span class="m">2</span>, format: le:S64/64&gt;&gt;0<span class="o">)</span>, found <span class="m">0</span> channel-specific attributes
 </pre></div>
 </div>
-<p>Individual Channel Properties for RPM in QEI</p>
+<p>Individual Channel Properties for RPM in QEI:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:# iio_attr -c hls_qei_axi rot0
 dev <span class="s1">&#39;hls_qei_axi&#39;</span>, channel <span class="s1">&#39;rot0&#39;</span> <span class="o">(</span>input<span class="o">)</span>, id <span class="s1">&#39;rpm&#39;</span>, attr <span class="s1">&#39;label&#39;</span>, value <span class="s1">&#39;rpm&#39;</span>
 dev <span class="s1">&#39;hls_qei_axi&#39;</span>, channel <span class="s1">&#39;rot0&#39;</span> <span class="o">(</span>input<span class="o">)</span>, id <span class="s1">&#39;rpm&#39;</span>, attr <span class="s1">&#39;raw&#39;</span>, value <span class="s1">&#39;0&#39;</span>
@@ -354,7 +323,7 @@ dev <span class="s1">&#39;hls_qei_axi&#39;</span>, channel <span class="s1">&#39
 </div>
 <div class="section" id="foc-channels">
 <h4>FOC Channels<a class="headerlink" href="#foc-channels" title="Permalink to this heading">¶</a></h4>
-<p>List of available channels for the device hls_foc_periodic</p>
+<p>List of available channels for the device <code class="docutils literal notranslate"><span class="pre">hls_foc_periodic</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:# iio_attr -c  hls_foc_periodic
 dev <span class="s1">&#39;hls_foc_periodic&#39;</span>, channel <span class="s1">&#39;current0&#39;</span>, id <span class="s1">&#39;Id&#39;</span> <span class="o">(</span>input, index: <span class="m">0</span>, format: le:U32/32&gt;&gt;0<span class="o">)</span>, found <span class="m">3</span> channel-specific attributes
 dev <span class="s1">&#39;hls_foc_periodic&#39;</span>, channel <span class="s1">&#39;current1&#39;</span>, id <span class="s1">&#39;Iq&#39;</span> <span class="o">(</span>input, index: <span class="m">1</span>, format: le:U32/32&gt;&gt;0<span class="o">)</span>, found <span class="m">3</span> channel-specific attributes
@@ -369,7 +338,7 @@ dev <span class="s1">&#39;hls_foc_periodic&#39;</span>, channel <span class="s1"
 dev <span class="s1">&#39;hls_foc_periodic&#39;</span>, channel <span class="s1">&#39;timestamp&#39;</span> <span class="o">(</span>input, index: <span class="m">10</span>, format: le:S64/64&gt;&gt;0<span class="o">)</span>, found <span class="m">0</span> channel-specific attributes
 </pre></div>
 </div>
-<p>Individual Channel Properties for current0 in FOC</p>
+<p>Individual Channel Properties for current0 in FOC:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ iio_attr -c hls_foc_periodic current0
 dev <span class="s1">&#39;hls_foc_periodic&#39;</span>, channel <span class="s1">&#39;current0&#39;</span> <span class="o">(</span>input<span class="o">)</span>, id <span class="s1">&#39;Id&#39;</span>, attr <span class="s1">&#39;label&#39;</span>, value <span class="s1">&#39;Id&#39;</span>
 dev <span class="s1">&#39;hls_foc_periodic&#39;</span>, channel <span class="s1">&#39;current0&#39;</span> <span class="o">(</span>input<span class="o">)</span>, id <span class="s1">&#39;Id&#39;</span>, attr <span class="s1">&#39;raw&#39;</span>, value <span class="s1">&#39;0.000000000&#39;</span>
@@ -382,12 +351,9 @@ dev <span class="s1">&#39;hls_foc_periodic&#39;</span>, channel <span class="s1"
 <li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: The scaling factor for this channel is ‘1’.</p></li>
 </ul>
 <p>The attributes are similar to the other channels from the FOC driver.</p>
-<p>For detailed information on other device attributes, please consult the hardware
-documentation <a class="reference internal" href="hw_description.html"><span class="doc">HW Documentation</span></a>.</p>
-<p>For more details of IIO subsystem refer to
-<a class="reference external" href="https://wiki.analog.com/software/linux/docs/iio/iio">Analog Devices Wiki</a>.</p>
-<p>For more details on kernel drivers for IIO refer to
-<a class="reference external" href="https://static.lwn.net/kerneldoc/driver-api/iio/core.html">Kernel Documentation</a>.</p>
+<p>For detailed information on other device attributes, consult the <a class="reference internal" href="hw_description.html"><span class="doc">hardware documentation</span></a>.</p>
+<p>For more details of IIO subsystem, refer to <a class="reference external" href="https://wiki.analog.com/software/linux/docs/iio/iio">Analog Devices Wiki</a>.</p>
+<p>For more details on kernel drivers for IIO, refer to <a class="reference external" href="https://static.lwn.net/kerneldoc/driver-api/iio/core.html">Kernel Documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -395,14 +361,9 @@ documentation <a class="reference internal" href="hw_description.html"><span cla
 <h2>Middleware<a class="headerlink" href="#middleware" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="userspace-access-to-iio-drivers">
 <h3>Userspace Access to IIO Drivers<a class="headerlink" href="#userspace-access-to-iio-drivers" title="Permalink to this heading">¶</a></h3>
-<p>The driver exposes the iio devices through the sysfs interface. The drivers can be
-accessed from the path <code class="docutils literal notranslate"><span class="pre">/sys/bus/iio/devices/iio\:deviceX</span></code>, where X is the numeric
-enumeration of the IIO device.</p>
-<p>libIIO is the user space library to easily access the kernel IIO subsystem.
-It also provides various methods and command line interfaces, packaged in
-libiio-utils, to access the IIO devices. There are other python wrappers
-around this library, but the motor control library uses native C/C++ library.</p>
-<p>For example, to list all the available iio devices</p>
+<p>The driver exposes the IIO devices through the sysfs interface. The drivers can be accessed from the path <code class="docutils literal notranslate"><span class="pre">/sys/bus/iio/devices/iio\:deviceX</span></code>, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the numeric enumeration of the IIO device.</p>
+<p>libIIO is the userspace library to easily access the kernel IIO subsystem. It also provides various methods and command line interfaces, packaged in libiio-utils, to access the IIO devices. There are other Python wrappers around this library, but the motor control library uses a native C/C++ library.</p>
+<p>For example, to list all the available IIO devices:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ iio_attr -c
 IIO context has 7 devices:
         iio:device0, ams: found 30 channels
@@ -414,41 +375,31 @@ IIO context has 7 devices:
         iio:device6, hls_pwm_gen: found 4 channels
 </pre></div>
 </div>
-<p>Refer to the libIIO <a class="reference external" href="https://analogdevicesinc.github.io/libiio/v0.23/index.html">Documentation</a> for more details.</p>
+<p>For more details, refer to the <a class="reference external" href="https://analogdevicesinc.github.io/libiio/v0.23/index.html">libIIO Documentation</a>.</p>
 </div>
 <div class="section" id="userspace-access-to-uio">
 <h3>Userspace Access to UIO<a class="headerlink" href="#userspace-access-to-uio" title="Permalink to this heading">¶</a></h3>
-<p>The custom motor control IP is accessed from the motor control library using
-the UIO interface. A device tree node with compatible string as <code class="docutils literal notranslate"><span class="pre">generic-uio</span></code>
-is added to connect this hardware to the UIO subsystem.</p>
-<p>The device is now accessible in the user space through <code class="docutils literal notranslate"><span class="pre">/dev/uioX</span></code> device.
-Information about the device is obtained by scanning <code class="docutils literal notranslate"><span class="pre">/sys/class/uio/uioX</span></code>,
-where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the uio device id automatically assigned by the kernel.</p>
-<p>For more information on the UIO interface refer to the kernel
-<a class="reference external" href="https://www.kernel.org/doc/html/v4.18/driver-api/uio-howto.html">documentation</a></p>
+<p>The custom motor control IP is accessed from the motor control library using the UIO interface. A device tree node with compatible string as <code class="docutils literal notranslate"><span class="pre">generic-uio</span></code> is added to connect this hardware to the UIO subsystem.</p>
+<p>The device is now accessible in the userspace through the <code class="docutils literal notranslate"><span class="pre">/dev/uioX</span></code> device. Information about the device is obtained by scanning <code class="docutils literal notranslate"><span class="pre">/sys/class/uio/uioX</span></code>, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the UIO device id automatically assigned by the kernel.</p>
+<p>For more information on the UIO interface, refer to the kernel <a class="reference external" href="https://www.kernel.org/doc/html/v4.18/driver-api/uio-howto.html">documentation</a>.</p>
 </div>
 </div>
-<div class="section" id="application-library">
-<h2>Application &amp; Library<a class="headerlink" href="#application-library" title="Permalink to this heading">¶</a></h2>
-<p>The motor control library is a C++ library that provides APIs for the front end
-application to control and fetch motor parameters. It also has a pybind11 wrapper
-to support the library APIs through python front end. The front end GUI included
-with this application is based on a python bokeh server, which can be accessed
-in a web browser in the network.</p>
+<div class="section" id="application-and-library">
+<h2>Application and Library<a class="headerlink" href="#application-and-library" title="Permalink to this heading">¶</a></h2>
+<p>The motor control library is a C++ library that provides APIs for the front end application to control and fetch motor parameters. It also has a pybind11 wrapper to support the library APIs through python front end. The front end GUI included with this application is based on a python bokeh server, which can be accessed in a web browser in the network.</p>
 <div class="section" id="motor-control-library">
 <h3>Motor Control Library<a class="headerlink" href="#motor-control-library" title="Permalink to this heading">¶</a></h3>
-<p>The library can be divided into 4 blocks:</p>
+<p>The library can be divided into four blocks:</p>
 <ul class="simple">
 <li><p>Communication</p></li>
-<li><p>State Management &amp; Coordination</p></li>
+<li><p>State Management and Coordination</p></li>
 <li><p>Event/Fault Management</p></li>
 <li><p>Control</p></li>
 </ul>
-<p><img alt="Motor Control Library" src="../../../_images/sw_lib_interface.jpg" />]</p>
+<p><img alt="Motor Control Library" src="../../../_images/sw_lib_interface.jpg" /></p>
 <div class="section" id="communication">
 <h4>Communication<a class="headerlink" href="#communication" title="Permalink to this heading">¶</a></h4>
-<p>The external user interfacing, exposes the supported APIs through the C++ shared
-library and Python module.</p>
+<p>The external user interfacing exposes the supported APIs through the C++ shared library and Python module.</p>
 <p>The library allows the user application to fetch following values:</p>
 <ul class="simple">
 <li><p>Speed</p></li>
@@ -458,7 +409,7 @@ library and Python module.</p>
 <li><p>Fault status</p>
 <ul>
 <li><p>Over current for A, B, C, DC</p></li>
-<li><p>Over &amp; under voltage for DCLink</p></li>
+<li><p>Over and under voltage for DCLink</p></li>
 <li><p>RMS power fault</p></li>
 <li><p>Phase imbalance fault</p></li>
 </ul>
@@ -470,85 +421,61 @@ library and Python module.</p>
 <li><p>Clear faults</p></li>
 <li><p>Speed</p></li>
 <li><p>Torque</p></li>
-<li><p>Open loop parameters (vq &amp; vd)</p></li>
+<li><p>Open loop parameters (vq and vd)</p></li>
 <li><p>Gain P/I gains (for current, speed and flux controller)</p></li>
 </ul>
-<p>For details list of APIs refer to
-<a class="reference external" href="https://github.com/xilinx/foc-motor-ctrl/blob/main/lib/include/motor-control/motor-control.hpp">motor-control.hpp</a> fle.</p>
+<p>For details list of APIs, refer to the <a class="reference external" href="https://github.com/xilinx/foc-motor-ctrl/blob/main/lib/include/motor-control/motor-control.hpp">motor-control.hpp</a> file.</p>
 <p>Python binding for the application is provided using the pybind11 library.</p>
 </div>
-<div class="section" id="state-management-coordination">
-<h4>State Management &amp; Coordination<a class="headerlink" href="#state-management-coordination" title="Permalink to this heading">¶</a></h4>
-<p>This is the central part of the library, which receives and processes all the
-request from the communication block and is responsible for:</p>
+<div class="section" id="state-management-and-coordination">
+<h4>State Management and Coordination<a class="headerlink" href="#state-management-and-coordination" title="Permalink to this heading">¶</a></h4>
+<p>This is the central part of the library, which receives and processes all the request from the communication block and is responsible for:</p>
 <ul class="simple">
 <li><p>Executing the initialization sequence for the motor.</p></li>
-<li><p>Maintaining the current state of the platform and handling the state
-transitions.</p></li>
-<li><p>Splitting, merging and coordinating the request with various handlers in the
-control block.</p></li>
+<li><p>Maintaining the current state of the platform and handling the state transitions.</p></li>
+<li><p>Splitting, merging, and coordinating the request with various handlers in the control block.</p></li>
 </ul>
 </div>
 <div class="section" id="event-fault-management">
 <h4>Event/Fault Management<a class="headerlink" href="#event-fault-management" title="Permalink to this heading">¶</a></h4>
-<p>The Event Manager is responsible for configuring and monitoring events / faults
-from various hardware blocks. This block is aware of event capabilities of
-various control blocks and configures the events accordingly.</p>
-<p>It caches the event status in realtime and returns that to user when requested.
-The event is monitored in a separate thread which waits on epoll events for the
-registered events. Optionally, it also provides callback function registration
-in case additional action is expected when a realtime event occurs.</p>
+<p>The Event Manager is responsible for configuring and monitoring events/faults from various hardware blocks. This block is aware of event capabilities of various control blocks and configures the events accordingly.</p>
+<p>It caches the event status in realtime and returns that to user when requested. The event is monitored in a separate thread which waits on epoll events for the registered events. Optionally, it also provides callback function registration in case additional action is expected when a realtime event occurs.</p>
 </div>
 <div class="section" id="control">
 <h4>Control<a class="headerlink" href="#control" title="Permalink to this heading">¶</a></h4>
-<p>This block is responsible for hardware access. There are interface classes
-which implement common interfaces for all the iio based control handlers and
-all the uio based control handlers. It also provides abstraction for the sensor
-interface to support more than one sensors (only one used at a given time).</p>
-<p>Following are the various handlers for controlling respective hardware:</p>
+<p>This block is responsible for hardware access. There are interface classes which implement common interfaces for all the IIO based control handlers and all the UIO based control handlers. It also provides abstraction for the sensor interface to support more than one sensor (only one used at a given time).</p>
+<p>The following various handlers are for controlling the respective hardware:</p>
 <ul class="simple">
-<li><p>FOC: For controlling and fetching data from the FOC hardware through libiio
-framework</p></li>
-<li><p>ADCHub: For controlling and fetching data from the ADCHub hardware through
-libiio framework.</p></li>
-<li><p>Sensor: Abstraction for controlling and fetching data from the Sensor
-hardware through libiio framework (QEI in this case).</p></li>
-<li><p>PWM_Gen: For controlling the PWM_GEN hardware through libiio framework.</p></li>
-<li><p>SVPWM: For controlling the SVPWM hardware through libiio framework.</p></li>
-<li><p>MC_UIO: For controlling custom Motor Control IP hardware through UIO framework.</p></li>
-<li><p>SW_AvgPower: Software based average power calculator to generate fault
-and control gate driver through MC_UIO.</p></li>
+<li><p>FOC: For controlling and fetching data from the FOC hardware through the libiio framework.</p></li>
+<li><p>ADCHub: For controlling and fetching data from the ADCHub hardware through the libiio framework.</p></li>
+<li><p>Sensor: Abstraction for controlling and fetching data from the sensor hardware through the libiio framework (QEI in this case).</p></li>
+<li><p>PWM_Gen: For controlling the PWM_GEN hardware through the libiio framework.</p></li>
+<li><p>SVPWM: For controlling the SVPWM hardware through the libiio framework.</p></li>
+<li><p>MC_UIO: For controlling custom Motor Control IP hardware through the UIO framework.</p></li>
+<li><p>SW_AvgPower: Software based average power calculator to generate fault and control gate driver through MC_UIO.</p></li>
 </ul>
 </div>
 <div class="section" id="additional-threads">
 <h4>Additional Threads<a class="headerlink" href="#additional-threads" title="Permalink to this heading">¶</a></h4>
-<p>Following are the additional threads implemented in the library:</p>
+<p>The following additional threads are implemented in the library:</p>
 <ul class="simple">
-<li><p>Speed Ramp: When a new <em>speed</em> set point is set, the speed is ramped up or
-down in FOC control handler using the constant ramp rate defined in default_config.h.</p></li>
-<li><p>Torque Ramp: When new <em>torque</em> set point is set, the speed is ramped up or
-down in FOC control handler using the constant ramp rate defined in default_config.h.</p></li>
-<li><p>Event Monitor: The event manager waits on any event using epoll_wait in its
-own thread.</p></li>
+<li><p>Speed Ramp: When a new <em>speed</em> set point is set, the speed is ramped up or down in the FOC control handler using the constant ramp rate defined in <code class="docutils literal notranslate"><span class="pre">default_config.h</span></code>.</p></li>
+<li><p>Torque Ramp: When new <em>torque</em> set point is set, the speed is ramped up or down in the FOC control handler using the constant ramp rate defined in <code class="docutils literal notranslate"><span class="pre">default_config.h</span></code>.</p></li>
+<li><p>Event Monitor: The event manager waits on any event using epoll_wait in its own thread.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="bokeh-server-gui">
 <h3>Bokeh Server (GUI)<a class="headerlink" href="#bokeh-server-gui" title="Permalink to this heading">¶</a></h3>
-<p>A python based bokeh server is implemented to provide a GUI interface to the
-application. It imports the motor control python library. The plot updates are
-handled by an update function which is called at the interval specified in the
-Refresh Interval text box. For each update, the function requests the number of
-samples specified in the Sample Size text box and update the plots with new data.</p>
-<p>For more details on the GUI usage, please refer the
-<a class="reference internal" href="app_deployment.html"><span class="doc">Application Deployment</span></a> page for the details on the
-components and its usage.</p>
+<p>A python based bokeh server is implemented to provide a GUI interface to the application. It imports the motor control python library. The plot updates are handled by an update function which is called at the interval specified in the Refresh Interval text box. For each update, the function requests the number of samples specified in the Sample Size text box and update the plots with new data.</p>
+<p>For more details on the GUI usage, refer the <a class="reference internal" href="app_deployment.html"><span class="doc">Application Deployment</span></a> page for the details on the components and its usage.</p>
 </div>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="app_deployment.html"><span class="doc">Application Deployment</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../foc_motor_control_landing.html"><span class="doc">KD240 FOC Motor Control Landing Page</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -560,14 +487,14 @@ components and its usage.</p>
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="hw_description.html" class="btn btn-neutral float-left" title="Hardware Architecture of the Platform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="known_issues.html" class="btn btn-neutral float-right" title="Known issues &amp; limitations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="known_issues.html" class="btn btn-neutral float-right" title="Known Issues and Limitations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 06, 2024.
+      <span class="lastupdated">Last updated on March 21, 2024.
       </span></p>
   </div>
 

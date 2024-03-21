@@ -94,7 +94,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#data-monitoring-system">Data Monitoring System</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#data-processing-system">Data Processing System</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tsn-system">TSN System</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#clocks-resets-and-interrupts">Clocks, Resets and Interrupts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clocks-resets-and-interrupts">Clocks, Resets, and Interrupts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#resource-utilization">Resource Utilization</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
@@ -152,34 +152,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This section describes the design implemented in Programmable Logic (PL). The following figure shows the top level hardware architecture of the reference design.</p>
+<p>This section describes the design implemented in the programmable logic (PL). The following figure shows the top-level hardware architecture of the reference design.</p>
 <p><img alt="Hardware Architecture block diagram" src="../../../_images/hw_arch.png" /></p>
-<p>At a high level, the design comprises a motor control system, a data monitoring system, a data processing system, and a communication system.</p>
-<p>Motor Control System: These are the blocks that control the motor speed and direction.  All but the Gate Driver are High Level Synthesis (HLS) blocks from the Vitis Motor Control Library.</p>
+<p>At a high-level, the design is comprised of a motor control system, a data monitoring system, a data processing system, and a communication system.</p>
 <ul class="simple">
+<li><p>Motor Control System: These are the blocks that control the motor speed and direction. All but the Gate Driver are High-Level Synthesis (HLS) blocks from the AMD Vitis™ Motor Control Library.</p>
+<ul>
 <li><p>Quadrature Encoder Interface (QEI)</p></li>
 <li><p>Field-Orientated Control (FOC)</p></li>
 <li><p>Space Vector Pulse Width Modulation (SVPWM)</p></li>
 <li><p>Pulse Width Modulation Generation (PWM Gen)</p></li>
 <li><p>Gate Driver</p></li>
 </ul>
-<p>Data Monitoring System: These are the blocks that monitor data from the motor and DC power supply.</p>
-<ul class="simple">
+</li>
+<li><p>Data Monitoring System: These are the blocks that monitor data from the motor and DC power supply.</p>
+<ul>
 <li><p>ADC Sample Control</p></li>
-<li><p>Current &amp; Voltage Analog to Digital Controller (ADC) Interface for Motor phases A, B, C and DC Link</p></li>
+<li><p>Current and Voltage Analog to Digital Controller (ADC) Interface for Motor phases A, B, C, and DC Link</p></li>
 <li><p>Unicode Straight Binary (USB) to Binary Two’s Complement (BTC) Conversion</p></li>
 <li><p>Bipolar Offset Binary (BOB) to BTC Conversion</p></li>
 </ul>
-<p>Data Processing System: This is the block that controls the ADC interface and decides when to sample the ADCs.  It also does basic filtering, scales the data, and formats it in Q-Scale format.</p>
-<ul class="simple">
+</li>
+<li><p>Data Processing System: This is the block that controls the ADC interface and decides when to sample the ADCs. It also does basic filtering, scales the data, and formats it in Q-Scale format.</p>
+<ul>
 <li><p>ADC Hub</p></li>
 </ul>
-<p>Time-Sensitive Networking (TSN) System: This system support transmission of Ethernet traffic based on traffic shaping protocols. The traffic can be control information to be passed between different nodes in a Robotics system or between various Industrial Field devices. The requirement in these systems would be that the traffic is deterministic.</p>
-<ul class="simple">
+</li>
+<li><p>Time-Sensitive Networking (TSN) System: This system support transmission of Ethernet traffic based on traffic shaping protocols. The traffic can be control information to be passed between different nodes in a robotics system or between various Industrial Field devices. The requirement in these systems would be that the traffic is deterministic.</p>
+<ul>
 <li><p>TSN IP</p></li>
 <li><p>AXI Multi Channel DMA (MCDMA)</p></li>
 <li><p>Time Aware DMA (TADMA)</p></li>
 <li><p>Test PMOD controller</p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="motor-control-system">
@@ -191,7 +197,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="foc">
 <h3>FOC<a class="headerlink" href="#foc" title="Permalink to this heading">¶</a></h3>
-<p>The FOC module from the Vitis Motor Control Library implements sensor-based field-orientated control.  The eight control modes it supports cover basic speed and torque control modes, as well as field-weakening control.</p>
+<p>The FOC module from the Vitis Motor Control Library implements a sensor-based field-orientated control. The eight control modes it supports cover basic speed and torque control modes, as well as field-weakening control.</p>
 <p>For more information, visit <a class="reference external" href="https://docs.xilinx.com/r/en-US/Vitis_Libraries/motor_control/index.html">Vitis Libraries Documentation</a>.</p>
 </div>
 <div class="section" id="svpwm">
@@ -213,15 +219,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Data Monitoring System<a class="headerlink" href="#data-monitoring-system" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="adc-sample-control">
 <h3>ADC Sample Control<a class="headerlink" href="#adc-sample-control" title="Permalink to this heading">¶</a></h3>
-<p>This custom IP converts the motor pwm_sync pulse from the HLS module hls_pwm_gen to an update signal that initiates the ADC capture cycle at regular intervals.  The ADC Sample Control module acts much like a PLL, in that it trys to align the ADC captures to the pwm_sync pulse and keep the ADC samples to an integer number of samples during the pwm_sync cycle.</p>
+<p>This custom IP converts the motor pwm_sync pulse from the HLS module hls_pwm_gen to an update signal that initiates the ADC capture cycle at regular intervals. The ADC Sample Control module acts much like a phase-locked loop (PLL), in that it tries to align the ADC captures to the pwm_sync pulse and keep the ADC samples to an integer number of samples during the pwm_sync cycle.</p>
 </div>
 <div class="section" id="adc7352-interface">
 <h3>ADC7352 Interface<a class="headerlink" href="#adc7352-interface" title="Permalink to this heading">¶</a></h3>
-<p>The voltage and current for DC Link and Motor Phase A, B, and C, are captured by the ADC7352 Interface IP.  The IP can be configured for up to 16 channels, each with its own bit resolution.  Each channel can control one ADC7352, with its own Chip Select (CS).  The KD240 Motor Control Kit uses 8 channels at 12 bits resolution.  DC Link ADC uses one chip select, and the Phase A/B/C Motor ADCs share another chip select for simultaneous data collection.</p>
+<p>The voltage and current for DC Link and Motor Phase A, B, and C, are captured by the ADC7352 Interface IP. The IP can be configured for up to 16 channels, each with its own bit resolution.  Each channel can control one ADC7352, with its own Chip Select (CS). The KD240 Motor Control Kit uses eight channels at 12 bits resolution. DC Link ADC uses one chip select, and the Phase A/B/C Motor ADCs share another chip select for simultaneous data collection.</p>
 </div>
 <div class="section" id="adc-encoding-conversions">
 <h3>ADC Encoding Conversions<a class="headerlink" href="#adc-encoding-conversions" title="Permalink to this heading">¶</a></h3>
-<p>The KD240 Motor Control Kit makes use of the AD7352 which is a unipolar ADC using USB encoding.  The DC link and stator voltages are measured and encoded without any analog offsets while the current measurements require direction.  For current measurements an instrumentation amplifier with an analog offset output is used to be able to make use of the unipolar ADC to encode both positive and negative measured currents. The following table outlines the expected mapping.</p>
+<p>The KD240 Motor Control Kit makes use of the AD7352 which is a unipolar ADC using USB encoding.  The DC link and stator voltages are measured and encoded without any analog offsets while the current measurements require direction. For current measurements, an instrumentation amplifier with an analog offset output is used to be able to make use of the unipolar ADC to encode both positive and negative measured currents. The following table outlines the expected mapping.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -272,7 +278,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td align="center">b1111</td>
 </tr>
 </tbody>
-</table><p>For DC Link voltage &amp; current and for motor voltages, the conversion is done in USB to BTC IP.</p>
+</table><p>For DC Link voltage and current and for motor voltages, the conversion is done in USB to BTC IP.</p>
 <p>For motor currents, the conversion is done in BOB to BTC IP.</p>
 </div>
 </div>
@@ -280,17 +286,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Data Processing System<a class="headerlink" href="#data-processing-system" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="adc-hub">
 <h3>ADC Hub<a class="headerlink" href="#adc-hub" title="Permalink to this heading">¶</a></h3>
-<p>This custom IP is the center of the processing for ADC data.  It is parameterizable up to 16 channels, and each channel can be a different width.  Each channel can also be treated as BTC or USB individually, and can be customized to use DSP blocks or logic to implement the multipliers used for scaling the ADC data.  There is also a choice for whether the channel is a Current or Voltage channel.  This information is only to help the software understand what units to use for the data it reads from the ADC Hub.  The KD240 Motor Control Kit uses 8 channels, 12-bits, BTC encoding, and all channels are using the DSP for multipliers.</p>
+<p>This custom IP is the center of the processing for ADC data. It is parameterizable up to 16 channels, and each channel can be a different width. Each channel can also be treated as BTC or USB individually and can be customized to use DSP blocks or logic to implement the multipliers used for scaling the ADC data. There is also a choice for whether the channel is a Current or Voltage channel.  This information is only to help the software understand what units to use for the data it reads from the ADC Hub. The KD240 Motor Control Kit uses eight channels, 12-bits, BTC encoding, and all channels are using the DSP for multipliers.</p>
 <p>Inside the ADC Hub are several functions, which are described in the next few sections.</p>
 <div class="section" id="simple-moving-average">
 <h4>Simple Moving Average<a class="headerlink" href="#simple-moving-average" title="Permalink to this heading">¶</a></h4>
-<p>The data from the ADCs comes into the ADC Hub and goes into the Simple Moving Average (SMA) block.  If there is an offset programmed by the software, first the offset is subtracted from the raw data coming in from the ADC.  The offset can be positive or negative, which will result in either a smaller or larger value, respectively.</p>
-<p>After the offset is applied, then the data is entered into a FIFO, implemented in a Block RAM (BRAM).  Software can program the number of taps to use for the SMA, from 1 to 128 in powers of 2.  The SMA function adds each new data to the sum of the previous data until the number of samples reaches the number of taps programmed by the software.  At that time, the newest sample is added to the sum, and the oldest sample is read out of the BRAM and subtracted from the sum.  The new sum is then shifted by the log2 of the tap count, and becomes the output of the SMA module.</p>
-<p>There is no output from the SMA until the number of sammples has reached the number of taps.  If the number of taps changes while the SMA is running, the whole datapath is reset, and the BRAM and adders are cleared.  Once again, there will be no output until the new number of taps matches the number of samples received.</p>
+<p>The data from the ADCs comes into the ADC Hub and goes into the Simple Moving Average (SMA) block. If there is an offset programmed by the software, first the offset is subtracted from the raw data coming in from the ADC. The offset can be positive or negative, which will result in either a smaller or larger value, respectively.</p>
+<p>After the offset is applied, then the data is entered into a FIFO, implemented in a block RAM.  Software can program the number of taps to use for the SMA, from 1 to 128 in powers of two.  The SMA function adds each new data to the sum of the previous data until the number of samples reaches the number of taps programmed by the software. At that time, the newest sample is added to the sum, and the oldest sample is read out of the block RAM and subtracted from the sum.  The new sum is then shifted by the log2 of the tap count and becomes the output of the SMA module.</p>
+<p>There is no output from the SMA until the number of sammples has reached the number of taps. If the number of taps changes while the SMA is running, the whole datapath is reset, and the block RAM and adders are cleared. Once again, there will be no output until the new number of taps matches the number of samples received.</p>
 </div>
 <div class="section" id="q-scaler">
 <h4>Q-Scaler<a class="headerlink" href="#q-scaler" title="Permalink to this heading">¶</a></h4>
-<p>The ADC Hub scales the averaged data in the Q-Scaler module.  Software programs the scaling factor, which is then multiplied with the averaged data.  This multiplier can be implemented by a DSP or by logic in the configuration of the ADC Hub, on a per-channel basis.  The scaled data is converted to Q-format, with 24 total bits.  The integer portion is 7 bits, the fractional portion is 16 bits, and one sign bit.  This scaled value is passed to the rest of the system as an AXI Stream interface, with no dependence on Tready so that the data is always the most recent value.</p>
+<p>The ADC Hub scales the averaged data in the Q-Scaler module. Software programs the scaling factor, which is then multiplied with the averaged data. This multiplier can be implemented by a DSP or by logic in the configuration of the ADC Hub, on a per-channel basis. The scaled data is converted to Q-format, with 24 total bits. The integer portion is 7 bits, the fractional portion is 16 bits, and one sign bit. This scaled value is passed to the rest of the system as an AXI4-Stream interface, with no dependence on <code class="docutils literal notranslate"><span class="pre">tready</span></code> so that the data is always the most recent value.</p>
 <p>The scaling factors used in the KD240 Motor Control Kit are in the following table.</p>
 <table border="1" class="docutils">
 <thead>
@@ -330,12 +336,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </table></div>
 <div class="section" id="motor-fault-generation">
 <h4>Motor Fault Generation<a class="headerlink" href="#motor-fault-generation" title="Permalink to this heading">¶</a></h4>
-<p>The averaged and scaled data is compared against limits set by the software to determine whether a fault has occurred.  Software can program over-limits and under-limits per channel.  If such limits are enabled, and the scaled data exceeds these limits, then a fault will be generated.  There are over-faults and under-faults, and if enabled and triggered will result in an error being generated.</p>
-<p>Errors can only be cleared by writing a specific value to the associated clear register (one for over-fault and one for under-fault).  These faults are used to generate interrupts for the ADC Hub, if interrupts are enabled.  They are also used by the Motor Control module to generate the gate drive enable signal to the Gate Driver.</p>
+<p>The averaged and scaled data is compared against limits set by the software to determine whether a fault has occurred. Software can program over-limits and under-limits per channel. If such limits are enabled, and the scaled data exceeds these limits, then a fault will be generated.  There are over-faults and under-faults, and if enabled and triggered will result in an error being generated.</p>
+<p>Errors can only be cleared by writing a specific value to the associated clear register (one for over-fault and one for under-fault). These faults are used to generate interrupts for the ADC Hub, if interrupts are enabled. They are also used by the Motor Control module to generate the gate drive enable signal to the Gate Driver.</p>
 </div>
 <div class="section" id="register-map">
 <h4>Register Map<a class="headerlink" href="#register-map" title="Permalink to this heading">¶</a></h4>
-<p>The AXI Interface in the ADC Hub allows the software to control and monitor the hardware.  The register map is below.</p>
+<p>The AXI Interface in the ADC Hub allows the software to control and monitor the hardware. The register map is as follows:</p>
 <p>Address Decode</p>
 <table border="1" class="docutils">
 <thead>
@@ -504,7 +510,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><img alt="TSN System block diagram" src="../../../_images/TSN_kd240.png" /></p>
 <div class="section" id="tsn-ip">
 <h3>TSN IP<a class="headerlink" href="#tsn-ip" title="Permalink to this heading">¶</a></h3>
-<p>The LogiCORE™100M/1G TSN Subsystem IP  implements IEEE 802.1 Time Sensitive Networking (TSN) Standards and provides a low latency Bridged Endpoint. The bridged endpoint solution consists of a 3-port switch, two ports connects to the network and one port connects to an internal Endpoint. In this design RGMII interfaces connects to a Marvel physical-side interface (PHY) supporting a maximum bandwidth of 1 Gbps. The TSN IP is configured to support:</p>
+<p>The LogiCORE™ 100M/1G TSN Subsystem IP implements IEEE 802.1 Time Sensitive Networking (TSN) standards and provides a low latency bridged endpoint. The bridged endpoint solution consists of a 3-port switch, two ports connects to the network and one port connects to an internal endpoint. In this design, reduced gigabit media independent interface
+(RGMII) interfaces connect to a Marvel physical-side interface (PHY) supporting a maximum bandwidth of 1 Gbps. The TSN IP is configured to support:</p>
 <ul class="simple">
 <li><p>Network Time Synchronization- 1588 Precision Time Protocol (PTP)</p></li>
 <li><p>Scheduled and Best Effort traffic types</p></li>
@@ -512,29 +519,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Frame replication and elimination (IEEE 802.1 CB)</p></li>
 <li><p>Per Stream Filtering and Policing (IEEE 802.1 Qci)</p></li>
 </ul>
-<p>For more information on the IP refer to <a class="reference external" href="https://www.xilinx.com/content/dam/xilinx/member/1gtsn_doc/2020_1/pg275-tsn-endpoint-ethernet-mac.pdf">PG275</a>.</p>
-<p>Note: You will need access to <a class="reference external" href="https://www.xilinx.com/member/1gtsn_doc.html">1GTSN Documentation Lounge</a> to view the above document.</p>
-</div>
+<p>For more information on the IP, refer to the <em>100M/1G TSN Subsystem IP Product Guide</em> (<a class="reference external" href="https://www.xilinx.com/content/dam/xilinx/member/1gtsn_doc/2020_1/pg275-tsn-endpoint-ethernet-mac.pdf">PG275</a>).</p>
+<blockquote>
+<div><p>*<strong>NOTE:</strong> You will need access to <a class="reference external" href="https://www.xilinx.com/member/1gtsn_doc.html">1GTSN Documentation Lounge</a> to view the document.</p>
+</div></blockquote>
 <div class="section" id="mcdma">
-<h3>MCDMA<a class="headerlink" href="#mcdma" title="Permalink to this heading">¶</a></h3>
-<p>The AXI MCDMA provides high-bandwidth direct memory access between memory (AXI Memory Mapped) and stream (AXI Stream) target peripherals. It supports both Memory Mapped to Stream (MM2S) and Stream to Memory Mapped (S2MM) transfers. The AXI MCDMA core provides Scatter Gather (SG) interface with multiple channel support with independent configuration. In this design, the MCDMA is responsible to fetch Best Effort traffic for transmission by TSN IP. It reads frames from the DDR memory and passes the data to the TSN IP on AXI Stream interface. It is also responsible for writing the Schedule traffic and Best Effort traffic frames received from the TSN IP to the memory. The IP uses the S_AXI_HP0_FPD on the Zynq UltraScale+ MPSoC Processing System (PS) IP to read/write from/to DDR memory.</p>
-<p>For more information on the IP refer to <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/pg288-axi-mcdma">PG288</a>.</p>
+<h4>MCDMA<a class="headerlink" href="#mcdma" title="Permalink to this heading">¶</a></h4>
+<p>The AXI MCDMA provides high-bandwidth direct memory access between memory (AXI Memory Mapped) and stream (AXI4-Stream) target peripherals. It supports both Memory Mapped to Stream (MM2S) and Stream to Memory Mapped (S2MM) transfers. The AXI MCDMA core provides a Scatter Gather (SG) interface with multiple channel support with independent configuration. In this design, the MCDMA is responsible to fetch Best Effort traffic for transmission by the TSN IP. It reads frames from the DDR memory and passes the data to the TSN IP on an AXI4-Stream interface. It is also responsible for writing the Schedule traffic and Best Effort traffic frames received from the TSN IP to the memory. The IP uses the S_AXI_HP0_FPD on the AMD Zynq™ UltraScale+™ MPSoC Processing System (PS) IP to read/write from/to DDR memory.</p>
+<p>For more information on the IP, refer to the <em>AXI MCDMA LogiCORE IP Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/v/u/en-US/pg288-axi-mcdma">PG288</a>).</p>
 </div>
 <div class="section" id="tadma">
-<h3>TADMA<a class="headerlink" href="#tadma" title="Permalink to this heading">¶</a></h3>
-<p>TADMA is aware of QBV schedule cycles, stream time slots and by using PTP
-generated time it is capable of fetching frames for different streams/traffic classes from system memory (DDR) at precisely required time, providing excellent time precision for TSN traffic. In this design, TADMA fetches scheduled traffic from memory, based on the Qbv programming and passed it to the TSN IP for transmission.</p>
-<p>For more information on the IP refer to <a class="reference external" href="https://www.xilinx.com/content/dam/xilinx/member/1gtsn/2018_2/pg316-tadma.pdf">PG316</a>.</p>
-<p>Note: You will need access to <a class="reference external" href="https://www.xilinx.com/member/1gtsn_doc.html">1GTSN Documentation Lounge</a> to view the above document.</p>
+<h4>TADMA<a class="headerlink" href="#tadma" title="Permalink to this heading">¶</a></h4>
+<p>TADMA is aware of QBV schedule cycles, stream time slots, and by using PTP
+generated time, it is capable of fetching frames for different streams/traffic classes from the system memory (DDR) at precisely required time, providing excellent time precision for TSN traffic. In this design, TADMA fetches scheduled traffic from memory, based on the Qbv programming and passed it to the TSN IP for transmission.</p>
+<p>For more information on the IP, refer to the <em>Time Aware DMA Product Guide</em> (<a class="reference external" href="https://www.xilinx.com/content/dam/xilinx/member/1gtsn/2018_2/pg316-tadma.pdf">PG316</a>).</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> You will need access to the <a class="reference external" href="https://www.xilinx.com/member/1gtsn_doc.html">1GTSN Documentation Lounge</a> to view the above document.</p>
+</div></blockquote>
 </div>
 <div class="section" id="test-pmod-controller">
-<h3>Test PMOD Controller<a class="headerlink" href="#test-pmod-controller" title="Permalink to this heading">¶</a></h3>
-<p>The Test PMOD controller is a user IP that drives the <a class="reference external" href="https://digilent.com/shop/pmod-tph2-12-pin-test-point-header/">Digilent Test PMOD</a> pins. The IP implements registers detailed below.</p>
+<h4>Test PMOD Controller<a class="headerlink" href="#test-pmod-controller" title="Permalink to this heading">¶</a></h4>
+<p>The Test PMOD controller is a user IP that drives the <a class="reference external" href="https://digilent.com/shop/pmod-tph2-12-pin-test-point-header/">Digilent Test PMOD</a> pins. The IP implements the following registers.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Register offset</th>
-<th align="left">Register name</th>
+<th align="left">Register Offset</th>
+<th align="left">Register Name</th>
 <th align="left">Description</th>
 </tr>
 </thead>
@@ -542,38 +552,39 @@ generated time it is capable of fetching frames for different streams/traffic cl
 <tr>
 <td align="left">0x00</td>
 <td align="left">slv_reg0</td>
-<td align="left">Bit0 is a MUX enable. If 1 then drive Qbv signals on PMOD. If 0 drive TSN publisher/subscriber 8-bit signatures</td>
+<td align="left">Bit0 is a MUX enable. If 1, then drive Qbv signals on PMOD. If 0, drive TSN publisher/subscriber 8-bit signatures</td>
 </tr>
 <tr>
 <td align="left">0x04</td>
 <td align="left">slv_reg1</td>
-<td align="left">8-bit signature when publisher 1 transmits  a TSN frame</td>
+<td align="left">8-bit signature when publisher 1 transmits a TSN frame</td>
 </tr>
 <tr>
 <td align="left">0x08</td>
 <td align="left">slv_reg2</td>
-<td align="left">8-bit signature when subscriber 1 receives  a TSN frame</td>
+<td align="left">8-bit signature when subscriber 1 receives a TSN frame</td>
 </tr>
 <tr>
 <td align="left">0x0c</td>
 <td align="left">slv_reg3</td>
-<td align="left">8-bit signature when publisher 2 transmits  a TSN frame</td>
+<td align="left">8-bit signature when publisher 2 transmits a TSN frame</td>
 </tr>
 <tr>
 <td align="left">0x10</td>
 <td align="left">slv_reg4</td>
-<td align="left">8-bit signature when subscriber 2 receives  a TSN frame</td>
+<td align="left">8-bit signature when subscriber 2 receives a TSN frame</td>
 </tr>
 </tbody>
-</table><p>The TSN application can support multiple publishers and subscribers. When the publisher queues up a packet for transmission, it writes a unique 8-bit word to slv_reg*, which is then transmitted on the PMOD pins. Similarly when the subscriber receives a packet, it writes a unique 8-bit word to slv_reg* which is then transmitted on the PMOD pins. The PMOD pins of the publisher and subscriber are hooked up to a scope and are used to measure end to end application latency. The TSN pub sub application sets the MUX (slv_reg0) to 0 before writing the signature value. The figure below shows the mapping on the PMOD pins when MUX is set to 0 and 1.</p>
+</table><p>The TSN application can support multiple publishers and subscribers. When the publisher queues up a packet for transmission, it writes a unique 8-bit word to <code class="docutils literal notranslate"><span class="pre">slv_reg*</span></code>, which is then transmitted on the PMOD pins. Similarly when the subscriber receives a packet, it writes a unique 8-bit word to <code class="docutils literal notranslate"><span class="pre">slv_reg*</span></code> which is then transmitted on the PMOD pins. The PMOD pins of the publisher and subscriber are hooked up to a scope and are used to measure end to end application latency. The TSN pub sub application sets the MUX (<code class="docutils literal notranslate"><span class="pre">slv_reg0</span></code>) to 0 before writing the signature value. The following figure shows the mapping on the PMOD pins when MUX is set to 0 and 1.</p>
 <p><img alt="Test PMOD pin mapping" src="../../../_images/TSN_pmod.png" /></p>
-<p>To view scheduled and best effort traffic the MUX value is set to 1. If Qbv schedule is set, for example a time slot is programmed with 70% scheduled traffic and 30% best effort traffic, then viewing tlast signal of received scheduled traffic and tlast signal of received best effort traffic on a scope will confirm that Qbv is working as expected. Tlast indicates the end of a packet. Transmit signals can also be monitored, but note these signals are the on the outside of the TSN IP and the traffic is yet to be scheduled.</p>
+<p>To view scheduled and best effort traffic, the MUX value is set to 1. If the Qbv schedule is set, for example, a time slot is programmed with 70% scheduled traffic and 30% best effort traffic, then viewing <code class="docutils literal notranslate"><span class="pre">tlast</span></code> signal of received scheduled traffic and <code class="docutils literal notranslate"><span class="pre">tlast</span></code> signal of received best effort traffic on a scope will confirm that Qbv is working as expected. <code class="docutils literal notranslate"><span class="pre">tlast</span></code> indicates the end of a packet. Transmit signals can also be monitored, but these signals are the on the outside of the TSN IP and the traffic is yet to be scheduled.</p>
 <p>The other signal which is monitored to see if the Transmitter and Receiver clocks are in sync is the PTP clock.</p>
-<p>For more information on how to use PMOD signals to check clock synchronization, to measure latency and confirm Qbv programming refer to <a class="reference internal" href="app_deployment.html"><span class="doc">application deployment page</span></a>.</p>
+<p>For more information on how to use PMOD signals to check clock synchronization and to measure latency and confirm Qbv programming, refer to <a class="reference internal" href="app_deployment.html"><span class="doc">application deployment page</span></a>.</p>
+</div>
 </div>
 </div>
 <div class="section" id="clocks-resets-and-interrupts">
-<h2>Clocks, Resets and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Permalink to this heading">¶</a></h2>
+<h2>Clocks, Resets, and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="clocks">
 <h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this heading">¶</a></h3>
 <p>The following table identifies the main clocks of the PL design, their source, their clock frequency, and their function.</p>
@@ -633,7 +644,7 @@ generated time it is capable of fetching frames for different streams/traffic cl
 <td align="left">clk_out4</td>
 <td align="center">TSN clk_wiz_0</td>
 <td align="center">100 MHz</td>
-<td align="left">AXI-Lite clock to configure TSN IP, MCDMA IP, and Register interface IP</td>
+<td align="left">AXI4-Lite clock to configure TSN IP, MCDMA IP, and Register interface IP</td>
 </tr>
 </tbody>
 </table></div>
@@ -752,7 +763,7 @@ generated time it is capable of fetching frames for different streams/traffic cl
 </div>
 <div class="section" id="resource-utilization">
 <h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this heading">¶</a></h2>
-<p>The resource utilization numbers on this platform post implementation is reported in the table below.</p>
+<p>The resource utilization numbers on this platform post implementation is reported in the following table.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -823,6 +834,7 @@ generated time it is capable of fetching frames for different streams/traffic cl
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="sw_arch.html"><span class="doc">Software Archicture</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../foc_motor_control_landing.html"><span class="doc">KD240 FOC Motor Control Landing Page</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -841,7 +853,7 @@ generated time it is capable of fetching frames for different streams/traffic cl
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 06, 2024.
+      <span class="lastupdated">Last updated on March 21, 2024.
       </span></p>
   </div>
 

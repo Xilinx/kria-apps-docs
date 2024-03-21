@@ -86,11 +86,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1 current"><a class="reference internal" href="../foc_motor_control_landing.html">FOC Motor Control Application</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../foc_motor_control_landing.html#overview">Overview</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../foc_motor_control_landing.html#quick-start">Quick Start</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Setting up the Board and Application deployment</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Setting Up the Board and Application deployment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pre-requisite">Pre-requisite</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#run-the-motor-control-application">Run the motor control application:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#on-the-host-pc">On the host PC:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-the-motor-control-application">Run the Motor Control Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#on-the-host-pc">On the Host PC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dashboard">Dashboard</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
@@ -149,62 +149,56 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Board Setup and Application Deployment<a class="headerlink" href="#board-setup-and-application-deployment" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This document shows how to set up the board and run the motor control
-application.</p>
-<p>This guide is targeted for Ubuntu® 22.04 and AMD 2023.1 toolchain.</p>
+<p>This document shows how to set up the board, and run the motor control application.</p>
+<p>This guide is targeted for Ubuntu® 22.04 and the AMD 2023.1 toolchain.</p>
 </div>
-<div class="section" id="pre-requisite">
-<h2>Pre-requisite<a class="headerlink" href="#pre-requisite" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="prerequisite">
+<h2>Prerequisite<a class="headerlink" href="#prerequisite" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="hardware-requirements">
 <h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.xilinx.com/products/som/kria/kd240-drives-starter-kit.html">KD240 Drives Starter Kit</a></p></li>
 <li><p><a class="reference external" href="https://www.xilinx.com/products/som/kria/kd240-motor-accessory-pack.html">KD240 Motor Accessory Kit</a></p></li>
-<li><p>KD240 Power Supply &amp; Adapter (Included with KD240 Drives Starter Kit)</p>
+<li><p>KD240 power supply and adapter (included with the KD240 Drives Starter Kit)</p>
 <ul>
-<li><p>12V AC Adapter for KD240 Starter Kit and 24V AC Adapter for Motor
-Accessory Kit</p></li>
+<li><p>12V AC adapter for the KD240 Starter Kit and 24V AC adapter for the Motor Accessory Kit</p></li>
 </ul>
 </li>
-<li><p>USB-A to micro-B Cable (Included with KD240 Drives Starter Kit)</p></li>
-<li><p>MicroSD Card (32GB card is included with KD240 Drives Starter Kit)</p></li>
-<li><p>CAT6 Ethernet Cable</p></li>
-<li><p>Host Machine with Display</p></li>
+<li><p>USB-A to micro-B cable (included with the KD240 Drives Starter Kit)</p></li>
+<li><p>MicroSD card (32 GB card is included with the KD240 Drives Starter Kit)</p></li>
+<li><p>CAT6 Ethernet cable</p></li>
+<li><p>Host machine with display</p></li>
 </ul>
 </div>
 <div class="section" id="hardware-setup">
 <h3>Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">¶</a></h3>
 <p><img alt="KD240-Setup" src="../../../_images/KD240.png" /></p>
-<ul class="simple">
-<li><p>Connect USB cable from host machine to J4 UART/JTAG interface on the board</p></li>
-</ul>
+<ul>
+<li><p>Connect the USB cable from the host machine to the J4 UART/JTAG interface on the board.</p>
 <p><img alt="KD240-Setup" src="../../../_images/Connect_USB_to_J4.jpg" /></p>
-<ul class="simple">
-<li><p>Connect the Ethernet cable from J24 to your local network with DHCP enabled to install Linux packages.</p></li>
-</ul>
+</li>
+<li><p>Connect the Ethernet cable from J24 to your local network with DHCP enabled to install the Linux packages.</p>
 <p><img alt="KD240-Setup" src="../../../_images/Connect_Ethernet_to_J24.jpg" /></p>
-<ul class="simple">
-<li><p>Connect 12V power supply to J12 DC jack</p></li>
-</ul>
+</li>
+<li><p>Connect a 12V power supply to the J12 DC jack.</p>
 <p><img alt="KD240-Setup" src="../../../_images/Connect_12V_to_J12.jpg" /></p>
-<ul class="simple">
-<li><p>Connect 24V power supply to J29 DC link connector</p></li>
-</ul>
+</li>
+<li><p>Connect a 24V power supply to the J29 DC link connector.</p>
 <p><img alt="KD240-Setup" src="../../../_images/Connect_24V_to_J29.jpg" /></p>
-<ul class="simple">
-<li><p>Connect encoder header pins to J42 QEI connector. Ensure J44 is in the “SE” selection.</p></li>
-</ul>
+</li>
+<li><p>Connect the encoder header pins to the J42 QEI connector. Ensure J44 is in the “SE” selection.</p>
 <p><img alt="KD240-Setup" src="../../../_images/Connect_EncoderPin_to_J42.jpg" /></p>
-<ul class="simple">
-<li><p>Connect motor input to J32 3-phase inverter connector</p></li>
-</ul>
+</li>
+<li><p>Connect the motor input to a J32 3-phase inverter connector.</p>
 <p><img alt="KD240-Setup" src="../../../_images/Connect_ACpower_to_J32.jpg" /></p>
+</li>
+</ul>
 </div>
 <div class="section" id="tested-artifacts">
 <h3>Tested Artifacts<a class="headerlink" href="#tested-artifacts" title="Permalink to this heading">¶</a></h3>
 <p>Testing was performed with the following artifacts:</p>
 <div class="section" id="kd240-platform-artifacts">
-<h4>KD240 platform artifacts<a class="headerlink" href="#kd240-platform-artifacts" title="Permalink to this heading">¶</a></h4>
+<h4>KD240 platform Artifacts<a class="headerlink" href="#kd240-platform-artifacts" title="Permalink to this heading">¶</a></h4>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -215,22 +209,21 @@ Accessory Kit</p></li>
 <tbody>
 <tr>
 <td>Boot Firmware</td>
-<td>K24-BootFW-01.00.bin</td>
+<td>K24-BootFW-01.01</td>
 </tr>
 <tr>
 <td>Linux Kernel</td>
-<td>5.15.0-9002</td>
+<td>5.15.0-1027-xilinx-zynqmp</td>
 </tr>
 <tr>
 <td>xlnx-firmware-kd240-motor-ctrl</td>
 <td>0.10.1-0xlnx1</td>
 </tr>
 </tbody>
-</table><p>Please refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">Kria Wiki</a>
-to obtain latest linux image and boot firmware.</p>
+</table><p>To obtain the latest Linux image and boot firmware, refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">Kria Wiki</a>.</p>
 </div>
 <div class="section" id="application-packages">
-<h4>Application packages<a class="headerlink" href="#application-packages" title="Permalink to this heading">¶</a></h4>
+<h4>Application Packages<a class="headerlink" href="#application-packages" title="Permalink to this heading">¶</a></h4>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -241,7 +234,7 @@ to obtain latest linux image and boot firmware.</p>
 <tbody>
 <tr>
 <td>xlnx-app-kd240-foc-motor-ctrl</td>
-<td>0.3.1-0xlnx1</td>
+<td>0.3.1-0xlnx5</td>
 </tr>
 </tbody>
 </table></div>
@@ -249,13 +242,12 @@ to obtain latest linux image and boot firmware.</p>
 <div class="section" id="initial-setup">
 <h3>Initial Setup<a class="headerlink" href="#initial-setup" title="Permalink to this heading">¶</a></h3>
 <ol>
-<li><p>Go through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/linux_boot.html">Booting Kria Starter Kit Linux</a>
-to complete the minimum setup required to boot Linux before continuing with instructions in this page.</p></li>
+<li><p>Go through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/linux_boot.html">Booting Kria Starter Kit Linux</a> to complete the minimum setup required to boot Linux before continuing with instructions on this page.</p></li>
 <li><p>Get the latest motor control application and firmware package:</p>
 <ul>
-<li><p>Download the firmware</p>
+<li><p>Download the firmware.</p>
 <ul>
-<li><p>Search package feed for packages compatible with KD240</p>
+<li><p>Search package feed for packages compatible with the KD240.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo apt search xlnx-firmware-kd240
 Sorting... Done
 Full Text Search... Done
@@ -266,14 +258,14 @@ FPGA firmware <span class="k">for</span> Xilinx boards - kd240 motor-ctrl-qei ap
 </pre></div>
 </div>
 </li>
-<li><p>Install firmware binaries</p>
+<li><p>Install the firmware binaries.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install xlnx-firmware-kd240-motor-ctrl-qei
 </pre></div>
 </div>
 </li>
 </ul>
 </li>
-<li><p>Install motor control application</p>
+<li><p>Install the motor control application.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install xlnx-app-kd240-foc-motor-ctrl
 </pre></div>
 </div>
@@ -284,14 +276,12 @@ FPGA firmware <span class="k">for</span> Xilinx boards - kd240 motor-ctrl-qei ap
 </div>
 </div>
 <div class="section" id="run-the-motor-control-application">
-<h2>Run the motor control application:<a class="headerlink" href="#run-the-motor-control-application" title="Permalink to this heading">¶</a></h2>
+<h2>Run the Motor Control Application<a class="headerlink" href="#run-the-motor-control-application" title="Permalink to this heading">¶</a></h2>
 <ul>
 <li><p>Load the firmware:</p>
 <ul>
-<li><p>Show the list and status of available application firmware</p>
-<p>After installing the firmware, execute xmutil listapps to verify that it is
-captured under the listapps function, and to have dfx-mgrd re-scan and
-register all accelerators in the firmware directory tree.</p>
+<li><p>Show the list and status of available application firmware.</p>
+<p>After installing the firmware, execute xmutil listapps to verify that it is captured under the listapps function and to have dfx-mgrd rescan and register all accelerators in the firmware directory tree.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil listapps
        Accelerator          Accel_type                 Base           Base_type      <span class="c1">#slots(PL+AIE)    Active_slot</span>
 
@@ -299,9 +289,8 @@ register all accelerators in the firmware directory tree.</p>
 </pre></div>
 </div>
 </li>
-<li><p>Load the desired application firmware</p>
-<p>When there’s already another accelerator/firmware loaded, unload it
-first, then load the kd240-foc-motor-ctrl firmware</p>
+<li><p>Load the desired application firmware.</p>
+<p>When there is already another accelerator/firmware loaded, unload it first, then load the kd240-foc-motor-ctrl firmware.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp
 sudo xmutil loadapp kd240-motor-ctrl-qei
 </pre></div>
@@ -322,89 +311,52 @@ start_motor_dashboard
 </ul>
 </div>
 <div class="section" id="on-the-host-pc">
-<h2>On the host PC:<a class="headerlink" href="#on-the-host-pc" title="Permalink to this heading">¶</a></h2>
+<h2>On the Host PC<a class="headerlink" href="#on-the-host-pc" title="Permalink to this heading">¶</a></h2>
 <ul>
-<li><p>Open &lt;ip&gt;:5006 in a web browser</p>
-<p>Note: Once the server is running, it retains its settings no matter how many times the browser is
-closed, opened or refreshed.</p>
+<li><p>Open &lt;ip&gt;:5006 in a web browser.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> Once the server is running, it retains its settings no matter how many times the browser is closed, opened, or refreshed.</p>
+</div></blockquote>
 </li>
-<li><p>The system is set to OFF mode/state on starting the dashboard,
-observe the blue LED DS10 is off</p></li>
-<li><p>If the unit is plugged into a network with DHCP an IP will be assigned automatically. If not on a network then
-configure a static IP. For help on setting up static IP, see <a class="reference external" href="https://github.com/Xilinx/vck190-base-trd/blob/2022.1/docs/source/run/run-dashboard.rst#setting-up-a-private-network">Setting up a private network</a></p></li>
+<li><p>The system is set to OFF mode/state on starting the dashboard, observe the blue LED DS10 is off.</p></li>
+<li><p>If the unit is plugged into a network with DHCP, an IP will be assigned automatically. If not on a network, then configure a static IP. For help on setting up static IP, see <a class="reference external" href="https://github.com/Xilinx/vck190-base-trd/blob/2022.1/docs/source/run/run-dashboard.rst#setting-up-a-private-network">Setting up a private network</a>.</p></li>
 </ul>
-<p>Note: The open-loop mode of motor operation is a test mode intended for users with
-motor control knowledge and experience. Incorrect configurations of values of Vd, Vq
-can cause the motor to spin at speeds higher than its rating and potentially cause
-excessive motor heating. Use caution when using the open-loop mode.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The open-loop mode of motor operation is a test mode intended for users with motor control knowledge and experience. Incorrect configurations of values of Vd and Vq can cause the motor to spin at speeds higher than its rating and potentially cause excessive motor heating. Use caution when using the open-loop mode.</p>
+</div></blockquote>
 </div>
 <div class="section" id="dashboard">
 <h2>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="dashboard-features">
 <h3>Dashboard Features<a class="headerlink" href="#dashboard-features" title="Permalink to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>The Mode dropdown is used to select the control system mode of operation.</p></li>
-<li><p>The Sample Size text box is used to indicate how many samples are collected and
-plotted on the graphs for each type of data. The samples are collected at
-100 microsecond intervals. The maximum number of samples is limited to 3000
-due to dashboard performance limitations. For a large number of samples,
-there may be a small delay before a dashboard command takes effect.</p></li>
-<li><p>The Refresh Interval text box is used to indicate how often the dashboard
-plots will refresh. Note that a minimum refresh interval will be enforced
-based on the current sample size (a larger sample size requires a larger
-refresh interval).</p></li>
-<li><p>The gain text boxes are used to adjust the proportional and integral gains of
-the corresponding control loop.</p></li>
-<li><p>The Speed Setpoint text box is used to set the speed setpoint when running
-the motor in speed mode. The valid range of speed setpoints is -10000 to
-10000 rpm.</p></li>
-<li><p>The Torque Setpoint text box is used to set the torque setpoint when running
-the motor in torque mode. The valid range of torque setpoints is -2.5 to 2.5
-amps.</p></li>
-<li><p>The Open Loop - Vd text box is used to set the  direct voltage (Vd).
-The valid range for Vd is -24 to 24 volts. Note: Normally this should be
-set to ~0V.</p></li>
-<li><p>The Open Loop - Vq text box is used to set the quadrature voltage (Vq).
-The valid range for Vq is -24 to 24 volts.</p></li>
-<li><p>The Fault Status indicators show if any faults have occured. When a critical
-fault occurs, the corresponding indicator will turn red. For a warning level
-faults, the corresponding indicator will turn yellow.</p></li>
-<li><p>The Clear Faults button is used to clear all faults and put the system into
-Off mode.</p></li>
-<li><p>The Electrical Data plot shows the currents and voltages for Phase A, B, and
-C. The voltage lines are hidden by default. The visibility of each current
-and voltage line can be toggled by clicking on the legend labels. The current
-axis is shown on the left if any current lines are visible and the voltage
-axis is shown on the right is any voltage lines are visible.</p></li>
-<li><p>The Mechanical Data plot shows the speed and position of the motor. The
-visibility of each line can be toggled by clicking on the legend labels. The
-speed axis is shown on the left is speed is visible and the position axis is
-shown on the right if position is visible.</p></li>
-<li><p>The Live Analysis plot shows the data that is selected for each axis using
-the buttons on the right.</p></li>
+<ul>
+<li><p>The Mode drop-down is used to select the control system mode of operation.</p></li>
+<li><p>The Sample Size text box is used to indicate how many samples are collected and plotted on the graphs for each type of data. The samples are collected at 100 microsecond intervals. The maximum number of samples is limited to 3000 due to dashboard performance limitations. For a large number of samples, there might be a small delay before a dashboard command takes effect.</p></li>
+<li><p>The Refresh Interval text box is used to indicate how often the dashboard plots will refresh. A minimum refresh interval will be enforced based on the current sample size (a larger sample size requires a larger refresh interval).</p></li>
+<li><p>The gain text boxes are used to adjust the proportional and integral gains of the corresponding control loop.</p></li>
+<li><p>The Speed Setpoint text box is used to set the speed setpoint when running the motor in speed mode. The valid range of speed setpoints is -10000 to 10000 rpm.</p></li>
+<li><p>The Torque Setpoint text box is used to set the torque setpoint when running the motor in torque mode. The valid range of torque setpoints is -2.5 to 2.5 amps.</p></li>
+<li><p>The Open Loop - Vd text box is used to set the  direct voltage (Vd). The valid range for Vd is -24 to 24 volts.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> Normally this should be set to ~0V.</p>
+</div></blockquote>
+</li>
+<li><p>The Open Loop - Vq text box is used to set the quadrature voltage (Vq). The valid range for Vq is -24 to 24 volts.</p></li>
+<li><p>The Fault Status indicators show if any faults have occured. When a critical fault occurs, the corresponding indicator will turn red. For a warning level faults, the corresponding indicator will turn yellow.</p></li>
+<li><p>The Clear Faults button is used to clear all faults and put the system into Off mode.</p></li>
+<li><p>The Electrical Data plot shows the currents and voltages for Phase A, B, and C. The voltage lines are hidden by default. The visibility of each current and voltage line can be toggled by clicking the legend labels. The current axis is shown on the left if any current lines are visible, and the voltage axis is shown on the right is any voltage lines are visible.</p></li>
+<li><p>The Mechanical Data plot shows the speed and position of the motor. The visibility of each line can be toggled by clicking on the legend labels. The speed axis is shown on the left is speed is visible and the position axis is shown on the right if position is visible.</p></li>
+<li><p>The Live Analysis plot shows the data that is selected for each axis using the buttons on the right.</p></li>
 </ul>
-<p>When the dashboard is first launched, the system will be in Off mode and the
-dashboard will look like the image below. Observe that the electrical readings
-are near zero.</p>
+<p>When the dashboard is first launched, the system will be in Off mode, and the dashboard will look similar to the following image. Observe that the electrical readings are near zero.</p>
 <p><img alt="Motor-Control-Dashboard" src="../../../_images/Motor_Control_Dashboard_Off.png" /></p>
-<p>To run the application in Speed mode, select Speed from the Mode dropdown and
-use the Speed Setpoint text box to enter a speed setpoint. The image below
-shows the motor running in speed mode with a speed setpoint of 2000 rpm and the
-load disk that is included in the Motor Accessory Kit.</p>
+<p>To run the application in Speed mode, select <strong>Speed</strong> from the Mode drop-down, and use the Speed Setpoint text box to enter a speed setpoint. The following image shows the motor running in speed mode with a speed setpoint of 2000 rpm and the load disk that is included in the Motor Accessory Kit.</p>
 <p><img alt="Motor-Control-Dashboard" src="../../../_images/Motor_Control_Dashboard_Speed.png" /></p>
-<p>To run the application in Torque mode, select Torque from the Mode dropdown and
-use the Torque Setpoint text box to enter a torque setpoint. The image below
-shows the motor running in torque mode with a torque setpoint of 1 amp and the
-load disk that is included in the Motor Accessory Kit.</p>
+<p>To run the application in Torque mode, select <strong>Torque</strong> from the Mode drop-down and use the Torque Setpoint text box to enter a torque setpoint. The following image shows the motor running in torque mode with a torque setpoint of 1 amp and the load disk that is included in the Motor Accessory Kit.</p>
 <p><img alt="Motor-Control-Dashboard" src="../../../_images/Motor_Control_Dashboard_Torque.png" /></p>
-<p>To run the application in Open Loop mode, select Open Loop from the Mode
-dropdown and use the Vd/Vq text boxes to set Vd/Vq. The image below shows the
-motor running in open loop mode with Vd set to 0, Vq set to 4 volts, and the
-load disk that is included in the Motor Accessory Kit.</p>
+<p>To run the application in Open Loop mode, select <strong>Open Loop</strong> from the Mode drop-down, and use the Vd/Vq text boxes to set Vd/Vq. The following image shows the motor running in open loop mode with Vd set to 0, Vq set to 4 volts, and the load disk that is included in the Motor Accessory Kit.</p>
 <p><img alt="Motor-Control-Dashboard" src="../../../_images/Motor_Control_Dashboard_OpenLoop.png" /></p>
-<p>The images below show what the dashboard looks like when a larger load is
-applied to the motor. As the load on the motor increases, the currents will
-increase and the I_alpha/I_beta circle will expand.</p>
+<p>The following images show what the dashboard looks like when a larger load is applied to the motor. As the load on the motor increases, the currents will increase and the I_alpha/I_beta circle will expand.</p>
 <p><img alt="Motor-Control-Dashboard" src="../../../_images/Motor_Control_Dashboard_Speed_Loaded.png" />
 <img alt="Motor-Control-Dashboard" src="../../../_images/Motor_Control_Dashboard_Torque_Loaded.png" />
 <img alt="Motor-Control-Dashboard" src="../../../_images/Motor_Control_Dashboard_OpenLoop_Loaded.png" /></p>
@@ -413,7 +365,7 @@ increase and the I_alpha/I_beta circle will expand.</p>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Go back to the <a class="reference internal" href="../foc_motor_control_landing.html"><span class="doc">KD240 FOC Motor Control application start page</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../foc_motor_control_landing.html"><span class="doc">KD240 FOC Motor Control Application Start Page</span></a></p></li>
 </ul>
 <!---
 
@@ -422,10 +374,7 @@ this file except in compliance with the License.
 
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
 
-Unless required by applicable law or agreed to in writing, software distributed
-under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-CONDITIONS OF ANY KIND, either express or implied. See the License for the
-specific language governing permissions and limitations under the License.
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 --><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
@@ -444,7 +393,7 @@ specific language governing permissions and limitations under the License.
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 06, 2024.
+      <span class="lastupdated">Last updated on March 21, 2024.
       </span></p>
   </div>
 
