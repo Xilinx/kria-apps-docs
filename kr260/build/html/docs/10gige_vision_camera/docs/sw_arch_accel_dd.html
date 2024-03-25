@@ -99,6 +99,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="hw_arch_accel_dd.html">Hardware Architecture of the Accelerator</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#repository">Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#other">Other</a></li>
 </ul>
 </li>
@@ -122,7 +123,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../10gige_vision_camera_landing.html">10GigE Vision Camera</a> &raquo;</li>
+          <li><a href="../10gige_vision_camera_landing.html">10GigE Machine Vision Camera - Defect Detect</a> &raquo;</li>
       <li>Software Architecture of the Accelerator</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/docs/10gige_vision_camera/docs/sw_arch_accel_dd.md.txt" rel="nofollow"> View page source</a>
@@ -148,11 +149,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This document describes the software architecture of the MV-Defect-Detect accelerator application.</p>
 <div class="section" id="software-architecture">
 <h3>Software Architecture<a class="headerlink" href="#software-architecture" title="Permalink to this heading">¶</a></h3>
-<p>In the MV-Defect-Detect application, the Computer Vision Starter Kit can take video inputs from a live or a file source. As shown in the following figure, the video inputs will be in the Luma(Y) format, processed and displayed. Vitis overlay includes Vitis Vision libraries that process the frames and detect defects in mangoes.</p>
+<p>In the MV-Defect-Detect application, the Computer Vision Starter Kit can take video inputs from a live or a file source. As shown in the following figure, the video inputs are in the Luma(Y) format, processed and displayed. AMD Vitis™ overlay includes Vitis Vision libraries that process the frames and detect defects in mangoes.</p>
 <p>In this reference design, the resolution on the input frames is 1920 x 1080, and the outputs are 1920x1080 on a 1080p display.</p>
 <p><img alt="../../../_images/defect-detection-process.png" src="../../../_images/defect-detection-process.png" /></p>
 <p>The parts before pre-process plugin and after mv-defect-detect accelerator for data source and sink respectively, use purely official GStreamer plugins, such as <em>filesrc</em> for file input, <em>v4l2src</em> for capture, and <em>Kmssink</em> for the display. Refer to the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/tutorials/index.html?gi-language=c">GStreamer documentation</a> for detailed usage.</p>
-<p>The core acceleration tasks are performed by the Pre-Process and CCA libraries, which are developed by XILINX.</p>
+<p>The core acceleration tasks are performed by the Pre-Process and CCA libraries, which AMD developed.</p>
 <details>
  <summary><b>The following table lists the GStreamer plugins used in the application.</b></summary><table border="1" class="docutils">
 <thead>
@@ -247,7 +248,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><img alt="../../../_images/preprocessing_pipeline.png" src="../../../_images/preprocessing_pipeline.png" /></p>
 <p>The following figure depicts the Pre-Process plugin data flow.</p>
 <p><img alt="../../../_images/preprocess-plugin-data-flow.png" src="../../../_images/preprocess-plugin-data-flow.png" /></p>
-<h1>Gaussian_OTSU Accelerator</h1><p>This accelerator has two kernels - Gaussian &amp; OTSU, stitched in streaming fashion.
+<h1>Gaussian_OTSU Accelerator</h1><p>This accelerator has two kernels - Gaussian &amp; OTSU, stitched in a streaming fashion.
 In general, any smoothing filter smoothens the image, and affects the edges of the image. To
 preserve the edges while smoothing, use bilateral filter. In an analogous way as the
 Gaussian filter, the bilateral filter also considers the neighboring pixels with weights assigned to each of them.</p>
@@ -262,7 +263,7 @@ then calculates the optimum threshold separating the two classes.</p>
 <p><img alt="../../../_images/gaussian-plugin-sw-stack.png" src="../../../_images/gaussian-plugin-sw-stack.png" /></p>
 <p>The following figure depicts the Gaussian + OTSU plugin data flow.</p>
 <p><img alt="../../../_images/gaussian-plugin-dataflow.png" src="../../../_images/gaussian-plugin-dataflow.png" /></p>
-<h1>Threshold_Median Accelerator</h1><p>The grey-scale image should be converted to a binary image with an appropriate threshold value. The threshold function in the Vitis Vision library can perform the thresholding operation on the input image. This should yield an image that has a black background with the mango area in white.</p>
+<h1>Threshold_Median Accelerator</h1><p>The grey-scale image should be converted into a binary image with an appropriate threshold value. The threshold function in the Vitis Vision library can perform the thresholding operation on the input image. This should yield an image that has a black background with the mango area in white.</p>
 <p>The median blur filter acts as a non-linear digital filter that reduces noise. A filter size of N outputs the median of the NxN neighborhood pixel values, for each pixel. In this design, N is 3.</p>
 <p>This plugin accepts the 1920x1080 Y8 image as input. The plugin applies the threshold binary algorithm to convert the Y8 image to binary image by using the threshold value of the pixel. Later, it applies the Median filter to remove salt and pepper noise.</p>
 <p>The following figure depicts the Threshold + Median plugin software stack.</p>
@@ -289,11 +290,11 @@ then calculates the optimum threshold separating the two classes.</p>
 <div class="section" id="defect-decision">
 <h4>Defect Decision<a class="headerlink" href="#defect-decision" title="Permalink to this heading">¶</a></h4>
 <details>
- <summary><b>Click here to view details</b></summary><p>The output of the CCA plugin is fed into the Defect Decision block which determines the defect density and decides the quality of the mango. The block performs the following main operations:</p>
+ <summary><b>Click here to view details</b></summary><p>The output of the CCA plugin is fed into the Defect Decision block, which determines the defect density and decides the quality of the mango. The block performs the following main operations:</p>
 <ul class="simple">
 <li><p>The ratio of blemished pixels to total mango pixels is calculated to determine how much of the mango’s surface area is covered with blemishes.</p></li>
 <li><p>Defect Decision determines whether the ratio exceeds a user-defined threshold, to decide whether the mango is defected or not.</p></li>
-<li><p>The results will be embedded in the image and output will be fed to the next plugin for the display.</p></li>
+<li><p>The results are embedded in the image and output is fed to the next plugin for the display.</p></li>
 </ul>
 <p>The following figure depicts the Defect Decision plugin software stack.</p>
 <p><img alt="../../../_images/defect-decision-plugin-sw-stack.png" src="../../../_images/defect-decision-plugin-sw-stack.png" /></p>
@@ -464,7 +465,7 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p align="center">Copyright&copy; 2022 Xilinx</p></div>
+--><p align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></div>
 </div>
 
 
@@ -481,7 +482,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 06, 2024.
+      <span class="lastupdated">Last updated on March 25, 2024.
       </span></p>
   </div>
 

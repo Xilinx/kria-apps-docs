@@ -87,6 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#quick-start">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#tutorials">Tutorials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#repository">Repository</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../10gige_vision_camera_landing.html#other">Other</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Debugging</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#for-live-input-and-raw-output">For Live Input and Raw Output</a></li>
@@ -125,7 +126,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../10gige_vision_camera_landing.html">10GigE Vision Camera</a> &raquo;</li>
+          <li><a href="../10gige_vision_camera_landing.html">10GigE Machine Vision Camera - Defect Detect</a> &raquo;</li>
       <li>Debug</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/docs/10gige_vision_camera/docs/debug.md.txt" rel="nofollow"> View page source</a>
@@ -146,51 +147,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </tr>
 </table><div class="section" id="debug">
 <h1>Debug<a class="headerlink" href="#debug" title="Permalink to this heading">¶</a></h1>
-<p>Please first review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">FAQ</a> for commonly encountered issues across Kria SOM applications.</p>
+<p>First review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">FAQ</a> for commonly encountered issues across AMD Kria™ SOM applications.</p>
 <ol>
-<li><p>To get Max fps in sphinx GEV viewer user can change the draw value in sphinx –&gt; options based on the host type (windows or ubuntu)</p>
+<li><p>To get the maximum fps in the sphinx GEV viewer, you can change the draw value in sphinx –&gt; options based on the host type (windows or ubuntu)</p>
 <ul>
 <li><p>On ubuntu host,</p>
-<p>For 60 fps user must set the draw value to <code class="docutils literal notranslate"><span class="pre">10</span></code>
-For 120 fps user must set the draw value to <code class="docutils literal notranslate"><span class="pre">50</span></code></p>
+<p>For 60 fps, set the draw value to <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
+<p>For 120 fps, set the draw value to <code class="docutils literal notranslate"><span class="pre">50</span></code>.</p>
 </li>
 <li><p>On windows host,</p>
-<p>For 60/120 fps user must set the draw value to <code class="docutils literal notranslate"><span class="pre">10</span></code></p>
+<p>For 60/120 fps, set the draw value to <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
 <p><img alt="Sphinx GE Viewer" src="../../../_images/Sphinx_GE_Viewer.png" /></p>
 </li>
 </ul>
 </li>
-<li><p>To cross check the connection between KR260 target and host use ping functionality. For Example, ping -I <code class="docutils literal notranslate"><span class="pre">&lt;10G_interface_name&gt;</span> <span class="pre">&lt;ip</span> <span class="pre">address&gt;</span></code></p></li>
+<li><p>To cross check the connection between KR260 target and host, use ping functionality. For Example, ping -I <code class="docutils literal notranslate"><span class="pre">&lt;10G_interface_name&gt;</span> <span class="pre">&lt;ip</span> <span class="pre">address&gt;</span></code></p></li>
 <li><p>To identify whether NIC card is inserted properly or not in ubuntu host machine PCIe slot, run this command <code class="docutils literal notranslate"><span class="pre">lspci</span> <span class="pre">-vvv</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">&quot;82599</span> <span class="pre">10</span> <span class="pre">Gigabit</span> <span class="pre">Network&quot;</span></code></p></li>
-<li><p>After inserting the 10G NIC card in windows host machine PCIe slot check device manager for device detection and driver installation. If driver is not installed for this device install the driver from the given link: <a class="reference external" href="https://www.intel.com/content/www/us/en/download/15084/intel-ethernet-adapter-complete-driver-pack.html">NIC Card driver</a>.</p></li>
-<li><p>If user get -1 for <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">&lt;app</span> <span class="pre">name&gt;</span></code>, try to unload the existing app firmware using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">unloadapp</span></code> and then load the preferred app firmware.</p></li>
-<li><p>To trigger the sensor stream-on, run the Gstreamer capture pipeline in background using gst-launch-1.0 utility before starting 10GigE application.</p></li>
-<li><p>To install the mv-camera firmware manually, use below command.</p>
+<li><p>After inserting the 10G NIC card in windows host machine PCIe slot, check device manager for device detection and driver installation. If the driver is not installed for this device, install the driver from the given link: <a class="reference external" href="https://www.intel.com/content/www/us/en/download/15084/intel-ethernet-adapter-complete-driver-pack.html">NIC Card driver</a>.</p></li>
+<li><p>If you get -1 for <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">&lt;app</span> <span class="pre">name&gt;</span></code>, try to unload the existing app firmware using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">unloadapp</span></code> and then load the preferred app firmware.</p></li>
+<li><p>To trigger the sensor stream-on, run the Gstreamer capture pipeline in the background using gst-launch-1.0 utility before starting the 10GigE application.</p></li>
+<li><p>To install the mv-camera firmware manually, use the following command.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt install xlnx-firmware-kr260-mv-camera
 </pre></div>
 </div>
-<p><strong>Note:</strong> Ensure to run the apt update to get the latest firmware.</p>
+<p><em><strong>Note</strong></em>: Ensure to run the apt update to get the latest firmware.</p>
 </li>
-<li><p>Make sure to use the below command</p>
+<li><p>Make sure to use the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> sudo xmutil loadapp kr260-mv-camera
 </pre></div>
 </div>
-<p>to load the <strong>mv-defect-detect</strong> firmware properly. Otherwise necessary drivers won’t be loaded, there might be some errors that popup when you run the <strong>mv-defect-detect</strong> application.</p>
+<p>to load the <strong>mv-defect-detect</strong> firmware properly. Otherwise, necessary drivers are not loaded. There might be some errors that popup when you run the <strong>mv-defect-detect</strong> application.</p>
 </li>
 <li><p>Always unload existing firmware before loading the mv-defect-detect firmware.</p></li>
-<li><p>The Framerate displayed is only for Live Playback. To get the framerate on console, you need to prepend the keywords <code class="docutils literal notranslate"><span class="pre">GST_DEBUG=&quot;*defect*:4&quot;</span></code> in the GStreamer application/pipeline.</p></li>
+<li><p>The Framerate displayed is only for Live Playback. To get the framerate on console, prepend the keywords <code class="docutils literal notranslate"><span class="pre">GST_DEBUG=&quot;*defect*:4&quot;</span></code> in the GStreamer application/pipeline.</p></li>
 </ol>
 <p>For Example:</p>
 <p><code class="docutils literal notranslate"><span class="pre">GST_DEBUG=&quot;*defect*:4&quot;</span> <span class="pre">mv-defect-detect</span></code></p>
 <ol class="simple">
-<li><p>Following are some of the examples of Gstreamer pipelines</p></li>
+<li><p>Following are some of the examples of Gstreamer pipelines:</p></li>
 </ol>
-<p><strong>Note</strong>: Run the below command, before running any of the following pipelines, including the ones in the Demo mode.</p>
+<p><em><strong>Note</strong></em>: Run the following command before running any of the following pipelines, including the ones in the Demo mode.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>modetest -D fd4a0000.display -s <span class="m">43</span>@41:1920x1080-60@BG24 -w <span class="m">40</span>:<span class="s2">&quot;alpha&quot;</span>:0
 modetest -D fd4a0000.display -s <span class="m">43</span>@41:1920x1080-60@BG24 -w <span class="m">40</span>:<span class="s2">&quot;g_alpha_en&quot;</span>:0
 </pre></div>
 </div>
-<p><strong>Note</strong>: Navigate to <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/</span></code> and then run the gst-launch commands.</p>
+<p><em><strong>Note</strong></em>: Navigate to <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/</span></code> and then run the gst-launch commands.</p>
 <div class="section" id="for-live-input-and-raw-output">
 <h2>For Live Input and Raw Output<a class="headerlink" href="#for-live-input-and-raw-output" title="Permalink to this heading">¶</a></h2>
 <ul>
@@ -289,7 +290,7 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p align="center"><sup>Copyright&copy; 2022 Xilinx</sup></p></div>
+--><p align="center"><sup>Copyright&copy; 2023 Advanced Micro Devices, Inc.</sup></p></div>
 </div>
 
 
@@ -306,7 +307,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 06, 2024.
+      <span class="lastupdated">Last updated on March 25, 2024.
       </span></p>
   </div>
 

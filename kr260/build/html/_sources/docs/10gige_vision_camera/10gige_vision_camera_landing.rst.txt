@@ -1,5 +1,5 @@
 ##################################################
-10GigE Vision Camera
+10GigE Machine Vision Camera - Defect Detect
 ##################################################
 
 
@@ -70,6 +70,16 @@ Architecture
    Sensor to Image 10GigE Vision Pipeline <docs/10gige>
    Software Architecture of the Accelerator <docs/sw_arch_accel_dd>
    Hardware Architecture of the Accelerator <docs/hw_arch_accel_dd>
+
+
+*******************************
+Repository
+*******************************
+
+.. toctree::
+  :maxdepth: 1
+  
+  Software Repository <https://github.com/Xilinx/mv-defect-detect>
 
 
 ******
