@@ -12,62 +12,63 @@
 
 # Debug
 
-Please first review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq.html) for commonly encountered issues across Kria SOM applications.
+First review the [FAQ](https://xilinx.github.io/kria-apps-docs/faq.html) for commonly encountered issues across AMD Kria&trade; SOM applications.
 
-1. To get Max fps in sphinx GEV viewer user can change the draw value in sphinx --> options based on the host type (windows or ubuntu)
+1. To get the maximum fps in the sphinx GEV viewer, you can change the draw value in sphinx --> options based on the host type (windows or ubuntu)
 
     - On ubuntu host,
 
-         For 60 fps user must set the draw value to `10` 
-         For 120 fps user must set the draw value to `50`
+         For 60 fps, set the draw value to `10`.
+
+         For 120 fps, set the draw value to `50`.
 
     - On windows host,
 
-         For 60/120 fps user must set the draw value to `10`
+         For 60/120 fps, set the draw value to `10`.
 
          ![Sphinx GE Viewer](media/Sphinx_GE_Viewer.png)
 
-2. To cross check the connection between KR260 target and host use ping functionality. For Example, ping -I `<10G_interface_name> <ip address>`
+2. To cross check the connection between KR260 target and host, use ping functionality. For Example, ping -I `<10G_interface_name> <ip address>`
 
 3. To identify whether NIC card is inserted properly or not in ubuntu host machine PCIe slot, run this command `lspci -vvv | grep -i "82599 10 Gigabit Network"`
 
-4. After inserting the 10G NIC card in windows host machine PCIe slot check device manager for device detection and driver installation. If driver is not installed for this device install the driver from the given link: [NIC Card driver](https://www.intel.com/content/www/us/en/download/15084/intel-ethernet-adapter-complete-driver-pack.html).
+4. After inserting the 10G NIC card in windows host machine PCIe slot, check device manager for device detection and driver installation. If the driver is not installed for this device, install the driver from the given link: [NIC Card driver](https://www.intel.com/content/www/us/en/download/15084/intel-ethernet-adapter-complete-driver-pack.html).
 
-5. If user get -1 for `xmutil loadapp <app name>`, try to unload the existing app firmware using `xmutil unloadapp` and then load the preferred app firmware.
+5. If you get -1 for `xmutil loadapp <app name>`, try to unload the existing app firmware using `xmutil unloadapp` and then load the preferred app firmware.
 
-6. To trigger the sensor stream-on, run the Gstreamer capture pipeline in background using gst-launch-1.0 utility before starting 10GigE application.
+6. To trigger the sensor stream-on, run the Gstreamer capture pipeline in the background using gst-launch-1.0 utility before starting the 10GigE application.
 
-7. To install the mv-camera firmware manually, use below command.
+7. To install the mv-camera firmware manually, use the following command.
     ```bash
    apt install xlnx-firmware-kr260-mv-camera
    ```
 
-   **Note:** Ensure to run the apt update to get the latest firmware.
+   ***Note***: Ensure to run the apt update to get the latest firmware.
 
-8. Make sure to use the below command
+8. Make sure to use the following command:
 
     ```bash
      sudo xmutil loadapp kr260-mv-camera
     ```
-   to load the **mv-defect-detect** firmware properly. Otherwise necessary drivers won't be loaded, there might be some errors that popup when you run the **mv-defect-detect** application.
+   to load the **mv-defect-detect** firmware properly. Otherwise, necessary drivers are not loaded. There might be some errors that popup when you run the **mv-defect-detect** application.
 
 9. Always unload existing firmware before loading the mv-defect-detect firmware.
 
-10. The Framerate displayed is only for Live Playback. To get the framerate on console, you need to prepend the keywords `GST_DEBUG="*defect*:4"` in the GStreamer application/pipeline.
+10. The Framerate displayed is only for Live Playback. To get the framerate on console, prepend the keywords `GST_DEBUG="*defect*:4"` in the GStreamer application/pipeline.
 
    For Example: 
 
    `GST_DEBUG="*defect*:4" mv-defect-detect`
 
-11. Following are some of the examples of Gstreamer pipelines
+11. Following are some of the examples of Gstreamer pipelines:
 
-**Note**: Run the below command, before running any of the following pipelines, including the ones in the Demo mode.
+***Note***: Run the following command before running any of the following pipelines, including the ones in the Demo mode.
 
    ```bash
    modetest -D fd4a0000.display -s 43@41:1920x1080-60@BG24 -w 40:"alpha":0
    modetest -D fd4a0000.display -s 43@41:1920x1080-60@BG24 -w 40:"g_alpha_en":0
    ```
-**Note**: Navigate to `/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/` and then run the gst-launch commands.
+***Note***: Navigate to `/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/` and then run the gst-launch commands.
 
 #### For Live Input and Raw Output
 
@@ -169,4 +170,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 -->
 
-<p align="center"><sup>Copyright&copy; 2022 Xilinx</sup></p>
+<p align="center"><sup>Copyright&copy; 2023 Advanced Micro Devices, Inc.</sup></p>

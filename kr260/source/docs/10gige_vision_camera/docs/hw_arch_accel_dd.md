@@ -12,7 +12,7 @@
 
 # Hardware Architecture of the Accelerator
 
-The Vitis overlay includes the Pre-Process block and the MV-Defect-Detect blocks.
+The AMD Vitis&trade; overlay includes the Pre-Process block and the MV-Defect-Detect blocks.
 
 ## Pre-Process
 
@@ -58,7 +58,7 @@ The output from the forward and the reverse passes are written to the DDR buffer
 
 Pass 2 reads the data from the same ports once the write into the DDR buffer is complete.  The output defect pixels are then written to the DDR.
 
-An example output image after CCA Acceleration is done, is as follows:
+An example output image after CCA Acceleration is done is as follows:
 
 ![Defect Detection Pipeline Hardware Accelerator Example](media/defect-detection-pipeline-hardware-accel-example.png)
 
@@ -79,7 +79,7 @@ Vitis integrates the pre-processing function and mv-defect-detection function in
 |Total|78904|128|291|12|
 |Total %|67.37%|88.89%|23.32%|18.75%|  
 
-Other* : AXI interconnects and Interrupt concat block added by Vitis
+Other* : AXI interconnects and Interrupt concat block added by Vitis.
 <br />
 
 ## Next Steps
@@ -105,4 +105,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 -->
 
-<p align="center">Copyright&copy; 2022 Xilinx</p>
+<p align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p>

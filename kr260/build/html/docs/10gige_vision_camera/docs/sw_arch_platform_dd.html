@@ -131,8 +131,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="deployment">
 <h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this heading">¶</a></h2>
-<p>This reference design includes a pre-packaged SD card image to provide user-friendly out-of-box experience for the Vision MV-Defect-Detect Starter Kit. This image should be used first to verify hardware setup and also to demonstrate the capabilities of the SOM. Each of the application examples provided with the kit are delivered as an RPM package group for ease of installation and deployment.</p>
-<p>In addition to pre-build SD card image, the design source files are also provided to allow customization. The <a class="reference internal" href="../../building_the_design.html"><span class="doc">Building the Design components</span></a> page documents in detail all the different design sources and steps to re-build the SD card image from scratch, including the Vivado block design and Vitis platform.</p>
+<p>This reference design includes a pre-packaged SD card image to provide a user-friendly out-of-the-box experience for the Vision MV-Defect-Detect Starter Kit. This image should be used first to verify the hardware setup and also to demonstrate the capabilities of the SOM. Each of the application examples provided with the kit are delivered as an RPM package group for ease of installation and deployment.</p>
+<p>In addition to the pre-build SD card image, the design source files are also provided to allow customization. The <a class="reference internal" href="../../building_the_design.html"><span class="doc">Building the Design components</span></a> page documents in detail all the different design sources and steps to re-build the SD card image from scratch, including the AMD Vivado™ block design and AMD Vitis™ platform.</p>
 <p>The end applications leverage custom Gstreamer plugins for Vitis Vision libraries built using the VVAS framework. These plugins leverage the following libraries:</p>
 <table border="1" class="docutils">
 <thead>
@@ -192,16 +192,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ol>
 <p>For a given set of test images, manually calculate accuracy as follows:</p>
 <ol class="simple">
-<li><p>Each image in the test is pre-labeled by a human. The label indicates if the mango in the image is defected or not.</p></li>
-<li><p>The pre-labeled result of the human is compared with the result given by the Vision SOM MV-Defect Detect system. The number of images that are not detected correctly is found.</p></li>
+<li><p>Each image in the test is prelabeled by a human. The label indicates if the mango in the image is defected or not.</p></li>
+<li><p>The prelabeled result of the human is compared with the result given by the Vision SOM MV-Defect Detect system. The number of images that are not detected correctly is found.</p></li>
 <li><p>The ratio of the number of images that are detected correctly to the total number of images in the test, is the accuracy of the MV-Defect-Detect system.</p></li>
 </ol>
 <p>Accumulated defects are the number of defects detected in a certain period of time.</p>
-<p>The input raw image of the mango is as shown in the below figure.
+<p>The input raw image of the mango is as shown in the following figure.
 <img alt="../../../_images/mvdd_raw.PNG" src="../../../_images/mvdd_raw.PNG" /></p>
-<p>The Pre-processed image of the mango is as shown in the below figure.
+<p>The Pre-processed image of the mango is as shown in the following figure.
 <img alt="../../../_images/mvdd_preprocessed.PNG" src="../../../_images/mvdd_preprocessed.PNG" /></p>
-<p>The Final output of the mango is as shown in the below figure.
+<p>The Final output of the mango is as shown in the following figure.
 <img alt="../../../_images/mvdd_final.PNG" src="../../../_images/mvdd_final.PNG" /></p>
 <blockquote>
 <div><p><em><strong>Note</strong></em>: The test mango image is taken from <a class="reference external" href="http://www.cofilab.com/wp-content/downloads/DB_Mango.rar">Cofilab site</a>.</p>
@@ -213,7 +213,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="media-source-bin-gstreamer-plugin">
 <h3>Media Source Bin GStreamer Plugin<a class="headerlink" href="#media-source-bin-gstreamer-plugin" title="Permalink to this heading">¶</a></h3>
 <details>
- <summary><b>Click here to view details</b></summary><p>The <em>mediasrcbin</em> plugin is designed to simplify the usage of live video capture devices in this design, otherwise the user must take care of initialization and configuration. The plugin is a bin element that includes the standard <em>v4l2src</em> GStreamer element. It configures the media pipelines of the supported video sources in this design. The <em>v4l2src</em> element inside the <em>mediasrcbin</em> element interfaces with the V4L2 Linux framework and the Xilinx VIPP driver through the video device node. The <em>mediasrcbin</em> element interfaces with the Media Controller Linux framework through the <em>v412-subdev</em> and media device nodes that allows to configure the media pipeline and its sub-devices. It uses the <em>libmediactl</em> and <em>libv4l2subdev</em> libraries, which provide the following functionality:</p>
+ <summary><b>Click here to view details</b></summary><p>The <em>mediasrcbin</em> plugin is designed to simplify the usage of live video capture devices in this design. Otherwise, be careful about the initialization and configuration. The plugin is a bin element that includes the standard <em>v4l2src</em> GStreamer element. It configures the media pipelines of the supported video sources in this design. The <em>v4l2src</em> element inside the <em>mediasrcbin</em> element interfaces with the V4L2 Linux framework and the AMD VIPP driver through the video device node. The <em>mediasrcbin</em> element interfaces with the Media Controller Linux framework through the <em>v412-subdev</em> and media device nodes that allows to configure the media pipeline and its sub-devices. It uses the <em>libmediactl</em> and <em>libv4l2subdev</em> libraries, which provide the following functionality:</p>
 <ul class="simple">
 <li><p>Enumerate entities, pads and links</p></li>
 <li><p>Configure sub-devices</p>
@@ -225,11 +225,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-<p>The <em>mediasrcbin</em> plugin sets the media bus format and resolution on each sub-device source and sink pad for the entire media pipeline. The formats between pads that are connected through links need to match. Refer to the Media Framework section for more information on entities, pads and links.</p>
+<p>The <em>mediasrcbin</em> plugin sets the media bus format and resolution on each sub-device source and sink pad for the entire media pipeline. The formats between pads that are connected through links need to match. Refer to the Media Framework section for more information on entities, pads, and links.</p>
 </details></div>
 <div class="section" id="kernel-subsystems">
 <h3>Kernel Subsystems<a class="headerlink" href="#kernel-subsystems" title="Permalink to this heading">¶</a></h3>
-<p>To model and control video capture pipelines such as the ones used in this TRD on Linux systems, multiple kernel frameworks and APIs are required to work in concert. For simplicity, we refer to the overall solution as Video4Linux (V4L2) although the framework only provides part of the required functionality. The individual components are discussed in the following sections.</p>
+<p>To model and control video capture pipelines such as the ones used in this TRD on Linux systems, multiple kernel frameworks and APIs are required to work in concert. For simplicity, refer to the overall solution as Video4Linux (V4L2) although the framework only provides part of the required functionality. The individual components are discussed in the following sections.</p>
 </div>
 <div class="section" id="driver-architecture">
 <h3>Driver Architecture<a class="headerlink" href="#driver-architecture" title="Permalink to this heading">¶</a></h3>
@@ -243,7 +243,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="media-framework">
 <h3>Media Framework<a class="headerlink" href="#media-framework" title="Permalink to this heading">¶</a></h3>
 <details>
- <summary><b>Click here to view details</b></summary><p>The main goal of the media framework is to discover the device topology of a video pipeline and to configure it at run-time. To achieve this, pipelines are modeled as an oriented graph of building blocks called entities connected through pads. An entity is a basic media hardware building block. It can correspond to a large variety of blocks such as physical hardware devices (e.g. image sensors), logical hardware devices (e.g. soft IP cores inside the PL), DMA channels or physical connectors. Physical or logical devices are modeled as sub-device nodes and DMA channels as video nodes. A pad is a connection endpoint through which an entity can interact with other entities. Data produced by an entity flows from the entity’s output to one or more entity inputs. A link is a point-to-point-oriented connection between two pads, either on the same entity or on different entities. Data flows from a source pad to a sink pad. A media device node is created that allows the user space application to configure the video pipeline and its sub-devices through the <em>libmediactl</em> and <em>libv4l2subdev</em> libraries. The media controller API provides the following functionality:</p>
+ <summary><b>Click here to view details</b></summary><p>The main goal of the media framework is to discover the device topology of a video pipeline and to configure it at runtime. To achieve this, the pipelines are modeled as an oriented graph of building blocks called entities connected through pads. An entity is a basic media hardware building block. It can correspond to a large variety of blocks such as physical hardware devices (for example, image sensors), logical hardware devices (for example, soft IP cores inside the PL), DMA channels, or physical connectors. Physical or logical devices are modeled as sub-device nodes and DMA channels as video nodes. A pad is a connection endpoint through which an entity can interact with other entities. Data produced by an entity flows from the entity’s output to one or more entity inputs. A link is a point-to-point-oriented connection between two pads, either on the same entity or on different entities. Data flows from a source pad to a sink pad. A media device node is created that allows the user space application to configure the video pipeline and its sub-devices through the <em>libmediactl</em> and <em>libv4l2subdev</em> libraries. The media controller API provides the following functionality:</p>
 <ul class="simple">
 <li><p>Enumerate entities, pads and links</p></li>
 <li><p>Configure pads</p>
@@ -256,13 +256,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Enable/disable</p></li>
 <li><p>Validate formats</p></li>
 </ul>
-<p>The following figure shows the media graphs for video capture pipeline as generated by the <em>media-ctl</em> utility. The sub devices are shown in green with their corresponding control interface base address and sub device node in the center. The numbers on the edges are pads and the solid arrows represent active links. The yellow boxes are video nodes that correspond to DMA channels, in this case write channels (outputs).</p>
+<p>The following figure shows the media graphs for video capture pipeline as generated by the <em>media-ctl</em> utility. The sub-devices are shown in green with their corresponding control interface base address and sub-device node in the center. The numbers on the edges are pads and the solid arrows represent active links. The yellow boxes are video nodes that correspond to DMA channels, in this case, write channels (outputs).</p>
 <p><img alt="../../../_images/MIPI-CS-2-Media-Graphs.png" src="../../../_images/MIPI-CS-2-Media-Graphs.png" /></p>
 </details></div>
 <div class="section" id="video-ip-drivers">
 <h3>Video IP Drivers<a class="headerlink" href="#video-ip-drivers" title="Permalink to this heading">¶</a></h3>
  <details>
- <summary><b>Click here to view details</b></summary><p>Xilinx adopted the V4L2 framework for most of its video IP portfolio. The currently supported video IPs and corresponding drivers are listed under V4L2. Each V4L driver has a sub-page that lists driver-specific details and provides pointers to additional documentation. The following table provides a quick overview of the drivers used in this design.</p>
+ <summary><b>Click here to view details</b></summary><p>AMD adopted the V4L2 framework for most of its video IP portfolio. The currently supported video IPs and corresponding drivers are listed under V4L2. Each V4L driver has a sub-page that lists driver-specific details and provides pointers to the additional documentation. The following table provides a quick overview of the drivers used in this design.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -273,7 +273,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <tbody>
 <tr>
 <td>Xilinx Video Pipeline (XVIPP)</td>
-<td>* Configures video pipeline and register media, video and sub-device nodes</td>
+<td>* Configures video pipeline and register media, video, and sub-device nodes</td>
 </tr>
 <tr>
 <td></td>
@@ -289,11 +289,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr>
 <td></td>
-<td>* Set the media bus format and resolution for ISP input and output pads</td>
+<td>* Sets the media bus format and resolution for ISP input and output pads</td>
 </tr>
 <tr>
 <td></td>
-<td>* Provides ISP control parameters for setting: gamma, gain, contrast, etc.</td>
+<td>* Provides ISP control parameters for setting: gamma, gain, contrast, and so on.</td>
 </tr>
 </tbody>
 </table><hr class="docutils" />
@@ -302,7 +302,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3>DP Tx Display<a class="headerlink" href="#dp-tx-display" title="Permalink to this heading">¶</a></h3>
 <details>
  <summary><b>Click here to view details</b></summary><p>Linux kernel and user-space frameworks for display and graphics are intertwined and the software stack can be quite complex with many layers and different standards / APIs. On the
-kernel side, the display and graphics portions are split with each having their own APIs. However, both are commonly referred to as a single framework, namely DRM/KMS. This split is advantageous, especially for SoCs that often have dedicated hardware blocks for display and graphics. The display pipeline driver responsible for interfacing with the display uses the kernel mode setting (KMS) API and the GPU responsible for drawing objects into memory uses the direct rendering manager (DRM) API. Both APIs are accessed from user-space through a single device node.</p>
+kernel side, the display and graphics portions are split with each having their own APIs. However, both are commonly referred to as a single framework, namely DRM/KMS. This split is advantageous, especially for SoCs that often have dedicated hardware blocks for display and graphics. The display pipeline driver is responsible for interfacing with the display uses the kernel mode setting (KMS) API and the GPU responsible for drawing objects into memory uses the direct rendering manager (DRM) API. Both APIs are accessed from user-space through a single device node.</p>
 <p><img alt="../../../_images/DP-TX-Display.png" src="../../../_images/DP-TX-Display.png" /></p>
 </details></div>
 <div class="section" id="direct-rendering-manager">
@@ -312,15 +312,15 @@ commands and data to the GPU. The ARM Mali driver uses a proprietary driver stac
 </div>
 <div class="section" id="driver-features">
 <h3>Driver Features<a class="headerlink" href="#driver-features" title="Permalink to this heading">¶</a></h3>
-<p>The Xilinx DRM driver uses the GEM memory manager and implements DRM PRIME buffer sharing. PRIME is the cross-device buffer sharing framework in DRM. To user-space, PRIME buffers are DMABUF-based file descriptors. The DRM GEM/CMA helpers use the CMA allocator as a means to provide buffer objects that are physically contiguous in memory. This is useful for display drivers that are unable to map scattered buffers via an IOMMU. Frame buffers are abstract memory objects that provide a source of pixels to scan out to a CRTC. Applications explicitly request the creation of frame buffers through the DRM_IOCTL_MODE_ADDFB(2) ioctls and receive an opaque handle that can be passed to the KMS CRTC control, plane configuration and page flip functions.</p>
+<p>The AMD DRM driver uses the GEM memory manager and implements DRM PRIME buffer sharing. PRIME is the cross-device buffer sharing framework in DRM. To user-space, PRIME buffers are DMABUF-based file descriptors. The DRM GEM/CMA helpers use the CMA allocator as a means to provide buffer objects that are physically contiguous in memory. This is useful for display drivers that are unable to map scattered buffers via an IOMMU. Frame buffers are abstract memory objects that provide a source of pixels to scan out to a CRTC. Applications explicitly request the creation of frame buffers through the DRM_IOCTL_MODE_ADDFB(2) ioctls and receive an opaque handle that can be passed to the KMS CRTC control, plane configuration and page flip functions.</p>
 </div>
 <div class="section" id="kernel-mode-setting">
 <h3>Kernel Mode Setting<a class="headerlink" href="#kernel-mode-setting" title="Permalink to this heading">¶</a></h3>
-<p>Mode setting is an operation that sets the display mode including video resolution and refresh rate. It was traditionally done in user-space by the X-server that caused several issues due to accessing low-level hardware from user-space, which if done wrong, can lead to system instabilities. The mode setting API was added to the kernel DRM framework, hence the name Kernel Mode Setting. The KMS API is responsible for handling the frame buffer and planes, setting the mode, and performing page-flips (switching between buffers). The KMS device is modeled as a set of planes, CRTCs, encoders, and connectors as shown in the top half of the DP Tx display. The bottom half of that figure shows how the driver model maps to the physical hardware components inside the PS DP Tx display pipeline.</p>
+<p>Mode setting is an operation that sets the display mode, including video resolution and refresh rate. It was traditionally done in user-space by the X-server that caused several issues due to accessing low-level hardware from user-space, which if done wrong, can lead to system instabilities. The mode setting API was added to the kernel DRM framework; hence, the name Kernel Mode Setting. The KMS API is responsible for handling the frame buffer and planes, setting the mode, and performing page-flips (switching between buffers). The KMS device is modeled as a set of planes, CRTCs, encoders, and connectors as shown in the top half of the DP Tx display. The bottom half of that figure shows how the driver model maps to the physical hardware components inside the PS DP Tx display pipeline.</p>
 </div>
 <div class="section" id="encoder">
 <h3>Encoder<a class="headerlink" href="#encoder" title="Permalink to this heading">¶</a></h3>
-<p>An encoder takes pixel data from a CRTC and converts it to a format suitable for any attached connectors. There are many different display protocols defined, such as HDMI or DisplayPort. The PS display pipeline has a DisplayPort transmitter built in. The encoded video data is then sent to the serial I/O unit (SIOU) which serializes the data using the gigabit transceivers (PS GTRs) before it goes out via the physical DP connector to the display. The PL display pipeline uses a HDMI transmitter which sends the encoded video data to the Video PHY. The Video PHY serializes the data using the GTH transceivers in the PL before it goes out via the HDMI Tx connector.</p>
+<p>An encoder takes pixel data from a CRTC and converts it into a format suitable for any attached connectors. There are many different display protocols defined, such as HDMI or DisplayPort. The PS display pipeline has a built-in DisplayPort transmitter. The encoded video data is then sent to the serial I/O unit (SIOU) which serializes the data using the gigabit transceivers (PS GTRs) before it goes out via the physical DP connector to the display. The PL display pipeline uses a HDMI transmitter, which sends the encoded video data to the Video PHY. The Video PHY serializes the data using the GTH transceivers in the PL before it goes out via the HDMI TX connector.</p>
 </div>
 <div class="section" id="connector">
 <h3>Connector<a class="headerlink" href="#connector" title="Permalink to this heading">¶</a></h3>
@@ -347,7 +347,7 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p align="center"><sup>Copyright&copy; 2022 Xilinx</sup></p></div>
+--><p align="center"><sup>Copyright&copy; 2023 Advanced Micro Devices, Inc.</sup></p></div>
 </div>
 
 
@@ -361,7 +361,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 06, 2024.
+      <span class="lastupdated">Last updated on March 25, 2024.
       </span></p>
   </div>
 

@@ -18,7 +18,7 @@ The Sony IMX547 is a diagonal 8.8 mm (Type 1/1.8) CMOS active pixel, solid-state
 
 ## Overview of FSA (Framos Sensor Adapter) Module
 
-The FSA (Framos Sensor Adapter) Connects to the FSM (Framos Sensor Module) allowing with Sub-LVDS, SLVS or SLVS-EC devices.
+The FSA (Framos Sensor Adapter) connects to the FSM (Framos Sensor Module) allowing with Sub-LVDS, SLVS, or SLVS-EC devices.
 
 ![FSA](./media/image001.png)
 
@@ -30,7 +30,7 @@ The FSA (Framos Sensor Adapter) Connects to the FSM (Framos Sensor Module) allow
 
 ![top](./media/image002.png) ![bottom](./media/image003.png)
 
-Below table shows selection of Sensor Clock Source on FSA-FTx/A-V1
+The following table shows the selection of Sensor Clock Source on FSA-FTx/A-V1:
 
 | Position | Description                       |
 |----------|-----------------------------------|
@@ -38,17 +38,17 @@ Below table shows selection of Sensor Clock Source on FSA-FTx/A-V1
 | 2        | External Clock 1 (MCLK0)          |
 | 3        | External Clock 2 (MCLK1)          |
 
-> **Note:** The above clock setting is not applicable for FSM used along with KR260.
+> ***Note***: The above clock setting is not applicable for FSM used along with KR260.
 
 ### PixelMate™ - Sub-LVDS, SLVS and SLVS-EC Pinout
 
-This pinout scheme applies to all sensors that natively output image data using signals according to Sub-LVDS, SLVS or SLVS-EC specification. This layout provides eight data lanes on the connector. Devices with SLVS and SLVS-EC share the same sensor package pins therefore share the same connector pins.
+This pinout scheme applies to all sensors that natively output image data using signals according to Sub-LVDS, SLVS, or SLVS-EC specification. This layout provides eight data lanes on the connector. Devices with SLVS and SLVS-EC share the same sensor package pins. Therefore, share the same connector pins.
 
-The table below shows the position of each signal on the 60-pin connector in case the image sensor provides it. For further details, please refer to the image sensor Datasheet.
+The following table shows the position of each signal on the 60-pin connector in case the image sensor provides it. For further details, refer to the image sensor Datasheet.
 
-> **NOTE**: Lane number assignment is applied according to SLVS numbering, which differs in most cases from the SLVS-EC lane numbering. Please refer to image sensor datasheet for correct SLVS-EC numbering.
+> ***Note***: Lane number assignment is applied according to the SLVS numbering, which, in most cases, differs from the SLVS-EC lane numbering. Refer to the image sensor datasheet for correct SLVS-EC numbering.
 
-The table shows the general signal assignment that applies to all connections using PixelMate™.
+The following table shows the general signal assignment that applies to all connections using PixelMate™.
 
 | Pin #      | Type                                       | Signal             | Pin #      | Type                                       | Signal             |
 |------------|--------------------------------------------|--------------------|------------|--------------------------------------------|--------------------|
@@ -85,7 +85,7 @@ The table shows the general signal assignment that applies to all connections us
 
 ## Overview of FSM (Framos Sensor Module)
 
-FSM carries the  Sony IMX547 camera sensor, and it is connected to Framos Sensor Adaptor (FSA). Flex cable is used to connect FSM module with KR260 carrier card. Its specification are as follows.
+FSM carries the  Sony IMX547 camera sensor, and it is connected to Framos Sensor Adaptor (FSA). Flex cable is used to connect the FSM module with the KR260 carrier card. Its specification are as follows.
 
 ### Model Name
 
@@ -134,7 +134,7 @@ FSM carries the  Sony IMX547 camera sensor, and it is connected to Framos Sensor
 
 ## Overview of Framos SLVS-EC IP Core
 
-The SLVS-EC interface standard has emerged as the high-speed interface for image sensors from Sony. SLVS-EC v2.0 interface throughput is up to 5 Gbit/s per lane at great signal integrity, which is double the times of previous SLVS-EC interface 1.2. Engineers developing solutions using Xilinx FPGAs and SoCs can take advantage of FRAMOS's SLVS-EC RX IP Core, Development Kit, and tested source code examples. Device builders and camera vendors can de-risk the design while reaping the benefits of Sony's latest high-speed interface.
+The SLVS-EC interface standard has emerged as the high-speed interface for image sensors from Sony. SLVS-EC v2.0 interface throughput is up to 5 Gbps per lane at great signal integrity, which is double the times of previous SLVS-EC interface 1.2. Engineers developing solutions using AMD FPGAs and SoCs can take advantage of FRAMOS's SLVS-EC RX IP Core, Development Kit, and tested source code examples. Device builders and camera vendors can de-risk the design while reaping the benefits of Sony's latest high-speed interface.
 
 ### Key Benefits & Features
 
@@ -181,7 +181,7 @@ The SLVS-EC RX IP Core ports are listed in the following table, where `LANE_NUM`
 
 ### Framos IPs license
 
-For more information about how the Framos SLVS-EC RX IP-Core would benefit your next project or to request the full SLVS-EC IP-Core integration support, please contact the Framos imaging experts at: <sales@framos.com>
+For more information about how the Framos SLVS-EC RX IP-Core would benefit your next project. To request the full SLVS-EC IP-Core integration support, contact the Framos imaging experts at <sales@framos.com>.
 
 ## Next Steps
 
@@ -197,4 +197,4 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 -->
-<p align="center"><sup>Copyright&copy; 2022 Xilinx</sup></p>
+<p align="center"><sup>Copyright&copy; 2023 Advanced Micro Devices, Inc.</sup></p>

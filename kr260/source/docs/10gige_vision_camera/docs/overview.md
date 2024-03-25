@@ -4,7 +4,7 @@
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Machine Vision Camera Tutorial</h1>
+ <td align="center"><h1>10GigE Machine Vision Camera Tutorial</h1>
  
  </td>
  </tr>
@@ -12,16 +12,16 @@
 
 # Overview
 
-The Machine Vision (MV) Camera Application uses a Sony IMX547 sensor module which interfaces to the KR260 with the widely adopted SLVS-EC interface standard.
+The Machine Vision (MV) Camera Defect Detect Application uses a Sony IMX547 sensor module, which interfaces to the KR260 with the widely adopted SLVS-EC interface standard.
 
-The FPGA implements a SLVS-EC receiver IP core that is provided by third-party IP company [Framos](https://www.framos.com/framos-slvs-ec-rx-ip-core) and a 10GigE Vision pipeline using a series of IP cores from third-party IP company [Sensor-to-Image](https://www.euresys.com/en/Products/IP-Cores/Vision-Standard-IP-Cores-for-FPGA/GigE-Vision-IP-Core-(2)). As these third-party IPs are not open-source, users must contact the third-party contacts via [Product Inquiry](https://www.xilinx.com/products/app-store/kria/10gige-vision-camera/product-inquiry.html) to create custom and product designs.
+The FPGA implements a SLVS-EC receiver IP core that is provided by third-party IP company [Framos](https://www.framos.com/framos-slvs-ec-rx-ip-core) and a 10GigE Vision pipeline using a series of IP cores from third-party IP company [Sensor-to-Image](https://www.euresys.com/en/Products/IP-Cores/Vision-Standard-IP-Cores-for-FPGA/GigE-Vision-IP-Core-(2)). As these third-party IPs are not open-source, contact the third-party contacts via [Product Inquiry](https://www.xilinx.com/products/app-store/kria/10gige-vision-camera/product-inquiry.html) to create custom and product designs.
 
-The KR260 carrier card has the interface for Euresys 10GigE. 10GigE pipeline consist of multiple IP's like GenDC, Framebuffer, 10GigE MAC etc. GenDC Front-End IP core implements GenICam protocol GenDC layer to be used together with additional machine vision interfacing IP cores provided by Sensor to Image(S2I). Frame Buffer companion IP implements a video frame buffering functionality, packetization, and optional packet resending. The data divided into packets is transmitted to the back-end IP cores implementing particular machine vision interfaces like GigE Vision. Using SFP+ packets will be sent to host machine and displayed in Sphinx GEV Viewer software.
+The KR260 carrier card has the interface for Euresys 10GigE. 10GigE pipeline consists of multiple IP such as GenDC, Framebuffer, 10GigE MAC, and so on. GenDC Front-End IP core implements GenICam protocol GenDC layer to be used together with additional machine vision interfacing IP cores provided by Sensor to Image(S2I). Frame Buffer companion IP implements a video frame buffering functionality, packetization, and optional packet resending. The data divided into packets is transmitted to the back-end IP cores implementing particular machine vision interfaces like GigE Vision. Using SFP+ packets are sent to host machine and displayed in the Sphinx GEV Viewer software.
 
-From the capture pipeline, AXI broadcaster gives two outputs to 10gige pipeline and mv-defect detect pipeline respectively.
-MV-Defect-Detect application uses Vitis Vision libraries to examine each mango and mark its defects. This helps customers sell their best mangoes to bring in enhanced revenue, and results in a win-win situation for both the customers and the consumers.
+From the capture pipeline, AXI broadcaster gives two outputs to 10gige pipeline and mv-defect detect pipeline, respectively.
+MV-Defect-Detect application uses AMD Vitis&trade; Vision libraries to examine each mango and mark its defects. This enables customers to strategically sell their best mangoes, leading to enhanced revenue and creates a mutually beneficial situation for both the customers and the consumers.
 
-The MV-Camera high level pipeline is depicted in below figure,
+The MV-Camera high level pipeline is depicted in the following figure:
 
 ![KR260 Overview Diagram](media/Overview_diagram.PNG)
 
@@ -47,4 +47,4 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 -->
-<p align="center"><sup>Copyright&copy; 2022 Xilinx</sup></p>
+<p align="center"><sup>Copyright&copy; 2023 Advanced Micro Devices, Inc.</sup></p>

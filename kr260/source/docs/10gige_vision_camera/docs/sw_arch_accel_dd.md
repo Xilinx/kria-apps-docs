@@ -21,7 +21,7 @@ This document describes the software architecture of the MV-Defect-Detect accele
 
 ### Software Architecture
 
-In the MV-Defect-Detect application, the Computer Vision Starter Kit can take video inputs from a live or a file source. As shown in the following figure, the video inputs will be in the Luma(Y) format, processed and displayed. Vitis overlay includes Vitis Vision libraries that process the frames and detect defects in mangoes.
+In the MV-Defect-Detect application, the Computer Vision Starter Kit can take video inputs from a live or a file source. As shown in the following figure, the video inputs are in the Luma(Y) format, processed and displayed. AMD Vitis&trade; overlay includes Vitis Vision libraries that process the frames and detect defects in mangoes.
 
 In this reference design, the resolution on the input frames is 1920 x 1080, and the outputs are 1920x1080 on a 1080p display.
 
@@ -29,7 +29,7 @@ In this reference design, the resolution on the input frames is 1920 x 1080, and
 
 The parts before pre-process plugin and after mv-defect-detect accelerator for data source and sink respectively, use purely official GStreamer plugins, such as *filesrc* for file input, *v4l2src* for capture, and *Kmssink* for the display. Refer to the [GStreamer documentation](https://gstreamer.freedesktop.org/documentation/tutorials/index.html?gi-language=c) for detailed usage.
 
-The core acceleration tasks are performed by the Pre-Process and CCA libraries, which are developed by XILINX.
+The core acceleration tasks are performed by the Pre-Process and CCA libraries, which AMD developed.
 
 <details>
  <summary><b>The following table lists the GStreamer plugins used in the application.</b></summary>
@@ -94,7 +94,7 @@ The following figure depicts the Pre-Process plugin data flow.
 
 <h1>Gaussian_OTSU Accelerator</h1>
 
-This accelerator has two kernels - Gaussian & OTSU, stitched in streaming fashion.
+This accelerator has two kernels - Gaussian & OTSU, stitched in a streaming fashion.
 In general, any smoothing filter smoothens the image, and affects the edges of the image. To
 preserve the edges while smoothing, use bilateral filter. In an analogous way as the
 Gaussian filter, the bilateral filter also considers the neighboring pixels with weights assigned to each of them.
@@ -118,7 +118,7 @@ The following figure depicts the Gaussian + OTSU plugin data flow.
 
 <h1>Threshold_Median Accelerator</h1>
 
-The grey-scale image should be converted to a binary image with an appropriate threshold value. The threshold function in the Vitis Vision library can perform the thresholding operation on the input image. This should yield an image that has a black background with the mango area in white.
+The grey-scale image should be converted into a binary image with an appropriate threshold value. The threshold function in the Vitis Vision library can perform the thresholding operation on the input image. This should yield an image that has a black background with the mango area in white.
 
 The median blur filter acts as a non-linear digital filter that reduces noise. A filter size of N outputs the median of the NxN neighborhood pixel values, for each pixel. In this design, N is 3.
 
@@ -168,13 +168,13 @@ The following figure depicts the CCA plugin data flow.
  <summary><b>Click here to view details</b></summary>
 
 
-The output of the CCA plugin is fed into the Defect Decision block which determines the defect density and decides the quality of the mango. The block performs the following main operations:
+The output of the CCA plugin is fed into the Defect Decision block, which determines the defect density and decides the quality of the mango. The block performs the following main operations:
 
 * The ratio of blemished pixels to total mango pixels is calculated to determine how much of the mango's surface area is covered with blemishes.
 
 * Defect Decision determines whether the ratio exceeds a user-defined threshold, to decide whether the mango is defected or not.
 
-* The results will be embedded in the image and output will be fed to the next plugin for the display.
+* The results are embedded in the image and output is fed to the next plugin for the display.
 
 The following figure depicts the Defect Decision plugin software stack.
 
@@ -356,4 +356,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 -->
 
-<p align="center">Copyright&copy; 2022 Xilinx</p>
+<p align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p>
