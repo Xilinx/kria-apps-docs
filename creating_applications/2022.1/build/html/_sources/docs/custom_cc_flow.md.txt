@@ -156,9 +156,10 @@ In xsdb, first connect and put the board in JTAG mode using xsdb commands [here]
 
 Now that a base Linux design is up a running, developers can follow [Vitis Accelerator Flow](./vitis_accel_flow.md), or [Vitis Platform Flow](./vitis_platform_flow.md), or [Vivado Accelerator Flow](./vivado_accel_flow.md) to develop their applications.
 
-## Examples
+## Resources and Examples
 
 * Refer to [custom cc flow example](./custom_cc_flow_example.md) for a detailed step by step example on how to create a base design for KV260.
+* Refer to [Kria Adventure Map](https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm), world 3 for a list of resources for building custom carrier cards.
 
 ## License
 
