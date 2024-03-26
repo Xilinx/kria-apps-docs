@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>FreeRTOS Kria SOM Starter Kits lwIP TCP Performance Server &mdash; FreeRTOS Kria SOM Starter Kits Support  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="FreeRTOS Kria SOM Starter Kits Support" href="freertos_kria.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> FreeRTOS Kria SOM Starter Kits Support
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FreeRTOS Support</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="freertos_kria.html">FreeRTOS Kria SOM Starter Kits Support</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FreeRTOS Kria SOM Starter Kits lwIP TCP Performance Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-lwip-application-in-vitis">Create LWIP Application in Vitis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#interacting-with-the-application">Interacting with the Application</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FreeRTOS Kria SOM Starter Kits Support</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>FreeRTOS Kria SOM Starter Kits lwIP TCP Performance Server</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/freertos_kria_lwip_tcpperfserver.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="freertos-kria-som-starter-kits-lwip-tcp-performance-server">
+<h1>FreeRTOS Kria SOM Starter Kits lwIP TCP Performance Server<a class="headerlink" href="#freertos-kria-som-starter-kits-lwip-tcp-performance-server" title="Permalink to this heading">¶</a></h1>
+<p>In this tutorial, we show step by step process to generate a lwIP TCP Performance Server for FreeRTOS on Kria SOM.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>Completion of <a class="reference internal" href="freertos_kria.html"><span class="doc">FreeRTOS Hello World Example</span></a>, as this example assumes you have the required tools installed and have already created a Vitis workspace with <code class="docutils literal notranslate"><span class="pre">freertos_platform</span></code> platform.</p>
+<div class="section" id="create-lwip-application-in-vitis">
+<h3>Create LWIP Application in Vitis<a class="headerlink" href="#create-lwip-application-in-vitis" title="Permalink to this heading">¶</a></h3>
+<p>With the Vitis Workspace open and <code class="docutils literal notranslate"><span class="pre">freertos_platform</span></code> platform created, navigate to example applications with the icons on the left, select “Embedded Software Examples” -&gt; “FREERTOS lwIP TCP Perf Server” and click on  “Create Application Component from Template”:</p>
+<p><img alt="image" src="../_images/freertos_vitis_lwip1.PNG" /></p>
+<p>Select Component name and location, in our case we used <code class="docutils literal notranslate"><span class="pre">freertos_lwip_tcp_perf_server</span></code> as component name. Then select the <code class="docutils literal notranslate"><span class="pre">freertos_platform</span></code> that we already created in <a class="reference internal" href="freertos_kria.html"><span class="doc">FREERTOS Hello World Example</span></a>.</p>
+<p><img alt="image" src="../_images/freertos_vitis_lwip2.PNG" /></p>
+<p>Click next, in “Domain” tab, click on “Create new”. and fill in the appropiate details, we used “lwip_domain” as the Domain name. This is required so that we generate a new BSP with lwIP library support.</p>
+<p><img alt="image" src="../_images/freertos_vitis_lwip3.PNG" /></p>
+<p>Click next through finish. Now Vitis will generate an application component. In “FLOW” tab, select the application in “Component” pull down menu, and select “Build”</p>
+<p><img alt="image" src="../_images/freertos_vitis_lwip4.PNG" /></p>
+<p>You can find the generated artifacts in <code class="docutils literal notranslate"><span class="pre">&lt;vitis</span> <span class="pre">workspace&gt;/freertos_lwip_tcp_perf_server/build/freertos_lwip_tcp_perf_server.elf</span></code>,  <code class="docutils literal notranslate"><span class="pre">&lt;vitis</span> <span class="pre">workspace&gt;/freertos_platform/zynqmp_fsbl/build/fsbl.elf</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;vitis</span> <span class="pre">workspace&gt;freertos_platform/zynqmp_pmufw/build/pmufw.elf</span></code></p>
+<p>Lastly, for QSPI booting options in later sections, click on “Create Boot Image”:
+<img alt="image" src="../_images/freertos_vitis_lwip5.PNG" /></p>
+<p>In the window that pops up, leave everything on default and click “Create Image”, you will find the generated artifact in <code class="docutils literal notranslate"><span class="pre">freertos_hello_world/_ide/bootimage/boot.bin</span></code>.</p>
+<p>Now you can follow the same steps in <a class="reference external" href="./freertos_kria.md#boot-freertos-on-platform">Boot FreeRTOS on platform</a> to boot this application.</p>
+</div>
+</div>
+<div class="section" id="interacting-with-the-application">
+<h2>Interacting with the Application<a class="headerlink" href="#interacting-with-the-application" title="Permalink to this heading">¶</a></h2>
+<p>After the application starts, you will see these prints on uart:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>-----lwIP Socket Mode TCP Server Application------
+Start PHY autonegotiation
+Waiting for PHY to complete autonegotiation.
+autonegotiation complete
+Using default Speed from design
+link speed for phy address 5: 1000
+DHCP request success
+Board IP:       10.0.1.158
+Netmask :       255.255.255.0
+Gateway :       10.0.1.1
+
+TCP server listening on port 5001
+On Host: Run $iperf -c 10.0.1.158 -i 5 -t 300 -w 2M
+</pre></div>
+</div>
+<p>on host computer do <code class="docutils literal notranslate"><span class="pre">iperf</span> <span class="pre">-c</span> <span class="pre">10.0.1.158</span> <span class="pre">-i</span> <span class="pre">5</span> <span class="pre">-t</span> <span class="pre">300</span> <span class="pre">-w</span> <span class="pre">2M</span></code> as instructed and you should see performance numbers printing out from both sides:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[  1] local 10.0.1.158 port 5001 connected with 10.0.1.110 port 5001
+[ ID] Interval    Transfer     Bandwidth
+[  1]  0.0- 5.0 sec  78.7 MBytes   132 Mbits/sec
+[  1]  5.0-10.0 sec  76.6 MBytes   129 Mbits/sec
+[  1] 10.0-15.0 sec  61.7 MBytes   104 Mbits/sec
+[  1] 15.0-20.0 sec  73.7 MBytes   124 Mbits/sec
+[  1] 20.0-25.0 sec  73.6 MBytes   123 Mbits/sec
+[  1] 25.0-30.0 sec  73.4 MBytes   123 Mbits/sec
+[  1] 30.0-35.0 sec  73.2 MBytes   123 Mbits/sec
+[  1] 35.0-40.0 sec  72.4 MBytes   121 Mbits/sec
+[  1] 40.0-45.0 sec  61.9 MBytes   104 Mbits/sec
+</pre></div>
+</div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="freertos_kria.html" class="btn btn-neutral float-left" title="FreeRTOS Kria SOM Starter Kits Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on March 26, 2024.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

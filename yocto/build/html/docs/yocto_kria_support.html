@@ -70,9 +70,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -91,6 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="#working-with-libraries">Working with Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#working-with-recipes">Working with recipes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#importing-a-new-xsa-file">Importing a New XSA File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#updating-default-bitstream">Updating Default Bitstream</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
@@ -172,7 +173,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>boot.bin that supports production SOM K24c</td>
 </tr>
 </tbody>
-</table><p>For .wic PetaLinux image generation:</p>
+</table><p>For .wic image generation:</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -369,12 +370,44 @@ index f83bcb3..2839b62 <span class="m">100644</span>
 </div>
 <div class="section" id="importing-a-new-xsa-file">
 <h2>Importing a New XSA File<a class="headerlink" href="#importing-a-new-xsa-file" title="Permalink to this heading">¶</a></h2>
-<p>By default, Kria Yocto project downloads .xsa files from artifactory to generate artifacts. If you wanted to use a local .xsa file, then you need to modify the corresponding .conf file in <code class="docutils literal notranslate"><span class="pre">sources/meta-kria/conf/machine/&lt;MACHINE</span> <span class="pre">name&gt;.conf</span></code> for the target MACHINE. Add the following after the line that specified <code class="docutils literal notranslate"><span class="pre">HDF_MACHINE</span></code>:</p>
+<p>By default, Kria Yocto project downloads .xsa files from artifactory to generate device trees for generating artifacts. If you wanted to use a local .xsa file, then you need to modify the corresponding .conf file in <code class="docutils literal notranslate"><span class="pre">sources/meta-kria/conf/machine/&lt;MACHINE</span> <span class="pre">name&gt;.conf</span></code> for the target MACHINE. Add the following after the line that specified <code class="docutils literal notranslate"><span class="pre">HDF_MACHINE</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HDF_BASE = &quot;file://&quot;
 HDF_PATH = &quot;/path/to/XSA/file.xsa&quot;
+SRC_URI[&lt;MACHINE name&gt;.sha256sum] = &quot;&lt;sha value&gt;&quot;
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;sha</span> <span class="pre">value&gt;</span></code> can be obtained with command <code class="docutils literal notranslate"><span class="pre">sha256sum</span> <span class="pre">&lt;name&gt;.xsa</span></code>.</p>
 <p>Note that default values for the .conf files come from <code class="docutils literal notranslate"><span class="pre">sources/meta-xilinx-tools/recipes-bsp/hdf/hdf-repository.inc</span></code>.</p>
+</div>
+<div class="section" id="updating-default-bitstream">
+<h2>Updating Default Bitstream<a class="headerlink" href="#updating-default-bitstream" title="Permalink to this heading">¶</a></h2>
+<p>In Kria Starter Kits boot flow, the PL portion of the ZynqMPSoC is not programmed until during Linux boot, DFX_manager loads the default bitstream in /lib/firmware/xilinx/k26-starter-kits/ or /lib/firmware/xilinx/k24-starter-kits/. If user need to change the PL design that is loaded by default, they will need to update the firmware folder, which is managed by recipe located in “$yocto_project_folder/sources/meta-kria/recipes-firmware/kria-base-firmware/”. In that folder, the recipes can be updated to take the firmware from a local folder instead of from github.</p>
+<p>For an example, to update the PL firmware for K26 only, first comment out these the license and source lines in <code class="docutils literal notranslate"><span class="pre">kria-base-firmware.inc</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#LICENSE = &quot;Proprietary &amp; GPL-2.0-only&quot;</span>
+<span class="c1">#LIC_FILES_CHKSUM = &quot; \</span>
+<span class="c1">#       file://${WORKDIR}/git/LICENSE-BINARIES;md5=09db6fa082215924b1374f4f02a49f72 \</span>
+<span class="c1">#       file://${WORKDIR}/git/LICENSE-GPLv2;md5=9afdcd1be3f71bd3791fa5961075d776 \</span>
+<span class="c1">#       &quot;</span>
+
+<span class="c1">#BRANCH = &quot;xlnx_rel_v2023.1&quot;</span>
+<span class="c1">#SRC_URI = &quot;git://github.com/Xilinx/kria-base-firmware.git;protocol=https;branch=${BRANCH}&quot;</span>
+<span class="c1">#SRCREV = &quot;d512881ad56fcb8ad3bffea543280c5b357bb9ea&quot;</span>
+</pre></div>
+</div>
+<p>Then put the firmware files into a folder with the same name as the .bb file <code class="docutils literal notranslate"><span class="pre">k26-starter-kits</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls /tmp/jues_yocto_2024.1_xen/sources/meta-kria/recipes-firmware/kria-base-firmware/k26-starter-kits/
+k26_starter_kits.bit  k26_starter_kits.dtsi  shell.json
+</pre></div>
+</div>
+<p>Add these lines into <code class="docutils literal notranslate"><span class="pre">k26-starter-kits.bb</span></code> to point to the local firmware:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SRC_URI</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="se">\</span>
+<span class="s2">    file://k26_starter_kits.bit </span><span class="se">\</span>
+<span class="s2">    file://k26_starter_kits.dtsi </span><span class="se">\</span>
+<span class="s2">    file://shell.json </span><span class="se">\</span>
+<span class="s2">    &quot;</span>
+</pre></div>
+</div>
+<p>Then rebuild Yocto - the added firmware will be loaded during Linux boot by dfx-manager.</p>
 </div>
 <div class="section" id="issues">
 <h2>Issues<a class="headerlink" href="#issues" title="Permalink to this heading">¶</a></h2>
@@ -405,7 +438,7 @@ HDF_PATH = &quot;/path/to/XSA/file.xsa&quot;
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 01, 2024.
+      <span class="lastupdated">Last updated on March 26, 2024.
       </span></p>
   </div>
 

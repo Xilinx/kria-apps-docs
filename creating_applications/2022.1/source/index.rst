@@ -43,6 +43,10 @@ Kria SOM Accelerator and Custom Carrier Card Firmware Development
    docs/bitstream_management
    docs/AI_customization
    docs/Generate_vivado_project_from_boardfile
+   docs/IPMI_EEPROM_design_guide
+   docs/EEPROM_mapping_for_Kria_products
+   docs/FTDI_EEPROM_design_guide
+
 
 
 .. toctree::

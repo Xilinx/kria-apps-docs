@@ -18,7 +18,7 @@ Machine names and recipes in 2023.1 and forward, for QSPI / boot image generatio
 | k24i-sm      | xilinx-bootbin          | 2023.2* and newer | boot.bin that supports production SOM K24i                                                       |
 | k24c-sm      | xilinx-bootbin          | 2023.2* and newer | boot.bin that supports production SOM K24c                                                       |
 
-For .wic PetaLinux image generation:
+For .wic image generation:
 
 | Machine Name | Bitbake Recipe          | Availability      | QEMU Support | Description                                                                                            |
 | ------------ | ----------------------- | ----------------- | ------------ | -------------------------------------------------------------------------------------------------------|
@@ -186,14 +186,54 @@ MACHINE=k26-smk bitbake xmutil -c clean
 
 ## Importing a New XSA File
 
-By default, Kria Yocto project downloads .xsa files from artifactory to generate artifacts. If you wanted to use a local .xsa file, then you need to modify the corresponding .conf file in ```sources/meta-kria/conf/machine/<MACHINE name>.conf``` for the target MACHINE. Add the following after the line that specified ```HDF_MACHINE```:
+By default, Kria Yocto project downloads .xsa files from artifactory to generate device trees for generating artifacts. If you wanted to use a local .xsa file, then you need to modify the corresponding .conf file in ```sources/meta-kria/conf/machine/<MACHINE name>.conf``` for the target MACHINE. Add the following after the line that specified ```HDF_MACHINE```:
 
 ```text
 HDF_BASE = "file://"
 HDF_PATH = "/path/to/XSA/file.xsa"
+SRC_URI[<MACHINE name>.sha256sum] = "<sha value>"
 ```
 
+```<sha value>``` can be obtained with command ```sha256sum <name>.xsa```.
+
 Note that default values for the .conf files come from ```sources/meta-xilinx-tools/recipes-bsp/hdf/hdf-repository.inc```.
+
+## Updating Default Bitstream
+
+In Kria Starter Kits boot flow, the PL portion of the ZynqMPSoC is not programmed until during Linux boot, DFX_manager loads the default bitstream in /lib/firmware/xilinx/k26-starter-kits/ or /lib/firmware/xilinx/k24-starter-kits/. If user need to change the PL design that is loaded by default, they will need to update the firmware folder, which is managed by recipe located in "$yocto_project_folder/sources/meta-kria/recipes-firmware/kria-base-firmware/". In that folder, the recipes can be updated to take the firmware from a local folder instead of from github.
+
+For an example, to update the PL firmware for K26 only, first comment out these the license and source lines in ```kria-base-firmware.inc```:
+
+```python
+#LICENSE = "Proprietary & GPL-2.0-only"
+#LIC_FILES_CHKSUM = " \
+#       file://${WORKDIR}/git/LICENSE-BINARIES;md5=09db6fa082215924b1374f4f02a49f72 \
+#       file://${WORKDIR}/git/LICENSE-GPLv2;md5=9afdcd1be3f71bd3791fa5961075d776 \
+#       "
+
+#BRANCH = "xlnx_rel_v2023.1"
+#SRC_URI = "git://github.com/Xilinx/kria-base-firmware.git;protocol=https;branch=${BRANCH}"
+#SRCREV = "d512881ad56fcb8ad3bffea543280c5b357bb9ea"
+```
+
+Then put the firmware files into a folder with the same name as the .bb file ```k26-starter-kits```:
+
+```shell
+ls /tmp/jues_yocto_2024.1_xen/sources/meta-kria/recipes-firmware/kria-base-firmware/k26-starter-kits/
+k26_starter_kits.bit  k26_starter_kits.dtsi  shell.json
+```
+
+Add these lines into ```k26-starter-kits.bb``` to point to the local firmware:
+
+```python
+SRC_URI = " \
+    file://k26_starter_kits.bit \
+    file://k26_starter_kits.dtsi \
+    file://shell.json \
+    "
+```
+
+Then rebuild Yocto - the added firmware will be loaded during Linux boot by dfx-manager.
 
 ## Issues
 

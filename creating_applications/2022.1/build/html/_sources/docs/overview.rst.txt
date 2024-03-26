@@ -96,7 +96,7 @@ Build Application Software
 =====================================
 
 
-The application software refers to the SW that runs on the APU and/or RPU PS targets. This SW can be developed through Vitis, PetaLinux, Ubuntu, or other open-source tools (such as Yocto). With the exception for custom Carrier Card Flow, when developing an application for SOM, developers usually do not need to rebuild entire OS. They just need to generate their application and move it onto target file system to execute.
+The application software refers to the SW that runs on the APU and/or RPU PS targets. This SW can be developed through Vitis, Yocto, PetaLinux, Ubuntu, or other open-source tools (such as Yocto). With the exception for custom Carrier Card Flow, when developing an application for SOM, developers usually do not need to rebuild entire OS. They just need to generate their application and move it onto target file system to execute.
 
 If using a Xilinx Kria Starter Kit reference designs, applications are provided pre-built. 
 
@@ -126,8 +126,8 @@ Depending on the scope of customization, selected workflow, and OS choice, diffe
 3. Device Tree Generator (DTG) and Device Tree Compiler (DTC) installation, refer to `Build Device Tree Blob <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob>`_
 4. `XSCT <https://www.xilinx.com/html_docs/xilinx2022_1/vitis_doc/XSCT.html>`_ (will be installed as part of Vivado or Vitis)
 5. KV260-vitis `git repository <https://github.com/Xilinx/kria-vitis-platforms>`_, which contains KV260 and KR260 Vitis platforms, Vitis overlay projects, and their associated Makefiles.
-6. PetaLinux tools installation with its `minimum installation requirement <https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Installation-Requirements>`.
-7. PetaLinux SOM Starter Kit BSP from `SOM Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages>`_
+6. `Yocto installation <https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html>`_
+7. PetaLinux tools installation with its `minimum installation requirement <https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Installation-Requirements>` and PetaLinux SOM Starter Kit BSP from `SOM Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages>`_
 8. Ubuntu image and development kits from `Ubuntu <https://ubuntu.com/download/amd-xilinx>`_
 
 
@@ -140,7 +140,7 @@ After you understand the SOM developer flow (shown below), you can refer to the 
 
    * - Flows
      - Vitis
-     - PetaLinux
+     - Yocto or PetaLinux
      - Vivado
      - Tools for DTBO
    * - Vitis Accelerator Flow
@@ -262,7 +262,7 @@ Developers prefer a traditional HW design flow can generate their PL designs usi
 ==========================================================================
 
 
-Developers creating their own carrier card will create a Vivado project using the Xilinx provided K26 production SOM Vivado board file as a starting point. The K26 board file contains the MIO configuration defined by the SOM HW design, and provides a minimal HW configuration to boot to Linux. The K26 board file does not contain any information specific to a carrier card. Developers then design in their specific custom MIO and PL based physical interfaces to create their own custom HW configuration while following the Kria CC Design Guide (`UG1091 <https://www.xilinx.com/support/documentation/user_guides/som/ug1091-carrier-card-design.pdf>`_). After creating the integrated SOM + CC configuration, a ``.xsa`` file is exported. If using Linux, developers then create a Petalinux project to generate boot and OS images for booting Linux. Developers can then use the artifacts to create applications to run on top of the base Linux, using the previously discussed workflows: Vitis Accelerator Flow, Vitis Platform Flow, or Vivado Accelerator Flow.
+Developers creating their own carrier card will create a Vivado project using the Xilinx provided K26 production SOM Vivado board file as a starting point. The K26 board file contains the MIO configuration defined by the SOM HW design, and provides a minimal HW configuration to boot to Linux. The K26 board file does not contain any information specific to a carrier card. Developers then design in their specific custom MIO and PL based physical interfaces to create their own custom HW configuration while following the Kria CC Design Guide (`UG1091 <https://www.xilinx.com/support/documentation/user_guides/som/ug1091-carrier-card-design.pdf>`_). After creating the integrated SOM + CC configuration, a ``.xsa`` file is exported. If using Linux, developers then create a Yocto or Petalinux project to generate boot and OS images for booting Linux. Developers can then use the artifacts to create applications to run on top of the base Linux, using the previously discussed workflows: Vitis Accelerator Flow, Vitis Platform Flow, or Vivado Accelerator Flow.
 
 
 
@@ -342,6 +342,7 @@ Vivado documentation
 PetaLinux Documentation
 ---------------------------------
 
+- Yocto Project `Documentation <https://docs.yoctoproject.org/>`_
 - PetaLinux User Guide `UG1144 <https://www.xilinx.com/support/documentation/sw_manuals/xilinx2022_1/ug1144-petalinux-tools-reference-guide.pdf>`_
 
 
