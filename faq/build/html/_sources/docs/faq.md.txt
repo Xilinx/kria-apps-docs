@@ -124,9 +124,22 @@ sudo docker rmi --force $INSTALLED_DOCKER_IMAGE
 
 ## Debug Monitors
 
-Monitor should be connected properly to the board before power on, otherwise the resolution will not be recognized correctly.
+The AMD Kria K26 Starter Kits each have a different HW configuration for their display interfaces:
 
-Ensure to use certified cables for DP and HDMI, recommended specs are HDMI 2.0 and DP 1.2 above. If cables are faulty, they could cause distortions or disable display.
+1. KV260 Carrier Card:
+  * Supports both DP 1.2 and HDMI 1.4 interfaces.
+  * The ports are driven by the DP controller in the ZynqMPSoC PS to a DP/HDMI video splitter on the KV carrier card.
+  * The K26 + KV CC supports two PS-GTR data lanes from the ZynqMPSoC device which supports HBR and HBR2 data rates.
+
+2. KR260 Carrier Card:
+  * Supports only a DP 1.2 interface.
+  * The K26 + KR CC supports one PS-GTR data lane from the ZynqMPSoC device which supports HBR and HBR2 data rates.
+
+The maximum transmission bit rate between the carrier card and a monitor depends on the number of lanes connected and the maximum supported transmission mode data rate of both the Kria Starter Kit and the monitor connected. The combinatin of the DP subsystem of MPSoC + the monitor capabilities will determine the maximum resolution supported. For example, if a monitor that supports HBR2 and is connected to KR260, the maximum data rate is 1 data lane x 5.4 Gbit/s = 5.4 Gbit/s, allowing the configuration to support up to 1080p@60FPS.
+
+Monitor should be connected properly to the board before power on, otherwise the resolution may not be recognized correctly.
+
+Ensure to use certified cables for DP and HDMI, recommended specs are HDMI 1.4 and DP 1.2 or greater. If cables are faulty, they could cause distortions or disable display.
 
 Modetest is a test tool which can be found as part of the libdrm suite of test tools.
 
@@ -134,7 +147,7 @@ Depending on if there is a video mixer in the PL or not, modetest would either d
 
 Note that among examples using a monitor, AI Box and Defect Detect have video mixer; Smartcam and NLP SmartVision do not have video mixer.
 
-### Ensure status of monitor is connected 
+### Ensure status of monitor is connected
 
 `modetest -M xlnx [-D 80000000.v_mix]`
 
@@ -196,13 +209,3 @@ The  above command sets a mode, SMPTE Color Bars appears on the display.
 
 ![SMPTE color bars](media/SMPTE_Color_Bars.svg)
 
-#### License
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
-
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
