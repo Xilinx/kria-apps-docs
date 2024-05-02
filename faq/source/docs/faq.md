@@ -12,7 +12,7 @@ All AMD released images are verified on their supported Starter Kit. If an [rele
 [   20.374057] tpm tpm0: A TPM error (256) occurred attempting the self test
 ```
 
-It is usually because the Starter Kit needs an updated boot firmware. Download the correct version of [boot firmware according to the wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates), and use [image recovery application](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K
+It is usually because the Starter Kit needs an updated boot firmware. Download the correct version of [boot firmware according to the wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates), and use [image recovery application](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits#Boot-Image-Recovery-Tool).
 
 ## Root Privileges
 
