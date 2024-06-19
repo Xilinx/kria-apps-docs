@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Boot SOM Firmware
-            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -70,9 +68,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -121,10 +119,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="boot-image-recovery-tool">
-<h1>Boot Image Recovery Tool<a class="headerlink" href="#boot-image-recovery-tool" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+  <section id="boot-image-recovery-tool">
+<h1>Boot Image Recovery Tool<a class="headerlink" href="#boot-image-recovery-tool" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>The Kria Starter Kit solution stack includes an Ethernet based recovery tool called Boot Image Recovery Tool that can be used in conjunction with a standard web-browser on a Host PC to provide direct update of the Kria user A/B boot firmware partitions and the corresponding persistent register information. The recovery tool is maintained in a reserved section of the QSPI memory and is intended as a platform recovery mechanism is there is an issue with the normal A/B boot FW update mechanism.</p>
 <p>Boot Image Recovery Tool is an application that runs a simplified Ethernet stack for interacting with a user’s host machine (e.g. laptop) to allow a manual update/overwrite of Image A and Image B on QSPI on SOM.  The recovery tool updates the corresponding A/B persistent registers to an appropriate state based on the user actions in the web UI. A user can also override the QSPI persistent register states via the WebUI.</p>
 <p>The Boot Image Recovery Tool requires no incremental tools on the customer PC besides a web-browser with a fixed IP address of 192.168.0.111. The user PC must have access to the new firmware binary file (BOOT.BIN). AMD distributes boot FW and “factory boot file” updates to the Kria Wiki. The Boot Image Recovery Tool writes the a given BOOT.BIN to QSPI physical address based on the image target selection made in the web UI.</p>
@@ -170,26 +168,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>Used when board is in  functional state</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="boot-image-recovery-tool-compilation-procedure-makefile-flow">
-<h2>Boot Image Recovery Tool Compilation Procedure (Makefile Flow)<a class="headerlink" href="#boot-image-recovery-tool-compilation-procedure-makefile-flow" title="Permalink to this heading">¶</a></h2>
+</table></section>
+<section id="boot-image-recovery-tool-compilation-procedure-makefile-flow">
+<h2>Boot Image Recovery Tool Compilation Procedure (Makefile Flow)<a class="headerlink" href="#boot-image-recovery-tool-compilation-procedure-makefile-flow" title="Link to this heading">¶</a></h2>
 <p>Note that the Makefile below requires tools that are placed in the path by sourcing PetaLinux, or Vitis, or Vivado settings64.* file.</p>
 <p>Open a linux terminal</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v&lt;version&gt; https://github.com/Xilinx/embeddedsw.git
-<span class="nb">cd</span> embeddedsw/lib/sw_apps/img_rcvry/src
-make clean all
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v&lt;version&gt;<span class="w"> </span>https://github.com/Xilinx/embeddedsw.git
+<span class="nb">cd</span><span class="w"> </span>embeddedsw/lib/sw_apps/img_rcvry/src
+make<span class="w"> </span>clean<span class="w"> </span>all
 </pre></div>
 </div>
 <p>Source code for Boot Image Recovery Tool can be browsed at <a class="reference external" href="https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/img_rcvry/src">github</a>.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
-</div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></section>
+</section>
 
 
            </div>
@@ -205,7 +203,7 @@ make clean all
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 01, 2024.
+      <span class="lastupdated">Last updated on June 19, 2024.
       </span></p>
   </div>
 

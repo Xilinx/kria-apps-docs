@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Boot SOM Firmware
-            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -70,9 +68,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -122,49 +120,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="generating-boot-bin">
-<h1>Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code><a class="headerlink" href="#generating-boot-bin" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+  <section id="generating-boot-bin">
+<h1>Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code><a class="headerlink" href="#generating-boot-bin" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>As outlined in <a class="reference internal" href="bootfw_overview.html"><span class="doc">bootfw overview</span></a>, Kria SOM Starter Kit BOOT.BIN is part of QSPI image, and contains 4 components - FSBL, PMU_FW, TF-A, U-boot. This page outlines the process to re-create a BOOT.bin for Kria SOM Starter kits used in A/B image update. Both PetaLinux and Yocto supports BOOT.BIN Generation. <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto">Yocto</a> support for generating Kria SOM Starter Kit BOOT.BIN image only starts in 2023.1, previous versions do not have support.</p>
-</div>
-<div class="section" id="generate-boot-bin-using-yocto">
-<h2>Generate BOOT.BIN using Yocto<a class="headerlink" href="#generate-boot-bin-using-yocto" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="generate-boot-bin-using-yocto">
+<h2>Generate BOOT.BIN using Yocto<a class="headerlink" href="#generate-boot-bin-using-yocto" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html">Yocto Kria Support</a> details how to use Yocto to generate Kria artifacts, go through this page from beginning to “<a class="reference external" href="kria-qspi-k24-smk-20230614093348">Build the Artifacts</a>” section to setup Yocto.</p>
 <p>The bitbake recipe for BOOT.BIN in Yocto is <code class="docutils literal notranslate"><span class="pre">xilinx-bootbin</span></code> and command to build is:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake xilinx-bootbin <span class="c1"># for K26</span>
-<span class="nv">MACHINE</span><span class="o">=</span>k24-smk bitbake xilinx-bootbin <span class="c1"># for K24</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>xilinx-bootbin<span class="w"> </span><span class="c1"># for K26</span>
+<span class="nv">MACHINE</span><span class="o">=</span>k24-smk<span class="w"> </span>bitbake<span class="w"> </span>xilinx-bootbin<span class="w"> </span><span class="c1"># for K24</span>
 </pre></div>
 </div>
 <p>To set u-boot configuration, use this command before building:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake virtual/bootloader -c menuconfig
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>virtual/bootloader<span class="w"> </span>-c<span class="w"> </span>menuconfig
 </pre></div>
 </div>
-</div>
-<div class="section" id="generate-boot-bin-using-petalinux">
-<h2>Generate BOOT.BIN using PetaLinux<a class="headerlink" href="#generate-boot-bin-using-petalinux" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="generate-boot-bin-using-petalinux">
+<h2>Generate BOOT.BIN using PetaLinux<a class="headerlink" href="#generate-boot-bin-using-petalinux" title="Link to this heading">¶</a></h2>
 <p>Go through <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Build-instructions">Xilinx Wiki PetaLinux Build Instructions</a> - there are instructions to generate BOOT.BIN from PetaLinux. To recap they are the following:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s &lt;kria_starterkit&gt;.bsp
-<span class="nb">cd</span> &lt;kria_starter_kit_petalinux_folder&gt;
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-create<span class="w"> </span>-t<span class="w"> </span>project<span class="w"> </span>-s<span class="w"> </span>&lt;kria_starterkit&gt;.bsp
+<span class="nb">cd</span><span class="w"> </span>&lt;kria_starter_kit_petalinux_folder&gt;
 petalinux-build
-petalinux-package --boot --u-boot --force
+petalinux-package<span class="w"> </span>--boot<span class="w"> </span>--u-boot<span class="w"> </span>--force
 </pre></div>
 </div>
 <p>You will find new boot firmware at /image/linux/BOOT.BIN.</p>
 <p>To set configuration for u-boot, use this command before petalinux-build:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-config –c u-boot
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot
 </pre></div>
 </div>
 <p>The new BOOT.BIN can be loaded to the Starter Kit using the xmutil bootfw_update utility described in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-Update-Process">Kria Wiki’s Boot FW Update Process section</a>.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
-</div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></section>
+</section>
 
 
            </div>
@@ -180,7 +178,7 @@ petalinux-package --boot --u-boot --force
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 01, 2024.
+      <span class="lastupdated">Last updated on June 19, 2024.
       </span></p>
   </div>
 

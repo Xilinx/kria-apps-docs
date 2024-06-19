@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Boot SOM Firmware
-            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -70,9 +68,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -126,50 +124,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="stitching-qspi-image">
-<h1>Stitching QSPI Image<a class="headerlink" href="#stitching-qspi-image" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+  <section id="stitching-qspi-image">
+<h1>Stitching QSPI Image<a class="headerlink" href="#stitching-qspi-image" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>This page outlines the process to re-create a QSPI image for Kria SOM Starter kits to help developers create their own QSPI image to use with their custom carrier cards. <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto">Yocto</a> support for generating Kria SOM Starter Kit QSPI image only starts in 2023.1, previous versions do not have support.</p>
-</div>
-<div class="section" id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">¶</a></h2>
 <p>As outlined in <a class="reference internal" href="bootfw_overview.html"><span class="doc">bootfw overview</span></a>, Kria SOM Starter Kit QSPI image is stitched together from several components. The overview also provides the QSPI memory map that Kria Starter Kit QSPI binaries follow. The rest of the bootfw documentation also outlined process to individually generate each components.</p>
 <p>This document details a Yocto Flow that automates the generation of those binary files and stitch them together.</p>
-<div class="section" id="step-1-preparing-the-build-environment">
-<h3>Step 1: Preparing the Build Environment<a class="headerlink" href="#step-1-preparing-the-build-environment" title="Permalink to this heading">¶</a></h3>
+<section id="step-1-preparing-the-build-environment">
+<h3>Step 1: Preparing the Build Environment<a class="headerlink" href="#step-1-preparing-the-build-environment" title="Link to this heading">¶</a></h3>
 <p>Before continuing, go through the  <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto support on Kria</a> and finish <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html#prepare-the-build-environment">prepare the build environment section</a>.</p>
-</div>
-<div class="section" id="step-2-build-the-image">
-<h3>Step 2: Build the image<a class="headerlink" href="#step-2-build-the-image" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="step-2-build-the-image">
+<h3>Step 2: Build the image<a class="headerlink" href="#step-2-build-the-image" title="Link to this heading">¶</a></h3>
 <p>To build QSPI image use below command for 2023.1 and later:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake kria-qspi <span class="c1">#for K26</span>
-<span class="nv">MACHINE</span><span class="o">=</span>k24-smk bitbake kria-qspi <span class="c1">#for K24</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>kria-qspi<span class="w"> </span><span class="c1">#for K26</span>
+<span class="nv">MACHINE</span><span class="o">=</span>k24-smk<span class="w"> </span>bitbake<span class="w"> </span>kria-qspi<span class="w"> </span><span class="c1">#for K24</span>
 </pre></div>
 </div>
 <p>The resulting QSPI image <code class="docutils literal notranslate"><span class="pre">kria-qspi-k2*-smk.bin</span></code> and its artifacts can be found in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k2*-smk</span></code>, and $TMPDIR is defined in <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code>. Note that the fsbl file <code class="docutils literal notranslate"><span class="pre">fsbl-k2*-smk.elf</span></code> may also be needed in the QSPI programming steps. This image universally supports all the Starter Kits based on the SOM, as well as both StarterKit SOM and Production SOM.</p>
 <p>To only build the boot.bin:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake xilinx-bootbin <span class="c1">#for K26</span>
-<span class="nv">MACHINE</span><span class="o">=</span>k24-smk bitbake xilinx-bootbin <span class="c1">#for K24</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>xilinx-bootbin<span class="w"> </span><span class="c1">#for K26</span>
+<span class="nv">MACHINE</span><span class="o">=</span>k24-smk<span class="w"> </span>bitbake<span class="w"> </span>xilinx-bootbin<span class="w"> </span><span class="c1">#for K24</span>
 </pre></div>
 </div>
 <p>The resulting boot.bin image <code class="docutils literal notranslate"><span class="pre">BOOT-k2*-smk.bin</span></code> and its artifacts can be found in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k2*-smk</span></code>, and $TMPDIR is defined in <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code></p>
-</div>
-</div>
-<div class="section" id="issues">
-<h2>Issues<a class="headerlink" href="#issues" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="issues">
+<h2>Issues<a class="headerlink" href="#issues" title="Link to this heading">¶</a></h2>
 <ol class="simple">
 <li><p>If you see the error <code class="docutils literal notranslate"><span class="pre">error</span> <span class="pre">loading</span> <span class="pre">hsi</span> <span class="pre">package:</span> <span class="pre">couldn't</span> <span class="pre">load</span> <span class="pre">file</span> <span class="pre">&quot;libxv_commontasks.so&quot;</span> </code>, it maybe missing libtinfo5 library which can be installed with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libtinfo5</span></code></p></li>
 </ol>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
-</div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></section>
+</section>
 
 
            </div>
@@ -185,7 +183,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 01, 2024.
+      <span class="lastupdated">Last updated on June 19, 2024.
       </span></p>
   </div>
 

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Boot SOM Firmware
-            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -70,9 +68,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -133,8 +131,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="boot-firmware-overview">
-<h1>Boot Firmware Overview<a class="headerlink" href="#boot-firmware-overview" title="Permalink to this heading">¶</a></h1>
+  <section id="boot-firmware-overview">
+<h1>Boot Firmware Overview<a class="headerlink" href="#boot-firmware-overview" title="Link to this heading">¶</a></h1>
 <p>The SOM Starter Kits use a two stage boot process. The primary boot firmware is pre-installed at the factory on the QSPI device. The secondary boot device is an SD card containing the Linux kernel and Linux root filesystem (rootfs). The AMD Starter Kit carrier card hardware design sets the MPSoC boot mode to QSPI32. The SOM boots up to U-Boot using the QSPI contents and U-Boot then hand-off to the secondary boot device.</p>
 <p>This document gives an overview to various components in the Kria SOM boot firmware, and points to source code available for customers to get started with their implementations for their Kria SOM  custom carrier card. For general information about boot of the Zynq MPSoC, refer to Zynq UltraScale TRM <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1085-zynq-ultrascale-trm/Boot-and-Configuration">Boot and Configuration</a> chapter.</p>
 <p>The QSPI image and its boot firmware (FW) contents in SOM Starter Kits are common across all K26 starter kits.</p>
@@ -142,8 +140,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><img alt="image" src="../_images/boot_location.png" /></p>
 <p>For advanced evaluation a user can customize boot firmware using Yocto or the corresponding kit PetaLinux BSP. Refer to <a class="reference internal" href="bootfw_boot.bin_generation.html"><span class="doc">BootFW BOOT.BIN Generation page</span></a> for pointers on how to generate BOOT.BIN. Yocto or PetaLinux BSP can be used to generate a new BOOT.BIN that is then loaded to the QSPI user A/B partition and custom SD card contents summarized in the following diagram:</p>
 <p><img alt="image" src="../_images/bsp_products.png" /></p>
-<div class="section" id="primary-boot-device">
-<h2>Primary Boot Device<a class="headerlink" href="#primary-boot-device" title="Permalink to this heading">¶</a></h2>
+<section id="primary-boot-device">
+<h2>Primary Boot Device<a class="headerlink" href="#primary-boot-device" title="Link to this heading">¶</a></h2>
 <p>The primary boot device is a QSPI device physically located on the Kria SOM. The necessary elements are packaged in a Zynq® UltraScale+™ MPSoC specific format and file captured as BOOT.BIN. The BOOT.BIN file contains the board-specific boot firmware that consists of the following elements:</p>
 <ul class="simple">
 <li><p>FSBL: First-stage boot-loader firmware</p>
@@ -171,13 +169,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ul>
 <p>The primary boot device provides a fail-over copy of boot firmware arranged in an A/B configuration. The A/B configuration provides a dynamic primary and secondary (last known working) image operation with corresponding update mechanisms. On boot, the system automatically boots from the defined primary image, and, if boot fails, it falls back to the previously known good boot image.</p>
-</div>
-<div class="section" id="secondary-boot-device">
-<h2>Secondary Boot Device<a class="headerlink" href="#secondary-boot-device" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="secondary-boot-device">
+<h2>Secondary Boot Device<a class="headerlink" href="#secondary-boot-device" title="Link to this heading">¶</a></h2>
 <p>The secondary boot device on the Kria Starter Kits is an SD card. It contains the operating system image and associated application files. It also contains a superset of device trees for various board configurations and a boot script used by U-Boot to select the dynamically detected board configuration.</p>
-</div>
-<div class="section" id="a-b-boot-concept">
-<h2>A/B Boot Concept<a class="headerlink" href="#a-b-boot-concept" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="a-b-boot-concept">
+<h2>A/B Boot Concept<a class="headerlink" href="#a-b-boot-concept" title="Link to this heading">¶</a></h2>
 <p>The Kria Starter Kits support an A/B FW update mechanism to ensure that the platform has a known good fallback in the event of an issue during the upgrade process. The A/B concept is that two copies of the software stack are maintained in the non-volatile (NV) memory, with one being the “current” image  and the other being “backup”.</p>
 <p>For illustration, say the user booted till Linux using Image A.</p>
 <p>The user has the capability to update the backup image, which is Image B in this case. This update can be done using bootfw_update utility from xmutils from Linux (also called <a class="reference external" href="#image-update">Image Update</a>). Upon updating Image B, the requested image is set to Image B and it is marked as “Non-Bootable”.  Upon reboot, <a class="reference external" href="#image-selector-application">Image Selector</a> uses the following algorithm to decide which image to boot:</p>
@@ -199,9 +197,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 </div>
 <p>If MultiBootOffset is 0x40, image A was selected. If MultiBootOffset is 0x1f0, then image B was selected.</p>
-</div>
-<div class="section" id="boot-fw-qspi-memory-map">
-<h2>Boot FW QSPI Memory Map<a class="headerlink" href="#boot-fw-qspi-memory-map" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="boot-fw-qspi-memory-map">
+<h2>Boot FW QSPI Memory Map<a class="headerlink" href="#boot-fw-qspi-memory-map" title="Link to this heading">¶</a></h2>
 <p>The boot FW of the Kria Starter Kits is pre-loaded at time of production in the SOM QSPI memory. This device is intentionally isolated from the SD card to ensure that the board is always in a bootable state and SW developers can primarily focus on OS level updates and late bound loading of bitstreams. Sectors of the QSPI device on Kria Starter Kits are locked during production to prevent accidental overwrite in customer systems; with the only sectors that are read/write are the A and B boot partitions by the xmutil <a class="reference external" href="#image-update">Image Update</a> and <a class="reference external" href="#image-recovery-application">Image Recovery tools</a>.</p>
 <p>Note that production SOM (that is to be used with custom CC) does not have locked or pre-loaded QSPI.</p>
 <p>The following is QSPI memory map used for Kira SOM starter kits.</p>
@@ -352,9 +350,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tbody>
 </table><p>*   QSPI Image Version Information Example: XilinxSom_QspiImage_v1.0_20201030 Last 32Bytes: HashValue Hash Algo: SHA256 It is only 256Bytes but has to be 64KB aligned - therefore size is 0x10000.</p>
 <p>Starting from 2022.2, Yocto can generate QSPI images for Starter Kits. Information can be found in <a class="reference internal" href="bootfw_qspi_stitching.html"><span class="doc">QSPI Stitching page</span></a></p>
-</div>
-<div class="section" id="image-selector-registers">
-<h2>Image Selector Registers<a class="headerlink" href="#image-selector-registers" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="image-selector-registers">
+<h2>Image Selector Registers<a class="headerlink" href="#image-selector-registers" title="Link to this heading">¶</a></h2>
 <p>Below table shows contents of image selector registers at offset 0x100000</p>
 <table border="1" class="docutils">
 <thead>
@@ -415,9 +413,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>0x01E00000</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="persistent-register">
-<h2>Persistent Register<a class="headerlink" href="#persistent-register" title="Permalink to this heading">¶</a></h2>
+</table></section>
+<section id="persistent-register">
+<h2>Persistent Register<a class="headerlink" href="#persistent-register" title="Link to this heading">¶</a></h2>
 <p>Below table shows the encoding for persistent register. Default value for SOM manufacturing image: 0x01010000</p>
 <table border="1" class="docutils">
 <thead>
@@ -454,47 +452,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>0 - Not bootable, 1 - Bootable</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="boot-image-applications">
-<h2>Boot Image Applications<a class="headerlink" href="#boot-image-applications" title="Permalink to this heading">¶</a></h2>
+</table></section>
+<section id="boot-image-applications">
+<h2>Boot Image Applications<a class="headerlink" href="#boot-image-applications" title="Link to this heading">¶</a></h2>
 <p>The following applications uses or update Image A/B and/or persistent registers. All three applications are independent and can work standalone with no dependencies across the three applications.
 For more information on how to uses the three applications, please refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">Kria SOM wiki</a> and <a class="reference external" href="https://www.xilinx.com/support/documentation/user_guides/som/1_0/ug1089-kv260-starter-kit.pdf">UG1089’s Board Reset, Firmware Update and Recovery chapter</a>.</p>
-<div class="section" id="image-selector-application">
-<h3>Image Selector Application<a class="headerlink" href="#image-selector-application" title="Permalink to this heading">¶</a></h3>
+<section id="image-selector-application">
+<h3>Image Selector Application<a class="headerlink" href="#image-selector-application" title="Link to this heading">¶</a></h3>
 <p>The Image Selector(ImgSel) application is a small baremetal application running out of OCM after a POR/SRST to select the OS boot image. It reads the persistent register to decide which image to boot from in the QSPI memory map.</p>
 <p>Read the <a class="reference internal" href="bootfw_image_selector.html"><span class="doc">Image Selector</span></a> page for more details on this application.</p>
-</div>
-<div class="section" id="image-update">
-<h3>Image Update<a class="headerlink" href="#image-update" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="image-update">
+<h3>Image Update<a class="headerlink" href="#image-update" title="Link to this heading">¶</a></h3>
 <p>The Image Update Linux application is a function being called by xmutil that updates image A or image B at run time. It is included in the Kria Starter Kit Linux root file system. When it is called to update image A or image B, it will also update the persistent register.</p>
 <p>Read <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-via-xmutil">Boot FW via xmutil section of Kria SOM wiki</a> for information on how to use Image Update. Visit the <a class="reference external" href="https://github.com/Xilinx/linux-image_update/tree/master">linux image update repository</a> to see its source code.</p>
-</div>
-<div class="section" id="image-recovery-application">
-<h3>Image Recovery Application<a class="headerlink" href="#image-recovery-application" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="image-recovery-application">
+<h3>Image Recovery Application<a class="headerlink" href="#image-recovery-application" title="Link to this heading">¶</a></h3>
 <p>The Image Recovery application is a baremetal application that uses a web-browser-based user interface. It is invoked when the FW-update button is pressed at power-on, or when both image A and image B becomes un-bootable. It can be used to directly update the A/B images and persistent register states.</p>
 <p>Read the <a class="reference internal" href="bootfw_image_recovery.html"><span class="doc">Image Recovery</span></a> page for more details on this application.</p>
-</div>
-</div>
-<div class="section" id="u-boot">
-<h2>U-Boot<a class="headerlink" href="#u-boot" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="u-boot">
+<h2>U-Boot<a class="headerlink" href="#u-boot" title="Link to this heading">¶</a></h2>
 <p>U-Boot provides the functionality for the hand-off between the primary boot device and the secondary boot device. It will select the appropriate boot devices, load the Linux kernel, select Linux device tree based on detected HW configuration, and then boot Linux.</p>
 <p>U-Boot is an open source Universal Boot Loader that is frequently used in the Linux community. AMD provides a Git tree located at <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx">github</a> which includes <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842223/U-boot">U-Boot to run on Xilinx boards</a>. U-Boot for SOM has been configured to support dynamic booting on different starter kits using MPSoC PMU configuration objects.</p>
 <p>Read the <a class="reference internal" href="bootfw_pmu_config_obj.html"><span class="doc">PMU configuration objects</span></a> and <a class="reference internal" href="bootfw_uboot_handoff.html"><span class="doc">U-Boot handoff</span></a> for more details on dynamic carrier card configuration in Kria StarterKits.</p>
-</div>
-<div class="section" id="qspi-component-and-qspi-update">
-<h2>QSPI Component and QSPI Update<a class="headerlink" href="#qspi-component-and-qspi-update" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="qspi-component-and-qspi-update">
+<h2>QSPI Component and QSPI Update<a class="headerlink" href="#qspi-component-and-qspi-update" title="Link to this heading">¶</a></h2>
 <p>QSPI used in commercial grade SOM is <a class="reference external" href="https://www.micron.com/products/nor-flash/serial-nor-flash/part-catalog/mt25qu512abb8e12-0sit">MT25QU512ABB8E12-0SIT</a>, QSPI used in I-grade SOM is <a class="reference external" href="https://www.micron.com/products/nor-flash/serial-nor-flash/part-catalog/mt25qu512abb8e12-0aat">MT25QU512ABB8E12-0AAT</a>. The QSPI has locking functionality - refer to linked datasheets on Micron for details.</p>
 <p>If developers are developing on AMD released starter kits, QSPI image is locked and the only section that should need update is the Image A/B section along with the persistent registers.</p>
 <p>However, if developers are developing their own carrier cards, the production SOM’s QSPI section is not locked. The entire QSPI can be customized by customers to meet their boot firmware requirements for their production designs.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
-</div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></section>
+</section>
 
 
            </div>
@@ -510,7 +508,7 @@ For more information on how to uses the three applications, please refer to <a c
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 01, 2024.
+      <span class="lastupdated">Last updated on June 19, 2024.
       </span></p>
   </div>
 

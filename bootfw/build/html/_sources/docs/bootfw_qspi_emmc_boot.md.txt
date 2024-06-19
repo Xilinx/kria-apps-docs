@@ -19,7 +19,7 @@ This tutorial is targeted for 2022.2 releases and tool chains.
 
 ## Steps
 
-There are many different ways to get a production SOM to boot from QSPI to eMMC. The following steps have been verified with Kria SOM:
+There are many different ways to get a production SOM to boot from QSPI to eMMC. In this doc we suggest the following steps with Kria SOM:
 
 0. [Create Vivado project and export .xsa file with Production SOM + Carrier Card peripheral support](#0-export-xsa-file-with-production-som-and-carrier-card-peripheral-support)
 
@@ -80,9 +80,9 @@ Note that if you are using a K24i - you will need to also enable the DDR ECC fea
 
 Unlike the Starter Kit SOM, the production SOM is shipped without QSPI pre-populated. A developer must first program QSPI with the appropriate boot firmware so that SOM will boot to U-Boot via the QSPI contents and then hand off to the Linux OS image in eMMC. The full QSPI binary for Starter Kit SOM is not released, however, each components can be generated as outlined in [bootfw overview](./bootfw_overview.md) and its pages. As a reference and an example for this guide, developer need to:
 
-    1. import the .xsa generated in [previous step](#0-export-xsa-file-with-production-som-and-carrier-card-peripheral-support)
-    2. use [Yocto support on Kria](https://xilinx.github.io/kria-apps-docs/yocto.html) combined with [importing new .xsa to Yocto](../../../yocto/source/docs/yocto_kria_support.md#importing-a-new-xsa-file)
-    3. update the dtb file to include CC peripherals
+1. import the .xsa generated in [previous step](#0-export-xsa-file-with-production-som-and-carrier-card-peripheral-support)
+2. use [Yocto support on Kria](https://xilinx.github.io/kria-apps-docs/yocto.html) combined with [importing new .xsa to Yocto](../../../yocto/source/docs/yocto_kria_support.md#importing-a-new-xsa-file)
+3. update the dtb file to include CC peripherals
 
 to generate a QSPI binary that supports production SOM + CC peripheral. Below are the commands expected (after repo setup, using 2023.2 as an example here):
 
@@ -96,8 +96,8 @@ to generate a QSPI binary that supports production SOM + CC peripheral. Below ar
                 HDF_BASE = "file://"
                 HDF_PATH = "/path/to/XSA/file.xsa"
                 UBOOT_DT_FILES = "zynqmp-sck-<cc name>-g-rev<rev>.dts" 
-                    #e.g. zynqmp-sck-kd-g-revA.dtb or zynqmp-sck-kr-g-revB.dtb or zynqmp-sck-kv-g-revB.dtb; you can find the dtb intended for each CC card by this command:
-                    # grep  sources/meta-kria/conf/machine/k2*-smk-k*.conf UBOOT_DTFILE_PREFIX
+                    #e.g. zynqmp-sck-kd-g-revA.dts or zynqmp-sck-kr-g-revB.dts or zynqmp-sck-kv-g-revB.dts; you can find the dtb intended for each CC card by this command:
+                    # grep UBOOT_DT_FILES sources/meta-kria/conf/machine/k2*-smk-k*.conf 
     #modify sources/meta-kria/recipes-bsp/bootbin/xilinx-bootbin_1.0.bbappend with the following:
                 BIF_PARTITION_IMAGE[u-boot-xlnx-fit-blob] = "${RECIPE_SYSROOT}/boot/devicetree/SMK-zynqmp-sck-<cc name>-g-rev<rev>.dtb" # e.g. SMK-zynqmp-sck-kd-g-revA.dtb or SMK-zynqmp-sck-kr-g-revB.dtb or SMK-zynqmp-sck-kv-g-revB.dtb
     MACHINE=<MACHINE name> bitbake kria-qspi
