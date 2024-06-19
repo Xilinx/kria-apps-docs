@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Boot SOM Firmware
-            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -70,9 +68,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -132,14 +130,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="pmu-overlay-config-object">
-<h1>PMU Overlay Config Object<a class="headerlink" href="#pmu-overlay-config-object" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+  <section id="pmu-overlay-config-object">
+<h1>PMU Overlay Config Object<a class="headerlink" href="#pmu-overlay-config-object" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>Kria Starter Kits pre-built firmware and software uses a hierarchical boot process in order to support SOM and its multiple possible carrier cards. This concept of incremental HW configuration is used to have a common “SOM only” base configuration which is then extended after the carrier card (CC) hardware is identified. After CC identification the CC specific peripherals are enabled inclusive of the MPSoC MIO based peripherals. The FSBL loads the “SOM only” PMU configuration object after which the Kria Starter Kit boot FW then dynamically loads a “PMU object overlay” that extends the system configuration having PMU enable the corresponding subsystems and physical pin mappings. In Kria Starter Kits the CC identification and PMU configuration object overlay APIs are exercised as part of U-Boot.</p>
-</div>
-<div class="section" id="reference-overlay-config-object">
-<h2>Reference Overlay Config Object<a class="headerlink" href="#reference-overlay-config-object" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="reference-overlay-config-object">
+<h2>Reference Overlay Config Object<a class="headerlink" href="#reference-overlay-config-object" title="Link to this heading">¶</a></h2>
 <p>As an example, the overlay config object for KV260 and KR260 on top of “base SOM” configuration were created according to the table below. The top half of the table contains MIO definition for the base SOM and a set of shared MIO configurations for all AMD Kria carrier cards. The bottom half of the table defines MIO that are different between KV260 and KR260 and are enabled via a PMU overlay configuration API.</p>
 <table border="1" class="docutils">
 <thead>
@@ -279,8 +277,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td align="center">Yes</td>
 </tr>
 </tbody>
-</table><div class="section" id="kv260">
-<h3>KV260<a class="headerlink" href="#kv260" title="Permalink to this heading">¶</a></h3>
+</table><section id="kv260">
+<h3>KV260<a class="headerlink" href="#kv260" title="Link to this heading">¶</a></h3>
 <ul>
 <li><p>C-code: <a class="reference external" href="./example_src/overlay_cfg_obj_kv260_v2.c">overlay_cfg_obj_kv260_v2.c</a></p></li>
 <li><p>binary file: <a class="reference external" href="./example_src/overlay_cfg_obj_kv260_v2.bin">overlay_cfg_obj_kv260_v2.bin</a></p></li>
@@ -292,9 +290,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li><p>Note: Permission to load next overlay config object are disabled by default for KV260.</p></li>
 </ul>
-</div>
-<div class="section" id="kr260">
-<h3>KR260<a class="headerlink" href="#kr260" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="kr260">
+<h3>KR260<a class="headerlink" href="#kr260" title="Link to this heading">¶</a></h3>
 <ul>
 <li><p>C-code: <a class="reference external" href="./example_src/overlay_cfg_obj_kr260_v2.c">overlay_cfg_obj_kr260_v2.c</a></p></li>
 <li><p>binary file: <a class="reference external" href="./example_src/overlay_cfg_obj_kr260_v2.bin">overlay_cfg_obj_kr260_v2.bin</a></p></li>
@@ -306,10 +304,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li><p>Note: Permission to load next overlay config object are disabled by default for KR260.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="steps-to-create-overlay-config-object">
-<h2>Steps to create Overlay Config Object<a class="headerlink" href="#steps-to-create-overlay-config-object" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="steps-to-create-overlay-config-object">
+<h2>Steps to create Overlay Config Object<a class="headerlink" href="#steps-to-create-overlay-config-object" title="Link to this heading">¶</a></h2>
 <ol>
 <li><p>Use template <a class="reference external" href="./example_src/Template_for_overlay_config_object_v2.c">Template_for_overlay_config_object_v2.c</a> as base.</p>
 <ul class="simple">
@@ -349,8 +347,8 @@ IPI mask = PM_CONFIG_IPI_PSU_CORTEXA53_0_MASK | PM_CONFIG_IPI_PSU_CORTEXR5_0_MAS
 </li>
 <li><p>Generate the binary file from C-code file using command given in “Command to create binary file from c file” section.</p></li>
 </ol>
-<div class="section" id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
 <p>Please find the following examples to modify slave section:</p>
 <ul>
 <li><p>Example: Only single device/slave is present in overlay config object.</p>
@@ -409,19 +407,19 @@ PM_CONFIG_IPI_PSU_CORTEXA53_0_MASK | PM_CONFIG_IPI_PSU_CORTEXR5_0_MASK | PM_CONF
 </div>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="commands-to-create-binary-file-from-c-file">
-<h2>Commands to create binary file from c file<a class="headerlink" href="#commands-to-create-binary-file-from-c-file" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="commands-to-create-binary-file-from-c-file">
+<h2>Commands to create binary file from c file<a class="headerlink" href="#commands-to-create-binary-file-from-c-file" title="Link to this heading">¶</a></h2>
 <p>Run below commands in sequence to generate the binary file from c-file</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcc -c -nostdlib -nostartfiles -nodefaultlibs &lt;overlay-config-object.c&gt; -o &lt;overlay-config-object.o&gt;
-objcopy -O binary &lt;overlay-config-object.o&gt; &lt;overlay-config-object.bin&gt;
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>-c<span class="w"> </span>-nostdlib<span class="w"> </span>-nostartfiles<span class="w"> </span>-nodefaultlibs<span class="w"> </span>&lt;overlay-config-object.c&gt;<span class="w"> </span>-o<span class="w"> </span>&lt;overlay-config-object.o&gt;
+objcopy<span class="w"> </span>-O<span class="w"> </span>binary<span class="w"> </span>&lt;overlay-config-object.o&gt;<span class="w"> </span>&lt;overlay-config-object.bin&gt;
 </pre></div>
 </div>
 <p>Note: Generated binary file work only on little endian tool-chain.</p>
-</div>
-<div class="section" id="set-permission-to-load-overlay-config-object-from-base-config">
-<h2>Set Permission to load Overlay config object from Base config<a class="headerlink" href="#set-permission-to-load-overlay-config-object-from-base-config" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="set-permission-to-load-overlay-config-object-from-base-config">
+<h2>Set Permission to load Overlay config object from Base config<a class="headerlink" href="#set-permission-to-load-overlay-config-object-from-base-config" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>Base config is auto generated as part of fsbl build. For reference, the source code of base config can be found <a class="reference external" href="https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/zynqmp_fsbl/misc/som/pm_cfg_obj.c">here</a>, please note that base config contains many more sections than overlay config</p></li>
 <li><p>By default permission to load overlay config object are disabled for all masters(APU/RPU0/RPU1).</p></li>
@@ -429,28 +427,28 @@ objcopy -O binary &lt;overlay-config-object.o&gt; &lt;overlay-config-object.bin&
 <li><p>Flags</p>
 <ul>
 <li><p>Provide permission to APU master: apu_as_overlay_config_master</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bsp config apu_as_overlay_config_master <span class="s2">&quot;true&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bsp<span class="w"> </span>config<span class="w"> </span>apu_as_overlay_config_master<span class="w"> </span><span class="s2">&quot;true&quot;</span>
 </pre></div>
 </div>
 </li>
 <li><p>Provide permission to RPU0 master: rpu0_as_overlay_config_master</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bsp config rpu0_as_overlay_config_master <span class="s2">&quot;true&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bsp<span class="w"> </span>config<span class="w"> </span>rpu0_as_overlay_config_master<span class="w"> </span><span class="s2">&quot;true&quot;</span>
 </pre></div>
 </div>
 </li>
 <li><p>Provide permission to RPU1 master: rpu1_as_overlay_config_master</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bsp config rpu1_as_overlay_config_master <span class="s2">&quot;true&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bsp<span class="w"> </span>config<span class="w"> </span>rpu1_as_overlay_config_master<span class="w"> </span><span class="s2">&quot;true&quot;</span>
 </pre></div>
 </div>
 </li>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="loading-overlay-config-object-in-u-boot">
-<h2>Loading Overlay Config Object in U-Boot<a class="headerlink" href="#loading-overlay-config-object-in-u-boot" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="loading-overlay-config-object-in-u-boot">
+<h2>Loading Overlay Config Object in U-Boot<a class="headerlink" href="#loading-overlay-config-object-in-u-boot" title="Link to this heading">¶</a></h2>
 <p>To load overlay config object at U-Boot level use below command at U-Boot on target:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>zynqmp pmufw &lt;address&gt; &lt;size&gt;
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>zynqmp<span class="w"> </span>pmufw<span class="w"> </span>&lt;address&gt;<span class="w"> </span>&lt;size&gt;
 </pre></div>
 </div>
 <ul class="simple">
@@ -459,15 +457,15 @@ objcopy -O binary &lt;overlay-config-object.o&gt; &lt;overlay-config-object.bin&
 </ul>
 <p>In Starter kit flow, U-Boot dynamically create , use and destroy the overlay config object. Example code can be found <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx/blob/master/drivers/firmware/firmware-zynqmp.c">here</a>. When developers create their own customer carrier card and boot flow, they can dynamically generate their config object, or create it statically and put it on target and load it as above.</p>
 <p>U-boot will perform IPI (inter-processor interrupt) call to PMU with run time API to enable the object overlay. The <code class="docutils literal notranslate"><span class="pre">SET_CONFIGURATION</span></code> API is documented in <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/ug1200-eemi-api">ug1200</a> and an example call can be found <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx/blob/master/drivers/firmware/firmware-zynqmp.c">here</a> as well.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
-</div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></section>
+</section>
 
 
            </div>
@@ -483,7 +481,7 @@ objcopy -O binary &lt;overlay-config-object.o&gt; &lt;overlay-config-object.bin&
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 01, 2024.
+      <span class="lastupdated">Last updated on June 19, 2024.
       </span></p>
   </div>
 

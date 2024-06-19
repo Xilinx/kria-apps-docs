@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Boot SOM Firmware
-            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -68,9 +66,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -114,68 +112,68 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="enable-saveenv-in-u-boot">
-<h1>Enable saveenv in U-boot<a class="headerlink" href="#enable-saveenv-in-u-boot" title="Permalink to this heading">¶</a></h1>
+  <section id="enable-saveenv-in-u-boot">
+<h1>Enable saveenv in U-boot<a class="headerlink" href="#enable-saveenv-in-u-boot" title="Link to this heading">¶</a></h1>
 <p>To prevent users from accidentally overwriting bootfw environment variables and render starter kits un-bootable, saveenv is disabled by default. If a user wants to boot via PXE without any serial port interactions, they need to enable saveenv in order to save serverip variable. This example uses K26, but can be used for K24 as well by replacing mentioning of K26 with K24.</p>
-<div class="section" id="enable-saveenv-on-u-boot-in-petalinux">
-<h2>Enable SaveEnv on u-boot in PetaLinux<a class="headerlink" href="#enable-saveenv-on-u-boot-in-petalinux" title="Permalink to this heading">¶</a></h2>
+<section id="enable-saveenv-on-u-boot-in-petalinux">
+<h2>Enable SaveEnv on u-boot in PetaLinux<a class="headerlink" href="#enable-saveenv-on-u-boot-in-petalinux" title="Link to this heading">¶</a></h2>
 <p>In order to enable saveenv in u-boot generated in PetaLinux, they can go through the following on PetaLinux with released BSP:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ petalinux-create -t project -s xilinx-&lt;starterkit name&gt;-&lt;tool version&gt;-&lt;timestamp&gt;.bsp
-$ <span class="nb">cd</span> xilinx-&lt;starterkit name&gt;-&lt;tool version&gt;
-$ petalinux-config –c u-boot <span class="c1">#---&gt; Environment ---&gt; [ ] Environment is not stored (press N to deselect )</span>
-$ petalinux-config –c u-boot <span class="c1">#---&gt; Environment ---&gt; [*] Environment is in SPI flash (press Y to select )</span>
-$ petalinux-config –c u-boot <span class="c1">#---&gt; Environment ---&gt; [0x02200000] Environment offset (enter and change to 0x02200000)</span>
-$ petalinux-config –c u-boot <span class="c1">#---&gt; Environment ---&gt; [0x02220000] Redundant Environment offset (enter and change to 0x02220000)</span>
-$ petalinux-config –c u-boot <span class="c1">#---&gt; Environment ---&gt; [0x20000] Environment Size (enter and change to 0x20000)</span>
-$ petalinux-config –c u-boot <span class="c1">#---&gt; Environment ---&gt; [0x20000] Environment Sector-Size (enter and change to 0x20000)</span>
-$ petalinux-config –c u-boot <span class="c1">#---&gt; Command line interface ---&gt; Environment commands ---&gt; [*] saveenv (press Y to select )</span>
-$ vim project-spec/meta-user/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend  <span class="c1"># workaround, currently new config file is not added correctly, fix in the file from:</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>petalinux-create<span class="w"> </span>-t<span class="w"> </span>project<span class="w"> </span>-s<span class="w"> </span>xilinx-&lt;starterkit<span class="w"> </span>name&gt;-&lt;tool<span class="w"> </span>version&gt;-&lt;timestamp&gt;.bsp
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>xilinx-&lt;starterkit<span class="w"> </span>name&gt;-&lt;tool<span class="w"> </span>version&gt;
+$<span class="w"> </span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot<span class="w"> </span><span class="c1">#---&gt; Environment ---&gt; [ ] Environment is not stored (press N to deselect )</span>
+$<span class="w"> </span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot<span class="w"> </span><span class="c1">#---&gt; Environment ---&gt; [*] Environment is in SPI flash (press Y to select )</span>
+$<span class="w"> </span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot<span class="w"> </span><span class="c1">#---&gt; Environment ---&gt; [0x02200000] Environment offset (enter and change to 0x02200000)</span>
+$<span class="w"> </span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot<span class="w"> </span><span class="c1">#---&gt; Environment ---&gt; [0x02220000] Redundant Environment offset (enter and change to 0x02220000)</span>
+$<span class="w"> </span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot<span class="w"> </span><span class="c1">#---&gt; Environment ---&gt; [0x20000] Environment Size (enter and change to 0x20000)</span>
+$<span class="w"> </span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot<span class="w"> </span><span class="c1">#---&gt; Environment ---&gt; [0x20000] Environment Sector-Size (enter and change to 0x20000)</span>
+$<span class="w"> </span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot<span class="w"> </span><span class="c1">#---&gt; Command line interface ---&gt; Environment commands ---&gt; [*] saveenv (press Y to select )</span>
+$<span class="w"> </span>vim<span class="w"> </span>project-spec/meta-user/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend<span class="w">  </span><span class="c1"># workaround, currently new config file is not added correctly, fix in the file from:</span>
 <span class="c1"># SRC_URI += &quot;file://user_&lt;timestamp&gt;.cfg \</span>
 <span class="c1"># to:</span>
 <span class="c1"># SRC_URI:append = &quot; file://user_&lt;timestamp&gt;.cfg \&quot;</span>
 <span class="c1">#note :there is a space between the double quote and &quot;file://&quot;</span>
 
-$ petalinux-build -c u-boot -x cleanall
-$ petalinux-build -c u-boot
-$ petalinux-package --boot --fsbl images/linux/zynqmp_fsbl.elf --u-boot images/linux/u-boot.elf --pmufw images/linux/pmufw.elf --fpga images/linux/system.bit --force
+$<span class="w"> </span>petalinux-build<span class="w"> </span>-c<span class="w"> </span>u-boot<span class="w"> </span>-x<span class="w"> </span>cleanall
+$<span class="w"> </span>petalinux-build<span class="w"> </span>-c<span class="w"> </span>u-boot
+$<span class="w"> </span>petalinux-package<span class="w"> </span>--boot<span class="w"> </span>--fsbl<span class="w"> </span>images/linux/zynqmp_fsbl.elf<span class="w"> </span>--u-boot<span class="w"> </span>images/linux/u-boot.elf<span class="w"> </span>--pmufw<span class="w"> </span>images/linux/pmufw.elf<span class="w"> </span>--fpga<span class="w"> </span>images/linux/system.bit<span class="w"> </span>--force
 </pre></div>
 </div>
 <p>Below is a snippet of the u-boot config for SPI setting, note that the environment address correspond to QSPI memory map as documented in <a class="reference external" href="./bootfw_overview.md#boot-fw-qspi-memory-map">BootFW Overview</a>:</p>
 <p><img alt="image" src="../_images/saveenv_uboot_config.PNG" /></p>
 <p>This generates a new BOOT.BIN in image/linux that can be programmed via A/B update method using <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-management-via-xmutil">xmutil bootfw_update</a>.</p>
-</div>
-<div class="section" id="enable-saveenv-on-u-boot-in-yocto">
-<h2>Enable SaveEnv on u-boot in Yocto<a class="headerlink" href="#enable-saveenv-on-u-boot-in-yocto" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="enable-saveenv-on-u-boot-in-yocto">
+<h2>Enable SaveEnv on u-boot in Yocto<a class="headerlink" href="#enable-saveenv-on-u-boot-in-yocto" title="Link to this heading">¶</a></h2>
 <p>If re-generating u-boot in Yocto, follow the commands below. This assumes you have already went through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Kria Yocto Support</a>.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v&lt;tool version&gt;
-repo sync
-<span class="nb">source</span> setupsdk
-<span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake virtual/bootloader -c menuconfig 
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>repo<span class="w"> </span>init<span class="w"> </span>-u<span class="w"> </span>https://github.com/Xilinx/yocto-manifests.git<span class="w"> </span>-b<span class="w"> </span>rel-v&lt;tool<span class="w"> </span>version&gt;
+repo<span class="w"> </span>sync
+<span class="nb">source</span><span class="w"> </span>setupsdk
+<span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>virtual/bootloader<span class="w"> </span>-c<span class="w"> </span>menuconfig<span class="w"> </span>
 <span class="c1"># Environment ---&gt; [ ] Environment is not stored (press N to deselect )</span>
 <span class="c1"># Environment ---&gt; [*] Environment is in SPI flash (press Y to select ), and make sure any other &quot;Environment is in&quot; except for SPI is deselected *press N to deselect)</span>
 <span class="c1">#---&gt; Command line interface ---&gt; Environment commands ---&gt; [*] saveenv (press Y to select )</span>
 <span class="c1">#exit and save</span>
-<span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake kria-qspi
+<span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>kria-qspi
 </pre></div>
 </div>
 <p>This generates a new boot.bin in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k26-smk/</span></code>, and <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code> is defined in <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code>, by default in tmp/. The new boot.bin can be programmed via A/B update method using <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-management-via-xmutil">xmutil bootfw_update</a>.</p>
-</div>
-<div class="section" id="on-target-commands">
-<h2>On-target commands<a class="headerlink" href="#on-target-commands" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="on-target-commands">
+<h2>On-target commands<a class="headerlink" href="#on-target-commands" title="Link to this heading">¶</a></h2>
 <p>With the new BOOT.bin programmed via A/B update, when booting with the new BOOT.bin, you can save environment variable. For an example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setenv serverip &lt;host ip&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setenv<span class="w"> </span>serverip<span class="w"> </span>&lt;host<span class="w"> </span>ip&gt;
 saveenv
 </pre></div>
 </div>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
-</div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></section>
+</section>
 
 
            </div>
@@ -188,7 +186,7 @@ saveenv
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 01, 2024.
+      <span class="lastupdated">Last updated on June 19, 2024.
       </span></p>
   </div>
 

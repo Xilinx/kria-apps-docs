@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Boot SOM Firmware
-            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -70,9 +68,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -127,15 +125,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="image-selector">
-<h1>Image Selector<a class="headerlink" href="#image-selector" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+  <section id="image-selector">
+<h1>Image Selector<a class="headerlink" href="#image-selector" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>The Image Selector(ImgSel) is a small baremetal application running out of OCM after a POR/SRST that implements boot firmware selection used for the full platform boot. ImgSel extends native MPSoC CSU BootROM image search capability to have a more intelligent and flexible image selection including A/B boot firmware selection logic. In Kria Starter Kits the ImgSel application is loaded by CSU from QSPI to OCM to be run. Image Selector reads the persistent registers and based on the values it chooses the system boot image (either “A” or “B”) to be booted. ImgSel then updates the multiboot register with the corresponding image QSPI address and initiates a platform reset to boot the full system.</p>
 <p>The Image Selector for Kria Starter Kits is pre-provisioned as part of the kit manufacturing loaded QSPI image. If a user wants to use the same feature in their production SOM users’ needs to build the Image Selector application with the XIS_UPDATE_A_B_MECHANISM build time flag enabled. Source code has been provided in GitHub for developers wishing to customize further.</p>
-</div>
-<div class="section" id="code-flow">
-<h2>Code Flow<a class="headerlink" href="#code-flow" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="code-flow">
+<h2>Code Flow<a class="headerlink" href="#code-flow" title="Link to this heading">¶</a></h2>
 <p>The Image Selector has the following code flow:</p>
 <ol class="simple">
 <li><p>Configure PLLs, clocks, MIOs, resets
@@ -150,11 +148,11 @@ b. Update multiboot register based on the requested image (Request image A/B or 
 <li><p>Do a system reset, so that ROM loads the correct boot image</p></li>
 <li><p>Upon any error, increment the multiboot register by 1 and reset the system</p></li>
 </ol>
-</div>
-<div class="section" id="image-selector-usage-instructions">
-<h2>Image Selector Usage Instructions<a class="headerlink" href="#image-selector-usage-instructions" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="compilation-procedure-vitis-flow">
-<h3>Compilation Procedure (Vitis Flow)<a class="headerlink" href="#compilation-procedure-vitis-flow" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="image-selector-usage-instructions">
+<h2>Image Selector Usage Instructions<a class="headerlink" href="#image-selector-usage-instructions" title="Link to this heading">¶</a></h2>
+<section id="compilation-procedure-vitis-flow">
+<h3>Compilation Procedure (Vitis Flow)<a class="headerlink" href="#compilation-procedure-vitis-flow" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Provide ZynqMP or Kria XSA file or use a pre-built board description (In welcome page, <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Platform</span></code> to provide XSA file)</p></li>
 <li><p>Select OS as standalone and processor as Cortex-A53_0, architecture as 64-bit</p></li>
@@ -179,32 +177,32 @@ b. Update multiboot register based on the requested image (Request image A/B or 
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="compilation-procedure-makefile-flow">
-<h3>Compilation Procedure (Makefile Flow)<a class="headerlink" href="#compilation-procedure-makefile-flow" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="compilation-procedure-makefile-flow">
+<h3>Compilation Procedure (Makefile Flow)<a class="headerlink" href="#compilation-procedure-makefile-flow" title="Link to this heading">¶</a></h3>
 <p>Note that the Makefile below requires tools that are placed in the path by sourcing PetaLinux, or Vitis, or Vivado settings64.* file.</p>
 <p>In a linux terminal</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v&lt;version&gt; https://github.com/Xilinx/embeddedsw.git
-<span class="nb">cd</span> embeddedsw/lib/sw_apps/imgsel/src
-make clean all <span class="nv">BOARD</span><span class="o">=</span>som
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v&lt;version&gt;<span class="w"> </span>https://github.com/Xilinx/embeddedsw.git
+<span class="nb">cd</span><span class="w"> </span>embeddedsw/lib/sw_apps/imgsel/src
+make<span class="w"> </span>clean<span class="w"> </span>all<span class="w"> </span><span class="nv">BOARD</span><span class="o">=</span>som
 </pre></div>
 </div>
-</div>
-<div class="section" id="source-code">
-<h3>Source Code<a class="headerlink" href="#source-code" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="source-code">
+<h3>Source Code<a class="headerlink" href="#source-code" title="Link to this heading">¶</a></h3>
 <p>The Image Selector source code can be found in <a class="reference external" href="https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/imgsel">github</a>.
 Image Selector configuration can be changed in the <a class="reference external" href="https://github.com/Xilinx/embeddedsw/blob/master/lib/sw_apps/imgsel/src/xis_config.h">xis_config.h</a> to select selection mechanism, I2C parameters and debug prints.
 The Makefile Flow above automatically updates the correct parameters for som with BOARD=<code class="docutils literal notranslate"><span class="pre">som</span></code>.</p>
-</div>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
-</div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></section>
+</section>
 
 
            </div>
@@ -220,7 +218,7 @@ The Makefile Flow above automatically updates the correct parameters for som wit
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 01, 2024.
+      <span class="lastupdated">Last updated on June 19, 2024.
       </span></p>
   </div>
 
