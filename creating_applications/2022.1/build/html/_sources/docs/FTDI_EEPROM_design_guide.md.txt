@@ -2,7 +2,7 @@
 
 AMD designed carrier cards for Kria SOM use a FTDI chip for their USB-JTAG / UART implementation. The carrier card contains a dedicated EEPROM used by the FTDI chip to load its configuration at power-on.
 
-The schematics for each of the AMD carrier cards can be found on their resources tab: [KV260](www.amd.com/products/system-on-modules/kria/k26/kv260-vision-starter-kit.html#support-resources), [KR260](www.amd.com/products/system-on-modules/kria/k26/kr260-robotics-starter-kit.html#support-resources). [KD240]( www.amd.com/products/system-on-modules/kria/k24/kd240-drives-starter-kit.html#support-resources). A "FTDI JTAG/UART" or similiar section in the schematic will detail the FTDI device and its EEPROM implementation on the carrier card. 
+The schematics for each of the AMD carrier cards can be found on their resources tab: [KV260](https://www.amd.com/en/products/system-on-modules/kria/k26/k26c-commercial.html#documentation), [KR260](https://www.amd.com/en/products/system-on-modules/kria/k26/kr260-robotics-starter-kit.html#documentation). [KD240](https://www.amd.com/en/products/system-on-modules/kria/k24/kd240-drives-starter-kit.html#documentation). A "FTDI JTAG/UART" or similiar section in the schematic will detail the FTDI device and its EEPROM implementation on the carrier card. 
 
 The FTDI EEPROM user area guide can be found in [FT_000162](https://www.ftdichip.com/Documents/AppNotes/AN_121_FTDI_Device_EEPROM_User_Area_Usage.pdf). The FDTI EEPROM can be programmed such that Vivado hardware manager can recognize the board as a device. Refer to [UG908](https://docs.xilinx.com/r/en-US/ug908-vivado-programming-debugging/Programming-FTDI-Devices-for-Vivado-Hardware-Manager-Support) for more information.
 

@@ -46,7 +46,7 @@ Kria SOM Accelerator and Custom Carrier Card Firmware Development
    docs/IPMI_EEPROM_design_guide
    docs/EEPROM_mapping_for_Kria_products
    docs/FTDI_EEPROM_design_guide
-
+   docs/soft_ip_notes
 
 
 .. toctree::

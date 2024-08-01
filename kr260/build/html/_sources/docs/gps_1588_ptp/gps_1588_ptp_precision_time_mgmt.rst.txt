@@ -36,7 +36,7 @@ Quick Start
    :maxdepth: 1
   
    KR260 Starter Kit Linux Boot <../kria_starterkit_linux_boot>
-   Setting up the Board and Application deployment <docs/app_deployment>
+   Setting up the Board and Application deployment <src/app_deployment>
 
 
 
@@ -64,9 +64,19 @@ Architecture
 .. toctree::
    :maxdepth: 1
   
-   Software Architecture - Platform <docs/sw_arch_platform>
-   Hardware Architecture - Platform <docs/hw_arch_platform>
+   Software Architecture - Platform <src/sw_arch_platform>
+   Hardware Architecture - Platform <src/hw_arch_platform>
 
+
+******************
+Repository
+******************
+
+.. toctree::
+   :maxdepth: 1
+  
+   Application Sources <https://github.com/Xilinx/Kria_GPS_1588_PTP>
+   PL firmware files <https://github.com/Xilinx/kria-apps-firmware>
 
 
 Xilinx Support

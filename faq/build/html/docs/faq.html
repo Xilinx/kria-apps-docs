@@ -93,6 +93,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#test-to-determine-if-display-is-ok">Test to determine if display is OK</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#ethernet-implementation-for-amd-starter-kits">Ethernet Implementation for AMD Starter Kits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-pl-sysmon-platformstats-pl-temperature-print">Using PL SysMon / platformstats PL temperature print</a></li>
 </ul>
 </li>
 </ul>
@@ -126,17 +128,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This page documents common questions that developers may encounter while using Kria SOM.</p>
 <div class="section" id="released-linux-images-not-booting">
 <h2>Released Linux Images Not Booting<a class="headerlink" href="#released-linux-images-not-booting" title="Permalink to this heading">¶</a></h2>
-<p>All AMD released images are verified on their supported Starter Kit. If an <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Starter-Kit-Linux">released image</a> does not boot on the Starter Kit, for an example you may see errors like this while booting, for an example, Ubuntu:</p>
+<p>All images released by AMD are verified on their supported Starter Kit. If a <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Kria-Starter-Kit-Linux">released image</a> does not boot on the Starter Kit, It is usually because the Starter Kit needs an updated boot firmware. For example, you might see errors like this while booting (Ubuntu):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[   17.644316] emc: device handler registered
 [   17.658214] rdac: device handler registered
 [   20.374057] tpm tpm0: A TPM error (256) occurred attempting the self test
 </pre></div>
 </div>
-<p>It is usually because the Starter Kit needs an updated boot firmware. Download the correct version of <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">boot firmware according to the wiki</a>, and use <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits#Boot-Image-Recovery-Tool">image recovery application</a>.</p>
+<p>Download the correct version of <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">boot firmware according to the wiki</a>, and use the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits#Boot-Image-Recovery-Tool">image recovery application</a>.</p>
 </div>
 <div class="section" id="root-privileges">
 <h2>Root Privileges<a class="headerlink" href="#root-privileges" title="Permalink to this heading">¶</a></h2>
-<p>The <em>ubuntu</em> user does not have root privileges. Most commands used in tutorials must be run using <em>sudo</em>, and it may be prompted to enter your password.</p>
+<p>The <em>ubuntu</em> user does not have root privileges. Most commands used in tutorials must be run using <em>sudo</em>, and it might be prompted to enter your password.</p>
 <p>For security, by default, the root user is disabled. If user want to login as root user, perform the following steps. Use the <em>ubuntu</em> user’s password on the first password prompt, then set a new password for the root user. User can now login as root user using the newly set root user password.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:<span class="se">\~\$</span> sudo -i
 sudo<span class="se">\]</span> password <span class="k">for</span> ubuntu:
@@ -174,7 +176,7 @@ locale
 <div class="section" id="xmutil-dfx-mgr-related-debug">
 <h2>xmutil / dfx-mgr related debug<a class="headerlink" href="#xmutil-dfx-mgr-related-debug" title="Permalink to this heading">¶</a></h2>
 <ol>
-<li><p>If user get -1 for <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">&lt;app</span> <span class="pre">name&gt;</span></code>, try to unload the existing app firmware using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">unloadapp</span></code> and then load the preferred app firmware. Another possibility is that the application did not exist in the correct folder/have the correct file extensions, as detailed in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/target.html#dfx-mgr">dfx-mgr doc for SOM</a></p></li>
+<li><p>If a user gets -1 for <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">&lt;app</span> <span class="pre">name&gt;</span></code>, try to unload the existing app firmware using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">unloadapp</span></code> and then load the preferred app firmware. Another possibility is that the application did not exist in the correct folder/have the correct file extensions, as detailed in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/target.html#dfx-mgr">dfx-mgr doc for SOM</a></p></li>
 <li><p>Installing firmware binaries may cause dfx-mgr to crash and a restart is needed. Once this is fixed an newer updates are available for dfx-manager, restart may not be needed. If dfx-manager crashes, restart it with this command: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">dfx-mgr.service</span></code></p></li>
 <li><p>xmutil or dfx-mgr runs only in base OS, they do not run in Docker containers. Therefore in order to load/unload firmware, you must first exit Docker container.</p></li>
 <li><p>After invoking the command <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span></code> to load firmware, it needs several seconds for the whole firmware to be ready. If you launch docker before the firmware is loaded, it will not be able to use DPU node properly and you may see the below error while launching application</p>
@@ -301,6 +303,43 @@ id      fb      pos     size
 <p><img alt="SMPTE color bars" src="../_images/SMPTE_Color_Bars.svg" /></p>
 </div>
 </div>
+<div class="section" id="ethernet-implementation-for-amd-starter-kits">
+<h2>Ethernet Implementation for AMD Starter Kits<a class="headerlink" href="#ethernet-implementation-for-amd-starter-kits" title="Permalink to this heading">¶</a></h2>
+<p>There are some aspects of an Ethernet HW implementation that needs to account for physical PHY interfaced to. The Kira Starter Kits use two different PHYs:</p>
+<ul class="simple">
+<li><p>KV260 and KR260 carrier cards are using the <a class="reference external" href="https://www.ti.com/lit/ds/symlink/dp83867cs.pdf">Texas Instruments DP83867</a></p></li>
+<li><p>KD240 Starter Kit is using the <a class="reference external" href="https://www.analog.com/media/en/technical-documentation/data-sheets/adin1300.pdf">Analog Devices ADIN1300</a>.</p></li>
+</ul>
+<p>One aspect of this HW configuration is PHY dual-purposed which influence the PHY reset latched PHY address. For PHYs connected to PS Ethernet controllers the MIO pull-up/pull-down and enable/disable must be aligned with the requirements of the PHY.</p>
+<ul class="simple">
+<li><p>TI PHY straps RX_D0 and RX_D2 to define the PHY address. The corresponding MIO pins needs to disable pull-up/pull-down to let the PHY set its address as defined in the schematic and as expected by reference SW.</p></li>
+<li><p>ADI PHY straps RXD_1, RXD_2, RXD_3, RXD_4 to define the PHY address. The corresponding MIO pins needs to disable pull-up/pull-down to let the PHY set its address as defined in the schematic and as expected by reference SW.</p></li>
+</ul>
+<p>Note also that the main Ethernet (e.g. the PS Ethernet used for Image Recovery, u-boot and Linux) are implemented on different GEMs for different CC. Therefore the MIO register to write to are different. KV260 uses PS GEM3 while KR260 and KD240 uses GEM1. In order for ethernet based applications, such as LWIP echo server example to work with different CCs, the PHY init function for them needs to set MIOs differently.</p>
+<p>For an example, for KV260, to set its MIO to work with PS GEM 3, MIO44-77, TI PHY, use following code:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Xbir_MaskWrite</span><span class="p">(</span><span class="n">IOU_SLCR_BANK2_CTRL5_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="mh">0x3FFFFFFU</span><span class="p">,</span><span class="w"> </span><span class="mh">0x357FFFFU</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For KV260, to set its MIO to work with PS GEM 1, MIO38-51, TI PHY, use following code:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Xbir_MaskWrite</span><span class="p">(</span><span class="n">IOU_SLCR_BANK1_CTRL5_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00003FFFU</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0000357F</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For KD240, to set its MIO to work with PS GEM 1, MIO38-51, ADI PHY, use following code:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Xbir_MaskWrite</span><span class="p">(</span><span class="n">IOU_SLCR_BANK1_CTRL5_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00003FFFU</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0000387F</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that <a class="reference external" href="https://docs.amd.com/r/en-US/ug1087-zynq-ultrascale-registers/bank1_ctrl5-IOU_SLCR-Register">bank1_ctrl5-IOU_SLCR-Register</a> has an atypical register layout.</p>
+</div>
+<div class="section" id="using-pl-sysmon-platformstats-pl-temperature-print">
+<h2>Using PL SysMon / platformstats PL temperature print<a class="headerlink" href="#using-pl-sysmon-platformstats-pl-temperature-print" title="Permalink to this heading">¶</a></h2>
+<p>Kria SOM Linux provides <a class="reference external" href="https://github.com/Xilinx/xmutil">xmutil</a>, which is a wrapper to the <a class="reference external" href="https://github.com/Xilinx/xlnx_platformstats">xlnx_platformstats</a> utility to report platform telemetry information, including PL temperature. The Linux running on PS is able to access PL SyMon through the APB to DRP interface as indicated in the design block diagram of <a class="reference external" href="https://docs.amd.com/r/en-US/ug1085-zynq-ultrascale-trm/PL-SYSMON-Register-Access-Arbitration">UG1085 “PL SYSMON Register Access Arbitration”</a>. When the PL Sysmon (SYSMONE4) is not instantiated by PL fabric, the mux selects PS DRP interface by default and allows xlnx_platformstats running on the PS to access the PL SysMon including temperature data.</p>
+<p>However, if user wishes to instantiate the SYSMONE4 in PL (for an example, with the System Management block), its interface mux will select PL fabric instead and PS based applications will no longer have access to the PL temperature data. When PS based applications cannot access PL SysMon it will report all zeros and in the case of xlnx_platforms stats it will report a PL temperature of -280C.</p>
+<p>For users who want to leverage functionalities that comes with System Management block and platformstats, some options are but not limited to:</p>
+<ol class="simple">
+<li><p>If user wants to implement features such as over temperature checks for PL, they can implement them in PMU or Linux instead of using System Management block and keep the correct PL temperature print outs from platformstats</p></li>
+<li><p>User can also instantiate System Management block, but modify platformstats to leverage PL temperature information through a custom PL based secondary interface to the PL SysMon block.</p></li>
+</ol>
+</div>
 </div>
 
 
@@ -316,7 +355,7 @@ id      fb      pos     size
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 02, 2024.
+      <span class="lastupdated">Last updated on August 01, 2024.
       </span></p>
   </div>
 
