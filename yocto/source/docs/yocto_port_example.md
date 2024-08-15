@@ -28,7 +28,7 @@ git clone --branch xlnx_rel_v2022.1 https://github.com/Xilinx/smartcam.git
 
 Next, copy the smartcam FPGA Firmware and AP1302 firmware to the correct location:
 
-``` shell
+```shell
 cd kria-apps-firmware/boards/kv260/smartcam/
 dtc -@ -O dtb -o kv260-smartcam.dtbo kv260-smartcam.dtsi # generate binary for device tree from .dtsi - errors can be ignored
 cd /home/petalinux/
@@ -40,7 +40,7 @@ Next, install runtime and build dependencies. Note that 2022.1 smartcam is compa
 
 Note that the example applications are verified with specific versions of XRT, VVAS and Vitis-AI libraries, which may not be backward compatible. So you will need to first install specific versions per instructions below. Find more information in [library dependency](./library_dependency.md) page.
 
-``` shell
+```shell
 # install specific versions of zocl, xrt, VVAS, and Vitis-AI:
 # zocl needs to be installed before xrt - otherwise xrt will install latest zocl as dependency
 sudo dnf install -y zocl-202210.2.13.479
@@ -72,7 +72,7 @@ sudo dnf install -y libdrm-tests v4l-utils alsa-utils python3-core
 
 Lastly, build the smartcam application:
 
-``` shell
+```shell
 # build smartcam
 cd smartcam
 mkdir build
@@ -85,7 +85,7 @@ sudo make install
 
 Finally, test the smartcam on target:
 
-``` shell
+```shell
 sudo xmutil listapps                            # kv260-smartcam should show up in the list
 sudo xmutil unloadapp                           # unload existing firmware
 sudo xmutil loadapp kv260-smartcam              # Load smartcam firmware

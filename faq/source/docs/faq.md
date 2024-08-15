@@ -236,7 +236,7 @@ For KV260, to set its MIO to work with PS GEM 1, MIO38-51, TI PHY, use following
 For KD240, to set its MIO to work with PS GEM 1, MIO38-51, ADI PHY, use following code:
 
   ``` c
-  Xbir_MaskWrite(IOU_SLCR_BANK1_CTRL5_OFFSET, 0x00003FFFU, 0x0000387F);
+  Xbir_MaskWrite(IOU_SLCR_BANK1_CTRL5_OFFSET, 0x00003FFFU, 0x0000303F);
   ```
 
 Note that [bank1_ctrl5-IOU_SLCR-Register](https://docs.amd.com/r/en-US/ug1087-zynq-ultrascale-registers/bank1_ctrl5-IOU_SLCR-Register) has an atypical register layout.

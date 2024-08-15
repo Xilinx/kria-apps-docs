@@ -84,22 +84,31 @@ Unlike the Starter Kit SOM, the production SOM is shipped without QSPI pre-popul
 2. use [Yocto support on Kria](https://xilinx.github.io/kria-apps-docs/yocto.html) combined with [importing new .xsa to Yocto](../../../yocto/source/docs/yocto_kria_support.md#importing-a-new-xsa-file)
 3. update the dtb file to include CC peripherals
 
-to generate a QSPI binary that supports production SOM + CC peripheral. Below are the commands expected (after repo setup, using 2023.2 as an example here):
+to generate a QSPI binary that supports production SOM + CC peripheral. Below are the commands expected (after repo setup, using 2024.1 as an example here):
 
     ``` bash
     #<MACHINE name> needs to be production som build - k26-sm, or k24i-sm, or k24c-sm
-    repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2023.2
+    repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2024.1
     repo sync
-    repo start rel-v2023.2 --all
+    repo start rel-v2024.1 --all
     source setupsdk
     #modify sources/meta-kria/conf/machine/<MACHINE name>.conf with the following:
                 HDF_BASE = "file://"
                 HDF_PATH = "/path/to/XSA/file.xsa"
-                UBOOT_DT_FILES = "zynqmp-sck-<cc name>-g-rev<rev>.dts" 
-                    #e.g. zynqmp-sck-kd-g-revA.dts or zynqmp-sck-kr-g-revB.dts or zynqmp-sck-kv-g-revB.dts; you can find the dtb intended for each CC card by this command:
-                    # grep UBOOT_DT_FILES sources/meta-kria/conf/machine/k2*-smk-k*.conf 
-    #modify sources/meta-kria/recipes-bsp/bootbin/xilinx-bootbin_1.0.bbappend with the following:
-                BIF_PARTITION_IMAGE[u-boot-xlnx-fit-blob] = "${RECIPE_SYSROOT}/boot/devicetree/SMK-zynqmp-sck-<cc name>-g-rev<rev>.dtb" # e.g. SMK-zynqmp-sck-kd-g-revA.dtb or SMK-zynqmp-sck-kr-g-revB.dtb or SMK-zynqmp-sck-kv-g-revB.dtb
+    #modify sources/meta-kria/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend so that we can map a device tree for production som + device tree for a CC for this production SOM + CC combo
+        # in IMPORT_CC_DTBS for K24 or K26, add:
+                zynqmp-sck-<cc>-g-revA.dtbo:zynqmp-sm-<k24 or k26>-revA.dtb:zynqmp-sm-<k24 or k26>-xcl2g<grade: c or i>-revA-sck-<cc>-g-revA.dtb \
+                #for an example, for a K24 i grade on KD240, add this line:
+                    #           zynqmp-sck-kd-g-revA.dtbo:zynqmp-sm-k24-revA.dtb:zynqmp-sm-k24-xcl2gi-revA-sck-kd-g-revA.dtb \
+                    #           this line  combines the production SOM DT zynqmp-sm-k24-revA.dtb and CC device tree overlay zynqmp-sck-kd-g-revA.dtbo into zynqmp-sm-k24-xcl2gi-revA-sck-kd-g-revA.dtb  
+                    #           The device trees can be found in https://github.com/Xilinx/u-boot-xlnx/blob/master/arch/arm/dts/ and generated combined dtb can be found in build/tmp/work/<machine name>-xilinx-linux/u-boot-xlnx/1_v2024.01-xilinx-v2024.1+gitAUTOINC+<time stamp>/build/arch/arm/dts/dt-blob/
+        # in CC_DTBS_DUP for K24 or K26, add:
+                zynqmp-sm-<k24 or k26>-xcl2g<grade: c or i>-revA-sck-<cc>-g-revA:zynqmp-sm-<k24 or k26>-xcl2g<grade: c or i>-rev<rev of som>-sck-<cc>-g-rev<rev of cc> \
+                #for an example, for a rev 1 K24 i grade on a rev 1 KD240, add this line:
+                    #           zynqmp-sm-k24-xcl2gi-revA-sck-kd-g-revA:zynqmp-sm-k24-xcl2gi-rev1-sck-kd-g-rev1 \
+                    #           note that the "zynqmp-sm-k24-xcl2gi-rev1-sck-kd-g-rev1" string from example above should match the "Detected name:" print out from u-boot
+                    #           this line basically maps  different revisioned hardware to use the same device tree as that for SOM rev A and CC A as there had been no changes to DT
+
     MACHINE=<MACHINE name> bitbake kria-qspi
     ```
 
