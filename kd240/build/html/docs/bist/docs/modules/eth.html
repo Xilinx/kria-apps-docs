@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -27,9 +26,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=f2a433a1"></script>
-        <script src="../../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -47,6 +48,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../index.html" class="icon icon-home"> Kria™ KD240
+            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 1.0
@@ -147,15 +149,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="bist-ethernet-test-module">
-<h1>BIST Ethernet Test Module<a class="headerlink" href="#bist-ethernet-test-module" title="Link to this heading">¶</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+  <div class="section" id="bist-ethernet-test-module">
+<h1>BIST Ethernet Test Module<a class="headerlink" href="#bist-ethernet-test-module" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>This module tests the ethernet interface(s) on the AMD Kria™ starter kits using a
 host machine.</p>
-</section>
-<section id="tests">
-<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
 <p>There are two types of tests in this module: a self-validating functional test,
 which uses the ping3 python package, and a self-validating performance test,
 which uses the iperf3 utility.</p>
@@ -231,23 +233,23 @@ below:</p>
 <td align="center">Bottom Right</td>
 </tr>
 </tbody>
-</table></section>
-<section id="test-execution">
-<h2>Test Execution<a class="headerlink" href="#test-execution" title="Link to this heading">¶</a></h2>
+</table></div>
+<div class="section" id="test-execution">
+<h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
 <p>The example commands for this module are provided below (KR260):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kr260<span class="w"> </span>-m<span class="w"> </span>eth<span class="w">			</span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
-pytest-3<span class="w"> </span>--board<span class="w"> </span>kr260<span class="w"> </span>-k<span class="w"> </span>ethernet1_ping<span class="w">	</span>//<span class="w"> </span>Run<span class="w"> </span>ethernet1_ping<span class="w"> </span><span class="nb">test</span>
-pytest-3<span class="w"> </span>--board<span class="w"> </span>kr260<span class="w"> </span>-k<span class="w"> </span>ping<span class="w">			</span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>ping<span class="w"> </span>tests
-pytest-3<span class="w"> </span>--board<span class="w"> </span>kr260<span class="w"> </span>-k<span class="w"> </span>perf<span class="w">			</span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>perf<span class="w"> </span>tests
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3 --board kr260 -m eth			// Run all tests <span class="k">in</span> this module
+pytest-3 --board kr260 -k ethernet1_ping	// Run ethernet1_ping <span class="nb">test</span>
+pytest-3 --board kr260 -k ping			// Run all ping tests
+pytest-3 --board kr260 -k perf			// Run all perf tests
 </pre></div>
 </div>
 <p>For each interface, the ping test prints out the delay and the test is a
 pass if the ping is successful. The perf test prints out the measured
 bitrate and the test is a pass if it is above the threshold. The default
 threshold is 80% of the max speed for the ethernet ports.</p>
-</section>
-<section id="test-debug">
-<h2>Test Debug<a class="headerlink" href="#test-debug" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="test-debug">
+<h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure that the host machine is set up as described <a class="reference internal" href="../run.html"><span class="doc">here</span></a>.</p></li>
 <li><p>Make sure that the BIST_REMOTE_HOST_IP environment variable is set on the Kria
@@ -260,23 +262,23 @@ BIST_REMOTE_HOST_IP and BIST_REMOTE_HOST_SFP_IP are on different subnets.</p></l
 <li><p>If a ping test fails, it can be run manually using ping with the -I option.</p></li>
 <li><p>If a perf test fails, it can be run manually using iperf3 with the -B option.</p></li>
 </ul>
-</section>
-<section id="known-issues-and-limitations">
-<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="known-issues-and-limitations">
+<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The tests in this module are limited to verifying a ping and a minimum
 performance speed for each interface.</p></li>
 <li><p>The max speed for the KR260 SFP+ port is set to 0.5 Gbps based on tests
 performed with the BIST firmware.</p></li>
 </ul>
-</section>
-<section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
-<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
-</section>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
 
 
            </div>
@@ -292,7 +294,7 @@ performed with the BIST firmware.</p></li>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on July 09, 2024.
+      <span class="lastupdated">Last updated on August 19, 2024.
       </span></p>
   </div>
 
