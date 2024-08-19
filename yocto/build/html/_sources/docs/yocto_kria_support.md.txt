@@ -2,7 +2,7 @@
 
 Yocto contains support to generate Kria artifacts starting in 2023.1. Note that PetaLinux is an abstraction of Yocto - it is Yocto + Xilinx meta layers + extra tools such as XSCT, XSDB, etc. The process and commands of generating artifacts from Yocto vs PetaLinux are different, but the backend is the same (e.g. both are Yocto based).
 
-The Yocto Project provides [extensive documentation](https://docs.yoctoproject.org/) and it is recommended to familiarize yourself with some of the core concepts before continuing. Xilinx specific Yocto information can be found on the [wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto).
+The Yocto Project provides [extensive documentation](https://docs.yoctoproject.org/), and it is recommended to familiarize yourself with some of the core concepts before continuing. Xilinx specific Yocto information can be found on the [wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto).
 
 ## Machine Configurations for Kria
 
@@ -10,13 +10,13 @@ The [machine configurations](https://docs.yoctoproject.org/dev/dev-manual/new-ma
 
 Machine names and recipes in 2023.1 and forward, for QSPI / boot image generation:
 
-| Machine Name | Bitbake Recipe          | Availability      | Description                                                                                            |
-| ------------ | ----------------------- | ----------------- | -------------------------------------------------------------------------------------------------------|
-| k26-smk      | kria-qspi               | 2023.1 and newer  | QSPI image supporting K26 production SOM and Starter Kit SOM                                           |
-| k24-smk      | kria-qspi               | 2023.1 and newer  | QSPI image supporting KD240 Starter Kit SOM                                                            |
-| k26-sm       | xilinx-bootbin          | 2023.1 and newer  | boot.bin that supports production SOM K26i and K26c                                              |
-| k24i-sm      | xilinx-bootbin          | 2023.2* and newer | boot.bin that supports production SOM K24i                                                       |
-| k24c-sm      | xilinx-bootbin          | 2023.2* and newer | boot.bin that supports production SOM K24c                                                       |
+| Machine Name | Bitbake Recipe          | Availability      | Description                                                         |
+| ------------ | ----------------------- | ----------------- | --------------------------------------------------------------------|
+| k26-smk      | kria-qspi               | 2023.1 and newer  | QSPI image supporting K26 Starter Kit SOM on KV and KR carrier card |
+| k24-smk      | kria-qspi               | 2023.1 and newer  | QSPI image supporting K24 Starter Kit SOM on KD carrier card        |
+| k26-sm       | xilinx-bootbin          | 2023.1 and newer  | boot.bin that supports production SOM K26i and K26c                 |
+| k24i-sm      | xilinx-bootbin          | 2023.2* and newer | boot.bin that supports production SOM K24i                          |
+| k24c-sm      | xilinx-bootbin          | 2023.2* and newer | boot.bin that supports production SOM K24c                          |
 
 For .wic image generation:
 

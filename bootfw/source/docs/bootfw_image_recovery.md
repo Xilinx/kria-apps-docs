@@ -27,7 +27,7 @@ Note that the Makefile below requires tools that are placed in the path by sourc
 
 Open a linux terminal
 
-``` shell
+```shell
 git clone --branch xlnx_rel_v<version> https://github.com/Xilinx/embeddedsw.git
 cd embeddedsw/lib/sw_apps/img_rcvry/src
 make clean all

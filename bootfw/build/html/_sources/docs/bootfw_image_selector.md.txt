@@ -28,17 +28,17 @@ The Image Selector has the following code flow:
 
 * Provide ZynqMP or Kria XSA file or use a pre-built board description (In welcome page, ```Create Platform``` to provide XSA file)
 * Select OS as standalone and processor as Cortex-A53_0, architecture as 64-bit
-* right click ```psu_cortexa53_0``` -> New -> Application Project, select the platform just created, name the application project, select standalone_domain as domain, choose ```Image Selector``` application in embedded software development templates and click Finish
+* right click `psu_cortexa53_0` -> New -> Application Project, select the platform just created, name the application project, select standalone_domain as domain, choose `Image Selector` application in embedded software development templates and click Finish
 * By default debug prints will be disabled, If Debug prints required to debug need to enable XIS_UART_ENABLE macro in xis_config.h file
 * Below mentioned macros support two different mechanisms defined in xis_config.h file only one mechanism is supported at a time:
   * XIS_UPDATE_A_B_MECHANISM (QSPI based 'A/B' Firmware Boot Mode)
-    * ```#define XIS_UPDATE_A_B_MECHANISM``` needs to be uncommented for Kria SOM
+    * `#define XIS_UPDATE_A_B_MECHANISM` needs to be uncommented for Kria SOM
     * Image selection based on QSPI A/B update register data
     * It will read the persistent registers from QSPI and based on persistent registers data it will update the multi-boot value
   * XIS_GET_BOARD_PARAMS (SD boot mode) - this is not supported for Kria SOM
     * It will read the board name from EEPROM and based on board name it will update the multi-boot value
     * SD shall have multiple board images with different file names in Partition 0
-    * ```#define XIS_GET_BOARD_PARAMS``` needs to be commented out for SOM
+    * `#define XIS_GET_BOARD_PARAMS` needs to be commented out for SOM
 
 ### Compilation Procedure (Makefile Flow)
 
@@ -46,7 +46,7 @@ Note that the Makefile below requires tools that are placed in the path by sourc
 
 In a linux terminal
 
-``` shell
+```shell
 git clone --branch xlnx_rel_v<version> https://github.com/Xilinx/embeddedsw.git
 cd embeddedsw/lib/sw_apps/imgsel/src
 make clean all BOARD=som
