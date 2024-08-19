@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -27,9 +26,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -47,6 +48,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Kria™ KD240
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 1.0
@@ -133,14 +135,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Tool Flow Overview</h1> </td>
  </tr>
-</table><section id="tool-flow-overview">
-<h1>Tool Flow Overview<a class="headerlink" href="#tool-flow-overview" title="Link to this heading">¶</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+</table><div class="section" id="tool-flow-overview">
+<h1>Tool Flow Overview<a class="headerlink" href="#tool-flow-overview" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document provides an overview of how the hardware and software components are built for an application.</p>
-</section>
-<section id="tool-flow">
-<h2>Tool Flow<a class="headerlink" href="#tool-flow" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="tool-flow">
+<h2>Tool Flow<a class="headerlink" href="#tool-flow" title="Permalink to this heading">¶</a></h2>
 <p>At a high level, the builds steps are as follows:</p>
 <ol>
 <li><p><strong>AMD Vivado™ platform design</strong>: The Vivado design is augmented with platform parameters that describe the metadata and physical interfaces available to the AMD Vitis™ compiler for stitching in programmable logic (PL) kernels.</p></li>
@@ -153,18 +155,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li><p><strong>Firmware</strong>: THe Vitis-created platform containing the PL kernel is a bitfile, and the metadata is an xclbin. On Ubuntu platform, the bitstream  header is stripped to obtain FPGA configuration data as a bin object (*.bin), and the metadata xclbin is consumed as is from Vitis. A runtime devicetree blob corresponding to the PL bitstream is required (.dtbo) to be loaded as an overlay, which when loaded in kernel, invokes all the drivers corresponding to the PL bitstream. Hence, the FPGA configuration data ( *.bin), metadata (xclbin), and a device-tree overlay blob (*dtbo) together form the firmware binaries.</p></li>
 </ol>
-<section id="accessing-the-tutorial-reference-files">
-<h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Link to this heading">¶</a></h3>
+<div class="section" id="accessing-the-tutorial-reference-files">
+<h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Permalink to this heading">¶</a></h3>
 <ol class="simple">
 <li><p>To access the reference files, type the following into a terminal:</p></li>
 </ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2023.1<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/Xilinx/kria-vitis-platforms.git
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v2023.1 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
 </pre></div>
 </div>
-</section>
-</section>
-<section id="directory-structure">
-<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Link to this heading">¶</a></h2>
+</div>
+</div>
+<div class="section" id="directory-structure">
+<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this heading">¶</a></h2>
 <p>The directory structure of the repository is as follows:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kria-vitis-platforms
 ├── common
@@ -190,12 +192,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 </div>
 <p>To access firmware repos:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Xilinx/kria-apps-firmware
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/Xilinx/kria-apps-firmware
 </pre></div>
 </div>
-</section>
-<section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="build_vivado_design.html"><span class="doc">Building the Hardware Design Using Vivado</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="../index.html"><span class="doc">KD240 SOM Designs Start Page</span></a></p></li>
@@ -208,8 +210,8 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---></section>
-</section>
+--></div>
+</div>
 
 
            </div>
@@ -225,7 +227,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on July 09, 2024.
+      <span class="lastupdated">Last updated on August 19, 2024.
       </span></p>
   </div>
 

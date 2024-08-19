@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -27,9 +26,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -47,6 +48,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Kria™ KD240
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 1.0
@@ -135,14 +137,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Using Vivado to Build the Hardware Design</h1> </td>
  </tr>
-</table><section id="using-vivado-to-build-the-hardware-design">
-<h1>Using Vivado to Build the Hardware Design<a class="headerlink" href="#using-vivado-to-build-the-hardware-design" title="Link to this heading">¶</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+</table><div class="section" id="using-vivado-to-build-the-hardware-design">
+<h1>Using Vivado to Build the Hardware Design<a class="headerlink" href="#using-vivado-to-build-the-hardware-design" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This tutorial shows how to build the hardware design for applications running on the KD240 Drives Starter Kit.</p>
-</section>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>AMD Vivado Design Suite™ of the appropiate version</p></li>
 <li><p>TSN Subsytem IP evaluation license when building the kd240_motor_ctrl_qei platform.</p></li>
@@ -150,26 +152,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div><p><strong>Info</strong>: To request TSN Subsystem IP evaluation license, send an email to <a class="reference external" href="1gtsn_eval_request&#64;amd.com">1gtsn_eval_request&#64;amd.com</a>.</p>
 </div></blockquote>
-<section id="accessing-the-tutorial-reference-files">
-<h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Link to this heading">¶</a></h3>
+<div class="section" id="accessing-the-tutorial-reference-files">
+<h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Permalink to this heading">¶</a></h3>
 <blockquote>
 <div><p><strong>NOTE:</strong> Skip the following steps if the design files have already been cloned and extracted to a working repository.</p>
 </div></blockquote>
 <ol>
 <li><p>To access the reference files, type the following into a terminal:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2023.1<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/Xilinx/kria-vitis-platforms.git
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v2023.1 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
 </pre></div>
 </div>
 </li>
 <li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">kria-vitis-platforms/kd240</span></code>, which is the working directory.</p></li>
 </ol>
-</section>
-</section>
-<section id="generating-an-extensible-xsa">
-<h2>Generating an Extensible XSA<a class="headerlink" href="#generating-an-extensible-xsa" title="Link to this heading">¶</a></h2>
+</div>
+</div>
+<div class="section" id="generating-an-extensible-xsa">
+<h2>Generating an Extensible XSA<a class="headerlink" href="#generating-an-extensible-xsa" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Go to the platform directory specific to the application.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;
 </pre></div>
 </div>
 <p>Applications and their corresponding platform names are listed in the following table:</p>
@@ -199,7 +201,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </table><p>Note that the FOC motor control with position sensor and ROS TSN Pub Sub shares a single platform that requires a license for the TSN IP. However, the FOC motor control with position sensor can be used without TSN IP, they are grouped together as that can be a usecase. The TSN IP can be removed for FOC motor control with position sensor application if getting a license is undesireable.</p>
 <ol>
 <li><p>To build the XSA, source Vivado, and run the following command. The Makefile uses the scripts/<code class="docutils literal notranslate"><span class="pre">main.tcl</span></code> file to create a Vivado project, populate the block design, and finally build a XSA. The XSA generation can take some time depending on the system specification.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>xsa
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make xsa
 </pre></div>
 </div>
 </li>
@@ -212,17 +214,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div><p><strong>NOTE:</strong> The steps under <em>Modifying the Vivado Design and Creating a new XSA</em> are optional and are required only if you need to change the platform design.</p>
 </div></blockquote>
-</section>
-<section id="modifying-the-vivado-design-and-creating-a-new-xsa">
-<h2>Modifying the Vivado Design and Creating a New XSA<a class="headerlink" href="#modifying-the-vivado-design-and-creating-a-new-xsa" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="modifying-the-vivado-design-and-creating-a-new-xsa">
+<h2>Modifying the Vivado Design and Creating a New XSA<a class="headerlink" href="#modifying-the-vivado-design-and-creating-a-new-xsa" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Go to the directory specific to the platform design.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;
 </pre></div>
 </div>
 </li>
 <li><p>To open the Vivado project, open the Vivado GUI, then run the following command from the Vivado Tcl console:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>open_project<span class="w"> </span>./project/&lt;platform_name&gt;.xpr
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>open_project ./project/&lt;platform_name&gt;.xpr
 </pre></div>
 </div>
 </li>
@@ -240,22 +242,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li><p>You can now modify the block design and validate it (toolbar at the top: <strong>Tools</strong> → <strong>Validate design</strong>). Then click <strong>Run Synthesis</strong> to complete the synthesis.</p></li>
 <li><p>To write out a new extensible platform XSA file, run the following command from the Vivado Tcl console:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>write_hw_platform<span class="w"> </span>-force<span class="w"> </span>-file<span class="w"> </span>&lt;platform_name&gt;.xsa
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>write_hw_platform -force -file &lt;platform_name&gt;.xsa
 </pre></div>
 </div>
 </li>
 </ol>
 <p>The generated XSA or the modified XSA file can now be used to create a Vitis platform (optional).</p>
-</section>
-<section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="generating_custom_firmware.html"><span class="doc">Generate Custom Firmware</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="../index.html"><span class="doc">KD240 SOM Designs Start Page</span></a></p></li>
 </ul>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <p>For more information on how to set up platform interfaces, refer to the AMD Vitis Unified Software Platform Documentation <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces">UG1393</a>.</p>
 <!---
 
@@ -265,8 +267,8 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></section>
-</section>
+--><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></div>
+</div>
 
 
            </div>
@@ -282,7 +284,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on July 09, 2024.
+      <span class="lastupdated">Last updated on August 19, 2024.
       </span></p>
   </div>
 
