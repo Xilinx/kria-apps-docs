@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../index.html" class="icon icon-home"> Kria™ KD240
-            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 1.0
@@ -149,15 +147,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="bist-i2c-test-module">
-<h1>BIST I2C Test Module<a class="headerlink" href="#bist-i2c-test-module" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+  <section id="bist-i2c-test-module">
+<h1>BIST I2C Test Module<a class="headerlink" href="#bist-i2c-test-module" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>The I2C test module verifies the presence of expected devices on the i2c buses of the AMD
 Kria™ starter kits using python-periphery.</p>
-</div>
-<div class="section" id="tests">
-<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading">¶</a></h2>
 <p>The module contains self-validating functional test. It uses “i2cdetect” command-line
 utility to check for the i2c bus number based on the controller and mux channel
 information. The test then performs i2c read operation on the devices expected to be present
@@ -169,41 +167,41 @@ on the identified i2c bus by specifying the device addresses and verifies their 
 <li><p>mux_channel: The channel number of the mux on controller under test</p></li>
 <li><p>i2c_devices: The dictionary of I2C devices and their addresses under test</p></li>
 </ul>
-</div>
-<div class="section" id="test-execution">
-<h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="test-execution">
+<h2>Test Execution<a class="headerlink" href="#test-execution" title="Link to this heading">¶</a></h2>
 <p>The example commands for this module are provided below (KV260):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3 --board kv260 -m i2c  // Run all tests <span class="k">in</span> this module
-pytest-3 --board kv260 -k ps_i2c_bus_main  // Run i2c device detect <span class="nb">test</span> <span class="k">for</span> PS I2C main bus
-pytest-3 --board kv260 -k axi_i2c_bus_main  // Run i2c device detect <span class="nb">test</span> <span class="k">for</span> AXI I2C main bus
-pytest-3 --board kv260 -k axi_i2c_bus_ch0  // Run i2c device detect <span class="nb">test</span> <span class="k">for</span> AXI I2C bus mux channel <span class="m">0</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-m<span class="w"> </span>i2c<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-k<span class="w"> </span>ps_i2c_bus_main<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>i2c<span class="w"> </span>device<span class="w"> </span>detect<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>PS<span class="w"> </span>I2C<span class="w"> </span>main<span class="w"> </span>bus
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-k<span class="w"> </span>axi_i2c_bus_main<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>i2c<span class="w"> </span>device<span class="w"> </span>detect<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>AXI<span class="w"> </span>I2C<span class="w"> </span>main<span class="w"> </span>bus
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-k<span class="w"> </span>axi_i2c_bus_ch0<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>i2c<span class="w"> </span>device<span class="w"> </span>detect<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>AXI<span class="w"> </span>I2C<span class="w"> </span>bus<span class="w"> </span>mux<span class="w"> </span>channel<span class="w"> </span><span class="m">0</span>
 </pre></div>
 </div>
 <p>For each bus passed as label, the test prints out message indicating all i2c devices are detected
 on the bus in case of pass. Otherwise, it prints out the information about the missing devices name and
 addresses along with detected devices.</p>
-</div>
-<div class="section" id="test-debug">
-<h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="test-debug">
+<h2>Test Debug<a class="headerlink" href="#test-debug" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure to load the BIST firmware before running the i2c test as some i2c devices are not
 detected otherwise.</p></li>
 </ul>
-</div>
-<div class="section" id="known-issues">
-<h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="known-issues">
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The i2c test is limited to verifying the presence of i2c devices specified in the configuration
 file on loading the BIST firmware only.</p></li>
 </ul>
-</div>
-<div class="section" id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
-<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -219,7 +217,7 @@ file on loading the BIST firmware only.</p></li>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 19, 2024.
+      <span class="lastupdated">Last updated on September 09, 2024.
       </span></p>
   </div>
 

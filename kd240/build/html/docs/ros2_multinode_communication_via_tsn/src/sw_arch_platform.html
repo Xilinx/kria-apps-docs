@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KD240
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 1.0
@@ -137,10 +135,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="software-architecture-of-the-platform">
-<h1>Software Architecture of the Platform<a class="headerlink" href="#software-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+  <section id="software-architecture-of-the-platform">
+<h1>Software Architecture of the Platform<a class="headerlink" href="#software-architecture-of-the-platform" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>This section describes software components involved in the design and their relation with each other. The application requires hw platform as described in <a class="reference internal" href="hw_arch_platform.html"><span class="doc">Hardware Architecture of the Platform</span></a> for the stack explained in this section to work.</p>
 <p>Following diagram illustrates the top-level architecture and arrangement of various software components:</p>
 <p><img alt="Software Architecture Overview" src="../../../_images/sw_arch_intro.png" /></p>
@@ -181,19 +179,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Modbus and RS485 demonstration</p></li>
 <li><p>CAN communication demonstration</p></li>
 </ul>
-</div>
-<div class="section" id="tsn">
-<h2>TSN<a class="headerlink" href="#tsn" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="tsn">
+<h2>TSN<a class="headerlink" href="#tsn" title="Link to this heading">¶</a></h2>
 <p>Time-Sensitive Networking (TSN) is a set of standards under development by the Time-Sensitive Networking task group of the IEEE 802.1 working group. This standards allows low latency transmission and time-guaranteed packet delivery.</p>
-<div class="section" id="driver">
-<h3>Driver<a class="headerlink" href="#driver" title="Permalink to this heading">¶</a></h3>
+<section id="driver">
+<h3>Driver<a class="headerlink" href="#driver" title="Link to this heading">¶</a></h3>
 <p>Set of drivers used for the TSN solution is enabled in the staging area under <code class="docutils literal notranslate"><span class="pre">linux-xlnx/drivers/staging/xilinx-tsn</span></code>. These set of drivers provides TSN capability such as vlan,scheduled traffic, best effort traffic, ptp, QBV shaper, and so on using standard ethernet framework and IP route tools.</p>
 <p>The details of the device tree for the driver can be found in the kernel documentation at <code class="docutils literal notranslate"><span class="pre">linux-xlnx/Documentation/devicetree/bindings/net/xilinx*tsn*.txt</span></code>.</p>
 <p>Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/25034864/Xilinx+TSN+Solution">Xilinx TSN Solution</a> for details of various features supported by Xilinx TSN drivers.</p>
-</div>
-</div>
-<div class="section" id="ros2">
-<h2>ROS2<a class="headerlink" href="#ros2" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="ros2">
+<h2>ROS2<a class="headerlink" href="#ros2" title="Link to this heading">¶</a></h2>
 <p>Robot Operating System (ROS) is a set of open source algorithms, hardware driver, software, and tools for developing robot control software. Contrary to its name, ROS is not an operating system but a library.</p>
 <p>In a full-fledged ROS environment sensors in robots, motion controllers, detection, and navigation algorithms, and so on are all components of this distributed ROS architecture. Each individual component is referred as <strong>Node</strong>. ROS nodes (and applications) typically communicate through interfaces of one of three types: messages, services, and actions. ROS 2 uses a simplified description language, the interface definition language (IDL), to describe these interfaces. This description makes it easy for ROS tools to automatically generate the source code for the interface type in several target languages.</p>
 <p>Topics are the elements of ROS2 that act as bus for nodes to exchange messages. In the simplest use case, the message is published by a node on a given topic. Anyone subscribed to that topic can receive the message.</p>
@@ -201,8 +199,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>A node may publish data to any number of topics and simultaneously have subscriptions to any number of topics.</p>
 <p><img alt="TopicMultiNodes" src="../../../_images/Topic-MultiplePublisherandMultipleSubscriber.gif" /></p>
 <p>These nodes can be on the same system or distributed across systems. The biggest improvement ROS2 provides over ROS1 is how the communication is handled across various systems. ROS2 adopts the decentralized (as opposed to centralized in ROS1) DDS middleware. Instead of implementing its own DDS layer, ROS2 provides a middleware abstraction layer (rmw), which can be plugged on any standard DDS implementation.</p>
-<div class="section" id="dds">
-<h3>DDS<a class="headerlink" href="#dds" title="Permalink to this heading">¶</a></h3>
+<section id="dds">
+<h3>DDS<a class="headerlink" href="#dds" title="Link to this heading">¶</a></h3>
 <p>ROS 2 is built on top of DDS/RTPS as its middleware, which provides discovery, serialization, and transportation. DDS is an end-to-end middleware that provides features that are relevant to ROS systems, such as distributed discovery (not centralized like in ROS 1) and control over different “Quality of Service” options for the transportation. There are many independent DDS implementation by various vendors. ROS2’s rmw abstraction allows to easily switch or adapt different implementations.</p>
 <p>Following are supported DDS implementation for ROS2 humble release:</p>
 <ul class="simple">
@@ -212,36 +210,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>GurumNetworks GurumDDS</p></li>
 </ul>
 <p>For this application, two separate nodes, one running as publisher and the other as subscriber on separate KR260 communicate over the TSN network. The underlying middleware is default to FastDDS.</p>
-<div class="section" id="dds-configuration">
-<h4>DDS configuration<a class="headerlink" href="#dds-configuration" title="Permalink to this heading">¶</a></h4>
+<section id="dds-configuration">
+<h4>DDS configuration<a class="headerlink" href="#dds-configuration" title="Link to this heading">¶</a></h4>
 <p>For demonstration, the message is sent as a scheduled traffic. The DDS is configured allow the message only from the whitelisted interface, which is set to have <a class="reference external" href="https://tsn.readthedocs.io/vlan.html">vlan qos mapping</a> for all the outgoing traffic to be set as Scheduled Traffic (PCP=4).</p>
 <p>For example,</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ip link add link ep name ep.40 <span class="nb">type</span> vlan id <span class="m">40</span> egress-qos-map <span class="m">0</span>:4
-ip addr add <span class="m">111</span>.222.0.10/24 broadcast + dev ep.40
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ip<span class="w"> </span>link<span class="w"> </span>add<span class="w"> </span>link<span class="w"> </span>ep<span class="w"> </span>name<span class="w"> </span>ep.40<span class="w"> </span><span class="nb">type</span><span class="w"> </span>vlan<span class="w"> </span>id<span class="w"> </span><span class="m">40</span><span class="w"> </span>egress-qos-map<span class="w"> </span><span class="m">0</span>:4
+ip<span class="w"> </span>addr<span class="w"> </span>add<span class="w"> </span><span class="m">111</span>.222.0.10/24<span class="w"> </span>broadcast<span class="w"> </span>+<span class="w"> </span>dev<span class="w"> </span>ep.40
 </pre></div>
 </div>
 <p>Now this new interface can be added to whitelist of the DDS configuration for the required topic through the xml configuration.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&lt;transport_descriptor&gt;
-    &lt;transport_id&gt;UdpVLANTransport&lt;/transport_id&gt;
-    &lt;type&gt;UDPv4&lt;/type&gt;
-    &lt;interfaceWhiteList&gt;
-        &lt;address&gt;111.222.0.10&lt;/address&gt;
-    &lt;/interfaceWhiteList&gt;
+<span class="w">    </span>&lt;transport_id&gt;UdpVLANTransport&lt;/transport_id&gt;
+<span class="w">    </span>&lt;type&gt;UDPv4&lt;/type&gt;
+<span class="w">    </span>&lt;interfaceWhiteList&gt;
+<span class="w">        </span>&lt;address&gt;111.222.0.10&lt;/address&gt;
+<span class="w">    </span>&lt;/interfaceWhiteList&gt;
 &lt;/transport_descriptor&gt;
 </pre></div>
 </div>
 <p>For more information various possible configuration, refer to <a class="reference external" href="https://fast-dds.docs.eprosima.com/en/latest/fastdds/ros2/ros2_configure.html">fast dds configuration</a>.</p>
-</div>
-</div>
-</div>
-<div class="section" id="modbus-and-rs485">
-<h2>Modbus and RS485<a class="headerlink" href="#modbus-and-rs485" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="modbus-and-rs485">
+<h2>Modbus and RS485<a class="headerlink" href="#modbus-and-rs485" title="Link to this heading">¶</a></h2>
 <p>Modbus is an open-source, client/server communication protocol widely used in remote monitoring, control, and robotic applications. Because of its simple message structure, it is easy to deploy. It supports multiple devices to be connected on the same bus and uses polling mechanism to acquire the status of each device on the bus.</p>
 <p>Modbus data can be carried over serial ports or ethernet interface.</p>
 <p><strong>Modbus RTU</strong> (remote terminal unit), used in serial communication, is the most common implementation for modbus supporting devices. Modbus RTU makes use of a compact, binary representation of the data for protocol communication. The RTU format follows the commands/data with a cyclic redundancy check checksum as an error check mechanism to ensure the reliability of data.</p>
 <p><strong>RS485</strong> is a widely used serial communication standard, especially between the devices communicating over Modbus RTU protocol.</p>
-<div class="section" id="modbus-rtu-frame-format">
-<h3>Modbus RTU frame format<a class="headerlink" href="#modbus-rtu-frame-format" title="Permalink to this heading">¶</a></h3>
+<section id="modbus-rtu-frame-format">
+<h3>Modbus RTU frame format<a class="headerlink" href="#modbus-rtu-frame-format" title="Link to this heading">¶</a></h3>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -282,9 +280,9 @@ ip addr add <span class="m">111</span>.222.0.10/24 broadcast + dev ep.40
 <td>At least 3+1⁄2 character times (28 bits) of silence (mark condition) between frames</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="linux-driver">
-<h3>Linux driver<a class="headerlink" href="#linux-driver" title="Permalink to this heading">¶</a></h3>
+</table></section>
+<section id="linux-driver">
+<h3>Linux driver<a class="headerlink" href="#linux-driver" title="Link to this heading">¶</a></h3>
 <ul>
 <li><p>In KR260, uartlite IP in PL is patched to support RS485, by enabling/connect the DE line. To support this, there is a <strong>uartlite-rs485</strong> driver in the staging area. This driver is copy of original uartlite driver with additional advertised capability of RS485 support. No additional changes are required for the given IP patch.</p>
 <p>This new driver requires different compatibility string and hence, the original device tree node’s compatible string needs to be overwritten as below.</p>
@@ -305,14 +303,14 @@ These entries are present in the device tree by default, so no overriding is req
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="modbus-library">
-<h3>Modbus Library<a class="headerlink" href="#modbus-library" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="modbus-library">
+<h3>Modbus Library<a class="headerlink" href="#modbus-library" title="Link to this heading">¶</a></h3>
 <p><strong>libmodbus</strong> is a free software library to send/receive data according to the Modbus protocol. This library is written in C and supports RTU (serial) and TCP (Ethernet) communications. It is available on most of the platforms (OS) include Linux, FreeBSD, Mac, and Windows.</p>
 <p>Once the required communication channel is established, the library takes care of converting the regular message in the modbus format.</p>
-</div>
-<div class="section" id="application">
-<h3>Application<a class="headerlink" href="#application" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="application">
+<h3>Application<a class="headerlink" href="#application" title="Link to this heading">¶</a></h3>
 <p>To demonstrate Modbus and RS485 capability an example C application, pmdo-rs485-test is provided. The target device is modbus capable temperature sensor, connected over the pmod interface. See connection and hardware details in <a class="reference internal" href="app_deployment.html"><span class="doc">Deployment</span></a> and <a class="reference internal" href="hw_arch_platform.html"><span class="doc">Hardware Arch</span></a> sections.</p>
 <p><strong>pmod-rs485-test</strong> is the application that uses libmodbus to:</p>
 <ul class="simple">
@@ -320,18 +318,18 @@ These entries are present in the device tree by default, so no overriding is req
 <li><p>Adjust response time</p></li>
 <li><p>Read Temperature and Humidity values from the sensor</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="can-interface-and-demonstration">
-<h2>CAN Interface and Demonstration<a class="headerlink" href="#can-interface-and-demonstration" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="can-interface-and-demonstration">
+<h2>CAN Interface and Demonstration<a class="headerlink" href="#can-interface-and-demonstration" title="Link to this heading">¶</a></h2>
 <p>The platform includes support for the mcp25625 microcontroller in the Digilent PMOD CAN device,
 enabled through the quad SPI interface implemented in the PL. Controller Area Network (CAN) is a
 robust communication protocol designed to allow devices to communicate with each other. It is
 widely used in industrial applications due to its reliability and efficiency in data transmission.
 Integrating CAN with ROS environment enhances the ability to manage real-time data exchange in
 robotics and automation systems.</p>
-<div class="section" id="id1">
-<h3>Driver<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<section id="id1">
+<h3>Driver<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ul>
 <li><p>The AXI QSPI driver facilitates high-speed communication with the Quad SPI interface, which is used
 to initialize and configure the mcp25625 CAN controller.</p></li>
@@ -357,10 +355,10 @@ which provides a standardized API for CAN communication on Linux systems.
 The <a class="reference external" href="app_deployment.md#can-communication-setup-and-demonstration">CAN demonstration</a> section includes
 instructions to initialize the CAN interface, establish communication, basic examples of sending and
 receiving CAN messages.</p>
-</div>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/25034864/Xilinx+TSN+Solution">Xilinx TSN Solution</a></p></li>
 <li><p><a class="reference external" href="https://www.xilinx.com">Xilinx TSN UserGuide</a></p></li>
@@ -372,8 +370,8 @@ receiving CAN messages.</p>
 <li><p><a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842249/Uartlite+Driver">Uartlite Driver</a> (Original driver)</p></li>
 <li><p><a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/575209708/Axi-Quad+SPI">Axi-Quad SPI</a></p></li>
 </ul>
-<div class="section" id="next-steps">
-<h3>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h3>
+<section id="next-steps">
+<h3>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="hw_arch_platform.html"><span class="doc">Hardware Architecture of the Platform</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html"><span class="doc">KR260 design start page</span></a></p></li>
@@ -386,9 +384,9 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></div>
-</div>
-</div>
+--><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></section>
+</section>
+</section>
 
 
            </div>
@@ -404,7 +402,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 19, 2024.
+      <span class="lastupdated">Last updated on September 09, 2024.
       </span></p>
   </div>
 

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,14 +27,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Software Architecture of the Platform" href="sw_arch.html" />
+    <link rel="prev" title="Board Setup and Application Deployment" href="app_deployment.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -46,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KD240
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 1.0
@@ -78,10 +78,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">KD240 Applications</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../bist/bist_landing.html">BIST</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications Via TSN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../foc_motor_control_landing.html">FOC Motor Control Application</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../foc_motor_control_landing.html">FOC Motor Control Application</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../foc_motor_control_landing.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../foc_motor_control_landing.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../foc_motor_control_landing.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../foc_motor_control_landing.html#architecture">Architecture</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Hardware Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#motor-control-system">Motor Control System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-monitoring-system">Data Monitoring System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-processing-system">Data Processing System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tsn-system">TSN System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#axi-1-wire-bus-host-ip">AXI 1-wire Bus Host IP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clocks-resets-and-interrupts">Clocks, Resets, and Interrupts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resource-utilization">Resource Utilization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sw_arch.html">Software Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../foc_motor_control_landing.html#repository">Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../foc_motor_control_landing.html#other">Other</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">KD240 Tutorials</span></p>
 <ul>
@@ -105,6 +128,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../foc_motor_control_landing.html">FOC Motor Control Application</a> &raquo;</li>
       <li>Hardware Architecture of the Platform</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/docs/foc-motor-ctrl/src/hw_description.md.txt" rel="nofollow"> View page source</a>
@@ -123,10 +147,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1> Hardware Architecture of the Platform </h1> </td>
  </tr>
-</table><div class="section" id="hardware-architecture-of-the-platform">
-<h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+</table><section id="hardware-architecture-of-the-platform">
+<h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>This section describes the design implemented in the programmable logic (PL). The following figure shows the top-level hardware architecture of the reference design.</p>
 <p><img alt="Hardware Architecture block diagram" src="../../../_images/hw_arch.png" /></p>
 <p>At a high-level, the design is comprised of a motor control system, a data monitoring system, a data processing system, and a communication system.</p>
@@ -163,175 +187,175 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li><p>1-Wire Bus Host: This interface can be used to read an external 1-Wire device, such as a temperature sensor.</p></li>
 </ul>
-</div>
-<div class="section" id="motor-control-system">
-<h2>Motor Control System<a class="headerlink" href="#motor-control-system" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="qei">
-<h3>QEI<a class="headerlink" href="#qei" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="motor-control-system">
+<h2>Motor Control System<a class="headerlink" href="#motor-control-system" title="Link to this heading">¶</a></h2>
+<section id="qei">
+<h3>QEI<a class="headerlink" href="#qei" title="Link to this heading">¶</a></h3>
 <p>The QEI module from the Vitis Motor Control Library reads the encoder on the motor and provides the data to the FOC block.</p>
 <p>For more information, visit <a class="reference external" href="https://docs.xilinx.com/r/en-US/Vitis_Libraries/motor_control/index.html">Vitis Libraries Documentation</a>.</p>
-</div>
-<div class="section" id="foc">
-<h3>FOC<a class="headerlink" href="#foc" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="foc">
+<h3>FOC<a class="headerlink" href="#foc" title="Link to this heading">¶</a></h3>
 <p>The FOC module from the Vitis Motor Control Library implements a sensor-based field-orientated control. The eight control modes it supports cover basic speed and torque control modes, as well as field-weakening control.</p>
 <p>For more information, visit <a class="reference external" href="https://docs.xilinx.com/r/en-US/Vitis_Libraries/motor_control/index.html">Vitis Libraries Documentation</a>.</p>
-</div>
-<div class="section" id="svpwm">
-<h3>SVPWM<a class="headerlink" href="#svpwm" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="svpwm">
+<h3>SVPWM<a class="headerlink" href="#svpwm" title="Link to this heading">¶</a></h3>
 <p>The SVPWM module from the Vitis Motor Control Library implements the front-end for Space Vector Pulse Width Modulation to calculate phase ratios for the motor.</p>
 <p>For more information, visit <a class="reference external" href="https://docs.xilinx.com/r/en-US/Vitis_Libraries/motor_control/index.html">Vitis Libraries Documentation</a>.</p>
-</div>
-<div class="section" id="pwm-gen">
-<h3>PWM Gen<a class="headerlink" href="#pwm-gen" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="pwm-gen">
+<h3>PWM Gen<a class="headerlink" href="#pwm-gen" title="Link to this heading">¶</a></h3>
 <p>The PWM Gen module from the Vitis Motor Control Library implements the back-end for Space Vector Pulse Width Modulation to generate output signals based on the ratios from SVPWM.</p>
 <p>For more information, visit <a class="reference external" href="https://docs.xilinx.com/r/en-US/Vitis_Libraries/motor_control/index.html">Vitis Libraries Documentation</a>.</p>
-</div>
-<div class="section" id="motor-control">
-<h3>Motor Control<a class="headerlink" href="#motor-control" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="motor-control">
+<h3>Motor Control<a class="headerlink" href="#motor-control" title="Link to this heading">¶</a></h3>
 <p>The motor control block collects all the fault information generated from ADC Hub and uses this information along with its own phase balance calculations on the Phase A, B, and C data to decide whether to allow the gate drivers to drive the motors.</p>
-</div>
-</div>
-<div class="section" id="data-monitoring-system">
-<h2>Data Monitoring System<a class="headerlink" href="#data-monitoring-system" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="adc-sample-control">
-<h3>ADC Sample Control<a class="headerlink" href="#adc-sample-control" title="Permalink to this heading">¶</a></h3>
+</section>
+</section>
+<section id="data-monitoring-system">
+<h2>Data Monitoring System<a class="headerlink" href="#data-monitoring-system" title="Link to this heading">¶</a></h2>
+<section id="adc-sample-control">
+<h3>ADC Sample Control<a class="headerlink" href="#adc-sample-control" title="Link to this heading">¶</a></h3>
 <p>This custom IP converts the motor pwm_sync pulse from the HLS module hls_pwm_gen to an update signal that initiates the ADC capture cycle at regular intervals. The ADC Sample Control module acts much like a phase-locked loop (PLL), in that it tries to align the ADC captures to the pwm_sync pulse and keep the ADC samples to an integer number of samples during the pwm_sync cycle.</p>
-</div>
-<div class="section" id="adc7352-interface">
-<h3>ADC7352 Interface<a class="headerlink" href="#adc7352-interface" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="adc7352-interface">
+<h3>ADC7352 Interface<a class="headerlink" href="#adc7352-interface" title="Link to this heading">¶</a></h3>
 <p>The voltage and current for DC Link and Motor Phase A, B, and C, are captured by the ADC7352 Interface IP. The IP can be configured for up to 16 channels, each with its own bit resolution.  Each channel can control one ADC7352, with its own Chip Select (CS). The KD240 Motor Control Kit uses eight channels at 12 bits resolution. DC Link ADC uses one chip select, and the Phase A/B/C Motor ADCs share another chip select for simultaneous data collection.</p>
-</div>
-<div class="section" id="adc-encoding-conversions">
-<h3>ADC Encoding Conversions<a class="headerlink" href="#adc-encoding-conversions" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="adc-encoding-conversions">
+<h3>ADC Encoding Conversions<a class="headerlink" href="#adc-encoding-conversions" title="Link to this heading">¶</a></h3>
 <p>The KD240 Motor Control Kit makes use of the AD7352 which is a unipolar ADC using USB encoding.  The DC link and stator voltages are measured and encoded without any analog offsets while the current measurements require direction. For current measurements, an instrumentation amplifier with an analog offset output is used to be able to make use of the unipolar ADC to encode both positive and negative measured currents. The following table outlines the expected mapping.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
 <th>KD240 Measurement</th>
-<th align="center">-FS Input</th>
-<th align="center">-FS Code</th>
-<th align="center">Midpoint</th>
-<th align="center">Midpt Code</th>
-<th align="center">+FS Input</th>
-<th align="center">+FS Code</th>
+<th style="text-align: center;">-FS Input</th>
+<th style="text-align: center;">-FS Code</th>
+<th style="text-align: center;">Midpoint</th>
+<th style="text-align: center;">Midpt Code</th>
+<th style="text-align: center;">+FS Input</th>
+<th style="text-align: center;">+FS Code</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>DC Link Voltage</td>
-<td align="center">0V</td>
-<td align="center">b0000</td>
-<td align="center">+18.432V</td>
-<td align="center">b1000</td>
-<td align="center">+36.864V</td>
-<td align="center">b1111</td>
+<td style="text-align: center;">0V</td>
+<td style="text-align: center;">b0000</td>
+<td style="text-align: center;">+18.432V</td>
+<td style="text-align: center;">b1000</td>
+<td style="text-align: center;">+36.864V</td>
+<td style="text-align: center;">b1111</td>
 </tr>
 <tr>
 <td>Motor Stator Voltages</td>
-<td align="center">0V</td>
-<td align="center">b0000</td>
-<td align="center">+18.432V</td>
-<td align="center">b1000</td>
-<td align="center">+36.864V</td>
-<td align="center">b1111</td>
+<td style="text-align: center;">0V</td>
+<td style="text-align: center;">b0000</td>
+<td style="text-align: center;">+18.432V</td>
+<td style="text-align: center;">b1000</td>
+<td style="text-align: center;">+36.864V</td>
+<td style="text-align: center;">b1111</td>
 </tr>
 <tr>
 <td>DC Link Current</td>
-<td align="center">0A</td>
-<td align="center">b0000</td>
-<td align="center">+10.24A</td>
-<td align="center">b1000</td>
-<td align="center">+20.48A</td>
-<td align="center">b1111</td>
+<td style="text-align: center;">0A</td>
+<td style="text-align: center;">b0000</td>
+<td style="text-align: center;">+10.24A</td>
+<td style="text-align: center;">b1000</td>
+<td style="text-align: center;">+20.48A</td>
+<td style="text-align: center;">b1111</td>
 </tr>
 <tr>
 <td>Motor Stator Current</td>
-<td align="center">-10.24A</td>
-<td align="center">b0000</td>
-<td align="center">0A</td>
-<td align="center">b1000</td>
-<td align="center">+10.24A</td>
-<td align="center">b1111</td>
+<td style="text-align: center;">-10.24A</td>
+<td style="text-align: center;">b0000</td>
+<td style="text-align: center;">0A</td>
+<td style="text-align: center;">b1000</td>
+<td style="text-align: center;">+10.24A</td>
+<td style="text-align: center;">b1111</td>
 </tr>
 </tbody>
 </table><p>For DC Link voltage and current and for motor voltages, the conversion is done in USB to BTC IP.</p>
 <p>For motor currents, the conversion is done in BOB to BTC IP.</p>
-</div>
-</div>
-<div class="section" id="data-processing-system">
-<h2>Data Processing System<a class="headerlink" href="#data-processing-system" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="adc-hub">
-<h3>ADC Hub<a class="headerlink" href="#adc-hub" title="Permalink to this heading">¶</a></h3>
+</section>
+</section>
+<section id="data-processing-system">
+<h2>Data Processing System<a class="headerlink" href="#data-processing-system" title="Link to this heading">¶</a></h2>
+<section id="adc-hub">
+<h3>ADC Hub<a class="headerlink" href="#adc-hub" title="Link to this heading">¶</a></h3>
 <p>This custom IP is the center of the processing for ADC data. It is parameterizable up to 16 channels, and each channel can be a different width. Each channel can also be treated as BTC or USB individually and can be customized to use DSP blocks or logic to implement the multipliers used for scaling the ADC data. There is also a choice for whether the channel is a Current or Voltage channel.  This information is only to help the software understand what units to use for the data it reads from the ADC Hub. The KD240 Motor Control Kit uses eight channels, 12-bits, BTC encoding, and all channels are using the DSP for multipliers.</p>
 <p>Inside the ADC Hub are several functions, which are described in the next few sections.</p>
-<div class="section" id="simple-moving-average">
-<h4>Simple Moving Average<a class="headerlink" href="#simple-moving-average" title="Permalink to this heading">¶</a></h4>
+<section id="simple-moving-average">
+<h4>Simple Moving Average<a class="headerlink" href="#simple-moving-average" title="Link to this heading">¶</a></h4>
 <p>The data from the ADCs comes into the ADC Hub and goes into the Simple Moving Average (SMA) block. If there is an offset programmed by the software, first the offset is subtracted from the raw data coming in from the ADC. The offset can be positive or negative, which will result in either a smaller or larger value, respectively.</p>
 <p>After the offset is applied, then the data is entered into a FIFO, implemented in a block RAM.  Software can program the number of taps to use for the SMA, from 1 to 128 in powers of two.  The SMA function adds each new data to the sum of the previous data until the number of samples reaches the number of taps programmed by the software. At that time, the newest sample is added to the sum, and the oldest sample is read out of the block RAM and subtracted from the sum.  The new sum is then shifted by the log2 of the tap count and becomes the output of the SMA module.</p>
 <p>There is no output from the SMA until the number of sammples has reached the number of taps. If the number of taps changes while the SMA is running, the whole datapath is reset, and the block RAM and adders are cleared. Once again, there will be no output until the new number of taps matches the number of samples received.</p>
-</div>
-<div class="section" id="q-scaler">
-<h4>Q-Scaler<a class="headerlink" href="#q-scaler" title="Permalink to this heading">¶</a></h4>
+</section>
+<section id="q-scaler">
+<h4>Q-Scaler<a class="headerlink" href="#q-scaler" title="Link to this heading">¶</a></h4>
 <p>The ADC Hub scales the averaged data in the Q-Scaler module. Software programs the scaling factor, which is then multiplied with the averaged data. This multiplier can be implemented by a DSP or by logic in the configuration of the ADC Hub, on a per-channel basis. The scaled data is converted to Q-format, with 24 total bits. The integer portion is 7 bits, the fractional portion is 16 bits, and one sign bit. This scaled value is passed to the rest of the system as an AXI4-Stream interface, with no dependence on <code class="docutils literal notranslate"><span class="pre">tready</span></code> so that the data is always the most recent value.</p>
 <p>The scaling factors used in the KD240 Motor Control Kit are in the following table.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
 <th>KD240 Measurement</th>
-<th align="center">ADC Scale Multiplier</th>
-<th align="center">ADC Scale (V/cnt)</th>
-<th align="center">Q-Format</th>
+<th style="text-align: center;">ADC Scale Multiplier</th>
+<th style="text-align: center;">ADC Scale (V/cnt)</th>
+<th style="text-align: center;">Q-Format</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>DC Link Voltage</td>
-<td align="center">1179.6480</td>
-<td align="center">0.018</td>
-<td align="center">0x00_049C</td>
+<td style="text-align: center;">1179.6480</td>
+<td style="text-align: center;">0.018</td>
+<td style="text-align: center;">0x00_049C</td>
 </tr>
 <tr>
 <td>Motor Stator Voltages</td>
-<td align="center">1179.6480</td>
-<td align="center">0.018</td>
-<td align="center">0x00_049C</td>
+<td style="text-align: center;">1179.6480</td>
+<td style="text-align: center;">0.018</td>
+<td style="text-align: center;">0x00_049C</td>
 </tr>
 <tr>
 <td>DC Link Current</td>
-<td align="center">655.3600</td>
-<td align="center">0.010</td>
-<td align="center">0x00_028F</td>
+<td style="text-align: center;">655.3600</td>
+<td style="text-align: center;">0.010</td>
+<td style="text-align: center;">0x00_028F</td>
 </tr>
 <tr>
 <td>Motor Stator Current</td>
-<td align="center">327.6800</td>
-<td align="center">0.005</td>
-<td align="center">0x00_0148</td>
+<td style="text-align: center;">327.6800</td>
+<td style="text-align: center;">0.005</td>
+<td style="text-align: center;">0x00_0148</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="motor-fault-generation">
-<h4>Motor Fault Generation<a class="headerlink" href="#motor-fault-generation" title="Permalink to this heading">¶</a></h4>
+</table></section>
+<section id="motor-fault-generation">
+<h4>Motor Fault Generation<a class="headerlink" href="#motor-fault-generation" title="Link to this heading">¶</a></h4>
 <p>The averaged and scaled data is compared against limits set by the software to determine whether a fault has occurred. Software can program over-limits and under-limits per channel. If such limits are enabled, and the scaled data exceeds these limits, then a fault will be generated.  There are over-faults and under-faults, and if enabled and triggered will result in an error being generated.</p>
 <p>Errors can only be cleared by writing a specific value to the associated clear register (one for over-fault and one for under-fault). These faults are used to generate interrupts for the ADC Hub, if interrupts are enabled. They are also used by the Motor Control module to generate the gate drive enable signal to the Gate Driver.</p>
-</div>
-<div class="section" id="register-map">
-<h4>Register Map<a class="headerlink" href="#register-map" title="Permalink to this heading">¶</a></h4>
+</section>
+<section id="register-map">
+<h4>Register Map<a class="headerlink" href="#register-map" title="Link to this heading">¶</a></h4>
 <p>The AXI Interface in the ADC Hub allows the software to control and monitor the hardware. The register map is as follows:</p>
 <p>Address Decode</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
 <th>31:12</th>
-<th align="center">11:08</th>
-<th align="center">07:00</th>
+<th style="text-align: center;">11:08</th>
+<th style="text-align: center;">07:00</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>n/a</td>
-<td align="center">Channel</td>
-<td align="center">Register Offset</td>
+<td style="text-align: center;">Channel</td>
+<td style="text-align: center;">Register Offset</td>
 </tr>
 </tbody>
 </table><p>Channel: Up to 16 Channels supported</p>
@@ -340,152 +364,152 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <thead>
 <tr>
 <th>Offset</th>
-<th align="center">Register Name</th>
-<th align="center">Signed</th>
-<th align="center">R/W</th>
-<th align="center">Bits Used</th>
-<th align="center">Reset Value</th>
+<th style="text-align: center;">Register Name</th>
+<th style="text-align: center;">Signed</th>
+<th style="text-align: center;">R/W</th>
+<th style="text-align: center;">Bits Used</th>
+<th style="text-align: center;">Reset Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0x00</td>
-<td align="center">Over Limit Value (Q8.16 Format)</td>
-<td align="center">Y</td>
-<td align="center">R/W</td>
-<td align="center">23:0</td>
-<td align="center">0x0000_0000</td>
+<td style="text-align: center;">Over Limit Value (Q8.16 Format)</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">R/W</td>
+<td style="text-align: center;">23:0</td>
+<td style="text-align: center;">0x0000_0000</td>
 </tr>
 <tr>
 <td>0x04</td>
-<td align="center">Under Limit Value (Q8.16 Format)</td>
-<td align="center">Y</td>
-<td align="center">R/W</td>
-<td align="center">23:0</td>
-<td align="center">0x0000_0000</td>
+<td style="text-align: center;">Under Limit Value (Q8.16 Format)</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">R/W</td>
+<td style="text-align: center;">23:0</td>
+<td style="text-align: center;">0x0000_0000</td>
 </tr>
 <tr>
 <td>0x08</td>
-<td align="center">Scaling Factor (Q8.16 Format)</td>
-<td align="center">Y</td>
-<td align="center">R/W</td>
-<td align="center">23:0</td>
-<td align="center">0x0000_0320</td>
+<td style="text-align: center;">Scaling Factor (Q8.16 Format)</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">R/W</td>
+<td style="text-align: center;">23:0</td>
+<td style="text-align: center;">0x0000_0320</td>
 </tr>
 <tr>
 <td>0x0C</td>
-<td align="center">Number of Taps for Averaging</td>
-<td align="center">N</td>
-<td align="center">R/W</td>
-<td align="center">8:0</td>
-<td align="center">0x0000_0004</td>
+<td style="text-align: center;">Number of Taps for Averaging</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">R/W</td>
+<td style="text-align: center;">8:0</td>
+<td style="text-align: center;">0x0000_0004</td>
 </tr>
 <tr>
 <td>0x10</td>
-<td align="center">Raw ADC Value</td>
-<td align="center">Y</td>
-<td align="center">R</td>
-<td align="center">15:0</td>
-<td align="center">0x0000_0000</td>
+<td style="text-align: center;">Raw ADC Value</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">15:0</td>
+<td style="text-align: center;">0x0000_0000</td>
 </tr>
 <tr>
 <td>0x14</td>
-<td align="center">Scaled ADC Value (Q8.16 Format)</td>
-<td align="center">Y</td>
-<td align="center">R</td>
-<td align="center">1:0</td>
-<td align="center">0x0000_0000</td>
+<td style="text-align: center;">Scaled ADC Value (Q8.16 Format)</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">1:0</td>
+<td style="text-align: center;">0x0000_0000</td>
 </tr>
 <tr>
 <td>0x18</td>
-<td align="center">Error Status</td>
-<td align="center">N</td>
-<td align="center">R</td>
-<td align="center">15:0</td>
-<td align="center">0x0000_0000</td>
+<td style="text-align: center;">Error Status</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">15:0</td>
+<td style="text-align: center;">0x0000_0000</td>
 </tr>
 <tr>
 <td>0x1C</td>
-<td align="center">Clear Over Limit Error (0x0BAD00FF)</td>
-<td align="center">N</td>
-<td align="center">R/W</td>
-<td align="center">31:0</td>
-<td align="center">0x0000_0000</td>
+<td style="text-align: center;">Clear Over Limit Error (0x0BAD00FF)</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">R/W</td>
+<td style="text-align: center;">31:0</td>
+<td style="text-align: center;">0x0000_0000</td>
 </tr>
 <tr>
 <td>0x20</td>
-<td align="center">Clear Under Limit Error (0x0BAD00FF)</td>
-<td align="center">N</td>
-<td align="center">R/W</td>
-<td align="center">31:0</td>
-<td align="center">0x0000_0000</td>
+<td style="text-align: center;">Clear Under Limit Error (0x0BAD00FF)</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">R/W</td>
+<td style="text-align: center;">31:0</td>
+<td style="text-align: center;">0x0000_0000</td>
 </tr>
 <tr>
 <td>0x24</td>
-<td align="center">Over Limit Error Enable</td>
-<td align="center">N</td>
-<td align="center">R/W</td>
-<td align="center">0:0</td>
-<td align="center">0x0000_0000</td>
+<td style="text-align: center;">Over Limit Error Enable</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">R/W</td>
+<td style="text-align: center;">0:0</td>
+<td style="text-align: center;">0x0000_0000</td>
 </tr>
 <tr>
 <td>0x28</td>
-<td align="center">Under Limit Error Enable</td>
-<td align="center">N</td>
-<td align="center">R/W</td>
-<td align="center">0:0</td>
-<td align="center">0x0000_0000</td>
+<td style="text-align: center;">Under Limit Error Enable</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">R/W</td>
+<td style="text-align: center;">0:0</td>
+<td style="text-align: center;">0x0000_0000</td>
 </tr>
 <tr>
 <td>0x2C</td>
-<td align="center">Signed (1) or Unsigned (0) Data</td>
-<td align="center">N</td>
-<td align="center">R</td>
-<td align="center">0:0</td>
-<td align="center">HW Value</td>
+<td style="text-align: center;">Signed (1) or Unsigned (0) Data</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">0:0</td>
+<td style="text-align: center;">HW Value</td>
 </tr>
 <tr>
 <td>0x30</td>
-<td align="center">Voltage (1) or Current (0) Channel</td>
-<td align="center">N</td>
-<td align="center">R</td>
-<td align="center">0:0</td>
-<td align="center">HW Value</td>
+<td style="text-align: center;">Voltage (1) or Current (0) Channel</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">0:0</td>
+<td style="text-align: center;">HW Value</td>
 </tr>
 <tr>
 <td>0x34</td>
-<td align="center">Total Number of Channels used in Hub</td>
-<td align="center">N</td>
-<td align="center">R</td>
-<td align="center">3:0</td>
-<td align="center">HW Value</td>
+<td style="text-align: center;">Total Number of Channels used in Hub</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">3:0</td>
+<td style="text-align: center;">HW Value</td>
 </tr>
 <tr>
 <td>0x38</td>
-<td align="center">IRQ Disable</td>
-<td align="center">N</td>
-<td align="center">R/W</td>
-<td align="center">0:0</td>
-<td align="center">0x0000_0000</td>
+<td style="text-align: center;">IRQ Disable</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">R/W</td>
+<td style="text-align: center;">0:0</td>
+<td style="text-align: center;">0x0000_0000</td>
 </tr>
 <tr>
 <td>0x3C</td>
-<td align="center">ADC Offset</td>
-<td align="center">N</td>
-<td align="center">R/W</td>
-<td align="center">31:0</td>
-<td align="center">0x0000_0000</td>
+<td style="text-align: center;">ADC Offset</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">R/W</td>
+<td style="text-align: center;">31:0</td>
+<td style="text-align: center;">0x0000_0000</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-</div>
-<div class="section" id="tsn-system">
-<h2>TSN System<a class="headerlink" href="#tsn-system" title="Permalink to this heading">¶</a></h2>
+</table></section>
+</section>
+</section>
+<section id="tsn-system">
+<h2>TSN System<a class="headerlink" href="#tsn-system" title="Link to this heading">¶</a></h2>
 <p>The following figure shows the blocks in the TSN System.</p>
 <p><img alt="TSN System block diagram" src="../../../_images/TSN_kd240.png" /></p>
-<div class="section" id="tsn-ip">
-<h3>TSN IP<a class="headerlink" href="#tsn-ip" title="Permalink to this heading">¶</a></h3>
+<section id="tsn-ip">
+<h3>TSN IP<a class="headerlink" href="#tsn-ip" title="Link to this heading">¶</a></h3>
 <p>The LogiCORE™ 100M/1G TSN Subsystem IP implements IEEE 802.1 Time Sensitive Networking (TSN) standards and provides a low latency bridged endpoint. The bridged endpoint solution consists of a 3-port switch, two ports connects to the network and one port connects to an internal endpoint. In this design, reduced gigabit media independent interface
 (RGMII) interfaces connect to a Marvel physical-side interface (PHY) supporting a maximum bandwidth of 1 Gbps. The TSN IP is configured to support:</p>
 <ul class="simple">
@@ -499,56 +523,56 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div><p>*<strong>NOTE:</strong> You will need access to <a class="reference external" href="https://www.xilinx.com/member/1gtsn_doc.html">1GTSN Documentation Lounge</a> to view the document.</p>
 </div></blockquote>
-<div class="section" id="mcdma">
-<h4>MCDMA<a class="headerlink" href="#mcdma" title="Permalink to this heading">¶</a></h4>
+<section id="mcdma">
+<h4>MCDMA<a class="headerlink" href="#mcdma" title="Link to this heading">¶</a></h4>
 <p>The AXI MCDMA provides high-bandwidth direct memory access between memory (AXI Memory Mapped) and stream (AXI4-Stream) target peripherals. It supports both Memory Mapped to Stream (MM2S) and Stream to Memory Mapped (S2MM) transfers. The AXI MCDMA core provides a Scatter Gather (SG) interface with multiple channel support with independent configuration. In this design, the MCDMA is responsible to fetch Best Effort traffic for transmission by the TSN IP. It reads frames from the DDR memory and passes the data to the TSN IP on an AXI4-Stream interface. It is also responsible for writing the Schedule traffic and Best Effort traffic frames received from the TSN IP to the memory. The IP uses the S_AXI_HP0_FPD on the AMD Zynq™ UltraScale+™ MPSoC Processing System (PS) IP to read/write from/to DDR memory.</p>
 <p>For more information on the IP, refer to the <em>AXI MCDMA LogiCORE IP Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/v/u/en-US/pg288-axi-mcdma">PG288</a>).</p>
-</div>
-<div class="section" id="tadma">
-<h4>TADMA<a class="headerlink" href="#tadma" title="Permalink to this heading">¶</a></h4>
+</section>
+<section id="tadma">
+<h4>TADMA<a class="headerlink" href="#tadma" title="Link to this heading">¶</a></h4>
 <p>TADMA is aware of QBV schedule cycles, stream time slots, and by using PTP
 generated time, it is capable of fetching frames for different streams/traffic classes from the system memory (DDR) at precisely required time, providing excellent time precision for TSN traffic. In this design, TADMA fetches scheduled traffic from memory, based on the Qbv programming and passed it to the TSN IP for transmission.</p>
 <p>For more information on the IP, refer to the <em>Time Aware DMA Product Guide</em> (<a class="reference external" href="https://www.xilinx.com/content/dam/xilinx/member/1gtsn/2018_2/pg316-tadma.pdf">PG316</a>).</p>
 <blockquote>
 <div><p><strong>NOTE:</strong> You will need access to the <a class="reference external" href="https://www.xilinx.com/member/1gtsn_doc.html">1GTSN Documentation Lounge</a> to view the above document.</p>
 </div></blockquote>
-</div>
-<div class="section" id="test-pmod-controller">
-<h4>Test PMOD Controller<a class="headerlink" href="#test-pmod-controller" title="Permalink to this heading">¶</a></h4>
+</section>
+<section id="test-pmod-controller">
+<h4>Test PMOD Controller<a class="headerlink" href="#test-pmod-controller" title="Link to this heading">¶</a></h4>
 <p>The Test PMOD controller is a user IP that drives the <a class="reference external" href="https://digilent.com/shop/pmod-tph2-12-pin-test-point-header/">Digilent Test PMOD</a> pins. The IP implements the following registers.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Register Offset</th>
-<th align="left">Register Name</th>
-<th align="left">Description</th>
+<th style="text-align: left;">Register Offset</th>
+<th style="text-align: left;">Register Name</th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">0x00</td>
-<td align="left">slv_reg0</td>
-<td align="left">Bit0 is a MUX enable. If 1, then drive Qbv signals on PMOD. If 0, drive TSN publisher/subscriber 8-bit signatures</td>
+<td style="text-align: left;">0x00</td>
+<td style="text-align: left;">slv_reg0</td>
+<td style="text-align: left;">Bit0 is a MUX enable. If 1, then drive Qbv signals on PMOD. If 0, drive TSN publisher/subscriber 8-bit signatures</td>
 </tr>
 <tr>
-<td align="left">0x04</td>
-<td align="left">slv_reg1</td>
-<td align="left">8-bit signature when publisher 1 transmits a TSN frame</td>
+<td style="text-align: left;">0x04</td>
+<td style="text-align: left;">slv_reg1</td>
+<td style="text-align: left;">8-bit signature when publisher 1 transmits a TSN frame</td>
 </tr>
 <tr>
-<td align="left">0x08</td>
-<td align="left">slv_reg2</td>
-<td align="left">8-bit signature when subscriber 1 receives a TSN frame</td>
+<td style="text-align: left;">0x08</td>
+<td style="text-align: left;">slv_reg2</td>
+<td style="text-align: left;">8-bit signature when subscriber 1 receives a TSN frame</td>
 </tr>
 <tr>
-<td align="left">0x0c</td>
-<td align="left">slv_reg3</td>
-<td align="left">8-bit signature when publisher 2 transmits a TSN frame</td>
+<td style="text-align: left;">0x0c</td>
+<td style="text-align: left;">slv_reg3</td>
+<td style="text-align: left;">8-bit signature when publisher 2 transmits a TSN frame</td>
 </tr>
 <tr>
-<td align="left">0x10</td>
-<td align="left">slv_reg4</td>
-<td align="left">8-bit signature when subscriber 2 receives a TSN frame</td>
+<td style="text-align: left;">0x10</td>
+<td style="text-align: left;">slv_reg4</td>
+<td style="text-align: left;">8-bit signature when subscriber 2 receives a TSN frame</td>
 </tr>
 </tbody>
 </table><p>The TSN application can support multiple publishers and subscribers. When the publisher queues up a packet for transmission, it writes a unique 8-bit word to <code class="docutils literal notranslate"><span class="pre">slv_reg*</span></code>, which is then transmitted on the PMOD pins. Similarly when the subscriber receives a packet, it writes a unique 8-bit word to <code class="docutils literal notranslate"><span class="pre">slv_reg*</span></code> which is then transmitted on the PMOD pins. The PMOD pins of the publisher and subscriber are hooked up to a scope and are used to measure end to end application latency. The TSN pub sub application sets the MUX (<code class="docutils literal notranslate"><span class="pre">slv_reg0</span></code>) to 0 before writing the signature value. The following figure shows the mapping on the PMOD pins when MUX is set to 0 and 1.</p>
@@ -556,286 +580,289 @@ generated time, it is capable of fetching frames for different streams/traffic c
 <p>To view scheduled and best effort traffic, the MUX value is set to 1. If the Qbv schedule is set, for example, a time slot is programmed with 70% scheduled traffic and 30% best effort traffic, then viewing <code class="docutils literal notranslate"><span class="pre">tlast</span></code> signal of received scheduled traffic and <code class="docutils literal notranslate"><span class="pre">tlast</span></code> signal of received best effort traffic on a scope will confirm that Qbv is working as expected. <code class="docutils literal notranslate"><span class="pre">tlast</span></code> indicates the end of a packet. Transmit signals can also be monitored, but these signals are the on the outside of the TSN IP and the traffic is yet to be scheduled.</p>
 <p>The other signal which is monitored to see if the Transmitter and Receiver clocks are in sync is the PTP clock.</p>
 <p>For more information on how to use PMOD signals to check clock synchronization and to measure latency and confirm Qbv programming, refer to <a class="reference internal" href="app_deployment.html"><span class="doc">application deployment page</span></a>.</p>
-</div>
-</div>
-</div>
-<div class="section" id="axi-1-wire-bus-host-ip">
-<h2>AXI 1-wire Bus Host IP<a class="headerlink" href="#axi-1-wire-bus-host-ip" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="axi-1-wire-bus-host-ip">
+<h2>AXI 1-wire Bus Host IP<a class="headerlink" href="#axi-1-wire-bus-host-ip" title="Link to this heading">¶</a></h2>
 <p>The AXI 1-Wire Host provides a 1-Wire bus controller interface to an AXI4-Lite interface. It supports the 1-Wire bus protocol with support for the essential 1-Wire bus master signals. The AXI 1-Wire Host contains a 1-Wire Host Core Controller, which guarantees protocol timing for driving off-board devices. It can be configured to generate an interrupt when the controller completes the signal instruction cycle. The AXI 1-Wire Host can be configured to bypass the 1-Wire Host Core Controller to manipulate the 1-Wire bus as a general purpose I/O (GPIO).</p>
 <p>Information on how to use the AXI 1-Wire IP can be found on <a class="reference external" href="https://github.com/Xilinx/axi_1wire_host-design">GitHub</a>.</p>
-</div>
-<div class="section" id="clocks-resets-and-interrupts">
-<h2>Clocks, Resets, and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="clocks">
-<h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="clocks-resets-and-interrupts">
+<h2>Clocks, Resets, and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Link to this heading">¶</a></h2>
+<section id="clocks">
+<h3>Clocks<a class="headerlink" href="#clocks" title="Link to this heading">¶</a></h3>
 <p>The following table identifies the main clocks of the PL design, their source, their clock frequency, and their function.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Clock</th>
-<th align="center">Clock Source</th>
-<th align="center">Clock Frequency</th>
-<th align="left">Function</th>
+<th style="text-align: left;">Clock</th>
+<th style="text-align: center;">Clock Source</th>
+<th style="text-align: center;">Clock Frequency</th>
+<th style="text-align: left;">Function</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">pl_clk0</td>
-<td align="center">PS</td>
-<td align="center">100 MHz</td>
-<td align="left">Clock source for clocking wizard (clk_wiz_0)</td>
+<td style="text-align: left;">pl_clk0</td>
+<td style="text-align: center;">PS</td>
+<td style="text-align: center;">100 MHz</td>
+<td style="text-align: left;">Clock source for clocking wizard (clk_wiz_0)</td>
 </tr>
 <tr>
-<td align="left">clk_out_100M</td>
-<td align="center">clk_wiz_0</td>
-<td align="center">100 MHz</td>
-<td align="left">Clock for data on CIPS port M_AXI_HPM0_FPD and most of the system</td>
+<td style="text-align: left;">clk_out_100M</td>
+<td style="text-align: center;">clk_wiz_0</td>
+<td style="text-align: center;">100 MHz</td>
+<td style="text-align: left;">Clock for data on CIPS port M_AXI_HPM0_FPD and most of the system</td>
 </tr>
 <tr>
-<td align="left">clk_out_48M</td>
-<td align="center">clk_wiz_0</td>
-<td align="center">48 MHz</td>
-<td align="left">Clock for SCLK to ADC and ADC7352 Interface Module</td>
+<td style="text-align: left;">clk_out_48M</td>
+<td style="text-align: center;">clk_wiz_0</td>
+<td style="text-align: center;">48 MHz</td>
+<td style="text-align: left;">Clock for SCLK to ADC and ADC7352 Interface Module</td>
 </tr>
 <tr>
-<td align="left">CLK_IN_gem</td>
-<td align="center">External Pin</td>
-<td align="center">25 MHz</td>
-<td align="left">Clock for TSN Subsystem clocking wizard (clk_wiz_0) generating clocks</td>
+<td style="text-align: left;">CLK_IN_gem</td>
+<td style="text-align: center;">External Pin</td>
+<td style="text-align: center;">25 MHz</td>
+<td style="text-align: left;">Clock for TSN Subsystem clocking wizard (clk_wiz_0) generating clocks</td>
 </tr>
 <tr>
-<td align="left">clk_out1</td>
-<td align="center">TSN clk_wiz_0</td>
-<td align="center">200 MHz</td>
-<td align="left">TSN IP fifo clock, TADMA IP and MCDMA IP data transactions clock</td>
+<td style="text-align: left;">clk_out1</td>
+<td style="text-align: center;">TSN clk_wiz_0</td>
+<td style="text-align: center;">200 MHz</td>
+<td style="text-align: left;">TSN IP fifo clock, TADMA IP and MCDMA IP data transactions clock</td>
 </tr>
 <tr>
-<td align="left">clk_out2</td>
-<td align="center">TSN clk_wiz_0</td>
-<td align="center">125 MHz</td>
-<td align="left">TSN IP and TADMA IP Real Time clock (RTC) for internal timers for time sensitivity</td>
+<td style="text-align: left;">clk_out2</td>
+<td style="text-align: center;">TSN clk_wiz_0</td>
+<td style="text-align: center;">125 MHz</td>
+<td style="text-align: left;">TSN IP and TADMA IP Real Time clock (RTC) for internal timers for time sensitivity</td>
 </tr>
 <tr>
-<td align="left">clk_out3</td>
-<td align="center">TSN clk_wiz_0</td>
-<td align="center">300 MHz</td>
-<td align="left">reference clock for IDELAY control block for PHY operation on TSN IP</td>
+<td style="text-align: left;">clk_out3</td>
+<td style="text-align: center;">TSN clk_wiz_0</td>
+<td style="text-align: center;">300 MHz</td>
+<td style="text-align: left;">reference clock for IDELAY control block for PHY operation on TSN IP</td>
 </tr>
 <tr>
-<td align="left">clk_out4</td>
-<td align="center">TSN clk_wiz_0</td>
-<td align="center">100 MHz</td>
-<td align="left">AXI4-Lite clock to configure TSN IP, MCDMA IP, and Register interface IP</td>
+<td style="text-align: left;">clk_out4</td>
+<td style="text-align: center;">TSN clk_wiz_0</td>
+<td style="text-align: center;">100 MHz</td>
+<td style="text-align: left;">AXI4-Lite clock to configure TSN IP, MCDMA IP, and Register interface IP</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="resets">
-<h3>Resets<a class="headerlink" href="#resets" title="Permalink to this heading">¶</a></h3>
+</table></section>
+<section id="resets">
+<h3>Resets<a class="headerlink" href="#resets" title="Link to this heading">¶</a></h3>
 <p>The following table summarizes the resets used in this design.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Reset Source</th>
-<th align="left">Function</th>
+<th style="text-align: left;">Reset Source</th>
+<th style="text-align: left;">Function</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">pl_resetn0</td>
-<td align="left">PL reset for proc_sys_reset modules and TSN Subsystem</td>
+<td style="text-align: left;">pl_resetn0</td>
+<td style="text-align: left;">PL reset for proc_sys_reset modules and TSN Subsystem</td>
 </tr>
 <tr>
-<td align="left">proc_sys_reset_0</td>
-<td align="left">Synchronous resets for clk_out_100M clock domain</td>
+<td style="text-align: left;">proc_sys_reset_0</td>
+<td style="text-align: left;">Synchronous resets for clk_out_100M clock domain</td>
 </tr>
 <tr>
-<td align="left">proc_sys_reset_1</td>
-<td align="left">Synchronous resets for clk_out_48M clock domain</td>
+<td style="text-align: left;">proc_sys_reset_1</td>
+<td style="text-align: left;">Synchronous resets for clk_out_48M clock domain</td>
 </tr>
 <tr>
-<td align="left">TSN Phy_reset_n</td>
-<td align="left">Reset for External Phy (tied high)</td>
+<td style="text-align: left;">TSN Phy_reset_n</td>
+<td style="text-align: left;">Reset for External Phy (tied high)</td>
 </tr>
 <tr>
-<td align="left">TSN rst_clk_wiz_0_100M</td>
-<td align="left">Synchronous Reset for clk_out100M clock domain</td>
+<td style="text-align: left;">TSN rst_clk_wiz_0_100M</td>
+<td style="text-align: left;">Synchronous Reset for clk_out100M clock domain</td>
 </tr>
 <tr>
-<td align="left">TSN rst_clk_wiz_0_125M</td>
-<td align="left">Synchronous Reset for clk_out125M clock domain</td>
+<td style="text-align: left;">TSN rst_clk_wiz_0_125M</td>
+<td style="text-align: left;">Synchronous Reset for clk_out125M clock domain</td>
 </tr>
 <tr>
-<td align="left">TSN rst_clk_wiz_0_200M</td>
-<td align="left">Synchronous Reset for clk_out200M clock domain</td>
+<td style="text-align: left;">TSN rst_clk_wiz_0_200M</td>
+<td style="text-align: left;">Synchronous Reset for clk_out200M clock domain</td>
 </tr>
 <tr>
-<td align="left">TSN rst_clk_wiz_0_300M</td>
-<td align="left">Synchronous Reset for clk_out300M clock domain</td>
+<td style="text-align: left;">TSN rst_clk_wiz_0_300M</td>
+<td style="text-align: left;">Synchronous Reset for clk_out300M clock domain</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="interrupts">
-<h3>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this heading">¶</a></h3>
+</table></section>
+<section id="interrupts">
+<h3>Interrupts<a class="headerlink" href="#interrupts" title="Link to this heading">¶</a></h3>
 <p>The following table lists the PL-to-PS interrupts used in this design.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Interrupt ID</th>
-<th align="left">Instance</th>
+<th style="text-align: left;">Interrupt ID</th>
+<th style="text-align: left;">Instance</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">pl_ps_irq0[0]</td>
-<td align="left">ADC Hub IP</td>
+<td style="text-align: left;">pl_ps_irq0[0]</td>
+<td style="text-align: left;">ADC Hub IP</td>
 </tr>
 <tr>
-<td align="left">pl_ps_irq0[1]</td>
-<td align="left">Motor Control IP</td>
+<td style="text-align: left;">pl_ps_irq0[1]</td>
+<td style="text-align: left;">Motor Control IP</td>
 </tr>
 <tr>
-<td align="left">pl_ps_irq0[2]</td>
-<td align="left">AXI Quad SPI 0 IP</td>
+<td style="text-align: left;">pl_ps_irq0[2]</td>
+<td style="text-align: left;">AXI Quad SPI 0 IP</td>
 </tr>
 <tr>
-<td align="left">pl_ps_irq0[3]</td>
-<td align="left">HLS QEI IP</td>
+<td style="text-align: left;">pl_ps_irq0[3]</td>
+<td style="text-align: left;">HLS QEI IP</td>
 </tr>
 <tr>
-<td align="left">pl_ps_irq0[4]</td>
-<td align="left">HLS FOC IP</td>
+<td style="text-align: left;">pl_ps_irq0[4]</td>
+<td style="text-align: left;">HLS FOC IP</td>
 </tr>
 <tr>
-<td align="left">pl_ps_irq0[5]</td>
-<td align="left">HLS SVPWM Duty IP</td>
+<td style="text-align: left;">pl_ps_irq0[5]</td>
+<td style="text-align: left;">HLS SVPWM Duty IP</td>
 </tr>
 <tr>
-<td align="left">pl_ps_irq0[6]</td>
-<td align="left">HLS PWM Gen IP</td>
+<td style="text-align: left;">pl_ps_irq0[6]</td>
+<td style="text-align: left;">HLS PWM Gen IP</td>
 </tr>
 <tr>
-<td align="left">pl_ps_irq0[7]</td>
-<td align="left">TSN Subsystem</td>
+<td style="text-align: left;">pl_ps_irq0[7]</td>
+<td style="text-align: left;">TSN Subsystem</td>
 </tr>
 <tr>
-<td align="left">pl_ps_irq1[0]</td>
-<td align="left">AXI 1-Wire IP</td>
+<td style="text-align: left;">pl_ps_irq1[0]</td>
+<td style="text-align: left;">AXI 1-Wire IP</td>
 </tr>
 </tbody>
 </table><p>The TSN Subsystem interrupts are itemized in the following table.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Interrupt ID</th>
-<th align="left">Instance</th>
+<th style="text-align: left;">Interrupt ID</th>
+<th style="text-align: left;">Instance</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">intr[0-7]</td>
-<td align="left">TSN IP</td>
+<td style="text-align: left;">intr[0-7]</td>
+<td style="text-align: left;">TSN IP</td>
 </tr>
 <tr>
-<td align="left">intr[8]</td>
-<td align="left">TADMA IP</td>
+<td style="text-align: left;">intr[8]</td>
+<td style="text-align: left;">TADMA IP</td>
 </tr>
 <tr>
-<td align="left">intr[9-14]</td>
-<td align="left">MCDMA IP</td>
+<td style="text-align: left;">intr[9-14]</td>
+<td style="text-align: left;">MCDMA IP</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="resource-utilization">
-<h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this heading">¶</a></h2>
+</table></section>
+</section>
+<section id="resource-utilization">
+<h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Link to this heading">¶</a></h2>
 <p>The resource utilization numbers on this platform post implementation is reported in the following table.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Resource</th>
-<th align="left">Utilization</th>
-<th align="left">Available</th>
-<th align="left">Utilization %</th>
+<th style="text-align: left;">Resource</th>
+<th style="text-align: left;">Utilization</th>
+<th style="text-align: left;">Available</th>
+<th style="text-align: left;">Utilization %</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">LUT</td>
-<td align="left">57008</td>
-<td align="left">70560</td>
-<td align="left">80.79</td>
+<td style="text-align: left;">LUT</td>
+<td style="text-align: left;">57008</td>
+<td style="text-align: left;">70560</td>
+<td style="text-align: left;">80.79</td>
 </tr>
 <tr>
-<td align="left">LUTRAM</td>
-<td align="left">2996</td>
-<td align="left">28800</td>
-<td align="left">10.40</td>
+<td style="text-align: left;">LUTRAM</td>
+<td style="text-align: left;">2996</td>
+<td style="text-align: left;">28800</td>
+<td style="text-align: left;">10.40</td>
 </tr>
 <tr>
-<td align="left">FF</td>
-<td align="left">81183</td>
-<td align="left">141120</td>
-<td align="left">57.53</td>
+<td style="text-align: left;">FF</td>
+<td style="text-align: left;">81183</td>
+<td style="text-align: left;">141120</td>
+<td style="text-align: left;">57.53</td>
 </tr>
 <tr>
-<td align="left">BRAM</td>
-<td align="left">116</td>
-<td align="left">216</td>
-<td align="left">53.70</td>
+<td style="text-align: left;">BRAM</td>
+<td style="text-align: left;">116</td>
+<td style="text-align: left;">216</td>
+<td style="text-align: left;">53.70</td>
 </tr>
 <tr>
-<td align="left">DSP</td>
-<td align="left">136</td>
-<td align="left">360</td>
-<td align="left">37.78</td>
+<td style="text-align: left;">DSP</td>
+<td style="text-align: left;">136</td>
+<td style="text-align: left;">360</td>
+<td style="text-align: left;">37.78</td>
 </tr>
 <tr>
-<td align="left">IO</td>
-<td align="left">64</td>
-<td align="left">81</td>
-<td align="left">79.01</td>
+<td style="text-align: left;">IO</td>
+<td style="text-align: left;">64</td>
+<td style="text-align: left;">81</td>
+<td style="text-align: left;">79.01</td>
 </tr>
 <tr>
-<td align="left">BUFG</td>
-<td align="left">17</td>
-<td align="left">196</td>
-<td align="left">8.67</td>
+<td style="text-align: left;">BUFG</td>
+<td style="text-align: left;">17</td>
+<td style="text-align: left;">196</td>
+<td style="text-align: left;">8.67</td>
 </tr>
 <tr>
-<td align="left">MMCM</td>
-<td align="left">2</td>
-<td align="left">3</td>
-<td align="left">66.67</td>
+<td style="text-align: left;">MMCM</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">66.67</td>
 </tr>
 <tr>
-<td align="left">PLL</td>
-<td align="left">0</td>
-<td align="left">6</td>
-<td align="left">0.00</td>
+<td style="text-align: left;">PLL</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">0.00</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+</table></section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="sw_arch.html"><span class="doc">Software Archicture</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="../foc_motor_control_landing.html"><span class="doc">KD240 FOC Motor Control Landing Page</span></a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
           </div>
           
 				  
-				  <footer>
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="app_deployment.html" class="btn btn-neutral float-left" title="Board Setup and Application Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sw_arch.html" class="btn btn-neutral float-right" title="Software Architecture of the Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 19, 2024.
+      <span class="lastupdated">Last updated on September 09, 2024.
       </span></p>
   </div>
 
