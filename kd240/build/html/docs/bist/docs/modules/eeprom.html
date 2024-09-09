@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../index.html" class="icon icon-home"> Kria™ KD240
-            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 1.0
@@ -149,15 +147,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="bist-eeprom-test-module">
-<h1>BIST EEPROM Test Module<a class="headerlink" href="#bist-eeprom-test-module" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+  <section id="bist-eeprom-test-module">
+<h1>BIST EEPROM Test Module<a class="headerlink" href="#bist-eeprom-test-module" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>The EEPROM module tests the EEPROM on the SOM and the carrier card by reading
 its contents and verifying the data that is read.</p>
-</div>
-<div class="section" id="tests">
-<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading">¶</a></h2>
 <p>There are two tests for each board, one for the SOM and the other for the carrier
 card. Both tests are self-validating functional tests. The tests use the
 ipmi-fru utility to read FRU data from a given file and print it to the
@@ -170,27 +168,27 @@ value is read and determine if a test passed or failed.</p>
 <li><p>field: The FRU field used to validate the read data</p></li>
 <li><p>value: The expected value that should be in the FRU field</p></li>
 </ul>
-</div>
-<div class="section" id="test-execution">
-<h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="test-execution">
+<h2>Test Execution<a class="headerlink" href="#test-execution" title="Link to this heading">¶</a></h2>
 <p>The example commands for this module are provided below (KV260):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3 --board kv260 -m eeprom		// Run all tests <span class="k">in</span> this module
-pytest-3 --board kv260 -k som_eeprom		// Run som_eeprom <span class="nb">test</span>
-pytest-3 --board kv260 -k carrier_card_eeprom	// Run carrier_card_eeprom <span class="nb">test</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-m<span class="w"> </span>eeprom<span class="w">		</span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-k<span class="w"> </span>som_eeprom<span class="w">		</span>//<span class="w"> </span>Run<span class="w"> </span>som_eeprom<span class="w"> </span><span class="nb">test</span>
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-k<span class="w"> </span>carrier_card_eeprom<span class="w">	</span>//<span class="w"> </span>Run<span class="w"> </span>carrier_card_eeprom<span class="w"> </span><span class="nb">test</span>
 </pre></div>
 </div>
 <p>These tests print out all the FRU Data and each test is pass if the
 “FRU Board Product Name” contains the value in the test config.</p>
-</div>
-<div class="section" id="test-debug">
-<h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="test-debug">
+<h2>Test Debug<a class="headerlink" href="#test-debug" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>If one of the EEPROM tests fails, the FRU data can be verified manually using
 ipmi-fru.</p></li>
 </ul>
-</div>
-<div class="section" id="known-issues-and-limitations">
-<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="known-issues-and-limitations">
+<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The EEPROM tests are limited to verifying a value in the “FRU Board Product
 Name” field.</p></li>
@@ -198,14 +196,14 @@ Name” field.</p></li>
 area checksum error. If this is observed, the EEPROM output should be
 verified manually.</p></li>
 </ul>
-</div>
-<div class="section" id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
-<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -221,7 +219,7 @@ verified manually.</p></li>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 19, 2024.
+      <span class="lastupdated">Last updated on September 09, 2024.
       </span></p>
   </div>
 

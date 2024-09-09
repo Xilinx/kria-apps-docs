@@ -87,8 +87,8 @@ Testing was performed with the following artifacts:
 | Component                      | Version                    |
 |--------------------------------|----------------------------|
 | Boot Firmware                  | K24-BootFW-01.01           |
-| Linux Kernel                   | 5.15.0-1027-xilinx-zynqmp  |
-| xlnx-firmware-kd240-motor-ctrl | 0.10.1-0xlnx1              |
+| Linux Kernel                   | 5.15.0-1030-xilinx-zynqmp  |
+| xlnx-firmware-kd240-motor-ctrl | 0.12-0xlnx2                |
 
 To obtain the latest Linux image and boot firmware, refer to the [Kria Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates).
 
@@ -96,7 +96,7 @@ To obtain the latest Linux image and boot firmware, refer to the [Kria Wiki](htt
 
 | Package                        | Version      |
 |--------------------------------|--------------|
-| xlnx-app-kd240-foc-motor-ctrl  | 0.3.1-0xlnx5 |
+| xlnx-app-kd240-foc-motor-ctrl  | 0.4-0xlnx1   |
 
 ### Initial Setup
 
@@ -126,6 +126,10 @@ To obtain the latest Linux image and boot firmware, refer to the [Kria Wiki](htt
    * Install the motor control application.
 
       ```bash
+      # Add lely PPA for lely-core libraries
+      sudo add-apt-repository ppa:lely/ppa
+      sudo apt-get update
+
       sudo apt install xlnx-app-kd240-foc-motor-ctrl
       ```
 
@@ -262,7 +266,7 @@ The following images show what the dashboard looks like when a larger load is ap
   to enable to PMOD-CAN interface on KR260.
 
   ```bash
-  sudo apt install kr260-tsn-rs485pmod
+  sudo apt install xlnx-firmware-kr260-tsn-rs485pmod
   sudo xmutil unloadapp
   sudo xmutil loadapp kr260-tsn-rs485pmod
   ```
@@ -270,9 +274,15 @@ The following images show what the dashboard looks like when a larger load is ap
 * Set up the CAN interface on both the KR260 and KD240.
 
   ```bash
-  sudo ip link set can0 up type can bitrate 1000000
-  sudo ip link set can0 txqueuelen 1000
+  sudo ip link set can0 up type can bitrate 100000
+  sudo ip link set can0 txqueuelen 10000
   sudo ip link set can0 up
+  ```
+
+* Verify the CAN interface state
+
+  ```bash
+  ip -d -s link show can0
   ```
 
 * Install can-utils on both the KR260 and KD240.
@@ -303,6 +313,14 @@ The following images show what the dashboard looks like when a larger load is ap
   start_motor_server
   ```
 
+* To terminate the server
+
+  If it is required to kill the server kill fmc_canopen application
+
+  ```bash
+  sudo killall  fmc_canopen
+  ```
+
 ### On the KR260 (master)
 
 * Download the docker image on the KR260.
@@ -326,41 +344,37 @@ The following images show what the dashboard looks like when a larger load is ap
       --net=host \
       --privileged \
       --volume=/home/ubuntu/.Xauthority:/root/.Xauthority:rw \
+      --name=motor_control \
+      --rm \
       -v /tmp:/tmp \
       -v /dev:/dev \
       -v /sys:/sys \
       -v /etc/vart.conf:/etc/vart.conf \
       -v /lib/firmware/xilinx:/lib/firmware/xilinx \
       -v /run:/run \
-      -it foc-motor-ctrl-ros2-canopen-host:latest bash
+      -it xilinx/foc-motor-ctrl-ros2-canopen-host:latest bash
   ```
 
-* Make sure you are inside the docker container and source the ROS setup files.
+* Inside the container, run canopen host tests using the launch file described in the following
+  subsections. There are 2 tests:
+
+  * *Simple CiA402 system*: where host accesses motor directly using ros2_canopen 402 driver.
+  * *ROS2 Control example*: where host accesses motor over ros2_control interface.
+
+  > **Note**: Do not run both the launch files together as they will interfere in the operations. Only one test can be running at a given time.
+
+#### Run a simple CiA402 system host
+
+* In the docker run terminal start the canopen 402 host ros container using the launch file
 
   ```bash
-  source /opt/ros/humble/setup.bash
-  source /root/ros_ws/install/setup.bash
+  ros2 launch kria_motor_control kd240.system.launch.py
   ```
 
-* Start the launch file.
+* Open a new terminal, start another session of the the same container.
 
   ```bash
-  ros2 launch foc_motor kd240.launch.py
-  ```
-
-* Open a new terminal, find the docker container id, and launch another
-  session connected to the same container.
-
-  ```bash
-  docker ps       # Copy container_id from output of this command
-  docker exec -it <container_id> bash
-  ```
-
-* In the new docker session, source the ROS setup files.
-
-  ```bash
-  source /opt/ros/humble/setup.bash
-  source /root/ros_ws/install/setup.bash
+  docker exec -it motor_control bash
   ```
 
 * Check the available services and their types.
@@ -370,6 +384,7 @@ The following images show what the dashboard looks like when a larger load is ap
   ```
 
   The output should look similar to this:
+
   ```bash
   ubuntu@KR260:~$ ros2 service list -t
   /device_container_node/change_state [lifecycle_msgs/srv/ChangeState]
@@ -417,6 +432,7 @@ The following images show what the dashboard looks like when a larger load is ap
   ```
 
 * To view an interface definition, use:
+
   ```bash
   ros2 interface show <type>
   ```
@@ -424,6 +440,7 @@ The following images show what the dashboard looks like when a larger load is ap
   For example, to view the interface definition for the canopen_interfaces/srv/COTargetDouble
   type which is used for the /kd240/target service, run the command below.
   This will print the input (target) and output (success).
+
   ```bash
   ubuntu@KR260:~$ ros2 interface show canopen_interfaces/srv/COTargetDouble
   float64 target
@@ -437,43 +454,121 @@ The following images show what the dashboard looks like when a larger load is ap
   [Cia402 Driver documentation](https://ros-industrial.github.io/ros2_canopen/manual/humble/user-guide/cia402-driver.html).
 
   Reset:
+
   ```bash
   ros2 service call /kd240/nmt_reset_node std_srvs/srv/Trigger
   ```
 
   Init:
+
   ```bash
   ros2 service call /kd240/init std_srvs/srv/Trigger
   ```
 
   Change to velocity mode:
+
   ```bash
   ros2 service call /kd240/velocity_mode std_srvs/srv/Trigger
   ```
 
   Change target speed:
+
   ```bash
-  ros2 service call /kd240/target canopen_interfaces/srv/COTargetDouble "target: 800"
+  ros2 service call /kd240/target canopen_interfaces/srv/COTargetDouble "target: 3000"
   ```
 
-  Halt:
+  > **Note**: For the Anaheim motor kit, the speed range is 250 to 10000 rpm in
+  both directions. If the motor does not spin at 250 rpm, try a faster speed.
+  The minimum speed can vary by motor.
+
+#### Run a ROS2 Control based example
+
+* In the docker run terminal start the canopen 402 control system host using the launch file
+
   ```bash
-  ros2 service call /kd240/halt std_srvs/srv/Trigger
+  ros2 launch kria_motor_control kd240.ros2_control.launch.py
   ```
+
+* Open a new terminal, start another session of the the same container.
+
+  ```bash
+  docker exec -it motor_control bash
+  ```
+
+* List the available controllers using ros2 control cli utility
+
+  ```bash
+  ros2 control list_controllers
+  ```
+
+  The output should look similar to this:
+
+  ```bash
+  ubuntu@KR260:~$ ros2 control list_controllers
+  forward_velocity_controller[velocity_controllers/JointGroupVelocityController] active
+  joint_state_broadcaster[joint_state_broadcaster/JointStateBroadcaster] active
+  ```
+
+* To view the available hardware interfaces, use:
+
+  ```bash
+  ros2 control list_hardware_interfaces
+  ```
+
+  The output should look similar to this:
+  ```bash
+  ubuntu@KR260:~$ ros2 control list_hardware_interfaces
+  command interfaces
+          wheel_joint/velocity [available] [claimed]
+  state interfaces
+          wheel_joint/position
+          wheel_joint/velocity
+  ```
+
+* List the Ros2 Topics
+
+  ```bash
+  ubuntu@KR260:~$ ros2 topic list
+  /dynamic_joint_states
+  /forward_velocity_controller/commands
+  /forward_velocity_controller/transition_event
+  /joint_state_broadcaster/transition_event
+  /joint_states
+  /kd240_wheel/joint_states
+  /kd240_wheel/nmt_state
+  /kd240_wheel/rpdo
+  /kd240_wheel/tpdo
+  /parameter_events
+  /robot_description
+  /rosout
+  /tf
+  /tf_static
+  ```
+
+* Observe the live state of the system using dynamic_joint_states
+
+  ```bash
+  ros2 topic echo  /dynamic_joint_states
+  ```
+
+  This continuously updates the current state of the system and shows the position and speed of the motor.
+
+
+* Open a new terminal, start another session of the the same container.
+
+  ```bash
+  docker exec -it motor_control bash
+  ```
+
+* Update the speed of the motor using velocity controller in a new terminal
+
+  ```bash
+  ros2 topic pub --once /forward_velocity_controller/commands std_msgs/msg/Float64MultiArray "data: [5000]"
+  ```
+
+![Ro2_control_demo](./media/sw_ros2_control.png)
 
 ## Run One Wire Temperature Sensor Demo
-
-### Tested Artifacts
-
-Testing was performed with the following artifacts:
-
-#### KD240 platform Artifacts
-
-| Component                      | Version              |
-|--------------------------------|----------------------|
-| Boot Firmware                  | K24-BootFW-01.00.bin |
-| Linux Kernel                   | 5.15.0-1030          |
-| xlnx-firmware-kd240-motor-ctrl | 0.12-0xlnx1          |
 
 * In this demo, the lm-sensors utility probes the One Wire Temperature sensor, reads and displays the captured temperature value on  the serial terminal.
 
