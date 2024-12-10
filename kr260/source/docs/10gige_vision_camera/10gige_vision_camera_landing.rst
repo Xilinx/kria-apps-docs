@@ -39,7 +39,7 @@ Quick Start
 .. toctree::
    :maxdepth: 1
 
-   KR260 Starter Kit Linux Boot <../kria_starterkit_linux_boot>
+   KR260 Starter Kit Linux Boot <../linux_boot>
    Setting up the Board and Application deployment <src/app_deployment>
 
 

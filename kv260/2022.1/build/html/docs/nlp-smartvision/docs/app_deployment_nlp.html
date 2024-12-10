@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -152,23 +153,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Setting Up the Board and Application Deployment</h1> </td>
  </tr>
-</table><div class="section" id="setting-up-the-board-and-application-deployment">
+</table><section id="setting-up-the-board-and-application-deployment">
 <h1>Setting Up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document shows how to set up the board, and run the nlp-smartvision application.</p>
 <p>This guide and its prebuilt are targeted for Ubuntu® 22.04 and AMD 2022.1 toolchain. The previous version of this application (on AMD 2021.1 toolchain) targeted to PetaLinux is still available <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html">online</a>.</p>
-</div>
-<div class="section" id="booting-up-linux">
+</section>
+<section id="booting-up-linux">
 <h2>Booting Up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
-<p>Before continuing with NLP application specific instructions, if not yet done so, boot Linux with instructions from the <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> page.</p>
-</div>
-<div class="section" id="setting-up-the-board">
+<p>Before continuing with NLP application specific instructions, if not yet done so, boot Linux with instructions from the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> page.</p>
+</section>
+<section id="setting-up-the-board">
 <h2>Setting Up the Board<a class="headerlink" href="#setting-up-the-board" title="Permalink to this heading">¶</a></h2>
-</div>
-<div class="section" id="application-specific-hardware-setup">
+</section>
+<section id="application-specific-hardware-setup">
 <h2>Application Specific Hardware Setup<a class="headerlink" href="#application-specific-hardware-setup" title="Permalink to this heading">¶</a></h2>
-<p>Besides the hardware configurations required in <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> for booting Linux, AIBox application requires a 4k monitor to display up to four channels of 1080p video.</p>
+<p>Besides the hardware configurations required in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> for booting Linux, AIBox application requires a 4k monitor to display up to four channels of 1080p video.</p>
 <p><img alt="GitHub Logo" src="../../../_images/som-board.png" /></p>
 <ul>
 <li><p>Monitor:</p>
@@ -187,35 +188,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Connect the microphone to any of the USB ports. If you USB webcam has a build-in microphone, it will also acts as the USB microphone.</p>
 </li>
 </ul>
-</div>
-<div class="section" id="downloading-and-loading-the-application-firmware">
+</section>
+<section id="downloading-and-loading-the-application-firmware">
 <h2>Downloading and Loading the Application Firmware<a class="headerlink" href="#downloading-and-loading-the-application-firmware" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Download the firmware.</p>
 <ul>
 <li><p>Search the package feed for packages compatible with the KV260.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo apt search xlnx-firmware-kv260
-Sorting... Done
-Full Text Search... Done
-xlnx-firmware-kv260-aibox-reid/jammy <span class="m">0</span>.1-0xlnx1 arm64
- FPGA firmware <span class="k">for</span> Xilinx boards - kv260 aibox-reid application
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>search<span class="w"> </span>xlnx-firmware-kv260
+Sorting...<span class="w"> </span>Done
+Full<span class="w"> </span>Text<span class="w"> </span>Search...<span class="w"> </span>Done
+xlnx-firmware-kv260-aibox-reid/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+<span class="w"> </span>FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>aibox-reid<span class="w"> </span>application
 
-xlnx-firmware-kv260-benchmark-b4096/jammy <span class="m">0</span>.1-0xlnx1 arm64
- FPGA firmware <span class="k">for</span> Xilinx boards - kv260 benchmark-b4096 application
+xlnx-firmware-kv260-benchmark-b4096/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+<span class="w"> </span>FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>benchmark-b4096<span class="w"> </span>application
 
-xlnx-firmware-kv260-defect-detect/jammy <span class="m">0</span>.1-0xlnx1 arm64
- FPGA firmware <span class="k">for</span> Xilinx boards - kv260 defect-detect application
+xlnx-firmware-kv260-defect-detect/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+<span class="w"> </span>FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>defect-detect<span class="w"> </span>application
 
-xlnx-firmware-kv260-nlp-smartvision/jammy,now <span class="m">0</span>.1-0xlnx1 arm64 <span class="o">[</span>installed<span class="o">]</span>
- FPGA firmware <span class="k">for</span> Xilinx boards - kv260 nlp-smartvision application
+xlnx-firmware-kv260-nlp-smartvision/jammy,now<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64<span class="w"> </span><span class="o">[</span>installed<span class="o">]</span>
+<span class="w"> </span>FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>nlp-smartvision<span class="w"> </span>application
 
-xlnx-firmware-kv260-smartcam/jammy <span class="m">0</span>.1-0xlnx1 arm64
- FPGA firmware <span class="k">for</span> Xilinx boards - kv260 smartcam application
+xlnx-firmware-kv260-smartcam/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+<span class="w"> </span>FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>smartcam<span class="w"> </span>application
 </pre></div>
 </div>
 </li>
 <li><p>Install the firmware binaries.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install xlnx-firmware-kv260-nlp-smartvision
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>xlnx-firmware-kv260-nlp-smartvision
 </pre></div>
 </div>
 </li>
@@ -225,36 +226,36 @@ xlnx-firmware-kv260-smartcam/jammy <span class="m">0</span>.1-0xlnx1 arm64
 <p>The firmware consists of a bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.</p>
 <ul>
 <li><p>After installing the firmware, execute xmutil listapps to verify that it is captured under the listapps function and to have dfx-mgrd re-scan and register all accelerators in the firmeware directory tree.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil listapps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
 </pre></div>
 </div>
 </li>
 <li><p>Switch to a different platform for a different application.</p>
 <p>When there is already another accelerator/firmware being activated apart from xlnx-app-kv260-pmod-rs485-test, unload it first, then switch to xlnx-app-kv260-nlp-smartvision.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp
-sudo xmutil loadapp kv260-nlp-smartvision
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>kv260-nlp-smartvision
 </pre></div>
 </div>
 </li>
 </ul>
 </li>
 </ol>
-</div>
-<div class="section" id="docker-based-application-preparation">
+</section>
+<section id="docker-based-application-preparation">
 <h2>Docker Based Application Preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Pull the 2022.1 Docker image for nlp-smartvision using the following command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/nlp-smartvision:2022.1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>xilinx/nlp-smartvision:2022.1
 </pre></div>
 </div>
 <p>Once the above step is done, you can check for the available images as follows.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ docker images -a
-REPOSITORY                                                                  TAG        IMAGE ID       CREATED                  SIZE
-xilinx/nlp-smartvision                                                      <span class="m">2022</span>.1     3c16ce65624a   Less than a second ago   <span class="m">1</span>.41GB
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>docker<span class="w"> </span>images<span class="w"> </span>-a
+REPOSITORY<span class="w">                                                                  </span>TAG<span class="w">        </span>IMAGE<span class="w"> </span>ID<span class="w">       </span>CREATED<span class="w">                  </span>SIZE
+xilinx/nlp-smartvision<span class="w">                                                      </span><span class="m">2022</span>.1<span class="w">     </span>3c16ce65624a<span class="w">   </span>Less<span class="w"> </span>than<span class="w"> </span>a<span class="w"> </span>second<span class="w"> </span>ago<span class="w">   </span><span class="m">1</span>.41GB
 </pre></div>
 </div>
 <p>The storage volume on the SD card can be limited with multiple Dockers. If there are space issues, use the following command to remove the existing container:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker rmi --force &lt;other containers&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rmi<span class="w"> </span>--force<span class="w"> </span>&lt;other<span class="w"> </span>containers&gt;
 </pre></div>
 </div>
 </li>
@@ -269,19 +270,19 @@ xilinx/nlp-smartvision                                                      <spa
 </div>
 <ol>
 <li><p>Launch the Docker using the following command. You should launch the NLP Docker container as user “ubuntu” and not as other user or “sudo”:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run <span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span> <span class="se">\</span>
--h <span class="s2">&quot;xlnx-docker&quot;</span> <span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span> <span class="se">\</span>
---net<span class="o">=</span>host <span class="se">\</span>
---privileged <span class="se">\</span>
--v /tmp:/tmp <span class="se">\</span>
--v /dev:/dev <span class="se">\</span>
--v /sys:/sys <span class="se">\</span>
--v /etc/vart.conf:/etc/vart.conf <span class="se">\</span>
--v /lib/firmware/xilinx:/lib/firmware/xilinx <span class="se">\</span>
--v /run:/run <span class="se">\</span>
--it xilinx/nlp-smartvision:2022.1 bash
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
+-h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+--net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+--privileged<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/run:/run<span class="w"> </span><span class="se">\</span>
+-it<span class="w"> </span>xilinx/nlp-smartvision:2022.1<span class="w"> </span>bash
 </pre></div>
 </div>
 <p>It will launch the nlp-smartvision image in a new container.</p>
@@ -290,36 +291,36 @@ xilinx/nlp-smartvision                                                      <spa
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="run-the-application">
+</section>
+<section id="run-the-application">
 <h2>Run the Application<a class="headerlink" href="#run-the-application" title="Permalink to this heading">¶</a></h2>
 <p>There are two ways to interact with application: via Jupyter Notebook or command line.</p>
-<div class="section" id="jupyter-nntebook">
+<section id="jupyter-nntebook">
 <h3>Jupyter nNtebook<a class="headerlink" href="#jupyter-nntebook" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Launch the Jupyter Notebook with the <code class="docutils literal notranslate"><span class="pre">root</span></code> privilege using the following command:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>   jupyter lab --allow-root --notebook-dir<span class="o">=</span>/opt/xilinx/kv260-nlp-smartvision/share/notebooks/ --ip<span class="o">=</span>&lt;ip address&gt; <span class="p">&amp;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>jupyter<span class="w"> </span>lab<span class="w"> </span>--allow-root<span class="w"> </span>--notebook-dir<span class="o">=</span>/opt/xilinx/kv260-nlp-smartvision/share/notebooks/<span class="w"> </span>--ip<span class="o">=</span>&lt;ip<span class="w"> </span>address&gt;<span class="w"> </span><span class="p">&amp;</span>
 
-    // fill <span class="k">in</span> ip-address from ifconfig, eth0
+<span class="w">    </span>//<span class="w"> </span>fill<span class="w"> </span><span class="k">in</span><span class="w"> </span>ip-address<span class="w"> </span>from<span class="w"> </span>ifconfig,<span class="w"> </span>eth0
 </pre></div>
 </div>
 <p>Output example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>I <span class="m">2021</span>-08-02 <span class="m">15</span>:54:31.141 LabApp<span class="o">]</span> JupyterLab extension loaded from /usr/lib/python3.8/site-packages/jupyterlab
-<span class="o">[</span>I <span class="m">2021</span>-08-02 <span class="m">15</span>:54:31.141 LabApp<span class="o">]</span> JupyterLab application directory is /usr/share/jupyter/lab
-<span class="o">[</span>I <span class="m">2021</span>-08-02 <span class="m">15</span>:54:31.164 ServerApp<span class="o">]</span> jupyterlab <span class="p">|</span> extension was successfully loaded.
-<span class="o">[</span>I <span class="m">2021</span>-08-02 <span class="m">15</span>:54:31.166 ServerApp<span class="o">]</span> Serving notebooks from <span class="nb">local</span> directory: /opt/xilinx/kv260-nlp-smartvision/share/notebooks/
-<span class="o">[</span>I <span class="m">2021</span>-08-02 <span class="m">15</span>:54:31.166 ServerApp<span class="o">]</span> Jupyter Server <span class="m">1</span>.2.1 is running at:
-<span class="o">[</span>I <span class="m">2021</span>-08-02 <span class="m">15</span>:54:31.166 ServerApp<span class="o">]</span> http://192.168.3.123:8888/lab?token<span class="o">=</span>9f7a9cd1477e8f8226d62bc026c85df23868a1d9860eb5d5
-<span class="o">[</span>I <span class="m">2021</span>-08-02 <span class="m">15</span>:54:31.166 ServerApp<span class="o">]</span>  or http://127.0.0.1:8888/lab?token<span class="o">=</span>9f7a9cd1477e8f8226d62bc026c85df23868a1d9860eb5d5
-<span class="o">[</span>I <span class="m">2021</span>-08-02 <span class="m">15</span>:54:31.167 ServerApp<span class="o">]</span> Use Control-C to stop this server and shut down all kernels <span class="o">(</span>twice to skip confirmation<span class="o">)</span>.
-<span class="o">[</span>C <span class="m">2021</span>-08-02 <span class="m">15</span>:54:31.186 ServerApp<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-02<span class="w"> </span><span class="m">15</span>:54:31.141<span class="w"> </span>LabApp<span class="o">]</span><span class="w"> </span>JupyterLab<span class="w"> </span>extension<span class="w"> </span>loaded<span class="w"> </span>from<span class="w"> </span>/usr/lib/python3.8/site-packages/jupyterlab
+<span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-02<span class="w"> </span><span class="m">15</span>:54:31.141<span class="w"> </span>LabApp<span class="o">]</span><span class="w"> </span>JupyterLab<span class="w"> </span>application<span class="w"> </span>directory<span class="w"> </span>is<span class="w"> </span>/usr/share/jupyter/lab
+<span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-02<span class="w"> </span><span class="m">15</span>:54:31.164<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>jupyterlab<span class="w"> </span><span class="p">|</span><span class="w"> </span>extension<span class="w"> </span>was<span class="w"> </span>successfully<span class="w"> </span>loaded.
+<span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-02<span class="w"> </span><span class="m">15</span>:54:31.166<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Serving<span class="w"> </span>notebooks<span class="w"> </span>from<span class="w"> </span><span class="nb">local</span><span class="w"> </span>directory:<span class="w"> </span>/opt/xilinx/kv260-nlp-smartvision/share/notebooks/
+<span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-02<span class="w"> </span><span class="m">15</span>:54:31.166<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Jupyter<span class="w"> </span>Server<span class="w"> </span><span class="m">1</span>.2.1<span class="w"> </span>is<span class="w"> </span>running<span class="w"> </span>at:
+<span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-02<span class="w"> </span><span class="m">15</span>:54:31.166<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>http://192.168.3.123:8888/lab?token<span class="o">=</span>9f7a9cd1477e8f8226d62bc026c85df23868a1d9860eb5d5
+<span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-02<span class="w"> </span><span class="m">15</span>:54:31.166<span class="w"> </span>ServerApp<span class="o">]</span><span class="w">  </span>or<span class="w"> </span>http://127.0.0.1:8888/lab?token<span class="o">=</span>9f7a9cd1477e8f8226d62bc026c85df23868a1d9860eb5d5
+<span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-02<span class="w"> </span><span class="m">15</span>:54:31.167<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Use<span class="w"> </span>Control-C<span class="w"> </span>to<span class="w"> </span>stop<span class="w"> </span>this<span class="w"> </span>server<span class="w"> </span>and<span class="w"> </span>shut<span class="w"> </span>down<span class="w"> </span>all<span class="w"> </span>kernels<span class="w"> </span><span class="o">(</span>twice<span class="w"> </span>to<span class="w"> </span>skip<span class="w"> </span>confirmation<span class="o">)</span>.
+<span class="o">[</span>C<span class="w"> </span><span class="m">2021</span>-08-02<span class="w"> </span><span class="m">15</span>:54:31.186<span class="w"> </span>ServerApp<span class="o">]</span>
 
-    To access the server, open this file <span class="k">in</span> a browser:
-        file:///root/.local/share/jupyter/runtime/jpserver-1119-open.html
-    Or copy and paste one of these URLs:
-        http://192.168.3.123:8888/lab?token<span class="o">=</span>9f7a9cd1477e8f8226d62bc026c85df23868a1d9860eb5d5
-     or http://127.0.0.1:8888/lab?token<span class="o">=</span>9f7a9cd1477e8f8226d62bc026c85df23868a1d9860eb5d5
+<span class="w">    </span>To<span class="w"> </span>access<span class="w"> </span>the<span class="w"> </span>server,<span class="w"> </span>open<span class="w"> </span>this<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>browser:
+<span class="w">        </span>file:///root/.local/share/jupyter/runtime/jpserver-1119-open.html
+<span class="w">    </span>Or<span class="w"> </span>copy<span class="w"> </span>and<span class="w"> </span>paste<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>these<span class="w"> </span>URLs:
+<span class="w">        </span>http://192.168.3.123:8888/lab?token<span class="o">=</span>9f7a9cd1477e8f8226d62bc026c85df23868a1d9860eb5d5
+<span class="w">     </span>or<span class="w"> </span>http://127.0.0.1:8888/lab?token<span class="o">=</span>9f7a9cd1477e8f8226d62bc026c85df23868a1d9860eb5d5
 </pre></div>
 </div>
 <ul>
@@ -327,36 +328,36 @@ xilinx/nlp-smartvision                                                      <spa
 <p>In the notebook, the usage of app and the commands needed to run live usecase are explained.</p>
 </li>
 </ul>
-</div>
-<div class="section" id="command-line">
+</section>
+<section id="command-line">
 <h3>Command Line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h3>
 <p>This allows you to run the “nlp-smartvision” application on CLI. These are to be executed using the universal asynchronous receiver-transmitter (UART)/debug interface.</p>
 <p>Run the following command to launch the application for live audio input via a USB microphone.
 You need to be silent for the first few seconds (2.5s apx.) for the application to dynamically decide the noise threshold value as per your input device and environment. Once you see the following message “<em>Noise Threshold is set. You can start speaking the keywords now..</em>” you are ready to start pronouncing any of the ten keywords (Yes, No, Off, On, Up, Down, Left, Right, Stop, Go).</p>
-<div class="section" id="application-usage">
+<section id="application-usage">
 <h4>Application Usage<a class="headerlink" href="#application-usage" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Usage: nlp-smartvision <span class="o">[</span>OPTION<span class="o">]</span> <span class="o">[</span>arg1<span class="o">]</span> <span class="o">[</span>arg2<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Usage:<span class="w"> </span>nlp-smartvision<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span><span class="w"> </span><span class="o">[</span>arg1<span class="o">]</span><span class="w"> </span><span class="o">[</span>arg2<span class="o">]</span>
 
--h <span class="o">(</span>or<span class="o">)</span> --help                                    <span class="nb">help</span>
--m <span class="o">(</span>or<span class="o">)</span> --mipi &lt;isp/rpi&gt;                          <span class="nb">test</span> the application with live video from mipi cameras rpi<span class="o">(</span>default<span class="o">)</span>/isp
--u <span class="o">(</span>or<span class="o">)</span> --usb                                     <span class="nb">test</span> the application with live video from USB camera
--f <span class="o">(</span>or<span class="o">)</span> --file-audio  &lt;testing_list&gt;.txt          <span class="nb">test</span> the keyword spotting with audio files listed <span class="k">in</span> the .txt file
--t <span class="o">(</span>or<span class="o">)</span> --test &lt;sample_image&gt; &lt;model&gt;             <span class="nb">test</span> the DPU with sample images. Input is Model and sample jpeg. Supported models are densebox_640_360, yolov2_voc_pruned_0_77 <span class="p">&amp;</span> plate_detect
--v <span class="o">(</span>or<span class="o">)</span> --verbose  
+-h<span class="w"> </span><span class="o">(</span>or<span class="o">)</span><span class="w"> </span>--help<span class="w">                                    </span><span class="nb">help</span>
+-m<span class="w"> </span><span class="o">(</span>or<span class="o">)</span><span class="w"> </span>--mipi<span class="w"> </span>&lt;isp/rpi&gt;<span class="w">                          </span><span class="nb">test</span><span class="w"> </span>the<span class="w"> </span>application<span class="w"> </span>with<span class="w"> </span>live<span class="w"> </span>video<span class="w"> </span>from<span class="w"> </span>mipi<span class="w"> </span>cameras<span class="w"> </span>rpi<span class="o">(</span>default<span class="o">)</span>/isp
+-u<span class="w"> </span><span class="o">(</span>or<span class="o">)</span><span class="w"> </span>--usb<span class="w">                                     </span><span class="nb">test</span><span class="w"> </span>the<span class="w"> </span>application<span class="w"> </span>with<span class="w"> </span>live<span class="w"> </span>video<span class="w"> </span>from<span class="w"> </span>USB<span class="w"> </span>camera
+-f<span class="w"> </span><span class="o">(</span>or<span class="o">)</span><span class="w"> </span>--file-audio<span class="w">  </span>&lt;testing_list&gt;.txt<span class="w">          </span><span class="nb">test</span><span class="w"> </span>the<span class="w"> </span>keyword<span class="w"> </span>spotting<span class="w"> </span>with<span class="w"> </span>audio<span class="w"> </span>files<span class="w"> </span>listed<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>.txt<span class="w"> </span>file
+-t<span class="w"> </span><span class="o">(</span>or<span class="o">)</span><span class="w"> </span>--test<span class="w"> </span>&lt;sample_image&gt;<span class="w"> </span>&lt;model&gt;<span class="w">             </span><span class="nb">test</span><span class="w"> </span>the<span class="w"> </span>DPU<span class="w"> </span>with<span class="w"> </span>sample<span class="w"> </span>images.<span class="w"> </span>Input<span class="w"> </span>is<span class="w"> </span>Model<span class="w"> </span>and<span class="w"> </span>sample<span class="w"> </span>jpeg.<span class="w"> </span>Supported<span class="w"> </span>models<span class="w"> </span>are<span class="w"> </span>densebox_640_360,<span class="w"> </span>yolov2_voc_pruned_0_77<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>plate_detect
+-v<span class="w"> </span><span class="o">(</span>or<span class="o">)</span><span class="w"> </span>--verbose<span class="w">  </span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="run-the-app-with-default-mipi-sensor-rpi">
+</section>
+<section id="run-the-app-with-default-mipi-sensor-rpi">
 <h4>Run the App with Default MIPI Sensor (RPI)<a class="headerlink" href="#run-the-app-with-default-mipi-sensor-rpi" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nlp-smartvision -m
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nlp-smartvision<span class="w"> </span>-m
 </pre></div>
 </div>
-<p align="center"> (or) </p><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nlp-smartvision --mipi
+<p align="center"> (or) </p><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nlp-smartvision<span class="w"> </span>--mipi
 </pre></div>
 </div>
 <p>The detected keyword will be displayed on the terminal, and the corresponding action on the input video stream will be displayed on the monitor, which is connected to the board through a DP/HDMI cable.</p>
 <p>To print FPS along with the above application, use the <code class="docutils literal notranslate"><span class="pre">-v</span></code> or -<code class="docutils literal notranslate"><span class="pre">-verbose</span></code> flag shown in the following command. The FPS is measured as average over 90 consecutive frames. Also the latency of the keywords spotting and action is printed while the keyword is detected.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nlp-smartvision -m -v
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nlp-smartvision<span class="w"> </span>-m<span class="w"> </span>-v
 </pre></div>
 </div>
 <blockquote>
@@ -374,34 +375,34 @@ You need to be silent for the first few seconds (2.5s apx.) for the application 
 <li><p>Stop command resets display setting, but does not change monitor on/off mode.</p></li>
 </ul>
 </div></blockquote>
-</div>
-</div>
-</div>
-<div class="section" id="file-based-testing-and-accuracy-measurement-of-kws-only">
+</section>
+</section>
+</section>
+<section id="file-based-testing-and-accuracy-measurement-of-kws-only">
 <h2>File Based Testing and Accuracy Measurement of KWS Only<a class="headerlink" href="#file-based-testing-and-accuracy-measurement-of-kws-only" title="Permalink to this heading">¶</a></h2>
 <p>NLP SmartVision provides a mode which is dedicated for testing the accuracy of keyword spotting (no vision task is running during this mode) on pre-recorded audio files. You need to provide audio files along with a text file that consists of paths to the audio files which are to be tested. The application expects the audio files to be grouped under folders with keyword as the folder name. Thus, the text file will consist of lines with <code class="docutils literal notranslate"><span class="pre">keyword/*.wav</span></code> paths corresponding to each audio file (example: <code class="docutils literal notranslate"><span class="pre">yes/audio1.wav</span></code>). For more details, refer <a class="reference external" href="#testing-accuracy-on-the-google-command-dataset">Testing Accuracy on the Google Command Dataset</a> and <a class="reference external" href="#testing-custom-input-audio-files">Testing Custom Input Audio Files</a>.</p>
 <p>The following command tests the audio files listed in the <code class="docutils literal notranslate"><span class="pre">testing_list.txt</span></code> file.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">## Change your dircetory to the dircetory where you have the testing_list.txt file having proper paths to the audio files.</span>
-nlp-smartvision -f testing_list.txt
+nlp-smartvision<span class="w"> </span>-f<span class="w"> </span>testing_list.txt
 </pre></div>
 </div>
-<p align="center"> (or) </p><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nlp-smartvision --file-audio testing_list.txt
+<p align="center"> (or) </p><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nlp-smartvision<span class="w"> </span>--file-audio<span class="w"> </span>testing_list.txt
 </pre></div>
 </div>
-<div class="section" id="testing-accuracy-on-the-google-command-dataset">
+<section id="testing-accuracy-on-the-google-command-dataset">
 <h3>Testing Accuracy on the Google Command Dataset<a class="headerlink" href="#testing-accuracy-on-the-google-command-dataset" title="Permalink to this heading">¶</a></h3>
 <p>You can download the open source Google speech command dataset for testing the application in file input mode. This dataset consists of pre-recorded audio files for 30 keywords, and the audio files that are separated for testing are listed in the <code class="docutils literal notranslate"><span class="pre">testing_list.txt</span></code> file. Use the following commands to download and extract this dataset. These commands also create the datafiles that are required for testing the application with 10 keywords for which the model has been trained.</p>
 <blockquote>
 <div><p><strong>TIP:</strong> You can copy the following commands and create a single script. Then directly executes that script to do all the required steps one after the other.</p>
 </div></blockquote>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir Google_dataset
-<span class="nb">cd</span> Google_dataset
-wget http://download.tensorflow.org/data/speech_commands_v0.01.tar.gz
-tar -xf speech_commands_v0.01.tar.gz
-mkdir keywords
-mv -t ./keywords/ on off up down left right yes no stop go
-sed -n -e <span class="s1">&#39;/down\//p; /go\//p; /left\//p; /no\//p; /off\//p; /on\//p; /right\//p; /stop\//p; /yes\//p; /up\//p &#39;</span> testing_list.txt &gt; ./keywords/testing_list.txt
-find . -maxdepth <span class="m">1</span> ! -name keywords -print0<span class="p">|</span>xargs -0 rm -r --
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>Google_dataset
+<span class="nb">cd</span><span class="w"> </span>Google_dataset
+wget<span class="w"> </span>http://download.tensorflow.org/data/speech_commands_v0.01.tar.gz
+tar<span class="w"> </span>-xf<span class="w"> </span>speech_commands_v0.01.tar.gz
+mkdir<span class="w"> </span>keywords
+mv<span class="w"> </span>-t<span class="w"> </span>./keywords/<span class="w"> </span>on<span class="w"> </span>off<span class="w"> </span>up<span class="w"> </span>down<span class="w"> </span>left<span class="w"> </span>right<span class="w"> </span>yes<span class="w"> </span>no<span class="w"> </span>stop<span class="w"> </span>go
+sed<span class="w"> </span>-n<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;/down\//p; /go\//p; /left\//p; /no\//p; /off\//p; /on\//p; /right\//p; /stop\//p; /yes\//p; /up\//p &#39;</span><span class="w"> </span>testing_list.txt<span class="w"> </span>&gt;<span class="w"> </span>./keywords/testing_list.txt
+find<span class="w"> </span>.<span class="w"> </span>-maxdepth<span class="w"> </span><span class="m">1</span><span class="w"> </span>!<span class="w"> </span>-name<span class="w"> </span>keywords<span class="w"> </span>-print0<span class="p">|</span>xargs<span class="w"> </span>-0<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>--
 </pre></div>
 </div>
 <p>These commands will create a directory with the name <code class="docutils literal notranslate"><span class="pre">Google_dataset/keywords</span></code> inside the current working directory.</p>
@@ -409,17 +410,17 @@ find . -maxdepth <span class="m">1</span> ! -name keywords -print0<span class="p
 <div><p><strong>NOTE:</strong> The commands might take few minutes (depending on the internet speed) to download and process the dataset.</p>
 </div></blockquote>
 <p>Output after running the command for file based testing will also report the accuracy. Sample output on the Google Command Dataset is as follows.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Ground truth : yes            Predicted : yes
-Ground truth : yes            Predicted : yes
-Ground truth : yes            Predicted : <span class="nv">yes</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Ground<span class="w"> </span>truth<span class="w"> </span>:<span class="w"> </span>yes<span class="w">            </span>Predicted<span class="w"> </span>:<span class="w"> </span>yes
+Ground<span class="w"> </span>truth<span class="w"> </span>:<span class="w"> </span>yes<span class="w">            </span>Predicted<span class="w"> </span>:<span class="w"> </span>yes
+Ground<span class="w"> </span>truth<span class="w"> </span>:<span class="w"> </span>yes<span class="w">            </span>Predicted<span class="w"> </span>:<span class="w"> </span><span class="nv">yes</span>
 <span class="o">=========================================</span>
-Number of keywords <span class="nv">tested</span> <span class="o">=</span> <span class="m">2552</span>
-Number of keywords detected <span class="nv">correctly</span> <span class="o">=</span> <span class="m">2383</span>
-<span class="nv">Accuracy</span> <span class="o">=</span> <span class="m">93</span>.3777%
+Number<span class="w"> </span>of<span class="w"> </span>keywords<span class="w"> </span><span class="nv">tested</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2552</span>
+Number<span class="w"> </span>of<span class="w"> </span>keywords<span class="w"> </span>detected<span class="w"> </span><span class="nv">correctly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2383</span>
+<span class="nv">Accuracy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">93</span>.3777%
 </pre></div>
 </div>
-</div>
-<div class="section" id="testing-custom-input-audio-files">
+</section>
+<section id="testing-custom-input-audio-files">
 <h3>Testing Custom Input Audio Files<a class="headerlink" href="#testing-custom-input-audio-files" title="Permalink to this heading">¶</a></h3>
 <p>The application expects audio file names to be stored as <code class="docutils literal notranslate"><span class="pre">keyword/audio_filename.wav</span></code> format into the audio files list file. For example, a prerecorded audio file of keyword ‘yes’ needs to be listed as <code class="docutils literal notranslate"><span class="pre">yes/file_001.wav</span></code>. The application uses the main directory name (‘yes’ in this example) as ground truth to compare against the detected keyword. New line character must be placed after every audio file name to differentiate multiple audio files (even after the last file name). Moreover, the audio file needs to be copied to the SD card into the directory from which the application will be invoked. For example, <code class="docutils literal notranslate"><span class="pre">/keywords/yes/file_001.wav</span></code>.</p>
 <p>The test audio files should have the following specifications.</p>
@@ -431,18 +432,18 @@ Number of keywords detected <span class="nv">correctly</span> <span class="o">=<
 <li><p>Supported format: S16_LE (PCM signed 16-bit Little-endian)</p></li>
 <li><p>Audio Length: 1 second</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="image-based-testing-of-dpu-only">
+</section>
+</section>
+<section id="image-based-testing-of-dpu-only">
 <h2>Image Based Testing of DPU Only<a class="headerlink" href="#image-based-testing-of-dpu-only" title="Permalink to this heading">¶</a></h2>
 <p>NLP SmartVision provides a mode which is dedicated for testing the Vision models on DPU (no KWS task is running during this mode) on image files. You need to provide image files along with the AI model that is under test.</p>
 <p>The following command tests the image files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nlp-smartvision -t &lt;image.jpg/image.png&gt; &lt;model&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nlp-smartvision<span class="w"> </span>-t<span class="w"> </span>&lt;image.jpg/image.png&gt;<span class="w"> </span>&lt;model&gt;
 </pre></div>
 </div>
 <p>The command returns the metadata along with a jpg file containing a bounding box on the input image.</p>
-</div>
-<div class="section" id="files-structure-of-the-application">
+</section>
+<section id="files-structure-of-the-application">
 <h2>Files Structure of the Application<a class="headerlink" href="#files-structure-of-the-application" title="Permalink to this heading">¶</a></h2>
 <p>The application is installed as:</p>
 <ul class="simple">
@@ -501,15 +502,15 @@ Number of keywords detected <span class="nv">correctly</span> <span class="o">=<
 <td>Jupyter Notebook file for nlp-smartvision demo.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="next-steps">
+</table></section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Go back to the <a class="reference internal" href="../nlp_smartvision_landing.html"><span class="doc">KV260 SOM NLP Smartvision Design Start Page</span></a></p></li>
 <li><p><a class="reference internal" href="../../building_the_design.html"><span class="doc">Building the Design Tutorial</span></a></p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -525,7 +526,7 @@ Number of keywords detected <span class="nv">correctly</span> <span class="o">=<
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

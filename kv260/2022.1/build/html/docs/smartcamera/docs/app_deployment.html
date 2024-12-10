@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -150,23 +151,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Setting Up the Board and Application Deployment</h1> </td>
  </tr>
-</table><div class="section" id="setting-up-the-board-and-application-deployment">
+</table><section id="setting-up-the-board-and-application-deployment">
 <h1>Setting Up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document describes how to set up the board, and run the smartcam application.</p>
 <p>This guide and its prebuilt are targeted for Ubuntu® 22.04 and AMD 2022.1 toolchain. The previous version of this application (on AMD 2021.1 toolchain) targeted to PetaLinux is still available <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html">online</a>.</p>
-</div>
-<div class="section" id="booting-up-linux">
+</section>
+<section id="booting-up-linux">
 <h2>Booting Up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
-<p>Before continuing with the smartcam application specific instructions, if you have not yet done so, boot Linux with the instructions from the <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> page.</p>
+<p>Before continuing with the smartcam application specific instructions, if you have not yet done so, boot Linux with the instructions from the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> page.</p>
 <blockquote>
 <div><p><strong>NOTE:</strong> It is recommended that you start the smartcam application using the command line through an universal asynchronous receiver-transmitter (UART), instead of GNOME Desktop.</p>
 </div></blockquote>
-</div>
-<div class="section" id="application-specific-hardware-setup">
+</section>
+<section id="application-specific-hardware-setup">
 <h2>Application Specific Hardware Setup<a class="headerlink" href="#application-specific-hardware-setup" title="Permalink to this heading">¶</a></h2>
-<p>Besides the hardware configurations required in the <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> for booting Linux, the smartcam application requires the following hardware setup:</p>
+<p>Besides the hardware configurations required in the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> for booting Linux, the smartcam application requires the following hardware setup:</p>
 <p><img alt="GitHub Logo" src="../../../_images/som-board.png" /></p>
 <ul>
 <li><p>Monitor:</p>
@@ -187,7 +188,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The smartcam application does not yet support speakers.</p>
 </li>
 </ul>
-<div class="section" id="software-preparation">
+<section id="software-preparation">
 <h3>Software Preparation<a class="headerlink" href="#software-preparation" title="Permalink to this heading">¶</a></h3>
 <p>You will use a PC with network access to the board as the RTSP client machine.</p>
 <p>Make sure that the PC and the KV260 Vision AI Starter Kit are on the same subnet mask.</p>
@@ -197,36 +198,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>For Windows, you can find install instructions on <a class="reference external" href="https://ffmpeg.org/download.html">https://ffmpeg.org/download.html</a>.</p></li>
 </ul>
 <p>Other than FFplay, VLC can also be used to play the RTSP stream, but sometimes it does not work on some client machines, while the FFplay works well.</p>
-</div>
-</div>
-<div class="section" id="downloading-and-loading-the-application-firmware">
+</section>
+</section>
+<section id="downloading-and-loading-the-application-firmware">
 <h2>Downloading and Loading the Application Firmware<a class="headerlink" href="#downloading-and-loading-the-application-firmware" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Get the latest kv260-smartcam firmware package.</p>
 <ul>
 <li><p>Search for the package feed for packages compatible with the KV260.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo apt search xlnx-firmware-kv260
-Sorting... Done
-Full Text Search... Done
-xlnx-firmware-kv260-aibox-reid/jammy <span class="m">0</span>.1-0xlnx1 arm64
-FPGA firmware <span class="k">for</span> Xilinx boards - kv260 aibox-reid application
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>search<span class="w"> </span>xlnx-firmware-kv260
+Sorting...<span class="w"> </span>Done
+Full<span class="w"> </span>Text<span class="w"> </span>Search...<span class="w"> </span>Done
+xlnx-firmware-kv260-aibox-reid/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>aibox-reid<span class="w"> </span>application
 
-xlnx-firmware-kv260-benchmark-b4096/jammy <span class="m">0</span>.1-0xlnx1 arm64
-FPGA firmware <span class="k">for</span> Xilinx boards - kv260 benchmark-b4096 application
+xlnx-firmware-kv260-benchmark-b4096/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>benchmark-b4096<span class="w"> </span>application
 
-xlnx-firmware-kv260-defect-detect/jammy <span class="m">0</span>.1-0xlnx1 arm64
-FPGA firmware <span class="k">for</span> Xilinx boards - kv260 defect-detect application
+xlnx-firmware-kv260-defect-detect/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>defect-detect<span class="w"> </span>application
 
-xlnx-firmware-kv260-nlp-smartvision/jammy,now <span class="m">0</span>.1-0xlnx1 arm64 
-FPGA firmware <span class="k">for</span> Xilinx boards - kv260 nlp-smartvision application
+xlnx-firmware-kv260-nlp-smartvision/jammy,now<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64<span class="w"> </span>
+FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>nlp-smartvision<span class="w"> </span>application
 
-xlnx-firmware-kv260-smartcam/jammy <span class="m">0</span>.1-0xlnx1 arm64 <span class="o">[</span>installed<span class="o">]</span>
-FPGA firmware <span class="k">for</span> Xilinx boards - kv260 smartcam application
+xlnx-firmware-kv260-smartcam/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64<span class="w"> </span><span class="o">[</span>installed<span class="o">]</span>
+FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>smartcam<span class="w"> </span>application
 </pre></div>
 </div>
 </li>
 <li><p>Install the firmware binaries.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install xlnx-firmware-kv260-smartcam
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>xlnx-firmware-kv260-smartcam
 </pre></div>
 </div>
 </li>
@@ -236,68 +237,68 @@ FPGA firmware <span class="k">for</span> Xilinx boards - kv260 smartcam applicat
 <p>The firmware consist of a bitstream and device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.</p>
 <ul>
 <li><p>Disable the desktop environment.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil      desktop_disable
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w">      </span>desktop_disable
 </pre></div>
 </div>
 <blockquote>
 <div><p><strong>NOTE:</strong> Executing <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">desktop_disable</span></code> will cause the monitor to go blank. Use any serial terminal to continue issuing the Linux commands via port J4, and do not rely completely on the desktop environment.</p>
 </div></blockquote>
 <p>After running the application, the desktop environment can be enabled again with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil      desktop_enable
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w">      </span>desktop_enable
 </pre></div>
 </div>
 </li>
 <li><p>After installing the firmware, execute xmutil listapps to verify that it is captured under the listapps function and to have dfx-mgrd rescan and register all accelerators in the firmware directory tree.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil listapps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
 </pre></div>
 </div>
 </li>
 <li><p>Switch to a different platform for a different application.</p>
 <p>When there is already another accelerator/firmware being activated, unload it first, then switch to the kv260-smartcam application.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp
-sudo xmutil loadapp kv260-smartcam
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>kv260-smartcam
 </pre></div>
 </div>
 </li>
 </ul>
 </li>
 </ol>
-</div>
-<div class="section" id="docker-based-application-preparation">
+</section>
+<section id="docker-based-application-preparation">
 <h2>Docker-Based Application Preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
 <ul>
 <li><p>Pull the 2022.1 Docker image for smartcam using the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/smartcam:2022.1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>xilinx/smartcam:2022.1
 </pre></div>
 </div>
 <ul>
 <li><p>The storage volume on the SD card can be limited with multiple Dockers. If there are space issues, you can use following command to remove the existing container:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker rmi --force &lt;other containers&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rmi<span class="w"> </span>--force<span class="w"> </span>&lt;other<span class="w"> </span>containers&gt;
 </pre></div>
 </div>
 </li>
 <li><p>You can find the images installed with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker images
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>images
 </pre></div>
 </div>
 </li>
 </ul>
 </li>
 <li><p>Launch the Docker using the follwowing command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run <span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span> <span class="se">\</span>
--h <span class="s2">&quot;xlnx-docker&quot;</span> <span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span> <span class="se">\</span>
---net<span class="o">=</span>host <span class="se">\</span>
---privileged <span class="se">\</span>
---volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span> <span class="se">\</span>
--v /tmp:/tmp <span class="se">\</span>
--v /dev:/dev <span class="se">\</span>
--v /sys:/sys <span class="se">\</span>
--v /etc/vart.conf:/etc/vart.conf <span class="se">\</span>
--v /lib/firmware/xilinx:/lib/firmware/xilinx <span class="se">\</span>
--v /run:/run <span class="se">\</span>
--it xilinx/smartcam:2022.1 bash
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
+-h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+--net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+--privileged<span class="w"> </span><span class="se">\</span>
+--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/run:/run<span class="w"> </span><span class="se">\</span>
+-it<span class="w"> </span>xilinx/smartcam:2022.1<span class="w"> </span>bash
 </pre></div>
 </div>
 <p>It will launch the smartcam image in a new container.</p>
@@ -313,17 +314,17 @@ sudo xmutil loadapp kv260-smartcam
 <li><p><a class="reference external" href="https://pixabay.com/videos/freeway-traffic-cars-rainy-truck-8358/">ADAS SSD AI Task</a></p></li>
 </ul>
 <p>Then, you need to transcode it to the H264 file which is one supported input format.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -i input-video.mp4 -c:v libx264 -pix_fmt nv12 -vf <span class="nv">scale</span><span class="o">=</span><span class="m">1920</span>:1080 -r <span class="m">30</span> output.nv12.h264
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg<span class="w"> </span>-i<span class="w"> </span>input-video.mp4<span class="w"> </span>-c:v<span class="w"> </span>libx264<span class="w"> </span>-pix_fmt<span class="w"> </span>nv12<span class="w"> </span>-vf<span class="w"> </span><span class="nv">scale</span><span class="o">=</span><span class="m">1920</span>:1080<span class="w"> </span>-r<span class="w"> </span><span class="m">30</span><span class="w"> </span>output.nv12.h264
 </pre></div>
 </div>
 <p>Finally, upload or copy these transcoded H264 files to the board (by using scp, ftp, or copy them onto the SD card and find them in <code class="docutils literal notranslate"><span class="pre">/boot/firmware/</span></code>), place it to somewhere under <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>, which will mapped to /tmp in the Docker container too.</p>
 </li>
 </ul>
-</div>
-<div class="section" id="run-the-application">
+</section>
+<section id="run-the-application">
 <h2>Run the Application<a class="headerlink" href="#run-the-application" title="Permalink to this heading">¶</a></h2>
 <p>There are two ways to interact with the application.</p>
-<div class="section" id="jupyter-notebook">
+<section id="jupyter-notebook">
 <h3>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>You need to run the following command to install the package shipped notebooks, which reside in <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/notebooks</span></code>, to the folder <code class="docutils literal notranslate"><span class="pre">/root/notebooks/smartcam</span></code>:</p>
@@ -341,28 +342,28 @@ sudo xmutil loadapp kv260-smartcam
 </div>
 </li>
 <li><p>To launch the Jupyter Notebook on the target, run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-lab --notebook-dir<span class="o">=</span>/root/notebooks/smartcam --allow-root --ip<span class="o">=</span>ip-address <span class="p">&amp;</span> 
-// fill <span class="k">in</span> ip-address from ifconfig, eth0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-lab<span class="w"> </span>--notebook-dir<span class="o">=</span>/root/notebooks/smartcam<span class="w"> </span>--allow-root<span class="w"> </span>--ip<span class="o">=</span>ip-address<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>
+//<span class="w"> </span>fill<span class="w"> </span><span class="k">in</span><span class="w"> </span>ip-address<span class="w"> </span>from<span class="w"> </span>ifconfig,<span class="w"> </span>eth0
 </pre></div>
 </div>
 <p>Output example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.644 LabApp<span class="o">]</span> JupyterLab extension loaded from /usr/local/lib/python3.10/dist-packages/jupyterlab
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.644 LabApp<span class="o">]</span> JupyterLab application directory is /usr/local/share/jupyter/lab
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.664 ServerApp<span class="o">]</span> jupyterlab <span class="p">|</span> extension was successfully loaded.
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.683 ServerApp<span class="o">]</span> nbclassic <span class="p">|</span> extension was successfully loaded.
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.685 ServerApp<span class="o">]</span> Serving notebooks from <span class="nb">local</span> directory: /root/notebooks/smartcam
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.685 ServerApp<span class="o">]</span> Jupyter Server <span class="m">1</span>.18.1 is running at:
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.685 ServerApp<span class="o">]</span> http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.686 ServerApp<span class="o">]</span>  or http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.686 ServerApp<span class="o">]</span> Use Control-C to stop this server and shut down all kernels <span class="o">(</span>twice to skip confirmation<span class="o">)</span>.
-<span class="o">[</span>W <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.702 ServerApp<span class="o">]</span> No web browser found: could not locate runnable browser.
-<span class="o">[</span>C <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.703 ServerApp<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.644<span class="w"> </span>LabApp<span class="o">]</span><span class="w"> </span>JupyterLab<span class="w"> </span>extension<span class="w"> </span>loaded<span class="w"> </span>from<span class="w"> </span>/usr/local/lib/python3.10/dist-packages/jupyterlab
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.644<span class="w"> </span>LabApp<span class="o">]</span><span class="w"> </span>JupyterLab<span class="w"> </span>application<span class="w"> </span>directory<span class="w"> </span>is<span class="w"> </span>/usr/local/share/jupyter/lab
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.664<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>jupyterlab<span class="w"> </span><span class="p">|</span><span class="w"> </span>extension<span class="w"> </span>was<span class="w"> </span>successfully<span class="w"> </span>loaded.
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.683<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>nbclassic<span class="w"> </span><span class="p">|</span><span class="w"> </span>extension<span class="w"> </span>was<span class="w"> </span>successfully<span class="w"> </span>loaded.
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.685<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Serving<span class="w"> </span>notebooks<span class="w"> </span>from<span class="w"> </span><span class="nb">local</span><span class="w"> </span>directory:<span class="w"> </span>/root/notebooks/smartcam
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.685<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Jupyter<span class="w"> </span>Server<span class="w"> </span><span class="m">1</span>.18.1<span class="w"> </span>is<span class="w"> </span>running<span class="w"> </span>at:
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.685<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.686<span class="w"> </span>ServerApp<span class="o">]</span><span class="w">  </span>or<span class="w"> </span>http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.686<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Use<span class="w"> </span>Control-C<span class="w"> </span>to<span class="w"> </span>stop<span class="w"> </span>this<span class="w"> </span>server<span class="w"> </span>and<span class="w"> </span>shut<span class="w"> </span>down<span class="w"> </span>all<span class="w"> </span>kernels<span class="w"> </span><span class="o">(</span>twice<span class="w"> </span>to<span class="w"> </span>skip<span class="w"> </span>confirmation<span class="o">)</span>.
+<span class="o">[</span>W<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.702<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>No<span class="w"> </span>web<span class="w"> </span>browser<span class="w"> </span>found:<span class="w"> </span>could<span class="w"> </span>not<span class="w"> </span>locate<span class="w"> </span>runnable<span class="w"> </span>browser.
+<span class="o">[</span>C<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.703<span class="w"> </span>ServerApp<span class="o">]</span>
 
-    To access the server, open this file <span class="k">in</span> a browser:
-        file:///root/.local/share/jupyter/runtime/jpserver-40-open.html
-    Or copy and paste one of these URLs:
-        http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
-    or http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="w">    </span>To<span class="w"> </span>access<span class="w"> </span>the<span class="w"> </span>server,<span class="w"> </span>open<span class="w"> </span>this<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>browser:
+<span class="w">        </span>file:///root/.local/share/jupyter/runtime/jpserver-40-open.html
+<span class="w">    </span>Or<span class="w"> </span>copy<span class="w"> </span>and<span class="w"> </span>paste<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>these<span class="w"> </span>URLs:
+<span class="w">        </span>http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="w">    </span>or<span class="w"> </span>http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
 </pre></div>
 </div>
 </li>
@@ -370,11 +371,11 @@ sudo xmutil loadapp kv260-smartcam
 <p>In the notebook, the GStreamer pipeline string is constructed; you can get it by adding simple python code to print it out and played with gst-launch-1.0 command in the console, and there are some user options variables that can be changed and run with. For other parts of the pipeline, you can also change and play to see the effect easily.</p>
 </li>
 </ul>
-</div>
-<div class="section" id="command-line">
+</section>
+<section id="command-line">
 <h3>Command Line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h3>
 <p>These allow you to define different video input and output device targets using the smartcam application. Execute using the UART/debug interface.</p>
-<div class="section" id="example-scripts">
+<section id="example-scripts">
 <h4>Example Scripts<a class="headerlink" href="#example-scripts" title="Permalink to this heading">¶</a></h4>
 <p>The following example scripts and options definitions are provided.</p>
 <p>Refer to <a class="reference external" href="#script-loc">File Structure</a> to find the file locations.</p>
@@ -427,11 +428,11 @@ sudo xmutil loadapp kv260-smartcam
 </ol>
 </li>
 </ul>
-</details></div>
-<div class="section" id="additional-configuration-options-for-the-smartcam-invocation">
+</details></section>
+<section id="additional-configuration-options-for-the-smartcam-invocation">
 <h4>Additional Configuration Options for the <code class="docutils literal notranslate"><span class="pre">smartcam</span></code> Invocation<a class="headerlink" href="#additional-configuration-options-for-the-smartcam-invocation" title="Permalink to this heading">¶</a></h4>
 <p>The example scripts and Jupyter Notebook work as examples to show the capability of the smartcam application for specific configurations. More combinations could be made based on the options provided by the smartcam application. You can get detailed application options by invoking <code class="docutils literal notranslate"><span class="pre">smartcam</span> <span class="pre">--help</span></code>.</p>
-<div class="section" id="usage">
+<section id="usage">
 <h5>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h5>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span> smartcam [OPTION?] - Application for face detection on the SOM board of Xilinx.
 
@@ -508,30 +509,30 @@ sudo xmutil loadapp kv260-smartcam
                             For detailed info about the parameter name and value range, just run gst-inspect-1.0 omxh264enc / gst-inspect-1.0 omxh265enc based on the encoding type selected by option &quot;--outmedia-type&quot;, the parameter could be any of the listed parameters except &quot;control-rate, target-bitrate, gop-length&quot; which have dedicated options as above.
 </pre></div>
 </div>
-</div>
-<div class="section" id="examples-of-supported-combinations-sorted-by-input-are-outlined-below">
+</section>
+<section id="examples-of-supported-combinations-sorted-by-input-are-outlined-below">
 <h5>Examples of supported combinations sorted by input are outlined below<a class="headerlink" href="#examples-of-supported-combinations-sorted-by-input-are-outlined-below" title="Permalink to this heading">¶</a></h5>
 <p>If using the command line to invoke the smartcam application, stop the process via CTRL + C prior to starting the next instance.</p>
 <ul>
 <li><p>MIPI Input (IAS sensor input):</p>
 <ul>
 <li><p>Output: RTSP</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --mipi -W <span class="m">1920</span> -H <span class="m">1080</span> --target rtsp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam<span class="w"> </span>--mipi<span class="w"> </span>-W<span class="w"> </span><span class="m">1920</span><span class="w"> </span>-H<span class="w"> </span><span class="m">1080</span><span class="w"> </span>--target<span class="w"> </span>rtsp
 </pre></div>
 </div>
 </li>
 <li><p>Output: RTSP with audio <a name="rtsp-audio"> </a></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --mipi -W <span class="m">1920</span> -H <span class="m">1080</span> --target rtsp --audio
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam<span class="w"> </span>--mipi<span class="w"> </span>-W<span class="w"> </span><span class="m">1920</span><span class="w"> </span>-H<span class="w"> </span><span class="m">1080</span><span class="w"> </span>--target<span class="w"> </span>rtsp<span class="w"> </span>--audio
 </pre></div>
 </div>
 </li>
 <li><p>Output: DP</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --mipi -W <span class="m">1920</span> -H <span class="m">1080</span> --target dp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam<span class="w"> </span>--mipi<span class="w"> </span>-W<span class="w"> </span><span class="m">1920</span><span class="w"> </span>-H<span class="w"> </span><span class="m">1080</span><span class="w"> </span>--target<span class="w"> </span>dp
 </pre></div>
 </div>
 </li>
 <li><p>Output: file</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --mipi -W <span class="m">1920</span> -H <span class="m">1080</span> --target file
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam<span class="w"> </span>--mipi<span class="w"> </span>-W<span class="w"> </span><span class="m">1920</span><span class="w"> </span>-H<span class="w"> </span><span class="m">1080</span><span class="w"> </span>--target<span class="w"> </span>file
 </pre></div>
 </div>
 <blockquote>
@@ -546,17 +547,17 @@ sudo xmutil loadapp kv260-smartcam
 </div></blockquote>
 <ul>
 <li><p>Output: RTSP</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --file ./test.h264 -i h264 -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target rtsp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam<span class="w"> </span>--file<span class="w"> </span>./test.h264<span class="w"> </span>-i<span class="w"> </span>h264<span class="w"> </span>-W<span class="w"> </span><span class="m">1920</span><span class="w"> </span>-H<span class="w"> </span><span class="m">1080</span><span class="w"> </span>-r<span class="w"> </span><span class="m">30</span><span class="w"> </span>--target<span class="w"> </span>rtsp
 </pre></div>
 </div>
 </li>
 <li><p>Output: DP</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --file ./test.h264 -i h264 -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target dp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam<span class="w"> </span>--file<span class="w"> </span>./test.h264<span class="w"> </span>-i<span class="w"> </span>h264<span class="w"> </span>-W<span class="w"> </span><span class="m">1920</span><span class="w"> </span>-H<span class="w"> </span><span class="m">1080</span><span class="w"> </span>-r<span class="w"> </span><span class="m">30</span><span class="w"> </span>--target<span class="w"> </span>dp
 </pre></div>
 </div>
 </li>
 <li><p>Output: file</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --file ./test.h264 -i h264 -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target file
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam<span class="w"> </span>--file<span class="w"> </span>./test.h264<span class="w"> </span>-i<span class="w"> </span>h264<span class="w"> </span>-W<span class="w"> </span><span class="m">1920</span><span class="w"> </span>-H<span class="w"> </span><span class="m">1080</span><span class="w"> </span>-r<span class="w"> </span><span class="m">30</span><span class="w"> </span>--target<span class="w"> </span>file
 </pre></div>
 </div>
 <blockquote>
@@ -571,17 +572,17 @@ sudo xmutil loadapp kv260-smartcam
 </div></blockquote>
 <ul>
 <li><p>Output: RTSP</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam --usb <span class="m">1</span> -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target rtsp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smartcam<span class="w"> </span>--usb<span class="w"> </span><span class="m">1</span><span class="w"> </span>-W<span class="w"> </span><span class="m">1920</span><span class="w"> </span>-H<span class="w"> </span><span class="m">1080</span><span class="w"> </span>-r<span class="w"> </span><span class="m">30</span><span class="w"> </span>--target<span class="w"> </span>rtsp
 </pre></div>
 </div>
 </li>
 <li><p>output: DP</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> smartcam --usb <span class="m">1</span> -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target dp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>smartcam<span class="w"> </span>--usb<span class="w"> </span><span class="m">1</span><span class="w"> </span>-W<span class="w"> </span><span class="m">1920</span><span class="w"> </span>-H<span class="w"> </span><span class="m">1080</span><span class="w"> </span>-r<span class="w"> </span><span class="m">30</span><span class="w"> </span>--target<span class="w"> </span>dp
 </pre></div>
 </div>
 </li>
 <li><p>Output: file</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> smartcam --usb <span class="m">1</span> -W <span class="m">1920</span> -H <span class="m">1080</span> -r <span class="m">30</span> --target file
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>smartcam<span class="w"> </span>--usb<span class="w"> </span><span class="m">1</span><span class="w"> </span>-W<span class="w"> </span><span class="m">1920</span><span class="w"> </span>-H<span class="w"> </span><span class="m">1080</span><span class="w"> </span>-r<span class="w"> </span><span class="m">30</span><span class="w"> </span>--target<span class="w"> </span>file
 </pre></div>
 </div>
 <blockquote>
@@ -591,11 +592,11 @@ sudo xmutil loadapp kv260-smartcam
 </ul>
 </li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="files-structure-of-the-application">
+</section>
+</section>
+</section>
+</section>
+<section id="files-structure-of-the-application">
 <h2>Files Structure of the Application<a class="headerlink" href="#files-structure-of-the-application" title="Permalink to this heading">¶</a></h2>
 <p>The application is installed as follows.</p>
 <ul class="simple">
@@ -709,14 +710,14 @@ sudo xmutil loadapp kv260-smartcam
 <td>Jupyter Notebook file for MIPI/USB --&gt; DP/RTSP demo.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="next-steps">
+</table></section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 SOM Smart Camera Design Start Page</span></a>.</p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -732,7 +733,7 @@ sudo xmutil loadapp kv260-smartcam
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

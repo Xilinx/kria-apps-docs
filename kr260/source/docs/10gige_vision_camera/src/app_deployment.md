@@ -110,7 +110,7 @@ Refer to the following KR260 Board and Interface layout for connector reference 
 
 ![usb slot](./media/usb_slot.png)
 
-1. Go through the [Booting Kria Starter Kit Linux](../../kria_starterkit_linux_boot.md) to complete minimum setup required to boot Linux before continuing with the instructions in this page.
+1. Go through the [Booting Kria Starter Kit Linux](../../linux_boot.md) to complete minimum setup required to boot Linux before continuing with the instructions in this page.
 
 2. Ensure that the board is powered off. Connect IMX547 Monochrome sensor module to J22 in KR260 using flex cable.
 
@@ -155,7 +155,7 @@ Testing was performed with the following artifacts:
 
 ## Installing the Application packages
 
-Make sure that you had gone through  [Booting Kria Starter Kit Linux](../../kria_starterkit_linux_boot.md) as indicated in the previous step to complete the minimum setup required to boot Linux before continuing with instructions in this page.
+Make sure that you had gone through  [Booting Kria Starter Kit Linux](../../linux_boot.md) as indicated in the previous step to complete the minimum setup required to boot Linux before continuing with instructions in this page.
 
 Install the latest application packages.
 

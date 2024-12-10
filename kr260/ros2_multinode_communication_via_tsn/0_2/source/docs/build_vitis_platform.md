@@ -1,0 +1,1 @@
+../../../../../source/docs/build_vitis_platform.md

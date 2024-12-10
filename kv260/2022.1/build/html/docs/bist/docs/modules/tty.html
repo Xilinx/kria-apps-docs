@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -151,14 +152,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="bist-tty-test-module">
+  <section id="bist-tty-test-module">
 <h1>BIST Tty Test Module<a class="headerlink" href="#bist-tty-test-module" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>This module tests the tty interface(s) on the AMD Kria™ starter kits.</p>
 <p>Note that this test is expected to fail in on KD240 with Ubuntu classic-22.04-kd05 version as the RS485 driver is in the process of being upstreamed for certified Ubuntu image. This test will still pass with Ubuntu 22.04-kd03 image on KD240, and it will also pass for KR260’s RS485 over AXI lite interface.</p>
-</div>
-<div class="section" id="tests">
+</section>
+<section id="tests">
 <h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
 <p>The Tty module contains one self-validating test. This test uses the pymodbus
 python package. The package establishes a client connection with the connected
@@ -169,12 +170,12 @@ containing the temperature and humidity values.</p>
 <li><p>label: The test label</p></li>
 <li><p>controller_name: Uart controller name</p></li>
 </ul>
-</div>
-<div class="section" id="test-execution">
+</section>
+<section id="test-execution">
 <h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
 <p>The example commands for this module are provided below (KD240):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3 --board kd240 -m tty                                     // Run all tests <span class="k">in</span> this module
-pytest-3 --board kd240 -k rs485_temp_humidity_sensor_read         // Run inidvidual <span class="nb">test</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-m<span class="w"> </span>tty<span class="w">                                     </span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>rs485_temp_humidity_sensor_read<span class="w">         </span>//<span class="w"> </span>Run<span class="w"> </span>inidvidual<span class="w"> </span><span class="nb">test</span>
 </pre></div>
 </div>
 <p>The test prints out the log messages that include the readings from the sensor
@@ -183,15 +184,15 @@ values recorded by the sensor. The test pass depends on the successful reading
 of both the values. The test typically fails when the connection with the serial
 client could not be established or values were not recorded; this typically
 points to improper connections.</p>
-</div>
-<div class="section" id="test-debug">
+</section>
+<section id="test-debug">
 <h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure that the BIST firmware is loaded.</p></li>
 <li><p>Make sure that the sensor is connected correctly.</p></li>
 </ul>
-</div>
-<div class="section" id="known-issues-and-limitations">
+</section>
+<section id="known-issues-and-limitations">
 <h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Occasionally, erroneous values (for example 3276.8) are reported for
@@ -200,14 +201,14 @@ which can be ignored and the test rerun to clear the error.</p></li>
 <li><p>RS485 does not function in Ubuntu 22.04 kd05 as the driver is in the process of
 being upstreamed. The driver is also <a class="reference external" href="https://support.xilinx.com/s/article/000035701?language=en_US">not present in PetaLinux 2023.2 KD240 BSP</a>. Thus, this test is expected to fail in that version.</p></li>
 </ul>
-</div>
-<div class="section" id="next-steps">
+</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
-<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -223,7 +224,7 @@ being upstreamed. The driver is also <a class="reference external" href="https:/
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

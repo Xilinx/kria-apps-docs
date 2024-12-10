@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -27,14 +27,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
-        <script src="../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Using Vivado to Build the Hardware Design" href="build_vivado_design.html" />
-    <link rel="prev" title="Booting Kria Starter Kit Linux on KD240" href="kria_starterkit_linux_boot.html" /> 
+    <link rel="prev" title="Boot Kria Starter Kit Linux on KD240" href="linux_boot.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -47,6 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Kria™ KD240
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 1.0
@@ -79,13 +82,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">KD240 Applications</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="bist/bist_landing.html">BIST</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications Via TSN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="foc-motor-ctrl/foc_motor_control_landing.html">FOC Motor Control Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bist/bist_landing.html">Built-In Self Test (BIST)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/ros2_multinode_communication_via_tsn.html">ROS 2 Multi-Node Communications via TSN</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/foc_motor_ctrl.html">FOC Motor Control</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">KD240 Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="kria_starterkit_linux_boot.html">Booting Kria Starter Kit Linux on KD240</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_boot.html">Boot Kria Starter Kit Linux on KD240</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Building the Design Components</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tool-flow">Tool Flow</a><ul>
@@ -114,7 +117,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications Via TSN</a> &raquo;</li>
       <li>Tool Flow Overview</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/building_the_design.md.txt" rel="nofollow"> View page source</a>
@@ -134,13 +136,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <td align="center"><h1>Tool Flow Overview</h1> </td>
  </tr>
 </table><section id="tool-flow-overview">
-<h1>Tool Flow Overview<a class="headerlink" href="#tool-flow-overview" title="Link to this heading">¶</a></h1>
+<h1>Tool Flow Overview<a class="headerlink" href="#tool-flow-overview" title="Permalink to this heading">¶</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document provides an overview of how the hardware and software components are built for an application.</p>
 </section>
 <section id="tool-flow">
-<h2>Tool Flow<a class="headerlink" href="#tool-flow" title="Link to this heading">¶</a></h2>
+<h2>Tool Flow<a class="headerlink" href="#tool-flow" title="Permalink to this heading">¶</a></h2>
 <p>At a high level, the builds steps are as follows:</p>
 <ol>
 <li><p><strong>AMD Vivado™ platform design</strong>: The Vivado design is augmented with platform parameters that describe the metadata and physical interfaces available to the AMD Vitis™ compiler for stitching in programmable logic (PL) kernels.</p></li>
@@ -154,7 +156,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><strong>Firmware</strong>: THe Vitis-created platform containing the PL kernel is a bitfile, and the metadata is an xclbin. On Ubuntu platform, the bitstream  header is stripped to obtain FPGA configuration data as a bin object (*.bin), and the metadata xclbin is consumed as is from Vitis. A runtime devicetree blob corresponding to the PL bitstream is required (.dtbo) to be loaded as an overlay, which when loaded in kernel, invokes all the drivers corresponding to the PL bitstream. Hence, the FPGA configuration data ( *.bin), metadata (xclbin), and a device-tree overlay blob (*dtbo) together form the firmware binaries.</p></li>
 </ol>
 <section id="accessing-the-tutorial-reference-files">
-<h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Link to this heading">¶</a></h3>
+<h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Permalink to this heading">¶</a></h3>
 <ol class="simple">
 <li><p>To access the reference files, type the following into a terminal:</p></li>
 </ol>
@@ -164,7 +166,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 </section>
 <section id="directory-structure">
-<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Link to this heading">¶</a></h2>
+<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this heading">¶</a></h2>
 <p>The directory structure of the repository is as follows:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kria-vitis-platforms
 ├── common
@@ -195,20 +197,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </section>
 <section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="build_vivado_design.html"><span class="doc">Building the Hardware Design Using Vivado</span></a></p></li>
-<li><p>Go back to the <a class="reference internal" href="../index.html"><span class="doc">KD240 SOM Designs Start Page</span></a></p></li>
 </ul>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p><!---
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
-
-You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
---></section>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2024 Advanced Micro Devices, Inc.</p></section>
 </section>
 
 
@@ -217,7 +210,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="kria_starterkit_linux_boot.html" class="btn btn-neutral float-left" title="Booting Kria Starter Kit Linux on KD240" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="linux_boot.html" class="btn btn-neutral float-left" title="Boot Kria Starter Kit Linux on KD240" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="build_vivado_design.html" class="btn btn-neutral float-right" title="Using Vivado to Build the Hardware Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -225,7 +218,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 09, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

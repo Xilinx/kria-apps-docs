@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -151,14 +152,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="bist-spi-test-module">
+  <section id="bist-spi-test-module">
 <h1>BIST SPI Test Module<a class="headerlink" href="#bist-spi-test-module" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>The SPI test module verifies the presence of Torque sensor on the SPI bus of
 KD240 starter kit using python-periphery.</p>
-</div>
-<div class="section" id="tests">
+</section>
+<section id="tests">
 <h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
 <p>The module contains self-validating functional tests. The Torque sensor detection is
 done with the help of two separate tests by dynamic SPI device path lookup. The
@@ -178,13 +179,13 @@ setting the SPI clock, mode, and sending initialization sequence message using i
 The Torque sensor ID read command is sent with the help of spi_transfer_command() function and the response
 is analyzed. Similarly, for run_torque_sensor_temp_test(), once the device is initialized, the SPI command
 sequence for reading the inbuilt temperature raw value is sent to the SPI device and the response is analyzed.</p>
-</div>
-<div class="section" id="test-execution">
+</section>
+<section id="test-execution">
 <h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
 <p>The example commands for this module are provided below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3 --board kd240 -m spi  // Run all tests <span class="k">in</span> this module
-pytest-3 --board kd240 -k ad7797_torque_sensor_id_read  // Run Torque sensor ID <span class="nb">read</span> <span class="nb">test</span>
-pytest-3 --board kd240 -k ad7797_torque_sensor_temperature_read  // Run Torque sensor temperature <span class="nb">read</span> <span class="nb">test</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-m<span class="w"> </span>spi<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>ad7797_torque_sensor_id_read<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>Torque<span class="w"> </span>sensor<span class="w"> </span>ID<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="nb">test</span>
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>ad7797_torque_sensor_temperature_read<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>Torque<span class="w"> </span>sensor<span class="w"> </span>temperature<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="nb">test</span>
 </pre></div>
 </div>
 <p>For run_torque_sensor_id_test() functional test, the test is passed if the ID read from the SPI device response
@@ -193,26 +194,26 @@ device ID otherwise.</p>
 <p>For run_torque_sensor_temp_test() functional test, the test is passed if the response received from the SPI
 device is raw temperature value on sending the SPI command sequence for temperature read. The test prints out a
 message indicating error in reading the temperature value otherwise.</p>
-</div>
-<div class="section" id="test-debug">
+</section>
+<section id="test-debug">
 <h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure to load the BIST firmware before running the SPI test as the Torque sensor is not detected otherwise.</p></li>
 </ul>
-</div>
-<div class="section" id="known-issues-and-limitations">
+</section>
+<section id="known-issues-and-limitations">
 <h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The SPI test is limited to verifying the presence of Torque sensor only.</p></li>
 </ul>
-</div>
-<div class="section" id="next-steps">
+</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
-<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -228,7 +229,7 @@ message indicating error in reading the temperature value otherwise.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -151,13 +152,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="bist-motor-test-module">
+  <section id="bist-motor-test-module">
 <h1>BIST Motor Test Module<a class="headerlink" href="#bist-motor-test-module" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>The Motor test module verifies the functionality of KD240 starter kit.</p>
-</div>
-<div class="section" id="tests">
+</section>
+<section id="tests">
 <h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
 <p>The module contains seven self-validating functional tests. It uses py_foc_motor_ctrl
 library to create the motor control instance for calling member functions, such as getSpeed(),
@@ -235,8 +236,8 @@ below predefined threshold value of 0.6A for the test to pass.</p>
 </ul>
 </li>
 </ol>
-</div>
-<div class="section" id="test-dependencies">
+</section>
+<section id="test-dependencies">
 <h2>Test Dependencies<a class="headerlink" href="#test-dependencies" title="Permalink to this heading">¶</a></h2>
 <p>Some of the above tests include dependency tests that are run prior to the main test.
 The test dependencies are summarized in the following table. The dependency tests must
@@ -245,48 +246,48 @@ If a dependency test fails, the main test is aborted.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="center">Test</th>
-<th align="center">Dependency</th>
+<th style="text-align: center;">Test</th>
+<th style="text-align: center;">Dependency</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">qei_gate_drive_test</td>
-<td align="center">dc_link_volt_adc_fb_test</td>
+<td style="text-align: center;">qei_gate_drive_test</td>
+<td style="text-align: center;">dc_link_volt_adc_fb_test</td>
 </tr>
 <tr>
-<td align="center">volt_adc_fb_modeopenloop_test</td>
-<td align="center">dc_link_volt_adc_fb_test, qei_gate_drive_test</td>
+<td style="text-align: center;">volt_adc_fb_modeopenloop_test</td>
+<td style="text-align: center;">dc_link_volt_adc_fb_test, qei_gate_drive_test</td>
 </tr>
 <tr>
-<td align="center">curr_adc_fb_modeopenloop_test</td>
-<td align="center">dc_link_volt_adc_fb_test, qei_gate_drive_test</td>
+<td style="text-align: center;">curr_adc_fb_modeopenloop_test</td>
+<td style="text-align: center;">dc_link_volt_adc_fb_test, qei_gate_drive_test</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="test-execution">
+</table></section>
+<section id="test-execution">
 <h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
 <p>The example commands for this module are provided below (KD240):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3 --board kd240 -m motor  // Run all tests <span class="k">in</span> this module
-pytest-3 --board kd240 -k qei_gate_drive_test  // Run QEI interface <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Speed&#39;</span> mode
-pytest-3 --board kd240 -k volt_adc_fb_modeoff_test  // Run motor voltage ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Off&#39;</span> mode
-pytest-3 --board kd240 -k volt_adc_fb_modeopenloop_test  // Run motor voltage ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Open Loop&#39;</span> mode
-pytest-3 --board kd240 -k curr_adc_fb_modeoff_test  // Run motor current ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Off&#39;</span> mode
-pytest-3 --board kd240 -k curr_adc_fb_modeopenloop_test  // Run motor current ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Open Loop&#39;</span> mode
-pytest-3 --board kd240 -k dc_link_volt_adc_fb_test  // Run DC link voltage ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Off&#39;</span> mode
-pytest-3 --board kd240 -k dc_link_curr_adc_fb_test  // Run DC link current ADC feedback <span class="nb">test</span> <span class="k">in</span> <span class="s1">&#39;Off&#39;</span> mode
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-m<span class="w"> </span>motor<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>qei_gate_drive_test<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>QEI<span class="w"> </span>interface<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;Speed&#39;</span><span class="w"> </span>mode
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>volt_adc_fb_modeoff_test<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>motor<span class="w"> </span>voltage<span class="w"> </span>ADC<span class="w"> </span>feedback<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;Off&#39;</span><span class="w"> </span>mode
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>volt_adc_fb_modeopenloop_test<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>motor<span class="w"> </span>voltage<span class="w"> </span>ADC<span class="w"> </span>feedback<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;Open Loop&#39;</span><span class="w"> </span>mode
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>curr_adc_fb_modeoff_test<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>motor<span class="w"> </span>current<span class="w"> </span>ADC<span class="w"> </span>feedback<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;Off&#39;</span><span class="w"> </span>mode
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>curr_adc_fb_modeopenloop_test<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>motor<span class="w"> </span>current<span class="w"> </span>ADC<span class="w"> </span>feedback<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;Open Loop&#39;</span><span class="w"> </span>mode
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>dc_link_volt_adc_fb_test<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>DC<span class="w"> </span>link<span class="w"> </span>voltage<span class="w"> </span>ADC<span class="w"> </span>feedback<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;Off&#39;</span><span class="w"> </span>mode
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>dc_link_curr_adc_fb_test<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>DC<span class="w"> </span>link<span class="w"> </span>current<span class="w"> </span>ADC<span class="w"> </span>feedback<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;Off&#39;</span><span class="w"> </span>mode
 </pre></div>
 </div>
 <p>The test prints out the messages indicating the motor mode and readings of the motor object for each test.</p>
-</div>
-<div class="section" id="test-debug">
+</section>
+<section id="test-debug">
 <h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure to load the BIST firmware before running the motor tests as motor hls_foc_periodic device
 is not detected otherwise.</p></li>
 </ul>
-</div>
-<div class="section" id="known-issues-and-limitations">
+</section>
+<section id="known-issues-and-limitations">
 <h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The motor test is limited to verifying the functionalities specified in the configuration file on loading
@@ -294,14 +295,14 @@ the BIST firmware only.</p></li>
 <li><p>The established threshold values or ranges are based on the outputs observed during experimentation.
 The values might differ slightly from board to board.</p></li>
 </ul>
-</div>
-<div class="section" id="next-steps">
+</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
-<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -317,7 +318,7 @@ The values might differ slightly from board to board.</p></li>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

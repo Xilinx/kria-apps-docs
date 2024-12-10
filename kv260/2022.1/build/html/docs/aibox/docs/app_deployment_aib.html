@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -149,49 +150,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <td align="center"><h1>Setting 
  Up the Board and Application Deployment</h1> </td>
  </tr>
-</table><div class="section" id="setting-up-the-board-and-application-deployment">
+</table><section id="setting-up-the-board-and-application-deployment">
 <h1>Setting Up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document describes how to set up the board and run the aibox-dist application.</p>
 <p>This guide and its prebuilt are targeted for Ubuntu® 22.04 and AMD 22.1 toolchain.</p>
-</div>
-<div class="section" id="setting-up-the-board">
+</section>
+<section id="setting-up-the-board">
 <h2>Setting Up the Board<a class="headerlink" href="#setting-up-the-board" title="Permalink to this heading">¶</a></h2>
 <p>The aibox-dist application requires one KV260 starter kit as the surveillance center (the client) and one to four KV260 starter kits as the distributed camera (the server).</p>
-<div class="section" id="setting-up-the-board-for-distributed-camera">
+<section id="setting-up-the-board-for-distributed-camera">
 <h3>Setting Up the Board for Distributed Camera<a class="headerlink" href="#setting-up-the-board-for-distributed-camera" title="Permalink to this heading">¶</a></h3>
 <p>Refer to <a class="reference external" href="../../smartcamera/docs/app_deployment.md#Setting-up-the-Board">Setting up the Board for Kria™ KV260 Vision AI Starter Kit Smart Camera</a>, and follow the instructions until the kv260-smartcam firmware has been loaded.</p>
-</div>
-<div class="section" id="setting-up-the-board-for-surveillance-center-cross-tracking-and-monitoring">
+</section>
+<section id="setting-up-the-board-for-surveillance-center-cross-tracking-and-monitoring">
 <h3>Setting Up the Board for Surveillance Center Cross Tracking and Monitoring<a class="headerlink" href="#setting-up-the-board-for-surveillance-center-cross-tracking-and-monitoring" title="Permalink to this heading">¶</a></h3>
 <p>Refer to <a class="reference external" href="../../aibox-reid/docs/app_deployment_aib.md#Setting-up-the-Board">Setting up the Board for Kria™ KV260 Vision AI Starter Kit Smart Camera AIBox-ReID Tutorial</a>, and follow the instructions until the kv260-aibox-reid firmware has been loaded.</p>
-</div>
-</div>
-<div class="section" id="docker-based-application-preparation">
+</section>
+</section>
+<section id="docker-based-application-preparation">
 <h2>Docker-based Application Preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
 <p>The two kinds of boards both need the same application package docker.</p>
 <ul>
 <li><p>Pull the latest docker image for aibox-dist using the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/aibox-dist:latest
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>xilinx/aibox-dist:latest
 </pre></div>
 </div>
 </li>
 <li><p>Launch the docker using the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run <span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span> <span class="se">\</span>
--h <span class="s2">&quot;xlnx-docker&quot;</span> <span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span> <span class="se">\</span>
---net<span class="o">=</span>host <span class="se">\</span>
---privileged <span class="se">\</span>
---volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span> <span class="se">\</span>
--v /tmp:/tmp <span class="se">\</span>
--v /dev:/dev <span class="se">\</span>
--v /sys:/sys <span class="se">\</span>
--v /etc/vart.conf:/etc/vart.conf <span class="se">\</span>
--v /lib/firmware/xilinx:/lib/firmware/xilinx <span class="se">\</span>
--v /run:/run <span class="se">\</span>
--it xilinx/aibox-dist:latest bash
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
+-h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+--net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+--privileged<span class="w"> </span><span class="se">\</span>
+--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/run:/run<span class="w"> </span><span class="se">\</span>
+-it<span class="w"> </span>xilinx/aibox-dist:latest<span class="w"> </span>bash
 </pre></div>
 </div>
 <p>It will launch the aibox-dist image in a new container.</p>
@@ -200,14 +201,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </li>
 <li><p>The storage volume on the SD card is limited with multiple dockers. You can use following command to remove the existing container:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker rmi --force &lt;installed container&gt;
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rmi<span class="w"> </span>--force<span class="w"> </span>&lt;installed<span class="w"> </span>container&gt;
 <span class="c1">#Example: docker rmi --force xilinx/aibox-dist:latest</span>
 </pre></div>
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="camera-setup-and-calibration-for-the-tracking-algorithm">
+</section>
+<section id="camera-setup-and-calibration-for-the-tracking-algorithm">
 <h2>Camera Setup and Calibration for The Tracking Algorithm<a class="headerlink" href="#camera-setup-and-calibration-for-the-tracking-algorithm" title="Permalink to this heading">¶</a></h2>
 <p>The cross camera tracking algorithm needs some information of the monitoring region and the relation to the position/view of the capturing cameras. This section will guide you to set it up.</p>
 <ol>
@@ -216,75 +217,75 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><a class="reference external" href="https://www.xilinx.com/bin/public/openDownload?filename=cros.1.1080p.h264">Camera 1 Video</a></p>
 <p><a class="reference external" href="https://www.xilinx.com/bin/public/openDownload?filename=cros.2.1080p.h264">Camera 2 Video</a></p>
 <p><a class="reference external" href="https://www.xilinx.com/bin/public/openDownload?filename=cros.3.1080p.h264">Camera 3 Video</a></p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;floorplan&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1250</span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1250</span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">680</span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1167</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">680</span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1167</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">440</span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">440</span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">],</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;camsres&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;w&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2304</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;h&quot;</span><span class="p">:</span><span class="mi">1296</span><span class="p">},</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;cams&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">      </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1573</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">323</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">125</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">504</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">475</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">70</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">358</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">707</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">430</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">418</span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1689</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">810</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">480</span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">],</span><span class="w"></span>
-<span class="w">      </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">524</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">476</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">1250</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">352</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">727</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">890</span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1274</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">480</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">343</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">1250</span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1931</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">973</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">680</span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">],</span><span class="w"></span>
-<span class="w">      </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">651</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">1091</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">718</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">680</span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1472</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">1092</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">718</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">440</span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1293</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">727</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1167</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">440</span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">775</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">722</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1167</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">680</span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">]</span><span class="w"></span>
-<span class="w">  </span><span class="p">]</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;floorplan&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1250</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1250</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">680</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1167</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">680</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1167</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">440</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">440</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;camsres&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;w&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2304</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;h&quot;</span><span class="p">:</span><span class="mi">1296</span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;cams&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1573</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">323</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">125</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">504</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">475</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">70</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">358</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">707</span><span class="w"> </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">430</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">418</span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1689</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">810</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">480</span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">524</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">476</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">1250</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">352</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">727</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">890</span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1274</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">480</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">343</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">1250</span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1931</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">973</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">680</span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">651</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">1091</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">718</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">680</span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1472</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">1092</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">718</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">440</span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1293</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">727</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1167</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">440</span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">775</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">722</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1167</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">680</span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
@@ -333,31 +334,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <span class="n">Plan_coords</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">125</span><span class="p">],</span> <span class="p">[</span><span class="mi">460</span><span class="p">,</span><span class="mi">70</span><span class="p">],</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span><span class="mi">418</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">480</span><span class="p">]]</span>
 </pre></div>
 </div>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1573</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">323</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">125</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">504</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">475</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">70</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">358</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">707</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">430</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">418</span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1689</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">810</span><span class="p">},</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">480</span><span class="p">}</span><span class="w"></span>
-<span class="w">          </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">]</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1573</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">323</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">125</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">504</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">475</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">70</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">358</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">707</span><span class="w"> </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">430</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">418</span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1689</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">810</span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="mi">480</span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
 </pre></div>
 </div>
 </li>
 </ul>
 </li>
 </ol>
-<div class="section" id="jupyter-notebook-to-help-interactively-mark-the-points-on-the-captured-images-and-get-the-json-section">
+<section id="jupyter-notebook-to-help-interactively-mark-the-points-on-the-captured-images-and-get-the-json-section">
 <h3>Jupyter Notebook to Help Interactively Mark the Points on the Captured Images and Get the json Section<a class="headerlink" href="#jupyter-notebook-to-help-interactively-mark-the-points-on-the-captured-images-and-get-the-json-section" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>You need to run the following command to install the package shipped notebooks which reside in <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/share/notebooks</span></code> to the folder <code class="docutils literal notranslate"><span class="pre">/root/notebooks/aibox-dist</span></code>.</p>
@@ -386,29 +387,29 @@ optional arguments:
 <p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">jupyter-server</span> <span class="pre">stop</span> <span class="pre">8888</span></code></p>
 </li>
 <li><p>To launch Jupyter notebook on the target, run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-lab --notebook-dir<span class="o">=</span>/root/notebooks/aibox-dist --allow-root --ip<span class="o">=</span>ip-address <span class="p">&amp;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-lab<span class="w"> </span>--notebook-dir<span class="o">=</span>/root/notebooks/aibox-dist<span class="w"> </span>--allow-root<span class="w"> </span>--ip<span class="o">=</span>ip-address<span class="w"> </span><span class="p">&amp;</span>
 
-// fill <span class="k">in</span> ip-address from ifconfig, eth0
+//<span class="w"> </span>fill<span class="w"> </span><span class="k">in</span><span class="w"> </span>ip-address<span class="w"> </span>from<span class="w"> </span>ifconfig,<span class="w"> </span>eth0
 </pre></div>
 </div>
 <p>Output example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.644 LabApp<span class="o">]</span> JupyterLab extension loaded from /usr/local/lib/python3.10/dist-packages/jupyterlab
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.644 LabApp<span class="o">]</span> JupyterLab application directory is /usr/local/share/jupyter/lab
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.664 ServerApp<span class="o">]</span> jupyterlab <span class="p">|</span> extension was successfully loaded.
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.683 ServerApp<span class="o">]</span> nbclassic <span class="p">|</span> extension was successfully loaded.
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.685 ServerApp<span class="o">]</span> Serving notebooks from <span class="nb">local</span> directory: /root/notebooks/aibox-dist
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.685 ServerApp<span class="o">]</span> Jupyter Server <span class="m">1</span>.18.1 is running at:
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.685 ServerApp<span class="o">]</span> http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.686 ServerApp<span class="o">]</span>  or http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
-<span class="o">[</span>I <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.686 ServerApp<span class="o">]</span> Use Control-C to stop this server and shut down all kernels <span class="o">(</span>twice to skip confirmation<span class="o">)</span>.
-<span class="o">[</span>W <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.702 ServerApp<span class="o">]</span> No web browser found: could not locate runnable browser.
-<span class="o">[</span>C <span class="m">2022</span>-09-05 <span class="m">10</span>:26:26.703 ServerApp<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.644<span class="w"> </span>LabApp<span class="o">]</span><span class="w"> </span>JupyterLab<span class="w"> </span>extension<span class="w"> </span>loaded<span class="w"> </span>from<span class="w"> </span>/usr/local/lib/python3.10/dist-packages/jupyterlab
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.644<span class="w"> </span>LabApp<span class="o">]</span><span class="w"> </span>JupyterLab<span class="w"> </span>application<span class="w"> </span>directory<span class="w"> </span>is<span class="w"> </span>/usr/local/share/jupyter/lab
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.664<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>jupyterlab<span class="w"> </span><span class="p">|</span><span class="w"> </span>extension<span class="w"> </span>was<span class="w"> </span>successfully<span class="w"> </span>loaded.
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.683<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>nbclassic<span class="w"> </span><span class="p">|</span><span class="w"> </span>extension<span class="w"> </span>was<span class="w"> </span>successfully<span class="w"> </span>loaded.
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.685<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Serving<span class="w"> </span>notebooks<span class="w"> </span>from<span class="w"> </span><span class="nb">local</span><span class="w"> </span>directory:<span class="w"> </span>/root/notebooks/aibox-dist
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.685<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Jupyter<span class="w"> </span>Server<span class="w"> </span><span class="m">1</span>.18.1<span class="w"> </span>is<span class="w"> </span>running<span class="w"> </span>at:
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.685<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.686<span class="w"> </span>ServerApp<span class="o">]</span><span class="w">  </span>or<span class="w"> </span>http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.686<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Use<span class="w"> </span>Control-C<span class="w"> </span>to<span class="w"> </span>stop<span class="w"> </span>this<span class="w"> </span>server<span class="w"> </span>and<span class="w"> </span>shut<span class="w"> </span>down<span class="w"> </span>all<span class="w"> </span>kernels<span class="w"> </span><span class="o">(</span>twice<span class="w"> </span>to<span class="w"> </span>skip<span class="w"> </span>confirmation<span class="o">)</span>.
+<span class="o">[</span>W<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.702<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>No<span class="w"> </span>web<span class="w"> </span>browser<span class="w"> </span>found:<span class="w"> </span>could<span class="w"> </span>not<span class="w"> </span>locate<span class="w"> </span>runnable<span class="w"> </span>browser.
+<span class="o">[</span>C<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.703<span class="w"> </span>ServerApp<span class="o">]</span>
 
-    To access the server, open this file <span class="k">in</span> a browser:
-        file:///root/.local/share/jupyter/runtime/jpserver-40-open.html
-    Or copy and paste one of these URLs:
-        http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
-    or http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="w">    </span>To<span class="w"> </span>access<span class="w"> </span>the<span class="w"> </span>server,<span class="w"> </span>open<span class="w"> </span>this<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>browser:
+<span class="w">        </span>file:///root/.local/share/jupyter/runtime/jpserver-40-open.html
+<span class="w">    </span>Or<span class="w"> </span>copy<span class="w"> </span>and<span class="w"> </span>paste<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>these<span class="w"> </span>URLs:
+<span class="w">        </span>http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="w">    </span>or<span class="w"> </span>http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
 </pre></div>
 </div>
 </li>
@@ -436,27 +437,27 @@ optional arguments:
     ]
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="how-to-run-the-application">
+</section>
+</section>
+<section id="how-to-run-the-application">
 <h2>How to Run The Application<a class="headerlink" href="#how-to-run-the-application" title="Permalink to this heading">¶</a></h2>
 <p>As described in <a class="reference internal" href="sw_arch_accel_aib.html"><span class="doc">Software Architecture of the Application</span></a>, this application consists of up to four server side image capturing boards with a camera and one client side monitoring board. Accordingly, there are different binary executable to be run on <strong>server</strong> or <strong>client</strong>.</p>
-<div class="section" id="start-the-server-application">
+<section id="start-the-server-application">
 <h3>Start The Server Application<a class="headerlink" href="#start-the-server-application" title="Permalink to this heading">¶</a></h3>
-<div class="section" id="examples">
+<section id="examples">
 <h4>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h4>
 <p>This example starts capturing by using the MIPI camera as an input source.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aibox-dist-cam -m 
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aibox-dist-cam<span class="w"> </span>-m<span class="w"> </span>
 </pre></div>
 </div>
 <p>You can also start the streaming by using video files as the input source; this is the recommended mode to start with.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aibox-dist-cam -f cros.1.1080.h264
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aibox-dist-cam<span class="w"> </span>-f<span class="w"> </span>cros.1.1080.h264
 </pre></div>
 </div>
 <blockquote>
 <div><p><strong>NOTE:</strong> Only one instance of the aibox-dist-cam application can run at a time because it requires exclusive access to a DPU engine, and there is only one instance of the DPU that exists in the aibox-cam platform.</p>
 </div></blockquote>
-<div class="section" id="command-options">
+<section id="command-options">
 <h5>Command Options<a class="headerlink" href="#command-options" title="Permalink to this heading">¶</a></h5>
 <p>The example shows a simple way to invoke the server application.</p>
 <p>You can get more and detailed application options as following by invoking:</p>
@@ -492,29 +493,29 @@ Application Options:
   --encodeEnhancedParam             String for fully customizing the encoder in the form &quot;param1=val1, param2=val2,...&quot;, where paramn is the name of the encoder parameter
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="start-the-client-application">
+</section>
+</section>
+</section>
+<section id="start-the-client-application">
 <h3>Start The Client Application<a class="headerlink" href="#start-the-client-application" title="Permalink to this heading">¶</a></h3>
-<div class="section" id="command-line">
+<section id="command-line">
 <h4>Command Line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h4>
-</div>
-<div class="section" id="id1">
+</section>
+<section id="id1">
 <h4>Examples<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aibox-dist-monitor -s rtsp://address-of-cam-1 -s rtsp://address-of-cam-2 -S <span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aibox-dist-monitor<span class="w"> </span>-s<span class="w"> </span>rtsp://address-of-cam-1<span class="w"> </span>-s<span class="w"> </span>rtsp://address-of-cam-2<span class="w"> </span>-S<span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
 <blockquote>
 <div><p><strong>NOTE:</strong> The example above is for live steam capturing from camera; if you are starting with the video file streaming way, which is recommended as a start point, <strong>remove the option “-S 1”</strong> as:</p>
 </div></blockquote>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aibox-dist-monitor -s rtsp://address-of-cam-1 -s rtsp://address-of-cam-2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aibox-dist-monitor<span class="w"> </span>-s<span class="w"> </span>rtsp://address-of-cam-1<span class="w"> </span>-s<span class="w"> </span>rtsp://address-of-cam-2
 </pre></div>
 </div>
 <blockquote>
 <div><p><strong>NOTE:</strong> Only one instance of the aibox-dist-monitor application can run at a time because it requires exclusive access to a DPU engine, and there is only one instance of DPU that exists in the aibox-monitor platform.</p>
 </div></blockquote>
-<div class="section" id="id2">
+<section id="id2">
 <h5>Command Options<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h5>
 <p>You can get more and detailed application options as following by invoking the following:</p>
 <p><code class="docutils literal notranslate"><span class="pre">aibox-dist-monitor</span> <span class="pre">--help</span></code></p>
@@ -538,11 +539,11 @@ Application Options:
   -c, --config=/opt/xilinx/kv260-aibox-dist/share/vvas/cam_setup.json     System calibration json file path
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="files-structure">
+</section>
+</section>
+</section>
+</section>
+<section id="files-structure">
 <h2>Files Structure<a class="headerlink" href="#files-structure" title="Permalink to this heading">¶</a></h2>
 <p>The application is installed as:</p>
 <ul class="simple">
@@ -597,14 +598,14 @@ Application Options:
 <td>Config of reid.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="next-steps">
+</table></section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Go back to the <a class="reference internal" href="../aibox-dist_landing.html"><span class="doc">KV260 SOM AIBox-Dist Design Start Page</span></a>.</p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -620,7 +621,7 @@ Application Options:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

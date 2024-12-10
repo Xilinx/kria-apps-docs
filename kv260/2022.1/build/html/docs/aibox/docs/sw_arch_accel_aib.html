@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -150,24 +151,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1> Software Architecture of the Application</h1> </td>
  </tr>
-</table><div class="section" id="software-architecture-of-the-application">
+</table><section id="software-architecture-of-the-application">
 <h1>Software Architecture of the Application<a class="headerlink" href="#software-architecture-of-the-application" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document describes the software architecture of the AI Box Distributed application.</p>
-</div>
-<div class="section" id="software-platform-and-dependencies">
+</section>
+<section id="software-platform-and-dependencies">
 <h2>Software Platform and Dependencies<a class="headerlink" href="#software-platform-and-dependencies" title="Permalink to this heading">¶</a></h2>
 <p>The GStreamer multimedia orchestration platform is leveraged for application software development. As described in following sections about the GStreamer pipeline, all the processing units in the stream pipeline are presented to you as easily pluggable and changeable plugins, enabling a “low touch” developer adaptation of the reference design pipeline within the context of an open-source and non-vendor specific implementation.</p>
 <p><strong>AMD Vitis™ AI 2.5.0</strong> is the core underlying component to access the AI inference capability provided by the DPU.</p>
 <p>To access the DPU and other programmable (PL) hardware accelerator functions from GStreamer, AMD developed Vitis Video Analysis SDK (VVAS) to provide convenient and customizable GStreamer plugins for it.</p>
-</div>
-<div class="section" id="overview-of-the-distributed-application">
+</section>
+<section id="overview-of-the-distributed-application">
 <h2>Overview of the Distributed Application<a class="headerlink" href="#overview-of-the-distributed-application" title="Permalink to this heading">¶</a></h2>
 <p><img alt="Overall video data flow" src="../../../_images/aibox-dist-diagram.png" /></p>
 <p>The AI Box Distributed application supports up to four distributed SOM with Camera to capture, inference and stream (<strong>1080p, H264/H265</strong>), and one dedicated monitoring center SOM with an application which accepts up to four channels of RTSP streams from the remote IP cameras.</p>
-</div>
-<div class="section" id="server-application-image-capturing-and-streaming">
+</section>
+<section id="server-application-image-capturing-and-streaming">
 <h2>Server Application: Image Capturing and Streaming<a class="headerlink" href="#server-application-image-capturing-and-streaming" title="Permalink to this heading">¶</a></h2>
 <p>The distributed camera application supports capturing images (<strong>1080p, NV12</strong>) from MIPI/USB camera or decoding from on-disk video files, then performs pedestrian detection and pedestrian feature extraction on the stream using the AI inference accelerator (DPU). Next, orientation detection is performed on each detect pedestrian. Finally, the three kinds of information, bounding boxes, feature, and orientation are sent together with the encoded H264/H265 as a RTSP stream.</p>
 <p>As shown in following figures, the decoded NV12 buffers are first pre-processed to prepare the buffer for ingestion by the pedestrian detection model in the DPU. This includes color space conversion and resize operations.</p>
@@ -180,34 +181,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>NV12 to BGR conversion and image resizing are to meet the requirement of the DPU AI inference engine. These steps are done in one dedicated preprocessing IP, which is detailed in the <a class="reference external" href="../../smartcamera/docs/hw_arch_accel.md#pre-processing-ips-and-dpu">Accelerator IP Modules</a>, to achieve the optimal framerate and latency.</p>
 <p>The vvas_xmultisrc GStreamer plugin from VVAS with the customized kernel <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/lib/libvvas_pedpp.so</span></code> are used to integrate the accelerator IP functionality into the pipeline.</p>
 <p>The configuration file, <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/share/vvas/ped_pp.json</span></code>, contains the PL kernel and software kernel library info, which will do the color conversion and resize.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;kernel-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pp_pipeline_accel:{pp_pipeline_accel_1}&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;library-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;libvvas_pedpp.so&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;mean_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;mean_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;mean_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;scale_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;scale_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;scale_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;kernel-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pp_pipeline_accel:{pp_pipeline_accel_1}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;library-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;libvvas_pedpp.so&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;mean_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;mean_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;mean_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;scale_r&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;scale_g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;scale_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 </pre></div>
 </div>
 </li>
 <li><p>Pedestrian Detection</p>
 <p>The vvas_xfilter GStreamer plugin with the <code class="docutils literal notranslate"><span class="pre">/usr/lib/libvvas_dpuinfer.so</span></code> kernel library works as middleware between the application which interfaces with the user and underlying Vitis AI library. The Vits AI library then interfaces with DPU to feed the actual AI inference tasks.</p>
 <p>The configuration file, <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/share/vvas/refinedet.json</span></code>, contains the actual model info you will run in this plugin.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;model-name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refinedet_pruned_0_96&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;model-class&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REFINEDET&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;model-path&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-aibox-dist/share/vitis_ai_library/models/&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;run_time_model&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;need_preprocess&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;performance_test&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;model-name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refinedet_pruned_0_96&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;model-class&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REFINEDET&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;model-path&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-aibox-dist/share/vitis_ai_library/models/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;run_time_model&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;need_preprocess&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;performance_test&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">}</span>
 </pre></div>
 </div>
 </li>
@@ -223,16 +224,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This plugin will send the AI inference results including the bounding boxes, pedestrian features, and pedestrian orientation through ZMQ to the monitoring client board. This information will be used to do cross camera tracking.</p>
 </li>
 </ul>
-<div class="section" id="additional-gstreamer-component-used-in-the-server-app">
+<section id="additional-gstreamer-component-used-in-the-server-app">
 <h3>Additional GStreamer Component Used in the Server App<a class="headerlink" href="#additional-gstreamer-component-used-in-the-server-app" title="Permalink to this heading">¶</a></h3>
 <p>The Gst-Rtsp-Server lib is utilized to build up the RTSP server video stream with AI detection results.</p>
-</div>
-</div>
-<div class="section" id="client-application-monitor-center-tracking-and-rendering">
+</section>
+</section>
+<section id="client-application-monitor-center-tracking-and-rendering">
 <h2>Client Application: Monitor Center Tracking and Rendering<a class="headerlink" href="#client-application-monitor-center-tracking-and-rendering" title="Permalink to this heading">¶</a></h2>
 <p>At the monitor center, the application accepts the RTSP streams together with the AI inference metadata (bounding box, pedestrian feature and orientation) from remote camera, then decode the image stream, and perform the tracking algorithm on the meta data to obtain the cross camera ID for each pedestrian. Finally, bounding boxes and ID text are rendered over the original video frames and displayed on a <strong>4K</strong> monitor in a 2x2 grid.</p>
 <p><img alt="client_monitor_data_flow" src="../../../_images/aibox-dist-monitor-data-flow.png" /></p>
-<div class="section" id="amd-gstreamer-plugins">
+<section id="amd-gstreamer-plugins">
 <h3>AMD GStreamer Plugins<a class="headerlink" href="#amd-gstreamer-plugins" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>MetaParser</p>
@@ -246,21 +247,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Configuration file: <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-dist/share/vvas/draw_reid.json</span></code></p>
 </li>
 </ul>
-</div>
-<div class="section" id="additional-gstreamer-component-used-in-client-app">
+</section>
+<section id="additional-gstreamer-component-used-in-client-app">
 <h3>Additional GStreamer component used in Client App<a class="headerlink" href="#additional-gstreamer-component-used-in-client-app" title="Permalink to this heading">¶</a></h3>
 <p>The rtspsrc and omxh264dec are the standard GStreamer plugins which accept the RTSP stream and decode to NV12.</p>
-</div>
-</div>
-<div class="section" id="next-step">
+</section>
+</section>
+<section id="next-step">
 <h2>Next Step<a class="headerlink" href="#next-step" title="Permalink to this heading">¶</a></h2>
 <p>You can choose any of the following next steps:</p>
 <ul class="simple">
 <li><p>Read <a class="reference internal" href="hw_arch_platform_aib.html"><span class="doc">Hardware Architecture of the Platform</span></a>.</p></li>
 <li><p>Go back to the <a class="reference internal" href="../aibox-dist_landing.html"><span class="doc">KV260 AI Box Design Start Page</span></a>.</p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -276,7 +277,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

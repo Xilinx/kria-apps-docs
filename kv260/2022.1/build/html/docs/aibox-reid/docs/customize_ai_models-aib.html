@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -100,7 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="../../build_vitis_platform.html">Creating a Vitis Platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../build_accel.html">Integrating an Overlay into the Platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../generating_custom_firmware.html">Generating Custom Firmware</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../kria_starterkit_linux_boot.html">Kria Starter Kit Linux Boot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../linux_boot.html">Kria Starter Kit Linux Boot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../build_application_docker_container.html">Rebuilding Application Docker Containers</a></li>
 </ul>
 </li>
@@ -152,20 +153,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Customizing the AI Models Used in the Application</h1> </td>
  </tr>
-</table><div class="section" id="customizing-the-ai-models-used-in-the-application">
+</table><section id="customizing-the-ai-models-used-in-the-application">
 <h1>Customizing the AI Models Used in the Application<a class="headerlink" href="#customizing-the-ai-models-used-in-the-application" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document provides an overview of how to customize the AIBox-ReID application to use other AI models other than the default ones.</p>
-</div>
-<div class="section" id="prerequisites">
+</section>
+<section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <p>As the AIBox-ReID application is using the following two kinds of models: customizations can be made to use other models of the same class either from the AMD Vitis™ AI Library or retrained by the user.</p>
 <ul class="simple">
 <li><p>Pedestrian detection (refinedet_pruned_0_96)</p></li>
 <li><p>ReID (personreid-res18_pt)</p></li>
 </ul>
-<div class="section" id="model-preparation">
+<section id="model-preparation">
 <h3>Model Preparation<a class="headerlink" href="#model-preparation" title="Permalink to this heading">¶</a></h3>
 <blockquote>
 <div><p><strong>NOTE:</strong></p>
@@ -175,72 +176,72 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div></blockquote>
 <p>The <code class="docutils literal notranslate"><span class="pre">arch.json</span></code> used to compile the xmodel for B3136 DPU can be obtained by building the accelerator, but if you will not build all from the start, you can obtain the DPU fingerprint by using the following commands on the target SOM:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdputil query
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdputil<span class="w"> </span>query
 </pre></div>
 </div>
 <p>You will get some output similar to the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
 <span class="s2">&quot;kernels&quot;</span>:<span class="o">[</span>
-  <span class="o">{</span>
+<span class="w">  </span><span class="o">{</span>
 ...
-     <span class="s2">&quot;fingerprint&quot;</span>:<span class="s2">&quot;0x101000016010406&quot;</span>,
+<span class="w">     </span><span class="s2">&quot;fingerprint&quot;</span>:<span class="s2">&quot;0x101000016010406&quot;</span>,
 ...
-  <span class="o">}</span>
+<span class="w">  </span><span class="o">}</span>
 <span class="o">]</span>
 </pre></div>
 </div>
 <p>Save the fingerprint as <code class="docutils literal notranslate"><span class="pre">arch.json</span></code>.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;fingerprint&quot;</span><span class="p">:</span><span class="s2">&quot;0x101000016010406&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;fingerprint&quot;</span><span class="p">:</span><span class="s2">&quot;0x101000016010406&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>For detailed instructions on obtaining an alternative model from the AMD model zoo or training, pruning, quantizing, and compiling a new model, refer to the <em>Vitis AI User Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?isLatest=true&amp;ft:locale=en-US&amp;url=ug1414-vitis-ai">UG1414</a>).</p>
-</div>
-<div class="section" id="configuration-files">
+</section>
+<section id="configuration-files">
 <h3>Configuration Files<a class="headerlink" href="#configuration-files" title="Permalink to this heading">¶</a></h3>
 <p>To integrate a different .xmodel into the AIBox application, the following configuration files must be updated accordingly.</p>
 <ul>
 <li><p>Pedestrian Detection Config</p>
 <p>The “model-name” and “model-path” in <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-reid/share/vvas/refinedet.json</span></code> can be customized to use different pedestrian models xmdel file at <code class="docutils literal notranslate"><span class="pre">${model-path}/${model-name}/${model-name}.xmodel</span></code>.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;model-name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refinedet_pruned_0_96&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;model-class&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REFINEDET&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;model-path&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-aibox-reid/share/vitis_ai_library/models&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;run_time_model&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;need_preprocess&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;performance_test&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;model-name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refinedet_pruned_0_96&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;model-class&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REFINEDET&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;model-path&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-aibox-reid/share/vitis_ai_library/models&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;run_time_model&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;need_preprocess&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;performance_test&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;debug_level&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">}</span>
 </pre></div>
 </div>
 </li>
 <li><p>ReID Config</p>
 <p>The “model-name” and “model-path” in <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-reid/share/vvas/reid.json</span></code> can be customized to use different ReID models xmdel file at <code class="docutils literal notranslate"><span class="pre">${model-path}/${model-name}/${model-name}.xmodel</span></code>.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;model-path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-aibox-reid/share/vitis_ai_library/models/&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;model-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;personreid-res18_pt&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;debug&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;model-path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/xilinx/kv260-aibox-reid/share/vitis_ai_library/models/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;model-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;personreid-res18_pt&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;debug&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">}</span>
 </pre></div>
 </div>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="next-steps">
+</section>
+</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Go back to the <a class="reference internal" href="../aibox_landing.html"><span class="doc">KV260 SOM AIBox-ReID Design Start Page</span></a>.</p></li>
 </ul>
-</div>
-<div class="section" id="references">
+</section>
+<section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><em>Vitis AI User Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?isLatest=true&amp;ft:locale=en-US&amp;url=ug1414-vitis-ai">UG1414</a>)</p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -256,7 +257,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

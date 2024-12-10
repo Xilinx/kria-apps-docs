@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -27,9 +27,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
-        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -47,6 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KD240
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 1.0
@@ -79,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">KD240 Applications</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../bist_landing.html">BIST</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../bist_landing.html">Built-In Self Test (BIST)</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="run.html">Install and Run BIST</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Overview of BIST Application</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#framework">Framework</a></li>
@@ -110,12 +113,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="../bist_landing.html#support">Support</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications Via TSN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../foc-motor-ctrl/foc_motor_control_landing.html">FOC Motor Control Application</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/ros2_multinode_communication_via_tsn.html">ROS 2 Multi-Node Communications via TSN</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/foc_motor_ctrl.html">FOC Motor Control</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">KD240 Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../kria_starterkit_linux_boot.html">Booting Kria Starter Kit Linux on KD240</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_boot.html">Boot Kria Starter Kit Linux on KD240</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Building the Design Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generate Custom Firmware</a></li>
@@ -147,15 +150,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <section id="bist-overview">
-<h1>BIST Overview<a class="headerlink" href="#bist-overview" title="Link to this heading">¶</a></h1>
+<h1>BIST Overview<a class="headerlink" href="#bist-overview" title="Permalink to this heading">¶</a></h1>
 <p>The Built-In Self Test (BIST) application tests the interfaces on the AMD Kria™ starter kits to verify functionality and/or performance. If a custom design is not working as expected, this application can be used to differentiate hardware issues from design issues.</p>
 <p>The BIST application is based on the pytest framework and designed to be modular and configurable so that it can be used across different starter kits. The tests are grouped into modules based on the interface which allows testing individual interfaces if needed. Some tests are self-validating, while others require user input based on observation. Each individual test either verifies the functionality or performance of an interface.</p>
 <section id="framework">
-<h2>Framework<a class="headerlink" href="#framework" title="Link to this heading">¶</a></h2>
+<h2>Framework<a class="headerlink" href="#framework" title="Permalink to this heading">¶</a></h2>
 <p>The Built-In Self Test (BIST) application is based on the <a class="reference external" href="https://pytest.org/">pytest</a> framework. Pytest allows <a class="reference external" href="https://docs.pytest.org/parametrize.html">parametrizing</a> the test functions so that they can be reused across different boards and interfaces. The tests are enumerated based on the target board and you can choose to run all tests for the target board, selected test modules, or selected individual tests. The file structure is described in the next section.</p>
 </section>
 <section id="file-structure">
-<h2>File Structure<a class="headerlink" href="#file-structure" title="Link to this heading">¶</a></h2>
+<h2>File Structure<a class="headerlink" href="#file-structure" title="Permalink to this heading">¶</a></h2>
 <p>The source code for the BIST application can be found in the <a class="reference external" href="https://github.com/Xilinx/kria-bist">kria-bist</a> repository. The tests directory contains
 a module directory for each interface, along with a top level conftest.py and
 pytest.ini.</p>
@@ -189,7 +192,7 @@ the run function returns either True or False, the test function asserts this
 value and this determines whether a test passed or failed.</p>
 </section>
 <section id="test-modules">
-<h2>Test Modules<a class="headerlink" href="#test-modules" title="Link to this heading">¶</a></h2>
+<h2>Test Modules<a class="headerlink" href="#test-modules" title="Permalink to this heading">¶</a></h2>
 <p>The test modules are listed below. Refer to the individual module pages for more details.</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -211,7 +214,7 @@ value and this determines whether a test passed or failed.</p>
 </ul>
 </div>
 <section id="support">
-<h3>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h3>
+<h3>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h3>
 <p>GitHub issues will be used for tracking requests and bugs. For questions, go to <a class="reference external" href="http://forums.xilinx.com/">forums.xilinx.com</a>.</p>
 </section>
 </section>
@@ -231,7 +234,7 @@ value and this determines whether a test passed or failed.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 09, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -93,7 +94,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="build_accel.html">Integrating an Overlay into the Platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generating_custom_firmware.html">Generating Custom Firmware</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kria_starterkit_linux_boot.html">Kria Starter Kit Linux Boot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linux_boot.html">Kria Starter Kit Linux Boot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="build_application_docker_container.html">Rebuilding Application Docker Containers</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Integrating New Sensors</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#support-for-new-sensors-on-kv260-j7">Support for new sensors on KV260 J7</a></li>
@@ -149,20 +150,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    <td align="center"><img src="media/xilinx-logo.png" width="30%"/><h1>Kria&trade; Booting the Kria Starter Kit Linux</h1>
    </td>
  </tr>
-</table><div class="section" id="integrating-new-ias-sensor-modules">
+</table><section id="integrating-new-ias-sensor-modules">
 <h1>Integrating New IAS Sensor Modules<a class="headerlink" href="#integrating-new-ias-sensor-modules" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="support-for-new-sensors-on-kv260-j7">
+<section id="support-for-new-sensors-on-kv260-j7">
 <h2>Support for new sensors on KV260 J7<a class="headerlink" href="#support-for-new-sensors-on-kv260-j7" title="Permalink to this heading">¶</a></h2>
 <p>KV260 J7 is an IAS connector connected to a dedicated onsemi AP1302 Image Sensor Processor (ISP). Each sensor module (e.g. AR1335) requires its own firmware blob on target.</p>
 <p>The KV260 example applications currently support two onsemi camera sensors on J7 IAS connector - AR1335 or AR0144 depending on the example application. If integrating a new onsemi sensor for use with the AP1302 ISP, obtain the required firmware blob via <a class="reference external" href="https://www.onsemi.com/support/sales">onsemi sales support</a>. The AP1302 Linux driver will load the new firmware blob from <code class="docutils literal notranslate"><span class="pre">/usr/lib/firmware/</span></code> on the target device.</p>
-</div>
-<div class="section" id="support-for-new-sensors-on-kv260-j8">
+</section>
+<section id="support-for-new-sensors-on-kv260-j8">
 <h2>Support for new sensors on KV260 J8<a class="headerlink" href="#support-for-new-sensors-on-kv260-j8" title="Permalink to this heading">¶</a></h2>
 <p>KV260 J8 is an IAS connector interfaced directly to the FPGA. Integration of new sensor modules via this path requires a supporting PL implementation.</p>
 <p>To bring support for new sensors on J8, contact <a class="reference external" href="https://www.onsemi.com/support/sales">onsemi sales support</a> for details.</p>
 <p>An example application featuring a direct sensor module interface (J8) with a custom PL implementation can be found <a class="reference external" href="https://xfuse.ai/phoenix-isp-for-kria-som-3/">here</a>.</p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -178,7 +179,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

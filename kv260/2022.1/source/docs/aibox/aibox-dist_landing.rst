@@ -57,7 +57,7 @@ Tutorials
   Creating a Vitis Platform <../build_vitis_platform>
   Integrating an Overlay into the Platform <../build_accel>
   Generating Custom Firmware <../generating_custom_firmware>
-  Kria Starter Kit Linux Boot <../kria_starterkit_linux_boot>
+  Kria Starter Kit Linux Boot <../linux_boot>
   Rebuilding Application Docker Containers <../build_application_docker_container>
 
 

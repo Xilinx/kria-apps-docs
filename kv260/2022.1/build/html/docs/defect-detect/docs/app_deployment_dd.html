@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -149,24 +150,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Setting Up the Board and Application Deployment</h1> </td>
  </tr>
-</table><div class="section" id="setting-up-the-board-and-application-deployment">
+</table><section id="setting-up-the-board-and-application-deployment">
 <h1>Setting Up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document shows how to set up the board, and run the defect-detect application.</p>
 <p>This guide and its prebuilt are targeted for Ubuntu® 22.04 and AMD 2022.1 toolchain. The previous version of this application (on AMD 2021.1 toolchain) targeted to PetaLinux is still available <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html">online</a>.</p>
-</div>
-<div class="section" id="booting-up-linux">
+</section>
+<section id="booting-up-linux">
 <h2>Booting up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
-<p>Before continuing with defect-detect application specific instructions, if not yet done so, boot Linux with the instructions from the <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> page.</p>
+<p>Before continuing with defect-detect application specific instructions, if not yet done so, boot Linux with the instructions from the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> page.</p>
 <blockquote>
 <div><p><strong>NOTE:</strong> The Defect Detect application requires starting the application using command line through universal asynchronous receiver-transmitter (UART) instead of GNOME Desktop.</p>
 </div></blockquote>
 <p>Defect Detect requires kernel version 5.15.0-1013 or newer.</p>
-</div>
-<div class="section" id="introduction-to-the-test-environment">
+</section>
+<section id="introduction-to-the-test-environment">
 <h2>Introduction to the Test Environment<a class="headerlink" href="#introduction-to-the-test-environment" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="setting-up-the-live-source">
+<section id="setting-up-the-live-source">
 <h3>Setting Up the Live Source<a class="headerlink" href="#setting-up-the-live-source" title="Permalink to this heading">¶</a></h3>
 <p>When setting up the SOM Board for the live camera source capturing mango image displayed on a monitor, adhere to the following guidelines:</p>
 <ul>
@@ -184,8 +185,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="setting-up-the-test-environment">
+</section>
+<section id="setting-up-the-test-environment">
 <h3>Setting Up the Test Environment<a class="headerlink" href="#setting-up-the-test-environment" title="Permalink to this heading">¶</a></h3>
 <blockquote>
 <div><p><strong>NOTE:</strong> Ensure that the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c">Gstreamer packages</a> are installed on the Linux PC. If the Linux distribution is on Ubuntu, make sure its version is at least <strong>16.04</strong>.</p>
@@ -199,19 +200,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Unzip the downloaded rar file.</p></li>
 <li><p>In the Linux PC, go to <code class="docutils literal notranslate"><span class="pre">DB_mango</span></code>.</p></li>
 <li><p>Copy and save the following script as <code class="docutils literal notranslate"><span class="pre">convert_jpeg_y8.sh</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> file <span class="k">in</span> ./*<span class="p">;</span> <span class="k">do</span>       
-<span class="nv">f</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&quot;</span><span class="k">)</span><span class="p">;</span>
-  <span class="nv">filename</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$f</span><span class="p">|</span> cut  -d<span class="s1">&#39;.&#39;</span> -f <span class="m">1</span><span class="k">)</span><span class="p">;</span> <span class="c1">#file has extension, it return only filename</span>
-    <span class="nb">echo</span> <span class="nv">$filename</span>
-      gst-launch-1.0 filesrc <span class="nv">location</span><span class="o">=</span><span class="nv">$file</span> ! jpegdec  ! videoconvert  ! videoscale ! video/x-raw, <span class="nv">width</span><span class="o">=</span><span class="m">1280</span>, <span class="nv">height</span><span class="o">=</span><span class="m">800</span>, <span class="nv">format</span><span class="o">=</span>GRAY8 ! filesink <span class="nv">location</span><span class="o">=</span><span class="nv">$filename</span>.y8
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>./*<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w">       </span>
+<span class="nv">f</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&quot;</span><span class="k">)</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">filename</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$f</span><span class="p">|</span><span class="w"> </span>cut<span class="w">  </span>-d<span class="s1">&#39;.&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="c1">#file has extension, it return only filename</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$filename</span>
+<span class="w">      </span>gst-launch-1.0<span class="w"> </span>filesrc<span class="w"> </span><span class="nv">location</span><span class="o">=</span><span class="nv">$file</span><span class="w"> </span>!<span class="w"> </span>jpegdec<span class="w">  </span>!<span class="w"> </span>videoconvert<span class="w">  </span>!<span class="w"> </span>videoscale<span class="w"> </span>!<span class="w"> </span>video/x-raw,<span class="w"> </span><span class="nv">width</span><span class="o">=</span><span class="m">1280</span>,<span class="w"> </span><span class="nv">height</span><span class="o">=</span><span class="m">800</span>,<span class="w"> </span><span class="nv">format</span><span class="o">=</span>GRAY8<span class="w"> </span>!<span class="w"> </span>filesink<span class="w"> </span><span class="nv">location</span><span class="o">=</span><span class="nv">$filename</span>.y8
 <span class="k">done</span>
-cat Mango_*.y8 &gt; input_video.y8
+cat<span class="w"> </span>Mango_*.y8<span class="w"> </span>&gt;<span class="w"> </span>input_video.y8
 </pre></div>
 </div>
 </li>
 <li><p>Make the script executable: <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">convert_jpeg_y8.sh</span></code></p></li>
 <li><p>Run the script <code class="docutils literal notranslate"><span class="pre">convert_jpeg_y8.sh</span></code> as follows:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./convert_jpeg_y8.sh &gt;<span class="p">&amp;</span> file.txt
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./convert_jpeg_y8.sh<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="w"> </span>file.txt
 </pre></div>
 </div>
 <p>Once the above command is completed, the script produces <code class="docutils literal notranslate"><span class="pre">input_video.y8</span></code> as input to the Defect Detect application.</p>
@@ -224,43 +225,43 @@ cat Mango_*.y8 &gt; input_video.y8
 </ol>
 <p>The Defect Detection application’s design takes, processes, and displays images on to the monitor.</p>
 <p>See <a class="reference internal" href="known_issues_dd.html"><span class="doc">Known Issues</span></a> with the Defect Detect application.</p>
-</div>
-</div>
-<div class="section" id="application-specific-hardware-setup">
+</section>
+</section>
+<section id="application-specific-hardware-setup">
 <h2>Application Specific Hardware Setup<a class="headerlink" href="#application-specific-hardware-setup" title="Permalink to this heading">¶</a></h2>
-<p>Besides the hardware configurations required in the <a class="reference internal" href="../../kria_starterkit_linux_boot.html"><span class="doc">Kria Starter Kit Linux boot</span></a> for booting Linux, the Defect Detect Application requires the following:</p>
+<p>Besides the hardware configurations required in the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> for booting Linux, the Defect Detect Application requires the following:</p>
 <p><img alt="GitHub Logo" src="../../../_images/som-board.png" /></p>
 <ul class="simple">
 <li><p><strong>Monitor:</strong> Defect detect requires a 4k monitor, so before booting, connect a 4k monitor to the board using either the DP or HDMI port.</p></li>
 <li><p><strong>Camera Connection:</strong> Ensure that the board is powered off, and then connect AR0144 to IAS connector J7.</p></li>
 </ul>
-</div>
-<div class="section" id="downloading-and-loading-application-firmware">
+</section>
+<section id="downloading-and-loading-application-firmware">
 <h2>Downloading and Loading Application Firmware<a class="headerlink" href="#downloading-and-loading-application-firmware" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Search the package feed for packages compatible with the KV260.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo apt search xlnx-firmware-kv260
-Sorting... Done
-Full Text Search... Done
-xlnx-firmware-kv260-aibox-reid/jammy <span class="m">0</span>.1-0xlnx1 arm64
-  FPGA firmware <span class="k">for</span> Xilinx boards - kv260 aibox-reid application
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>search<span class="w"> </span>xlnx-firmware-kv260
+Sorting...<span class="w"> </span>Done
+Full<span class="w"> </span>Text<span class="w"> </span>Search...<span class="w"> </span>Done
+xlnx-firmware-kv260-aibox-reid/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+<span class="w">  </span>FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>aibox-reid<span class="w"> </span>application
 
-xlnx-firmware-kv260-benchmark-b4096/jammy <span class="m">0</span>.1-0xlnx1 arm64
-  FPGA firmware <span class="k">for</span> Xilinx boards - kv260 benchmark-b4096 application
+xlnx-firmware-kv260-benchmark-b4096/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+<span class="w">  </span>FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>benchmark-b4096<span class="w"> </span>application
 
-xlnx-firmware-kv260-defect-detect/jammy <span class="m">0</span>.1-0xlnx1 arm64
-  FPGA firmware <span class="k">for</span> Xilinx boards - kv260 defect-detect application
+xlnx-firmware-kv260-defect-detect/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+<span class="w">  </span>FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>defect-detect<span class="w"> </span>application
 
-xlnx-firmware-kv260-nlp-smartvision/jammy,now <span class="m">0</span>.1-0xlnx1 arm64 <span class="o">[</span>installed<span class="o">]</span>
-  FPGA firmware <span class="k">for</span> Xilinx boards - kv260 nlp-smartvision application
+xlnx-firmware-kv260-nlp-smartvision/jammy,now<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64<span class="w"> </span><span class="o">[</span>installed<span class="o">]</span>
+<span class="w">  </span>FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>nlp-smartvision<span class="w"> </span>application
 
-xlnx-firmware-kv260-smartcam/jammy <span class="m">0</span>.1-0xlnx1 arm64
-  FPGA firmware <span class="k">for</span> Xilinx boards - kv260 smartcam application
+xlnx-firmware-kv260-smartcam/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+<span class="w">  </span>FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>smartcam<span class="w"> </span>application
 </pre></div>
 </div>
 </li>
 <li><p>Install firmware binaries.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> sudo apt install xlnx-firmware-kv260-defect-detect
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>xlnx-firmware-kv260-defect-detect
 </pre></div>
 </div>
 </li>
@@ -268,7 +269,7 @@ xlnx-firmware-kv260-smartcam/jammy <span class="m">0</span>.1-0xlnx1 arm64
 <p>The firmware consist of bitstream and device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.</p>
 <ul>
 <li><p>Disable the desktop environment.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil desktop_disable
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>desktop_disable
 </pre></div>
 </div>
 </li>
@@ -277,22 +278,22 @@ xlnx-firmware-kv260-smartcam/jammy <span class="m">0</span>.1-0xlnx1 arm64
 <div><p><strong>NOTE:</strong> Executing “xmutil desktop_disable” will cause the desktop on the monitor to be disabled. Use any serial terminal to continue issuing Linux commands via port J4, and do not rely completely on the desktop environment.</p>
 </div></blockquote>
 <p>After running the application, the desktop environment can be enabled again with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> sudo xmutil desktop_enable
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>desktop_enable
 </pre></div>
 </div>
 <ul>
 <li><p>After installing the firmware, execute xmutil listapps to verify that it is captured under the listapps function and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil listapps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
 </pre></div>
 </div>
 </li>
 <li><p>Switch to a different platform for a different application:</p>
 <p>When there is already another accelerator/firmware being activated, unload it first, then switch to <code class="docutils literal notranslate"><span class="pre">xlnx-app-kv260-defect-detect</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp
-sudo xmutil dp_unbind
-sudo xmutil loadapp kv260-defect-detect
-sudo xmutil dp_bind
-modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV16
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+sudo<span class="w"> </span>xmutil<span class="w"> </span>dp_unbind
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>kv260-defect-detect
+sudo<span class="w"> </span>xmutil<span class="w"> </span>dp_bind
+modetest<span class="w"> </span>-M<span class="w"> </span>xlnx<span class="w"> </span>-D<span class="w"> </span>B0010000.v_mix<span class="w"> </span>-s<span class="w"> </span><span class="m">52</span>@40:3840x2160@NV16
 </pre></div>
 </div>
 <blockquote>
@@ -302,41 +303,41 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 </ul>
 </li>
 </ol>
-</div>
-<div class="section" id="docker-based-application-preparation">
+</section>
+<section id="docker-based-application-preparation">
 <h2>Docker Based Application Preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Pull the latest Docker image for defect-detect using the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull xilinx/defect-detect:2022.1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>xilinx/defect-detect:2022.1
 </pre></div>
 </div>
 <ul>
 <li><p>The storage volume on the SD card can be limited with multiple Dockers. If there are space issues, you can use following command to remove the existing container.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker rmi --force <span class="nv">$INSTALLED_DOCKER_IMAGE</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rmi<span class="w"> </span>--force<span class="w"> </span><span class="nv">$INSTALLED_DOCKER_IMAGE</span>
 </pre></div>
 </div>
 </li>
 <li><p>You can find the images installed with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker images
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>images
 </pre></div>
 </div>
 </li>
 </ul>
 </li>
 <li><p>Launch the Docker using the following command. The firmware must be loaded before launching the Docker container.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run <span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span> <span class="se">\</span>
-    --env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span> <span class="se">\</span>
-    --net<span class="o">=</span>host <span class="se">\</span>
-    --privileged <span class="se">\</span>
-    --volume /tmp:/tmp <span class="se">\</span>
-    --volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span> <span class="se">\</span>
-    -v /dev:/dev <span class="se">\</span>
-    -v /sys:/sys <span class="se">\</span>
-    -v /etc/vart.conf:/etc/vart.conf <span class="se">\</span>
-    -v /lib/firmware/xilinx:/lib/firmware/xilinx <span class="se">\</span>
-    -v /run:/run <span class="se">\</span>
-    -it xilinx/defect-detect:2022.1 bash
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--privileged<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--volume<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/run:/run<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-it<span class="w"> </span>xilinx/defect-detect:2022.1<span class="w"> </span>bash
 </pre></div>
 </div>
 <p>It launches the defect-detect Docker image container.</p>
@@ -345,11 +346,11 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="running-the-defect-detect-application">
+</section>
+<section id="running-the-defect-detect-application">
 <h2>Running the Defect Detect Application<a class="headerlink" href="#running-the-defect-detect-application" title="Permalink to this heading">¶</a></h2>
 <p>There are two ways to invoke the Defect Detection application: Jupyter Notebook or command line.</p>
-<div class="section" id="jupyter-notebook">
+<section id="jupyter-notebook">
 <h3>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">¶</a></h3>
 <p>Jupyter Notebook works as an example to show the capability of the <strong>defect-detect</strong> application for specific configurations.</p>
 <p>The Jupyter Notebook Defect Detect application supports the following modes:</p>
@@ -368,19 +369,19 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 <p>To start the defect-detection Jupyter notebook application, perform the following steps:</p>
 <ol>
 <li><p>Get the list of running Jupyter servers with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-notebook list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-notebook<span class="w"> </span>list
 </pre></div>
 </div>
 </li>
 <li><p>Stop the default Jupyter Notebook using the following command, if jupyter server is already running:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-notebook stop <span class="m">8888</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-notebook<span class="w"> </span>stop<span class="w"> </span><span class="m">8888</span>
 </pre></div>
 </div>
 </li>
 <li><p>Launch the Jupyter Notebook using the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-notebook  --notebook-dir<span class="o">=</span>/opt/xilinx/kv260-defect-detect/share/notebooks/ --ip<span class="o">=</span>&lt;IP Address&gt; --allow-root
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-notebook<span class="w">  </span>--notebook-dir<span class="o">=</span>/opt/xilinx/kv260-defect-detect/share/notebooks/<span class="w"> </span>--ip<span class="o">=</span>&lt;IP<span class="w"> </span>Address&gt;<span class="w"> </span>--allow-root
 
-// fill <span class="k">in</span> ip-address from ifconfig, eth0
+//<span class="w"> </span>fill<span class="w"> </span><span class="k">in</span><span class="w"> </span>ip-address<span class="w"> </span>from<span class="w"> </span>ifconfig,<span class="w"> </span>eth0
 </pre></div>
 </div>
 </li>
@@ -389,24 +390,24 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 <ol>
 <li><p>If using a direct connection (no DHCP), see the public documentation on how to configure a PC with a static IP on the same subnet.</p></li>
 <li><p>For the SOM target, set the desired IP address within the same subnet using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code> similar to the following example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig eth0 &lt;user defined IP&gt; netmask &lt;user defined netmask&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig<span class="w"> </span>eth0<span class="w"> </span>&lt;user<span class="w"> </span>defined<span class="w"> </span>IP&gt;<span class="w"> </span>netmask<span class="w"> </span>&lt;user<span class="w"> </span>defined<span class="w"> </span>netmask&gt;
 </pre></div>
 </div>
 </li>
 </ol>
 <p>Output example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>I <span class="m">17</span>:08:04.080 NotebookApp<span class="o">]</span> Serving notebooks from <span class="nb">local</span> directory: /tmp/notebooks
-<span class="o">[</span>I <span class="m">17</span>:08:04.081 NotebookApp<span class="o">]</span> Jupyter Notebook <span class="m">6</span>.4.12 is running at:
-<span class="o">[</span>I <span class="m">17</span>:08:04.081 NotebookApp<span class="o">]</span> http://xxx.yyy.zzz.ttt:8888/?token<span class="o">=</span>545e6a8950269d86c30e7c271b04cc0e6d0fe4df4ffefe0a
-<span class="o">[</span>I <span class="m">17</span>:08:04.081 NotebookApp<span class="o">]</span>  or http://127.0.0.1:8888/?token<span class="o">=</span>545e6a8950269d86c30e7c271b04cc0e6d0fe4df4ffefe0a
-<span class="o">[</span>I <span class="m">17</span>:08:04.081 NotebookApp<span class="o">]</span> Use Control-C to stop this server and shut down all kernels <span class="o">(</span>twice to skip confirmation<span class="o">)</span>.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>I<span class="w"> </span><span class="m">17</span>:08:04.080<span class="w"> </span>NotebookApp<span class="o">]</span><span class="w"> </span>Serving<span class="w"> </span>notebooks<span class="w"> </span>from<span class="w"> </span><span class="nb">local</span><span class="w"> </span>directory:<span class="w"> </span>/tmp/notebooks
+<span class="o">[</span>I<span class="w"> </span><span class="m">17</span>:08:04.081<span class="w"> </span>NotebookApp<span class="o">]</span><span class="w"> </span>Jupyter<span class="w"> </span>Notebook<span class="w"> </span><span class="m">6</span>.4.12<span class="w"> </span>is<span class="w"> </span>running<span class="w"> </span>at:
+<span class="o">[</span>I<span class="w"> </span><span class="m">17</span>:08:04.081<span class="w"> </span>NotebookApp<span class="o">]</span><span class="w"> </span>http://xxx.yyy.zzz.ttt:8888/?token<span class="o">=</span>545e6a8950269d86c30e7c271b04cc0e6d0fe4df4ffefe0a
+<span class="o">[</span>I<span class="w"> </span><span class="m">17</span>:08:04.081<span class="w"> </span>NotebookApp<span class="o">]</span><span class="w">  </span>or<span class="w"> </span>http://127.0.0.1:8888/?token<span class="o">=</span>545e6a8950269d86c30e7c271b04cc0e6d0fe4df4ffefe0a
+<span class="o">[</span>I<span class="w"> </span><span class="m">17</span>:08:04.081<span class="w"> </span>NotebookApp<span class="o">]</span><span class="w"> </span>Use<span class="w"> </span>Control-C<span class="w"> </span>to<span class="w"> </span>stop<span class="w"> </span>this<span class="w"> </span>server<span class="w"> </span>and<span class="w"> </span>shut<span class="w"> </span>down<span class="w"> </span>all<span class="w"> </span>kernels<span class="w"> </span><span class="o">(</span>twice<span class="w"> </span>to<span class="w"> </span>skip<span class="w"> </span>confirmation<span class="o">)</span>.
 </pre></div>
 </div>
 <p>To access the Defect Detection Jupyter Notebook, use the path returned by the <code class="docutils literal notranslate"><span class="pre">jupyter-notebook</span> <span class="pre">list</span></code> command.</p>
 <p>A Jupyter Notebook user can run cell by cell or run the defect detection full pipeline in Jupyter Notebook. To do this, go to <code class="docutils literal notranslate"><span class="pre">defect-detect.ipynb</span></code>, then from the menu bar, select <strong>Kernel</strong>, and then select <strong>Restart Kernel &amp; Run All Cells</strong>. The notebook by default expects file source location to be <code class="docutils literal notranslate"><span class="pre">/home/input_video.y8</span></code>. Make changes in the notebook if needed.</p>
 <p>When using a file sink, data is dumped in the <strong>rootfs (/home/)</strong>. Offload the output files to the PC and play using a YUV player. In the YUV player, select the color as <strong>Y</strong> and the custom size as <strong>1280x800</strong>.</p>
-</div>
-<div class="section" id="command-examples">
+</section>
+<section id="command-examples">
 <h3>Command Examples<a class="headerlink" href="#command-examples" title="Permalink to this heading">¶</a></h3>
 <p><strong>Examples:</strong></p>
 <blockquote>
@@ -414,7 +415,7 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 </div></blockquote>
 <ul>
 <li><p>For File-In and Display-Out playback in demo mode, run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect -i input_video.y8 -d <span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect<span class="w"> </span>-i<span class="w"> </span>input_video.y8<span class="w"> </span>-d<span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
 <blockquote>
@@ -422,7 +423,7 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 </div></blockquote>
 </li>
 <li><p>For File-In and File-Out playback, run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect -i input_video.y8 -x raw.y8 -y pre_pros.y8 -z final.y8
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect<span class="w"> </span>-i<span class="w"> </span>input_video.y8<span class="w"> </span>-x<span class="w"> </span>raw.y8<span class="w"> </span>-y<span class="w"> </span>pre_pros.y8<span class="w"> </span>-z<span class="w"> </span>final.y8
 </pre></div>
 </div>
 <blockquote>
@@ -430,7 +431,7 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 </div></blockquote>
 </li>
 <li><p>For File-In and Display-Out playback, run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect -i input_video.y8
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect<span class="w"> </span>-i<span class="w"> </span>input_video.y8
 </pre></div>
 </div>
 <blockquote>
@@ -438,7 +439,7 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 </div></blockquote>
 </li>
 <li><p>For Live-In and File-Out playback, run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect -x raw.y8 -y pre_pros.y8 -z final.y8
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect<span class="w"> </span>-x<span class="w"> </span>raw.y8<span class="w"> </span>-y<span class="w"> </span>pre_pros.y8<span class="w"> </span>-z<span class="w"> </span>final.y8
 </pre></div>
 </div>
 <blockquote>
@@ -452,52 +453,52 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 </div></blockquote>
 </li>
 <li><p>For Live-In and Display-Out playback in demo mode, run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect -d <span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect<span class="w"> </span>-d<span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
 </li>
 </ul>
 <p>The three-stage outputs display on the DP/HDMI with a 4 fps rate. This mode is enabled to run the pipeline with a slower rate for you to analyze the different outputs.</p>
-</div>
-<div class="section" id="command-line">
+</section>
+<section id="command-line">
 <h3>Command Line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h3>
 <p>Use the command line to set the resolution, configuration file path, and more using the <strong>defect-detect</strong> application.</p>
 <p>More combinations could be made based on the options provided by the <strong>defect-detect</strong> application.</p>
 <p>Defect Detection Application Usage</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect --help
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect<span class="w"> </span>--help
 </pre></div>
 </div>
 <p>Usage:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect <span class="o">[</span>OPTION?<span class="o">]</span> - Application to detect the defect of Mango on an Xilinx board.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defect-detect<span class="w"> </span><span class="o">[</span>OPTION?<span class="o">]</span><span class="w"> </span>-<span class="w"> </span>Application<span class="w"> </span>to<span class="w"> </span>detect<span class="w"> </span>the<span class="w"> </span>defect<span class="w"> </span>of<span class="w"> </span>Mango<span class="w"> </span>on<span class="w"> </span>an<span class="w"> </span>Xilinx<span class="w"> </span>board.
 </pre></div>
 </div>
 <p>Help Options:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>  -?, --help                        Show <span class="nb">help</span> options
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>-?,<span class="w"> </span>--help<span class="w">                        </span>Show<span class="w"> </span><span class="nb">help</span><span class="w"> </span>options
 
-  --help-all                        Show all <span class="nb">help</span> options
+<span class="w">  </span>--help-all<span class="w">                        </span>Show<span class="w"> </span>all<span class="w"> </span><span class="nb">help</span><span class="w"> </span>options
 
-  --help-gst                        Show GStreamer Options
+<span class="w">  </span>--help-gst<span class="w">                        </span>Show<span class="w"> </span>GStreamer<span class="w"> </span>Options
 </pre></div>
 </div>
 <p>Application Options:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-i, --infile<span class="o">=</span>file path                                       Location of input file
--x, --rawout<span class="o">=</span>file path                                       Location of capture raw output file
--y, --preprocessout<span class="o">=</span>file path                                Location of pre-processed output file
--z, --finalout<span class="o">=</span>file path                                     Location of final output file
--w, --width<span class="o">=</span><span class="m">1280</span>                                             Resolution width of the input
--h, --height<span class="o">=</span><span class="m">800</span>                                             Resolution height of the input
--r, --framerate<span class="o">=</span><span class="m">60</span>                                           Framerate of the input <span class="nb">source</span>
--d, --demomode<span class="o">=</span><span class="m">0</span>                                             For Demo mode value must be <span class="m">1</span>
--c, --cfgpath<span class="o">=</span>/opt/xilinx/kv260-defect-detect/share/vvas/    JSON config file path
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-i,<span class="w"> </span>--infile<span class="o">=</span>file<span class="w"> </span>path<span class="w">                                       </span>Location<span class="w"> </span>of<span class="w"> </span>input<span class="w"> </span>file
+-x,<span class="w"> </span>--rawout<span class="o">=</span>file<span class="w"> </span>path<span class="w">                                       </span>Location<span class="w"> </span>of<span class="w"> </span>capture<span class="w"> </span>raw<span class="w"> </span>output<span class="w"> </span>file
+-y,<span class="w"> </span>--preprocessout<span class="o">=</span>file<span class="w"> </span>path<span class="w">                                </span>Location<span class="w"> </span>of<span class="w"> </span>pre-processed<span class="w"> </span>output<span class="w"> </span>file
+-z,<span class="w"> </span>--finalout<span class="o">=</span>file<span class="w"> </span>path<span class="w">                                     </span>Location<span class="w"> </span>of<span class="w"> </span>final<span class="w"> </span>output<span class="w"> </span>file
+-w,<span class="w"> </span>--width<span class="o">=</span><span class="m">1280</span><span class="w">                                             </span>Resolution<span class="w"> </span>width<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>input
+-h,<span class="w"> </span>--height<span class="o">=</span><span class="m">800</span><span class="w">                                             </span>Resolution<span class="w"> </span>height<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>input
+-r,<span class="w"> </span>--framerate<span class="o">=</span><span class="m">60</span><span class="w">                                           </span>Framerate<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>input<span class="w"> </span><span class="nb">source</span>
+-d,<span class="w"> </span>--demomode<span class="o">=</span><span class="m">0</span><span class="w">                                             </span>For<span class="w"> </span>Demo<span class="w"> </span>mode<span class="w"> </span>value<span class="w"> </span>must<span class="w"> </span>be<span class="w"> </span><span class="m">1</span>
+-c,<span class="w"> </span>--cfgpath<span class="o">=</span>/opt/xilinx/kv260-defect-detect/share/vvas/<span class="w">    </span>JSON<span class="w"> </span>config<span class="w"> </span>file<span class="w"> </span>path
 </pre></div>
 </div>
 <p>The application is targeted to run an input source that supports GRAY8 (Y8) format with a resolution of <strong>1280x800</strong>.</p>
 <p>Once done with the Defect Detection application, to switch to another accelerator application after defect detection application, first exit out of the container using <code class="docutils literal notranslate"><span class="pre">exit</span></code>, then unload it by running the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp kv260-defect-detect
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span>kv260-defect-detect
 </pre></div>
 </div>
-</div>
-<div class="section" id="sensor-calibration-for-the-live-source">
+</section>
+<section id="sensor-calibration-for-the-live-source">
 <h3>Sensor Calibration for the Live Source<a class="headerlink" href="#sensor-calibration-for-the-live-source" title="Permalink to this heading">¶</a></h3>
 <p>While running the Defect Detection application through the command line or in the Jupyter Notebook, <code class="docutils literal notranslate"><span class="pre">ar0144-sensor-calib.sh</span></code> script file being called from the application code to perform the sensor calibration.</p>
 <p>If the preview image is not properly displayed, use the <code class="docutils literal notranslate"><span class="pre">ar0144-sensor-calib.sh</span></code> script (present in <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-defect-detect/bin</span></code>) to change various sensor calibration parameter values such as:</p>
@@ -515,8 +516,8 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ar0144</span><span class="o">-</span><span class="n">sensor</span><span class="o">-</span><span class="n">calib</span><span class="o">.</span><span class="n">sh</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">mediaX</span> <span class="p">(</span><span class="n">where</span> <span class="n">X</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">corresponding</span> <span class="n">media</span> <span class="n">node</span> <span class="k">for</span> <span class="n">the</span> <span class="n">AR0144</span> <span class="n">sensor</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="file-structure-of-the-application">
+</section>
+<section id="file-structure-of-the-application">
 <h3>File Structure of the Application<a class="headerlink" href="#file-structure-of-the-application" title="Permalink to this heading">¶</a></h3>
 <details>
 <summary><b>To view details, click here.</b></summary><p>The application is comprised of the following files:</p>
@@ -600,16 +601,16 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 <td>Jupyter notebook file to run the Defect Defection pipeline</td>
 </tr>
 </tbody>
-</table></details></div>
-</div>
-<div class="section" id="next-steps">
+</table></details></section>
+</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="sw_arch_platform_dd.html"><span class="doc">Software Architecture</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="../defectdetect_landing.html"><span class="doc">KV260 SOM Defect Detect Design Start Page</span></a>.</p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -625,7 +626,7 @@ modetest -M xlnx -D B0010000.v_mix -s <span class="m">52</span>@40:3840x2160@NV1
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -34,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="ROS 2 Multi-Node Communications Via TSN" href="../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html" />
+    <link rel="next" title="Perception Stack Application" href="../../ros2_perception_node/ros2_perception_node_landing.html" />
     <link rel="prev" title="Debug" href="debug.html" /> 
 </head>
 
@@ -100,7 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications via TSN</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/ros2_multinode_communication_via_tsn.html">ROS 2 Multi-Node Communications via TSN</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ros2_perception_node/ros2_perception_node_landing.html">ROS 2 Perception Node</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../gps_1588_ptp/gps_1588_ptp_precision_time_mgmt.html">Precision Time Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../bist/bist_landing.html">Built-In Self Test (BIST)</a></li>
@@ -139,7 +140,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Machine Vision Camera Tutorial</h1> </td>
  </tr>
-</table><div class="section" id="known-issues">
+</table><section id="known-issues">
 <h1>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h1>
 <p>First review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">FAQ</a> for commonly encountered issues across AMD Kria™ SOM applications.</p>
 <ol>
@@ -164,15 +165,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Randomly after running gst-launch command and sphinx, you might not see the preview image in sphinx GEV viewer. In such cases, check the framebuffer interrupt count using <code class="docutils literal notranslate"><span class="pre">cat/proc/interrupts</span></code>. If the interrupt count is not increasing, reboot the KR260 target and relaunch the MV-Camera application.</p></li>
 <li><p>The mv-camera mono/color firmware fails to probe the imx547 mono/color sensor on the second load of the mv-camera firmware. Due to this the sensor never gets
 probed and added to media subsystem in Linux. To recover from this, workaround is to reboot the system using <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">reboot</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>  ubuntu@kria:~$ sudo xmutil unloadapp
-  ubuntu@kria:~$ sudo xmutil loadapp kr260-mv-camera-color
-  <span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> ubuntu:
-  remove from slot <span class="m">0</span> returns: <span class="m">0</span> <span class="o">(</span>Ok<span class="o">)</span>
-  <span class="o">[</span> <span class="m">1253</span>.237678<span class="o">]</span> OF: overlay: WARNING: memory leak will occur <span class="k">if</span> overlay removed, property: /fpga-full/firmware-name
-  <span class="o">[</span> <span class="m">1253</span>.247909<span class="o">]</span> OF: overlay: WARNING: memory leak will occur <span class="k">if</span> overlay removed, property: /fpga-full/resets
-  <span class="o">[</span> <span class="m">1253</span>.502242<span class="o">]</span> xilinx_axienet a0070000.ethernet: missing axistream-connected property
-  <span class="o">[</span> <span class="m">1253</span>.509963<span class="o">]</span> Getting DMA resource failed
-  <span class="o">[</span> <span class="m">1253</span>.515192<span class="o">]</span> s2imac a0060000.xgige: Couldn<span class="s1">&#39;t lock phy base address region at 000000005f7d6d0f</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+<span class="w">  </span>ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>kr260-mv-camera-color
+<span class="w">  </span><span class="o">[</span>sudo<span class="o">]</span><span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>ubuntu:
+<span class="w">  </span>remove<span class="w"> </span>from<span class="w"> </span>slot<span class="w"> </span><span class="m">0</span><span class="w"> </span>returns:<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>Ok<span class="o">)</span>
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="m">1253</span>.237678<span class="o">]</span><span class="w"> </span>OF:<span class="w"> </span>overlay:<span class="w"> </span>WARNING:<span class="w"> </span>memory<span class="w"> </span>leak<span class="w"> </span>will<span class="w"> </span>occur<span class="w"> </span><span class="k">if</span><span class="w"> </span>overlay<span class="w"> </span>removed,<span class="w"> </span>property:<span class="w"> </span>/fpga-full/firmware-name
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="m">1253</span>.247909<span class="o">]</span><span class="w"> </span>OF:<span class="w"> </span>overlay:<span class="w"> </span>WARNING:<span class="w"> </span>memory<span class="w"> </span>leak<span class="w"> </span>will<span class="w"> </span>occur<span class="w"> </span><span class="k">if</span><span class="w"> </span>overlay<span class="w"> </span>removed,<span class="w"> </span>property:<span class="w"> </span>/fpga-full/resets
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="m">1253</span>.502242<span class="o">]</span><span class="w"> </span>xilinx_axienet<span class="w"> </span>a0070000.ethernet:<span class="w"> </span>missing<span class="w"> </span>axistream-connected<span class="w"> </span>property
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="m">1253</span>.509963<span class="o">]</span><span class="w"> </span>Getting<span class="w"> </span>DMA<span class="w"> </span>resource<span class="w"> </span>failed
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="m">1253</span>.515192<span class="o">]</span><span class="w"> </span>s2imac<span class="w"> </span>a0060000.xgige:<span class="w"> </span>Couldn<span class="s1">&#39;t lock phy base address region at 000000005f7d6d0f</span>
 <span class="s1">  kr260-mv-camera-color: loaded to slot 0</span>
 <span class="s1">  [ 1253.626369] zocl-drm axi:zyxclmm_drm: IRQ index 8 not found</span>
 
@@ -194,19 +195,19 @@ probed and added to media subsystem in Linux. To recover from this, workaround i
 <span class="s1">  [ 1275.756314] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /fpga-full/firmware-name</span>
 <span class="s1">  [ 1275.766502] OF: overlay: WARNING: memory leak will occur if overlay removed, property: /fpga-full/resets</span>
 <span class="s1">  [ 1275.929637] imx547 7-001a: GT TRX Reset GPIO not setup in DT</span>
-<span class="s1">  [ 1275.930456] xilinx_axienet a0070000.ethernet: can&#39;</span>t request region <span class="k">for</span> resource <span class="o">[</span>mem 0xa0070000-0xa007ffff<span class="o">]</span>
-  <span class="o">[</span> <span class="m">1275</span>.955302<span class="o">]</span> zocl-drm axi:zyxclmm_drm: IRQ index <span class="m">8</span> not found
-  kr260-mv-camera-color: loaded to slot <span class="m">0</span>
+<span class="s1">  [ 1275.930456] xilinx_axienet a0070000.ethernet: can&#39;</span>t<span class="w"> </span>request<span class="w"> </span>region<span class="w"> </span><span class="k">for</span><span class="w"> </span>resource<span class="w"> </span><span class="o">[</span>mem<span class="w"> </span>0xa0070000-0xa007ffff<span class="o">]</span>
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="m">1275</span>.955302<span class="o">]</span><span class="w"> </span>zocl-drm<span class="w"> </span>axi:zyxclmm_drm:<span class="w"> </span>IRQ<span class="w"> </span>index<span class="w"> </span><span class="m">8</span><span class="w"> </span>not<span class="w"> </span>found
+<span class="w">  </span>kr260-mv-camera-color:<span class="w"> </span>loaded<span class="w"> </span>to<span class="w"> </span>slot<span class="w"> </span><span class="m">0</span>
 
-  ubuntu@kria:~$ sudo dmesg <span class="p">|</span> grep imx547
-  <span class="o">[</span>  <span class="m">122</span>.329434<span class="o">]</span> imx547 <span class="m">7</span>-001a: GT TRX Reset GPIO not setup <span class="k">in</span> DT
-  <span class="o">[</span>  <span class="m">122</span>.335272<span class="o">]</span> imx547: probe of <span class="m">7</span>-001a failed with error -16
+<span class="w">  </span>ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>imx547
+<span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">122</span>.329434<span class="o">]</span><span class="w"> </span>imx547<span class="w"> </span><span class="m">7</span>-001a:<span class="w"> </span>GT<span class="w"> </span>TRX<span class="w"> </span>Reset<span class="w"> </span>GPIO<span class="w"> </span>not<span class="w"> </span>setup<span class="w"> </span><span class="k">in</span><span class="w"> </span>DT
+<span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">122</span>.335272<span class="o">]</span><span class="w"> </span>imx547:<span class="w"> </span>probe<span class="w"> </span>of<span class="w"> </span><span class="m">7</span>-001a<span class="w"> </span>failed<span class="w"> </span>with<span class="w"> </span>error<span class="w"> </span>-16
 </pre></div>
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="limitations">
+</section>
+<section id="limitations">
 <h1>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading">¶</a></h1>
 <ol class="simple">
 <li><p>MV-Defect-Detect pipeline supports max 60 fps.</p></li>
@@ -214,13 +215,13 @@ probed and added to media subsystem in Linux. To recover from this, workaround i
 <li><p>There is no hardened ISP in KR260 board, and there is no enough PL resources available to add soft ISP (HLS). So there might be a deviation in the expected accuracy out from mv-defect-detect application.</p></li>
 <li><p>The MV-Defect-Detect application at stage <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">2</span></code> runs at only 25fps.</p></li>
 </ol>
-<div class="section" id="next-steps">
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Go back to the <a class="reference internal" href="debug.html"><span class="doc">Debug</span></a></p></li>
 </ul>
-<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -229,14 +230,14 @@ probed and added to media subsystem in Linux. To recover from this, workaround i
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="debug.html" class="btn btn-neutral float-left" title="Debug" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html" class="btn btn-neutral float-right" title="ROS 2 Multi-Node Communications Via TSN" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../../ros2_perception_node/ros2_perception_node_landing.html" class="btn btn-neutral float-right" title="Perception Stack Application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 
