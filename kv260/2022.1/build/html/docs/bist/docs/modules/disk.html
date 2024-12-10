@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -151,14 +152,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="bist-disk-test-module">
+  <section id="bist-disk-test-module">
 <h1>BIST Disk Test Module<a class="headerlink" href="#bist-disk-test-module" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>The disk test module verifies the performance of USB and SD interfaces on the AMD
 Kria™ starter kits.</p>
-</div>
-<div class="section" id="tests">
+</section>
+<section id="tests">
 <h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
 <p>The module contains self validating performance test. It uses “dd” command-line
 utility to check the performance of USB and SD disk interfaces and verifies
@@ -186,26 +187,26 @@ mapping for the test labels to the four USB ports is given below:</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="center">Test Label</th>
-<th align="center">USB Port</th>
+<th style="text-align: center;">Test Label</th>
+<th style="text-align: center;">USB Port</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">usb1_*</td>
-<td align="center">Top Left</td>
+<td style="text-align: center;">usb1_*</td>
+<td style="text-align: center;">Top Left</td>
 </tr>
 <tr>
-<td align="center">usb2_*</td>
-<td align="center">Bottom Left</td>
+<td style="text-align: center;">usb2_*</td>
+<td style="text-align: center;">Bottom Left</td>
 </tr>
 <tr>
-<td align="center">usb3_*</td>
-<td align="center">Top Right</td>
+<td style="text-align: center;">usb3_*</td>
+<td style="text-align: center;">Top Right</td>
 </tr>
 <tr>
-<td align="center">usb4_*</td>
-<td align="center">Bottom Right</td>
+<td style="text-align: center;">usb4_*</td>
+<td style="text-align: center;">Bottom Right</td>
 </tr>
 </tbody>
 </table><p>For KD240 starter kit, there are two USB ports and one SD card port. The
@@ -213,45 +214,45 @@ mapping for the test labels to the two USB ports is given below:</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="center">Test Label</th>
-<th align="center">USB Port</th>
+<th style="text-align: center;">Test Label</th>
+<th style="text-align: center;">USB Port</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">usb1_*</td>
-<td align="center">Top</td>
+<td style="text-align: center;">usb1_*</td>
+<td style="text-align: center;">Top</td>
 </tr>
 <tr>
-<td align="center">usb2_*</td>
-<td align="center">Bottom</td>
+<td style="text-align: center;">usb2_*</td>
+<td style="text-align: center;">Bottom</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="test-execution">
+</table></section>
+<section id="test-execution">
 <h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
 <p>Example commands for this module are provided below (KV260):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3 --board kv260 -m disk  // Run all tests <span class="k">in</span> this module
-pytest-3 --board kv260 -k usb1_read_performance  // Run <span class="nb">read</span> performance <span class="nb">test</span> <span class="k">for</span> USB1 port
-pytest-3 --board kv260 -k usb1_write_performance  // Run write performance <span class="nb">test</span> <span class="k">for</span> USB1 port
-pytest-3 --board kv260 -k sd_read_performance  // Run <span class="nb">read</span> performance <span class="nb">test</span> <span class="k">for</span> SD port
-pytest-3 --board kv260 -k sd_write_performance  // Run write performance <span class="nb">test</span> <span class="k">for</span> SD port
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-m<span class="w"> </span>disk<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-k<span class="w"> </span>usb1_read_performance<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span><span class="nb">read</span><span class="w"> </span>performance<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>USB1<span class="w"> </span>port
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-k<span class="w"> </span>usb1_write_performance<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>write<span class="w"> </span>performance<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>USB1<span class="w"> </span>port
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-k<span class="w"> </span>sd_read_performance<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span><span class="nb">read</span><span class="w"> </span>performance<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>SD<span class="w"> </span>port
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-k<span class="w"> </span>sd_write_performance<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>write<span class="w"> </span>performance<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>SD<span class="w"> </span>port
 </pre></div>
 </div>
 <p>For each interface, the test prints out the device path, speed standard of the device
 connected, along with minimum expected read/write speed and measured speed. The log indicates
 whether the performance test is pass or fail based on the measured and threshold speed
 comparison.</p>
-</div>
-<div class="section" id="test-debug">
+</section>
+<section id="test-debug">
 <h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure that the USB/SD card media is inserted correctly to the interface under test.</p></li>
 <li><p>Verify that there is a minimum of 128MiB of storage space available for performing read/write
 transaction on the device connected to the interface.</p></li>
 </ul>
-</div>
-<div class="section" id="known-issues-and-limitations">
+</section>
+<section id="known-issues-and-limitations">
 <h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The disk test is limited to verifying the read and write performances of USB and SD
@@ -266,30 +267,30 @@ can be verified manually based on the device manufacturer and model.</p></li>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="center">Mode</th>
-<th align="center">SD Speed C-class</th>
-<th align="center">SD Speed UHS-class</th>
-<th align="center">USB-SD Speed class</th>
-<th align="center">USB 2.0</th>
-<th align="center">USB 3.0</th>
+<th style="text-align: center;">Mode</th>
+<th style="text-align: center;">SD Speed C-class</th>
+<th style="text-align: center;">SD Speed UHS-class</th>
+<th style="text-align: center;">USB-SD Speed class</th>
+<th style="text-align: center;">USB 2.0</th>
+<th style="text-align: center;">USB 3.0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">Read</td>
-<td align="center">6MBps</td>
-<td align="center">12MBps</td>
-<td align="center">6MBps</td>
-<td align="center">9MBps</td>
-<td align="center">80MBps</td>
+<td style="text-align: center;">Read</td>
+<td style="text-align: center;">6MBps</td>
+<td style="text-align: center;">12MBps</td>
+<td style="text-align: center;">6MBps</td>
+<td style="text-align: center;">9MBps</td>
+<td style="text-align: center;">80MBps</td>
 </tr>
 <tr>
-<td align="center">Write</td>
-<td align="center">2MBps</td>
-<td align="center">6MBps</td>
-<td align="center">2MBps</td>
-<td align="center">2MBps</td>
-<td align="center">8MBps</td>
+<td style="text-align: center;">Write</td>
+<td style="text-align: center;">2MBps</td>
+<td style="text-align: center;">6MBps</td>
+<td style="text-align: center;">2MBps</td>
+<td style="text-align: center;">2MBps</td>
+<td style="text-align: center;">8MBps</td>
 </tr>
 </tbody>
 </table><ul class="simple">
@@ -301,54 +302,54 @@ iterations with a 20% error margin.</p></li>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="center">Model</th>
-<th align="center">Class</th>
-<th align="center">Read</th>
-<th align="center">Write</th>
+<th style="text-align: center;">Model</th>
+<th style="text-align: center;">Class</th>
+<th style="text-align: center;">Read</th>
+<th style="text-align: center;">Write</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">SanDisk Cruzer - SDCZ600-016G</td>
-<td align="center">USB 3.0</td>
-<td align="center">100MBps</td>
-<td align="center">12MBps</td>
+<td style="text-align: center;">SanDisk Cruzer - SDCZ600-016G</td>
+<td style="text-align: center;">USB 3.0</td>
+<td style="text-align: center;">100MBps</td>
+<td style="text-align: center;">12MBps</td>
 </tr>
 <tr>
-<td align="center">SanDisk Ultra - SDCZ48-016G</td>
-<td align="center">USB 3.0</td>
-<td align="center">102MBps</td>
-<td align="center">8MBps</td>
+<td style="text-align: center;">SanDisk Ultra - SDCZ48-016G</td>
+<td style="text-align: center;">USB 3.0</td>
+<td style="text-align: center;">102MBps</td>
+<td style="text-align: center;">8MBps</td>
 </tr>
 <tr>
-<td align="center">SanDisk Ultra fair - SDCZ73-032G</td>
-<td align="center">USB 3.0</td>
-<td align="center">120MBps</td>
-<td align="center">12MBps</td>
+<td style="text-align: center;">SanDisk Ultra fair - SDCZ73-032G</td>
+<td style="text-align: center;">USB 3.0</td>
+<td style="text-align: center;">120MBps</td>
+<td style="text-align: center;">12MBps</td>
 </tr>
 <tr>
-<td align="center">SanDisk Ultra Eco - SDCZ96-064G</td>
-<td align="center">USB 3.2</td>
-<td align="center">80MBps</td>
-<td align="center">12MBps</td>
+<td style="text-align: center;">SanDisk Ultra Eco - SDCZ96-064G</td>
+<td style="text-align: center;">USB 3.2</td>
+<td style="text-align: center;">80MBps</td>
+<td style="text-align: center;">12MBps</td>
 </tr>
 <tr>
-<td align="center">SanDisk Cruzer - SDCZ36-004G</td>
-<td align="center">USB 2.0</td>
-<td align="center">9MBps</td>
-<td align="center">2MBps</td>
+<td style="text-align: center;">SanDisk Cruzer - SDCZ36-004G</td>
+<td style="text-align: center;">USB 2.0</td>
+<td style="text-align: center;">9MBps</td>
+<td style="text-align: center;">2MBps</td>
 </tr>
 <tr>
-<td align="center">SanDisk Cruzer Blade - SDCZ50-016G</td>
-<td align="center">USB 2.0</td>
-<td align="center">24MBps</td>
-<td align="center">7MBps</td>
+<td style="text-align: center;">SanDisk Cruzer Blade - SDCZ50-016G</td>
+<td style="text-align: center;">USB 2.0</td>
+<td style="text-align: center;">24MBps</td>
+<td style="text-align: center;">7MBps</td>
 </tr>
 <tr>
-<td align="center">DataTraveler 101 G2 - DT101G2-016G</td>
-<td align="center">USB 2.0</td>
-<td align="center">18MBps</td>
-<td align="center">6MBps</td>
+<td style="text-align: center;">DataTraveler 101 G2 - DT101G2-016G</td>
+<td style="text-align: center;">USB 2.0</td>
+<td style="text-align: center;">18MBps</td>
+<td style="text-align: center;">6MBps</td>
 </tr>
 </tbody>
 </table><p>MicroSD devices:</p>
@@ -357,34 +358,34 @@ speeds of SD Speed C-class and SD Speed UHS-class.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="center">Model</th>
-<th align="center">Class</th>
-<th align="center">Read</th>
-<th align="center">Write</th>
+<th style="text-align: center;">Model</th>
+<th style="text-align: center;">Class</th>
+<th style="text-align: center;">Read</th>
+<th style="text-align: center;">Write</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">SanDisk Ultra 16GB - HC Class 10 (White/Grey)</td>
-<td align="center">SD Speed C-class</td>
-<td align="center">6MBps</td>
-<td align="center">2MBps</td>
+<td style="text-align: center;">SanDisk Ultra 16GB - HC Class 10 (White/Grey)</td>
+<td style="text-align: center;">SD Speed C-class</td>
+<td style="text-align: center;">6MBps</td>
+<td style="text-align: center;">2MBps</td>
 </tr>
 <tr>
-<td align="center">SanDisk Ultra 16GB - HC Class 10 (Red/Grey)</td>
-<td align="center">SD Speed UHS-class</td>
-<td align="center">12MBps</td>
-<td align="center">6MBps</td>
+<td style="text-align: center;">SanDisk Ultra 16GB - HC Class 10 (Red/Grey)</td>
+<td style="text-align: center;">SD Speed UHS-class</td>
+<td style="text-align: center;">12MBps</td>
+<td style="text-align: center;">6MBps</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="next-steps">
+</table></section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
-<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -400,7 +401,7 @@ speeds of SD Speed C-class and SD Speed UHS-class.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

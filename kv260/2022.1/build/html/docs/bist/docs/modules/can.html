@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -151,13 +152,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="bist-can-test-module">
+  <section id="bist-can-test-module">
 <h1>BIST CAN Test Module<a class="headerlink" href="#bist-can-test-module" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>The CAN test module verifies the functionality of CAN transceiver on the KD240 starter kit.</p>
-</div>
-<div class="section" id="tests">
+</section>
+<section id="tests">
 <h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
 <p>The module contains self-validating functional test. It uses python3-can package for
 transmitting and receiving CAN messages through the CAN port (CAN_L, CAN_H and GND pins).
@@ -181,41 +182,41 @@ can_node_initialize(). CAN messages are sent and received through send_can_messa
 read_can_message() functions via can_bus.send() and can_bus.recv() instances provided by
 python3-can module. After the comparison of sent and received messages, the can nodes are
 shutdown using can_node_shutdown().</p>
-</div>
-<div class="section" id="test-execution">
+</section>
+<section id="test-execution">
 <h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
 <p>The example commands for this module are provided below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3 --board kd240 -m can  // Run all tests <span class="k">in</span> this module
-pytest-3 --board kd240 -k can_bus_send  // Run CAN message transmitter functional <span class="nb">test</span>
-pytest-3 --board kd240 -k can_bus_receive  // Run CAN message receiver functional <span class="nb">test</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-m<span class="w"> </span>can<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>can_bus_send<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>CAN<span class="w"> </span>message<span class="w"> </span>transmitter<span class="w"> </span>functional<span class="w"> </span><span class="nb">test</span>
+pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>can_bus_receive<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>CAN<span class="w"> </span>message<span class="w"> </span>receiver<span class="w"> </span>functional<span class="w"> </span><span class="nb">test</span>
 </pre></div>
 </div>
 <p>The CAN functional test prints the CAN node enumeration of the form canX for transmitter
 and receiver nodes along with the message transmitted and received. The test is passed based
 on message match between the sent and received CAN messages.</p>
-</div>
-<div class="section" id="test-debug">
+</section>
+<section id="test-debug">
 <h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Verify the hardware connection between CAN port on the starter kit and PMOD CAN device
 (Connected externally to the starter kit) before performing the CAN transactions.</p></li>
 </ul>
-</div>
-<div class="section" id="known-issues-and-limitations">
+</section>
+<section id="known-issues-and-limitations">
 <h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The CAN module is limited to verifying the functionality of CAN transceiver hardware ports only.</p></li>
 <li><p>Make sure that the BIST firmware is loaded before performing the CAN transaction. The PMOD CAN port
 is not recognized otherwise.</p></li>
 </ul>
-</div>
-<div class="section" id="next-steps">
+</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
-<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -231,7 +232,7 @@ is not recognized otherwise.</p></li>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

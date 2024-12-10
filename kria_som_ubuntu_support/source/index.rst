@@ -8,11 +8,38 @@ Kria SOM Ubuntu Support
 
 
 
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Ubuntu Boot Linux Instructions
+   :hidden:
+
+   Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html>
+   Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260/linux_boot.html>
+   Kria KD240 <https://xilinx.github.io/kria-apps-docs/kd240/linux_boot.html>
+
+
+
+
 ************************************************************
 Ubuntu
 ************************************************************
 
-In addition to the PetaLinux and Yocto enablement Kria KV260 and KR260 has a certified `Ubuntu 22.04 LTS <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2363129857/Getting+Started+with+Certified+Ubuntu+22.04+LTS+for+Xilinx+Devices>`_ image which can be found at this `Ubuntu site <https://ubuntu.com/download/xilinx>`_. The `Getting Started with Kria KV260 Guide <https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/getting-started.html>`_ provides a tutorial on how to use the provided Ubuntu image on the KV260 Starter Kit including running the Smartcam application, and `Getting Started with Kria KR260 Guide <https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/getting-started.html>`_ provides a tutorial on how to use the provided Ubuntu image on the KV260 Starter Kit including running the ROS 2 Perception Node application. There are more example applications on `Vision AI Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kv260-docs.html>`_ and `Robotics Starter Kit Applications <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>`_.
+In addition to the PetaLinux and Yocto enablement, Kria Starter Kits has Ubuntu 24.04 and `Ubuntu 22.04 LTS <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2363129857/Getting+Started+with+Certified+Ubuntu+22.04+LTS+for+Xilinx+Devices>`_ image which can be found at this `Ubuntu site <https://ubuntu.com/download/amd>`_. Refer to each pages for tutorials on booting Ubuntu on each type of Kria Starter Kits:
+
+
+.. list-table:: 
+   :widths: 25 50
+   :header-rows: 1
+
+   * - Starter Kit
+     - link
+   * - KV260
+     - `KV260 Ubuntu Boot Linux Instructions <https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html>`_
+   * - KR260
+     - `KR260 Ubuntu Boot Linux Instructions <https://xilinx.github.io/kria-apps-docs/kr260/linux_boot.html>`_
+   * - KD240
+     - `KD240 Ubuntu Boot Linux Instructions <https://xilinx.github.io/kria-apps-docs/kd240/linux_boot.html>`_
 
 
 

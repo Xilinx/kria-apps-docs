@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -27,9 +27,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=f2a433a1"></script>
-        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -47,6 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../index.html" class="icon icon-home"> Kria™ KD240
+            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 1.0
@@ -79,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">KD240 Applications</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../bist_landing.html">BIST</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../bist_landing.html">Built-In Self Test (BIST)</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../run.html">Install and Run BIST</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../overview.html">Overview of BIST Application</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../overview.html#framework">Framework</a></li>
@@ -110,12 +113,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="../../bist_landing.html#support">Support</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications Via TSN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../foc-motor-ctrl/foc_motor_control_landing.html">FOC Motor Control Application</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/ros2_multinode_communication_via_tsn.html">ROS 2 Multi-Node Communications via TSN</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/foc_motor_ctrl.html">FOC Motor Control</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">KD240 Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../kria_starterkit_linux_boot.html">Booting Kria Starter Kit Linux on KD240</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../linux_boot.html">Boot Kria Starter Kit Linux on KD240</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../building_the_design.html">Building the Design Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../generating_custom_firmware.html">Generate Custom Firmware</a></li>
@@ -148,14 +151,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <section id="bist-i2c-test-module">
-<h1>BIST I2C Test Module<a class="headerlink" href="#bist-i2c-test-module" title="Link to this heading">¶</a></h1>
+<h1>BIST I2C Test Module<a class="headerlink" href="#bist-i2c-test-module" title="Permalink to this heading">¶</a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>The I2C test module verifies the presence of expected devices on the i2c buses of the AMD
 Kria™ starter kits using python-periphery.</p>
 </section>
 <section id="tests">
-<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading">¶</a></h2>
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
 <p>The module contains self-validating functional test. It uses “i2cdetect” command-line
 utility to check for the i2c bus number based on the controller and mux channel
 information. The test then performs i2c read operation on the devices expected to be present
@@ -169,7 +172,7 @@ on the identified i2c bus by specifying the device addresses and verifies their 
 </ul>
 </section>
 <section id="test-execution">
-<h2>Test Execution<a class="headerlink" href="#test-execution" title="Link to this heading">¶</a></h2>
+<h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
 <p>The example commands for this module are provided below (KV260):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-m<span class="w"> </span>i2c<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
 pytest-3<span class="w"> </span>--board<span class="w"> </span>kv260<span class="w"> </span>-k<span class="w"> </span>ps_i2c_bus_main<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>i2c<span class="w"> </span>device<span class="w"> </span>detect<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>PS<span class="w"> </span>I2C<span class="w"> </span>main<span class="w"> </span>bus
@@ -182,21 +185,21 @@ on the bus in case of pass. Otherwise, it prints out the information about the m
 addresses along with detected devices.</p>
 </section>
 <section id="test-debug">
-<h2>Test Debug<a class="headerlink" href="#test-debug" title="Link to this heading">¶</a></h2>
+<h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure to load the BIST firmware before running the i2c test as some i2c devices are not
 detected otherwise.</p></li>
 </ul>
 </section>
 <section id="known-issues">
-<h2>Known Issues<a class="headerlink" href="#known-issues" title="Link to this heading">¶</a></h2>
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The i2c test is limited to verifying the presence of i2c devices specified in the configuration
 file on loading the BIST firmware only.</p></li>
 </ul>
 </section>
 <section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
@@ -217,7 +220,7 @@ file on loading the BIST firmware only.</p></li>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on September 09, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

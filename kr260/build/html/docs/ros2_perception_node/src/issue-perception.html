@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -35,7 +36,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Precision time Management" href="../../gps_1588_ptp/gps_1588_ptp_precision_time_mgmt.html" />
-    <link rel="prev" title="Board Setup and Application Deployment" href="app_deployment.html" /> 
+    <link rel="prev" title="Creating a Vitis Platform" href="../../build_vitis_platform.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,7 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">KR260 Applications</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../10gige_vision_camera/10gige_vision_camera_landing.html">10GigE Vision Camera</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications via TSN</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/ros2_multinode_communication_via_tsn.html">ROS 2 Multi-Node Communications via TSN</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../ros2_perception_node_landing.html">ROS 2 Perception Node</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../ros2_perception_node_landing.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ros2_perception_node_landing.html#quick-start">Quick Start</a></li>
@@ -132,35 +133,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Known Issues & Limitations</h1> </td>
  </tr>
-</table><div class="section" id="known-issues">
+</table><section id="known-issues">
 <h1>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h1>
 <p>This document records known issues or gives behavior that might be unexpected.</p>
 <p>First review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">FAQ</a> for commonly encountered issues across AMD Kria™ SOM applications.</p>
 <ul>
 <li><p>Continues RTPS DDS (ROS Middleware) messages popup while running CPU varient as shown below. This is a known behaviour with RTPS middleware as mentioned <a class="reference external" href="https://github.com/eProsima/Fast-DDS/issues/2799">here</a>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>component_container-1<span class="o">]</span> <span class="m">2022</span>-10-13 <span class="m">16</span>:30:56.972 <span class="o">[</span>RTPS_MSG_IN Error<span class="o">]</span> <span class="o">(</span>ID:281473539668192<span class="o">)</span> Problem reserving CacheChange <span class="k">in</span> reader: <span class="m">01</span>.0f.da.c1.9f.f4.74.8f.01.00.00.00<span class="p">|</span><span class="m">0</span>.0.2f.4 -&gt; Function processDataMsg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>component_container-1<span class="o">]</span><span class="w"> </span><span class="m">2022</span>-10-13<span class="w"> </span><span class="m">16</span>:30:56.972<span class="w"> </span><span class="o">[</span>RTPS_MSG_IN<span class="w"> </span>Error<span class="o">]</span><span class="w"> </span><span class="o">(</span>ID:281473539668192<span class="o">)</span><span class="w"> </span>Problem<span class="w"> </span>reserving<span class="w"> </span>CacheChange<span class="w"> </span><span class="k">in</span><span class="w"> </span>reader:<span class="w"> </span><span class="m">01</span>.0f.da.c1.9f.f4.74.8f.01.00.00.00<span class="p">|</span><span class="m">0</span>.0.2f.4<span class="w"> </span>-&gt;<span class="w"> </span>Function<span class="w"> </span>processDataMsg
 </pre></div>
 </div>
 </li>
 <li><p>Unsynchronized messages popup randomly on Streamlined app</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span> <span class="o">[</span>WARN<span class="o">]</span> <span class="o">[</span><span class="m">1662749510</span>.825170570<span class="o">]</span> <span class="o">[</span>ResizeNodeFPGAStreamlined<span class="o">]</span>: <span class="o">[</span>image_transport<span class="o">]</span> Topics <span class="s1">&#39;/camera/image_raw&#39;</span> and <span class="s1">&#39;/camera_info&#39;</span> <span class="k">do</span> not appear to be synchronized. In the last 10s:
-<span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span>        Image messages received:      <span class="m">29</span>
-<span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span>        CameraInfo messages received: <span class="m">24</span>
-<span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span>        Synchronized pairs:           <span class="m">9</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>WARN<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1662749510</span>.825170570<span class="o">]</span><span class="w"> </span><span class="o">[</span>ResizeNodeFPGAStreamlined<span class="o">]</span>:<span class="w"> </span><span class="o">[</span>image_transport<span class="o">]</span><span class="w"> </span>Topics<span class="w"> </span><span class="s1">&#39;/camera/image_raw&#39;</span><span class="w"> </span>and<span class="w"> </span><span class="s1">&#39;/camera_info&#39;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>appear<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>synchronized.<span class="w"> </span>In<span class="w"> </span>the<span class="w"> </span>last<span class="w"> </span>10s:
+<span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span><span class="w">        </span>Image<span class="w"> </span>messages<span class="w"> </span>received:<span class="w">      </span><span class="m">29</span>
+<span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span><span class="w">        </span>CameraInfo<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">24</span>
+<span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span><span class="w">        </span>Synchronized<span class="w"> </span>pairs:<span class="w">           </span><span class="m">9</span>
 </pre></div>
 </div>
 </li>
 <li><p>Sometimes the application exits with the following xclExecBuf error</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span> <span class="o">[</span>XRT<span class="o">]</span> ERROR: unable to issue xclExecBuf
-<span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span> <span class="o">[</span>XRT<span class="o">]</span> ERROR: failed to load xclbin: Operation not permitted
-<span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span> /home/ubuntu/perception_modified/src/image_proc/src/rectify_fpga_streamlined.cpp:86 Error calling cl::Program program<span class="o">(</span>*context_, devices, bins, NULL, <span class="p">&amp;</span>err<span class="o">)</span>, error code is: -6
-<span class="o">[</span>ERROR<span class="o">]</span> <span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span>: process has died <span class="o">[</span>pid <span class="m">84833</span>, <span class="nb">exit</span> code -11, cmd <span class="s1">&#39;/home/ubuntu/perception_modified/install/image_pipeline_examples/lib/image_pipeline_examples/rectify_resize_fpga_streamlined_node --ros-args --params-file /tmp/launch_params_jmy31ybn -r image:=/camera/image_raw -r camera_info:=/camera/camera_info -r resize:=resize&#39;</span><span class="o">]</span>.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>XRT<span class="o">]</span><span class="w"> </span>ERROR:<span class="w"> </span>unable<span class="w"> </span>to<span class="w"> </span>issue<span class="w"> </span>xclExecBuf
+<span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>XRT<span class="o">]</span><span class="w"> </span>ERROR:<span class="w"> </span>failed<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>xclbin:<span class="w"> </span>Operation<span class="w"> </span>not<span class="w"> </span>permitted
+<span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span><span class="w"> </span>/home/ubuntu/perception_modified/src/image_proc/src/rectify_fpga_streamlined.cpp:86<span class="w"> </span>Error<span class="w"> </span>calling<span class="w"> </span>cl::Program<span class="w"> </span>program<span class="o">(</span>*context_,<span class="w"> </span>devices,<span class="w"> </span>bins,<span class="w"> </span>NULL,<span class="w"> </span><span class="p">&amp;</span>err<span class="o">)</span>,<span class="w"> </span>error<span class="w"> </span>code<span class="w"> </span>is:<span class="w"> </span>-6
+<span class="o">[</span>ERROR<span class="o">]</span><span class="w"> </span><span class="o">[</span>rectify_resize_fpga_streamlined_node-1<span class="o">]</span>:<span class="w"> </span>process<span class="w"> </span>has<span class="w"> </span>died<span class="w"> </span><span class="o">[</span>pid<span class="w"> </span><span class="m">84833</span>,<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code<span class="w"> </span>-11,<span class="w"> </span>cmd<span class="w"> </span><span class="s1">&#39;/home/ubuntu/perception_modified/install/image_pipeline_examples/lib/image_pipeline_examples/rectify_resize_fpga_streamlined_node --ros-args --params-file /tmp/launch_params_jmy31ybn -r image:=/camera/image_raw -r camera_info:=/camera/camera_info -r resize:=resize&#39;</span><span class="o">]</span>.
 </pre></div>
 </div>
 <p>Reloading the firmware with xmutil fixes this issues as shown below</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~/ sudo xmutil unloadapp
-ubuntu@kria:~/ sudo xmutil loadapp kr260-perception 
-ubuntu@kria:~/ ros2 launch perception_2nodes trace_rectify_resize_fpga_streamlined.launch.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~/<span class="w"> </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+ubuntu@kria:~/<span class="w"> </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>kr260-perception<span class="w"> </span>
+ubuntu@kria:~/<span class="w"> </span>ros2<span class="w"> </span>launch<span class="w"> </span>perception_2nodes<span class="w"> </span>trace_rectify_resize_fpga_streamlined.launch.py
 </pre></div>
 </div>
 </li>
@@ -174,7 +175,7 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></div>
+--><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></section>
 
 
            </div>
@@ -182,7 +183,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="app_deployment.html" class="btn btn-neutral float-left" title="Board Setup and Application Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../build_vitis_platform.html" class="btn btn-neutral float-left" title="Creating a Vitis Platform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../../gps_1588_ptp/gps_1588_ptp_precision_time_mgmt.html" class="btn btn-neutral float-right" title="Precision time Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -190,7 +191,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

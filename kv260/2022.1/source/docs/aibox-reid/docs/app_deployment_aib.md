@@ -1,4 +1,4 @@
-<table class="sphinxhide">
+﻿<table class="sphinxhide">
  <tr>
    <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit AIBox-ReID Tutorial</h1>
    </td>
@@ -20,13 +20,13 @@ This guide and its prebuilt are targeted for Ubuntu&reg; 22.04 and AMD 2022.1 to
 
 ## Booting up Linux
 
-Before continuing with the aibox-reid application specific instructions, if not yet done so, boot Linux with instructions from the [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) page.
+Before continuing with the aibox-reid application specific instructions, if not yet done so, boot Linux with instructions from the [Kria Starter Kit Linux boot](https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html) page.
 
 >**NOTE:** The AIBox application requires starting the application using command line through a universal asynchronous receiver-transmitter (UART) instead of GNOME Desktop and recommends using a 4k monitor.
 
 ## Application Specific Hardware Setup
 
-Besides the hardware configurations required in the [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, the AIBox application requires a 4k monitor to display up to four channels of 1080p video.
+Besides the hardware configurations required in the [Kria Starter Kit Linux boot](https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html) for booting Linux, the AIBox application requires a 4k monitor to display up to four channels of 1080p video.
 
 ## Downloading and Loading Application Firmware
 

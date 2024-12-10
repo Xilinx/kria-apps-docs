@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -82,7 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">KR260 Applications</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../10gige_vision_camera/10gige_vision_camera_landing.html">10GigE Vision Camera</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">ROS 2 Multi-Node Communications via TSN</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/ros2_multinode_communication_via_tsn.html">ROS 2 Multi-Node Communications via TSN</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ros2_perception_node/ros2_perception_node_landing.html">ROS 2 Perception Node</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../gps_1588_ptp_precision_time_mgmt.html">Precision Time Management</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../gps_1588_ptp_precision_time_mgmt.html#overview">Overview</a></li>
@@ -131,15 +132,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="hardware-architecture-of-the-platform">
+  <section id="hardware-architecture-of-the-platform">
 <h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This section describes the hardware block design components implemented in Programmable Logic (PL).</p>
 <p>The PL design read data from the PMOD GPS Receiver to get the GPS time from Global Navigation Satellite System (GNSS). The platform uses an AXI UART Lite IP to interface with the PMOD Receiver’s UART interface for getting the GPS data in NMEA format. The 1PPS signal from the PMOD receiver is connected to PS GPIO via EMIO pins. Gigabit Ethernet MAC (GEM) Controller (GEM0,GEM1) is enabled in the PS to transmit, receive PTP packets, or ethernet traffic.</p>
 <p>The following figure shows the top-level hardware architecture of the reference design.</p>
 <p><img alt="Hardware Architecture block diagram" src="../../../_images/hw_arch_gps.png" /></p>
-<div class="section" id="pmod-gps-receiver">
+<section id="pmod-gps-receiver">
 <h3>PMOD GPS Receiver<a class="headerlink" href="#pmod-gps-receiver" title="Permalink to this heading">¶</a></h3>
 <p>The following figure shows the PMOD GPS receiver:</p>
 <p>GPS receiver has</p>
@@ -149,110 +150,110 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ol>
 <p><img alt="PMOD GPS Receiver" src="../../../_images/pmod_gps_receiver.png" /></p>
 <p>For more information on the Digilent PMOD Receiver, refer to the <a href="https://digilent.com/reference/_media/pmod:pmod:PmodGPS_rm.pdf"> PMOD GPS Receiver Reference Manual</a>.</p>
-</div>
-</div>
-<div class="section" id="axi-uart-lite">
+</section>
+</section>
+<section id="axi-uart-lite">
 <h2>AXI UART LITE<a class="headerlink" href="#axi-uart-lite" title="Permalink to this heading">¶</a></h2>
 <p>The AMD LogiCORE™ IP AXI UART Lite core converts AXI4 Lite register transactions to RS232 signaling. PMOD GPS receiver provides GPS time and GPS Coordinate data in NMEA format using the embedded UART interface. AXI UART LITE IP has UART controller to read data from PMOD receiver and convert it into AXI4 Lite register transactions to be read by the PS.</p>
 <p>For more information on the IP, refer to <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/pg142-axi-uartlite">AXI UART Lite v2.0 Product Guide</a>.</p>
-</div>
-<div class="section" id="clocks-and-resets">
+</section>
+<section id="clocks-and-resets">
 <h2>Clocks and Resets<a class="headerlink" href="#clocks-and-resets" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="clocks">
+<section id="clocks">
 <h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this heading">¶</a></h3>
 <p>The following table identifies the main clocks of the PL design, the source, clock frequency, and the function.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Clock</th>
-<th align="center">Clock Source</th>
-<th align="center">Clock Frequency</th>
-<th align="left">Function</th>
+<th style="text-align: left;">Clock</th>
+<th style="text-align: center;">Clock Source</th>
+<th style="text-align: center;">Clock Frequency</th>
+<th style="text-align: left;">Function</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">pl_clk_0</td>
-<td align="center">PL Fabric Clock</td>
-<td align="center">100 MHz</td>
-<td align="left">Clock source for AXI Interconnect, AXI UART lite and AXI GPIO</td>
+<td style="text-align: left;">pl_clk_0</td>
+<td style="text-align: center;">PL Fabric Clock</td>
+<td style="text-align: center;">100 MHz</td>
+<td style="text-align: left;">Clock source for AXI Interconnect, AXI UART lite and AXI GPIO</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="resets">
+</table></section>
+<section id="resets">
 <h3>Resets<a class="headerlink" href="#resets" title="Permalink to this heading">¶</a></h3>
 <p>The following table summarizes the resets used in this design.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Reset Source</th>
-<th align="left">Function</th>
+<th style="text-align: left;">Reset Source</th>
+<th style="text-align: left;">Function</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">pl_resetn0</td>
-<td align="left">PL reset for proc_sys_reset modules</td>
+<td style="text-align: left;">pl_resetn0</td>
+<td style="text-align: left;">PL reset for proc_sys_reset modules</td>
 </tr>
 <tr>
-<td align="left">rst_clk_wiz_100M</td>
-<td align="left">Synchronous resets w.r.t 100M clock domain for AXI interconnect, AXI UART lite and AXI GPIO.</td>
+<td style="text-align: left;">rst_clk_wiz_100M</td>
+<td style="text-align: left;">Synchronous resets w.r.t 100M clock domain for AXI interconnect, AXI UART lite and AXI GPIO.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="resource-utilization">
+</table></section>
+</section>
+<section id="resource-utilization">
 <h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this heading">¶</a></h2>
 <p>The resource utilization numbers of the platform post implementation is reported in the following table.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
-<th align="left">Resource</th>
-<th align="left">Utilization</th>
-<th align="left">Available</th>
-<th align="left">Utilization %</th>
+<th style="text-align: left;">Resource</th>
+<th style="text-align: left;">Utilization</th>
+<th style="text-align: left;">Available</th>
+<th style="text-align: left;">Utilization %</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">LUT</td>
-<td align="left">410</td>
-<td align="left">117120</td>
-<td align="left">0.35</td>
+<td style="text-align: left;">LUT</td>
+<td style="text-align: left;">410</td>
+<td style="text-align: left;">117120</td>
+<td style="text-align: left;">0.35</td>
 </tr>
 <tr>
-<td align="left">LUTRAM</td>
-<td align="left">62</td>
-<td align="left">57600</td>
-<td align="left">0.11</td>
+<td style="text-align: left;">LUTRAM</td>
+<td style="text-align: left;">62</td>
+<td style="text-align: left;">57600</td>
+<td style="text-align: left;">0.11</td>
 </tr>
 <tr>
-<td align="left">FF</td>
-<td align="left">558</td>
-<td align="left">234240</td>
-<td align="left">0.24</td>
+<td style="text-align: left;">FF</td>
+<td style="text-align: left;">558</td>
+<td style="text-align: left;">234240</td>
+<td style="text-align: left;">0.24</td>
 </tr>
 <tr>
-<td align="left">IO</td>
-<td align="left">5</td>
-<td align="left">189</td>
-<td align="left">2.65</td>
+<td style="text-align: left;">IO</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">189</td>
+<td style="text-align: left;">2.65</td>
 </tr>
 <tr>
-<td align="left">BUFG</td>
-<td align="left">3</td>
-<td align="left">352</td>
-<td align="left">0.85</td>
+<td style="text-align: left;">BUFG</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">352</td>
+<td style="text-align: left;">0.85</td>
 </tr>
 <tr>
-<td align="left">MMCM</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">25</td>
+<td style="text-align: left;">MMCM</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">25</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="next-steps">
+</table></section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="app_deployment.html"><span class="doc">Application Deployment</span></a></p></li>
@@ -267,8 +268,8 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright (C) 2023 Advanced Micro Devices, Inc.</p></div>
-</div>
+--><p class="sphinxhide" align="center">Copyright (C) 2023 Advanced Micro Devices, Inc.</p></section>
+</section>
 
 
            </div>
@@ -284,7 +285,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

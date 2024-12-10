@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -144,7 +145,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Known Issues & Limitations</h1> </td>
  </tr>
-</table><div class="section" id="known-issues">
+</table><section id="known-issues">
 <h1>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h1>
 <p>First review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across the Kria SOM applications.</p>
 <ul>
@@ -211,36 +212,36 @@ The following table shows testing results. The glass to glass latency is measure
 <strong>Monitor B</strong> Skyworth 4K TV 50H9D</p>
 <ul>
 <li><p>After invoking the command <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span></code> to load firmware, it needs several seconds for the whole firmware to be ready. If you launch docker before the firmware is loaded, it will not be able to use DPU node properly, and you might see the following error while launching application:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>WARNING: Logging before InitGoogleLogging<span class="o">()</span> is written to STDERR
-F0830 <span class="m">10</span>:01:34.758910 <span class="m">22</span> xrt_bin_stream.cpp:60<span class="o">]</span> Check failed: fd_ &gt; <span class="m">0</span> <span class="o">(</span>-1 vs. <span class="m">0</span><span class="o">)</span> , open<span class="o">(</span>/usr/lib/dpu.xclbin<span class="o">)</span> failed.
-  Check failure stack trace: ***
-Aborted by signal Aborted...
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>WARNING:<span class="w"> </span>Logging<span class="w"> </span>before<span class="w"> </span>InitGoogleLogging<span class="o">()</span><span class="w"> </span>is<span class="w"> </span>written<span class="w"> </span>to<span class="w"> </span>STDERR
+F0830<span class="w"> </span><span class="m">10</span>:01:34.758910<span class="w"> </span><span class="m">22</span><span class="w"> </span>xrt_bin_stream.cpp:60<span class="o">]</span><span class="w"> </span>Check<span class="w"> </span>failed:<span class="w"> </span>fd_<span class="w"> </span>&gt;<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>-1<span class="w"> </span>vs.<span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span>,<span class="w"> </span>open<span class="o">(</span>/usr/lib/dpu.xclbin<span class="o">)</span><span class="w"> </span>failed.
+<span class="w">  </span>Check<span class="w"> </span>failure<span class="w"> </span>stack<span class="w"> </span>trace:<span class="w"> </span>***
+Aborted<span class="w"> </span>by<span class="w"> </span>signal<span class="w"> </span>Aborted...
 </pre></div>
 </div>
 <p>To resolve this issue, exit the Docker container, and unload the firmware using xmutil. Then delete the folder, <code class="docutils literal notranslate"><span class="pre">/etc/vart.conf/</span></code>, using <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">/etc/vart.conf/</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@xlnx-docker/# <span class="nb">exit</span>
-ubuntu@kria:~$ sudo xmutil unloadapp
-ubuntu@kria:~$ sudo rm -rf /etc/vart.conf/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@xlnx-docker/#<span class="w"> </span><span class="nb">exit</span>
+ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/etc/vart.conf/
 </pre></div>
 </div>
 <p>Now you can start with the app deployment steps from loading the firmware and launching the Docker.</p>
 </li>
 <li><p>A known issue with the I2S driver will cause a random kernel crash when loading and unloading the kv260-smartcam firmware with the following commands several times:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmutil unloadapp
-xmutil loadapp kv260-smartcam
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmutil<span class="w"> </span>unloadapp
+xmutil<span class="w"> </span>loadapp<span class="w"> </span>kv260-smartcam
 </pre></div>
 </div>
 <p>So the audio feature of the application is disabled by disabling the I2S subsystem in the dtsi file, which means the <code class="docutils literal notranslate"><span class="pre">-A&quot;/&quot;--audio</span></code> option with RTSP target will not stream the audio.</p>
 </li>
 </ul>
-<div class="section" id="limitations">
+<section id="limitations">
 <h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The model used for the solid-state disk (SSD) AI task through the option, <code class="docutils literal notranslate"><span class="pre">--aitask</span> <span class="pre">ssd</span></code>, is ssd_adas_pruned_0_95 from the Vitis-AI-Library, which is not a general SSD model, but only for the ADAS scenario as showed by the <a class="reference external" href="https://bdd-data.berkeley.edu/">BDD dataset</a>.</p></li>
 <li><p>The model used for the Refinedet AI task through the option <code class="docutils literal notranslate"><span class="pre">--aitask</span> <span class="pre">refinedet</span></code> is refinedet_pruned_0_96 from the Vitis-AI-Library, which is not a general object detection model, but only for the detection of pedestrian, such as the person object in <a class="reference external" href="https://cocodataset.org/#explore">COCO dataset</a>.</p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -256,7 +257,7 @@ xmutil loadapp kv260-smartcam
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

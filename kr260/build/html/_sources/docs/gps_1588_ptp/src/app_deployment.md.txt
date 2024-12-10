@@ -65,13 +65,13 @@ The setup used for deploying the application is shown below:
 1. Optionally, add the 3V Lithium Coin Cell Battery to the GPS motedule to reduce the amount of time that it takes to acquire the first positional fix.
 1. On the Master KR260 board, connect the Adafruit Ultimate GPS Receiver into the PMOD1 connector, bottom row (J2, 2), as per the connection matrix shown in table with the help of male to Female Jumpers.
 
-	| KR260 Carrier Card Pins | Pmod J2 Pins | Adafruit Ultimate GPS Pins |
-	|-------------------------|--------------|----------------------------|
-	| PMOD_3V3                | 12           | Vin                        |
-	| GND                     | 10           | GND                        |
-	| PMOD1_IO8_HDA18         | 8            | PPS                        |
-	| PMOD1_IO7_HDA17         | 6            | Rxd                        |
-	| PMOD1_IO6_HDA16_CC      | 4            | Txd                        |
+    | KR260 Carrier Card Pins | Pmod J2 Pins | Adafruit Ultimate GPS Pins |
+    | -------- | ------ | ------- |
+    | PMOD_3V3 | 12 | Vin |
+    | GND | 10 | GND |
+    | PMOD1_IO8_HDA18 | 8 | PPS |
+    | PMOD1_IO7_HDA17 | 6 | Rxd |
+    | PMOD1_IO6_HDA16_CC | 4 | Txd |
 
 1. Power on both the boards and follow the next steps in "Booting up Linux."
 
@@ -79,7 +79,7 @@ The setup used for deploying the application is shown below:
 
 ## Booting up Linux
 
-Go through [Booting Kria Starter Kit Linux](../../kria_starterkit_linux_boot.md) to complete minimum setup required to boot Linux on both Master and Slave KR260 boards before continuing with instructions in this page.
+Go through [Booting Kria Starter Kit Linux](../../linux_boot.md) to complete minimum setup required to boot Linux on both Master and Slave KR260 boards before continuing with instructions in this page.
 > ***Note***: Make sure that you use the latest KR260 Starter Kit Boot firmware (2022.2_update 1 or later). Otherwise, this application might not work.
 
 ## Downloading and Loading Application Firmware on Master

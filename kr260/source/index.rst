@@ -1,13 +1,9 @@
-########################################################################################
+﻿########################################################################################
 Kria KR260 Robotics Starter Kit Applications
 ########################################################################################
 
 
-
-.. image:: docs/media/tsn-communications.png
-   :width: 200
-   :alt: ROS 2 Multi-Node Communications via TSN
-   :target: ./docs/ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html
+.. include:: ../../shared/somtoctree.txt
 
 
 .. image:: docs/media/machine-vision.png
@@ -16,13 +12,16 @@ Kria KR260 Robotics Starter Kit Applications
    :target: ./docs/10gige_vision_camera/10gige_vision_camera_landing.html
 
 
+.. image:: docs/media/tsn-communications.png
+   :width: 200
+   :alt: ROS 2 Multi-Node Communications via TSN
+   :target: https://xilinx.github.io/kria-apps-docs/kr260/ros2_multinode_communication_via_tsn.html
 
 
 .. image:: docs/media/Perception.png
    :width: 200
    :alt: ROS 2 Perception Node
-   :target: ./docs/ros2_perception_node/ros2_perception_node_landing.html
-
+   :target: ./docs/ros2_perception_node_landing.html
 
 
 .. image:: docs/media/precision-time.png
@@ -39,7 +38,6 @@ Kria KR260 Robotics Starter Kit Applications
 
 
 
-.. include:: ../../shared/somtoctree.txt
 
 
 .. toctree::
@@ -48,7 +46,7 @@ Kria KR260 Robotics Starter Kit Applications
    :hidden:
 
    10GigE Vision Camera <docs/10gige_vision_camera/10gige_vision_camera_landing>
-   ROS 2 Multi-Node Communications via TSN <docs/ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing>
+   ROS 2 Multi-Node Communications via TSN <https://xilinx.github.io/kria-apps-docs/kr260/ros2_multinode_communication_via_tsn.html>
    ROS 2 Perception Node <docs/ros2_perception_node/ros2_perception_node_landing>
    Precision Time Management <docs/gps_1588_ptp/gps_1588_ptp_precision_time_mgmt>
    Built-In Self Test (BIST) <docs/bist/bist_landing>

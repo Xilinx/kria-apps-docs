@@ -96,7 +96,7 @@ This document shows how to setup the board and environment to execute the Percep
 
 ## Initial Setup, Setting Up The KR260 Board
 
-1. Go through  [Booting Kria Starter Kit Linux](../../kria_starterkit_linux_boot.md) to complete the minimum setup required to boot Linux before continuing with the instructions in this page.
+1. Go through  [Booting Kria Starter Kit Linux](../../linux_boot.md) to complete the minimum setup required to boot Linux before continuing with the instructions in this page.
 
 2. Get the latest ROS perception application and firmware package:
 

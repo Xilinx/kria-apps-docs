@@ -1,0 +1,1664 @@
+﻿<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Software Architecture of the Platform &mdash; Kria™ KD240: FOC Motor Control 0.5 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Known Issues and Limitations" href="known_issues.html" />
+    <link rel="prev" title="Hardware Architecture of the Platform" href="hw_description.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../foc_motor_control_landing.html" class="icon icon-home"> Kria™ KD240: FOC Motor Control
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.5
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app_deployment.html">Setting Up the Board and Application deployment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/foc-motor-ctrl/blob/main/README.md#build-instructions">Building the Application</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hw_description.html">Hardware Architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Software Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kernel-drivers">Kernel Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#device-and-channel-attributes">Device and Channel Attributes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#xilinx-adc-hub-channels">Xilinx ADC Hub Channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hls-pwm-generator-channels">HLS PWM Generator Channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hls-svpwm-duty-channels">HLS SVPWM Duty Channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qei-channels">QEI Channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#foc-channels">FOC Channels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#middleware">Middleware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#userspace-access-to-iio-drivers">Userspace Access to IIO Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#userspace-access-to-uio">Userspace Access to UIO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#canopen-library">CANopen Library</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#application-and-library">Application and Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#motor-control-library">Motor Control Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#communication">Communication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state-management-and-coordination">State Management and Coordination</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#event-fault-management">Event/Fault Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#control">Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-threads">Additional Threads</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bokeh-server-gui">Bokeh Server (GUI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#canopen-overview">CANopen Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#canopen-protocol-stack">CANopen Protocol Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#can-frame-and-cob-id">CAN Frame and COB-ID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#canopen-object-dictionary">CANopen Object Dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-operations">Key Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#canopen-server">CANopen server</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operational-overview">Operational Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#system-state-machine">System State Machine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modes-of-operation">Modes of Operation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#object-dictionary-details">Object Dictionary Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-canopen-server">Using CANopen Server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#one-wire">One Wire</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kernel-driver">Kernel Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#application">Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/foc-motor-ctrl">Software Repository</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="known_issues.html">Known Issues and Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="known_issues.html#debugging-motor-control-application">Debugging Motor Control Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="known_issues.html#can-bus-issue">CAN Bus Issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="known_issues.html#system-crash-during-application-reload">System Crash During Application Reload</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../foc_motor_control_landing.html">Kria™ KD240: FOC Motor Control</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../foc_motor_control_landing.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Software Architecture of the Platform</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/sw_arch.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide">
+ <tr>
+   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KD240 Drive Starter Kit</h1>
+   </td>
+ </tr>
+ <tr>
+ <td align="center"><h1> Software Architecture </h1> </td>
+ </tr>
+</table><div class="section" id="software-architecture-of-the-platform">
+<h1>Software Architecture of the Platform<a class="headerlink" href="#software-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This section describes software components involved in the design and their relation with each other. The application requires a hardware platform as described in <a class="reference internal" href="hw_description.html"><span class="doc">Hardware Architecture of the Platform</span></a> for the stack explained in this section to work.</p>
+<p>The software stack here provides a comprehensive library that can be interfaced using various user interfaces and efficiently drive the motor through the Kria Drive SOM board.</p>
+<p>The following diagram illustrates the top-level architecture and arrangement of various software components:</p>
+<p><img alt="Software Architecture Overview" src="../_images/sw_arch.jpg" /></p>
+<ul class="simple">
+<li><p>Kernel: Ubuntu Linux kernel</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">hwmon</span></code> : Hardware Monitoring Kernel Framework</p></li>
+<li><p>Drivers:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">xilinx_adc_hub</span></code>: IIO driver for analog-to-digital converter (ADC) HUB</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hls_qei_axi</span></code>: IIO driver for the QEI sensor</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hsl_foc_periodic</span></code>: IIO driver for the sensor based field oriented controller</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hls_pwm_gen</span></code>: IIO driver for PWM GEN</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hsl_svpwm_duty</span></code>: IIO driver for SVPWM</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">amd_axi_w1</span></code> : AMD 1Wire programmable logic bus driver</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Middleware</p>
+<ul>
+<li><p>IIO Framework and libiio library</p></li>
+<li><p>Generic UIO framework</p></li>
+<li><p>CANopen library</p></li>
+</ul>
+</li>
+<li><p>Application and library</p>
+<ul>
+<li><p>Motor Control Library (includes UIO driver for the custom Motor Control IP)</p></li>
+<li><p>Bokeh dashboard</p></li>
+<li><p>CANopen Server</p></li>
+<li><p>lm-sensors : Linux Monitoring Sensors utility package</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="kernel-drivers">
+<h2>Kernel Drivers<a class="headerlink" href="#kernel-drivers" title="Permalink to this heading">¶</a></h2>
+<p>All the kernel drivers developed for the platform hardware are Industial I/O (IIO) based and adhere to the IIO kernel framework. The IIO subsystem covers many sensor and ADC devices in the industry. It provides the following features to fetch and control various parameters:</p>
+<ul class="simple">
+<li><p>Divide the stream and type of data into logical channels.</p></li>
+<li><p>Each channel can have specific attributes along with device attributes to fine-tune the behavior.</p></li>
+<li><p>Efficient data collection using buffers to get deterministic data with timestamps and sync with other channels.</p></li>
+<li><p>Interrupt handling to provide user side event handling.</p></li>
+</ul>
+<p>The following drivers are added to support this app:</p>
+<ul class="simple">
+<li><p>ADC Hub (<code class="docutils literal notranslate"><span class="pre">xilinx_adc_hub</span></code>): Provides an interface to monitor current, voltage, and related faults that occur during the operation of the motor.</p></li>
+<li><p>QEI Encoder (<code class="docutils literal notranslate"><span class="pre">hls_qei_axi</span></code>): External encoder to monitor the real-time speed and position of the motor.</p></li>
+<li><p>FOC (<code class="docutils literal notranslate"><span class="pre">hsl_foc_periodic</span></code>): Field oriented controller driver to support various operational modes and state of the motor.</p></li>
+<li><p>PWM_GEN (<code class="docutils literal notranslate"><span class="pre">hls_pwm_gen</span></code>): PWM_GEN provides PWM signal generation for motor control.</p></li>
+<li><p>SVPWM_GEN (<code class="docutils literal notranslate"><span class="pre">hsl_svpwm_duty</span></code>): SVPWM provides space vector PWM to calcualte phase ratio for the motor.</p></li>
+</ul>
+<p>There is also custom Motor control IP, which is responsible for the design specific glue logic and driving the motor’s Gate Driver. The driver for this IP is a UIO based and the device will instantiate the UIO device for this IP. The userspace driver for this is implemented inside the motor control library in the control block.</p>
+<blockquote>
+<div><p>Note: For CANopen implementation CAN driver is used from the default networking stack and is not detailed here.</p>
+</div></blockquote>
+<div class="section" id="device-and-channel-attributes">
+<h3>Device and Channel Attributes<a class="headerlink" href="#device-and-channel-attributes" title="Permalink to this heading">¶</a></h3>
+<p>As explained in the <a class="reference external" href="#userspace-access-to-iio-drivers">next section</a>, the attributes exposed by each drivers can be accessed through sysfs interface or through libraries like libIIO.</p>
+<p>Most of the attribute names are self-explanatory. If a channel attribute is named <code class="docutils literal notranslate"><span class="pre">input</span></code>, it indicates that the device requires raw data for processing, and the final processed data can be read from the <code class="docutils literal notranslate"><span class="pre">input</span></code> channel attribute. If the <code class="docutils literal notranslate"><span class="pre">input</span></code> channel attribute is not present, the raw data itself represents the final value from the device.</p>
+<p>A couple of common device attributes accross IIO drivers in this application are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sample_interval_us</span></code>: This parameter represents the time period in microseconds. It determines the rate at which data is sampled and stored into the buffer. Only channel data is captured within the buffer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ap_ctrl</span></code>: This attribute conforms to the standard AMD HLS interface for IP, enabling the initiation of its operation.</p></li>
+</ul>
+<p>The device attributes applies to entire device for all the channels. The channel attributes are per channel configurations or data. Here are some of the attributes exposed by above drivers:</p>
+<div class="section" id="xilinx-adc-hub-channels">
+<h4>Xilinx ADC Hub Channels<a class="headerlink" href="#xilinx-adc-hub-channels" title="Permalink to this heading">¶</a></h4>
+<p>List of available channels for the device <code class="docutils literal notranslate"><span class="pre">xilinx_adc_hub</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:#<span class="w"> </span>iio_attr<span class="w"> </span>-c<span class="w"> </span>xilinx_adc_hub
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>format:<span class="w"> </span>le:S32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">9</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current1&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>format:<span class="w"> </span>le:S32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">9</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage2&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>format:<span class="w"> </span>le:S32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">9</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current3&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">3</span>,<span class="w"> </span>format:<span class="w"> </span>le:S32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">9</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage4&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">4</span>,<span class="w"> </span>format:<span class="w"> </span>le:S32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">9</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current5&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">5</span>,<span class="w"> </span>format:<span class="w"> </span>le:S32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">9</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage6&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">6</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">9</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current7&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">7</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">9</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;timestamp&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">16</span>,<span class="w"> </span>format:<span class="w"> </span>le:S64/64&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">0</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+</pre></div>
+</div>
+<p>Individual Channel Properties for Voltage0 in <code class="docutils literal notranslate"><span class="pre">xilinx_adc_hub</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:#<span class="w"> </span>iio_attr<span class="w"> </span>-c<span class="w"> </span>xilinx_adc_hub<span class="w"> </span>voltage0
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;calibrate&#39;</span>,
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;fault_clear&#39;</span>,
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;input&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;0.865447998&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;offset&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;0.000000000&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;over_range_fault_status&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;0&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;raw&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;47&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;scale&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;0.018814086&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;set_filter_tap&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;4&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;xilinx_adc_hub&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;under_range_fault_status&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;0&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">calibrate</span></code>: One-time calibration at the very start to offset any residual value in the system.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fault_clear</span></code>: Clears all faults on the channel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code>: Final voltage value read by the ADC in volts (raw * scale factor).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: Automatically populated after calibration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">over_range_fault_status</span></code>: Status indicating if an over-range fault occurred (0 - for no fault).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raw</span></code>: The ADC raw value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: The scaling factor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_filter_tap</span></code>: Number of filter taps.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">under_range_fault_status</span></code>: Status indicating if an under-range fault occurred (0 for no fault).</p></li>
+</ul>
+<p>The attributes for the currentX channel would be similar to <code class="docutils literal notranslate"><span class="pre">voltage0</span></code>, but the readings are in amperes (amps).</p>
+</div>
+<div class="section" id="hls-pwm-generator-channels">
+<h4>HLS PWM Generator Channels<a class="headerlink" href="#hls-pwm-generator-channels" title="Permalink to this heading">¶</a></h4>
+<p>List of available channels for the device <code class="docutils literal notranslate"><span class="pre">hls_pwm_gen</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:#<span class="w"> </span>iio_attr<span class="w"> </span>-c<span class="w"> </span>hls_pwm_gen
+dev<span class="w"> </span><span class="s1">&#39;hls_pwm_gen&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Va_duty_ratio&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_pwm_gen&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage1&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Vb_duty_ratio&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_pwm_gen&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage2&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Vc_duty_ratio&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_pwm_gen&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;timestamp&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">3</span>,<span class="w"> </span>format:<span class="w"> </span>le:S64/64&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">0</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+</pre></div>
+</div>
+<p>Individual Channel Properties for Va_duty_ratio in the HLS PWM Generator:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:#<span class="w"> </span>iio_attr<span class="w"> </span>-c<span class="w"> </span>hls_pwm_gen<span class="w"> </span>voltage0
+dev<span class="w"> </span><span class="s1">&#39;hls_pwm_gen&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Va_duty_ratio&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;label&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;Va_duty_ratio&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;hls_pwm_gen&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Va_duty_ratio&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;raw&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;0.000000000&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;hls_pwm_gen&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Va_duty_ratio&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;scale&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;1&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">label</span></code>: The label of the channel is ‘Va_duty_ratio’.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raw</span></code>: The raw value for this channel is ‘0.000000000’, and in this case, it represents the final reading for the channel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: The scaling factor for this channel is ‘1’.</p></li>
+</ul>
+<p>The attributes are similar to the other channels from the PWM-GEN driver.</p>
+</div>
+<div class="section" id="hls-svpwm-duty-channels">
+<h4>HLS SVPWM Duty Channels<a class="headerlink" href="#hls-svpwm-duty-channels" title="Permalink to this heading">¶</a></h4>
+<p>List of available channels for the device <code class="docutils literal notranslate"><span class="pre">hls_svpwm_duty</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:#<span class="w"> </span>iio_attr<span class="w"> </span>-c<span class="w"> </span>hls_svpwm_duty
+dev<span class="w"> </span><span class="s1">&#39;hls_svpwm_duty&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Va_cmd&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_svpwm_duty&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage1&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Vb_cmd&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_svpwm_duty&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage2&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Vc_cmd&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_svpwm_duty&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;timestamp&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">3</span>,<span class="w"> </span>format:<span class="w"> </span>le:S64/64&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">0</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+</pre></div>
+</div>
+<p>Individual Channel Properties for <code class="docutils literal notranslate"><span class="pre">Va_cmd</span></code> in HLS SVPWM Duty:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:#<span class="w"> </span>iio_attr<span class="w"> </span>-c<span class="w"> </span>hls_svpwm_duty<span class="w"> </span>voltage0
+dev<span class="w"> </span><span class="s1">&#39;hls_svpwm_duty&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Va_cmd&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;label&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;Va_cmd&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;hls_svpwm_duty&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Va_cmd&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;raw&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;0.000000000&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;hls_svpwm_duty&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;voltage0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Va_cmd&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;scale&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;1&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">label</span></code>: The label of the channel is <code class="docutils literal notranslate"><span class="pre">Va_cmd</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raw</span></code>: The raw value for this channel is <code class="docutils literal notranslate"><span class="pre">0.000000000</span></code>, and in this case, it represents the final reading for the channel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: The scaling factor for this channel is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+</ul>
+<p>The attributes are similar to the other channels from the SVPWM driver.</p>
+</div>
+<div class="section" id="qei-channels">
+<h4>QEI Channels<a class="headerlink" href="#qei-channels" title="Permalink to this heading">¶</a></h4>
+<p>List of available channels for the device <code class="docutils literal notranslate"><span class="pre">hls_qei_axi</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:#<span class="w"> </span>iio_attr<span class="w"> </span>-c<span class="w"> </span>hls_qei_axi
+dev<span class="w"> </span><span class="s1">&#39;hls_qei_axi&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;rot0&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;rpm&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_qei_axi&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;rot1&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;theta_degree&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_qei_axi&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;timestamp&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>format:<span class="w"> </span>le:S64/64&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">0</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+</pre></div>
+</div>
+<p>Individual Channel Properties for RPM in QEI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:#<span class="w"> </span>iio_attr<span class="w"> </span>-c<span class="w"> </span>hls_qei_axi<span class="w"> </span>rot0
+dev<span class="w"> </span><span class="s1">&#39;hls_qei_axi&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;rot0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;rpm&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;label&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;rpm&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;hls_qei_axi&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;rot0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;rpm&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;raw&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;0&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;hls_qei_axi&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;rot0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;rpm&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;scale&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;1&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">label</span></code>: The label of the channel is ‘rpm’.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raw</span></code>: The raw value for this channel is ‘0’, and in this case, it represents the final reading for the channel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: The scaling factor for this channel is ‘1’.</p></li>
+</ul>
+<p>The attributes are similar to the other channels from the QEI driver.</p>
+</div>
+<div class="section" id="foc-channels">
+<h4>FOC Channels<a class="headerlink" href="#foc-channels" title="Permalink to this heading">¶</a></h4>
+<p>List of available channels for the device <code class="docutils literal notranslate"><span class="pre">hls_foc_periodic</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:#<span class="w"> </span>iio_attr<span class="w"> </span>-c<span class="w">  </span>hls_foc_periodic
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current0&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Id&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current1&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Iq&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current2&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;I_alpha&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current3&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;I_beta&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">3</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current4&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;I_homopolar&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">4</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;rot5&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;speed_pi_out&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">5</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;rot6&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;torque_pi_out&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">6</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;intensity7&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;flux&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">7</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;rot8&#39;</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;speed&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">8</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">3</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;angl9&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">9</span>,<span class="w"> </span>format:<span class="w"> </span>le:U32/32&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">2</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;timestamp&#39;</span><span class="w"> </span><span class="o">(</span>input,<span class="w"> </span>index:<span class="w"> </span><span class="m">10</span>,<span class="w"> </span>format:<span class="w"> </span>le:S64/64&gt;&gt;0<span class="o">)</span>,<span class="w"> </span>found<span class="w"> </span><span class="m">0</span><span class="w"> </span>channel-specific<span class="w"> </span>attributes
+</pre></div>
+</div>
+<p>Individual Channel Properties for current0 in FOC:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>iio_attr<span class="w"> </span>-c<span class="w"> </span>hls_foc_periodic<span class="w"> </span>current0
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Id&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;label&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;Id&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Id&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;raw&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;0.000000000&#39;</span>
+dev<span class="w"> </span><span class="s1">&#39;hls_foc_periodic&#39;</span>,<span class="w"> </span>channel<span class="w"> </span><span class="s1">&#39;current0&#39;</span><span class="w"> </span><span class="o">(</span>input<span class="o">)</span>,<span class="w"> </span>id<span class="w"> </span><span class="s1">&#39;Id&#39;</span>,<span class="w"> </span>attr<span class="w"> </span><span class="s1">&#39;scale&#39;</span>,<span class="w"> </span>value<span class="w"> </span><span class="s1">&#39;1&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">label</span></code>: The label of the channel is ‘Id’.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raw</span></code>: The raw value for this channel is ‘0.000000000’, and in this case, it represents the final reading for the channel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: The scaling factor for this channel is ‘1’.</p></li>
+</ul>
+<p>The attributes are similar to the other channels from the FOC driver.</p>
+<p>For detailed information on other device attributes, consult the <a class="reference internal" href="hw_description.html"><span class="doc">hardware documentation</span></a>.</p>
+<p>For more details of IIO subsystem, refer to <a class="reference external" href="https://wiki.analog.com/software/linux/docs/iio/iio">Analog Devices Wiki</a>.</p>
+<p>For more details on kernel drivers for IIO, refer to <a class="reference external" href="https://static.lwn.net/kerneldoc/driver-api/iio/core.html">Kernel Documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="middleware">
+<h2>Middleware<a class="headerlink" href="#middleware" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="userspace-access-to-iio-drivers">
+<h3>Userspace Access to IIO Drivers<a class="headerlink" href="#userspace-access-to-iio-drivers" title="Permalink to this heading">¶</a></h3>
+<p>The driver exposes the IIO devices through the sysfs interface. The drivers can be accessed from the path <code class="docutils literal notranslate"><span class="pre">/sys/bus/iio/devices/iio\:deviceX</span></code>, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the numeric enumeration of the IIO device.</p>
+<p>libIIO is the userspace library to easily access the kernel IIO subsystem. It also provides various methods and command line interfaces, packaged in libiio-utils, to access the IIO devices. There are other Python wrappers around this library, but the motor control library uses a native C/C++ library.</p>
+<p>For example, to list all the available IIO devices:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ iio_attr -c
+IIO context has 7 devices:
+        iio:device0, ams: found 30 channels
+        iio:device1, ina260-u14: found 6 channels
+        iio:device2, hls_foc_periodic: found 11 channels
+        iio:device3, hls_qei_axi: found 3 channels
+        iio:device4, xilinx_adc_hub: found 9 channels
+        iio:device5, hls_svpwm_duty: found 4 channels
+        iio:device6, hls_pwm_gen: found 4 channels
+</pre></div>
+</div>
+<p>For more details, refer to the <a class="reference external" href="https://analogdevicesinc.github.io/libiio/v0.23/index.html">libIIO Documentation</a>.</p>
+</div>
+<div class="section" id="userspace-access-to-uio">
+<h3>Userspace Access to UIO<a class="headerlink" href="#userspace-access-to-uio" title="Permalink to this heading">¶</a></h3>
+<p>The custom motor control IP is accessed from the motor control library using the UIO interface. A device tree node with compatible string as <code class="docutils literal notranslate"><span class="pre">generic-uio</span></code> is added to connect this hardware to the UIO subsystem.</p>
+<p>The device is now accessible in the userspace through the <code class="docutils literal notranslate"><span class="pre">/dev/uioX</span></code> device. Information about the device is obtained by scanning <code class="docutils literal notranslate"><span class="pre">/sys/class/uio/uioX</span></code>, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the UIO device id automatically assigned by the kernel.</p>
+<p>For more information on the UIO interface, refer to the kernel <a class="reference external" href="https://www.kernel.org/doc/html/v4.18/driver-api/uio-howto.html">documentation</a>.</p>
+</div>
+<div class="section" id="canopen-library">
+<h3>CANopen Library<a class="headerlink" href="#canopen-library" title="Permalink to this heading">¶</a></h3>
+<p>The CANopen server implementation for the drive kit is based on <a class="reference external" href="https://opensource.lely.com/canopen/">Lely CANopen library stack</a> for the communication layer.</p>
+<p>The Lely Core CANopen library is an open-source, feature-rich, and industrial-quality CANopen implementation for both masters and slaves. It is designed to be a passive library, relying on the user to send and receive CAN frames and update the clock. The interface between the CANopen stack and the CAN bus is provided by the CAN network object from the CAN library (liblely-can).</p>
+<p><em>The library is divided into several components:</em></p>
+<ul class="simple">
+<li><p>liblely-co: A CANopen implementation for both masters and slaves.</p></li>
+<li><p>liblely-coapp: A C++ CANopen application library that provides a high-level application interface for liblely-co.</p></li>
+<li><p>liblely-io2: An asynchronous I/O library that provides support for timers, signal handlers, and CAN devices.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="application-and-library">
+<h2>Application and Library<a class="headerlink" href="#application-and-library" title="Permalink to this heading">¶</a></h2>
+<p>The motor control library is a C++ library that provides APIs for the front end application to control and fetch motor parameters. It also has a pybind11 wrapper to support the library APIs through python front end.</p>
+<p>The front end GUI included with this application is based on a python bokeh server, which can be accessed in a web browser in the network.</p>
+<p>The CANopen server (slave wrapper) included with this application is implemented to access the motor control library (C++) over the CAN network using CANopen CiA 402 profile.</p>
+<div class="section" id="motor-control-library">
+<h3>Motor Control Library<a class="headerlink" href="#motor-control-library" title="Permalink to this heading">¶</a></h3>
+<p>The library can be divided into four blocks:</p>
+<ul class="simple">
+<li><p>Communication</p></li>
+<li><p>State Management and Coordination</p></li>
+<li><p>Event/Fault Management</p></li>
+<li><p>Control</p></li>
+</ul>
+<p><img alt="Motor Control Library" src="../_images/sw_lib_interface.jpg" /></p>
+<div class="section" id="communication">
+<h4>Communication<a class="headerlink" href="#communication" title="Permalink to this heading">¶</a></h4>
+<p>The external user interfacing exposes the supported APIs through the C++ shared library and Python module.</p>
+<p>The library allows the user application to fetch following values:</p>
+<ul class="simple">
+<li><p>Speed</p></li>
+<li><p>Position</p></li>
+<li><p>Current (Phase A, Phase B, Phase C, DC Link)</p></li>
+<li><p>Voltage (Phase A, Phase B, Phase C, DC Link)</p></li>
+<li><p>Fault status</p>
+<ul>
+<li><p>Over current for A, B, C, DC</p></li>
+<li><p>Over and under voltage for DCLink</p></li>
+<li><p>RMS power fault</p></li>
+<li><p>Phase imbalance fault</p></li>
+</ul>
+</li>
+<li><p>Intermediate FOC calculations (example: iq, id, i_alpha, etc)</p></li>
+</ul>
+<p>The library allows the user application to set following motor controls:</p>
+<ul class="simple">
+<li><p>Clear faults</p></li>
+<li><p>Speed</p></li>
+<li><p>Torque</p></li>
+<li><p>Open loop parameters (vq and vd)</p></li>
+<li><p>Gain P/I gains (for current, speed and flux controller)</p></li>
+</ul>
+<p>For details list of APIs, refer to the <a class="reference external" href="https://github.com/xilinx/foc-motor-ctrl/blob/main/lib/include/motor-control/motor-control.hpp">motor-control.hpp</a> file.</p>
+<p>Python binding for the application is provided using the pybind11 library.</p>
+</div>
+<div class="section" id="state-management-and-coordination">
+<h4>State Management and Coordination<a class="headerlink" href="#state-management-and-coordination" title="Permalink to this heading">¶</a></h4>
+<p>This is the central part of the library, which receives and processes all the request from the communication block and is responsible for:</p>
+<ul class="simple">
+<li><p>Executing the initialization sequence for the motor.</p></li>
+<li><p>Maintaining the current state of the platform and handling the state transitions.</p></li>
+<li><p>Splitting, merging, and coordinating the request with various handlers in the control block.</p></li>
+</ul>
+</div>
+<div class="section" id="event-fault-management">
+<h4>Event/Fault Management<a class="headerlink" href="#event-fault-management" title="Permalink to this heading">¶</a></h4>
+<p>The Event Manager is responsible for configuring and monitoring events/faults from various hardware blocks. This block is aware of event capabilities of various control blocks and configures the events accordingly.</p>
+<p>It caches the event status in realtime and returns that to user when requested. The event is monitored in a separate thread which waits on epoll events for the registered events. Optionally, it also provides callback function registration in case additional action is expected when a realtime event occurs.</p>
+</div>
+<div class="section" id="control">
+<h4>Control<a class="headerlink" href="#control" title="Permalink to this heading">¶</a></h4>
+<p>This block is responsible for hardware access. There are interface classes which implement common interfaces for all the IIO based control handlers and all the UIO based control handlers. It also provides abstraction for the sensor interface to support more than one sensor (only one used at a given time).</p>
+<p>The following various handlers are for controlling the respective hardware:</p>
+<ul class="simple">
+<li><p>FOC: For controlling and fetching data from the FOC hardware through the libiio framework.</p></li>
+<li><p>ADCHub: For controlling and fetching data from the ADCHub hardware through the libiio framework.</p></li>
+<li><p>Sensor: Abstraction for controlling and fetching data from the sensor hardware through the libiio framework (QEI in this case).</p></li>
+<li><p>PWM_Gen: For controlling the PWM_GEN hardware through the libiio framework.</p></li>
+<li><p>SVPWM: For controlling the SVPWM hardware through the libiio framework.</p></li>
+<li><p>MC_UIO: For controlling custom Motor Control IP hardware through the UIO framework.</p></li>
+<li><p>SW_AvgPower: Software based average power calculator to generate fault and control gate driver through MC_UIO.</p></li>
+</ul>
+</div>
+<div class="section" id="additional-threads">
+<h4>Additional Threads<a class="headerlink" href="#additional-threads" title="Permalink to this heading">¶</a></h4>
+<p>The following additional threads are implemented in the library:</p>
+<ul class="simple">
+<li><p>Speed Ramp: When a new <em>speed</em> set point is set, the speed is ramped up or down in the FOC control handler using the constant ramp rate defined in <code class="docutils literal notranslate"><span class="pre">default_config.h</span></code>.</p></li>
+<li><p>Torque Ramp: When new <em>torque</em> set point is set, the speed is ramped up or down in the FOC control handler using the constant ramp rate defined in <code class="docutils literal notranslate"><span class="pre">default_config.h</span></code>.</p></li>
+<li><p>Event Monitor: The event manager waits on any event using epoll_wait in its own thread.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="bokeh-server-gui">
+<h3>Bokeh Server (GUI)<a class="headerlink" href="#bokeh-server-gui" title="Permalink to this heading">¶</a></h3>
+<p>A python based bokeh server is implemented to provide a GUI interface to the application. It imports the motor control python library. The plot updates are handled by an update function which is called at the interval specified in the Refresh Interval text box. For each update, the function requests the number of samples specified in the Sample Size text box and update the plots with new data.</p>
+<p>For more details on the GUI usage, refer the <a class="reference internal" href="app_deployment.html"><span class="doc">Application Deployment</span></a> page for the details on the components and its usage.</p>
+</div>
+<div class="section" id="canopen-overview">
+<h3>CANopen Overview<a class="headerlink" href="#canopen-overview" title="Permalink to this heading">¶</a></h3>
+<p>The CANopen server is an another interface provided for this motor control application.
+It is based on CANopen communication protocol. This section provides a top level overview
+of the CANopen protocol &amp; operations. Detail CANopen protocol and specifications can be found on
+<a class="reference external" href="https://www.can-cia.org/">CAN in Automation (CiA) website</a> and various other online resources.</p>
+<p>CANopen is a robust communication protocol widely used in industrial automation for managing
+networked devices, such as sensors and actuators. It is based on the Controller Area Network (CAN)
+and provides a standardized way to enable communication and control among devices.</p>
+<div class="section" id="canopen-protocol-stack">
+<h4>CANopen Protocol Stack<a class="headerlink" href="#canopen-protocol-stack" title="Permalink to this heading">¶</a></h4>
+<p>Conceptually, the CANopen protocol stack is structured into several layers, each responsible for different aspects of communication:</p>
+<ol class="simple">
+<li><p><strong>Bus Layer</strong>:</p>
+<ul class="simple">
+<li><p>Physical: Defines the physical and electrical characteristics of the network, such as connectors, wiring, and signaling levels.</p></li>
+<li><p>Data link: Managed by the CAN protocol, this layer handles error detection, message arbitration, and framing. It ensures that messages are transmitted without collisions and that errors are detected and handled.</p></li>
+</ul>
+</li>
+<li><p><strong>Communication Layer</strong>:</p>
+<ul class="simple">
+<li><p>Network: Responsible for managing the states of the devices in the network. It includes functionalities such as starting, stopping, and resetting devices. Each device can be in one of several states: Initialization, Pre-operational, Operational, or Stopped.</p></li>
+<li><p>Transport/Session:</p>
+<ul>
+<li><p><strong>Process Data Objects (PDO)</strong>: Used for real-time data exchange. PDOs are transmitted cyclically or on change of state and are suitable for high-speed data transfer.</p></li>
+<li><p><strong>Service Data Objects (SDO)</strong>: Used for configuration and diagnostics. SDOs allow access to any object in the object dictionary and are used for less time-critical communication.</p></li>
+<li><p><strong>Emergency (EMCY) Objects</strong>: Used to signal error conditions. EMCY messages are transmitted when a device detects an error, allowing for immediate error handling.</p></li>
+<li><p><strong>Synchronization (SYNC) Objects</strong>: Used to synchronize actions across the network. A SYNC message can trigger the simultaneous operation of multiple devices.</p></li>
+<li><p><strong>Time Stamp (TIME) Objects</strong>: Used to provide a common time reference for devices in the network.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Application Layer</strong>:</p>
+<ul class="simple">
+<li><p>This top layer interacts with the user application and provides services like reading sensor data, controlling actuators, or configuring device parameters.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="can-frame-and-cob-id">
+<h4>CAN Frame and COB-ID<a class="headerlink" href="#can-frame-and-cob-id" title="Permalink to this heading">¶</a></h4>
+<p>At the core of CANopen communication is the CAN frame which are transmitted on the CAN bus and the concept of Communication Object Identifier(COB-ID).</p>
+<p><strong>CAN Frame:</strong></p>
+<ul class="simple">
+<li><p>A CAN frame consists of several fields that define the structure of a message. These fields include:</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Description</th>
+<th>Bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start of Frame (SOF)</td>
+<td>Single dominant bit (0)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Identifier (ID)</td>
+<td>Unique message identifier &amp; Priority</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Control</td>
+<td>Type of frame(RTR) and Length of Data (DLC)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Data Field</td>
+<td>Actual data content</td>
+<td>0-8 bytes</td>
+</tr>
+<tr>
+<td>CRC (Cyclic Redundancy Check)</td>
+<td>Error detection code</td>
+<td>15</td>
+</tr>
+<tr>
+<td>ACK (Acknowledge)</td>
+<td>Reception confirmation (dominant 0 by successful receivers)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>End of Frame (EOF)</td>
+<td>Five consecutive recessive bits (1)</td>
+<td>5</td>
+</tr>
+</tbody>
+</table><p><strong>COB-ID</strong>:</p>
+<ul class="simple">
+<li><p>The COB-ID is a unique identifier for each CANopen message, determining its priority and the type of communication. It consists of an 11-bit or 29-bit identifier (depending on the CAN protocol version) and is crucial for the arbitration process on the CAN bus.</p></li>
+<li><p>The COB-ID is used to differentiate various types of CANopen messages, such as NMT commands, PDOs, SDOs, and EMCYs.</p></li>
+<li><p>It is split in two parts: By default, the first 4 bits equal a function code and the next 7 bits contain the node ID.</p></li>
+<li><p>Here is the list of common COB-IDs</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Communication Object</th>
+<th>Function Code(4 bit)</th>
+<th>Node Ids (7bit)</th>
+<th>COB-IDS (Hex)</th>
+<th>Total Objects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NMT</td>
+<td>0000</td>
+<td>0000000</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>SYNC</td>
+<td>0001</td>
+<td>0000000</td>
+<td>80</td>
+<td>1</td>
+</tr>
+<tr>
+<td>EMCY</td>
+<td>0001</td>
+<td>0000001-1111111</td>
+<td>81 - FF</td>
+<td>127</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>0010</td>
+<td>0000000</td>
+<td>100</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Transmit PDO 1</td>
+<td>0011</td>
+<td>0000001-1111111</td>
+<td>181 - 1FF</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Receive PDO 1</td>
+<td>0100</td>
+<td>0000001-1111111</td>
+<td>201 - 27F</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Transmit PDO 2</td>
+<td>0101</td>
+<td>0000001-1111111</td>
+<td>281 - 2FF</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Receive PDO 2</td>
+<td>0110</td>
+<td>0000001-1111111</td>
+<td>301 - 37F</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Transmit PDO 3</td>
+<td>0111</td>
+<td>0000001-1111111</td>
+<td>381 - 3FF</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Receive PDO 3</td>
+<td>1000</td>
+<td>0000001-1111111</td>
+<td>401 - 47F</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Transmit PDO 4</td>
+<td>1001</td>
+<td>0000001-1111111</td>
+<td>481 - 4FF</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Receive PDO 4</td>
+<td>1010</td>
+<td>0000001-1111111</td>
+<td>501 - 57F</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Transmit SDO</td>
+<td>1011</td>
+<td>0000001-1111111</td>
+<td>581 - 5FF</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Receive  SDO</td>
+<td>1100</td>
+<td>0000001-1111111</td>
+<td>601 - 67F</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Heartbeat</td>
+<td>1110</td>
+<td>0000001-1111111</td>
+<td>701 - 77F</td>
+<td>127</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="canopen-object-dictionary">
+<h4>CANopen Object Dictionary<a class="headerlink" href="#canopen-object-dictionary" title="Permalink to this heading">¶</a></h4>
+<p>The heart of the CANopen protocol is the object dictionary, which is a standardized collection of all parameters and variables that can be accessed via CANopen. The object dictionary is organized in a hierarchical structure with each object identified by a unique 16-bit index. Objects include:</p>
+<ul class="simple">
+<li><p><strong>Communication Objects</strong>: Parameters related to CANopen communication (e.g., COB IDs, transmission types).</p></li>
+<li><p><strong>Manufacturer-Specific Objects</strong>: Custom parameters defined by the device manufacturer.</p></li>
+<li><p><strong>Standardized Device Profile Objects</strong>: Parameters defined by device profiles such as CiA 402 for motion control.</p></li>
+</ul>
+</div>
+<div class="section" id="key-operations">
+<h4>Key Operations<a class="headerlink" href="#key-operations" title="Permalink to this heading">¶</a></h4>
+<ol class="simple">
+<li><p><strong>Initialization</strong>:</p>
+<ul class="simple">
+<li><p>Devices on the network initialize and configure their communication parameters based on the object dictionary.</p></li>
+</ul>
+</li>
+<li><p><strong>Network Management (NMT)</strong>:</p>
+<ul class="simple">
+<li><p>Devices transition between different states (e.g., Pre-operational, Operational) based on NMT commands.</p></li>
+</ul>
+</li>
+<li><p><strong>PDO Communication</strong>:</p>
+<ul class="simple">
+<li><p>Devices exchange real-time data using PDOs. For instance, a motor controller might receive speed commands and send back actual speed values using PDOs.</p></li>
+</ul>
+</li>
+<li><p><strong>SDO Communication</strong>:</p>
+<ul class="simple">
+<li><p>Devices perform configuration and diagnostics using SDOs. This includes reading and writing to the object dictionary.</p></li>
+</ul>
+</li>
+<li><p><strong>Emergency Messaging</strong>:</p>
+<ul class="simple">
+<li><p>Devices signal error conditions using EMCY messages, enabling immediate error handling.</p></li>
+</ul>
+</li>
+<li><p><strong>Synchronization</strong>:</p>
+<ul class="simple">
+<li><p>Devices synchronize their actions using SYNC messages, ensuring coordinated operations across the network.</p></li>
+</ul>
+</li>
+<li><p><strong>Time Stamping</strong>:</p>
+<ul class="simple">
+<li><p>Devices use TIME objects to maintain a consistent time reference, essential for time-sensitive applications.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="canopen-server">
+<h3>CANopen server<a class="headerlink" href="#canopen-server" title="Permalink to this heading">¶</a></h3>
+<p>The CANopen server is designed to provide a robust interface that allows users to control and monitor motor operations over the CAN bus, leveraging the CiA 402 profile. This server facilitates seamless integration with motor control features, enabling commands such as start, stop, change mode, set speed, set torque, and retrieve motor position and speed.</p>
+<p>The CANopen server is built on top of the Lely core library, which provides a comprehensive implementation of the CiA 301 standard. The server implements the CiA 402 profile, focusing on two primary modes of operation: Profiled Velocity and Profiled Torque. The target speed or torque can be set using respective object.</p>
+<p>The server architecture can be divided into the following key components:</p>
+<ol class="simple">
+<li><p><strong>CANopen Object Dictionary</strong>:</p>
+<ul class="simple">
+<li><p>The heart of the CANopen protocol, the object dictionary, contains all the parameters accessible via the CAN bus. For the CiA 402 profile, this includes objects related to motor control, such as operation modes, control commands, status indicators, and parameters for velocity and torque control.</p></li>
+</ul>
+</li>
+<li><p><strong>Motor Control Library Integration</strong>:</p>
+<ul class="simple">
+<li><p>The server interfaces with an underlying motor control C++ library to execute various motor control commands. This integration ensures that all CANopen commands translate into appropriate actions on the motor, providing a seamless control experience.</p></li>
+</ul>
+</li>
+<li><p><strong>CANopen Protocol Layers</strong>:</p>
+<ul class="simple">
+<li><p><strong>CiA 301 (CANopen Communication Profile)</strong>: Managed by the Lely core library, this layer handles the general CANopen communication, including network management (NMT), process data objects (PDO), service data objects (SDO), and more.</p></li>
+<li><p><strong>CiA 402 (CANopen Device Profile for Drives and Motion Control)</strong>: Implemented in the application wrapper, this layer defines the specific commands and parameters for motor control, such as operation modes, control word, status word, and various motor-specific settings.</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="CANopen Server" src="../_images/sw-co-server.jpg" />]</p>
+<div class="section" id="operational-overview">
+<h4>Operational Overview<a class="headerlink" href="#operational-overview" title="Permalink to this heading">¶</a></h4>
+<p>The motor control drive device (KD240) is controlled primarily by the use of the objects <strong>Control Word</strong> and <strong>Target Values</strong>, with fault and status feedback provided via the <strong>Status Word</strong> object. The mode of the operation is controlled by <strong>Modes of Operation</strong> Object.</p>
+<p>The PDS FSA state machine controls the sequencing of power to the drive, and access to drive motion. It also provides the ability to react to faults and to disable the drive if so needed.</p>
+<p>The various configuration registers are normally configured using SDO operations. The status and command word operations are often set and read using PDO communications, but can also be managed using SDO operations. PDO operation can “be in the background”, but are not confirmed, and can also use up significant amounts of bus time if there are many units all reporting their positions continuously while moving. The SDO method allows control of bus activity as the vast majority of packets are the SDO commands and their responses.</p>
+<p>The default the slave node id of the KD240 is <code class="docutils literal notranslate"><span class="pre">4</span></code>. It can be changed from during the application launch with argument as described in deployment section. The supported bitrates for the CAN bus are:</p>
+<ul class="simple">
+<li><p>800 kbps</p></li>
+<li><p>500 kbps</p></li>
+<li><p>250 kbps</p></li>
+<li><p>125 kbps</p></li>
+<li><p>50 kbps</p></li>
+<li><p>20 kbps</p></li>
+</ul>
+</div>
+<div class="section" id="system-state-machine">
+<h4>System State Machine<a class="headerlink" href="#system-state-machine" title="Permalink to this heading">¶</a></h4>
+<p>Object <strong>6040h</strong> (Control Word)  is used to request state transitions while Object 6041h (<strong>Status Word</strong>) reflects the current state of the State Machine. The below diagram reprents various state tranistions. The boxed names represent States, while the numbered arrows represent Transitions. In each case, the state reflected by Object 6041h is updated when the transition has been completed. Fault Reaction Active is the exception in that the fault is immediately reported when the fault is detected, while the fault reaction is still underway; when the reaction is completed, the state then automatically transitions to Fault.</p>
+<p><img alt="FSM" src="../_images/sw-co-fsm.png" /></p>
+<p>The Foc Motor control drive undergoes the state through the C++ library, when in either of following states:</p>
+<ul class="simple">
+<li><p><em>Switched on</em></p></li>
+<li><p><em>Operation enabled</em></p></li>
+<li><p><em>Quick stop active</em></p></li>
+</ul>
+<p>Other states transitioned from master using the control words are tracked in the server but will not directly
+change the hardware state.</p>
+<p><img alt="control word" src="../_images/sw-co-ctrlword.png" /></p>
+<p>The <strong>oms</strong> bit is depended on the state of operation.</p>
+<p>Depending on the current state, the below table shows command coding for various transition through the control word:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">Command</th>
+<th style="text-align: center;">Bit 7</th>
+<th style="text-align: center;">Bit 3</th>
+<th style="text-align: center;">Bit 2</th>
+<th style="text-align: center;">Bit 1</th>
+<th style="text-align: center;">Bit 0</th>
+<th style="text-align: center;">Transitions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Shutdown</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2,6,8</td>
+</tr>
+<tr>
+<td style="text-align: left;">Switch on</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Switch on + enable operation</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">3 + 4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Disable voltage</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">7,9,10,12</td>
+</tr>
+<tr>
+<td style="text-align: left;">Quick stop</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">7,10,11</td>
+</tr>
+<tr>
+<td style="text-align: left;">Disable operation</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;">Enable operation</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4,16</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fault reset</td>
+<td style="text-align: center;">R-edge</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">15</td>
+</tr>
+</tbody>
+</table><p>The State of device can be queried by the object <strong>4041h</strong> (status word). The below table reflects the current state.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Statusword</th>
+<th>PDS FSA state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xxxx xxxx x0xx 0000b</td>
+<td>Not ready to switch on</td>
+</tr>
+<tr>
+<td>xxxx xxxx x1xx 0000b</td>
+<td>Switch on disabled</td>
+</tr>
+<tr>
+<td>xxxx xxxx x01x 0001b</td>
+<td>Ready to switch on</td>
+</tr>
+<tr>
+<td>xxxx xxxx x01x 0011b</td>
+<td>Switched on</td>
+</tr>
+<tr>
+<td>xxxx xxxx x01x 0111b</td>
+<td>Operation enabled</td>
+</tr>
+<tr>
+<td>xxxx xxxx x00x 0111b</td>
+<td>Quick stop active</td>
+</tr>
+<tr>
+<td>xxxx xxxx x0xx 1111b</td>
+<td>Fault reaction act</td>
+</tr>
+<tr>
+<td>xxxx xxxx x0xx 1000b</td>
+<td>Fault</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="modes-of-operation">
+<h4>Modes of Operation<a class="headerlink" href="#modes-of-operation" title="Permalink to this heading">¶</a></h4>
+<p>The power drive system’s behavior depends on the activated mode of operation. The mode of operation can be changed and controlled by <strong>6060h</strong> (Modes of Operation) Object. The control word dictates the actual state change as described before.</p>
+<p>The control device writes to the modes of operation object in order to select the operation
+mode. The drive device provides the modes of operation display object to indicate the actual
+activated operation mode. controlword, statusword, and set-points are used mode-specific.
+This implies the responsibility of the control device to avoid inconsistencies and erroneous
+behavior. The switching between the modes of operation implies no automatic reconfiguration
+of COBs for real-time data transmission.</p>
+<p>This server supports following modes of operations (value of 6040h object in parentheses):</p>
+<div class="section" id="profile-velocity">
+<h5>Profile Velocity<a class="headerlink" href="#profile-velocity" title="Permalink to this heading">¶</a></h5>
+<ul class="simple">
+<li><p>Value for 6060h = 0x3</p></li>
+<li><p>Mode specific <code class="docutils literal notranslate"><span class="pre">Bit</span> <span class="pre">8</span></code> of the control word represents Halt bit</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Bit</th>
+<th>Value</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td>0</td>
+<td>The motion shall be executed or continued</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1</td>
+<td>Axis shall be stopped according to the halt option code</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>Mode specific <code class="docutils literal notranslate"><span class="pre">Bit</span> <span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">Bit</span> <span class="pre">12</span></code> and <code class="docutils literal notranslate"><span class="pre">Bit</span> <span class="pre">13</span></code> of the status word represents</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Bit</th>
+<th>Value</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>0</td>
+<td>Halt (Bit 8 of controlword) = 0 : Target not reached<br>Halt (Bit 8 of controlword) = 1 : Axis decelerates</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1</td>
+<td>Halt (bit 8 in controlword) = 0: Target reached<br>Halt (bit 8 in controlword) = 1: Velocity of axis is 0</td>
+</tr>
+<tr>
+<td>12</td>
+<td>0</td>
+<td>Speed is not equal to 0</td>
+</tr>
+<tr>
+<td>12</td>
+<td>1</td>
+<td>Speed is equal to 0</td>
+</tr>
+<tr>
+<td>13</td>
+<td>0</td>
+<td>Maximum slippage not reached</td>
+</tr>
+<tr>
+<td>13</td>
+<td>1</td>
+<td>Maximum slippage reached</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="profile-torque">
+<h5>Profile Torque<a class="headerlink" href="#profile-torque" title="Permalink to this heading">¶</a></h5>
+<ul class="simple">
+<li><p>Value for 6060h = 0x4</p></li>
+<li><p>Mode specific <code class="docutils literal notranslate"><span class="pre">Bit</span> <span class="pre">8</span></code> of the control word represents Halt bit</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Bit</th>
+<th>Value</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td>0</td>
+<td>The motion shall be executed or continued</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1</td>
+<td>Axis shall be stopped according to the halt option code</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>Mode specific <code class="docutils literal notranslate"><span class="pre">Bit</span> <span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">Bit</span> <span class="pre">12</span></code> and <code class="docutils literal notranslate"><span class="pre">Bit</span> <span class="pre">13</span></code> of the status word represents</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Bit</th>
+<th>Value</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>0</td>
+<td>Halt (Bit 8 of controlword) = 0 : Target not reached<br>Halt (Bit 8 of controlword) = 1 : Axis decelerates</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1</td>
+<td>Halt (bit 8 in controlword) = 0: Target reached<br>Halt (bit 8 in controlword) = 1: Velocity of axis is 0</td>
+</tr>
+<tr>
+<td>12</td>
+<td>-</td>
+<td>Reserved</td>
+</tr>
+<tr>
+<td>12</td>
+<td>-</td>
+<td>Reserved</td>
+</tr>
+<tr>
+<td>13</td>
+<td>-</td>
+<td>Reserved</td>
+</tr>
+<tr>
+<td>13</td>
+<td>-</td>
+<td>Reserved</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="object-dictionary-details">
+<h4>Object Dictionary Details<a class="headerlink" href="#object-dictionary-details" title="Permalink to this heading">¶</a></h4>
+<p>The Object Dictionary is defined in the Electronic Data Sheet (EDS), which lists all supported objects, along with any sub-objects. The full object dictionary can be found in eds (electronic data sheet) file available on the github <a class="reference external" href="https://github.com/xilinx/foc-motor-ctrl/blob/main/apps/foc-mc.eds">here</a>.</p>
+<p>Following are the list of objects implemented for this server:</p>
+<ul class="simple">
+<li><p><strong>CiA 301 Device &amp; Communication Objects</strong></p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Index</th>
+<th>Sub</th>
+<th>Description</th>
+<th>Access Type</th>
+<th>PDO Mapped</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1000</td>
+<td>0</td>
+<td>Device Type</td>
+<td>Constant</td>
+<td></td>
+</tr>
+<tr>
+<td>1001</td>
+<td>0</td>
+<td>Error Register</td>
+<td>RO</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>1005</td>
+<td>0</td>
+<td>COB-ID SYNC Message</td>
+<td>RW</td>
+<td></td>
+</tr>
+<tr>
+<td>1006</td>
+<td>0</td>
+<td>Communication cycle period</td>
+<td>RW</td>
+<td></td>
+</tr>
+<tr>
+<td>1007</td>
+<td>0</td>
+<td>SYNC Window lenght</td>
+<td>RW</td>
+<td></td>
+</tr>
+<tr>
+<td>1008</td>
+<td>0</td>
+<td>Manufacture Device Name</td>
+<td>Constant</td>
+<td></td>
+</tr>
+<tr>
+<td>1009</td>
+<td>0</td>
+<td>Manufacture Hw Ver</td>
+<td>Constant</td>
+<td></td>
+</tr>
+<tr>
+<td>100A</td>
+<td>0</td>
+<td>Manufacture Hw Ver</td>
+<td>Constant</td>
+<td></td>
+</tr>
+<tr>
+<td>1005</td>
+<td>0</td>
+<td>COB-ID SYNC Message</td>
+<td>RW</td>
+<td></td>
+</tr>
+<tr>
+<td>1012</td>
+<td>0</td>
+<td>COB-ID time stamp object</td>
+<td>RW</td>
+<td></td>
+</tr>
+<tr>
+<td>1014</td>
+<td>0</td>
+<td>COB-ID EMCY</td>
+<td>RW</td>
+<td></td>
+</tr>
+<tr>
+<td>1015</td>
+<td>0</td>
+<td>Inhibit time EMCY</td>
+<td>RW</td>
+<td></td>
+</tr>
+<tr>
+<td>1016</td>
+<td>0-1</td>
+<td>Consumer heartbeat time</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1017</td>
+<td>0</td>
+<td>Producer heartbeat time</td>
+<td>RW</td>
+<td></td>
+</tr>
+<tr>
+<td>1018</td>
+<td>0-4</td>
+<td>Indentiy</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1019</td>
+<td>0</td>
+<td>Synchronous counter overflow value</td>
+<td>RW</td>
+<td></td>
+</tr>
+<tr>
+<td>1200</td>
+<td>0-2</td>
+<td>SDO Server Parameter</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1400</td>
+<td>0-5</td>
+<td>RPDO Comunication Parameters-1</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1401</td>
+<td>0-5</td>
+<td>RPDO Comunication Parameters-2</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1402</td>
+<td>0-5</td>
+<td>RPDO Comunication Parameters-3</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1403</td>
+<td>0-5</td>
+<td>RPDO Comunication Parameters-4</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1600</td>
+<td>0-1</td>
+<td>RPDO Mapping Parameters-1</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1601</td>
+<td>0-2</td>
+<td>RPDO Mapping Parameters-2</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1602</td>
+<td>0-2</td>
+<td>RPDO Mapping Parameters-3</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1603</td>
+<td>0-2</td>
+<td>RPDO Mapping Parameters-4</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1800</td>
+<td>0-6</td>
+<td>TPDO Comunication Parameters-1</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1801</td>
+<td>0-6</td>
+<td>TPDO Comunication Parameters-2</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1802</td>
+<td>0-6</td>
+<td>TPDO Comunication Parameters-3</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1803</td>
+<td>0-6</td>
+<td>TPDO Comunication Parameters-4</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1A00</td>
+<td>0-1</td>
+<td>TPDO Mapping Parameters-1</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1A01</td>
+<td>0-2</td>
+<td>TPDO Mapping Parameters-2</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1A02</td>
+<td>0-2</td>
+<td>TPDO Mapping Parameters-3</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>1A03</td>
+<td>0-2</td>
+<td>TPDO Mapping Parameters-4</td>
+<td>-</td>
+<td></td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p><strong>Cia 402 Application Profile Objects</strong></p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Index</th>
+<th>Sub</th>
+<th>Description</th>
+<th>Access Type</th>
+<th>PDO Mapped</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>603F</td>
+<td>0</td>
+<td>Error Code</td>
+<td>RO</td>
+<td></td>
+</tr>
+<tr>
+<td>6040</td>
+<td>0</td>
+<td>Control Word</td>
+<td>RW</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>6041</td>
+<td>0</td>
+<td>Status Word</td>
+<td>RO</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>605A</td>
+<td>0</td>
+<td>Quick Stop</td>
+<td>RW</td>
+<td></td>
+</tr>
+<tr>
+<td>605B</td>
+<td>0</td>
+<td>Shutdown</td>
+<td>RO</td>
+<td></td>
+</tr>
+<tr>
+<td>605D</td>
+<td>0</td>
+<td>Halt</td>
+<td>RW</td>
+<td></td>
+</tr>
+<tr>
+<td>6060</td>
+<td>0</td>
+<td>Modes of Operation</td>
+<td>RW</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>6061</td>
+<td>0</td>
+<td>Modes of Operation display</td>
+<td>RO</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>6064</td>
+<td>0</td>
+<td>Position Actual Value</td>
+<td>RO</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>606C</td>
+<td>0</td>
+<td>Velocity Actual Value</td>
+<td>RO</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>6071</td>
+<td>0</td>
+<td>Target Torque</td>
+<td>RW</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>6077</td>
+<td>0</td>
+<td>Torque Actual Value</td>
+<td>RO</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>60FF</td>
+<td>0</td>
+<td>Target Velocity</td>
+<td>RW</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>6502</td>
+<td>0</td>
+<td>Supported Drive Modes</td>
+<td>RO</td>
+<td></td>
+</tr>
+</tbody>
+</table><p>Detailed configuration and values of objects are available <a class="reference internal" href="canopen_obj_dic.html"><span class="doc">here</span></a>.</p>
+</div>
+<div class="section" id="using-canopen-server">
+<h4>Using CANopen Server<a class="headerlink" href="#using-canopen-server" title="Permalink to this heading">¶</a></h4>
+<p>The CANopen server can be utilized by any CiA 402 master on the CAN bus, providing a flexible and standardized interface for motor control. One of the possible usage is demonstrated in the deployment section, showing how a ROS2 based CANopen master running on KR260 can access the CANopen Server over the CAN bus.</p>
+<p><img alt="CanOpen Bus" src="../_images/sw-canopen-bus.jpg" /></p>
+<div class="section" id="ros2-canopen-mater">
+<h5>ROS2 CANopen Mater<a class="headerlink" href="#ros2-canopen-mater" title="Permalink to this heading">¶</a></h5>
+<p>The example CANopen master used in the deployment section is based on <a class="reference external" href="https://ros-industrial.github.io/ros2_canopen/manual/humble/">ROS2 CANopen Stack</a>. This stack provides:</p>
+<ul class="simple">
+<li><p><strong>Easy YAML based bus configuration</strong>: In this file you define the nodes that are connected to the bus by specifying their node id, the corresponding EDS file.</p></li>
+<li><p><strong>Service based operation</strong>: The stack can be operated using standard ROS2 nodes. The lifecycle and CANopen state can be controlled using the Services of ROS2 nodes based on the driver selected in the YAML file.</p></li>
+<li><p><strong>ROS2 control based operation</strong>: <strong>canopen_ros2_control/CIA402System</strong> interface is provided to control CANopen device over CANopen CiA 402 profile.</p></li>
+</ul>
+<p>As ROS2 control integration is provided by ROS2 CANopen stack, it is easy to just define a hardware interface to use KD240 in the Robot system as a joint.</p>
+<p>Example implementation of the ROS2 CANopen master that is used for deployment on KR260 is available <a class="reference external" href="https://github.com/xilinx/foc-motor-ctrl/blob/main/test/ros2_canopen">here</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="one-wire">
+<h2>One Wire<a class="headerlink" href="#one-wire" title="Permalink to this heading">¶</a></h2>
+<p>In addition to above motor control application, this platform also provides One Wire interface. The One Wire protocol is a communication protocol that allows for the transfer of data and power over a single wire.</p>
+<p>This application makes use of the One Wire Temperature sensor which is a digital thermometer that uses the 1-wire protocol to communicate with a host device.</p>
+<p>It measures temperature and converts it into digital signal, which can be read by microcontrollers and other devices.</p>
+<p>The following diagram illustrates the top-level architecture and arrangement of various software components:</p>
+<p><img alt="One Wire Architecture Overview" src="../_images/1-wire_arch.JPG" /></p>
+<ul class="simple">
+<li><p>Kernel: Ubuntu Linux kernel</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">hwmon</span></code> : Hardware Monitoring Kernel Framework</p></li>
+<li><p>Drivers:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">amd_axi_w1</span></code> : AMD 1Wire programmable logic bus driver</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Application</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">lm-sensors</span></code> : Linux Monitoring Sensors utility package</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="kernel-driver">
+<h3>Kernel Driver<a class="headerlink" href="#kernel-driver" title="Permalink to this heading">¶</a></h3>
+<p>The driver developed for the platform provides support to the AMD 1-Wire programmable logic IP block and guarantees protocol
+timing for driving off-board devices such as thermal sensors, proms, etc using the 1wire protocol.</p>
+<p>The 1-Wire master driver in the kernel controls the 1-wire bus and provides the fundamental operations for communication, such as
+sending and receiving bits, handling resets and presence pulses</p>
+<p>The driver registers and manages the discovery and attachment of slave devices.</p>
+<p>Workflow for 1-wire Slave connection:</p>
+<ul class="simple">
+<li><p>Initialization : The bus master driver initializes and registers with the 1-wire core.</p></li>
+<li><p>Detection: The bus master scans the bus for connected devices, identifying each by its unique address and adds an entry 28-XXXXXXXXXXXX in the <code class="docutils literal notranslate"><span class="pre">/sys/bus/w1/devices</span></code>.</p></li>
+<li><p>Binding : The 1-wire core matches detected devices with the appropriate slave.</p></li>
+<li><p>Communication : Slave uses the bus master operations to interact with the devices.</p></li>
+</ul>
+<p>The Linux kernel includes hardware monitoring(hwmon) modules that interact with the sensor chips.</p>
+<p>The driver exposes the sensor data to user space via the sysfs filesystem, located at /sys/class/hwmon/hwmonX, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the
+number corresponding to the detected chips.</p>
+<p>For integration of 1-wire sensor with the <code class="docutils literal notranslate"><span class="pre">hwmon</span></code> framework, a symbolic link in the <code class="docutils literal notranslate"><span class="pre">/sys/class/hwmon</span></code> directory is created pointing to
+the one wire sensor. This is automatically managed by the 1-wire driver.</p>
+<p>For example:</p>
+<ul>
+<li><p>To list all the <code class="docutils literal notranslate"><span class="pre">hwmon</span></code> interfaces:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ ls /sys/class/hwmon/
+hwmon0  hwmon1  hwmon2
+</pre></div>
+</div>
+</li>
+<li><p>Load the motor-ctrl-qei firmware which loads the one wire kernel module. Assuming 1-wire Sensor is connected to KD240</p></li>
+<li><p>After firmware load a new <code class="docutils literal notranslate"><span class="pre">hwmon3</span></code> directory will appear which indicates successful recognition of 1-wire sensor.</p></li>
+<li><p>To read the temperature via hwmon, you can read the <code class="docutils literal notranslate"><span class="pre">temp1_input</span></code> file within the <code class="docutils literal notranslate"><span class="pre">hwmon3</span></code> directory.</p></li>
+<li><p>This provides temperature in millidegrees Celsius.</p></li>
+</ul>
+</div>
+<div class="section" id="application">
+<h3>Application<a class="headerlink" href="#application" title="Permalink to this heading">¶</a></h3>
+<p>lm_sensors (Linux monitoring sensors) is a free and open-source application that provides tools and drivers for monitoring temperatures,
+voltage, and fans. <code class="docutils literal notranslate"><span class="pre">sensors</span></code> is an application or primary command that is used to read and display sensor data.</p>
+<p>This <code class="docutils literal notranslate"><span class="pre">sensors</span></code> command gathers information from the kernel interfaces provided by <code class="docutils literal notranslate"><span class="pre">hwmon</span></code> subsystem, aggregates this raw data, applies scaling
+and calibration and presents it in a human-readable format.</p>
+</div>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="app_deployment.html"><span class="doc">Application Deployment</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../foc_motor_control_landing.html"><span class="doc">KD240 FOC Motor Control Landing Page</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hw_description.html" class="btn btn-neutral float-left" title="Hardware Architecture of the Platform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="known_issues.html" class="btn btn-neutral float-right" title="Known Issues and Limitations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on December 09, 2024.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -145,10 +146,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Debugging</h1> </td>
  </tr>
-</table><div class="section" id="debugging">
+</table><section id="debugging">
 <h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading">¶</a></h1>
 <p>First review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html">FAQ</a> for commonly encountered issues across the Kria SOM applications.</p>
-<div class="section" id="this-section-list-some-debugging-tips-for-the-application">
+<section id="this-section-list-some-debugging-tips-for-the-application">
 <h2>This section list some debugging tips for the application<a class="headerlink" href="#this-section-list-some-debugging-tips-for-the-application" title="Permalink to this heading">¶</a></h2>
 <ul>
 <li><p>Make sure you use:</p>
@@ -156,53 +157,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>to load the firmware properly; otherwise, many drivers including the MIPI will not load, so there will be many errors when you run the application.</p>
 </li>
 </ul>
-</div>
-<div class="section" id="this-section-list-some-debugging-tips-for-platform-peripherals">
+</section>
+<section id="this-section-list-some-debugging-tips-for-platform-peripherals">
 <h2>This section list some debugging tips for platform peripherals<a class="headerlink" href="#this-section-list-some-debugging-tips-for-platform-peripherals" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="monitor">
+<section id="monitor">
 <h3>Monitor<a class="headerlink" href="#monitor" title="Permalink to this heading">¶</a></h3>
 <p>Review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#debug-displays">Debug Displays</a> for debugging the monitor.</p>
-</div>
-<div class="section" id="audio">
+</section>
+<section id="audio">
 <h3>Audio<a class="headerlink" href="#audio" title="Permalink to this heading">¶</a></h3>
 <details>
- <summary>Click here to view details</summary><div class="section" id="determine-the-enumeration-for-audio-card">
+ <summary>Click here to view details</summary><section id="determine-the-enumeration-for-audio-card">
 <h4>Determine the Enumeration for Audio Card<a class="headerlink" href="#determine-the-enumeration-for-audio-card" title="Permalink to this heading">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">/proc/asound/cards</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="m">2</span> <span class="o">[</span>xlnxi2ssndcard0<span class="o">]</span>: xlnx-i2s-snd-ca - xlnx-i2s-snd-card-0
-                      xlnx-i2s-snd-card-0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">[</span>xlnxi2ssndcard0<span class="o">]</span>:<span class="w"> </span>xlnx-i2s-snd-ca<span class="w"> </span>-<span class="w"> </span>xlnx-i2s-snd-card-0
+<span class="w">                      </span>xlnx-i2s-snd-card-0
 </pre></div>
 </div>
 <p>In the above example, the enumeration of audio card is 2.</p>
-</div>
-<div class="section" id="determine-capture-and-playback-device-number">
+</section>
+<section id="determine-capture-and-playback-device-number">
 <h4>Determine Capture and Playback Device Number<a class="headerlink" href="#determine-capture-and-playback-device-number" title="Permalink to this heading">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">/proc/asound/devices</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="m">80</span>: <span class="o">[</span> <span class="m">2</span>- <span class="m">0</span><span class="o">]</span>: digital audio playback
- <span class="m">89</span>: <span class="o">[</span> <span class="m">2</span>- <span class="m">1</span><span class="o">]</span>: digital audio capture
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="m">80</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">2</span>-<span class="w"> </span><span class="m">0</span><span class="o">]</span>:<span class="w"> </span>digital<span class="w"> </span>audio<span class="w"> </span>playback
+<span class="w"> </span><span class="m">89</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">2</span>-<span class="w"> </span><span class="m">1</span><span class="o">]</span>:<span class="w"> </span>digital<span class="w"> </span>audio<span class="w"> </span>capture
 </pre></div>
 </div>
 <p>In the above example [2- X]: 2- is card, X is the device.</p>
-</div>
-<div class="section" id="sample-record-and-playback">
+</section>
+<section id="sample-record-and-playback">
 <h4>Sample Record and Playback<a class="headerlink" href="#sample-record-and-playback" title="Permalink to this heading">¶</a></h4>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">alsa-utils.aarch64</span></code></p></li>
 <li><p>Ensure an active source is connected at the Pmod LINE IN.</p></li>
 </ol>
-</details></div>
-</div>
-<div class="section" id="detect-usb-3-0">
+</details></section>
+</section>
+<section id="detect-usb-3-0">
 <h3>Detect USB 3.0<a class="headerlink" href="#detect-usb-3-0" title="Permalink to this heading">¶</a></h3>
 <details>
  <summary>Click here to view details</summary><p><code class="docutils literal notranslate"><span class="pre">lsusb</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Bus <span class="m">002</span> Device <span class="m">003</span>: ID 046d:085e Logitech, Inc. USB5744
-Bus <span class="m">002</span> Device <span class="m">002</span>: ID <span class="m">0424</span>:5744 Standard Microsystems Corp. USB5744
-Bus <span class="m">002</span> Device <span class="m">001</span>: ID 1d6b:0003 Linux Foundation <span class="m">3</span>.0 root hub
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Bus<span class="w"> </span><span class="m">002</span><span class="w"> </span>Device<span class="w"> </span><span class="m">003</span>:<span class="w"> </span>ID<span class="w"> </span>046d:085e<span class="w"> </span>Logitech,<span class="w"> </span>Inc.<span class="w"> </span>USB5744
+Bus<span class="w"> </span><span class="m">002</span><span class="w"> </span>Device<span class="w"> </span><span class="m">002</span>:<span class="w"> </span>ID<span class="w"> </span><span class="m">0424</span>:5744<span class="w"> </span>Standard<span class="w"> </span>Microsystems<span class="w"> </span>Corp.<span class="w"> </span>USB5744
+Bus<span class="w"> </span><span class="m">002</span><span class="w"> </span>Device<span class="w"> </span><span class="m">001</span>:<span class="w"> </span>ID<span class="w"> </span>1d6b:0003<span class="w"> </span>Linux<span class="w"> </span>Foundation<span class="w"> </span><span class="m">3</span>.0<span class="w"> </span>root<span class="w"> </span>hub
 </pre></div>
 </div>
-</details></div>
-<div class="section" id="obtain-media-device-information">
+</details></section>
+<section id="obtain-media-device-information">
 <h3>Obtain Media Device Information<a class="headerlink" href="#obtain-media-device-information" title="Permalink to this heading">¶</a></h3>
 <details>
  <summary>Click here to view details</summary>
@@ -211,75 +212,75 @@ Bus <span class="m">002</span> Device <span class="m">001</span>: ID 1d6b:0003 L
 <p>where X in media is the enumerated value. The above command will print the Device topology and help you identify the media device.</p>
 <p>Here is an example for capture path of ‘ar1335 sensor’.</p>
 <p><code class="docutils literal notranslate"><span class="pre">media-ctl</span> <span class="pre">-d</span> <span class="pre">/dev/media0</span> <span class="pre">-p</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Media controller API version <span class="m">5</span>.4.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Media<span class="w"> </span>controller<span class="w"> </span>API<span class="w"> </span>version<span class="w"> </span><span class="m">5</span>.4.0
 
-Media device information
+Media<span class="w"> </span>device<span class="w"> </span>information
 ------------------------
-driver          xilinx-video
-model           Xilinx Video Composite Device
+driver<span class="w">          </span>xilinx-video
+model<span class="w">           </span>Xilinx<span class="w"> </span>Video<span class="w"> </span>Composite<span class="w"> </span>Device
 serial
-bus info
-hw revision     0x0
-driver version  <span class="m">5</span>.4.0
+bus<span class="w"> </span>info
+hw<span class="w"> </span>revision<span class="w">     </span>0x0
+driver<span class="w"> </span>version<span class="w">  </span><span class="m">5</span>.4.0
 
-Device topology
-- entity <span class="m">1</span>: isp_vcap_csi output <span class="m">0</span> <span class="o">(</span><span class="m">1</span> pad, <span class="m">1</span> link<span class="o">)</span>
-            <span class="nb">type</span> Node subtype V4L flags <span class="m">0</span>
-            device node name /dev/video0
-        pad0: Sink
-                &lt;- <span class="s2">&quot;b0100000.scaler&quot;</span>:1 <span class="o">[</span>ENABLED<span class="o">]</span>
+Device<span class="w"> </span>topology
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>isp_vcap_csi<span class="w"> </span>output<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>pad,<span class="w"> </span><span class="m">1</span><span class="w"> </span>link<span class="o">)</span>
+<span class="w">            </span><span class="nb">type</span><span class="w"> </span>Node<span class="w"> </span>subtype<span class="w"> </span>V4L<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">            </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/video0
+<span class="w">        </span>pad0:<span class="w"> </span>Sink
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;b0100000.scaler&quot;</span>:1<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
 
-- entity <span class="m">5</span>: b0100000.scaler <span class="o">(</span><span class="m">2</span> pads, <span class="m">2</span> links<span class="o">)</span>
-            <span class="nb">type</span> V4L2 subdev subtype Unknown flags <span class="m">0</span>
-            device node name /dev/v4l-subdev0
-        pad0: Sink
-                <span class="o">[</span>fmt:UYVY8_1X16/1024x768 field:none colorspace:srgb<span class="o">]</span>
-                &lt;- <span class="s2">&quot;80000000.csiss&quot;</span>:0 <span class="o">[</span>ENABLED<span class="o">]</span>
-        pad1: Source
-                <span class="o">[</span>fmt:RBG888_1X24/1024x768 field:none colorspace:srgb<span class="o">]</span>
-                -&gt; <span class="s2">&quot;isp_vcap_csi output 0&quot;</span>:0 <span class="o">[</span>ENABLED<span class="o">]</span>
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">5</span>:<span class="w"> </span>b0100000.scaler<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>pads,<span class="w"> </span><span class="m">2</span><span class="w"> </span>links<span class="o">)</span>
+<span class="w">            </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Unknown<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">            </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev0
+<span class="w">        </span>pad0:<span class="w"> </span>Sink
+<span class="w">                </span><span class="o">[</span>fmt:UYVY8_1X16/1024x768<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="o">]</span>
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;80000000.csiss&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+<span class="w">        </span>pad1:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:RBG888_1X24/1024x768<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;isp_vcap_csi output 0&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
 
-- entity <span class="m">8</span>: <span class="m">80000000</span>.csiss <span class="o">(</span><span class="m">2</span> pads, <span class="m">2</span> links<span class="o">)</span>
-            <span class="nb">type</span> V4L2 subdev subtype Unknown flags <span class="m">0</span>
-            device node name /dev/v4l-subdev1
-        pad0: Source
-                <span class="o">[</span>fmt:UYVY8_1X16/1024x768 field:none colorspace:srgb<span class="o">]</span>
-                -&gt; <span class="s2">&quot;b0100000.scaler&quot;</span>:0 <span class="o">[</span>ENABLED<span class="o">]</span>
-        pad1: Sink
-                <span class="o">[</span>fmt:UYVY8_1X16/1024x768 field:none colorspace:srgb<span class="o">]</span>
-                &lt;- <span class="s2">&quot;ap1302.4-003c&quot;</span>:2 <span class="o">[</span>ENABLED<span class="o">]</span>
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">8</span>:<span class="w"> </span><span class="m">80000000</span>.csiss<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>pads,<span class="w"> </span><span class="m">2</span><span class="w"> </span>links<span class="o">)</span>
+<span class="w">            </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Unknown<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">            </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev1
+<span class="w">        </span>pad0:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:UYVY8_1X16/1024x768<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;b0100000.scaler&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+<span class="w">        </span>pad1:<span class="w"> </span>Sink
+<span class="w">                </span><span class="o">[</span>fmt:UYVY8_1X16/1024x768<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="o">]</span>
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;ap1302.4-003c&quot;</span>:2<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
 
-- entity <span class="m">11</span>: ap1302.4-003c <span class="o">(</span><span class="m">3</span> pads, <span class="m">2</span> links<span class="o">)</span>
-             <span class="nb">type</span> V4L2 subdev subtype Unknown flags <span class="m">0</span>
-             device node name /dev/v4l-subdev3
-        pad0: Sink
-                <span class="o">[</span>fmt:SGRBG10_1X10/4208x3120 field:none colorspace:srgb
-                 crop.bounds:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120
-                 crop:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120<span class="o">]</span>
-                &lt;- <span class="s2">&quot;ar1335 0&quot;</span>:0 <span class="o">[</span>ENABLED,IMMUTABLE<span class="o">]</span>
-        pad1: Sink
-                <span class="o">[</span>fmt:SGRBG10_1X10/4208x3120 field:none colorspace:srgb
-                 crop.bounds:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120
-                 crop:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120<span class="o">]</span>
-        pad2: Source
-                <span class="o">[</span>fmt:UYVY8_1X16/1024x768 field:none colorspace:srgb
-                 crop.bounds:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120
-                 crop:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120<span class="o">]</span>
-                -&gt; <span class="s2">&quot;80000000.csiss&quot;</span>:1 <span class="o">[</span>ENABLED<span class="o">]</span>
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">11</span>:<span class="w"> </span>ap1302.4-003c<span class="w"> </span><span class="o">(</span><span class="m">3</span><span class="w"> </span>pads,<span class="w"> </span><span class="m">2</span><span class="w"> </span>links<span class="o">)</span>
+<span class="w">             </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Unknown<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">             </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev3
+<span class="w">        </span>pad0:<span class="w"> </span>Sink
+<span class="w">                </span><span class="o">[</span>fmt:SGRBG10_1X10/4208x3120<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb
+<span class="w">                 </span>crop.bounds:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120
+<span class="w">                 </span>crop:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120<span class="o">]</span>
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;ar1335 0&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED,IMMUTABLE<span class="o">]</span>
+<span class="w">        </span>pad1:<span class="w"> </span>Sink
+<span class="w">                </span><span class="o">[</span>fmt:SGRBG10_1X10/4208x3120<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb
+<span class="w">                 </span>crop.bounds:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120
+<span class="w">                 </span>crop:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120<span class="o">]</span>
+<span class="w">        </span>pad2:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:UYVY8_1X16/1024x768<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb
+<span class="w">                 </span>crop.bounds:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120
+<span class="w">                 </span>crop:<span class="o">(</span><span class="m">0</span>,0<span class="o">)</span>/4208x3120<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;80000000.csiss&quot;</span>:1<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
 
-- entity <span class="m">15</span>: ar1335 <span class="m">0</span> <span class="o">(</span><span class="m">1</span> pad, <span class="m">1</span> link<span class="o">)</span>
-             <span class="nb">type</span> V4L2 subdev subtype Sensor flags <span class="m">0</span>
-             device node name /dev/v4l-subdev2
-        pad0: Source
-                <span class="o">[</span>fmt:SGRBG10_1X10/4208x3120 field:none colorspace:srgb<span class="o">]</span>
-                -&gt; <span class="s2">&quot;ap1302.4-003c&quot;</span>:0 <span class="o">[</span>ENABLED,IMMUTABLE<span class="o">]</span>
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">15</span>:<span class="w"> </span>ar1335<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>pad,<span class="w"> </span><span class="m">1</span><span class="w"> </span>link<span class="o">)</span>
+<span class="w">             </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Sensor<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">             </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev2
+<span class="w">        </span>pad0:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:SGRBG10_1X10/4208x3120<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;ap1302.4-003c&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED,IMMUTABLE<span class="o">]</span>
 
-                -&gt; <span class="s2">&quot;ap1302.4-003c&quot;</span>:0 <span class="o">[</span>ENABLED,IMMUTABLE<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;ap1302.4-003c&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED,IMMUTABLE<span class="o">]</span>
 </pre></div>
 </div>
-</details><p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
-</div>
+</details><p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
+</section>
 
 
            </div>
@@ -295,7 +296,7 @@ Device topology
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

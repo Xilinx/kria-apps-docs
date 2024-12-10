@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -72,9 +73,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -146,12 +147,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1> Design Overview </h1> </td>
  </tr>
-</table><div class="section" id="design-overview">
+</table><section id="design-overview">
 <h1>Design Overview<a class="headerlink" href="#design-overview" title="Permalink to this heading">¶</a></h1>
 <blockquote>
 <div><p><strong>NOTE:</strong> This guide and prebuilt is target for Ubuntu® and 22.1. The previous version of this application (21.1) which is targeted to PetaLinux is still available <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html">online</a>.</p>
 </div></blockquote>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>The NLP SmartVision design built on the KV260 Vision AI Starter Kit provides a framework for building and customizing audio and video platforms that consist of four pipeline stages:</p>
 <ul class="simple">
@@ -191,8 +192,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The following figure shows an example end-to-end pipeline which could be a USB microphone as an audio source and a single image sensor as the video source. The audio source writes to DDR, followed by Voice Activity Detection (VAD) and Keyword Spotting Inference. Task of VAD is to keep monitoring the input audio data and whenever there is an activity (increase in input energies w.r.to audio input) create a one second audio frame and pass it to KWS for inference.
 Similarly, video capture is followed by pre-process and DPU IPs for application NN Inference. The inferred keyword and vision task are post-processed, and the output video frames are displayed via DP splitter onto a DP display, as the video sink. The figure also shows the image pre-processing and post-processing block in the capture and acceleration path. The pre-processing block scales down the video whereas the post-processing block does several actions based on a spoken audio command. The video format in the figure is the output format on each block. Details are described in the <a class="reference internal" href="hw_arch_platform_nlp.html"><span class="doc">Hardware Architecture document</span></a>.</p>
 <p><img alt="End to end example pipelines" src="../../../_images/end_to_end_pp.png" /></p>
-</div>
-<div class="section" id="design-components">
+</section>
+<section id="design-components">
 <h2>Design Components<a class="headerlink" href="#design-components" title="Permalink to this heading">¶</a></h2>
 <details>
  <summary><b>Hardware components</b></summary><ul class="simple">
@@ -291,16 +292,16 @@ Similarly, video capture is followed by pre-process and DPU IPs for application 
 </li>
 </ul>
  </details>
-&nbsp;</div>
-<div class="section" id="next-steps">
+&nbsp;</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <p>You can choose any of the following next steps:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="app_deployment_nlp.html"><span class="doc">Setting up the Board and Application Deployment Tutorial</span></a></p></li>
 <li><p><a class="reference internal" href="../../building_the_design.html"><span class="doc">Building the Design Tutorial</span></a></p></li>
 </ul>
-</div>
-<div class="section" id="references">
+</section>
+<section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <p>For more information, refer to the following documents.</p>
 <ul class="simple">
@@ -309,8 +310,8 @@ Similarly, video capture is followed by pre-process and DPU IPs for application 
 <li><p><em>Kria KV260 Vision AI Starter Kit Data Sheet</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=ds986-kv260-starter-kit&amp;ft:locale=en-US">DS986</a>)</p></li>
 <li><p><em>Kria K26 SOM Data Sheet</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=ds987-k26-som&amp;ft:locale=en-US">DS987</a>)</p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -326,7 +327,7 @@ Similarly, video capture is followed by pre-process and DPU IPs for application 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 21, 2024.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

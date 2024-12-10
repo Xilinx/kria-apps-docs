@@ -23,6 +23,8 @@ sys.path.insert(0, os.path.abspath('_ext'))
 sys.path.insert(0, os.path.abspath('docs'))
 
 # -- Project information -----------------------------------------------------
+
+
 author = 'Advanced Micro Devices, Inc'
 project = 'Kria™ KR260'
 project_u = project.replace(' ', '_')

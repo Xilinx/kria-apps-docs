@@ -35,7 +35,7 @@ Tutorials
 .. toctree::
    :maxdepth: 1
 
-   Linux Boot <../kria_starterkit_linux_boot>
+   Linux Boot <../linux_boot>
    Creating a Vitis Platform <../build_vitis_platform>
    Generate Custom Firmware <../generating_custom_firmware>
 

@@ -20,13 +20,13 @@ This guide and its prebuilt are targeted for Ubuntu&reg; 22.04 and AMD 2022.1 to
 
 ## Booting Up Linux
 
-Before continuing with the smartcam application specific instructions, if you have not yet done so, boot Linux with the instructions from the [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) page.
+Before continuing with the smartcam application specific instructions, if you have not yet done so, boot Linux with the instructions from the [Kria Starter Kit Linux boot](https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html) page.
 
 >**NOTE:** It is recommended that you start the smartcam application using the command line through an universal asynchronous receiver-transmitter (UART), instead of GNOME Desktop.
 
 ## Application Specific Hardware Setup
 
-Besides the hardware configurations required in the [Kria Starter Kit Linux boot](../../kria_starterkit_linux_boot.md) for booting Linux, the smartcam application requires the following hardware setup:
+Besides the hardware configurations required in the [Kria Starter Kit Linux boot](https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html) for booting Linux, the smartcam application requires the following hardware setup:
 
 ![GitHub Logo](../../media/som-board.png)
 
