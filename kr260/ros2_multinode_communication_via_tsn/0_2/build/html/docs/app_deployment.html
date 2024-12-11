@@ -92,10 +92,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#change-log">Change Log</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#version-v0-1-1">Version - v0.1.1</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Change Log</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#version-v0-1">Version - v0.1</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#pre-requisite">Pre-requisite</a><ul>
@@ -120,7 +117,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#network-configuration-2-network-manager-cnc-and-two-kr260-kd240-boards">Network Configuration 2 : Network Manager(CNC) and Two KR260/KD240 Boards</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#two-kr260-kd240-and-one-kv260-kr260-kd240-cnc">Two KR260/KD240 and one KV260/KR260/KD240(CNC):</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#two-kr260-kd240-and-one-linux-running-machine-cnc">Two KR260/KD240 and one Linux Running Machine(CNC):</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Run TSN-ROS Out of Box Applications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Run TSN-ROS Out of Box Applications</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#enable-frame-preemption-optional">Enable frame Preemption - Optional</a></li>
@@ -213,24 +210,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 </div>
-<div class="section" id="version-v0-1-1">
-<h3>Version - v0.1.1<a class="headerlink" href="#version-v0-1-1" title="Permalink to this heading">¶</a></h3>
-<p>Added support for CAN Communication between board to board.</p>
-<div class="section" id="id1">
-<h4>Change Log<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
-<p>Apps:</p>
-<ul class="simple">
-<li><p>Provides seamless communication between devices through the CAN interface, enabling efficient data exchange for various applications.</p></li>
-</ul>
-<p>Tests:</p>
-<ul class="simple">
-<li><p>Example to support CAN communication using the PMOD CAN between board to board.</p></li>
-</ul>
-<p>Documentation:</p>
-<ul class="simple">
-<li><p>Added steps and instructions to demonstrate CAN Communication.</p></li>
-</ul>
-</div>
+<div class="section" id="version-v0-1">
+<h3>Version - v0.1<a class="headerlink" href="#version-v0-1" title="Permalink to this heading">¶</a></h3>
+<p>Initial release.</p>
 </div>
 </div>
 <div class="section" id="pre-requisite">
@@ -252,7 +234,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Digilent RS485 Pmod - High-speed Isolated Communications - Optional (Sold Separately <a class="reference external" href="https://digilent.com/reference/pmod/pmodrs485/start">here</a>)</p></li>
 <li><p><a class="reference external" href="https://digilent.com/shop/12v-3a-power-supply/">12VDC Power Supply</a> with Prototyping or Bare Terminals – Optional (Sold Separately)</p></li>
 <li><p>Two Digilent Pmod CAN devices - Optional for KR260 CAN testing only (Sold Separately <a class="reference external" href="https://digilent.com/reference/pmod/pmodcan/start">here</a>)</p></li>
-<li><p>Wireshark tools installed on host machine (Ubuntu 20.04 Linux used for documentation)</p></li>
+<li><p>Wireshark tools installed on host machine (Ubuntu 22.04 Linux used for documentation)</p></li>
 </ul>
 <p><strong>NOTE</strong>: This tutorial can be run with one KD240 and one KR260 configuration as well</p>
 </div>
@@ -275,11 +257,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr>
 <td>Linux kernel</td>
-<td>6.8.0-1008-xilinx</td>
+<td>6.8.0-1009-xilinx</td>
 </tr>
 <tr>
 <td>Boot firmware</td>
-<td>K24-BootFW-01.02</td>
+<td>K26-BootFW-01.02</td>
 </tr>
 <tr>
 <td>xlnx-firmware-kr260-tsn-rs485pmod</td>
@@ -303,7 +285,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr>
 <td>Linux kernel</td>
-<td>6.8.0-1008-xilinx</td>
+<td>6.8.0-1009-xilinx</td>
 </tr>
 <tr>
 <td>Boot firmware</td>
@@ -321,13 +303,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <thead>
 <tr>
 <th>Application Package</th>
-<th>Ubuntu versions</th>
+<th>Ubuntu package versions</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>xlnx-tsn-utils</td>
-<td>0.3-0xlnx2</td>
+<td>0.4.1-0xlnx1</td>
 </tr>
 <tr>
 <td>xlnx-app-kr260-tsn-examples</td>
@@ -338,7 +320,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>0.2-0xlnx1</td>
 </tr>
 <tr>
-<td>ros-humble-xlnx-pubsub</td>
+<td>ros-jazzy-xlnx-pubsub</td>
 <td>0.1.0-0noble</td>
 </tr>
 <tr>
@@ -367,7 +349,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr>
 <td><a href="https://github.com/Xilinx/tsn-utils">Xilinx TSN Utils</a></td>
-<td><a href="https://github.com/Xilinx/tsn-utils/releases/tag/v0.3">v0.3</a></td>
+<td><a href="https://github.com/Xilinx/tsn-utils/releases/tag/v0.4">v0.4</a></td>
 </tr>
 <tr>
 <td><a href="https://github.com/Xilinx/tsn-talker-listener">Xilinx TSN Talker-Listener</a></td>
@@ -375,11 +357,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr>
 <td><a href="https://github.com/Xilinx/pmod-rs485-test">Xilinx PMOD RS485 Test</a></td>
-<td><a href="https://github.com/Xilinx/pmod-rs485-test/releases/tag/v0.2">0.2</a></td>
+<td><a href="https://github.com/Xilinx/pmod-rs485-test/releases/tag/v0.2">v0.2</a></td>
 </tr>
 <tr>
 <td><a href="https://github.com/Xilinx/ros-tsn-pubsub">Xilinx ROS TSN PubSub</a></td>
-<td><a href="https://github.com/Xilinx/ros-tsn-pubsub/releases/tag/v0.1.1">v0.1.1</a></td>
+<td><a href="https://github.com/Xilinx/ros-tsn-pubsub/releases/tag/v0.2">v0.2</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -425,7 +407,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <div><p><em><strong>Note:</strong></em> Consider adding the above commands to ~/.bashrc to avoid executing on every new shell created.</p>
 </div></blockquote>
 </li>
-<li><p>Install ROS 2 humble.</p>
+<li><p>Install ROS 2 jazzy.</p>
 <p>Refer to <a class="reference external" href="https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debians.html">ROS 2 Documentation</a> for the installation steps. Here is the snippet of what is needed for this application:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>curl<span class="w"> </span>-sSL<span class="w"> </span>https://raw.githubusercontent.com/ros/rosdistro/master/ros.key<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/ros-archive-keyring.gpg
 <span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$UBUNTU_CODENAME</span><span class="k">)</span><span class="s2"> main&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/ros2.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
@@ -439,7 +421,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <li><p>Install ROS 2 application.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/Downloads
 <span class="w"> </span>wget<span class="w"> </span>https://github.com/Xilinx/ros-tsn-pubsub/releases/download/v0.1/ros-jazzy-xlnx-pubsub_0.1.0-0noble_arm64.deb<span class="w"> </span>-P<span class="w"> </span>~/Downloads/
-<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>~/Downloads/ros-humble-xlnx-pubsub_0.1.0-0noble_arm64.deb
+<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>~/Downloads/ros-jazzy-xlnx-pubsub_0.1.0-0noble_arm64.deb
 </pre></div>
 </div>
 </li>
@@ -544,7 +526,7 @@ These are safe to ignore.</p>
 <p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/usr/bin/net_setup.sh</span> <span class="pre">-b2</span></code></p>
 </li>
 <li><p><em>Setup ros env on both KR260/KD240 Board 1 &amp; Board2</em></p>
-<p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/ros/humble/setup.sh</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/ros/jazzy/setup.sh</span></code></p>
 </li>
 </ul>
 <blockquote>
@@ -707,15 +689,8 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 </div>
 <div class="section" id="network-configuration-2-network-manager-cnc-and-two-kr260-kd240-boards">
 <h3>Network Configuration 2 : Network Manager(CNC) and Two KR260/KD240 Boards<a class="headerlink" href="#network-configuration-2-network-manager-cnc-and-two-kr260-kd240-boards" title="Permalink to this heading">¶</a></h3>
-<p><strong>NOTE</strong>: This tutorial can be run with one KD240 and one KR260 configuration as well.
-Before running this tutorial please make sure that your <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">--version</span></code> package on the CNC is
-<code class="docutils literal notranslate"><span class="pre">7.68.0</span></code>. Please follow below steps if version does not match:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>sudo<span class="w"> </span>apt-cache<span class="w"> </span>policy<span class="w"> </span>curl
-<span class="w">    </span>sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>curl
-<span class="w">    </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span><span class="nv">curl</span><span class="o">=</span><span class="m">7</span>.68.0-1ubuntu2.18
-</pre></div>
-</div>
 <p>This configuration requires either two KR260/KD240 units and one KV260/KR260/KD240 unit(CNC) or two KR260/KD240 units and one Linux Running Machine(CNC). The following images represent these configurations:</p>
+<p><strong>NOTE</strong>: This tutorial can be run with one KD240 and one KR260 configuration as well.</p>
 <div class="section" id="two-kr260-kd240-and-one-kv260-kr260-kd240-cnc">
 <h4>Two KR260/KD240 and one KV260/KR260/KD240(CNC):<a class="headerlink" href="#two-kr260-kd240-and-one-kv260-kr260-kd240-cnc" title="Permalink to this heading">¶</a></h4>
 <p><img alt="NM_Setup_1" src="../_images/NM_Setup_1.JPG" /></p>
@@ -725,8 +700,8 @@ Before running this tutorial please make sure that your <code class="docutils li
 <p><img alt="NM_Setup_2" src="../_images/NM_Setup_2.JPG" /></p>
 <p><strong>NOTE</strong>: For KD240 J24 is PS Eth, J25B top is PL Eth. For KR260 J10D is PS Eth, J10B top is PL Eth</p>
 </div>
-<div class="section" id="id2">
-<h4>Run TSN-ROS Out of Box Applications<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="id1">
+<h4>Run TSN-ROS Out of Box Applications<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
 <ul>
 <li><p>Ensure to load the TSN accelerator/firmware (refer to step-7 ‘dynamically load the application package’ from initial setup) before testing example application. If the firmware is already loaded, ignore this step and proceed.</p>
 <ul class="simple">
@@ -1305,9 +1280,19 @@ Once preemption is enabled, it remains enabled on subsequent reboot as the confi
 </li>
 </ul>
 <p><strong>Workstation Configuration</strong></p>
+<ul class="simple">
+<li><p>To find out the device name of the I210 interface on the Linux host workstation, use the <code class="docutils literal notranslate"><span class="pre">lshw</span></code> utility</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo lshw -class network -short
+H/W path        Device          Class          Description
+==========================================================
+/0/100/1f.6     enp0s31f6       network        Ethernet Connection (3) I219-LM
+/0/101/0        ens4            network        I210 Gigabit Network Connection
+</pre></div>
+</div>
 <ul>
-<li><p>The TSN networking interface (I210 interface) on the Linux host workstation  must be brought up and linuxptp needs to be installed to demonstrate PTP. To do this, on the Linux workstation, use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">&lt;i210</span> <span class="pre">interface&gt;</span> <span class="pre">up</span></code> command as shown in this example usage:</p>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">enp2s0</span> <span class="pre">up</span> </code></p>
+<li><p>The TSN networking interface (I210 interface) on the Linux host workstation must be brought up and linuxptp needs to be installed to demonstrate PTP. To do this, on the Linux workstation, use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">&lt;i210</span> <span class="pre">interface&gt;</span> <span class="pre">up</span></code> command as shown in this example usage:</p>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">ens4</span> <span class="pre">up</span> </code></p>
 </li>
 <li><p><em>Install ptpt4l on Workstation</em></p>
 <p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">linuxptp</span></code></p>
@@ -1339,14 +1324,38 @@ Once preemption is enabled, it remains enabled on subsequent reboot as the confi
 </div>
 <ul>
 <li><p><em>Start ptp4l on the Linux TSN host workstation and specify</em></p>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ptp4l</span> <span class="pre">-P</span> <span class="pre">-2</span> <span class="pre">-H</span> <span class="pre">-i</span> <span class="pre">&lt;i210</span> <span class="pre">interface&gt;</span> <span class="pre">-m</span> <span class="pre">-f</span> <span class="pre">ptp4l_master.conf</span> <span class="pre">&gt;&amp;</span> <span class="pre">ptplog</span> <span class="pre">&amp;</span> </code></p>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ptp4l</span> <span class="pre">-P</span> <span class="pre">-2</span> <span class="pre">-H</span> <span class="pre">-i</span> <span class="pre">enp2s0</span> <span class="pre">-p</span> <span class="pre">/dev/ptp1</span> <span class="pre">-m</span> <span class="pre">-f</span> <span class="pre">ptp4l_master.conf</span> <span class="pre">&gt;&amp;</span> <span class="pre">ptplog</span> <span class="pre">&amp;</span> </code></p>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ptp4l</span> <span class="pre">-P</span> <span class="pre">-2</span> <span class="pre">-H</span> <span class="pre">-i</span> <span class="pre">&lt;i210</span> <span class="pre">interface&gt;</span> <span class="pre">-p</span> <span class="pre">&lt;ptp_device&gt;</span> <span class="pre">-m</span> <span class="pre">-f</span> <span class="pre">ptp4l_master.conf</span> <span class="pre">&gt;&amp;</span> <span class="pre">ptplog</span> <span class="pre">&amp;</span> </code></p>
 </li>
 </ul>
 <blockquote>
-<div><p><em><strong>Note:</strong></em> In cases where there is more than one PTP device available, specify which one is to be used with the -p argument as shown in the following example usage:</p>
+<div><p><em><strong>Note:</strong></em> In cases where there is more than one PTP device available, specify which one is to be used with the -p argument.</p>
 </div></blockquote>
 <ul class="simple">
+<li><p>To find out the correct PTP device on Linux TSN Host Workstation, use the ethtool utility <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ethtool</span> <span class="pre">-T</span> <span class="pre">&lt;i210_interface&gt;</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#Example
+ubuntu@kria:~$ sudo ethtool -T ens4
+Time stamping parameters for ens4:
+Capabilities:
+        hardware-transmit     (SOF_TIMESTAMPING_TX_HARDWARE)
+        software-transmit     (SOF_TIMESTAMPING_TX_SOFTWARE)
+        hardware-receive      (SOF_TIMESTAMPING_RX_HARDWARE)
+        software-receive      (SOF_TIMESTAMPING_RX_SOFTWARE)
+        software-system-clock (SOF_TIMESTAMPING_SOFTWARE)
+        hardware-raw-clock    (SOF_TIMESTAMPING_RAW_HARDWARE)
+PTP Hardware Clock: 0
+Hardware Transmit Timestamp Modes:
+        off                   (HWTSTAMP_TX_OFF)
+        on                    (HWTSTAMP_TX_ON)
+Hardware Receive Filter Modes:
+        none                  (HWTSTAMP_FILTER_NONE)
+        all                   (HWTSTAMP_FILTER_ALL)
+</pre></div>
+</div>
+<ul>
+<li><p>From the output above, the PTP device for the I210 interface is /dev/ptp0 and the example command on Linux TSN Workstation will be</p>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ptp4l</span> <span class="pre">-P</span> <span class="pre">-2</span> <span class="pre">-H</span> <span class="pre">-i</span> <span class="pre">ens4</span> <span class="pre">-p</span> <span class="pre">/dev/ptp0</span> <span class="pre">-m</span> <span class="pre">-f</span> <span class="pre">ptp4l_master.conf</span> <span class="pre">&gt;&amp;</span> <span class="pre">ptplog</span> <span class="pre">&amp;</span> </code></p>
+</li>
 <li><p><em>Start ptp on KR260/KD240 in slave clock mode</em>
 <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/usr/bin/start_ptp.sh</span> <span class="pre">-s</span> </code></p></li>
 </ul>
@@ -1562,7 +1571,7 @@ capability provided by the application to support CAN communication.</p>
 <ul>
 <li><p>Install the necessary packages on both devices:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>can-utils<span class="w">   </span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>can-utils
 </pre></div>
 </div>
 </li>
@@ -1688,7 +1697,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on December 10, 2024.
+      <span class="lastupdated">Last updated on December 11, 2024.
       </span></p>
   </div>
 

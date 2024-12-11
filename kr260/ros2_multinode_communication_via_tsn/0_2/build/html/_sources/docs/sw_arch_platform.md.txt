@@ -65,7 +65,7 @@ These nodes can be on the same system or distributed across systems. The biggest
 
 ROS 2 is built on top of DDS/RTPS as its middleware, which provides discovery, serialization, and transportation. DDS is an end-to-end middleware that provides features that are relevant to ROS systems, such as distributed discovery (not centralized like in ROS 1) and control over different “Quality of Service” options for the transportation. There are many independent DDS implementation by various vendors. ROS2's rmw abstraction allows to easily switch or adapt different implementations.
 
-Following are supported DDS implementation for ROS2 humble release:
+Following are supported DDS implementation for ROS2 Humble and Jazzy release:
 
 - eProsima Fast DDS (Default RMW)
 - Eclipse Cyclone DDS
@@ -200,7 +200,7 @@ receiving CAN messages.
 
 - [Xilinx TSN Solution](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/25034864/Xilinx+TSN+Solution)
 - [Xilinx TSN UserGuide](https://www.xilinx.com)
-- [ROS2 Humble](https://docs.ros.org/)
+- [ROS2 Documentation](https://docs.ros.org/)
 - [eProsima fast DDS](https://fast-dds.docs.eprosima.com/en/latest/index.html)
 - [Modbus](https://www.libmodbus.org/documentation/)
 - [Modbus Protocol](https://www.modbus.org/specs.php)
