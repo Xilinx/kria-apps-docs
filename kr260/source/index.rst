@@ -21,7 +21,7 @@ Kria KR260 Robotics Starter Kit Applications
 .. image:: docs/media/Perception.png
    :width: 200
    :alt: ROS 2 Perception Node
-   :target: ./docs/ros2_perception_node_landing.html
+   :target: ./docs/ros2_perception_node/ros2_perception_node_landing.html
 
 
 .. image:: docs/media/precision-time.png

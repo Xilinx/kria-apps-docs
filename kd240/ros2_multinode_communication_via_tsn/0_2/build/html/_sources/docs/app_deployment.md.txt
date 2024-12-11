@@ -29,23 +29,9 @@ Documentation:
 * Added ROS2 Jazzy installation instructions.
 * Added instructions to add user to the `dialout` group to access `/dev/tty` devices for RS485 Temp-Humidity sensor test.
 
-### Version - v0.1.1
+### Version - v0.1
 
-Added support for CAN Communication between board to board.
-
-#### Change Log
-
-Apps:
-
-* Provides seamless communication between devices through the CAN interface, enabling efficient data exchange for various applications.
-
-Tests:
-
-* Example to support CAN communication using the PMOD CAN between board to board.
-
-Documentation:
-
-* Added steps and instructions to demonstrate CAN Communication.
+Initial release.
 
 ## Pre-requisite
 
@@ -79,7 +65,7 @@ Documentation:
 
 * Two Digilent Pmod CAN devices - Optional for KR260 CAN testing only (Sold Separately [here](https://digilent.com/reference/pmod/pmodcan/start))
 
-* Wireshark tools installed on host machine (Ubuntu 20.04 Linux used for documentation)
+* Wireshark tools installed on host machine (Ubuntu 22.04 Linux used for documentation)
 
 **NOTE**: This tutorial can be run with one KD240 and one KR260 configuration as well
 
@@ -92,8 +78,8 @@ Testing was performed with the following artifacts:
 | Components                           | Versions           |
 | ------------------------------------ | ------------------ |
 | Ubuntu                               | 24.04 Noble        |
-| Linux kernel                         | 6.8.0-1008-xilinx  |
-| Boot firmware                        | K24-BootFW-01.02   |
+| Linux kernel                         | 6.8.0-1009-xilinx  |
+| Boot firmware                        | K26-BootFW-01.02   |
 | xlnx-firmware-kr260-tsn-rs485pmod    | 1.0-0xlnx2         |
 
 #### KD240 Platform artifacts
@@ -101,18 +87,18 @@ Testing was performed with the following artifacts:
 | Components                           | Versions           |
 | ------------------------------------ | ------------------ |
 | Ubuntu                               | 24.04 Noble        |
-| Linux kernel                         | 6.8.0-1008-xilinx  |
+| Linux kernel                         | 6.8.0-1009-xilinx  |
 | Boot firmware                        | K24-BootFW-01.02   |
 | xlnx-firmware-kd240-motor-ctrl-qei   | 1.0-0xlnx2         |
 
 #### Application artifacts
 
-| Application Package            | Ubuntu versions                   |
+| Application Package            | Ubuntu package versions           |
 | ------------------------------ | --------------------------------- |
-| xlnx-tsn-utils                 | 0.3-0xlnx2                        |
+| xlnx-tsn-utils                 | 0.4.1-0xlnx1                      |
 | xlnx-app-kr260-tsn-examples    | 0.2-0xlnx3                        |
 | xlnx-app-kr260-pmod-rs485-test | 0.2-0xlnx1                        |
-| ros-humble-xlnx-pubsub         | 0.1.0-0noble                      |
+| ros-jazzy-xlnx-pubsub          | 0.1.0-0noble                      |
 | ethtool                        | 5.16                              |
 | lldpad                         | 1.1+git20241016-tsn-0ubuntu1xlnx2 |
 
@@ -121,10 +107,10 @@ Testing was performed with the following artifacts:
 | Repository                                                                               | Release Tag                                                                                                  |
 |----------------------------------------------------------------------------------------- |------------------------------------------------------------------------------------------------------------- |
 | [Kria SOM Vitis Platforms and Overlays](https://github.com/Xilinx/kria-vitis-platforms)  | [v1.0](https://github.com/Xilinx/kria-vitis-platforms/releases/tag/v1.0)                                     |
-| [Xilinx TSN Utils](https://github.com/Xilinx/tsn-utils)                                  | [v0.3](https://github.com/Xilinx/tsn-utils/releases/tag/v0.3)                                                |
+| [Xilinx TSN Utils](https://github.com/Xilinx/tsn-utils)                                  | [v0.4](https://github.com/Xilinx/tsn-utils/releases/tag/v0.4)                                              |
 | [Xilinx TSN Talker-Listener](https://github.com/Xilinx/tsn-talker-listener)              | [v0.2](https://github.com/Xilinx/tsn-talker-listener/releases/tag/v0.2)                                      |
-| [Xilinx PMOD RS485 Test](https://github.com/Xilinx/pmod-rs485-test)                      | [0.2](https://github.com/Xilinx/pmod-rs485-test/releases/tag/v0.2)                                            |
-| [Xilinx ROS TSN PubSub](https://github.com/Xilinx/ros-tsn-pubsub)                        | [v0.1.1](https://github.com/Xilinx/ros-tsn-pubsub/releases/tag/v0.1.1)                                       |
+| [Xilinx PMOD RS485 Test](https://github.com/Xilinx/pmod-rs485-test)                      | [v0.2](https://github.com/Xilinx/pmod-rs485-test/releases/tag/v0.2)                                           |
+| [Xilinx ROS TSN PubSub](https://github.com/Xilinx/ros-tsn-pubsub)                        | [v0.2](https://github.com/Xilinx/ros-tsn-pubsub/releases/tag/v0.2)                                       |
 
 ### Initial Setup
 
@@ -164,7 +150,7 @@ Testing was performed with the following artifacts:
 
         > ***Note:*** Consider adding the above commands to ~/.bashrc to avoid executing on every new shell created.
 
-    * Install ROS 2 humble.
+    * Install ROS 2 jazzy.
 
         Refer to [ROS 2 Documentation](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debians.html) for the installation steps. Here is the snippet of what is needed for this application:
 
@@ -183,7 +169,7 @@ Testing was performed with the following artifacts:
        ```bash
         mkdir -p ~/Downloads
         wget https://github.com/Xilinx/ros-tsn-pubsub/releases/download/v0.1/ros-jazzy-xlnx-pubsub_0.1.0-0noble_arm64.deb -P ~/Downloads/
-        sudo apt install -y ~/Downloads/ros-humble-xlnx-pubsub_0.1.0-0noble_arm64.deb
+        sudo apt install -y ~/Downloads/ros-jazzy-xlnx-pubsub_0.1.0-0noble_arm64.deb
        ```
 
     * Install network-manager related packages.
@@ -266,7 +252,7 @@ KD240-KD240 Setup:
 
 
 KD240-KD240 Setup
-  
+
 ![2board-kd240](media/KD240-KD240.jpg)
 
 #### Run TSN-ROS Out of Box Applications
@@ -295,7 +281,7 @@ KD240-KD240 Setup
 
 	* _Setup ros env on both KR260/KD240 Board 1 & Board2_
 
-		`source /opt/ros/humble/setup.sh`
+		`source /opt/ros/jazzy/setup.sh`
 
     > ***Note:*** Set MAC filters when using both TSN ethernet ports in the loopback mode. Refer to net_setup.sh script for setting MAC filters.
 
@@ -468,16 +454,9 @@ Wireshark trace shows a 70% Scheduled traffic 30 % Best Effort traffic distribut
 
 ### Network Configuration 2 : Network Manager(CNC) and Two KR260/KD240 Boards
 
-**NOTE**: This tutorial can be run with one KD240 and one KR260 configuration as well.
-Before running this tutorial please make sure that your `curl --version` package on the CNC is 
-`7.68.0`. Please follow below steps if version does not match:
-```bash
-    sudo apt-cache policy curl
-    sudo apt remove curl
-    sudo apt install -y --no-install-recommends curl=7.68.0-1ubuntu2.18
-```
-
 This configuration requires either two KR260/KD240 units and one KV260/KR260/KD240 unit(CNC) or two KR260/KD240 units and one Linux Running Machine(CNC). The following images represent these configurations:
+
+**NOTE**: This tutorial can be run with one KD240 and one KR260 configuration as well.
 
 #### Two KR260/KD240 and one KV260/KR260/KD240(CNC):
 
@@ -1040,9 +1019,19 @@ A single KR260/KD240 board communicating with a PC workstation capable of TSN ne
 
  **Workstation Configuration**
 
-* The TSN networking interface (I210 interface) on the Linux host workstation  must be brought up and linuxptp needs to be installed to demonstrate PTP. To do this, on the Linux workstation, use `sudo ifconfig <i210 interface> up` command as shown in this example usage:
+* To find out the device name of the I210 interface on the Linux host workstation, use the `lshw` utility
 
-    `sudo ifconfig enp2s0 up `
+```
+ubuntu@kria:~$ sudo lshw -class network -short
+H/W path        Device          Class          Description
+==========================================================
+/0/100/1f.6     enp0s31f6       network        Ethernet Connection (3) I219-LM
+/0/101/0        ens4            network        I210 Gigabit Network Connection
+```
+
+* The TSN networking interface (I210 interface) on the Linux host workstation must be brought up and linuxptp needs to be installed to demonstrate PTP. To do this, on the Linux workstation, use `sudo ifconfig <i210 interface> up` command as shown in this example usage:
+
+    `sudo ifconfig ens4 up `
 
 * _Install ptpt4l on Workstation_
 
@@ -1076,11 +1065,35 @@ Using a text editor on the Linux TSN host workstation, create a new ptp4l config
 
 * _Start ptp4l on the Linux TSN host workstation and specify_
 
-    `sudo ptp4l -P -2 -H -i <i210 interface> -m -f ptp4l_master.conf >& ptplog & `
+    `sudo ptp4l -P -2 -H -i <i210 interface> -p <ptp_device> -m -f ptp4l_master.conf >& ptplog & `
 
-    `sudo ptp4l -P -2 -H -i enp2s0 -p /dev/ptp1 -m -f ptp4l_master.conf >& ptplog & `
+> ***Note:*** In cases where there is more than one PTP device available, specify which one is to be used with the -p argument.
 
-> ***Note:*** In cases where there is more than one PTP device available, specify which one is to be used with the -p argument as shown in the following example usage:
+* To find out the correct PTP device on Linux TSN Host Workstation, use the ethtool utility `sudo ethtool -T <i210_interface>`
+
+```
+#Example
+ubuntu@kria:~$ sudo ethtool -T ens4
+Time stamping parameters for ens4:
+Capabilities:
+        hardware-transmit     (SOF_TIMESTAMPING_TX_HARDWARE)
+        software-transmit     (SOF_TIMESTAMPING_TX_SOFTWARE)
+        hardware-receive      (SOF_TIMESTAMPING_RX_HARDWARE)
+        software-receive      (SOF_TIMESTAMPING_RX_SOFTWARE)
+        software-system-clock (SOF_TIMESTAMPING_SOFTWARE)
+        hardware-raw-clock    (SOF_TIMESTAMPING_RAW_HARDWARE)
+PTP Hardware Clock: 0
+Hardware Transmit Timestamp Modes:
+        off                   (HWTSTAMP_TX_OFF)
+        on                    (HWTSTAMP_TX_ON)
+Hardware Receive Filter Modes:
+        none                  (HWTSTAMP_FILTER_NONE)
+        all                   (HWTSTAMP_FILTER_ALL)
+```
+
+* From the output above, the PTP device for the I210 interface is /dev/ptp0 and the example command on Linux TSN Workstation will be
+
+    `sudo ptp4l -P -2 -H -i ens4 -p /dev/ptp0 -m -f ptp4l_master.conf >& ptplog & `
 
 * _Start ptp on KR260/KD240 in slave clock mode_
     `source /usr/bin/start_ptp.sh -s `
@@ -1275,7 +1288,7 @@ using jumper wires as shown below:
 - Connect CANL on J19 (KR260 board 1) to CANL on J18 (KD240 board 2)
 
 > ***Note:*** PMOD CAN device is required for KR260 only. For KD240, the PS CAN port J18 is
-used. 
+used.
 
 ![KR-KD-PMODCAN](media/KR-KD-PMODCAN.png)
 
@@ -1290,7 +1303,7 @@ capability provided by the application to support CAN communication.
 * Install the necessary packages on both devices:
     ```bash
 	sudo apt update
-	sudo apt install can-utils   
+	sudo apt install can-utils
     ```
 
 * Ensure to load the TSN accelerator/firmware (refer to step-7 'dynamically load the application
