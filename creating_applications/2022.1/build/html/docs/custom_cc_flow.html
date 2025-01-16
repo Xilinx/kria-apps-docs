@@ -119,6 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
@@ -219,8 +220,8 @@ Project Manager -&gt; Settings -&gt; General -&gt; check “Project is an extens
 <p>Alternatively, developers can start from the base Vivado project provided. It can either be downloaded from <a class="reference external" href="https://github.com/Xilinx/kria-base-hardware/">github</a> or be found in the BSP files.</p>
 <p>To get the project from bsp, first, download the SOM Starter Kit BSP from the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">SOM Wiki</a>
 Then create the project using BSP:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;SOM board name&gt;-&lt;version&gt;.bsp
-<span class="nb">cd</span> xilinx-&lt;SOM board name&gt;-&lt;version&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create<span class="w"> </span>-t<span class="w"> </span>project<span class="w"> </span>-s<span class="w"> </span>xilinx-&lt;SOM<span class="w"> </span>board<span class="w"> </span>name&gt;-&lt;version&gt;.bsp
+<span class="nb">cd</span><span class="w"> </span>xilinx-&lt;SOM<span class="w"> </span>board<span class="w"> </span>name&gt;-&lt;version&gt;
 <span class="c1"># example &lt;SOM board name&gt; is K26 or K24</span>
 </pre></div>
 </div>
@@ -250,16 +251,16 @@ Then create the project using BSP:</p>
 <div class="section" id="step-4-create-linux-boot-image-from-xsa-in-petalinux">
 <h2>step 4 - Create Linux boot image from .xsa in Petalinux<a class="headerlink" href="#step-4-create-linux-boot-image-from-xsa-in-petalinux" title="Permalink to this heading">¶</a></h2>
 <p>Please refer to <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Introduction#page=20">UG1144</a> for detailed guide to create an image. Below are the commands extracted from the guide:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create --type project --template zynqMP --name &lt;petalinux_project&gt;
-<span class="nb">cd</span> &lt;petalinux_project&gt;
-petalinux-config --get-hw-description &lt;path to .xsa file&gt;
-cp &lt;path to .dtsi file&gt; project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
-petalinux-build 
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create<span class="w"> </span>--type<span class="w"> </span>project<span class="w"> </span>--template<span class="w"> </span>zynqMP<span class="w"> </span>--name<span class="w"> </span>&lt;petalinux_project&gt;
+<span class="nb">cd</span><span class="w"> </span>&lt;petalinux_project&gt;
+petalinux-config<span class="w"> </span>--get-hw-description<span class="w"> </span>&lt;path<span class="w"> </span>to<span class="w"> </span>.xsa<span class="w"> </span>file&gt;
+cp<span class="w"> </span>&lt;path<span class="w"> </span>to<span class="w"> </span>.dtsi<span class="w"> </span>file&gt;<span class="w"> </span>project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
+petalinux-build<span class="w"> </span>
 </pre></div>
 </div>
 <p>the image and boot files can be found in <code class="docutils literal notranslate"><span class="pre">images/linux/</span></code></p>
 <p>Developer can also use the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#PetaLinux-Board-Support-Packages">SOM K26 or K24 production BSP</a> to generate a Petalinux project and images. It does not have any information on any carrier cards, but it has enough SOM information to generate an image to boot to Linux and also include utilities such as xmutil and dfx-mgr. This can be used for bring up. To use released BSP, replace the above <code class="docutils literal notranslate"><span class="pre">petalinux-create</span></code> command with the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;SOM board name&gt;-&lt;version&gt;.bsp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create<span class="w"> </span>-t<span class="w"> </span>project<span class="w"> </span>-s<span class="w"> </span>xilinx-&lt;SOM<span class="w"> </span>board<span class="w"> </span>name&gt;-&lt;version&gt;.bsp
 <span class="c1">#&lt;som board name&gt; example: k26 or k24</span>
 </pre></div>
 </div>
@@ -268,11 +269,11 @@ petalinux-build
 <h2>Step 5 - Boot new image on target platform<a class="headerlink" href="#step-5-boot-new-image-on-target-platform" title="Permalink to this heading">¶</a></h2>
 <p>Depending on what developers decide to put on their custom carrier card, they may choose different <a class="reference internal" href="bootmodes.html"><span class="doc">boot modes</span></a>. JTAG booting should be available on all carrier cards and this section will detail how to boot Linux via JTAG using PetaLinux. Details on using PetaLinux to boot Linux can be found in <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Generate-Boot-Image-for-Zynq-UltraScale-MPSoC">Petalinux User Guide</a> to help with booting with preferred bootmode.</p>
 <p>First package the built images into pre-built folder:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-package --prebuilt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-package<span class="w"> </span>--prebuilt
 </pre></div>
 </div>
 <p>Then generate a xsdb tcl script &lt;test.tcl&gt;:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-boot --jtag --prebuilt <span class="m">3</span> --tcl &lt;test.tcl&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-boot<span class="w"> </span>--jtag<span class="w"> </span>--prebuilt<span class="w"> </span><span class="m">3</span><span class="w"> </span>--tcl<span class="w"> </span>&lt;test.tcl&gt;
 </pre></div>
 </div>
 <p>&lt;test.tcl&gt; will contain a script to boot Linux with tiny rootfs and exit xsdb, assuming that user is still in PetaLinux project folder. Take care to copy needed files and change pointers to files if you need to move the files to a different host machine to boot. Remove “exit” at the end of the tcl script to observe printouts from the script in xsdb.</p>
@@ -311,8 +312,8 @@ petalinux-build
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

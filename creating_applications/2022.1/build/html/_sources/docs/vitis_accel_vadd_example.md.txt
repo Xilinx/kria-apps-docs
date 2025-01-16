@@ -1,4 +1,4 @@
-# Vitis Accelerator Flow Example - Adding VADD Accelerator using Vitis GUI
+# Vitis Accelerator Flow Example - Adding VADD Accelerator Using Vitis GUI
 
 This example provide an example for developers who want to add an acceleration application into existing released SOM platforms using Vitis GUI. By default, the released platforms and applications uses a Makefile flow (example [here](./vitis_accel_flow_smartcam_filter2d_example.md)). However, this example shows an alternative way to add accelerator applications using Vitis IDE. We will import a Vitis Platform into Vitis and insert an acceleration application there. AMD prebuilt KV260 platform examples and their associated applications are:
 

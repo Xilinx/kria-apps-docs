@@ -143,6 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
@@ -194,13 +195,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="obtaining-platform">
 <h3>Obtaining Platform<a class="headerlink" href="#obtaining-platform" title="Permalink to this heading">¶</a></h3>
 <p>Since we are altering smartcam’s platform kv260_ispMipiRx_vcu_DP, we will first need to get the platform. Detailed tutorial is at <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vitis_platform.html">Creating Vitis Platform</a>. Here are the specific commands to use to generate the platform:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --recursive --branch xlnx_rel_v2022.1 https://github.com/Xilinx/kria-vitis-platforms.git
-<span class="nb">cd</span> kria-vitis-platforms/kv260/
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2022.1<span class="w"> </span>https://github.com/Xilinx/kria-vitis-platforms.git
+<span class="nb">cd</span><span class="w"> </span>kria-vitis-platforms/kv260/
 </pre></div>
 </div>
 <p>We will refer to the above directory as <code class="docutils literal notranslate"><span class="pre">$kv260-vitis</span></code> in this page.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make platform <span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx_vcu_DP
-<span class="nb">cd</span> <span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>platform<span class="w"> </span><span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx_vcu_DP
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/
 </pre></div>
 </div>
 <p>The vivado project will be at <code class="docutils literal notranslate"><span class="pre">$kv260-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.xpr</span></code></p>
@@ -210,15 +211,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3>Obtaining isp_single IP<a class="headerlink" href="#obtaining-isp-single-ip" title="Permalink to this heading">¶</a></h3>
 <p>In this example, we use a Raspberry Pi pipeline that uses a ISP block. This is a custom IP that is not present in AMD IP catalog, so we will need to manually copy it to our project. This IP can be found in <code class="docutils literal notranslate"><span class="pre">$kv260-vitis/platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/ip/isp_single_kv260/</span></code>, this is the platform for nlp_smartvision app that has support for Raspberry Pi.</p>
 <p>Do the following to generate ip:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/ip/isp_single_kv260/
-make ip
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/ip/isp_single_kv260/
+make<span class="w"> </span>ip
 </pre></div>
 </div>
 <p>This will generate a <code class="docutils literal notranslate"><span class="pre">isppipeline.prj/</span></code> folder - this is the ISP IP we will use in this project.</p>
 <p>In Vivado project where you have kv260_ispMipiRx_vcu_DP.xpr opened, click on Project Manager -&gt; IP Catalog, and note the user Repository. This is where you should copy the ip <code class="docutils literal notranslate"><span class="pre">isp_single_kv260/</span></code> to. It should be in <code class="docutils literal notranslate"><span class="pre">$kv260-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/ip/</span></code></p>
 <p>Copy the single_isp IP over:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$kv260</span>-vitis/
-cp platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/ip/isp_single_kv260/ platforms/vivado/kv260_ispMipiRx_vcu_DP/ip/ -rf
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$kv260</span>-vitis/
+cp<span class="w"> </span>platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/ip/isp_single_kv260/<span class="w"> </span>platforms/vivado/kv260_ispMipiRx_vcu_DP/ip/<span class="w"> </span>-rf
 </pre></div>
 </div>
 <p>Then refresh the repo:
@@ -228,19 +229,19 @@ cp platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/ip/isp_single_kv260/ platforms/
 <h3>Importing Raspberry Pi Pipeline<a class="headerlink" href="#importing-raspberry-pi-pipeline" title="Permalink to this heading">¶</a></h3>
 <p>Next, we will need to import the Raspberry Pi pipeline that will replace the original ISP pipeline in kv260_ispMipiRx_vcu_DP.</p>
 <p>Download source <a class="reference external" href="./example_src/raspi_example/capture_pipeline_raspi.tcl">capture_pipeline_raspi.tcl</a>, and source it in the tcl console of Vivado.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> capture_pipeline_raspi.tcl
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>capture_pipeline_raspi.tcl
 </pre></div>
 </div>
 <p>Next, click on Flow Navigator -&gt; IP Integrator -&gt; Open Block Design, and then in tcl Console, type in the following to instantiate the subblock of ISP pipeline for Raspberry Pi:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>create_hier_cell_capture_pipeline_raspi ./ raspi_pipeline
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>create_hier_cell_capture_pipeline_raspi<span class="w"> </span>./<span class="w"> </span>raspi_pipeline
 </pre></div>
 </div>
 <p>This will create a new, unconnected block of Raspberry Pi ISP pipeline in the existing block design. You can double click on the block to see the component of this subblock. Note that you can find pin assignment for Raspberry Pi in mipi_csi2_rx_subsyst_0 by double clicking on the IP and going to Pin Assignment tab.</p>
 <div class="section" id="optional-generating-capture-pipeline-raspi-tcl">
 <h4>Optional - generating capture_pipeline_raspi.tcl<a class="headerlink" href="#optional-generating-capture-pipeline-raspi-tcl" title="Permalink to this heading">¶</a></h4>
 <p>Below steps are how to generate capture_pipeline_raspi.tcl in the platform used for Raspberry Pi-supported NLP application. This is not needed as we have provided the file here, but we provide instruction to show you how it was imported from one project to another.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$kv260</span>-vitis
-make platform <span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx_rpiMipiRx_DP
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$kv260</span>-vitis
+make<span class="w"> </span>platform<span class="w"> </span><span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx_rpiMipiRx_DP
 </pre></div>
 </div>
 <p>open <code class="docutils literal notranslate"><span class="pre">platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/project/kv260_ispMipiRx_rpiMipiRx_DP.xpr</span></code> in Vivado. Click IP Integrator -&gt; Open Block Design.</p>
@@ -271,10 +272,10 @@ make platform <span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx
 <h3>Constraint file<a class="headerlink" href="#constraint-file" title="Permalink to this heading">¶</a></h3>
 <p>We can re-use the constraints for MIPI phy. Raspberry Pi requires us to enable HDA09 via the F11 pin.  To add raspi_enable constraint, add the following to <code class="docutils literal notranslate"><span class="pre">prj/prj.srcs/constrs_1/imports/xdc/pin.xdc</span></code> :</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#Raspi Enable HDA09</span>
-set_property PACKAGE_PIN F11 <span class="o">[</span>get_ports <span class="o">{</span>raspi_enable<span class="o">}]</span>
-set_property IOSTANDARD LVCMOS33 <span class="o">[</span>get_ports <span class="o">{</span>raspi_enable<span class="o">}]</span>
-set_property SLEW SLOW <span class="o">[</span>get_ports <span class="o">{</span>raspi_enable<span class="o">}]</span>
-set_property DRIVE <span class="m">4</span> <span class="o">[</span>get_ports <span class="o">{</span>raspi_enable<span class="o">}]</span>
+set_property<span class="w"> </span>PACKAGE_PIN<span class="w"> </span>F11<span class="w"> </span><span class="o">[</span>get_ports<span class="w"> </span><span class="o">{</span>raspi_enable<span class="o">}]</span>
+set_property<span class="w"> </span>IOSTANDARD<span class="w"> </span>LVCMOS33<span class="w"> </span><span class="o">[</span>get_ports<span class="w"> </span><span class="o">{</span>raspi_enable<span class="o">}]</span>
+set_property<span class="w"> </span>SLEW<span class="w"> </span>SLOW<span class="w"> </span><span class="o">[</span>get_ports<span class="w"> </span><span class="o">{</span>raspi_enable<span class="o">}]</span>
+set_property<span class="w"> </span>DRIVE<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">[</span>get_ports<span class="w"> </span><span class="o">{</span>raspi_enable<span class="o">}]</span>
 </pre></div>
 </div>
 </div>
@@ -319,10 +320,10 @@ set_property DRIVE <span class="m">4</span> <span class="o">[</span>get_ports <s
 <h3>Generate bitstream<a class="headerlink" href="#generate-bitstream" title="Permalink to this heading">¶</a></h3>
 <p>Now we are ready to generate bitstream. To generate bitstream, click on Program and Debug -&gt; Generate Bitstream. This process will take some time.</p>
 <p>After .bit file has been generated, we need to convert it to .bit.bin file, a format that xmutil is expecting:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.runs/impl_1/
-<span class="nb">echo</span> <span class="s1">&#39;all:{kv260_ispMipiRx_vcu_DP_wrapper.bit}&#39;</span>&gt;bootgen.bif
-bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
-mv kv260_ispMipiRx_vcu_DP_wrapper.bit.bin kv260-smartcam-raspi.bit.bin
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.runs/impl_1/
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;all:{kv260_ispMipiRx_vcu_DP_wrapper.bit}&#39;</span>&gt;bootgen.bif
+bootgen<span class="w"> </span>-w<span class="w"> </span>-arch<span class="w"> </span>zynqmp<span class="w"> </span>-process_bitstream<span class="w"> </span>bin<span class="w"> </span>-image<span class="w"> </span>bootgen.bif
+mv<span class="w"> </span>kv260_ispMipiRx_vcu_DP_wrapper.bit.bin<span class="w"> </span>kv260-smartcam-raspi.bit.bin
 </pre></div>
 </div>
 </div>
@@ -387,7 +388,7 @@ mv kv260_ispMipiRx_vcu_DP_wrapper.bit.bin kv260-smartcam-raspi.bit.bin
 <h3>Compile .dtsi to .dtbo<a class="headerlink" href="#compile-dtsi-to-dtbo" title="Permalink to this heading">¶</a></h3>
 <p>Your .dtsi file should look like <a class="reference external" href="./example_src/raspi_example/kv260-smartcam-raspi_2022.1.dtsi">this</a> after you are done.</p>
 <p>Now compile the .dtsi file into .dtbo binary:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dtc -@ -O dtb -o kv260-raspi.dtbo kv260-raspi.dtsi
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dtc<span class="w"> </span>-@<span class="w"> </span>-O<span class="w"> </span>dtb<span class="w"> </span>-o<span class="w"> </span>kv260-raspi.dtbo<span class="w"> </span>kv260-raspi.dtsi
 </pre></div>
 </div>
 <p>There will be a lot of warning messages, it is okay to ignore them. You should see a <code class="docutils literal notranslate"><span class="pre">kv260-smartcam-raspi.dtbo</span></code> in the folder.</p>
@@ -401,100 +402,100 @@ mv kv260_ispMipiRx_vcu_DP_wrapper.bit.bin kv260-smartcam-raspi.bit.bin
 <h2>Testing the platform on target<a class="headerlink" href="#testing-the-platform-on-target" title="Permalink to this heading">¶</a></h2>
 <p>Now we want to test the platform generated to make sure Raspberry Pi pipeline is working. Note that we have not yet addedd in the DPU accelerator, so we wont be able to test the Raspberry Pi with smartcam application itself until later.</p>
 <p>First, scp the kv260-raspi.dtbo kv260-raspi.bit.bin over to target or copy them to SD card and finding them in <code class="docutils literal notranslate"><span class="pre">/boot/firmware/</span></code>, and we can re-use the shell.json in /lib/firmware/xilinx/kv260-smartcam/shell.json:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo mkdir /lib/firmware/xilinx/kv260-raspi
-sudo mv kv260-raspi.dtbo kv260-raspi.bit.bin shell.json /lib/firmware/xilinx/kv260-raspi
-sudo xmutil listapps
-sudo xmutil unloadapp
-sudo xmutil loadapp kv260-raspi
-sudo xmutil desktop_disable
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi
+sudo<span class="w"> </span>mv<span class="w"> </span>kv260-raspi.dtbo<span class="w"> </span>kv260-raspi.bit.bin<span class="w"> </span>shell.json<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi
+sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
+sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>kv260-raspi
+sudo<span class="w"> </span>xmutil<span class="w"> </span>desktop_disable
 </pre></div>
 </div>
 <p>If the hardware and the device tree has been created correctly, you should be able to see Raspberry Pi in /dev/media0:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@kria:~# media-ctl -d /dev/media0 -p
-Media controller API version <span class="m">5</span>.15.39
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@kria:~#<span class="w"> </span>media-ctl<span class="w"> </span>-d<span class="w"> </span>/dev/media0<span class="w"> </span>-p
+Media<span class="w"> </span>controller<span class="w"> </span>API<span class="w"> </span>version<span class="w"> </span><span class="m">5</span>.15.39
 
-Media device information
+Media<span class="w"> </span>device<span class="w"> </span>information
 ------------------------
-driver          xilinx-video
-model           Xilinx Video Composite Device
+driver<span class="w">          </span>xilinx-video
+model<span class="w">           </span>Xilinx<span class="w"> </span>Video<span class="w"> </span>Composite<span class="w"> </span>Device
 serial
-bus info
-hw revision     0x0
-driver version  <span class="m">5</span>.15.39
+bus<span class="w"> </span>info
+hw<span class="w"> </span>revision<span class="w">     </span>0x0
+driver<span class="w"> </span>version<span class="w">  </span><span class="m">5</span>.15.39
 
-Device topology
-- entity <span class="m">1</span>: imx_vcap_csi output <span class="m">0</span> <span class="o">(</span><span class="m">1</span> pad, <span class="m">1</span> link<span class="o">)</span>
-            <span class="nb">type</span> Node subtype V4L flags <span class="m">0</span>
-            device node name /dev/video0
-        pad0: Sink
-                &lt;- <span class="s2">&quot;b0040000.scaler&quot;</span>:1 <span class="o">[</span>ENABLED<span class="o">]</span>
+Device<span class="w"> </span>topology
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>imx_vcap_csi<span class="w"> </span>output<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>pad,<span class="w"> </span><span class="m">1</span><span class="w"> </span>link<span class="o">)</span>
+<span class="w">            </span><span class="nb">type</span><span class="w"> </span>Node<span class="w"> </span>subtype<span class="w"> </span>V4L<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">            </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/video0
+<span class="w">        </span>pad0:<span class="w"> </span>Sink
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;b0040000.scaler&quot;</span>:1<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
 
-- entity <span class="m">5</span>: b0040000.scaler <span class="o">(</span><span class="m">2</span> pads, <span class="m">2</span> links<span class="o">)</span>
-            <span class="nb">type</span> V4L2 subdev subtype Unknown flags <span class="m">0</span>
-            device node name /dev/v4l-subdev0
-        pad0: Sink
-                <span class="o">[</span>fmt:RBG888_1X24/1920x1080 field:none colorspace:srgb<span class="o">]</span>
-                &lt;- <span class="s2">&quot;b0000000.isp_accel&quot;</span>:1 <span class="o">[</span>ENABLED<span class="o">]</span>
-        pad1: Source
-                <span class="o">[</span>fmt:VYYUYY8_1X24/1920x1080 field:none colorspace:srgb<span class="o">]</span>
-                -&gt; <span class="s2">&quot;imx_vcap_csi output 0&quot;</span>:0 <span class="o">[</span>ENABLED<span class="o">]</span>
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">5</span>:<span class="w"> </span>b0040000.scaler<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>pads,<span class="w"> </span><span class="m">2</span><span class="w"> </span>links<span class="o">)</span>
+<span class="w">            </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Unknown<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">            </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev0
+<span class="w">        </span>pad0:<span class="w"> </span>Sink
+<span class="w">                </span><span class="o">[</span>fmt:RBG888_1X24/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="o">]</span>
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;b0000000.isp_accel&quot;</span>:1<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+<span class="w">        </span>pad1:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:VYYUYY8_1X24/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;imx_vcap_csi output 0&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
 
-- entity <span class="m">8</span>: imx219 <span class="m">6</span>-0010 <span class="o">(</span><span class="m">1</span> pad, <span class="m">1</span> link<span class="o">)</span>
-            <span class="nb">type</span> V4L2 subdev subtype Sensor flags <span class="m">0</span>
-            device node name /dev/v4l-subdev1
-        pad0: Source
-                <span class="o">[</span>fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:full-range
-                 crop.bounds:<span class="o">(</span><span class="m">8</span>,8<span class="o">)</span>/3280x2464
-                 crop:<span class="o">(</span><span class="m">688</span>,700<span class="o">)</span>/1920x1080<span class="o">]</span>
-                -&gt; <span class="s2">&quot;80002000.csiss&quot;</span>:0 <span class="o">[</span>ENABLED<span class="o">]</span>
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">8</span>:<span class="w"> </span>imx219<span class="w"> </span><span class="m">6</span>-0010<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>pad,<span class="w"> </span><span class="m">1</span><span class="w"> </span>link<span class="o">)</span>
+<span class="w">            </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Sensor<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">            </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev1
+<span class="w">        </span>pad0:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:SRGGB10_1X10/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="w"> </span>xfer:srgb<span class="w"> </span>ycbcr:601<span class="w"> </span>quantization:full-range
+<span class="w">                 </span>crop.bounds:<span class="o">(</span><span class="m">8</span>,8<span class="o">)</span>/3280x2464
+<span class="w">                 </span>crop:<span class="o">(</span><span class="m">688</span>,700<span class="o">)</span>/1920x1080<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;80002000.csiss&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
 
-- entity <span class="m">10</span>: <span class="m">80002000</span>.csiss <span class="o">(</span><span class="m">2</span> pads, <span class="m">2</span> links<span class="o">)</span>
-             <span class="nb">type</span> V4L2 subdev subtype Unknown flags <span class="m">0</span>
-             device node name /dev/v4l-subdev2
-        pad0: Sink
-                <span class="o">[</span>fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:full-range<span class="o">]</span>
-                &lt;- <span class="s2">&quot;imx219 6-0010&quot;</span>:0 <span class="o">[</span>ENABLED<span class="o">]</span>
-        pad1: Source
-                <span class="o">[</span>fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:full-range<span class="o">]</span>
-                -&gt; <span class="s2">&quot;b0000000.isp_accel&quot;</span>:0 <span class="o">[</span>ENABLED<span class="o">]</span>
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">10</span>:<span class="w"> </span><span class="m">80002000</span>.csiss<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>pads,<span class="w"> </span><span class="m">2</span><span class="w"> </span>links<span class="o">)</span>
+<span class="w">             </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Unknown<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">             </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev2
+<span class="w">        </span>pad0:<span class="w"> </span>Sink
+<span class="w">                </span><span class="o">[</span>fmt:SRGGB10_1X10/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="w"> </span>xfer:srgb<span class="w"> </span>ycbcr:601<span class="w"> </span>quantization:full-range<span class="o">]</span>
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;imx219 6-0010&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+<span class="w">        </span>pad1:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:SRGGB10_1X10/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="w"> </span>xfer:srgb<span class="w"> </span>ycbcr:601<span class="w"> </span>quantization:full-range<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;b0000000.isp_accel&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
 
-- entity <span class="m">13</span>: b0000000.isp_accel <span class="o">(</span><span class="m">2</span> pads, <span class="m">2</span> links<span class="o">)</span>
-             <span class="nb">type</span> V4L2 subdev subtype Unknown flags <span class="m">0</span>
-             device node name /dev/v4l-subdev3
-        pad0: Sink
-                <span class="o">[</span>fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:full-range<span class="o">]</span>
-                &lt;- <span class="s2">&quot;80002000.csiss&quot;</span>:1 <span class="o">[</span>ENABLED<span class="o">]</span>
-        pad1: Source
-                <span class="o">[</span>fmt:RBG888_1X24/1920x1080 field:none colorspace:srgb<span class="o">]</span>
-                -&gt; <span class="s2">&quot;b0040000.scaler&quot;</span>:0 <span class="o">[</span>ENABLED<span class="o">]</span>
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">13</span>:<span class="w"> </span>b0000000.isp_accel<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>pads,<span class="w"> </span><span class="m">2</span><span class="w"> </span>links<span class="o">)</span>
+<span class="w">             </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Unknown<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">             </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev3
+<span class="w">        </span>pad0:<span class="w"> </span>Sink
+<span class="w">                </span><span class="o">[</span>fmt:SRGGB10_1X10/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="w"> </span>xfer:srgb<span class="w"> </span>ycbcr:601<span class="w"> </span>quantization:full-range<span class="o">]</span>
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;80002000.csiss&quot;</span>:1<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+<span class="w">        </span>pad1:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:RBG888_1X24/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;b0040000.scaler&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
 </pre></div>
 </div>
 <p>Once we confirm that Raspberry Pi has been connected correctly, start the smartcam docker container so that we have the necessary dependencies for the next command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run <span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span> <span class="se">\</span>
--h <span class="s2">&quot;xlnx-docker&quot;</span> <span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span> <span class="se">\</span>
---net<span class="o">=</span>host <span class="se">\</span>
---privileged <span class="se">\</span>
---volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span> <span class="se">\</span>
--v /tmp:/tmp <span class="se">\</span>
--v /dev:/dev <span class="se">\</span>
--v /sys:/sys <span class="se">\</span>
--v /etc/vart.conf:/etc/vart.conf <span class="se">\</span>
--v /lib/firmware/xilinx:/lib/firmware/xilinx <span class="se">\</span>
--v /run:/run <span class="se">\</span>
--it xilinx/smartcam:2022.1 bash
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
+-h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+--net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+--privileged<span class="w"> </span><span class="se">\</span>
+--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/run:/run<span class="w"> </span><span class="se">\</span>
+-it<span class="w"> </span>xilinx/smartcam:2022.1<span class="w"> </span>bash
 </pre></div>
 </div>
 <p>In the docker container, now we can use the gstreamer commands below to display Raspberry Pi sensor information onto as 1080p monitor:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 mediasrcbin media-device<span class="o">=</span>/dev/media0 v4l2src0::io-mode<span class="o">=</span>mmap ! <span class="s2">&quot;video/x-raw, width=1920, height=1080, format=NV12, framerate=30/1&quot;</span> ! kmssink plane-id<span class="o">=</span><span class="m">39</span> fullscreen-overlay<span class="o">=</span><span class="nb">true</span> -v
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0<span class="w"> </span>mediasrcbin<span class="w"> </span>media-device<span class="o">=</span>/dev/media0<span class="w"> </span>v4l2src0::io-mode<span class="o">=</span>mmap<span class="w"> </span>!<span class="w"> </span><span class="s2">&quot;video/x-raw, width=1920, height=1080, format=NV12, framerate=30/1&quot;</span><span class="w"> </span>!<span class="w"> </span>kmssink<span class="w"> </span>plane-id<span class="o">=</span><span class="m">39</span><span class="w"> </span>fullscreen-overlay<span class="o">=</span><span class="nb">true</span><span class="w"> </span>-v
 </pre></div>
 </div>
 </div>
 <div class="section" id="exporting-design">
 <h2>Exporting design<a class="headerlink" href="#exporting-design" title="Permalink to this heading">¶</a></h2>
 <p>Now that we verified that the Raspberry Pi pipeline is working, you should export the block design in Vivado tcl:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>write_bd_tcl config_bd.tcl
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>write_bd_tcl<span class="w"> </span>config_bd.tcl
 </pre></div>
 </div>
 <p>You can see a working version of this block design <a class="reference external" href="./example_src/raspi_example/config_bd.tcl">here</a></p>
@@ -510,68 +511,68 @@ freqHz=200000000:pp_pipeline_accel_1.ap_clk
 </div>
 <p>Ensure that $kv260-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/ip/ has isppipeline.prj/ from previous step. This is necessary if you had jumped in from the provided block design and pin constraints.</p>
 <p>Copy the block design (config_bd.tcl), pin constraint(pin.xdc), and ip into smartcam’s overlay area, note that they were generated in previous step.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cp  <span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.srcs/constrs_1/imports/xdc/pin.xdc <span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/xdc/pin.xdc
-cp config_bd.tcl  platforms/vivado/kv260_ispMipiRx_vcu_DP/scripts/config_bd.tcl 
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cp<span class="w">  </span><span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.srcs/constrs_1/imports/xdc/pin.xdc<span class="w"> </span><span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/xdc/pin.xdc
+cp<span class="w"> </span>config_bd.tcl<span class="w">  </span>platforms/vivado/kv260_ispMipiRx_vcu_DP/scripts/config_bd.tcl<span class="w"> </span>
 </pre></div>
 </div>
 <p>Now in $kv260-vitis, do a make clean so that the scripts would regenerate platform with the updated artifacts when we call <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">overlay</span> <span class="pre">OVERLAY=smartcam</span></code> in the next step</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make clean
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>clean
 </pre></div>
 </div>
 <p>Now we can run the makefile that was provided for smartcam to put DPU overlay into this platform:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make overlay <span class="nv">OVERLAY</span><span class="o">=</span>smartcam
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>overlay<span class="w"> </span><span class="nv">OVERLAY</span><span class="o">=</span>smartcam
 </pre></div>
 </div>
 <p>After the makefile completes, you should find:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$working_dir</span>/overlays/examples/smartcam/binary_container_1/link/int/system.bit   
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$working_dir</span>/overlays/examples/smartcam/binary_container_1/link/int/system.bit<span class="w">   </span>
 <span class="nv">$working_dir</span>/overlays/examples/smartcam/binary_container_1/dpu.xclbin
 </pre></div>
 </div>
 <p>perform the following to convert system.bit to kv260-raspi-dpu.bit.bin:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$working_dir</span>/overlays/examples/smartcam/binary_container_1/link/int/
-<span class="nb">echo</span> <span class="s1">&#39;all:{system.bit}&#39;</span> &gt; bootgen.bif
-bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
-mv system.bit.bin kv260-raspi-dpu.bit.bin
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$working_dir</span>/overlays/examples/smartcam/binary_container_1/link/int/
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;all:{system.bit}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>bootgen.bif
+bootgen<span class="w"> </span>-w<span class="w"> </span>-arch<span class="w"> </span>zynqmp<span class="w"> </span>-process_bitstream<span class="w"> </span>bin<span class="w"> </span>-image<span class="w"> </span>bootgen.bif
+mv<span class="w"> </span>system.bit.bin<span class="w"> </span>kv260-raspi-dpu.bit.bin
 </pre></div>
 </div>
 </div>
 <div class="section" id="test-with-accelerator-on-target">
 <h2>Test with Accelerator on Target<a class="headerlink" href="#test-with-accelerator-on-target" title="Permalink to this heading">¶</a></h2>
 <p>scp the kv260-raspi-dpu.bit.bin, kv260-raspi-dpu.dtbo (same file as kv260-raspi.dtbo - we can re-used the same .dtbo file across designs generated from the same platform in this flow), dpu.xclbin onto target. create a new app:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo mkdir /lib/firmware/xilinx/kv260-raspi-dpu
-sudo mv  kv260-raspi-dpu.bit.bin /lib/firmware/xilinx/kv260-raspi-dpu/
-sudo mv  kv260-raspi-dpu.dtbo /lib/firmware/xilinx/kv260-raspi-dpu/
-sudo mv dpu.xclbin /lib/firmware/xilinx/kv260-raspi-dpu/kv260-raspi-dpu.xclbin
-sudo cp /lib/firmware/xilinx/kv260-raspi/shell.json /lib/firmware/xilinx/kv260-raspi-dpu/
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi-dpu
+sudo<span class="w"> </span>mv<span class="w">  </span>kv260-raspi-dpu.bit.bin<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi-dpu/
+sudo<span class="w"> </span>mv<span class="w">  </span>kv260-raspi-dpu.dtbo<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi-dpu/
+sudo<span class="w"> </span>mv<span class="w"> </span>dpu.xclbin<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi-dpu/kv260-raspi-dpu.xclbin
+sudo<span class="w"> </span>cp<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi/shell.json<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi-dpu/
 </pre></div>
 </div>
 <p>Next, find facedetect’s preprocess.json using <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">find</span> <span class="pre">/</span> <span class="pre">-iname</span> <span class="pre">preprocess.json</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">facedetect</span></code>, and then update the file found on target <code class="docutils literal notranslate"><span class="pre">/var/lib/docker/overlay2/&lt;id&gt;/diff/opt/xilinx/kv260-smartcam/share/vvas/facedetect/preprocess.json</span></code> to point to the correct xclbin <code class="docutils literal notranslate"><span class="pre">/lib/firmware/xilinx/kv260-raspi-dpu/kv260-raspi-dpu.xclbin</span></code>. We do this outside of docker environment because the docker container doesn’t have a text editor by default.
 Alternatively, you can launch docker container, install vi using <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">vim</span></code>, and edit <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vvas/facedetect/preprocess.json</span></code> from docker container. Note that you must loadapp before launch docker as shown below.</p>
 <p>Execute the application with gst-launch, so that smart cam uses the Raspberry Pi pipeline on /dev/media0:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil listapps
-sudo xmutil unloadapp
-sudo xmutil loadapp kv260-raspi-dpu
-docker run <span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span> <span class="se">\</span>
--h <span class="s2">&quot;xlnx-docker&quot;</span> <span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span> <span class="se">\</span>
---net<span class="o">=</span>host <span class="se">\</span>
---privileged <span class="se">\</span>
---volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span> <span class="se">\</span>
--v /tmp:/tmp <span class="se">\</span>
--v /dev:/dev <span class="se">\</span>
--v /sys:/sys <span class="se">\</span>
--v /etc/vart.conf:/etc/vart.conf <span class="se">\</span>
--v /lib/firmware/xilinx:/lib/firmware/xilinx <span class="se">\</span>
--v /run:/run <span class="se">\</span>
--it xilinx/smartcam:latest bash
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
+sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>kv260-raspi-dpu
+docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
+-h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+--net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+--privileged<span class="w"> </span><span class="se">\</span>
+--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/run:/run<span class="w"> </span><span class="se">\</span>
+-it<span class="w"> </span>xilinx/smartcam:latest<span class="w"> </span>bash
 
-check <span class="k">if</span> above is <span class="nb">true</span> after release!!!!!!!!!!!!!!!!!!!!!!!!!!!! <span class="k">for</span> now use:
-sudo docker run --env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span> -h <span class="s2">&quot;xlnx-docker&quot;</span> --env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span> --net<span class="o">=</span>host --privileged --volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span> -v /tmp:/tmp -v /dev:/dev -v /sys:/sys -v /etc/vart.conf:/etc/vart.conf -v /lib/firmware/xilinx:/lib/firmware/xilinx -v /run:/run -it smartcam:latest bash
+check<span class="w"> </span><span class="k">if</span><span class="w"> </span>above<span class="w"> </span>is<span class="w"> </span><span class="nb">true</span><span class="w"> </span>after<span class="w"> </span>release!!!!!!!!!!!!!!!!!!!!!!!!!!!!<span class="w"> </span><span class="k">for</span><span class="w"> </span>now<span class="w"> </span>use:
+sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span>-h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span>--net<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span>-v<span class="w"> </span>/tmp:/tmp<span class="w"> </span>-v<span class="w"> </span>/dev:/dev<span class="w"> </span>-v<span class="w"> </span>/sys:/sys<span class="w"> </span>-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span>-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span>-v<span class="w"> </span>/run:/run<span class="w"> </span>-it<span class="w"> </span>smartcam:latest<span class="w"> </span>bash
 </pre></div>
 </div>
 <p>In docker container:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 mediasrcbin <span class="nv">name</span><span class="o">=</span>videosrc media-device<span class="o">=</span>/dev/media0  v4l2src0::io-mode<span class="o">=</span>mmap v4l2src0::stride-align<span class="o">=</span><span class="m">256</span> !  video/x-raw, <span class="nv">width</span><span class="o">=</span><span class="m">1920</span>, <span class="nv">height</span><span class="o">=</span><span class="m">1080</span>, <span class="nv">format</span><span class="o">=</span>NV12, <span class="nv">framerate</span><span class="o">=</span><span class="m">30</span>/1  ! tee <span class="nv">name</span><span class="o">=</span>t ! queue ! vvas_xmultisrc <span class="nv">kconfig</span><span class="o">=</span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/share/vvas/facedetect/preprocess.json&quot;</span> ! queue ! vvas_xfilter kernels-config<span class="o">=</span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/share/vvas/facedetect/aiinference.json&quot;</span> ! ima.sink_master                     vvas_xmetaaffixer <span class="nv">name</span><span class="o">=</span>ima ima.src_master ! fakesink t. ! queue max-size-buffers<span class="o">=</span><span class="m">1</span> <span class="nv">leaky</span><span class="o">=</span><span class="m">2</span> ! ima.sink_slave_0 ima.src_slave_0 ! queue ! vvas_xfilter kernels-config<span class="o">=</span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/share/vvas/facedetect/drawresult.json&quot;</span>          ! queue ! kmssink driver-name<span class="o">=</span>xlnx plane-id<span class="o">=</span><span class="m">39</span> <span class="nv">sync</span><span class="o">=</span><span class="nb">false</span> fullscreen-overlay<span class="o">=</span><span class="nb">true</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0<span class="w"> </span>mediasrcbin<span class="w"> </span><span class="nv">name</span><span class="o">=</span>videosrc<span class="w"> </span>media-device<span class="o">=</span>/dev/media0<span class="w">  </span>v4l2src0::io-mode<span class="o">=</span>mmap<span class="w"> </span>v4l2src0::stride-align<span class="o">=</span><span class="m">256</span><span class="w"> </span>!<span class="w">  </span>video/x-raw,<span class="w"> </span><span class="nv">width</span><span class="o">=</span><span class="m">1920</span>,<span class="w"> </span><span class="nv">height</span><span class="o">=</span><span class="m">1080</span>,<span class="w"> </span><span class="nv">format</span><span class="o">=</span>NV12,<span class="w"> </span><span class="nv">framerate</span><span class="o">=</span><span class="m">30</span>/1<span class="w">  </span>!<span class="w"> </span>tee<span class="w"> </span><span class="nv">name</span><span class="o">=</span>t<span class="w"> </span>!<span class="w"> </span>queue<span class="w"> </span>!<span class="w"> </span>vvas_xmultisrc<span class="w"> </span><span class="nv">kconfig</span><span class="o">=</span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/share/vvas/facedetect/preprocess.json&quot;</span><span class="w"> </span>!<span class="w"> </span>queue<span class="w"> </span>!<span class="w"> </span>vvas_xfilter<span class="w"> </span>kernels-config<span class="o">=</span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/share/vvas/facedetect/aiinference.json&quot;</span><span class="w"> </span>!<span class="w"> </span>ima.sink_master<span class="w">                     </span>vvas_xmetaaffixer<span class="w"> </span><span class="nv">name</span><span class="o">=</span>ima<span class="w"> </span>ima.src_master<span class="w"> </span>!<span class="w"> </span>fakesink<span class="w"> </span>t.<span class="w"> </span>!<span class="w"> </span>queue<span class="w"> </span>max-size-buffers<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">leaky</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>!<span class="w"> </span>ima.sink_slave_0<span class="w"> </span>ima.src_slave_0<span class="w"> </span>!<span class="w"> </span>queue<span class="w"> </span>!<span class="w"> </span>vvas_xfilter<span class="w"> </span>kernels-config<span class="o">=</span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/share/vvas/facedetect/drawresult.json&quot;</span><span class="w">          </span>!<span class="w"> </span>queue<span class="w"> </span>!<span class="w"> </span>kmssink<span class="w"> </span>driver-name<span class="o">=</span>xlnx<span class="w"> </span>plane-id<span class="o">=</span><span class="m">39</span><span class="w"> </span><span class="nv">sync</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span>fullscreen-overlay<span class="o">=</span><span class="nb">true</span>
 </pre></div>
 </div>
 <p>Congratulations! You should be able to see Raspberry Pi capture on the display port monitor, with blue bounding box around faces detected. In case you do not and want to test with a known working set of firmware, you can find them [here](./example_src/raspi_example/smartcam-raspi_firmware_works/, be sure to update folder name or file names and commands to align with each other).</p>
@@ -598,8 +599,8 @@ sudo docker run --env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

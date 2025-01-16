@@ -37,6 +37,10 @@ Kria KV260 Vision AI Starter Kit Applications
 
 
 
+.. sidebar:: Getting Started
+   
+   For more information, see :doc:`Getting Started with Kria KV260 Vision AI Starter Kit <./docs/linux_boot>`.
+
 
 
 
@@ -49,9 +53,11 @@ With both hardware and software development requirements simplified, the KV260 V
 
 
 
-.. sidebar:: Getting Started
+
+.. sidebar:: Kria KV260 Vision AI Starter Kit eCommerce
    
-   For more information, see `Getting Started with Kria KV260 Vision AI Starter Kit <https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/getting-started.html>`_.
+   For the latest pricing and availability of the KV260 Vision AI Starter Kit, check the `eCommerce site <https://www.amd.com/kv260>`_.
+
 
 
 
@@ -78,6 +84,27 @@ With both hardware and software development requirements simplified, the KV260 V
    NLP SmartVision <docs/nlp-smartvision/nlp_smartvision_landing>
    AI Box Distributed ReID <docs/aibox/aibox-dist_landing>
    Built-In Self Test (BIST) <docs/bist/bist_landing>
+
+
+
+
+.. toctree::
+   :caption: KV260 Tutorials
+   :maxdepth: 1
+   :hidden:
+
+   ./docs/linux_boot
+   Build the Design Components <./docs/building_the_design>
+   Building the Hardware Design Using Vivado <./docs/build_vivado_design>
+   Create a Vitis Platform <./docs/build_vitis_platform>
+   ./docs/build_accel
+   ./docs/integrating_new_sensors
+   Generate Custom Firmware <./docs/generating_custom_firmware>
+   ./docs/build_application_docker_container
+
+
+
+
 
 
 .. toctree::

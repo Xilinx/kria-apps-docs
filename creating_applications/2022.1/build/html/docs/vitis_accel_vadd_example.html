@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Vitis Accelerator Flow Example - Adding VADD Accelerator using Vitis GUI &mdash; Kria™ SOM 2022.1 documentation</title>
+  <title>Vitis Accelerator Flow Example - Adding VADD Accelerator Using Vitis GUI &mdash; Kria™ SOM 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -99,6 +99,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
@@ -123,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Vitis Accelerator Flow Example - Adding VADD Accelerator using Vitis GUI</li>
+      <li>Vitis Accelerator Flow Example - Adding VADD Accelerator Using Vitis GUI</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/vitis_accel_vadd_example.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -134,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="vitis-accelerator-flow-example-adding-vadd-accelerator-using-vitis-gui">
-<h1>Vitis Accelerator Flow Example - Adding VADD Accelerator using Vitis GUI<a class="headerlink" href="#vitis-accelerator-flow-example-adding-vadd-accelerator-using-vitis-gui" title="Permalink to this heading">¶</a></h1>
+<h1>Vitis Accelerator Flow Example - Adding VADD Accelerator Using Vitis GUI<a class="headerlink" href="#vitis-accelerator-flow-example-adding-vadd-accelerator-using-vitis-gui" title="Permalink to this heading">¶</a></h1>
 <p>This example provide an example for developers who want to add an acceleration application into existing released SOM platforms using Vitis GUI. By default, the released platforms and applications uses a Makefile flow (example <a class="reference internal" href="vitis_accel_flow_smartcam_filter2d_example.html"><span class="doc">here</span></a>). However, this example shows an alternative way to add accelerator applications using Vitis IDE. We will import a Vitis Platform into Vitis and insert an acceleration application there. AMD prebuilt KV260 platform examples and their associated applications are:</p>
 <table border="1" class="docutils">
 <thead>
@@ -165,10 +166,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="obtaining-platform">
 <h2>Obtaining Platform<a class="headerlink" href="#obtaining-platform" title="Permalink to this heading">¶</a></h2>
 <p>Since we are altering an existing platform, we will first  get the platform - kv260_ispMipiRx_DP. Detailed tutorial is at <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vitis_platform.html">Creating Vitis Platform</a>. Here are the specific commands to generate the platform:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v2022.1 --recursive https://github.com/Xilinx/kria-vitis-platforms.git
-<span class="nb">cd</span> <span class="nv">$workdir</span>/kria-vitis-platforms/kv260/platforms
-<span class="nb">source</span> &lt;vitis path&gt;/settings64.sh
-make platform <span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx_rpiMipiRx_DP 
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2022.1<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/Xilinx/kria-vitis-platforms.git
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$workdir</span>/kria-vitis-platforms/kv260/platforms
+<span class="nb">source</span><span class="w"> </span>&lt;vitis<span class="w"> </span>path&gt;/settings64.sh
+make<span class="w"> </span>platform<span class="w"> </span><span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx_rpiMipiRx_DP<span class="w"> </span>
 </pre></div>
 </div>
 <p>The platform we will need in later steps will be available now in <code class="docutils literal notranslate"><span class="pre">$workdir/kria-vitis-platforms/kv260/platforms/xilinx_kv260_ispMipiRx_rpiMipiRx_DP_202210_1</span></code>.</p>
@@ -193,8 +194,8 @@ make platform <span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx
 <p>Ubuntu users can download the sysroot for the corresponding version they are using <a class="reference external" href="https://ubuntu.com/download/amd-xilinx">here</a>, make sure to download the 22.04 sysroot for this example since our target will be running Ubuntu 22.04.</p>
 <p>Unlike PetaLinux 2021.1, Ubuntu sysroot already have xrt installed so you dont need to regenerate. But the README.md file has information on re-generating sysroot in case other libraries are needed.</p>
 <p>Unzip the sysroot file:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$ubuntu</span>
-tar -xf iot-limerick-kria-classic-desktop-2204-x06-20220614-78-sysroot.tar.xz
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$ubuntu</span>
+tar<span class="w"> </span>-xf<span class="w"> </span>iot-limerick-kria-classic-desktop-2204-x06-20220614-78-sysroot.tar.xz
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">&lt;target</span> <span class="pre">sysroot&gt;</span></code> is <code class="docutils literal notranslate"><span class="pre">$ubuntu/sysroots/aarch64-xilinx-linux</span></code></p>
@@ -230,10 +231,10 @@ tar -xf iot-limerick-kria-classic-desktop-2204-x06-20220614-78-sysroot.tar.xz
 <p>Please ignore this for now, we will address this in “Compiling application - software” section.</p>
 </li>
 <li><p>The bitstream needs to be in bin format so that fpgamanager can load it. Convert <code class="docutils literal notranslate"><span class="pre">.bit</span></code> file to <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code> file with the following commands.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> vadd_system_hw_link/Hardware/binary_container_1.build/link/int/
-<span class="nb">echo</span> <span class="s1">&#39;all:{system.bit}&#39;</span>&gt;bootgen.bif
-bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
-mv system.bit.bin vadd.bit.bin    
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>vadd_system_hw_link/Hardware/binary_container_1.build/link/int/
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;all:{system.bit}&#39;</span>&gt;bootgen.bif
+bootgen<span class="w"> </span>-w<span class="w"> </span>-arch<span class="w"> </span>zynqmp<span class="w"> </span>-process_bitstream<span class="w"> </span>bin<span class="w"> </span>-image<span class="w"> </span>bootgen.bif
+mv<span class="w"> </span>system.bit.bin<span class="w"> </span>vadd.bit.bin<span class="w">    </span>
 </pre></div>
 </div>
 </li>
@@ -245,8 +246,8 @@ mv system.bit.bin vadd.bit.bin
 <div class="section" id="ubuntu-host">
 <h3>22.04 Ubuntu Host<a class="headerlink" href="#ubuntu-host" title="Permalink to this heading">¶</a></h3>
 <p>If you happen to be running Vitis on Ubuntu 22.04 (note that this is not officially supported), you can first run these commands to install the tools:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt update
-sudo apt install crossbuild-essential-arm64
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>crossbuild-essential-arm64
 </pre></div>
 </div>
 <p>This should install tool chain and you will see files including <code class="docutils literal notranslate"><span class="pre">/usr/bin/aarch64-linux-gnu-g++</span></code>, add the installed folder to your $PATH.</p>
@@ -264,7 +265,7 @@ sudo apt install crossbuild-essential-arm64
 <div class="section" id="obtaining-dtbo-file">
 <h2>Obtaining .dtbo File<a class="headerlink" href="#obtaining-dtbo-file" title="Permalink to this heading">¶</a></h2>
 <p>You can download the corresponding .dtsi file (in this case, nlp-smartvision from <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/tree/xlnx_rel_v2022.1">kv260_firmware 2022.1 release</a> and compile them using command below. For more information on dtc please refer to <a class="reference internal" href="dtsi_dtbo_generation.html"><span class="doc">dtsi_dtbo_generation</span></a>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dtc -@ -O dtb -o vadd.dtbo kv260-nlp-smartvision.dtsi
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dtc<span class="w"> </span>-@<span class="w"> </span>-O<span class="w"> </span>dtb<span class="w"> </span>-o<span class="w"> </span>vadd.dtbo<span class="w"> </span>kv260-nlp-smartvision.dtsi
 </pre></div>
 </div>
 <p>Output is vadd.dtbo.</p>
@@ -272,10 +273,10 @@ sudo apt install crossbuild-essential-arm64
 <div class="section" id="create-shell-json">
 <h2>Create shell.json<a class="headerlink" href="#create-shell-json" title="Permalink to this heading">¶</a></h2>
 <p>Prepare shell.json. You can copy it from other applications or create one with the following contents.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;shell_type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;XRT_FLAT&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;num_slots&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;shell_type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;XRT_FLAT&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;num_slots&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -285,19 +286,19 @@ sudo apt install crossbuild-essential-arm64
 <li><p>Transferring the files to the board</p>
 <p>Make sure the Ethernet cable of SOM Starter Kit is connected. Use SCP or SFTP to upload the files from host to target board.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Running on host machine</span>
-scp vadd.dtbo vadd.bit.bin shell.json vadd binary_container_1.xclbin ubuntu@&lt;SOM Starter Kit IP&gt;:/home/ubuntu/
+scp<span class="w"> </span>vadd.dtbo<span class="w"> </span>vadd.bit.bin<span class="w"> </span>shell.json<span class="w"> </span>vadd<span class="w"> </span>binary_container_1.xclbin<span class="w"> </span>ubuntu@&lt;SOM<span class="w"> </span>Starter<span class="w"> </span>Kit<span class="w"> </span>IP&gt;:/home/ubuntu/
 </pre></div>
 </div>
 <p>note that the vadd file above is a file generated in section “Compiling application - software”.</p>
 </li>
 <li><p>Load the hardware on target</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Running on target board</span>
-sudo mkdir /lib/firmware/xilinx/vadd
-<span class="nb">cd</span> /home/ubuntu
-sudo mv vadd.dtbo vadd.bit.bin shell.json /lib/firmware/xilinx/vadd/
-sudo xmutil listapps
-sudo xmutil unloadapp
-sudo xmutil loadapp vadd
+sudo<span class="w"> </span>mkdir<span class="w"> </span>/lib/firmware/xilinx/vadd
+<span class="nb">cd</span><span class="w"> </span>/home/ubuntu
+sudo<span class="w"> </span>mv<span class="w"> </span>vadd.dtbo<span class="w"> </span>vadd.bit.bin<span class="w"> </span>shell.json<span class="w"> </span>/lib/firmware/xilinx/vadd/
+sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
+sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>vadd
 </pre></div>
 </div>
 </li>
@@ -305,17 +306,17 @@ sudo xmutil loadapp vadd
 <ul class="simple">
 <li><p>Run vadd application</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>chmod +x ./vadd
-./vadd binary_container_1.xclbin
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>./vadd
+./vadd<span class="w"> </span>binary_container_1.xclbin
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>It should show program prints.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span> xilinx-k26-starterkit-2021_1:~$ ./vadd binary_container_1.xclbin
- INFO: Reading binary_container_1.xclbin
- Loading: <span class="s1">&#39;binary_container_1.xclbin&#39;</span>
- TEST PASSED
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>xilinx-k26-starterkit-2021_1:~$<span class="w"> </span>./vadd<span class="w"> </span>binary_container_1.xclbin
+<span class="w"> </span>INFO:<span class="w"> </span>Reading<span class="w"> </span>binary_container_1.xclbin
+<span class="w"> </span>Loading:<span class="w"> </span><span class="s1">&#39;binary_container_1.xclbin&#39;</span>
+<span class="w"> </span>TEST<span class="w"> </span>PASSED
 </pre></div>
 </div>
 </li>
@@ -342,8 +343,8 @@ sudo xmutil loadapp vadd
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

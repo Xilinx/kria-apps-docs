@@ -104,6 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
@@ -142,97 +143,97 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Setting Bootmodes<a class="headerlink" href="#setting-bootmodes" title="Permalink to this heading">¶</a></h1>
 <p>Once applications and custom HW designs are generated, developers need to move them to target. If using the Kria Starter Kit, developers can use various boot-modes to test monolithic boot to application software using the following TCL scripts to set the preferred development boot process. Developers will first put the functions in a <code class="docutils literal notranslate"><span class="pre">&lt;boot&gt;.tcl</span></code> script. Then, with the host machine connected with their SOM kit, they use the following commands in XSDB or XSCT:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>connect
-<span class="nb">source</span> &lt;boot&gt;.tcl
+<span class="nb">source</span><span class="w"> </span>&lt;boot&gt;.tcl
 boot_&lt;mode&gt;
 </pre></div>
 </div>
 <p>To set K26 to JTAG bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc boot_jtag <span class="o">{</span> <span class="o">}</span> <span class="o">{</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc<span class="w"> </span>boot_jtag<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to JTAG boot mode #</span>
 <span class="c1">############################</span>
-targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+targets<span class="w"> </span>-set<span class="w"> </span>-filter<span class="w"> </span><span class="o">{</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+mwr<span class="w"> </span>0xffca0010<span class="w"> </span>0x0
 <span class="c1"># change boot mode to JTAG</span>
-mwr 0xff5e0200 0x0100
+mwr<span class="w"> </span>0xff5e0200<span class="w"> </span>0x0100
 <span class="c1"># reset</span>
-rst -system
+rst<span class="w"> </span>-system
 <span class="o">}</span>
 </pre></div>
 </div>
 <p>To set K26 to SD bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc boot_sd <span class="o">{</span> <span class="o">}</span> <span class="o">{</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc<span class="w"> </span>boot_sd<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to SD boot mode #</span>
 <span class="c1">############################</span>
-targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+targets<span class="w"> </span>-set<span class="w"> </span>-filter<span class="w"> </span><span class="o">{</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+mwr<span class="w"> </span>0xffca0010<span class="w"> </span>0x0
 <span class="c1"># change boot mode to SD</span>
-mwr 0xff5e0200 0xE100
+mwr<span class="w"> </span>0xff5e0200<span class="w"> </span>0xE100
 <span class="c1"># reset</span>
-rst -system
+rst<span class="w"> </span>-system
 <span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-after <span class="m">2000</span>
+after<span class="w"> </span><span class="m">2000</span>
 con
 <span class="o">}</span>
 </pre></div>
 </div>
 <p>To set K26 to QSPI bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc boot_qspi <span class="o">{</span> <span class="o">}</span> <span class="o">{</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc<span class="w"> </span>boot_qspi<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to QSPI boot mode #</span>
 <span class="c1">############################</span>
-targets -set -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+targets<span class="w"> </span>-set<span class="w"> </span>-filter<span class="w"> </span><span class="o">{</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+mwr<span class="w"> </span>0xffca0010<span class="w"> </span>0x0
 <span class="c1"># change boot mode to QSPI</span>
-mwr 0xff5e0200 0x2100
+mwr<span class="w"> </span>0xff5e0200<span class="w"> </span>0x2100
 <span class="c1"># reset</span>
-rst -system
+rst<span class="w"> </span>-system
 <span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-after <span class="m">2000</span>
+after<span class="w"> </span><span class="m">2000</span>
 con
 <span class="o">}</span>
 </pre></div>
 </div>
 <p>To set K26 to eMMC bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc boot_emmc <span class="o">{</span> <span class="o">}</span> <span class="o">{</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc<span class="w"> </span>boot_emmc<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to emmc boot mode #</span>
 <span class="c1">############################</span>
-targets -set -nocase -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+targets<span class="w"> </span>-set<span class="w"> </span>-nocase<span class="w"> </span>-filter<span class="w"> </span><span class="o">{</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
 stop
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+mwr<span class="w"> </span>0xffca0010<span class="w"> </span>0x0
 <span class="c1"># change boot mode to EMMC</span>
-mwr 0xff5e0200 0x6100
+mwr<span class="w"> </span>0xff5e0200<span class="w"> </span>0x6100
 <span class="c1"># reset</span>
-rst -system
+rst<span class="w"> </span>-system
 <span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-after <span class="m">2000</span>
+after<span class="w"> </span><span class="m">2000</span>
 con
-<span class="o">}</span> 
+<span class="o">}</span><span class="w"> </span>
 </pre></div>
 </div>
 <p>To set K26 to USB bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc boot_usb <span class="o">{</span> <span class="o">}</span> <span class="o">{</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc<span class="w"> </span>boot_usb<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to usb0 boot mode #</span>
 <span class="c1">############################</span>
-targets -set -nocase -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+targets<span class="w"> </span>-set<span class="w"> </span>-nocase<span class="w"> </span>-filter<span class="w"> </span><span class="o">{</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
 stop
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+mwr<span class="w"> </span>0xffca0010<span class="w"> </span>0x0
 <span class="c1"># change boot mode to EMMC</span>
-mwr 0xff5e0200 0x7100
+mwr<span class="w"> </span>0xff5e0200<span class="w"> </span>0x7100
 <span class="c1"># reset</span>
-rst -system
+rst<span class="w"> </span>-system
 <span class="c1">#A53 may be held in reset catch, start it with &quot;con&quot;</span>
-after <span class="m">2000</span>
+after<span class="w"> </span><span class="m">2000</span>
 con
-<span class="o">}</span> 
+<span class="o">}</span><span class="w"> </span>
 </pre></div>
 </div>
 <div class="section" id="license">
@@ -257,8 +258,8 @@ con
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

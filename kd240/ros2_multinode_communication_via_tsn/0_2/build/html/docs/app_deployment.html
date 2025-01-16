@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
@@ -92,7 +92,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#change-log">Change Log</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#version-v0-1">Version - v0.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-v0-1-1">Version - v0.1.1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Change Log</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#pre-requisite">Pre-requisite</a><ul>
@@ -117,7 +120,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#network-configuration-2-network-manager-cnc-and-two-kr260-kd240-boards">Network Configuration 2 : Network Manager(CNC) and Two KR260/KD240 Boards</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#two-kr260-kd240-and-one-kv260-kr260-kd240-cnc">Two KR260/KD240 and one KV260/KR260/KD240(CNC):</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#two-kr260-kd240-and-one-linux-running-machine-cnc">Two KR260/KD240 and one Linux Running Machine(CNC):</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Run TSN-ROS Out of Box Applications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Run TSN-ROS Out of Box Applications</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#enable-frame-preemption-optional">Enable frame Preemption - Optional</a></li>
@@ -210,9 +213,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 </div>
-<div class="section" id="version-v0-1">
-<h3>Version - v0.1<a class="headerlink" href="#version-v0-1" title="Permalink to this heading">¶</a></h3>
-<p>Initial release.</p>
+<div class="section" id="version-v0-1-1">
+<h3>Version - v0.1.1<a class="headerlink" href="#version-v0-1-1" title="Permalink to this heading">¶</a></h3>
+<p>Added support for CAN Communication between board to board.</p>
+<div class="section" id="id1">
+<h4>Change Log<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<p>Apps:</p>
+<ul class="simple">
+<li><p>Provides seamless communication between devices through the CAN interface, enabling efficient data exchange for various applications.</p></li>
+</ul>
+<p>Tests:</p>
+<ul class="simple">
+<li><p>Example to support CAN communication using the PMOD CAN between board to board.</p></li>
+</ul>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Added steps and instructions to demonstrate CAN Communication.</p></li>
+</ul>
+</div>
 </div>
 </div>
 <div class="section" id="pre-requisite">
@@ -320,7 +338,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>0.2-0xlnx1</td>
 </tr>
 <tr>
-<td>ros-jazzy-xlnx-pubsub</td>
+<td>ros-humble-xlnx-pubsub</td>
 <td>0.1.0-0noble</td>
 </tr>
 <tr>
@@ -361,7 +379,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr>
 <td><a href="https://github.com/Xilinx/ros-tsn-pubsub">Xilinx ROS TSN PubSub</a></td>
-<td><a href="https://github.com/Xilinx/ros-tsn-pubsub/releases/tag/v0.2">v0.2</a></td>
+<td><a href="https://github.com/Xilinx/ros-tsn-pubsub/releases/tag/v0.1.1">v0.1.1</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -421,7 +439,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <li><p>Install ROS 2 application.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/Downloads
 <span class="w"> </span>wget<span class="w"> </span>https://github.com/Xilinx/ros-tsn-pubsub/releases/download/v0.1/ros-jazzy-xlnx-pubsub_0.1.0-0noble_arm64.deb<span class="w"> </span>-P<span class="w"> </span>~/Downloads/
-<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>~/Downloads/ros-jazzy-xlnx-pubsub_0.1.0-0noble_arm64.deb
+<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>~/Downloads/ros-humble-xlnx-pubsub_0.1.0-0noble_arm64.deb
 </pre></div>
 </div>
 </li>
@@ -700,8 +718,8 @@ Oscilloscope or Analog Discovery 2 Setup (optional)</p>
 <p><img alt="NM_Setup_2" src="../_images/NM_Setup_2.JPG" /></p>
 <p><strong>NOTE</strong>: For KD240 J24 is PS Eth, J25B top is PL Eth. For KR260 J10D is PS Eth, J10B top is PL Eth</p>
 </div>
-<div class="section" id="id1">
-<h4>Run TSN-ROS Out of Box Applications<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="id2">
+<h4>Run TSN-ROS Out of Box Applications<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
 <ul>
 <li><p>Ensure to load the TSN accelerator/firmware (refer to step-7 ‘dynamically load the application package’ from initial setup) before testing example application. If the firmware is already loaded, ignore this step and proceed.</p>
 <ul class="simple">

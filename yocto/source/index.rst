@@ -7,7 +7,7 @@ Yocto Support
 
 
 
-.. Before going public, replace pages.gitenterprise.xilinx.com/techdocs/SOM with xilinx.github.io/kria-apps-docs/
+
 
 .. toctree::
    :maxdepth: 4
@@ -21,3 +21,7 @@ Yocto Support
 
 
 
+
+.. Copyright © 2021–2024 Advanced Micro Devices, Inc
+
+.. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.

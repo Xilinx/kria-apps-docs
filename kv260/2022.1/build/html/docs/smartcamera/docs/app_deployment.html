@@ -1,8 +1,7 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -113,6 +112,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../bist/bist_landing.html">Built-In Self Test (BIST)</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">KV260 Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_boot.html">Boot Kria Starter Kit Linux on KV260</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Build the Design Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Create a Vitis Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_accel.html">Integrate Accelerator Overlay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../integrating_new_sensors.html">Integrating New IAS Sensor Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generate Custom Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_application_docker_container.html">Rebuilding Application Docker Containers Tutorial</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/index.html">2021.1</a></li>
@@ -151,21 +161,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Setting Up the Board and Application Deployment</h1> </td>
  </tr>
-</table><section id="setting-up-the-board-and-application-deployment">
+</table><div class="section" id="setting-up-the-board-and-application-deployment">
 <h1>Setting Up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document describes how to set up the board, and run the smartcam application.</p>
 <p>This guide and its prebuilt are targeted for Ubuntu® 22.04 and AMD 2022.1 toolchain. The previous version of this application (on AMD 2021.1 toolchain) targeted to PetaLinux is still available <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html">online</a>.</p>
-</section>
-<section id="booting-up-linux">
+</div>
+<div class="section" id="booting-up-linux">
 <h2>Booting Up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
 <p>Before continuing with the smartcam application specific instructions, if you have not yet done so, boot Linux with the instructions from the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> page.</p>
 <blockquote>
 <div><p><strong>NOTE:</strong> It is recommended that you start the smartcam application using the command line through an universal asynchronous receiver-transmitter (UART), instead of GNOME Desktop.</p>
 </div></blockquote>
-</section>
-<section id="application-specific-hardware-setup">
+</div>
+<div class="section" id="application-specific-hardware-setup">
 <h2>Application Specific Hardware Setup<a class="headerlink" href="#application-specific-hardware-setup" title="Permalink to this heading">¶</a></h2>
 <p>Besides the hardware configurations required in the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> for booting Linux, the smartcam application requires the following hardware setup:</p>
 <p><img alt="GitHub Logo" src="../../../_images/som-board.png" /></p>
@@ -188,7 +198,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The smartcam application does not yet support speakers.</p>
 </li>
 </ul>
-<section id="software-preparation">
+<div class="section" id="software-preparation">
 <h3>Software Preparation<a class="headerlink" href="#software-preparation" title="Permalink to this heading">¶</a></h3>
 <p>You will use a PC with network access to the board as the RTSP client machine.</p>
 <p>Make sure that the PC and the KV260 Vision AI Starter Kit are on the same subnet mask.</p>
@@ -198,9 +208,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>For Windows, you can find install instructions on <a class="reference external" href="https://ffmpeg.org/download.html">https://ffmpeg.org/download.html</a>.</p></li>
 </ul>
 <p>Other than FFplay, VLC can also be used to play the RTSP stream, but sometimes it does not work on some client machines, while the FFplay works well.</p>
-</section>
-</section>
-<section id="downloading-and-loading-the-application-firmware">
+</div>
+</div>
+<div class="section" id="downloading-and-loading-the-application-firmware">
 <h2>Downloading and Loading the Application Firmware<a class="headerlink" href="#downloading-and-loading-the-application-firmware" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Get the latest kv260-smartcam firmware package.</p>
@@ -263,8 +273,8 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 </ul>
 </li>
 </ol>
-</section>
-<section id="docker-based-application-preparation">
+</div>
+<div class="section" id="docker-based-application-preparation">
 <h2>Docker-Based Application Preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
 <ul>
 <li><p>Pull the 2022.1 Docker image for smartcam using the following command:</p>
@@ -320,11 +330,11 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 <p>Finally, upload or copy these transcoded H264 files to the board (by using scp, ftp, or copy them onto the SD card and find them in <code class="docutils literal notranslate"><span class="pre">/boot/firmware/</span></code>), place it to somewhere under <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>, which will mapped to /tmp in the Docker container too.</p>
 </li>
 </ul>
-</section>
-<section id="run-the-application">
+</div>
+<div class="section" id="run-the-application">
 <h2>Run the Application<a class="headerlink" href="#run-the-application" title="Permalink to this heading">¶</a></h2>
 <p>There are two ways to interact with the application.</p>
-<section id="jupyter-notebook">
+<div class="section" id="jupyter-notebook">
 <h3>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>You need to run the following command to install the package shipped notebooks, which reside in <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/notebooks</span></code>, to the folder <code class="docutils literal notranslate"><span class="pre">/root/notebooks/smartcam</span></code>:</p>
@@ -371,11 +381,11 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 <p>In the notebook, the GStreamer pipeline string is constructed; you can get it by adding simple python code to print it out and played with gst-launch-1.0 command in the console, and there are some user options variables that can be changed and run with. For other parts of the pipeline, you can also change and play to see the effect easily.</p>
 </li>
 </ul>
-</section>
-<section id="command-line">
+</div>
+<div class="section" id="command-line">
 <h3>Command Line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h3>
 <p>These allow you to define different video input and output device targets using the smartcam application. Execute using the UART/debug interface.</p>
-<section id="example-scripts">
+<div class="section" id="example-scripts">
 <h4>Example Scripts<a class="headerlink" href="#example-scripts" title="Permalink to this heading">¶</a></h4>
 <p>The following example scripts and options definitions are provided.</p>
 <p>Refer to <a class="reference external" href="#script-loc">File Structure</a> to find the file locations.</p>
@@ -428,11 +438,11 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 </ol>
 </li>
 </ul>
-</details></section>
-<section id="additional-configuration-options-for-the-smartcam-invocation">
+</details></div>
+<div class="section" id="additional-configuration-options-for-the-smartcam-invocation">
 <h4>Additional Configuration Options for the <code class="docutils literal notranslate"><span class="pre">smartcam</span></code> Invocation<a class="headerlink" href="#additional-configuration-options-for-the-smartcam-invocation" title="Permalink to this heading">¶</a></h4>
 <p>The example scripts and Jupyter Notebook work as examples to show the capability of the smartcam application for specific configurations. More combinations could be made based on the options provided by the smartcam application. You can get detailed application options by invoking <code class="docutils literal notranslate"><span class="pre">smartcam</span> <span class="pre">--help</span></code>.</p>
-<section id="usage">
+<div class="section" id="usage">
 <h5>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h5>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span> smartcam [OPTION?] - Application for face detection on the SOM board of Xilinx.
 
@@ -509,8 +519,8 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
                             For detailed info about the parameter name and value range, just run gst-inspect-1.0 omxh264enc / gst-inspect-1.0 omxh265enc based on the encoding type selected by option &quot;--outmedia-type&quot;, the parameter could be any of the listed parameters except &quot;control-rate, target-bitrate, gop-length&quot; which have dedicated options as above.
 </pre></div>
 </div>
-</section>
-<section id="examples-of-supported-combinations-sorted-by-input-are-outlined-below">
+</div>
+<div class="section" id="examples-of-supported-combinations-sorted-by-input-are-outlined-below">
 <h5>Examples of supported combinations sorted by input are outlined below<a class="headerlink" href="#examples-of-supported-combinations-sorted-by-input-are-outlined-below" title="Permalink to this heading">¶</a></h5>
 <p>If using the command line to invoke the smartcam application, stop the process via CTRL + C prior to starting the next instance.</p>
 <ul>
@@ -592,11 +602,11 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 </ul>
 </li>
 </ul>
-</section>
-</section>
-</section>
-</section>
-<section id="files-structure-of-the-application">
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="files-structure-of-the-application">
 <h2>Files Structure of the Application<a class="headerlink" href="#files-structure-of-the-application" title="Permalink to this heading">¶</a></h2>
 <p>The application is installed as follows.</p>
 <ul class="simple">
@@ -710,14 +720,14 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 <td>Jupyter Notebook file for MIPI/USB --&gt; DP/RTSP demo.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="next-steps">
+</table></div>
+<div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Go back to the <a class="reference internal" href="../smartcamera_landing.html"><span class="doc">KV260 SOM Smart Camera Design Start Page</span></a>.</p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
-</section>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
 
 
            </div>
@@ -732,8 +742,8 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on December 09, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

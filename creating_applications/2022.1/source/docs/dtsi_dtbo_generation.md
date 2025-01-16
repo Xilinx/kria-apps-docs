@@ -1,19 +1,19 @@
 # Generating DTSI and DTBO Overlay Files
 
-In this step the AMD HW description captured in the custom PL design must be translated into a Linux understandable format. In Linux HW is described using a concept called device trees (DT). The human readable form of these are dts and dtsi files. The PL design is loaded post Linux boot, therefore this step generates a DT overlay. The overlay DT is slightly different than the Linux boot DT - it must define "fragments" that are added dynamically by Linux at runtime.
+In this step, the AMD HW description captured in the custom PL design must be translated into a Linux understandable format. In Linux HW is described using a concept called device trees (DT). The human readable form of these are dts and dtsi files. The PL design is loaded post Linux boot, therefore this step generates a DT overlay. The overlay DT is slightly different than the Linux boot DT - it must define "fragments" that are added dynamically by Linux at runtime.
 
-For reference, the .dtsi files associated with each platform (but organized by application) can be found in [Kria app firmware](https://github.com/Xilinx/kria-apps-firmware)
+For reference, the `.dtsi` files associated with each platform (but organized by application) can be found in [Kria app firmware](https://github.com/Xilinx/kria-apps-firmware)
 
 The dts/dtsi files can be generated in a number of ways, all of which require the HW description data captured in the XSA or bit file. After a .dtsi file is generated, it is then compiled into a binary .dtbo file. The .dtbo file is expected in firmware folder for each applications.
 
 Here are the three recommended ways:
 
-1. In AMD Software Command-Line Tools (XSCT), use Device Tree Generator (DTG) and .xsa file to generate .dtsi, and Device Tree Compiler (DTC) to compile a .dtbo file
-2. Manually create .dtsi file, and in Yocto, use dfx_user_dts bbclass to create .dtbo
-3. Manually create .dtsi file, and in PetaLinux, use fpgamanger_custom bbclass to create .dtbo
-4. In PetaLinux, use fpgamanger_dtg bbclass tools and petalinux-build to generate .dtsi file from .xsa file, and compiling it into .dtbo.
+1. In AMD Software Command-Line Tools (XSCT), use Device Tree Generator (DTG) and `.xsa` file to generate `.dtsi`, and Device Tree Compiler (DTC) to compile a `.dtbo` file.
+2. Manually create `.dtsi` file, and in Yocto, use dfx_user_dts bbclass to create .dtbo.
+3. Manually create `.dtsi` file, and in PetaLinux, use fpgamanger_custom bbclass to create `.dtbo`.
+4. In PetaLinux, use fpgamanger_dtg bbclass tools and petalinux-build to generate `.dtsi` file from `.xsa` file, and compiling it into `.dtbo`.
 
-Note that with any ways of generating DTSI files - the generated .dtsi file will likely require user modification before they can be fully functional.
+Note that with any ways of generating DTSI files - the generated `.dtsi` file will likely require user modification before they can be fully functional.
 
 ## Using XSCT, DTG and DTC
 

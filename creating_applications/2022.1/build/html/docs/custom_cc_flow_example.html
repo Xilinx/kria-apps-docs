@@ -117,6 +117,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
@@ -189,7 +190,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>When creating your own custom CC card design, you may also want to update Clock Configuration and PS-PL configuration to suit your custom carrier cards. In this case, the default configuration will work for our KV260 and requires no changes.</p>
 <p>Click OK to apply settings.</p>
 <p>To save the block design in a tcl script, this is the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>write_bd_tcl -no_ip_version -check_ips <span class="nb">false</span> -f &lt;output&gt;.tcl
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>write_bd_tcl<span class="w"> </span>-no_ip_version<span class="w"> </span>-check_ips<span class="w"> </span><span class="nb">false</span><span class="w"> </span>-f<span class="w"> </span>&lt;output&gt;.tcl
 </pre></div>
 </div>
 </div>
@@ -200,7 +201,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>SOM Starter Kit presets can be found in Vivado installation folder. For an example they are found in <code class="docutils literal notranslate"><span class="pre">&lt;installation</span> <span class="pre">folder&gt;/Vivado/&lt;version&gt;/data/xhub/boards/XilinxBoardStore/boards/Xilinx/&lt;board&gt;/1.1/</span></code></p>
 <p>Developers will want to create their own presets for pin-accessing IPs or put those information in their .xdc files.</p>
 <p>To apply the .xml files, copy the kv260/ folder into a chosen <code class="docutils literal notranslate"><span class="pre">&lt;path&gt;</span></code>, and execute the following in Vivado:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>   set_param board.repoPaths <span class="o">[</span>list <span class="s2">&quot;&lt;path&gt;&quot;</span> “&lt;path2&gt;” “...”<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>set_param<span class="w"> </span>board.repoPaths<span class="w"> </span><span class="o">[</span>list<span class="w"> </span><span class="s2">&quot;&lt;path&gt;&quot;</span><span class="w"> </span>“&lt;path2&gt;”<span class="w"> </span>“...”<span class="o">]</span>
 </pre></div>
 </div>
 <p>Then in step <a class="reference external" href="#creating-a-vivado-design">Creating a Vivado design</a>, select the board file to pair with K26 SOM in below interface by clicking on “connection” and finding the newly defined carrier card board file there.</p>
@@ -237,8 +238,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

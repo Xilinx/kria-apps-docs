@@ -1,4 +1,4 @@
-﻿# Step 5: Boot Linux
+# Step 5: Boot Linux
 
 ## First Boot
 
@@ -69,7 +69,7 @@ This flow is only needed to be done once if reusing the same SD card for multipl
 
 Refer to [Boot Linux Known Issues](./known_issues.md) for tips to debug boot issues.
 
-Try out one of the applications! Check the [Ubuntu 24.04 row](https://xilinx.github.io/kria-apps-docs/kr260/linux_boot.html) for supported application in Ubuntu 24.04.
+Try out one of the applications! Check the [Ubuntu 24.04 row](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/linux_boot.html) for supported application in Ubuntu 24.04.
 
 Refer to [Kria Adventure map](https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm) for an organized view of different documentations available for Kria SOM.
 

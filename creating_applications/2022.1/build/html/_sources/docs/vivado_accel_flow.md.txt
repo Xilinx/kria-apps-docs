@@ -41,20 +41,9 @@ Refer to [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513
 
 Details of how to generate a Vivado design from board file can be found [here](./Generate_vivado_project_from_boardfile.md).
 
-### Vivado Starter Project in BSP
+### Vivado Starter Project in Vivado Example Project
 
-Alternatively, developers can start from the Vivado project provided in the BSP file.
-First, download the SOM Starter Kit BSP from the [SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#PetaLinux-Board-Support-Packages)
-Then create the project using BSP:
-
-```shell
-petalinux-create -t project -s xilinx-<board>-<version>.bsp
-cd xilinx-<board>-<version>
-```
-
-The Vivado starter project can be found in ```hardware/``` folder, and developers can open the project using the .xpr file. If using a K26/K24 bsp, the project is a K26/K24 project only, and will not contain any information about the carrier card being used. However, it does have enough information to boot basic Linux. If using a KV260 Starter Kit, KR260 Starter Kit or KD240 Starter Kit bsp, then the project contains information on the CC.
-
-In 2022.1 or later, those project will also be available in [github repo](https://github.com/Xilinx/kria-base-hardware) for those who do not wish to use PetaLinux.
+Alternatively, an example project from Vivado (2024.2 and later) can be used. Details of how to generate a Vivado design from Vivado example design can be found [here](./Generate_vivado_project_from_CED.md).
 
 ### Generate .bit.bin and .xsa file
 

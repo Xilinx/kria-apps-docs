@@ -28,7 +28,9 @@ This document shows the steps to setup the board and runs the GPS_1588_PTP appli
 * USB-A to micro-B Cable (Included with KR260 Robotics Starter Kit)
 * 16GB MicroSD Cards (Included with KR260 Robotics Starter Kit)
 * Monitor with DP port, keyboard, and mouse (Optional - for running application using GUI)
+
 #### GPS Modules and Accessories
+
 The app is tested for the below GPS modules
 
 | Digilent Pmod - GPS Receiver | Adafruit Ultimate GPS  |
@@ -44,42 +46,47 @@ The app is tested for the below GPS modules
 ## Hardware setup with 2 KR260 boards
 
 The setup used for deploying the application is shown below:
+
 ### Board Setup
-1. Connect the two boards to the same ethernet network via J10C RJ45 PS GEM1 port. Assume one of the KR260 as Master and the other one as Slave. 
-1. Connect JTAG ports of both boards to the host PC.
-1. Connect Display port of the both Master and Slave to Monitors to utilize GNOME Desktop.
+
+1. Connect the two boards to the same ethernet network via J10C RJ45 PS GEM1 port. Assume one of the KR260 as Master and the other one as Slave.
+2. Connect JTAG ports of both boards to the host PC.
+3. Connect Display port of the both Master and Slave to Monitors to utilize GNOME Desktop.
 
 ### GPS module Connection
-*With Digilent PMOD GPS Receiver :* 
+
+*With Digilent PMOD GPS Receiver :*
+
 1. Solder the SMA Connector Receptacle on the header J4 of the Digilent PMOD GPS Receiver. For more details refer [here](https://digilent.com/reference/_media/reference/pmod/pmod-interface-specification-1_2_0.pdf).
-1. Attach the SMA GPS antenna to the SMA connector Receptacle.
-1. Optionally, add the 3V Lithium Coin Cell Battery to the GPS module to reduce the amount of time that it takes to acquire the first positional fix.
-1. On the Master KR260 board, connect the Digilent PMOD GPS Receiver into the PMOD1 connector, bottom row (J2, 2).
-1. Power on both the boards and follow the next steps in "Booting up Linux."
+2. Attach the SMA GPS antenna to the SMA connector Receptacle.
+3. Optionally, add the 3V Lithium Coin Cell Battery to the GPS module to reduce the amount of time that it takes to acquire the first positional fix.
+4. On the Master KR260 board, connect the Digilent PMOD GPS Receiver into the PMOD1 connector, bottom row (J2, 2).
+5. Power on both the boards and follow the next steps in "Booting up Linux."
 
 ![2board](../media/Precision_time_hardware_setup.png)
 
 *With Adafruit Ultimate GPS :*
+
 1. Solder the 9-pin male Header and the battery clip comes along with the Adafruit GPS module package on to the respective slot provided in the module. For more details refer [here](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-ultimate-gps.pdf)
-1. Attach u.FL to SMA connector on the u.FL connector to connect a external active GPS antenna.
-1. Optionally, add the 3V Lithium Coin Cell Battery to the GPS motedule to reduce the amount of time that it takes to acquire the first positional fix.
-1. On the Master KR260 board, connect the Adafruit Ultimate GPS Receiver into the PMOD1 connector, bottom row (J2, 2), as per the connection matrix shown in table with the help of male to Female Jumpers.
+2. Attach u.FL to SMA connector on the u.FL connector to connect a external active GPS antenna.
+3. Optionally, add the 3V Lithium Coin Cell Battery to the GPS motedule to reduce the amount of time that it takes to acquire the first positional fix.
+4. On the Master KR260 board, connect the Adafruit Ultimate GPS Receiver into the PMOD1 connector, bottom row (J2, 2), as per the connection matrix shown in table with the help of male to Female Jumpers.
 
-    | KR260 Carrier Card Pins | Pmod J2 Pins | Adafruit Ultimate GPS Pins |
-    | -------- | ------ | ------- |
-    | PMOD_3V3 | 12 | Vin |
-    | GND | 10 | GND |
-    | PMOD1_IO8_HDA18 | 8 | PPS |
-    | PMOD1_IO7_HDA17 | 6 | Rxd |
-    | PMOD1_IO6_HDA16_CC | 4 | Txd |
+   | KR260 Carrier Card Pins | Pmod J2 Pins | Adafruit Ultimate GPS Pins |
+   |-------------------------|--------------|----------------------------|
+   | PMOD_3V3                | 12           | Vin                        |
+   | GND                     | 10           | GND                        |
+   | PMOD1_IO8_HDA18         | 8            | PPS                        |
+   | PMOD1_IO7_HDA17         | 6            | Rxd                        |
+   | PMOD1_IO6_HDA16_CC      | 4            | Txd                        |
 
-1. Power on both the boards and follow the next steps in "Booting up Linux."
+5. Power on both the boards and follow the next steps in "Booting up Linux."
 
 ![2board](../media/Adafruit_Precision_time_hardware_setup.png)
 
 ## Booting up Linux
 
-Go through [Booting Kria Starter Kit Linux](../../linux_boot.md) to complete minimum setup required to boot Linux on both Master and Slave KR260 boards before continuing with instructions in this page.
+Go through [Booting Kria Starter Kit Linux](../../kria_starterkit_linux_boot.md) to complete minimum setup required to boot Linux on both Master and Slave KR260 boards before continuing with instructions in this page.
 > ***Note***: Make sure that you use the latest KR260 Starter Kit Boot firmware (2022.2_update 1 or later). Otherwise, this application might not work.
 
 ## Downloading and Loading Application Firmware on Master
@@ -136,10 +143,11 @@ Get the latest GPS_1588_PTP firmware package:
         sudo xmutil unloadapp   ## Unload existing firmware
         sudo xmutil loadapp kr260-gps-1588-ptp  ## load kr260-gps-1588-ptp
         ```
-	
+
 ## Installing application
 
 * On Master
+
     ```bash
      # Remove incompatible packages
      sudo apt remove systemd-timesyncd
@@ -147,41 +155,51 @@ Get the latest GPS_1588_PTP firmware package:
      # Confirm with "Y" when prompted to install new or updated packages.
      sudo apt install gps-1588-ptp-master
     ```
+
 * On Slave
+
     ```bash
      # Install gps-1588-ptp applications below
      # Confirm with "Y" when prompted to install new or updated packages.
      sudo apt install gps-1588-ptp-slave
     ```
+
 > ***Note***: `linuxptp`, `gpsd-tools`,`gpsd-clients`,`linuxptp`,`chrony`,`python3-tk`, `ppstools` are dependencies to GPS_1588_PTP applications that are installed automatically with above commands.
 
-#### Set PATH to application bin
+### Set PATH to application bin
 
 * Add the following path in the environment variable for an AMD demo application on both Master and Slave. This application using Linux utilities, which are only accessible from sudo user. It is recommended to switch to the root user with `sudo -i` before proceeding to the following commands:
+
     ```bash
      sudo -i
      export PATH=${PATH}:/opt/xilinx/kr260-gps-1588-ptp/bin/
     ```
+
 > ***Note***: Consider adding the above commands to ~/.bashrc to avoid executing on every new shell created.
 
 ## Verify GPS pulse on Master
 
 1. Run the below command to get the pps node corresponding to the GPS module.
+
     ```bash
     sudo dmesg | grep axi:pps_axi_gpio_0 | tail -1
     ```
+
     The command output is as follows. From this output, we have the pps2 as the PPS source for GPS module.
 
     ```bash
     ubuntu@kria:~$ sudo dmesg |  grep axi:pps_axi_gpio_0 | tail -1
     [67280.282986] pps pps2: new PPS source axi:pps_axi_gpio_0.-1
     ```
+
 2. Run the below command to verify if the GPS receiver is locked.
+
     ```bash
     sudo ppstest /dev/pps2
     ```
 
     When the GPS Signal is acquired, you receive one PPS pulse every second and the terminal is as shown below:
+
     ```bash
 	ubuntu@kria:~$ sudo ppstest /dev/pps2
 	trying PPS source "/dev/pps2"
@@ -192,9 +210,10 @@ Get the latest GPS_1588_PTP firmware package:
 	source 0 - assert 1683625049.055506572, sequence: 117 - clear 0.000000000, sequence: 0
 	source 0 - assert 1683625050.055499274, sequence: 118 - clear 0.000000000, sequence: 0
     ```
+
     > ***Note***: Replace pps2 with the corresponding output from step1.
 
-    > ***Note***: Make sure the LED on the GPS Module is off while running the application. If its blinking, it means the GPS is not locked and you will not get any PPS signal. 
+    > ***Note***: Make sure the LED on the GPS Module is off while running the application. If its blinking, it means the GPS is not locked and you will not get any PPS signal.
 
 ## Steps to configure linux utilities to use GPS device as clock source on Master
 

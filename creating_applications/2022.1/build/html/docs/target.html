@@ -111,6 +111,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
@@ -166,8 +167,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p>The .bit.bin, .dtbo and .xclbin are required to have the same file name. etc - example.bit.bin, example.dtbo and example.xclbin</p>
 <p>Note that in 21.1, dfx-mgt expects a .bit.bin format bitstream. .bit.bin is .bit files with the description header trimmed. To convert a .bit file to .bit.bin, use bitgen as below:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;all:{system.bit}&#39;</span>&gt;bootgen.bif
-bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;all:{system.bit}&#39;</span>&gt;bootgen.bif
+bootgen<span class="w"> </span>-w<span class="w"> </span>-arch<span class="w"> </span>zynqmp<span class="w"> </span>-process_bitstream<span class="w"> </span>bin<span class="w"> </span>-image<span class="w"> </span>bootgen.bif
 </pre></div>
 </div>
 <p>Example files for dfx-mgr can be found in <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware">github</a>.</p>
@@ -184,8 +185,8 @@ bootgen -w -arch zynqmp -process_bitstream bin -image bootgen.bif
 <div class="section" id="debugging-with-dfx-mgr">
 <h3>Debugging with dfx-mgr<a class="headerlink" href="#debugging-with-dfx-mgr" title="Permalink to this heading">¶</a></h3>
 <p>As of 2022.1, dfx-mgr do not yet output debug message with a flag for verbose mode. To see debug messages from dfx-mgr, stop the current dfx-mgr process and restart it manually:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo systemctl stop dfx-mgr.service
-sudo /usr/bin/dfx-mgrd <span class="p">&amp;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>dfx-mgr.service
+sudo<span class="w"> </span>/usr/bin/dfx-mgrd<span class="w"> </span><span class="p">&amp;</span>
 </pre></div>
 </div>
 </div>
@@ -194,37 +195,37 @@ sudo /usr/bin/dfx-mgrd <span class="p">&amp;</span>
 <h2>resize-part<a class="headerlink" href="#resize-part" title="Permalink to this heading">¶</a></h2>
 <p>By default, Linux’s file system partition is not  expanded to expose full SD card space. This is because for now, the rootfs is common across multiple platforms, and cannot assume that all rootfs partition is the last partition in the system. <a class="reference external" href="https://github.com/Xilinx/meta-petalinux/tree/master/recipes-apps/resize-part">Resize-part</a> is a script baked into provided BSP that expand the partition to its full capacity:</p>
 <p>First, run fdisk to see size of partitions:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>fdisk<span class="w"> </span>-l
 </pre></div>
 </div>
 <p>It will show 4GB for the Linux partition for KV260 in mmcblk1 p2:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Device         Boot   Start      End Sectors Size Id Type
-/dev/mmcblk1p1 *          <span class="m">8</span>  <span class="m">4194311</span> <span class="m">4194304</span>   2G  c W95 FAT32 <span class="o">(</span>LBA<span class="o">)</span>
-/dev/mmcblk1p2      <span class="m">4194312</span> <span class="m">12582919</span> <span class="m">8388608</span>   4G <span class="m">83</span> Linux
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Device<span class="w">         </span>Boot<span class="w">   </span>Start<span class="w">      </span>End<span class="w"> </span>Sectors<span class="w"> </span>Size<span class="w"> </span>Id<span class="w"> </span>Type
+/dev/mmcblk1p1<span class="w"> </span>*<span class="w">          </span><span class="m">8</span><span class="w">  </span><span class="m">4194311</span><span class="w"> </span><span class="m">4194304</span><span class="w">   </span>2G<span class="w">  </span>c<span class="w"> </span>W95<span class="w"> </span>FAT32<span class="w"> </span><span class="o">(</span>LBA<span class="o">)</span>
+/dev/mmcblk1p2<span class="w">      </span><span class="m">4194312</span><span class="w"> </span><span class="m">12582919</span><span class="w"> </span><span class="m">8388608</span><span class="w">   </span>4G<span class="w"> </span><span class="m">83</span><span class="w"> </span>Linux
 </pre></div>
 </div>
 <p>It will show 4GB for the Linux partition for KR260/KD240 in sda 2:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Device         Boot   Start      End Sectors Size Id Type
-/dev/sda1  *          <span class="m">8</span>  <span class="m">4194311</span> <span class="m">4194304</span>   2G  c W95 FAT32 <span class="o">(</span>LBA<span class="o">)</span>
-/dev/sda2       <span class="m">4194312</span> <span class="m">12582919</span> <span class="m">8388608</span>   4G <span class="m">83</span> Linux
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Device<span class="w">         </span>Boot<span class="w">   </span>Start<span class="w">      </span>End<span class="w"> </span>Sectors<span class="w"> </span>Size<span class="w"> </span>Id<span class="w"> </span>Type
+/dev/sda1<span class="w">  </span>*<span class="w">          </span><span class="m">8</span><span class="w">  </span><span class="m">4194311</span><span class="w"> </span><span class="m">4194304</span><span class="w">   </span>2G<span class="w">  </span>c<span class="w"> </span>W95<span class="w"> </span>FAT32<span class="w"> </span><span class="o">(</span>LBA<span class="o">)</span>
+/dev/sda2<span class="w">       </span><span class="m">4194312</span><span class="w"> </span><span class="m">12582919</span><span class="w"> </span><span class="m">8388608</span><span class="w">   </span>4G<span class="w"> </span><span class="m">83</span><span class="w"> </span>Linux
 </pre></div>
 </div>
 <p>Then run the utility:</p>
 <ul>
 <li><p>in 21.1, use below for KV260:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo resize-part /dev/mmcblk1p2
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>resize-part<span class="w"> </span>/dev/mmcblk1p2
 </pre></div>
 </div>
 </li>
 <li><p>in 22.1:</p>
 <ul>
 <li><p>use below for KV260:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo resize-part <span class="s2">&quot;/dev/mmcblk1&quot;</span> <span class="s2">&quot;p2&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>resize-part<span class="w"> </span><span class="s2">&quot;/dev/mmcblk1&quot;</span><span class="w"> </span><span class="s2">&quot;p2&quot;</span>
 </pre></div>
 </div>
 </li>
 <li><p>use below for KR260/KD240:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo resize-part <span class="s2">&quot;/dev/sda&quot;</span> <span class="s2">&quot;2&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>resize-part<span class="w"> </span><span class="s2">&quot;/dev/sda&quot;</span><span class="w"> </span><span class="s2">&quot;2&quot;</span>
 </pre></div>
 </div>
 </li>
@@ -232,13 +233,13 @@ sudo /usr/bin/dfx-mgrd <span class="p">&amp;</span>
 </li>
 </ul>
 <p>To verify, run fdisk again to see updated size of partitions:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>fdisk<span class="w"> </span>-l
 </pre></div>
 </div>
 <p>In this example, it will show expanded 12.4GB for the Linux partition:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Device         Boot   Start      End  Sectors  Size Id Type
-/dev/mmcblk1p1 *          <span class="m">8</span>  <span class="m">4194311</span>  <span class="m">4194304</span>    2G  c W95 FAT32 <span class="o">(</span>LBA<span class="o">)</span>
-/dev/mmcblk1p2      <span class="m">4194312</span> <span class="m">30244863</span> <span class="m">26050552</span> <span class="m">12</span>.4G <span class="m">83</span> Linux
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Device<span class="w">         </span>Boot<span class="w">   </span>Start<span class="w">      </span>End<span class="w">  </span>Sectors<span class="w">  </span>Size<span class="w"> </span>Id<span class="w"> </span>Type
+/dev/mmcblk1p1<span class="w"> </span>*<span class="w">          </span><span class="m">8</span><span class="w">  </span><span class="m">4194311</span><span class="w">  </span><span class="m">4194304</span><span class="w">    </span>2G<span class="w">  </span>c<span class="w"> </span>W95<span class="w"> </span>FAT32<span class="w"> </span><span class="o">(</span>LBA<span class="o">)</span>
+/dev/mmcblk1p2<span class="w">      </span><span class="m">4194312</span><span class="w"> </span><span class="m">30244863</span><span class="w"> </span><span class="m">26050552</span><span class="w"> </span><span class="m">12</span>.4G<span class="w"> </span><span class="m">83</span><span class="w"> </span>Linux
 </pre></div>
 </div>
 </div>
@@ -264,8 +265,8 @@ sudo /usr/bin/dfx-mgrd <span class="p">&amp;</span>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

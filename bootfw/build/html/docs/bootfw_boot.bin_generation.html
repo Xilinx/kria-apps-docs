@@ -130,29 +130,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="generate-boot-bin-using-yocto">
 <h2>Generate BOOT.BIN using Yocto<a class="headerlink" href="#generate-boot-bin-using-yocto" title="Permalink to this heading">¶</a></h2>
-<p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html">Yocto Kria Support</a> details how to use Yocto to generate Kria artifacts, go through this page from beginning to “<a class="reference external" href="kria-qspi-k24-smk-20230614093348">Build the Artifacts</a>” section to setup Yocto.</p>
+<p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Kria Support</a> details how to use Yocto to generate Kria artifacts, go through this page from beginning to “Build the Artifacts” section to setup Yocto.</p>
 <p>The bitbake recipe for BOOT.BIN in Yocto is <code class="docutils literal notranslate"><span class="pre">xilinx-bootbin</span></code> and command to build is:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake xilinx-bootbin <span class="c1"># for K26</span>
-<span class="nv">MACHINE</span><span class="o">=</span>k24-smk bitbake xilinx-bootbin <span class="c1"># for K24</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>xilinx-bootbin<span class="w"> </span><span class="c1"># for K26</span>
+<span class="nv">MACHINE</span><span class="o">=</span>k24-smk<span class="w"> </span>bitbake<span class="w"> </span>xilinx-bootbin<span class="w"> </span><span class="c1"># for K24</span>
 </pre></div>
 </div>
 <p>To set u-boot configuration, use this command before building:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk bitbake virtual/bootloader -c menuconfig
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>virtual/bootloader<span class="w"> </span>-c<span class="w"> </span>menuconfig
 </pre></div>
 </div>
 </div>
 <div class="section" id="generate-boot-bin-using-petalinux">
 <h2>Generate BOOT.BIN using PetaLinux<a class="headerlink" href="#generate-boot-bin-using-petalinux" title="Permalink to this heading">¶</a></h2>
 <p>Go through <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Build-instructions">Xilinx Wiki PetaLinux Build Instructions</a> - there are instructions to generate BOOT.BIN from PetaLinux. To recap they are the following:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s &lt;kria_starterkit&gt;.bsp
-<span class="nb">cd</span> &lt;kria_starter_kit_petalinux_folder&gt;
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-create<span class="w"> </span>-t<span class="w"> </span>project<span class="w"> </span>-s<span class="w"> </span>&lt;kria_starterkit&gt;.bsp
+<span class="nb">cd</span><span class="w"> </span>&lt;kria_starter_kit_petalinux_folder&gt;
 petalinux-build
-petalinux-package --boot --u-boot --force
+petalinux-package<span class="w"> </span>--boot<span class="w"> </span>--u-boot<span class="w"> </span>--force
 </pre></div>
 </div>
 <p>You will find new boot firmware at /image/linux/BOOT.BIN.</p>
 <p>To set configuration for u-boot, use this command before petalinux-build:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-config –c u-boot
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot
 </pre></div>
 </div>
 <p>The new BOOT.BIN can be loaded to the Starter Kit using the xmutil bootfw_update utility described in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-Update-Process">Kria Wiki’s Boot FW Update Process section</a>.</p>
@@ -179,8 +179,8 @@ petalinux-package --boot --u-boot --force
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 15, 2024.
+    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

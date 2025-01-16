@@ -20,13 +20,13 @@ This guide and its prebuilt are targeted for Ubuntu&reg; 22.04 and AMD 2022.1 to
 
 ## Booting Up Linux
 
-Before continuing with NLP application specific instructions, if not yet done so, boot Linux with instructions from the [Kria Starter Kit Linux boot](https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html) page.
+Before continuing with NLP application specific instructions, if not yet done so, boot Linux with instructions from the [Kria Starter Kit Linux boot](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/linux_boot.html) page.
 
 ## Setting Up the Board
 
 ## Application Specific Hardware Setup
 
-Besides the hardware configurations required in [Kria Starter Kit Linux boot](https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html) for booting Linux, AIBox application requires a 4k monitor to display up to four channels of 1080p video.
+Besides the hardware configurations required in [Kria Starter Kit Linux boot](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/linux_boot.html) for booting Linux, AIBox application requires a 4k monitor to display up to four channels of 1080p video.
 
 ![GitHub Logo](../../media/som-board.png)
 

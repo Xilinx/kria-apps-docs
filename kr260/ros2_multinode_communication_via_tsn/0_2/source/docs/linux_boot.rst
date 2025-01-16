@@ -1,1 +1,0 @@
-../../../../../source/docs/linux_boot.rst

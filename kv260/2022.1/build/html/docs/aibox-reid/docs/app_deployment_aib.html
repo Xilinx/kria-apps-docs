@@ -1,8 +1,7 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -112,6 +111,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../bist/bist_landing.html">Built-In Self Test (BIST)</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">KV260 Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_boot.html">Boot Kria Starter Kit Linux on KV260</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Build the Design Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Create a Vitis Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_accel.html">Integrate Accelerator Overlay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../integrating_new_sensors.html">Integrating New IAS Sensor Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generate Custom Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_application_docker_container.html">Rebuilding Application Docker Containers Tutorial</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/index.html">2021.1</a></li>
@@ -150,25 +160,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Setting Up the Board and Application Deployment</h1> </td>
  </tr>
-</table><section id="setting-up-the-board-and-application-deployment">
+</table><div class="section" id="setting-up-the-board-and-application-deployment">
 <h1>Setting Up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document shows how to set up the board and run the aibox-reid application.</p>
 <p>This guide and its prebuilt are targeted for Ubuntu® 22.04 and AMD 2022.1 toolchain. The previous version of this application (on AMD 2021.1 toolchain) targeted to PetaLinux is still available <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html">online</a>.</p>
-</section>
-<section id="booting-up-linux">
+</div>
+<div class="section" id="booting-up-linux">
 <h2>Booting up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
 <p>Before continuing with the aibox-reid application specific instructions, if not yet done so, boot Linux with instructions from the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> page.</p>
 <blockquote>
 <div><p><strong>NOTE:</strong> The AIBox application requires starting the application using command line through a universal asynchronous receiver-transmitter (UART) instead of GNOME Desktop and recommends using a 4k monitor.</p>
 </div></blockquote>
-</section>
-<section id="application-specific-hardware-setup">
+</div>
+<div class="section" id="application-specific-hardware-setup">
 <h2>Application Specific Hardware Setup<a class="headerlink" href="#application-specific-hardware-setup" title="Permalink to this heading">¶</a></h2>
 <p>Besides the hardware configurations required in the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> for booting Linux, the AIBox application requires a 4k monitor to display up to four channels of 1080p video.</p>
-</section>
-<section id="downloading-and-loading-application-firmware">
+</div>
+<div class="section" id="downloading-and-loading-application-firmware">
 <h2>Downloading and Loading Application Firmware<a class="headerlink" href="#downloading-and-loading-application-firmware" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Get the latest kv260-aibox-reid firmware package.</p>
@@ -236,8 +246,8 @@ sudo<span class="w"> </span>xmutil<span class="w">      </span>dp_bind
 </ul>
 </li>
 </ol>
-</section>
-<section id="docker-based-application-preparation">
+</div>
+<div class="section" id="docker-based-application-preparation">
 <h2>Docker Based Application Preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
 <ul>
 <li><p>Pull the 2022.1 docker image for aibox-reid using the following command:</p>
@@ -282,10 +292,10 @@ sudo<span class="w"> </span>xmutil<span class="w">      </span>dp_bind
 </div>
 </li>
 </ul>
-</section>
-<section id="running-the-application">
+</div>
+<div class="section" id="running-the-application">
 <h2>Running the Application<a class="headerlink" href="#running-the-application" title="Permalink to this heading">¶</a></h2>
-<section id="two-types-of-input-sources">
+<div class="section" id="two-types-of-input-sources">
 <h3>Two Types of Input Sources<a class="headerlink" href="#two-types-of-input-sources" title="Permalink to this heading">¶</a></h3>
 <p>The AIBOX application is targeted to run with RTSP streams as the input source, but for convienience, video files as input are also supported.</p>
 <p>Assume the RTSP or video file to be <strong>1080P H264/H265 30FPS</strong>. The AIBOX application can adjust for other FPS with <code class="docutils literal notranslate"><span class="pre">-r</span></code> flag, but resolution must be 1080p.</p>
@@ -319,11 +329,11 @@ sudo<span class="w"> </span>xmutil<span class="w">      </span>dp_bind
 <p>Finally, upload or copy these transcoded H264 files to the board, and place it somewhere under <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>.</p>
 </li>
 </ul>
-</section>
-<section id="interacting-with-the-application">
+</div>
+<div class="section" id="interacting-with-the-application">
 <h3>Interacting with the Application<a class="headerlink" href="#interacting-with-the-application" title="Permalink to this heading">¶</a></h3>
 <p>There are two ways to interact with application: via Jupyuter notebook or command line.</p>
-<section id="jupyter-notebook">
+<div class="section" id="jupyter-notebook">
 <h4>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">¶</a></h4>
 <ul>
 <li><p>You need to run following command to install the package shipped notebooks which reside in <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-reid/share/notebooks</span></code> to the folder <code class="docutils literal notranslate"><span class="pre">/root/notebooks/aibox-reid</span></code>:</p>
@@ -383,13 +393,13 @@ sudo<span class="w"> </span>xmutil<span class="w">      </span>dp_bind
 </li>
 </ul>
 <blockquote>
-<div><p><strong>NOTE:</strong> <a class="reference external" href="issue-aib.md#notebook-one-channel">Known Limitation</a></p>
+<div><p><strong>NOTE:</strong> <a class="reference external" href="issue-aib.html#notebook-one-channel">Known Limitation</a></p>
 </div></blockquote>
-</section>
-<section id="command-line">
+</div>
+<div class="section" id="command-line">
 <h4>Command Line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h4>
 <p>Alternatively, you can use command line on a serial port to use the aivox-reid application.</p>
-<section id="examples">
+<div class="section" id="examples">
 <h5>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h5>
 <ul>
 <li><p>Run one channel RTSP stream.</p>
@@ -419,8 +429,8 @@ sudo<span class="w"> </span>xmutil<span class="w">      </span>dp_bind
 <blockquote>
 <div><p><strong>NOTE:</strong> Only one instance of the aibox-reid application can run at a time because it requires exclusive access to a DPU engine, and there is only one instance of DPU that exists in the aibox-reid platform.</p>
 </div></blockquote>
-</section>
-<section id="command-options">
+</div>
+<div class="section" id="command-options">
 <h5>Command Options<a class="headerlink" href="#command-options" title="Permalink to this heading">¶</a></h5>
 <p>The examples show the capability of the aibox-reid for specific configurations. You can get more and detailed application options by invoking the following command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">aibox-reid</span> <span class="pre">--help</span></code></p>
@@ -446,11 +456,11 @@ aibox-reid [OPTION?] - AI Application of pedestrian + reid + tracking for multi 
         -R, --report                                     Report fps
 </pre></div>
 </div>
-</section>
-</section>
-</section>
-</section>
-<section id="files-structure">
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="files-structure">
 <h2>Files Structure<a class="headerlink" href="#files-structure" title="Permalink to this heading">¶</a></h2>
 <p>The application is installed as:</p>
 <ul class="simple">
@@ -538,14 +548,14 @@ aibox-reid [OPTION?] - AI Application of pedestrian + reid + tracking for multi 
 <td>Jupyter Notebook file for aibox-reid.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="next-steps">
+</table></div>
+<div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Go back to the <a class="reference internal" href="../aibox_landing.html"><span class="doc">KV260 SOM AIBox-ReID Design Start Page</span></a>.</p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
-</section>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
 
 
            </div>
@@ -560,8 +570,8 @@ aibox-reid [OPTION?] - AI Application of pedestrian + reid + tracking for multi 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on December 09, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

@@ -1,8 +1,7 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -113,6 +112,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../bist/bist_landing.html">Built-In Self Test (BIST)</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">KV260 Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_boot.html">Boot Kria Starter Kit Linux on KV260</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Build the Design Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Create a Vitis Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_accel.html">Integrate Accelerator Overlay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../integrating_new_sensors.html">Integrating New IAS Sensor Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generate Custom Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_application_docker_container.html">Rebuilding Application Docker Containers Tutorial</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/index.html">2021.1</a></li>
@@ -151,9 +161,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1> Hardware Architecture of the Platform </h1> </td>
  </tr>
-</table><section id="hardware-architecture-of-the-platform">
+</table><div class="section" id="hardware-architecture-of-the-platform">
 <h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This section describes the design implemented in the programmable logic (PL). The following figure shows the top-level hardware architecture of the reference design.</p>
 <p><img alt="Hardware Architecture: Top Level Diagram" src="../../../_images/hw_arch_aib.png" /></p>
@@ -180,12 +190,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div><p><strong>NOTE:</strong> The PS interconnects in the figure are conceptual.</p>
 </div></blockquote>
-</section>
-<section id="capture">
+</div>
+<div class="section" id="capture">
 <h2>Capture<a class="headerlink" href="#capture" title="Permalink to this heading">¶</a></h2>
 <p>The Video inout pipelines and Video Processing pipelines are not covered in this section as they are not PL components. For more information, refer to the GEM Ethernet chapters in the <em>Zynq UltraScale+ Device Technical Reference Manual</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/framemaker/map?isLatest=true&amp;ft:locale=en-US&amp;url=ug1085-zynq-ultrascale-trm">UG1085</a>). For more information on Video Processing pipelines, refer to the <em>Video Codec Unit LogiCORE IP Product Guide</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/dita/map?url=pg252-vcu&amp;ft:locale=en-US">PG252</a>).</p>
-</section>
-<section id="display">
+</div>
+<div class="section" id="display">
 <h2>Display<a class="headerlink" href="#display" title="Permalink to this heading">¶</a></h2>
 <p>An output pipeline reads video frames from memory and sends the frames to a sink. In this case, the sink is a display port in the PS. The display pipeline is shown in the following figure.</p>
 <p><img alt="Display Pipeline" src="../../../_images/display_pp.png" /></p>
@@ -197,10 +207,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>AXI4-Stream to Video Out core provides a bridge between video processing cores with AXI4-Stream interfaces and native video output (parallel video data, video syncs, and blanks). The core works with the Video Timing Controller (VTC) core. The synchronizer section of the core synchronizes timing from the VTC to the video data from the AXI4-Stream Bus. For more information, refer to the <em>AXI4-Stream to Video Out LogiCORE IP Product Guide</em> (<a class="reference external" href="https://www.xilinxhttps://docs.xilinx.com/access/sources/ud/document?url=pg044_v_axis_vid_out&amp;ft:locale=en-US">PG044</a>).</p></li>
 <li><p>The output from the AXI4-Stream to Video Out Converter goes through some slices and concat blocks to drive the DisplayPort Live signals on the PS. The slices and concat are required to the adhere to the Live Video data format. For more information on the DisplayPort Controller in Live mode, refer to the <em>Zynq UltraScale+ Device Technical Reference Manual</em> (<a class="reference external" href="https://docs.xilinx.com/access/sources/framemaker/map?isLatest=true&amp;ft:locale=en-US&amp;url=ug1085-zynq-ultrascale-trm">UG1085</a>).</p></li>
 </ul>
-</section>
-<section id="clocks-resets-and-interrupts">
+</div>
+<div class="section" id="clocks-resets-and-interrupts">
 <h2>Clocks, Resets, and Interrupts<a class="headerlink" href="#clocks-resets-and-interrupts" title="Permalink to this heading">¶</a></h2>
-<section id="clocks">
+<div class="section" id="clocks">
 <h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this heading">¶</a></h3>
 <p>The following table identifies the main clocks of the PL design, their source, their clock frequency, and their function.</p>
 <table border="1" class="docutils">
@@ -245,8 +255,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p>*Clocks exposed as a Platform interface and can be used by an accelerator.</p>
-</section>
-<section id="resets">
+</div>
+<div class="section" id="resets">
 <h3>Resets<a class="headerlink" href="#resets" title="Permalink to this heading">¶</a></h3>
 <p>The following table summarizes the resets used in this design:</p>
 <table border="1" class="docutils">
@@ -286,8 +296,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td style="text-align: left;">VCU reset</td>
 </tr>
 </tbody>
-</table></section>
-<section id="interrupts">
+</table></div>
+<div class="section" id="interrupts">
 <h3>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this heading">¶</a></h3>
 <p>The following table lists the PL-to-PS interrupts used in this design:</p>
 <table border="1" class="docutils">
@@ -315,9 +325,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td style="text-align: left;">Exposed as a platform interface and can be used by an accelerator</td>
 </tr>
 </tbody>
-</table></section>
-</section>
-<section id="resource-utilization">
+</table></div>
+</div>
+<div class="section" id="resource-utilization">
 <h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this heading">¶</a></h2>
 <p>The resource utilization numbers on this platform post implementation is reported in the following table:</p>
 <table border="1" class="docutils">
@@ -379,16 +389,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td style="text-align: left;">50.0</td>
 </tr>
 </tbody>
-</table></section>
-<section id="next-steps">
+</table></div>
+<div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <p>You can choose any of the following next steps:</p>
 <ul class="simple">
 <li><p>Read <a class="reference internal" href="hw_arch_accel_aib.html"><span class="doc">Hardware Architecture of the Accelerator</span></a>.</p></li>
 <li><p>Go back to the <a class="reference internal" href="../aibox_landing.html"><span class="doc">KV260 AI Box Design Start Page</span></a>.</p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
-</section>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
 
 
            </div>
@@ -403,8 +413,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on December 09, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 
