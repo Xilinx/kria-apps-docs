@@ -8,18 +8,7 @@ You will need to generate 3 files - .bit.bin (PL bitstream), .dtbo (device tree 
 
 ## Generate .bit.bin
 
-There are two ways to start the Vivado project for Kria SOM Starter Kits. Since the [baremetal example](./baremetal.md) has an example for generating PL design in Vivado using board files, this example will use the base Vivado designs. There are two ways to get the base designs.
-
-They are provided in [BSPs](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages).
-
-Download the BSP from above link. Then create the project using starter kit BSP:
-
-```bash
-petalinux-create -t project -s <chosen bsp>.bsp
-cd xilinx-<board>-<version>/hardware/xilinx-<board>-<version>/
-```
-
-They are also provided in [github](https://github.com/Xilinx/kria-base-hardware) for those who do not wish to use PetaLinux.
+There are two ways to start the Vivado project for Kria SOM Starter Kits. Since the [baremetal example](./baremetal.md) has an example for generating PL design in Vivado using board files, this example will use the base Vivado designs. There are two ways to get the base designs, either using [board files](./Generate_vivado_project_from_boardfile.md) or [example design](./Generate_vivado_project_from_CED.md).
 
 Start Vivado, click ```Open Project``` and select ```xilinx-<board>-<version>.xpr``` and the example project will open:
 

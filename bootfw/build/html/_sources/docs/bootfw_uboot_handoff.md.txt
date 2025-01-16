@@ -129,7 +129,7 @@ The boot.scr can be found in the SD card after programming a .wic image, or it c
 
 U-Boot is compiled with Yocto, and its recipe can be found [here](https://github.com/Xilinx/meta-xilinx/blob/master/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx.inc) and instructions to build found [here](./bootfw_boot.bin_generation.md). [PetaLinux documentation](https://docs.xilinx.com/v/u/2020.1-English/ug1144-petalinux-tools-reference-guide) contains information on U-Boot generation as well.
 
-The [source code for U-Boot](github.com/Xilinx/u-boot-xlnx.git) is on Xilinx github site as well.
+The [source code for U-Boot](https://github.com/Xilinx/u-boot-xlnx.git) is on Xilinx github site as well.
 
 boot.scr is compiled using mkimage, and more information can be found [here](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/749142017/Using+Distro+Boot+With+Xilinx+U-Boot)
 

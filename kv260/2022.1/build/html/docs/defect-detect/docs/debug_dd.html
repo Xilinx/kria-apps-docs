@@ -1,8 +1,7 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -107,6 +106,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../bist/bist_landing.html">Built-In Self Test (BIST)</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">KV260 Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_boot.html">Boot Kria Starter Kit Linux on KV260</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Build the Design Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Create a Vitis Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_accel.html">Integrate Accelerator Overlay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../integrating_new_sensors.html">Integrating New IAS Sensor Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generate Custom Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_application_docker_container.html">Rebuilding Application Docker Containers Tutorial</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/index.html">2021.1</a></li>
@@ -185,7 +195,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><code class="docutils literal notranslate"><span class="pre">gst-launch-1.0</span> <span class="pre">mediasrcbin</span> <span class="pre">media-device=/dev/media0</span> <span class="pre">!</span> <span class="pre">&quot;video/x-raw,</span> <span class="pre">width=1280,</span> <span class="pre">height=800,</span> <span class="pre">format=GRAY8,</span> <span class="pre">framerate=60/1&quot;</span> <span class="pre">!</span> <span class="pre">tee</span> <span class="pre">name=t_src</span> <span class="pre">t_src.</span> <span class="pre">!</span> <span class="pre">queue</span> <span class="pre">!</span> <span class="pre">vvas_xfilter</span> <span class="pre">kernels-config=otsu-accelarator.json</span> <span class="pre">!</span> <span class="pre">vvas_xfilter</span> <span class="pre">kernels-config=preprocess-accelarator.json</span> <span class="pre">!</span> <span class="pre">tee</span> <span class="pre">name=t_pre</span> <span class="pre">t_pre.</span> <span class="pre">!</span> <span class="pre">queue</span> <span class="pre">!</span> <span class="pre">vvas_xfilter</span> <span class="pre">kernels-config=cca-accelarator.json</span> <span class="pre">!</span> <span class="pre">vvas_xfilter</span> <span class="pre">kernels-config=text2overlay.json</span> <span class="pre">!</span>&#160; <span class="pre">filesink</span> <span class="pre">location=final.y8</span> <span class="pre">t_src.</span> <span class="pre">!</span> <span class="pre">queue</span> <span class="pre">!</span> <span class="pre">filesink</span> <span class="pre">location=raw.y8</span> <span class="pre">t_pre.</span> <span class="pre">!</span> <span class="pre">queue</span> <span class="pre">!</span> <span class="pre">filesink</span> <span class="pre">location=pre.y8</span></code></p>
 </li>
 </ol>
-<section id="examples-in-demo-mode">
+<div class="section" id="examples-in-demo-mode">
 <h1>Examples in Demo Mode<a class="headerlink" href="#examples-in-demo-mode" title="Permalink to this heading">¶</a></h1>
 <ol>
 <li><p>When the input is a live source, and the output is a display:</p>
@@ -195,8 +205,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><code class="docutils literal notranslate"><span class="pre">gst-launch-1.0</span> <span class="pre">filesrc</span> <span class="pre">location=/run/media/sda1/input_video.y8</span> <span class="pre">blocksize=1024000</span> <span class="pre">!</span> <span class="pre">rawvideoparse</span> <span class="pre">use-sink-caps=false</span> <span class="pre">width=1280</span> <span class="pre">height=800</span> <span class="pre">format=gray8</span> <span class="pre">framerate=4/1</span> <span class="pre">!</span> <span class="pre">tee</span> <span class="pre">name=t_src</span> <span class="pre">t_src.</span> <span class="pre">!</span> <span class="pre">queue</span> <span class="pre">!</span> <span class="pre">vvas_xfilter</span> <span class="pre">kernels-config=otsu-accelarator.json</span> <span class="pre">!</span> <span class="pre">vvas_xfilter</span> <span class="pre">kernels-config=preprocess-accelarator.json</span> <span class="pre">!</span> <span class="pre">tee</span> <span class="pre">name=t_pre</span> <span class="pre">t_pre.</span> <span class="pre">!</span> <span class="pre">queue</span> <span class="pre">!</span> <span class="pre">vvas_xfilter</span> <span class="pre">kernels-config=cca-accelarator.json</span> <span class="pre">!</span> <span class="pre">vvas_xfilter</span> <span class="pre">kernels-config=text2overlay.json</span> <span class="pre">!</span> <span class="pre">perf</span> <span class="pre">!</span> <span class="pre">kmssink</span> <span class="pre">bus-id=B0010000.v_mix</span> <span class="pre">plane-id=34</span> <span class="pre">render-rectangle=&quot;&lt;2560,680,1280,800&gt;&quot;</span> <span class="pre">t_src.</span> <span class="pre">!</span> <span class="pre">queue</span> <span class="pre">!</span> <span class="pre">perf</span> <span class="pre">!</span> <span class="pre">kmssink</span> <span class="pre">bus-id=B0010000.v_mix</span> <span class="pre">plane-id=35</span> <span class="pre">render-rectangle=&quot;&lt;0,680,1280,800&gt;&quot;</span> <span class="pre">t_pre.</span> <span class="pre">!</span> <span class="pre">queue</span> <span class="pre">!</span> <span class="pre">perf</span> <span class="pre">!</span> <span class="pre">kmssink</span> <span class="pre">bus-id=B0010000.v_mix</span> <span class="pre">plane-id=36</span> <span class="pre">render-rectangle=&quot;&lt;1280,680,1280,800&gt;&quot;</span> <span class="pre">async=false</span></code></p>
 </li>
 </ol>
-</section>
-<section id="obtaining-latency-measurements">
+</div>
+<div class="section" id="obtaining-latency-measurements">
 <h1>Obtaining Latency Measurements<a class="headerlink" href="#obtaining-latency-measurements" title="Permalink to this heading">¶</a></h1>
 <p>To get the end-to-end pipeline latency, use the following command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">GST_DEBUG=&quot;GST_TRACER:7&quot;</span> <span class="pre">GST_TRACERS=&quot;latency&quot;</span> <span class="pre">defect-detect</span> <span class="pre">&gt;&amp;</span> <span class="pre">./latency.log</span></code></p>
@@ -222,13 +232,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="c1"># To set AE_Metering Mode as spot write &#39;exposure_metering=0x3</span>
 </pre></div>
 </div>
-</section>
-<section id="next-steps">
+</div>
+<div class="section" id="next-steps">
 <h1>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="known_issues_dd.html"><span class="doc">Known Issues</span></a></p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 
 
            </div>
@@ -243,8 +253,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on December 09, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

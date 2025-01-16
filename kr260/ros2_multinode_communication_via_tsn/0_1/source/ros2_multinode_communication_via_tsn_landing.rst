@@ -1,4 +1,4 @@
-﻿##################################################
+##################################################
 ROS 2 Multi-Node Communications Via TSN 
 ##################################################
 
@@ -75,7 +75,7 @@ Features
 .. important::
    Other releases:
 
-   * `TSN 0.2 <https://xilinx.github.io/kria-apps-docs/kd240/ros2_multinode_communication_via_tsn/0_2/build/html/ros2_multinode_communication_via_tsn_landing.html>`_
+   * `TSN 0.2 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/ros2_multinode_communication_via_tsn/0_2/build/html/ros2_multinode_communication_via_tsn_landing.html>`_
 
 
 

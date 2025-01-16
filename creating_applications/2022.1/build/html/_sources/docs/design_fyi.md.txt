@@ -1,4 +1,4 @@
-# Programmable Logic Design tips and FYI
+# Programmable Logic Design Tips and FYI
 
 This page collects and answers some of the questions  encountered while creating the PL firmware part of the application.
 

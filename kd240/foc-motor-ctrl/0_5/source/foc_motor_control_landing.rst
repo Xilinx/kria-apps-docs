@@ -1,4 +1,4 @@
-﻿##################################################
+##################################################
 FOC Motor Control Application
 ##################################################
 
@@ -80,7 +80,7 @@ Features
 .. important::
    Previous releases:
 
-   * `FOC 0.4 <https://xilinx.github.io/kria-apps-docs/kd240/foc-motor-ctrl/0_4/build/html/foc_motor_control_landing.html>`_
+   * `FOC 0.4 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/foc-motor-ctrl/0_4/build/html/foc_motor_control_landing.html>`_
 
 
 

@@ -208,7 +208,7 @@ to update the boot firmware. In this example, we have decided to write boot.bin 
 
 ## Step 4: Observe UART Output
 
-After step 3, .bit file and the .elf files will be programmed, and developers should observe printouts from uart indicating the ability to write and read from BRAM.
+After step 3, `.bit` file and the `.elf` files will be programmed, and developers should observe printouts from uart indicating the ability to write and read from BRAM.
 
 ### Optional: Restoring Linux booting image
 

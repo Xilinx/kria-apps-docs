@@ -1,8 +1,7 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -106,6 +105,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bist/bist_landing.html">Built-In Self Test (BIST)</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">KR260 Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_boot.html">Boot Kria Starter Kit Linux on KR260</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Build the Design Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Create a Vitis Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generate Custom Firmware</a></li>
+</ul>
 
         </div>
       </div>
@@ -132,15 +139,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="hardware-architecture-of-the-platform">
+  <div class="section" id="hardware-architecture-of-the-platform">
 <h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This section describes the hardware block design components implemented in Programmable Logic (PL).</p>
 <p>The PL design read data from the PMOD GPS Receiver to get the GPS time from Global Navigation Satellite System (GNSS). The platform uses an AXI UART Lite IP to interface with the PMOD Receiver’s UART interface for getting the GPS data in NMEA format. The 1PPS signal from the PMOD receiver is connected to PS GPIO via EMIO pins. Gigabit Ethernet MAC (GEM) Controller (GEM0,GEM1) is enabled in the PS to transmit, receive PTP packets, or ethernet traffic.</p>
 <p>The following figure shows the top-level hardware architecture of the reference design.</p>
 <p><img alt="Hardware Architecture block diagram" src="../../../_images/hw_arch_gps.png" /></p>
-<section id="pmod-gps-receiver">
+<div class="section" id="pmod-gps-receiver">
 <h3>PMOD GPS Receiver<a class="headerlink" href="#pmod-gps-receiver" title="Permalink to this heading">¶</a></h3>
 <p>The following figure shows the PMOD GPS receiver:</p>
 <p>GPS receiver has</p>
@@ -150,16 +157,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ol>
 <p><img alt="PMOD GPS Receiver" src="../../../_images/pmod_gps_receiver.png" /></p>
 <p>For more information on the Digilent PMOD Receiver, refer to the <a href="https://digilent.com/reference/_media/pmod:pmod:PmodGPS_rm.pdf"> PMOD GPS Receiver Reference Manual</a>.</p>
-</section>
-</section>
-<section id="axi-uart-lite">
+</div>
+</div>
+<div class="section" id="axi-uart-lite">
 <h2>AXI UART LITE<a class="headerlink" href="#axi-uart-lite" title="Permalink to this heading">¶</a></h2>
 <p>The AMD LogiCORE™ IP AXI UART Lite core converts AXI4 Lite register transactions to RS232 signaling. PMOD GPS receiver provides GPS time and GPS Coordinate data in NMEA format using the embedded UART interface. AXI UART LITE IP has UART controller to read data from PMOD receiver and convert it into AXI4 Lite register transactions to be read by the PS.</p>
 <p>For more information on the IP, refer to <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/pg142-axi-uartlite">AXI UART Lite v2.0 Product Guide</a>.</p>
-</section>
-<section id="clocks-and-resets">
+</div>
+<div class="section" id="clocks-and-resets">
 <h2>Clocks and Resets<a class="headerlink" href="#clocks-and-resets" title="Permalink to this heading">¶</a></h2>
-<section id="clocks">
+<div class="section" id="clocks">
 <h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this heading">¶</a></h3>
 <p>The following table identifies the main clocks of the PL design, the source, clock frequency, and the function.</p>
 <table border="1" class="docutils">
@@ -179,8 +186,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td style="text-align: left;">Clock source for AXI Interconnect, AXI UART lite and AXI GPIO</td>
 </tr>
 </tbody>
-</table></section>
-<section id="resets">
+</table></div>
+<div class="section" id="resets">
 <h3>Resets<a class="headerlink" href="#resets" title="Permalink to this heading">¶</a></h3>
 <p>The following table summarizes the resets used in this design.</p>
 <table border="1" class="docutils">
@@ -200,9 +207,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td style="text-align: left;">Synchronous resets w.r.t 100M clock domain for AXI interconnect, AXI UART lite and AXI GPIO.</td>
 </tr>
 </tbody>
-</table></section>
-</section>
-<section id="resource-utilization">
+</table></div>
+</div>
+<div class="section" id="resource-utilization">
 <h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this heading">¶</a></h2>
 <p>The resource utilization numbers of the platform post implementation is reported in the following table.</p>
 <table border="1" class="docutils">
@@ -252,8 +259,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td style="text-align: left;">25</td>
 </tr>
 </tbody>
-</table></section>
-<section id="next-steps">
+</table></div>
+<div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="app_deployment.html"><span class="doc">Application Deployment</span></a></p></li>
@@ -268,8 +275,8 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright (C) 2023 Advanced Micro Devices, Inc.</p></section>
-</section>
+--><p class="sphinxhide" align="center">Copyright (C) 2023 Advanced Micro Devices, Inc.</p></div>
+</div>
 
 
            </div>
@@ -284,8 +291,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on December 11, 2024.
+    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

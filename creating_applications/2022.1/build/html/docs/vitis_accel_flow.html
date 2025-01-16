@@ -118,6 +118,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
@@ -214,7 +215,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="compile-from-dtsi">
 <h3>1. Compile from .dtsi<a class="headerlink" href="#compile-from-dtsi" title="Permalink to this heading">¶</a></h3>
 <p>Developers can download the .dtsi file from <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware">Kria apps firmware</a> and compile them using command below. For more information on dtc please refer to <a class="reference internal" href="dtsi_dtbo_generation.html"><span class="doc">dtsi_dtbo_generation</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dtb -o pl.dtbo pl.dtsi
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dtb<span class="w"> </span>-o<span class="w"> </span>pl.dtbo<span class="w"> </span>pl.dtsi
 </pre></div>
 </div>
 </div>
@@ -226,13 +227,13 @@ An example <code class="docutils literal notranslate"><span class="pre">&lt;appl
 <div class="section" id="generate-from-petalinux">
 <h3>3. Generate from PetaLinux<a class="headerlink" href="#generate-from-petalinux" title="Permalink to this heading">¶</a></h3>
 <p>Alternatively, developers can generate them in Petalinux.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;board&gt;-&lt;version&gt;.bsp
-<span class="nb">cd</span> xilinx-&lt;board&gt;-&lt;version&gt;
-petalinux-build -c &lt;application name&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create<span class="w"> </span>-t<span class="w"> </span>project<span class="w"> </span>-s<span class="w"> </span>xilinx-&lt;board&gt;-&lt;version&gt;.bsp
+<span class="nb">cd</span><span class="w"> </span>xilinx-&lt;board&gt;-&lt;version&gt;
+petalinux-build<span class="w"> </span>-c<span class="w"> </span>&lt;application<span class="w"> </span>name&gt;
 </pre></div>
 </div>
 <p>The .dtbo file can be found in:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$temp_folder</span>/sysroots-components/k26/&lt;application name&gt;/lib/firmware/xilinx/&lt;application name&gt;/&lt;application name&gt;.dtbo
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$temp_folder</span>/sysroots-components/k26/&lt;application<span class="w"> </span>name&gt;/lib/firmware/xilinx/&lt;application<span class="w"> </span>name&gt;/&lt;application<span class="w"> </span>name&gt;.dtbo
 </pre></div>
 </div>
 <p>location of $temp_folder can be found in <code class="docutils literal notranslate"><span class="pre">xilinx-&lt;board&gt;-&lt;version&gt;/project-spec/configs/config</span></code></p>
@@ -243,7 +244,7 @@ petalinux-build -c &lt;application name&gt;
 <h2>Step 3 - Create .xclbin and .bit.bin file from Vitis<a class="headerlink" href="#step-3-create-xclbin-and-bit-bin-file-from-vitis" title="Permalink to this heading">¶</a></h2>
 <p>Typically in this work flow, developers will use Makefiles to generate their design. Example Makefiles can be found <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms/tree/xlnx_rel_v2022.1/kv260/overlays/examples">here in kv260-vitis repo</a> and <a class="reference external" href="https://github.com/Xilinx/Vitis_Libraries/tree/master/vision/L1/examples">here in Vitis Library repo</a>.</p>
 <p>In the Makefile, developer should use <code class="docutils literal notranslate"><span class="pre">PLATFORM</span></code> to associate the application with Vitis Platform.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PLATFORM</span> <span class="o">=</span> &lt;path to Vitis Platform project&gt;.xpfm
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PLATFORM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;path<span class="w"> </span>to<span class="w"> </span>Vitis<span class="w"> </span>Platform<span class="w"> </span>project&gt;.xpfm
 </pre></div>
 </div>
 <p>After a successful make, there should be a .xclbin and .bit file generated.
@@ -255,7 +256,7 @@ To generate a .bit.bin file, create a <code class="docutils literal notranslate"
 </pre></div>
 </div>
 <p>And then run bitgen to create a binary bitstream <code class="docutils literal notranslate"><span class="pre">&lt;accelerator&gt;.bit.bin</span></code> file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bootgen -arch zynqmp -process_bitstream bin -image &lt;accelerator&gt;.bif 
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bootgen<span class="w"> </span>-arch<span class="w"> </span>zynqmp<span class="w"> </span>-process_bitstream<span class="w"> </span>bin<span class="w"> </span>-image<span class="w"> </span>&lt;accelerator&gt;.bif<span class="w"> </span>
 </pre></div>
 </div>
 </div>
@@ -297,8 +298,8 @@ To generate a .bit.bin file, create a <code class="docutils literal notranslate"
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

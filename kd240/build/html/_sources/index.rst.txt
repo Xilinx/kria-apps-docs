@@ -1,4 +1,4 @@
-﻿########################################################################################
+########################################################################################
 Kria KD240 Drives Starter Kit
 ########################################################################################
 
@@ -12,19 +12,31 @@ Kria KD240 Drives Starter Kit
 .. image:: docs/media/bist.png
    :width: 200
    :alt: Built-In Self Test (BIST)
-   :target: https://xilinx.github.io/kria-apps-docs/kd240/bist.html
+   :target: https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/bist.html
 
 
 .. image:: docs/media/tsn-communications.png
    :width: 200
    :alt: ROS 2 Multi-Node Communications via TSN
-   :target: https://xilinx.github.io/kria-apps-docs/kd240/ros2_multinode_communication_via_tsn.html
+   :target: https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/ros2_multinode_communication_via_tsn.html
 
 
 .. image:: docs/media/sensor-based-control.png
    :width: 200
    :alt: Sensor-Based Control
-   :target: https://xilinx.github.io/kria-apps-docs/kd240/foc_motor_ctrl.html
+   :target: https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/foc_motor_ctrl.html
+
+
+
+
+
+
+.. sidebar:: Getting Started
+   
+   For more information, see :doc:`Getting Started with Kria KD240 Drives Starter Kit <./docs/linux_boot>`.
+
+
+
 
 
 
@@ -34,8 +46,8 @@ Kria KD240 Drives Starter Kit
    :hidden:
 
    Built-In Self Test (BIST) <./docs/bist/bist_landing>
-   ROS 2 Multi-Node Communications via TSN <https://xilinx.github.io/kria-apps-docs/kd240/ros2_multinode_communication_via_tsn.html>
-   FOC Motor Control <https://xilinx.github.io/kria-apps-docs/kd240/foc_motor_ctrl.html>
+   ROS 2 Multi-Node Communications via TSN <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/ros2_multinode_communication_via_tsn.html>
+   FOC Motor Control <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/foc_motor_ctrl.html>
 
 
 

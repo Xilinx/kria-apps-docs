@@ -116,6 +116,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
@@ -158,14 +159,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>You will need to generate 3 files - .bit.bin (PL bitstream), .dtbo (device tree overlay), and shell.json to load onto SOM.</p>
 <div class="section" id="generate-bit-bin">
 <h2>Generate .bit.bin<a class="headerlink" href="#generate-bit-bin" title="Permalink to this heading">¶</a></h2>
-<p>There are two ways to start the Vivado project for Kria SOM Starter Kits. Since the <a class="reference internal" href="baremetal.html"><span class="doc">baremetal example</span></a> has an example for generating PL design in Vivado using board files, this example will use the base Vivado designs. There are two ways to get the base designs.</p>
-<p>They are provided in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">BSPs</a>.</p>
-<p>Download the BSP from above link. Then create the project using starter kit BSP:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s &lt;chosen bsp&gt;.bsp
-<span class="nb">cd</span> xilinx-&lt;board&gt;-&lt;version&gt;/hardware/xilinx-&lt;board&gt;-&lt;version&gt;/
-</pre></div>
-</div>
-<p>They are also provided in <a class="reference external" href="https://github.com/Xilinx/kria-base-hardware">github</a> for those who do not wish to use PetaLinux.</p>
+<p>There are two ways to start the Vivado project for Kria SOM Starter Kits. Since the <a class="reference internal" href="baremetal.html"><span class="doc">baremetal example</span></a> has an example for generating PL design in Vivado using board files, this example will use the base Vivado designs. There are two ways to get the base designs, either using <a class="reference internal" href="Generate_vivado_project_from_boardfile.html"><span class="doc">board files</span></a> or <a class="reference internal" href="Generate_vivado_project_from_CED.html"><span class="doc">example design</span></a>.</p>
 <p>Start Vivado, click <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Project</span></code> and select <code class="docutils literal notranslate"><span class="pre">xilinx-&lt;board&gt;-&lt;version&gt;.xpr</span></code> and the example project will open:</p>
 <p><img alt="01vivado" src="../_images/01_vivado1.png" /></p>
 <p>Click <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Block</span> <span class="pre">Design</span></code> and you will see a pre-configured <code class="docutils literal notranslate"><span class="pre">zynq_ultra_ps_e_0</span></code> block:</p>
@@ -189,7 +183,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Click on <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">Bitstream</span></code> to generate the .bin file</p>
 <p><img alt="10vivado" src="../_images/10_vivado1.png" /></p>
 <p>Copy the generated .bin file to top level, we will use the name <code class="docutils literal notranslate"><span class="pre">bram</span></code> for this simple application:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp xilinx-&lt;board&gt;-&lt;version&gt;.runs/impl_1/project_1_wrapper.bin bram.bit.bin
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>xilinx-&lt;board&gt;-&lt;version&gt;.runs/impl_1/project_1_wrapper.bin<span class="w"> </span>bram.bit.bin
 </pre></div>
 </div>
 </div>
@@ -212,10 +206,10 @@ xsct% exit
 </pre></div>
 </div>
 <p>Then compile .dtsi to binary .dtbo using DTC:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> bram_dts/
-dtc -@ -O dtb -o pl.dtbo pl.dtsi
-<span class="nb">cd</span> ../
-cp bram_dts/pl.dtbo bram.dtbo
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>bram_dts/
+dtc<span class="w"> </span>-@<span class="w"> </span>-O<span class="w"> </span>dtb<span class="w"> </span>-o<span class="w"> </span>pl.dtbo<span class="w"> </span>pl.dtsi
+<span class="nb">cd</span><span class="w"> </span>../
+cp<span class="w"> </span>bram_dts/pl.dtbo<span class="w"> </span>bram.dtbo
 </pre></div>
 </div>
 </div>
@@ -229,18 +223,18 @@ cp bram_dts/pl.dtbo bram.dtbo
 <p>Move the files over using your preferred method, this example uses scp to move over the files to target.</p>
 <p><img alt="11target" src="../_images/11_target.png" /></p>
 <p>On SOM’s Linux command prompt, create a folder and copy over the files, and check that the new application shows up in listapps:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkdir /lib/firmware/xilinx/bram
-sudo cp bram.* shell.json /lib/firmware/xilinx/bram/
-sudo xmutil listapps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/lib/firmware/xilinx/bram
+sudo<span class="w"> </span>cp<span class="w"> </span>bram.*<span class="w"> </span>shell.json<span class="w"> </span>/lib/firmware/xilinx/bram/
+sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
 </pre></div>
 </div>
 <p><img alt="12target" src="../_images/12_target.png" /></p>
 <p>Observe that before the bram application is loaded, access to 0xa0000000 (the bram location that we obtained in Vivado) is not successful. But after loading the bram app, you will be able to read and write to 0xa0000000.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp
-sudo xmutil loadapp bram
-sudo devmem 0xa0000000 <span class="m">32</span>
-sudo devmem 0xa0000000 <span class="m">32</span> 0xdeadbeef
-sudo devmem 0xa0000000 <span class="m">32</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>bram
+sudo<span class="w"> </span>devmem<span class="w"> </span>0xa0000000<span class="w"> </span><span class="m">32</span>
+sudo<span class="w"> </span>devmem<span class="w"> </span>0xa0000000<span class="w"> </span><span class="m">32</span><span class="w"> </span>0xdeadbeef
+sudo<span class="w"> </span>devmem<span class="w"> </span>0xa0000000<span class="w"> </span><span class="m">32</span>
 </pre></div>
 </div>
 <p><img alt="13target" src="../_images/13_target.png" /></p>
@@ -267,8 +261,8 @@ sudo devmem 0xa0000000 <span class="m">32</span>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

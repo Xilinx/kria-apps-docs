@@ -14,9 +14,9 @@ Kria SOM Ubuntu Support
    :caption: Ubuntu Boot Linux Instructions
    :hidden:
 
-   Kria KV260 <https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html>
-   Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260/linux_boot.html>
-   Kria KD240 <https://xilinx.github.io/kria-apps-docs/kd240/linux_boot.html>
+   Kria KV260 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/linux_boot.html>
+   Kria KR260 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/linux_boot.html>
+   Kria KD240 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/linux_boot.html>
 
 
 
@@ -35,11 +35,11 @@ In addition to the PetaLinux and Yocto enablement, Kria Starter Kits has Ubuntu 
    * - Starter Kit
      - link
    * - KV260
-     - `KV260 Ubuntu Boot Linux Instructions <https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html>`_
+     - `KV260 Ubuntu Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/linux_boot.html>`_
    * - KR260
-     - `KR260 Ubuntu Boot Linux Instructions <https://xilinx.github.io/kria-apps-docs/kr260/linux_boot.html>`_
+     - `KR260 Ubuntu Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/linux_boot.html>`_
    * - KD240
-     - `KD240 Ubuntu Boot Linux Instructions <https://xilinx.github.io/kria-apps-docs/kd240/linux_boot.html>`_
+     - `KD240 Ubuntu Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/linux_boot.html>`_
 
 
 

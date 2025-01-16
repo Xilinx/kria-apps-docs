@@ -165,41 +165,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="boot-freertos-vis-jtag">
 <h4>Boot FreeRTOS vis JTAG<a class="headerlink" href="#boot-freertos-vis-jtag" title="Permalink to this heading">¶</a></h4>
 <p>To boot freeRTOS via JTAG, we will use XSDB. Create a folder with <code class="docutils literal notranslate"><span class="pre">freertos_hello_world.elf</span></code>, <code class="docutils literal notranslate"><span class="pre">fsbl.elf</span></code> and <code class="docutils literal notranslate"><span class="pre">pmufw.elf</span></code> in the folder. Create a boot.sh in the same folder with the following content:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>puts stderr <span class="s2">&quot;Starting the script...&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>puts<span class="w"> </span>stderr<span class="w"> </span><span class="s2">&quot;Starting the script...&quot;</span>
 connect
-targets -set -nocase -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+targets<span class="w"> </span>-set<span class="w"> </span>-nocase<span class="w"> </span>-filter<span class="w"> </span><span class="o">{</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
 <span class="c1"># update multiboot to ZERO</span>
-mwr 0xffca0010 0x0
+mwr<span class="w"> </span>0xffca0010<span class="w"> </span>0x0
 <span class="c1"># change boot mode to JTAG</span>
-mwr 0xff5e0200 0x0100
+mwr<span class="w"> </span>0xff5e0200<span class="w"> </span>0x0100
 <span class="c1"># reset</span>
-rst -system
-after <span class="m">2000</span>
+rst<span class="w"> </span>-system
+after<span class="w"> </span><span class="m">2000</span>
 
-targets -set -nocase -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
-mwr  0xffca0038 0x1ff
-targets -set -nocase -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;MicroBlaze PMU&quot;</span><span class="o">}</span>
-catch <span class="o">{</span>stop<span class="o">}</span><span class="p">;</span> after <span class="m">1000</span>
-puts stderr <span class="s2">&quot;INFO: Downloading zynqmp_pmufw ELF file to the target.&quot;</span>
-dow -force <span class="s2">&quot;pmufw.elf&quot;</span>
-after <span class="m">2000</span>
+targets<span class="w"> </span>-set<span class="w"> </span>-nocase<span class="w"> </span>-filter<span class="w"> </span><span class="o">{</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
+mwr<span class="w">  </span>0xffca0038<span class="w"> </span>0x1ff
+targets<span class="w"> </span>-set<span class="w"> </span>-nocase<span class="w"> </span>-filter<span class="w"> </span><span class="o">{</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s2">&quot;MicroBlaze PMU&quot;</span><span class="o">}</span>
+catch<span class="w"> </span><span class="o">{</span>stop<span class="o">}</span><span class="p">;</span><span class="w"> </span>after<span class="w"> </span><span class="m">1000</span>
+puts<span class="w"> </span>stderr<span class="w"> </span><span class="s2">&quot;INFO: Downloading zynqmp_pmufw ELF file to the target.&quot;</span>
+dow<span class="w"> </span>-force<span class="w"> </span><span class="s2">&quot;pmufw.elf&quot;</span>
+after<span class="w"> </span><span class="m">2000</span>
 con
 
-after <span class="m">5000</span>
-targets -set -nocase -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;Cortex-A53*#0&quot;</span><span class="o">}</span>
-rst -proc -clear-registers
-after <span class="m">2000</span>
-puts stderr <span class="s2">&quot;INFO: Downloading zynqmp_fsbl ELF file to the target.&quot;</span>
-dow -force <span class="s2">&quot;fsbl.elf&quot;</span>
-after <span class="m">2000</span>
+after<span class="w"> </span><span class="m">5000</span>
+targets<span class="w"> </span>-set<span class="w"> </span>-nocase<span class="w"> </span>-filter<span class="w"> </span><span class="o">{</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s2">&quot;Cortex-A53*#0&quot;</span><span class="o">}</span>
+rst<span class="w"> </span>-proc<span class="w"> </span>-clear-registers
+after<span class="w"> </span><span class="m">2000</span>
+puts<span class="w"> </span>stderr<span class="w"> </span><span class="s2">&quot;INFO: Downloading zynqmp_fsbl ELF file to the target.&quot;</span>
+dow<span class="w"> </span>-force<span class="w"> </span><span class="s2">&quot;fsbl.elf&quot;</span>
+after<span class="w"> </span><span class="m">2000</span>
 con
-after <span class="m">4000</span><span class="p">;</span> stop<span class="p">;</span> catch <span class="o">{</span>stop<span class="o">}</span><span class="p">;</span>
+after<span class="w"> </span><span class="m">4000</span><span class="p">;</span><span class="w"> </span>stop<span class="p">;</span><span class="w"> </span>catch<span class="w"> </span><span class="o">{</span>stop<span class="o">}</span><span class="p">;</span>
 
-targets -set -nocase -filter <span class="o">{</span><span class="nv">name</span> <span class="o">=</span>~ <span class="s2">&quot;*A53*#0&quot;</span><span class="o">}</span>
-puts stderr <span class="s2">&quot;INFO: Downloading u-boot ELF file to the target.&quot;</span>
-after <span class="m">2000</span>
-dow -force <span class="s2">&quot;freertos_hello_world.elf&quot;</span>
-after <span class="m">2000</span>
+targets<span class="w"> </span>-set<span class="w"> </span>-nocase<span class="w"> </span>-filter<span class="w"> </span><span class="o">{</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s2">&quot;*A53*#0&quot;</span><span class="o">}</span>
+puts<span class="w"> </span>stderr<span class="w"> </span><span class="s2">&quot;INFO: Downloading u-boot ELF file to the target.&quot;</span>
+after<span class="w"> </span><span class="m">2000</span>
+dow<span class="w"> </span>-force<span class="w"> </span><span class="s2">&quot;freertos_hello_world.elf&quot;</span>
+after<span class="w"> </span><span class="m">2000</span>
 con
 </pre></div>
 </div>
@@ -209,15 +209,15 @@ con
 <h4>Boot FreeRTOS Using QSPI in A/B update<a class="headerlink" href="#boot-freertos-using-qspi-in-a-b-update" title="Permalink to this heading">¶</a></h4>
 <p>If your Starter Kit has the locked QSPI image with A/B boot sections, you can also test the generated boot.bin (renamed to freertos_boot.bin here) by loading it to A or B boot partition and test.</p>
 <p>For an example, you can boot to Ubuntu/PetaLinux and load the freertos_boot.bin into one of the image partition using xmutil:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$ sudo xmutil bootfw_update -i freertos_boot.bin
-Marking last booted image as bootable
-Reading Image file
-Updating Image B
-Marking target image as non bootable
-Writing Image to Image B partition
-Marking target image as non bootable and requested image
-Clearing multiboot register value
-freertos_boot.bin successfully updated to Image B partition
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>bootfw_update<span class="w"> </span>-i<span class="w"> </span>freertos_boot.bin
+Marking<span class="w"> </span>last<span class="w"> </span>booted<span class="w"> </span>image<span class="w"> </span>as<span class="w"> </span>bootable
+Reading<span class="w"> </span>Image<span class="w"> </span>file
+Updating<span class="w"> </span>Image<span class="w"> </span>B
+Marking<span class="w"> </span>target<span class="w"> </span>image<span class="w"> </span>as<span class="w"> </span>non<span class="w"> </span>bootable
+Writing<span class="w"> </span>Image<span class="w"> </span>to<span class="w"> </span>Image<span class="w"> </span>B<span class="w"> </span>partition
+Marking<span class="w"> </span>target<span class="w"> </span>image<span class="w"> </span>as<span class="w"> </span>non<span class="w"> </span>bootable<span class="w"> </span>and<span class="w"> </span>requested<span class="w"> </span>image
+Clearing<span class="w"> </span>multiboot<span class="w"> </span>register<span class="w"> </span>value
+freertos_boot.bin<span class="w"> </span>successfully<span class="w"> </span>updated<span class="w"> </span>to<span class="w"> </span>Image<span class="w"> </span>B<span class="w"> </span>partition
 </pre></div>
 </div>
 <p>Perform a power cycle - on the first power cycle, image selector will choose the newly updated partition  - you will see hello freeRTOS program printouts on UART. However, note that in this state, on every other power cycle, the image selector will choose the other partition and try to boot Linux. For detailed logics on how image selector chooses which partition to use, see <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw/build/html/docs/bootfw_overview.html#a-b-boot-concept">a/b boot concept</a> section.</p>
@@ -243,8 +243,8 @@ freertos_boot.bin successfully updated to Image B partition
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 26, 2024.
+    <p>&#169; Copyright 2024-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

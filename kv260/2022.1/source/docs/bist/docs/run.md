@@ -100,9 +100,9 @@ to obtain latest linux image and boot firmware.
 Before continuing with the BIST application specific instructions, if not yet
 done so, boot Linux with instructions from:
 
-  1. [Kria Starter Kit Linux Boot on KV260](https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html)
-  2. [Kria Starter Kit Linux Boot on KR260](https://xilinx.github.io/kria-apps-docs/kr260/linux_boot.html)
-  3. [Kria Starter Kit Linux Boot on KD240](https://xilinx.github.io/kria-apps-docs/kd240/linux_boot.html)
+  1. [Kria Starter Kit Linux Boot on KV260](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/linux_boot.html)
+  2. [Kria Starter Kit Linux Boot on KR260](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/linux_boot.html)
+  3. [Kria Starter Kit Linux Boot on KD240](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/linux_boot.html)
 
 ## Download and Load the BIST PL Firmware
 

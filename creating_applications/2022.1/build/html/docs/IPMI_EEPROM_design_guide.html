@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Kria SOM EEPROM Content" href="EEPROM_mapping_for_Kria_products.html" />
-    <link rel="prev" title="Generate a Vivado Project from Board Files" href="Generate_vivado_project_from_boardfile.html" /> 
+    <link rel="prev" title="Generate a Vivado Project from Example Project" href="Generate_vivado_project_from_CED.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -101,6 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Kria SOM EEPROM Design Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#kria-som-eeprom-overview">Kria SOM EEPROM Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#eeprom-information">EEPROM Information</a></li>
@@ -172,14 +173,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ul>
 <p>To readout EEPROM in Linux:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo hexdump -C /sys/devices/platform/axi/ff030000.i2c/i2c-1/1-0050/eeprom <span class="c1"># Reads out SOM EEPROM</span>
-sudo hexdump -C /sys/devices/platform/axi/ff030000.i2c/i2c-1/1-0051/eeprom <span class="c1"># Reads out CC EEPROM</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>hexdump<span class="w"> </span>-C<span class="w"> </span>/sys/devices/platform/axi/ff030000.i2c/i2c-1/1-0050/eeprom<span class="w"> </span><span class="c1"># Reads out SOM EEPROM</span>
+sudo<span class="w"> </span>hexdump<span class="w"> </span>-C<span class="w"> </span>/sys/devices/platform/axi/ff030000.i2c/i2c-1/1-0051/eeprom<span class="w"> </span><span class="c1"># Reads out CC EEPROM</span>
 </pre></div>
 </div>
 <p>To readout EEPROM, in u-boot:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>i2c dev <span class="m">1</span><span class="p">;</span>
-i2c md 0x50 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out SOM EEPROM</span>
-i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEPROM</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>i2c<span class="w"> </span>dev<span class="w"> </span><span class="m">1</span><span class="p">;</span>
+i2c<span class="w"> </span>md<span class="w"> </span>0x50<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span>0x100<span class="w"> </span><span class="c1"># Reads out SOM EEPROM</span>
+i2c<span class="w"> </span>md<span class="w"> </span>0x51<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span>0x100<span class="w"> </span><span class="c1"># Reads out CC EEPROM</span>
 </pre></div>
 </div>
 </div>
@@ -571,15 +572,15 @@ i2c md 0x51 <span class="m">0</span>.2 0x100 <span class="c1"># Reads out CC EEP
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Generate_vivado_project_from_boardfile.html" class="btn btn-neutral float-left" title="Generate a Vivado Project from Board Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Generate_vivado_project_from_CED.html" class="btn btn-neutral float-left" title="Generate a Vivado Project from Example Project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="EEPROM_mapping_for_Kria_products.html" class="btn btn-neutral float-right" title="Kria SOM EEPROM Content" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

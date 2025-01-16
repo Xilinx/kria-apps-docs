@@ -47,7 +47,7 @@ The following IPs can also be supported on K26 and KR260 Starter Kits (no exampl
 
 ### Ethernet Driver Consideration
 
-Note that KV260, KR260 has different ethernet PHY comparing to KD240, which requires slightly different implementation in LWIP stack. Refer to [FAQ](../../../faq/source/docs/faq.md#ethernet-implementation-for-amd-starter-kits) for more information.
+Note that KV260, KR260 has different ethernet PHY comparing to KD240, which requires slightly different implementation in LWIP stack. Refer to [FAQ](https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#ethernet-implementation-for-amd-starter-kits) for more information.
 
 ## License
 

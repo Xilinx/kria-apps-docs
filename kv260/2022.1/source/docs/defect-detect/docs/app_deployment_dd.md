@@ -20,7 +20,7 @@ This guide and its prebuilt are targeted for Ubuntu&reg; 22.04 and AMD 2022.1 to
 
 ## Booting up Linux
 
-Before continuing with defect-detect application specific instructions, if not yet done so, boot Linux with the instructions from the [Kria Starter Kit Linux boot](https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html) page.
+Before continuing with defect-detect application specific instructions, if not yet done so, boot Linux with the instructions from the [Kria Starter Kit Linux boot](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/linux_boot.html) page.
 
 >**NOTE:** The Defect Detect application requires starting the application using command line through universal asynchronous receiver-transmitter (UART) instead of GNOME Desktop.
 
@@ -90,7 +90,7 @@ See [Known Issues](known_issues_dd.md) with the Defect Detect application.
 
 ## Application Specific Hardware Setup
 
-Besides the hardware configurations required in the [Kria Starter Kit Linux boot](https://xilinx.github.io/kria-apps-docs/kv260/linux_boot.html) for booting Linux, the Defect Detect Application requires the following:
+Besides the hardware configurations required in the [Kria Starter Kit Linux boot](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/linux_boot.html) for booting Linux, the Defect Detect Application requires the following:
 
 ![GitHub Logo](../../media/som-board.png)
 

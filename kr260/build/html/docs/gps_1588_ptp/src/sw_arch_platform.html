@@ -1,8 +1,7 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -104,6 +103,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bist/bist_landing.html">Built-In Self Test (BIST)</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">KR260 Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_boot.html">Boot Kria Starter Kit Linux on KR260</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Build the Design Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Create a Vitis Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generate Custom Firmware</a></li>
+</ul>
 
         </div>
       </div>
@@ -130,9 +137,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="software-architecture-of-the-platform">
+  <div class="section" id="software-architecture-of-the-platform">
 <h1>Software Architecture of the Platform<a class="headerlink" href="#software-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This section describes software components involved in the design and their relation with each other. The application requires the hardware platform as described in <a class="reference internal" href="hw_arch_platform.html"><span class="doc">Hardware Architecture of the Platform</span></a> for the stack explained in this section to work.</p>
 <p>The following diagram illustrates the top-level architecture and the arrangement of various software components:</p>
@@ -158,34 +165,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The details of each individual component can be obtained though the reference at the end of this section. The scope of this document is with respect to what is being demonstrated through the example application.</p>
 </li>
 </ul>
-<section id="gpsd">
+<div class="section" id="gpsd">
 <h3>Gpsd<a class="headerlink" href="#gpsd" title="Permalink to this heading">¶</a></h3>
 <p>Gpsd is a service Daemon for establishing the connection to the external GPS Receiver. This Daemon is configured to read and process UBX protocol messages through the Uart interface on the master node. The results are provided via an IPC shared memory buffer.</p>
-</section>
-<section id="chrony">
+</div>
+<div class="section" id="chrony">
 <h3>Chrony<a class="headerlink" href="#chrony" title="Permalink to this heading">¶</a></h3>
 <p>Chrony is a daemon for synchronization of the system clock. It can synchronize the clock with NTP servers and reference clocks (for example, a GPS receiver). It is configured to work with shared memory segment and also process the PPS (/dev/ppsX) interface.</p>
-</section>
-<section id="linux-ptp-utilities">
+</div>
+<div class="section" id="linux-ptp-utilities">
 <h3>Linux ptp utilities:<a class="headerlink" href="#linux-ptp-utilities" title="Permalink to this heading">¶</a></h3>
-<section id="phc2sys">
+<div class="section" id="phc2sys">
 <h4>Phc2sys<a class="headerlink" href="#phc2sys" title="Permalink to this heading">¶</a></h4>
 <p>phc2sys establishes the synchronization between the PHC and system clocks ,the actual synchronization direction depends on the role of the node.</p>
-</section>
-</section>
-<section id="ptp4l">
+</div>
+</div>
+<div class="section" id="ptp4l">
 <h3>ptp4l<a class="headerlink" href="#ptp4l" title="Permalink to this heading">¶</a></h3>
 <p>ptp4l implements the PTP network protocol and aligns the PHC clocks on the both master and slave.</p>
-</section>
-<section id="pps-tools">
+</div>
+<div class="section" id="pps-tools">
 <h3>pps-tools<a class="headerlink" href="#pps-tools" title="Permalink to this heading">¶</a></h3>
 <p>It is a tool to monitor PPS timestamps from the pps device.</p>
-</section>
-</section>
-<section id="gps-1588-ptp-application">
+</div>
+</div>
+<div class="section" id="gps-1588-ptp-application">
 <h2>GPS-1588-PTP Application<a class="headerlink" href="#gps-1588-ptp-application" title="Permalink to this heading">¶</a></h2>
 <p>By using this application, the system time of the embedded platform is synchronized with the GPS time using ubuntu daemons and linux-ptp utilities. The system time of the master side is distributed to the connected slaves in the network.</p>
-<section id="how-synchronization-works">
+<div class="section" id="how-synchronization-works">
 <h3>How Synchronization works<a class="headerlink" href="#how-synchronization-works" title="Permalink to this heading">¶</a></h3>
 <p>The synchronization starts by synchronizing the system time of the Master KR260 board with respect to the GPS time using the Network Time Protocol (NTP) daemon chrony. In this case, we have configured two sources from GPS receiver.</p>
 <ol class="simple">
@@ -194,10 +201,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ol>
 <p>Using the Linux PTP tools phc2sys, the Master side GEM TSU timer is aligned with respect to the system time.
 In the slave side, ptp4l first synchronizes the GEM PHC with the master side PHC using PTP packets via the GEM PS ethernet interface. Following that, the slave board system clock is synchronized to the PHC clock using the phc2sys tool. Now the synchronization direction is from the PHC clock to the system clock.</p>
-</section>
-<section id="linux-driver">
+</div>
+<div class="section" id="linux-driver">
 <h3>Linux driver<a class="headerlink" href="#linux-driver" title="Permalink to this heading">¶</a></h3>
-<section id="uart-lite">
+<div class="section" id="uart-lite">
 <h4>Uart lite<a class="headerlink" href="#uart-lite" title="Permalink to this heading">¶</a></h4>
 <p>This component contains the implementation of the Uart Lite component, which is the driver for the AMD UART Lite device. This UART is a minimal hardware implementation with minimal features. Most of the features, including baud rate, parity, and the number of data bits are only configurable when the hardware device is built, rather than at runtime by the software.
 This driver requires different compatibility string and; hence, the original device tree node is compatible string needs to be overwritten as shown below:</p>
@@ -206,8 +213,8 @@ This driver requires different compatibility string and; hence, the original dev
 };
 </pre></div>
 </div>
-</section>
-<section id="pps-gpio">
+</div>
+<div class="section" id="pps-gpio">
 <h4>PPS-GPIO<a class="headerlink" href="#pps-gpio" title="Permalink to this heading">¶</a></h4>
 <p>This driver is derived from the current parallel port PPS generator and provides a PPS signal through a GPIO pin specified in the device tree. PPS stands for “pulse per second” and a PPS source is just a device that provides a high-precision signal each second so that an application can use it to adjust the system clock time.<br />The details of the device tree for the driver can be found in the kernel documentation at <a class="reference external" href="https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/pps/pps-gpio.txt">linux-xlnx</a>.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  	pps_axi_gpio_0 {
@@ -217,10 +224,10 @@ This driver requires different compatibility string and; hence, the original dev
               };
 </pre></div>
 </div>
-</section>
-</section>
-</section>
-<section id="references">
+</div>
+</div>
+</div>
+<div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842249/Uartlite+Driver">Xilinx Uart lite Driver</a></p></li>
@@ -229,7 +236,7 @@ This driver requires different compatibility string and; hence, the original dev
 <li><p><a class="reference external" href="https://chrony.tuxfamily.org/index.html">chrony</a></p></li>
 <li><p><a class="reference external" href="https://linuxptp.nwtime.org/documentation/">linuxptp</a></p></li>
 </ul>
-<section id="next-steps">
+<div class="section" id="next-steps">
 <h3>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="app_deployment.html"><span class="doc">Application Deployment</span></a></p></li>
@@ -244,9 +251,9 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright (C) 2023 Advanced Micro Devices, Inc.</p></section>
-</section>
-</section>
+--><p class="sphinxhide" align="center">Copyright (C) 2023 Advanced Micro Devices, Inc.</p></div>
+</div>
+</div>
 
 
            </div>
@@ -261,8 +268,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on December 11, 2024.
+    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

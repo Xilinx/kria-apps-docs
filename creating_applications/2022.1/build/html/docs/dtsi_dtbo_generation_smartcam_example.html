@@ -122,6 +122,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
@@ -164,10 +165,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this heading">¶</a></h2>
 <p>First read through <a class="reference internal" href="dtsi_dtbo_generation.html"><span class="doc">Generating DTSI and DTBO Overlay Files</span></a> and install required tools.</p>
 <p>The XSA file required can be obtained using these <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vivado_design.html">instructions</a>. They are summarized below:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$workdir</span>
-git clone --recursive --branch xlnx_rel_v2022.1 https://github.com/Xilinx/kria-vitis-platforms.git
-<span class="nb">cd</span> <span class="nv">$workdir</span>/kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP
-make xsa
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$workdir</span>
+git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2022.1<span class="w"> </span>https://github.com/Xilinx/kria-vitis-platforms.git
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$workdir</span>/kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP
+make<span class="w"> </span>xsa
 </pre></div>
 </div>
 <p>The generated XSA will be located at: <code class="docutils literal notranslate"><span class="pre">$workdir/kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.xsa</span></code>.</p>
@@ -175,18 +176,18 @@ make xsa
 <div class="section" id="generating-dtsi-based-on-platform-xsa-file-using-dtg">
 <h2>Generating DTSI based on platform xsa file using DTG<a class="headerlink" href="#generating-dtsi-based-on-platform-xsa-file-using-dtg" title="Permalink to this heading">¶</a></h2>
 <p>Call XSCT:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$workdir</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$workdir</span>
 xsct
 </pre></div>
 </div>
 <p>In XSCT, perform the following commands which will extract the HW configuration information and generate a DTSI file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsi open_hw_design kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.xsa
-hsi set_repo_path &lt;path to device-tree-xlnx repository&gt;
-hsi create_sw_design device-tree -os device_tree -proc psu_cortexa53_0
-hsi set_property CONFIG.dt_overlay <span class="nb">true</span> <span class="o">[</span>hsi::get_os<span class="o">]</span>
-hsi set_property CONFIG.dt_zocl <span class="nb">true</span> <span class="o">[</span>hsi get_os<span class="o">]</span>
-hsi generate_target -dir smartcam_dtg_output
-hsi close_hw_design kv260_ispMipiRx_vcu_DP_wrapper
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsi<span class="w"> </span>open_hw_design<span class="w"> </span>kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.xsa
+hsi<span class="w"> </span>set_repo_path<span class="w"> </span>&lt;path<span class="w"> </span>to<span class="w"> </span>device-tree-xlnx<span class="w"> </span>repository&gt;
+hsi<span class="w"> </span>create_sw_design<span class="w"> </span>device-tree<span class="w"> </span>-os<span class="w"> </span>device_tree<span class="w"> </span>-proc<span class="w"> </span>psu_cortexa53_0
+hsi<span class="w"> </span>set_property<span class="w"> </span>CONFIG.dt_overlay<span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="o">[</span>hsi::get_os<span class="o">]</span>
+hsi<span class="w"> </span>set_property<span class="w"> </span>CONFIG.dt_zocl<span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="o">[</span>hsi<span class="w"> </span>get_os<span class="o">]</span>
+hsi<span class="w"> </span>generate_target<span class="w"> </span>-dir<span class="w"> </span>smartcam_dtg_output
+hsi<span class="w"> </span>close_hw_design<span class="w"> </span>kv260_ispMipiRx_vcu_DP_wrapper
 </pre></div>
 </div>
 <p>A file <code class="docutils literal notranslate"><span class="pre">smartcam_dtg_output/pl.dtsi</span></code> will be created. It should look identical to <a class="reference external" href="./example_src/smartcam_dtsi_example/pl.dtsi">pl.dtsi here</a>, we will modify it in the next step to add the necessary information that cannot be automatically generated.</p>
@@ -300,7 +301,7 @@ xlnx,en-active-lanes;
 <div class="section" id="compile-the-dtsi-to-dtbo-using-dtc">
 <h2>Compile the .dtsi to .dtbo using DTC<a class="headerlink" href="#compile-the-dtsi-to-dtbo-using-dtc" title="Permalink to this heading">¶</a></h2>
 <p>Now generate the .dtbo file using command below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dtc -@ -O dtb -o pl_modify.dtbo pl_modify.dtsi
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dtc<span class="w"> </span>-@<span class="w"> </span>-O<span class="w"> </span>dtb<span class="w"> </span>-o<span class="w"> </span>pl_modify.dtbo<span class="w"> </span>pl_modify.dtsi
 </pre></div>
 </div>
 <p>As a sanity test rename the generated pl.dtbo to a unique name for tracking purposes, move it to the kv260 target and confirm that replacing the kv260_smartcam.dtbo with the generated one that the SmartCam app still works.</p>
@@ -327,8 +328,8 @@ xlnx,en-active-lanes;
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

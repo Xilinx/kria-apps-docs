@@ -120,6 +120,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="../bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
@@ -160,45 +161,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This tutorial assumes the user has followed the <a class="reference external" href="https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/getting-started.html">Getting started with Kria SOM starter Kit</a>. This guide explains the setup required for running designs on the started Kit.</p>
 <ol>
 <li><p>Log in as root user</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xilinx-kv260-starterkit-20222:~$ sudo su -l root
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xilinx-kv260-starterkit-20222:~$<span class="w"> </span>sudo<span class="w"> </span>su<span class="w"> </span>-l<span class="w"> </span>root
 <span class="c1">#&lt;password&gt;</span>
 </pre></div>
 </div>
 </li>
 <li><p>In the petalinux firmware step, we have used the fpgamanager class to store the binaries at /lib/firmware/xilinx/tutorial dir.  Perform the following steps to view the files.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@xilinx-kv260-starterkit-20222:~# ls /lib/firmware/xilinx/kv260-smartcam/
-kv260-smartcam.bit.bin  kv260-smartcam.dtbo  kv260-smartcam.xclbin  shell.json
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@xilinx-kv260-starterkit-20222:~#<span class="w"> </span>ls<span class="w"> </span>/lib/firmware/xilinx/kv260-smartcam/
+kv260-smartcam.bit.bin<span class="w">  </span>kv260-smartcam.dtbo<span class="w">  </span>kv260-smartcam.xclbin<span class="w">  </span>shell.json
 </pre></div>
 </div>
 </li>
 <li><p>Launching the application</p>
 <p>Before executing the newly installed application available at /opt/xilinx/bin, the FPGA firmware (PL bitstream + device tree overlay + PL drivers) needs to be loaded using xmutil utility commands. Follow the below steps to load Image resizing accelerated application firmware on the Vision AI Starter Kit.</p>
 <p>Run the below command to list the existing application firmware on the Vision AI Starter Kit. Verify the kv260-smartcam app in the list of apps</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmutil listapps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmutil<span class="w"> </span>listapps
 </pre></div>
 </div>
 <p>Run the below command to unload the default “kv260-dp” application firmware.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmutil unloadapp 
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span>
 </pre></div>
 </div>
 </li>
 <li><p>Run the below command to load Image resizing accelerated application firmware. Ignore the warning commands</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmutil loadapp tutorial
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>tutorial
 </pre></div>
 </div>
 <p>Run the below command to load Image resizing accelerated application firmware.</p>
 <blockquote>
 <div><p>Note: Ignore the warning commands</p>
 </div></blockquote>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmutil loadapp kv260-smartcam
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>kv260-smartcam
 </pre></div>
 </div>
 </li>
 <li><p>Run the Smartcam Application</p>
 <p>Navigate to the Jyupter-notebook directory. Place the AR1335 camera module pointing to the user’s face and run the smartcam Application accelerated app.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /opt/xilinx/kv260-smartcam/share/notebooks/ 
-ifconfig // Get the ethernet address, which will used <span class="k">in</span> the next step
-jupyter-lab --allow-root --ip<span class="o">=</span><span class="m">10</span>.0.0.63 // open the Jyupter link <span class="k">in</span> the web-browser
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/opt/xilinx/kv260-smartcam/share/notebooks/<span class="w"> </span>
+ifconfig<span class="w"> </span>//<span class="w"> </span>Get<span class="w"> </span>the<span class="w"> </span>ethernet<span class="w"> </span>address,<span class="w"> </span>which<span class="w"> </span>will<span class="w"> </span>used<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>step
+jupyter-lab<span class="w"> </span>--allow-root<span class="w"> </span>--ip<span class="o">=</span><span class="m">10</span>.0.0.63<span class="w"> </span>//<span class="w"> </span>open<span class="w"> </span>the<span class="w"> </span>Jyupter<span class="w"> </span>link<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>web-browser
 </pre></div>
 </div>
 </li>
@@ -222,8 +223,8 @@ jupyter-lab --allow-root --ip<span class="o">=</span><span class="m">10</span>.0
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 01, 2024.
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 

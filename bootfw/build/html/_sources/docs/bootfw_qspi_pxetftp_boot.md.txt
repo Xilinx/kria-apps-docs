@@ -206,7 +206,7 @@ dhcp # setup Ethernet and ip address on target, this is done automatically durin
 ping $serverip # confirm ethernet connection to host
 ```
 
-Note that in the [boot priority order](./bootfw_uboot_handoff.md#prioritized-boot-order) ([code here](https://gitenterprise.xilinx.com/Linux/u-boot-xlnx/blob/master/include/configs/xilinx_zynqmp.h#L165-L175)), PXE is the last priority. This means if there's boot images in eMMC or SD or USB - they will be used to boot first. If there are no boot images on any of those devices, just a simple ```boot``` command would lead to PXE to be chosen and it will retrieve ```pxelinux.cfg/default``` from ```/tftpboot``` folder on host computer and start booting.
+Note that in the "boot priority order" section of [boot handoff page](./bootfw_uboot_handoff.md) ([code here](https://github.com/Xilinx/u-boot-xlnx/blob/master/include/configs/xilinx_zynqmp.h#L165-L175)), PXE is the last priority. This means if there's boot images in eMMC or SD or USB - they will be used to boot first. If there are no boot images on any of those devices, just a simple ```boot``` command would lead to PXE to be chosen and it will retrieve ```pxelinux.cfg/default``` from ```/tftpboot``` folder on host computer and start booting.
 
 If there are other images in other devices thats more prioritized by u-boot, then direct U-Boot to choose PXE boot using the following commands:
 

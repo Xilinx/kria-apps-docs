@@ -7,7 +7,7 @@ As outlined in [bootfw overview](./bootfw_overview.md), Kria SOM Starter Kit BOO
 
 ## Generate BOOT.BIN using Yocto
 
- [Yocto Kria Support](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html) details how to use Yocto to generate Kria artifacts, go through this page from beginning to "[Build the Artifacts](kria-qspi-k24-smk-20230614093348)" section to setup Yocto.
+ [Yocto Kria Support](https://xilinx.github.io/kria-apps-docs/yocto.html) details how to use Yocto to generate Kria artifacts, go through this page from beginning to "Build the Artifacts" section to setup Yocto.
 
  The bitbake recipe for BOOT.BIN in Yocto is ```xilinx-bootbin``` and command to build is:
 

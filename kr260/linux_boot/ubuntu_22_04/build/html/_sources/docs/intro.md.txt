@@ -1,4 +1,4 @@
-﻿# Booting Kria Starter Kit Linux on KR260
+# Booting Kria Starter Kit Linux on KR260
 
 ## Introduction
 
@@ -41,7 +41,7 @@ Ubuntu Server is the best choice for getting started with the KR260.
 
 ### Ubuntu Server LTS
 
-* Access to Kria SOM accelerated apps and hardware overlays designed specifically to run on the K26 SOM and KR260 Starter Kit. Each Ubuntu Version has a different set of supported applications. Refer to [Linux boot landing page](https://xilinx.github.io/kria-apps-docs/kr260/linux_boot.html) for compatible applications for each Ubuntu version.
+* Access to Kria SOM accelerated apps and hardware overlays designed specifically to run on the K26 SOM and KR260 Starter Kit. Each Ubuntu Version has a different set of supported applications. Refer to [Linux boot landing page](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/linux_boot.html) for compatible applications for each Ubuntu version.
 * Access to a rich set of third-party software libraries in the Ubuntu community
 
 [Access Booting Kria Starter Kit Linux on KR260 tutorial HERE](./sdcard.md)

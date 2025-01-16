@@ -162,17 +162,17 @@ INITRD petalinux-initramfs-image-&lt;machinename&gt;.cpio.gz.u-boot
 <div class="section" id="linux-host-computer-setup-for-petalinux">
 <h3>Linux Host Computer Setup for PetaLinux<a class="headerlink" href="#linux-host-computer-setup-for-petalinux" title="Permalink to this heading">¶</a></h3>
 <p>On the Linux host computer, download a <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">PetaLinux BSP</a> for the target Stater Kit, create project, and configure it for TFTP:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;board&gt;-&lt;version&gt;-&lt;timestamp&gt;.bsp
-<span class="nb">cd</span> xilinx-&lt;board&gt;-&lt;version&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create<span class="w"> </span>-t<span class="w"> </span>project<span class="w"> </span>-s<span class="w"> </span>xilinx-&lt;board&gt;-&lt;version&gt;-&lt;timestamp&gt;.bsp
+<span class="nb">cd</span><span class="w"> </span>xilinx-&lt;board&gt;-&lt;version&gt;
 petalinux-config
-    <span class="c1"># in petalinux-config window, do:</span>
-        <span class="c1"># Image Packaging Configuration &gt; Root File System Type &gt; change to NFS</span>
-        <span class="c1"># exit out of config and let it configure</span>
+<span class="w">    </span><span class="c1"># in petalinux-config window, do:</span>
+<span class="w">        </span><span class="c1"># Image Packaging Configuration &gt; Root File System Type &gt; change to NFS</span>
+<span class="w">        </span><span class="c1"># exit out of config and let it configure</span>
 </pre></div>
 </div>
 <p>By default, PetaLinux uses <code class="docutils literal notranslate"><span class="pre">/tftpboot</span></code> folder for nfs/tftp. Create the folder and change permission before building:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkdir /tftpboot
-sudo chmod <span class="m">766</span> /tftpboot
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/tftpboot
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">766</span><span class="w"> </span>/tftpboot
 petalinux-build
 </pre></div>
 </div>
@@ -191,15 +191,15 @@ INITRD ramdisk.cpio.gz.u-boot
 <h3>Host Computer Setup for Ubuntu<a class="headerlink" href="#host-computer-setup-for-ubuntu" title="Permalink to this heading">¶</a></h3>
 <p>Since Ubuntu do not require PetaLinux tool chain, either a Linux host or a windows host computer can be used for Ubuntu PXE booting. The released Ubuntu image packages the kernel image, initrd, and many device tree blobs into a flat image.fit. PXE booting does not use boot script to automatically select the device tree required for the board. Therefore, we need to regenerate an image.fit file that selects the right configuration for the target Starter Kit. This is done on target with the following steps.</p>
 <p>Program an <a class="reference external" href="https://ubuntu.com/download/amd-xilinx">Ubuntu image</a> into a SD card and boot. After booting, note the following files on target:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -s
-ls -l /boot/firmware/image.fit
-ls -l /boot/firmware/boot.scr.uimg
-ls -l /boot/initrd.img
-ls -l /usr/share/flash-kernel/its/image-kria.its
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-s
+ls<span class="w"> </span>-l<span class="w"> </span>/boot/firmware/image.fit
+ls<span class="w"> </span>-l<span class="w"> </span>/boot/firmware/boot.scr.uimg
+ls<span class="w"> </span>-l<span class="w"> </span>/boot/initrd.img
+ls<span class="w"> </span>-l<span class="w"> </span>/usr/share/flash-kernel/its/image-kria.its
 </pre></div>
 </div>
 <p>Open the .its file, which is the recipe to build the flat image.fit file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi /usr/share/flash-kernel/its/image-kria.its
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi<span class="w"> </span>/usr/share/flash-kernel/its/image-kria.its
 </pre></div>
 </div>
 <p>There are pointers to kernel, initrd, and device trees. To update the default device tree PXE booting picks, this line needs to be updated <code class="docutils literal notranslate"><span class="pre">default</span> <span class="pre">=</span> <span class="pre">&quot;conf-zynqmp-smk-k26-revA&quot;;</span></code> to the configuration appropriate for the target Starter Kit. To figure out which configuration is appropriate for the target Starter Kit, find the Starter Kit type and revision and look at which configuration that revision uses in <code class="docutils literal notranslate"><span class="pre">/boot/firmware/boot.scr.uimg</span></code>.</p>
@@ -249,17 +249,17 @@ ls -l /usr/share/flash-kernel/its/image-kria.its
 </div>
 <p>This means  the boot_conf <code class="docutils literal notranslate"><span class="pre">conf-smk-k26-revA-sck-kr-g-revB</span></code> supports rev1 KR260. Therefore, update <code class="docutils literal notranslate"><span class="pre">/usr/share/flash-kernel/its/image-kria.its</span></code></p>
 <p>from:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>        <span class="nv">default</span> <span class="o">=</span> <span class="s2">&quot;conf-zynqmp-smk-k26-revA&quot;</span><span class="p">;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nv">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;conf-zynqmp-smk-k26-revA&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>to:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>        <span class="nv">default</span> <span class="o">=</span> <span class="s2">&quot;conf-smk-k26-revA-sck-kr-g-revB&quot;</span><span class="p">;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nv">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;conf-smk-k26-revA-sck-kr-g-revB&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Save and regenerate the image.fit with the right configuration using flash-kernel command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flash-kernel
-ls -l /boot/firmware/image.fit <span class="c1"># note new timestamp</span>
-reboot <span class="c1">#reboot to force write to SD card and test new kernel </span>
+ls<span class="w"> </span>-l<span class="w"> </span>/boot/firmware/image.fit<span class="w"> </span><span class="c1"># note new timestamp</span>
+reboot<span class="w"> </span><span class="c1">#reboot to force write to SD card and test new kernel </span>
 </pre></div>
 </div>
 <p>Unplug the SD card from target and view the SD card content on the host computer. There is an image.fit file on the SD card’s boot partition. Copy that file into a <code class="docutils literal notranslate"><span class="pre">&lt;ubuntu_tftp&gt;/</span></code> folder on the host computer. In the same folder, create <code class="docutils literal notranslate"><span class="pre">&lt;ubuntu_tftp&gt;/pxelinux.cfg/default</span></code> file and populate the file with this content:</p>
@@ -280,18 +280,18 @@ KERNEL image.fit
 <div class="section" id="boot-starter-kit-using-pxe">
 <h2>Boot Starter Kit Using PXE<a class="headerlink" href="#boot-starter-kit-using-pxe" title="Permalink to this heading">¶</a></h2>
 <p>Make sure that the Starter Kit has the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates">latest bootfw for the tool version</a> in QSPI. Power on the Starter Kit, it will boot from the boot images in QSPI. Observe serial port output on the computer with serial port connection. Press “enter” at u-boot to enter u-boot command line. On u-boot command line, set serverip variable to that of tftp server:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setenv serverip &lt;host ip&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setenv<span class="w"> </span>serverip<span class="w"> </span>&lt;host<span class="w"> </span>ip&gt;
 </pre></div>
 </div>
 <p>Note that by default, saveenv is not enabled in u-boot. This means that serverip will need to be set up every re-boot.</p>
 <p>The following step is optional. Verify connection to the server:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dhcp <span class="c1"># setup Ethernet and ip address on target, this is done automatically during PXE booting</span>
-ping <span class="nv">$serverip</span> <span class="c1"># confirm ethernet connection to host</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dhcp<span class="w"> </span><span class="c1"># setup Ethernet and ip address on target, this is done automatically during PXE booting</span>
+ping<span class="w"> </span><span class="nv">$serverip</span><span class="w"> </span><span class="c1"># confirm ethernet connection to host</span>
 </pre></div>
 </div>
-<p>Note that in the <a class="reference external" href="./bootfw_uboot_handoff.md#prioritized-boot-order">boot priority order</a> (<a class="reference external" href="https://gitenterprise.xilinx.com/Linux/u-boot-xlnx/blob/master/include/configs/xilinx_zynqmp.h#L165-L175">code here</a>), PXE is the last priority. This means if there’s boot images in eMMC or SD or USB - they will be used to boot first. If there are no boot images on any of those devices, just a simple <code class="docutils literal notranslate"><span class="pre">boot</span></code> command would lead to PXE to be chosen and it will retrieve <code class="docutils literal notranslate"><span class="pre">pxelinux.cfg/default</span></code> from <code class="docutils literal notranslate"><span class="pre">/tftpboot</span></code> folder on host computer and start booting.</p>
+<p>Note that in the “boot priority order” section of <a class="reference internal" href="bootfw_uboot_handoff.html"><span class="doc">boot handoff page</span></a> (<a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx/blob/master/include/configs/xilinx_zynqmp.h#L165-L175">code here</a>), PXE is the last priority. This means if there’s boot images in eMMC or SD or USB - they will be used to boot first. If there are no boot images on any of those devices, just a simple <code class="docutils literal notranslate"><span class="pre">boot</span></code> command would lead to PXE to be chosen and it will retrieve <code class="docutils literal notranslate"><span class="pre">pxelinux.cfg/default</span></code> from <code class="docutils literal notranslate"><span class="pre">/tftpboot</span></code> folder on host computer and start booting.</p>
 <p>If there are other images in other devices thats more prioritized by u-boot, then direct U-Boot to choose PXE boot using the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>run bootcmd_pxe
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>run<span class="w"> </span>bootcmd_pxe
 </pre></div>
 </div>
 <p>If using Yocto/PetaLinux and using the larger rootfs, the kernel and rootfs should load and boot to log-in prompt to PetaLinux, indicating a successful PXE boot! If using the initram, and a SD card with full rootfs is plugged into the SD slot - the above steps will boot using kernel image from tftp server and grab the full rootfs image from the SD card and boot to log-in prompt.</p>
@@ -318,8 +318,8 @@ ping <span class="nv">$serverip</span> <span class="c1"># confirm ethernet conne
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 15, 2024.
+    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 16, 2025.
       </span></p>
   </div>
 
