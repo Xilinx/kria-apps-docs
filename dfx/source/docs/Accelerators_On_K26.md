@@ -117,7 +117,7 @@ The virtual channel with TID 3 is used to configure the input data binary width 
 
 ## DPU 
 
-DPU accelerator uses Vitis-generated vivado DPU IP used for the AI inference application. This DPU RM along with the PP_PIPELINE RM is used for the dfx-ml-inference pipeline. 
+DPU accelerator uses Vitis-generated Vivado DPU IP used for the AI inference application. This DPU RM along with the PP_PIPELINE RM is used for the dfx-ml-inference pipeline.
 The deployed convolutional neural network in DPU includes VGG, ResNet, GoogLeNet, YOLO, SSD, MobileNet, FPN, etc.
 For inference pipeline application- facedetect, refinedet and ssd models are enabled. 
 

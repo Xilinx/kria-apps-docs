@@ -3,6 +3,11 @@ Kria KV260 Vision AI Starter Kit Applications
 ###############################################################################################################
 
 
+
+.. include:: ../../../shared/somtoctree.txt
+
+
+
 .. image:: docs/media/sc_rdme.png
    :width: 200
    :alt: Smart Camera
@@ -47,19 +52,6 @@ With both hardware and software development requirements simplified, the KV260 V
 
 
 
-.. toctree::
-   :maxdepth: 3
-   :caption: SOM
-   :hidden:
-
-   Landing Page <https://xilinx.github.io/kria-apps-docs/>
-   Application Development <https://xilinx.github.io/kria-apps-docs/creating_applications.html>
-   Ubuntu Support <https://xilinx.github.io/kria-apps-docs/ubuntu_support.html>
-   Boot Firmware <https://xilinx.github.io/kria-apps-docs/bootfw.html>
-   Kria KR260 <https://xilinx.github.io/kria-apps-docs/kr260-docs.html>
-   Kria Robotics Stack <https://xilinx.github.io/KRS/>
-
-
 
 
 .. toctree::
@@ -73,13 +65,31 @@ With both hardware and software development requirements simplified, the KV260 V
    NLP SmartVision <docs/nlp-smartvision/nlp_smartvision_landing>
 
 
+
+
+.. toctree::
+   :caption: KV260 Tutorials
+   :maxdepth: 1
+   :hidden:
+
+   ./docs/linux_boot
+   Build the Design Components <./docs/building_the_design>
+   Building the Hardware Design Using Vivado <./docs/build_vivado_design>
+   Create a Vitis Platform <./docs/build_vitis_platform>
+   .docs/build_accel
+   ./docs/build_petalinux
+   ./docs/local_package_feed
+
+
+
+
 .. toctree::
    :maxdepth: 3
    :caption: Other Releases
    :hidden:
 
-   2022.1 <https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/index.html>
-   2020.2 <https://xilinx.github.io/kria-apps-docs/kv260/2020.2/build/html/index.html>
+   2022.1 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2022.1/build/html/index.html>
+
 
 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -93,13 +103,3 @@ Xilinx Support
 
 GitHub issues will be used for tracking requests and bugs. For questions, go to `forums.xilinx.com <http://forums.xilinx.com/>`_.
 
-
-License
-========
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
-
-You may obtain a copy of the License at `apache.org/licenses/LICENSE-2.0 <https://creativecommons.org/licenses/by/4.0/>`_.
-
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

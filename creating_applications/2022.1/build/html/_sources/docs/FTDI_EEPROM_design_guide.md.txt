@@ -26,8 +26,8 @@ After programming, you need to unplug and re-plug the USB cable for the device_l
 
 ## Known Issues
 
-1. libraries are missing in 2024.1 xsdb for programming either using program_ftdi or the example script. Please use other versions of the tool (e.g. 2023.2 or 2024.2 or others)
-2. Currently, Linux's hw_server does not recognize device if the FTDI programs a different manufacturer name in XSDB than Xilinx, this xsdb from Linux will not see any target. Windows's hw_server/xsdb does not have issue. Until this is fixed, please use Windows to access the FPGA in XSDB.
+1. [Libraries are missing in 2024.1 xsdb](https://adaptivesupport.amd.com/s/article/000036977?language=en_US) for programming either using program_ftdi or the example script. Please use other versions of the tool (e.g. 2023.2 or 2024.2 or others)
+2. Currently, Linux's hw_server does not recognize the ZynqMPSoC device if the FTDI programs a different manufacturer name than "Xilinx" in FTDI EEPROM, thus xsdb from Linux will not see any target. Windows's hw_server/xsdb does not have this issue. Until this is fixed, please use Windows to access the FPGA in XSDB.
 
 ## License
 
