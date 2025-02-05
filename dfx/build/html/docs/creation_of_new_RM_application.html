@@ -69,9 +69,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -139,7 +139,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Creating a new Application<a class="headerlink" href="#creating-a-new-application" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This section provides an details to create applications for accelerators on DFX example design. It also provides steps to install and run new accelerator firmware on the target. Usually, an accelerator takes input data, processes it, and produces the output data. This output data can be consumed by the user or passed further to another accelerator for processing. On the DFX uexample design, the input and output data are stored on DDR. An IP with virtual AXI stream channel support is provided for data movement between DDR and the accelerators. The virtual channels are realized on a single AXI Stream Bus by using different TID Values. Data Packets use TID value 0 and Control packets use TID values 1 through 7.
+<p>This section provides an details to create applications for accelerators on DFX example design. It also provides steps to install and run new accelerator firmware on the target. Usually, an accelerator takes input data, processes it, and produces the output data. This output data can be consumed by the user or passed further to another accelerator for processing. On the DFX example design, the input and output data are stored on DDR. An IP with virtual AXI stream channel support is provided for data movement between DDR and the accelerators. The virtual channels are realized on a single AXI Stream Bus by using different TID Values. Data Packets use TID value 0 and Control packets use TID values 1 through 7.
 The application can differentiate between control and data packets based on the TID. A total of 8 TID values, 0 to 7, are supported.
 The data movement APIs use UIO drivers to map the custom IPs like data movement IP etc. The APIs are described in the following section.</p>
 </div>
@@ -150,7 +150,7 @@ The data movement APIs use UIO drivers to map the custom IPs like data movement 
 <li><p>Data is provided to accelerators with TID = 0 on the data mover.</p></li>
 <li><p>Streaming accelerator functions by reading data from the input stream and writing data on the output stream. Data mover API DataToAccel reads data from DDR and provides it to the Accelerator input stream.  Data mover API DataFromAccel reads data from the accelerator’s output stream and writes the data to DDR. In cases when data needs to be read from DDR for processing and written to DDR after processing, both the APIs - DataToAccel and DataFromAccel, need to be called. Calling only DataToAccel will stall the pipe after sometime as the accelerator’s output data is not read.
 <img alt="image" src="../_images/BufferBackPressure.png" /></p></li>
-<li><p>In the two-slot design, the user can load different accelerators in each of the slots and run the applications in paralell. The max limit of DDR that the users can allocate for each application is 256MB.</p></li>
+<li><p>In the two-slot design, the user can load different accelerators in each of the slots and run the applications in parallel. The max limit of DDR that the users can allocate for each application is 256MB.</p></li>
 <li><p>For buffer allocation using XRT, the pre-requisite is that zocl must be loaded. The dtsi file should have a zyxclmm_drm entry which ensures that zocl will be loaded when the device tree overlay is applied.</p></li>
 </ul>
 </div>
@@ -167,30 +167,30 @@ The data movement APIs use UIO drivers to map the custom IPs like data movement 
 <span class="cp">#define EB_OFFSET_MEM		  0x100</span>
 <span class="cp">#define KEYBUFF_SIZE		  0x2</span>
 <span class="cp">#define TID_0				      0x0</span>
-<span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">DKB_OFFSET_MEM</span><span class="p">,</span><span class="n">KEYBUFF_SIZE</span><span class="p">,</span><span class="n">TID_1</span><span class="p">);</span><span class="w"></span>
-<span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">EB_OFFSET_MEM</span><span class="p">,</span><span class="n">BUFF_SIZE</span><span class="p">,</span><span class="n">TID_0</span><span class="p">);</span><span class="w"></span>
+<span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">DKB_OFFSET_MEM</span><span class="p">,</span><span class="n">KEYBUFF_SIZE</span><span class="p">,</span><span class="n">TID_1</span><span class="p">);</span>
+<span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">EB_OFFSET_MEM</span><span class="p">,</span><span class="n">BUFF_SIZE</span><span class="p">,</span><span class="n">TID_0</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>DataToAccelDone</strong> – Check whether the previous DataToAccel function finished execution. Call to this API will wait until the last DataToAccel API has finished its operation.</p>
 <p>Code example:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>DataFromAccel</strong> - Data movement from accelerator to DDR.</p>
 <p>Code example:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define RESULT_OFFSET_MEM	0x300</span>
 <span class="cp">#define BUFF_SIZE			0x10	</span>
-<span class="n">DataFromAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="n">RESULT_OFFSET_MEM</span><span class="p">,</span><span class="w"> </span><span class="n">BUFF_SIZE</span><span class="p">);</span><span class="w"></span>
+<span class="n">DataFromAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="n">RESULT_OFFSET_MEM</span><span class="p">,</span><span class="w"> </span><span class="n">BUFF_SIZE</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>DataFromAccelDone</strong> - Check whether the previous DataFromAccel function finished execution. Call to this API will wait until the last DataFromAccel API has finished its operation.</p>
 <p>Code example:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFromAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFromAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>FinaliseUnmapRMs</strong> - Unmap the data mover IPs that were mapped as part of the call to initializeMapRMs(int slot).</p>
 <p>Code example:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FinaliseUnmapRMs</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FinaliseUnmapRMs</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -199,10 +199,10 @@ The data movement APIs use UIO drivers to map the custom IPs like data movement 
 <p>Every application needs buffer allocation for providing input data to Accelerator and storing the output data from the accelerator. XRT Native APIs are used for buffer allocation and deallocation.</p>
 <p>Code example:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//Allocate XRT buffer to be used for input and output of the application</span>
-<span class="k">auto</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">device</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="k">auto</span><span class="w"> </span><span class="n">bufferObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">bo</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">SIZE_IN_BYTES</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">device</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">bufferObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">bo</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">SIZE_IN_BYTES</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 <span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">vptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">bufferObject</span><span class="p">.</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">//Use vptr to work with the allocated xrt buffer</span>
-<span class="n">mapBuffer</span><span class="p">(</span><span class="n">bufferObject</span><span class="p">);</span><span class="w"></span>
+<span class="n">mapBuffer</span><span class="p">(</span><span class="n">bufferObject</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>XRT takes care of deallocating the buffer when the application exits.</p>
@@ -229,20 +229,20 @@ The data movement APIs use UIO drivers to map the custom IPs like data movement 
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Copyright (C) 2022, Advanced Micro Devices, Inc. All rights reserved.</span>
 <span class="cm"> * SPDX-License-Identifier: MIT</span>
-<span class="cm"> */</span><span class="w"></span>
+<span class="cm"> */</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/mman.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/mman.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
 
 <span class="c1">// XRT includes</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;experimental/xrt_bo.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;experimental/xrt_device.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;experimental/xrt_kernel.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;experimental/xrt_bo.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;experimental/xrt_device.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;experimental/xrt_kernel.h&quot;</span>
 
 <span class="cp">#define SIZE_IN_BYTES       0x4000000	</span><span class="c1">//64MB</span>
 
@@ -261,121 +261,121 @@ The data movement APIs use UIO drivers to map the custom IPs like data movement 
 <span class="cp">#define TID_1				0x1		</span><span class="c1">//TID 1</span>
 <span class="cp">#define TID_2				0x2		</span><span class="c1">//TID 2</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">InitializeMapRMs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">StartAccel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">FinaliseUnmapRMs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">mapBuffer</span><span class="p">(</span><span class="n">xrt</span><span class="o">::</span><span class="n">bo</span><span class="w"> </span><span class="n">boa</span><span class="p">);</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">DataToAccel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">tid</span><span class="p">);</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">DataFromAccel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">DataToAccelDone</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">DataFromAccelDone</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">InitializeMapRMs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">StartAccel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">FinaliseUnmapRMs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">mapBuffer</span><span class="p">(</span><span class="n">xrt</span><span class="o">::</span><span class="n">bo</span><span class="w"> </span><span class="n">boa</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DataToAccel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">tid</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DataFromAccel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DataToAccelDone</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">DataFromAccelDone</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="p">);</span>
 
 <span class="c1">// A Input Buffer</span>
-<span class="kt">uint32_t</span><span class="w"> </span><span class="n">A</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">	</span><span class="mh">0x55555555</span><span class="p">,</span><span class="w"> </span><span class="mh">0x44444444</span><span class="p">,</span><span class="w"> </span><span class="mh">0x33333333</span><span class="p">,</span><span class="w"> </span><span class="mh">0x22222222</span><span class="p">,</span><span class="w"></span>
-<span class="w">	</span><span class="mh">0x55555555</span><span class="p">,</span><span class="w"> </span><span class="mh">0x44444444</span><span class="p">,</span><span class="w"> </span><span class="mh">0x33333333</span><span class="p">,</span><span class="w"> </span><span class="mh">0x22222222</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="n">A</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="mh">0x55555555</span><span class="p">,</span><span class="w"> </span><span class="mh">0x44444444</span><span class="p">,</span><span class="w"> </span><span class="mh">0x33333333</span><span class="p">,</span><span class="w"> </span><span class="mh">0x22222222</span><span class="p">,</span>
+<span class="w">	</span><span class="mh">0x55555555</span><span class="p">,</span><span class="w"> </span><span class="mh">0x44444444</span><span class="p">,</span><span class="w"> </span><span class="mh">0x33333333</span><span class="p">,</span><span class="w"> </span><span class="mh">0x22222222</span>
+<span class="p">};</span>
 
 <span class="c1">// B Input Buffer </span>
-<span class="kt">uint32_t</span><span class="w"> </span><span class="n">B</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">	</span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"></span>
-<span class="w">	</span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="n">B</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span>
+<span class="w">	</span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11111111</span>
+<span class="p">};</span>
 
 <span class="c1">// Operation</span>
-<span class="kt">uint32_t</span><span class="w"> </span><span class="n">OperationAdd</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">	</span><span class="mh">0x00000001</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="n">OperationAdd</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="mh">0x00000001</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span>
+<span class="p">};</span>
 
-<span class="kt">uint32_t</span><span class="w"> </span><span class="n">OperationSub</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">	</span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="n">OperationSub</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000000</span>
+<span class="p">};</span>
 
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
 <span class="w">	</span><span class="c1">//Default slot Set to 0 unless passed as an argument</span>
-<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="w"> </span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">	</span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">slot</span><span class="w"> </span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
 <span class="w">		</span><span class="c1">//Updating slot number provided as command line argument</span>
-<span class="w">		</span><span class="n">slot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
-<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">slot</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">slot</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
-<span class="w">		</span><span class="p">{</span><span class="w"></span>
-<span class="w">			</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;- Invalid slot number provided %s. Valid values : 0 or 1</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
-<span class="w">			</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">		</span><span class="p">}</span><span class="w"></span>
-<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">		</span><span class="n">slot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">slot</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">slot</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">		</span><span class="p">{</span>
+<span class="w">			</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;- Invalid slot number provided %s. Valid values : 0 or 1</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">			</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span>
 <span class="w">	</span><span class="c1">//Initialize and memory map RMs</span>
-<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">InitializeMapRMs</span><span class="p">(</span><span class="n">slot</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"></span>
-<span class="w">	</span><span class="p">{</span><span class="w"></span>
-<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;- Check the slot number where the accelerator is loaded and run the test on the specific slot.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">InitializeMapRMs</span><span class="p">(</span><span class="n">slot</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;- Check the slot number where the accelerator is loaded and run the test on the specific slot.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
 <span class="w">	</span><span class="c1">//Allocate XRT buffer to be used for input and output of the application</span>
-<span class="w">	</span><span class="k">auto</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">device</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">	</span><span class="k">auto</span><span class="w"> </span><span class="n">bufferObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">bo</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">SIZE_IN_BYTES</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">	</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">vptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">bufferObject</span><span class="p">.</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">();</span><span class="w"></span>
-<span class="w">	</span><span class="n">mapBuffer</span><span class="p">(</span><span class="n">bufferObject</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="k">auto</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">device</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">	</span><span class="k">auto</span><span class="w"> </span><span class="n">bufferObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrt</span><span class="o">::</span><span class="n">bo</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">SIZE_IN_BYTES</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">	</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">vptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">bufferObject</span><span class="p">.</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">();</span>
+<span class="w">	</span><span class="n">mapBuffer</span><span class="p">(</span><span class="n">bufferObject</span><span class="p">);</span>
 
 <span class="w">	</span><span class="c1">// Write A of Size 32 bytes (4bytes x 8 )</span>
-<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">vptr</span><span class="o">+</span><span class="n">A_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">A</span><span class="p">));</span><span class="w"></span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">vptr</span><span class="o">+</span><span class="n">A_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">A</span><span class="p">));</span>
 <span class="w">	</span><span class="c1">// Write B of Size 32 bytes (4bytes x 8 )</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">vptr</span><span class="o">+</span><span class="n">B_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">B</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">vptr</span><span class="o">+</span><span class="n">B_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">B</span><span class="p">));</span>
 <span class="w">	</span><span class="c1">// Write Add Operation</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">vptr</span><span class="o">+</span><span class="n">OPERATION_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OperationAdd</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">OperationAdd</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">vptr</span><span class="o">+</span><span class="n">OPERATION_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">OperationAdd</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">OperationAdd</span><span class="p">));</span>
 <span class="w">	</span><span class="c1">// Write Sub Operation </span>
 <span class="w">	</span><span class="c1">//std::memcpy(vptr+OPERATION_OFFSET, &amp;OperationSub, sizeof(OperationSub));</span>
 <span class="w">	</span>
 <span class="w">	</span><span class="c1">//Initialize RM</span>
-<span class="w">	</span><span class="n">StartAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="n">StartAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span>
 <span class="w">	</span><span class="c1">//Program A to Accelerator - Size 32 bytes (16bytes x 2 ) to Offset 0 (0x0)</span>
-<span class="w">	</span><span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">A_OFFSET_MEM</span><span class="p">,</span><span class="n">INPUT_SIZE</span><span class="p">,</span><span class="n">TID_0</span><span class="p">);</span><span class="w"></span>
-<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
+<span class="w">	</span><span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">A_OFFSET_MEM</span><span class="p">,</span><span class="n">INPUT_SIZE</span><span class="p">,</span><span class="n">TID_0</span><span class="p">);</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span>
 <span class="w">	</span><span class="c1">//Program B to Accelerator - Size 32 bytes (16bytes x 2 ) to Offset 8 (0x20)</span>
-<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
-<span class="w">	</span><span class="p">{</span><span class="w"></span>
-<span class="w">		</span><span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">OPERATION_OFFSET_MEM</span><span class="p">,</span><span class="n">OPERATION_SIZE</span><span class="p">,</span><span class="n">TID_1</span><span class="p">);</span><span class="w"></span>
-<span class="w">		</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
-<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">OPERATION_OFFSET_MEM</span><span class="p">,</span><span class="n">OPERATION_SIZE</span><span class="p">,</span><span class="n">TID_1</span><span class="p">);</span>
+<span class="w">		</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
 <span class="w">	</span><span class="c1">//Program Operation to Accelerator - Size 16 bytes (16bytes x 1 ) to Offset 64 (0x100)</span>
-<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
-<span class="w">	</span><span class="p">{</span><span class="w"></span>
-<span class="w">		</span><span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">B_OFFSET_MEM</span><span class="p">,</span><span class="n">INPUT_SIZE</span><span class="p">,</span><span class="n">TID_2</span><span class="p">);</span><span class="w"></span>
-<span class="w">		</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
-<span class="w">	</span><span class="p">}</span><span class="w"></span>
-<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
-<span class="w">	</span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="n">DataToAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="n">B_OFFSET_MEM</span><span class="p">,</span><span class="n">INPUT_SIZE</span><span class="p">,</span><span class="n">TID_2</span><span class="p">);</span>
+<span class="w">		</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataToAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
 <span class="w">		</span><span class="c1">//DataFromAccel - Size 16 bytes (16bytes x 1 ) to Offset 128 (0x200)</span>
-<span class="w">		</span><span class="n">DataFromAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="n">RESULT_OFFSET_MEM</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_SIZE</span><span class="p">);</span><span class="w"></span>
-<span class="w">		</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFromAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
-<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> Success: Selected Operation Done !.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">	</span><span class="p">}</span><span class="w"></span>
-<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
-<span class="w">	</span><span class="p">{</span><span class="w"></span>
-<span class="w">		</span><span class="n">FinaliseUnmapRMs</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span><span class="w"></span>
-<span class="w">	</span><span class="p">}</span><span class="w"></span>
-<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">		</span><span class="n">DataFromAccel</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span><span class="w"> </span><span class="n">RESULT_OFFSET_MEM</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_SIZE</span><span class="p">);</span>
+<span class="w">		</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFromAccelDone</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> Success: Selected Operation Done !.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="n">FinaliseUnmapRMs</span><span class="p">(</span><span class="n">slot</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="building-apps-for-new-accelerators">
 <h2>Building apps for new accelerators<a class="headerlink" href="#building-apps-for-new-accelerators" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>The applications shoukld be built on the target.</p></li>
+<li><p>The applications should be built on the target.</p></li>
 <li><p>Copy the above application example from the localhost as main.c to the target</p></li>
 <li><p>Run the below steps to build an application on the target</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt install uuid-dev libdfx-dev libdfx-mgr-dev <span class="c1">#Installing required libraries </span>
-sudo git clone --branch xlnx_rel_v2022.1 --recursive  https://github.com/Xilinx/kria-dfx-apps.git <span class="c1">#Cloning Application Git Repo that has siha APIs</span>
-<span class="nb">cd</span> kria-dfx-apps/src
-sudo mkdir ADD <span class="c1">#Create directory to copy/create application source code</span>
-sudo scp user@localhost:&lt;path to directory containing main.c on localhost&gt;/main.c ./ADD <span class="c1">#Copy application source code</span>
-<span class="nb">cd</span> ..
-<span class="nv">INC</span><span class="o">=</span><span class="s1">&#39;-I/usr/include/xrt -I/usr/include/dfx-mgr&#39;</span> <span class="c1">#Setting up Include files</span>
-<span class="nv">LNK</span><span class="o">=</span><span class="s1">&#39;-luuid -lxrt_coreutil -lxrt++ -ldfx-mgr&#39;</span> <span class="c1">#Setting up Library dependencies</span>
-sudo g++ -Wall -g -std<span class="o">=</span>c++1y <span class="nv">$INC</span> lib/siha.c src/ADD/main.c <span class="nv">$LNK</span> -o testADD <span class="c1">#Compile application</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>uuid-dev<span class="w"> </span>libdfx-dev<span class="w"> </span>libdfx-mgr-dev<span class="w"> </span><span class="c1">#Installing required libraries </span>
+sudo<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2022.1<span class="w"> </span>--recursive<span class="w">  </span>https://github.com/Xilinx/kria-dfx-apps.git<span class="w"> </span><span class="c1">#Cloning Application Git Repo that has siha APIs</span>
+<span class="nb">cd</span><span class="w"> </span>kria-dfx-apps/src
+sudo<span class="w"> </span>mkdir<span class="w"> </span>ADD<span class="w"> </span><span class="c1">#Create directory to copy/create application source code</span>
+sudo<span class="w"> </span>scp<span class="w"> </span>user@localhost:&lt;path<span class="w"> </span>to<span class="w"> </span>directory<span class="w"> </span>containing<span class="w"> </span>main.c<span class="w"> </span>on<span class="w"> </span>localhost&gt;/main.c<span class="w"> </span>./ADD<span class="w"> </span><span class="c1">#Copy application source code</span>
+<span class="nb">cd</span><span class="w"> </span>..
+<span class="nv">INC</span><span class="o">=</span><span class="s1">&#39;-I/usr/include/xrt -I/usr/include/dfx-mgr&#39;</span><span class="w"> </span><span class="c1">#Setting up Include files</span>
+<span class="nv">LNK</span><span class="o">=</span><span class="s1">&#39;-luuid -lxrt_coreutil -lxrt++ -ldfx-mgr&#39;</span><span class="w"> </span><span class="c1">#Setting up Library dependencies</span>
+sudo<span class="w"> </span>g++<span class="w"> </span>-Wall<span class="w"> </span>-g<span class="w"> </span>-std<span class="o">=</span>c++1y<span class="w"> </span><span class="nv">$INC</span><span class="w"> </span>lib/siha.c<span class="w"> </span>src/ADD/main.c<span class="w"> </span><span class="nv">$LNK</span><span class="w"> </span>-o<span class="w"> </span>testADD<span class="w"> </span><span class="c1">#Compile application</span>
 </pre></div>
 </div>
 </div>
@@ -385,7 +385,7 @@ sudo g++ -Wall -g -std<span class="o">=</span>c++1y <span class="nv">$INC</span>
 <div class="section" id="prerequisites">
 <h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h3>
 <p>Clone the kria-apps-firmware repository on target</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v2022.1 --recursive https://github.com/Xilinx/kria-apps-firmware.git
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2022.1<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/Xilinx/kria-apps-firmware.git
 </pre></div>
 </div>
 </div>
@@ -396,9 +396,9 @@ sudo g++ -Wall -g -std<span class="o">=</span>c++1y <span class="nv">$INC</span>
 <li><p>Navigate to the directory kria-apps-firmware/k26-dfx/2rp</p></li>
 <li><p>Run Makefile to install new accelerator RM firmware on the target.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> kria-apps-firmware/k26-dfx/2rp/
-sudo apt install bootgen-xlnx
-sudo make install
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>kria-apps-firmware/k26-dfx/2rp/
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>bootgen-xlnx
+sudo<span class="w"> </span>make<span class="w"> </span>install
 </pre></div>
 </div>
 </div>
@@ -407,19 +407,19 @@ sudo make install
 <ul class="simple">
 <li><p>Check if free slots are available on target using xmutil listapps.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil listapps
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>If all slots on target are full, free up a slot</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp 
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Load the new accelerator RM on the target</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil loadapp NewRMName
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>NewRMName
 </pre></div>
 </div>
 </div>
@@ -428,13 +428,13 @@ sudo make install
 <ul class="simple">
 <li><p>On the target, navigate to the directory where the new RM application is present.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/kria-dfx-apps
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/kria-dfx-apps
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Run the new RM application built by providing the slot number where the RM was loaded.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo ./NewRMApplication SlotNumber
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>./NewRMApplication<span class="w"> </span>SlotNumber
 </pre></div>
 </div>
 </div>
@@ -466,8 +466,8 @@ sudo make install
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 18, 2024.
+    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 23, 2025.
       </span></p>
   </div>
 

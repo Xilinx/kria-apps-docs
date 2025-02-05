@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This section provides an details to create applications for accelerators on DFX example design. It also provides steps to install and run new accelerator firmware on the target. Usually, an accelerator takes input data, processes it, and produces the output data. This output data can be consumed by the user or passed further to another accelerator for processing. On the DFX uexample design, the input and output data are stored on DDR. An IP with virtual AXI stream channel support is provided for data movement between DDR and the accelerators. The virtual channels are realized on a single AXI Stream Bus by using different TID Values. Data Packets use TID value 0 and Control packets use TID values 1 through 7.
+This section provides an details to create applications for accelerators on DFX example design. It also provides steps to install and run new accelerator firmware on the target. Usually, an accelerator takes input data, processes it, and produces the output data. This output data can be consumed by the user or passed further to another accelerator for processing. On the DFX example design, the input and output data are stored on DDR. An IP with virtual AXI stream channel support is provided for data movement between DDR and the accelerators. The virtual channels are realized on a single AXI Stream Bus by using different TID Values. Data Packets use TID value 0 and Control packets use TID values 1 through 7.
 The application can differentiate between control and data packets based on the TID. A total of 8 TID values, 0 to 7, are supported.
 The data movement APIs use UIO drivers to map the custom IPs like data movement IP etc. The APIs are described in the following section.
 
@@ -12,7 +12,7 @@ The data movement APIs use UIO drivers to map the custom IPs like data movement 
 - Data is provided to accelerators with TID = 0 on the data mover.
 - Streaming accelerator functions by reading data from the input stream and writing data on the output stream. Data mover API DataToAccel reads data from DDR and provides it to the Accelerator input stream.  Data mover API DataFromAccel reads data from the accelerator’s output stream and writes the data to DDR. In cases when data needs to be read from DDR for processing and written to DDR after processing, both the APIs - DataToAccel and DataFromAccel, need to be called. Calling only DataToAccel will stall the pipe after sometime as the accelerator’s output data is not read.
  ![image](./media/BufferBackPressure.png)
-- In the two-slot design, the user can load different accelerators in each of the slots and run the applications in paralell. The max limit of DDR that the users can allocate for each application is 256MB.
+- In the two-slot design, the user can load different accelerators in each of the slots and run the applications in parallel. The max limit of DDR that the users can allocate for each application is 256MB.
 - For buffer allocation using XRT, the pre-requisite is that zocl must be loaded. The dtsi file should have a zyxclmm_drm entry which ensures that zocl will be loaded when the device tree overlay is applied.
 
 ## Data Movement APIs
@@ -25,7 +25,7 @@ All the APIs take one common argument called slot number which denotes the recon
 InitializeMapRMs(slot); // Possible slot values 0 or 1 based on which slot is being Initialized and Mapped.
 ```
 
-**DataToAccel** - DDR to accelerator data movement 
+**DataToAccel** - DDR to accelerator data movement
 
 Code example:
 ```cpp
@@ -236,7 +236,7 @@ int main(int argc, char *argv[])
 
 ## Building apps for new accelerators
 
-- The applications shoukld be built on the target.
+- The applications should be built on the target.
 - Copy the above application example from the localhost as main.c to the target
 - Run the below steps to build an application on the target
 

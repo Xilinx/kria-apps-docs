@@ -146,7 +146,7 @@ cd kria-dfx-hw/k26/2rp_design/create_new_rm
 ```
 
 * Source the Tcl script that generates RM partial bit file. This script reads RM synthesis DCP and abstract shells of the DFX example design, generates partial bit files and firmware files for the RM. After sourcing the script, run the generate_rm command by using the same RM name and target RP used in the above steps.
-* Run the following command in the vivado tcl console.
+* Run the following command in the Vivado tcl console.
 
 ```shell
 source ./generate_rm.tcl

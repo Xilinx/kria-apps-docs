@@ -70,9 +70,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -164,7 +164,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This document covers how to run the DFX pre-built applications and accelerators for the Kria K26 SOM. To run the application on target, install the firmware, applications on target, load the required RM partial to the target, and then run the corresponding RM application.</p>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
-<p>The Kria SOM DFX example designs presented here assume that the user has already followed the application-agnostic steps of setting up their board and completing the initial boot of the Ubuntu 22.04 OS. These example designs are agnostic to the specific carrier card, meaning they work both on KV260 and KR260 Starter Kits. Steps for getting a Kria SOM Starter Kit booted with Ubuntu 22.04 and the Xilinx-specific support packages installed are outlined <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html">here</a>.</p>
+<p>The Kria SOM DFX example designs presented here assume that the user has already followed the application-agnostic steps of setting up their board and completing the initial boot of the Ubuntu 22.04 OS. These example designs are agnostic to the specific carrier card, meaning they work both on KV260 and KR260 Starter Kits. Steps for getting a Kria SOM Starter Kit booted with Ubuntu 22.04 and the Xilinx-specific support packages installed are outlined <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/linux_boot/ubuntu_22_04/build/html/docs/intro.html">here for KV260</a> and <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/linux_boot/ubuntu_22_04/build/html/docs/intro.html">here for KR260</a>.</p>
 </div>
 <div class="section" id="install-pre-built-firmware-and-applications-on-the-target">
 <h2>Install pre-built firmware and applications on the target<a class="headerlink" href="#install-pre-built-firmware-and-applications-on-the-target" title="Permalink to this heading">¶</a></h2>
@@ -180,9 +180,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul class="simple">
 <li><p>Install the DFX firmware and applications package. This installs the firmware on the target at the location /lib/firmware/xilinx and applications at /opt/xilinx/kria-dfx-2rp/bin/.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt update
-sudo apt install xlnx-firmware-k26-dfx-2rp
-sudo apt install kria-dfx-apps
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>xlnx-firmware-k26-dfx-2rp
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>kria-dfx-apps
 </pre></div>
 </div>
 <ul class="simple">
@@ -341,9 +341,9 @@ An example is:</p>
 <div class="section" id="prerequisites-for-aes">
 <h4>Prerequisites for AES<a class="headerlink" href="#prerequisites-for-aes" title="Permalink to this heading">¶</a></h4>
 <p>Unload all accelerators and load AES128 accelerator to slot 0 by running the following commands on the terminal opened in Jupyter notebook.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
-sudo xmutil unloadapp <span class="m">1</span>
-sudo xmutil loadapp AES128
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span><span class="m">0</span>
+sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span><span class="m">1</span>
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>AES128
 </pre></div>
 </div>
 </div>
@@ -369,9 +369,9 @@ sudo xmutil loadapp AES128
 <div class="section" id="prerequisites-for-aes192">
 <h4>Prerequisites for AES192<a class="headerlink" href="#prerequisites-for-aes192" title="Permalink to this heading">¶</a></h4>
 <p>Unload all accelerators and load AES192 accelerator to slot 0 by running the following commands on the terminal opened in Jupyter notebook.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
-sudo xmutil unloadapp <span class="m">1</span>
-sudo xmutil loadapp AES192
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span><span class="m">0</span>
+sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span><span class="m">1</span>
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>AES192
 </pre></div>
 </div>
 </div>
@@ -398,10 +398,10 @@ sudo xmutil loadapp AES192
 <div class="section" id="prerequisites-for-aes-fft">
 <h4>Prerequisites for AES-FFT<a class="headerlink" href="#prerequisites-for-aes-fft" title="Permalink to this heading">¶</a></h4>
 <p>Unload all accelerators and load AES128 accelerator to slot 0 and FFT to slot 1 by running the following commands on the terminal opened in Jupyter notebook.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
-sudo xmutil unloadapp <span class="m">1</span>
-sudo xmutil loadapp AES128
-sudo xmutil loadapp FFT
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span><span class="m">0</span>
+sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span><span class="m">1</span>
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>AES128
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>FFT
 </pre></div>
 </div>
 </div>
@@ -436,10 +436,10 @@ sudo xmutil loadapp FFT
 <div class="section" id="prerequisites-for-aes-fir-fft">
 <h4>Prerequisites for AES-FIR-FFT<a class="headerlink" href="#prerequisites-for-aes-fir-fft" title="Permalink to this heading">¶</a></h4>
 <p>Unload all accelerators and load AES128 accelerator to slot 0 and FFT to slot 1 by running the following commands on the terminal opened in Jupyter notebook.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
-sudo xmutil unloadapp <span class="m">1</span>
-sudo xmutil loadapp AES128
-sudo xmutil loadapp FFT
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span><span class="m">0</span>
+sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span><span class="m">1</span>
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>AES128
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>FFT
 </pre></div>
 </div>
 </div>
@@ -453,8 +453,8 @@ sudo xmutil loadapp FFT
 <li><p>Run the cell FFT acceleration to perform FFT operation on AES128 accelerator output. The output of FFT is plotted.</p></li>
 <li><p>Switch to terminal in the Jupyter notebook and perform the following steps to unload AES128 accelerator and load FIR accelerator</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
-sudo xmutil loadapp FIR
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span><span class="m">0</span>
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>FIR
 </pre></div>
 </div>
 <ul class="simple">
@@ -469,9 +469,9 @@ sudo xmutil loadapp FIR
 <div class="section" id="prerequisites-for-aes128">
 <h4>Prerequisites for AES128<a class="headerlink" href="#prerequisites-for-aes128" title="Permalink to this heading">¶</a></h4>
 <p>Unload all accelerators and load AES128 accelerator to slot 0 by running the following commands on the terminal opened in Jupyter notebook.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo xmutil unloadapp <span class="m">0</span>
-sudo xmutil unloadapp <span class="m">1</span>
-sudo xmutil loadapp AES128
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span><span class="m">0</span>
+sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp<span class="w"> </span><span class="m">1</span>
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>AES128
 </pre></div>
 </div>
 <p>Install the python library - pycryptodome</p>
@@ -731,8 +731,8 @@ Steps to install the dependencies manually</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 18, 2024.
+    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 23, 2025.
       </span></p>
   </div>
 

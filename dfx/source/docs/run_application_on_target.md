@@ -4,7 +4,7 @@ This document covers how to run the DFX pre-built applications and accelerators 
 
 ## Prerequisites
 
-The Kria SOM DFX example designs presented here assume that the user has already followed the application-agnostic steps of setting up their board and completing the initial boot of the Ubuntu 22.04 OS. These example designs are agnostic to the specific carrier card, meaning they work both on KV260 and KR260 Starter Kits. Steps for getting a Kria SOM Starter Kit booted with Ubuntu 22.04 and the Xilinx-specific support packages installed are outlined [here](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html).
+The Kria SOM DFX example designs presented here assume that the user has already followed the application-agnostic steps of setting up their board and completing the initial boot of the Ubuntu 22.04 OS. These example designs are agnostic to the specific carrier card, meaning they work both on KV260 and KR260 Starter Kits. Steps for getting a Kria SOM Starter Kit booted with Ubuntu 22.04 and the Xilinx-specific support packages installed are outlined [here for KV260](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/linux_boot/ubuntu_22_04/build/html/docs/intro.html) and [here for KR260](https://xilinx.github.io/kria-apps-docs/kr260/linux_boot/ubuntu_22_04/build/html/docs/intro.html).
 
 ## Install pre-built firmware and applications on the target
 

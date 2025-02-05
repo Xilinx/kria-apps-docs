@@ -14,25 +14,32 @@
 #
 import os
 import sys
+from datetime import datetime
 import recommonmark
 from recommonmark.transform import AutoStructify
 from recommonmark.parser import CommonMarkParser
-
 # sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('_ext'))
 sys.path.insert(0, os.path.abspath('docs'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Kria™ KV260'
-copyright = '2021-2022, Advanced Micro Devices, Inc'
+
 author = 'Advanced Micro Devices, Inc'
+project = 'Kria™ KV260'
+project_u = project.replace(' ', '_')
+copyright = '2021-' + datetime.now().strftime("%Y") + ', ' + author
+# YYYY = First year of copyright
 
 # The short X.Y version
 version = '2021.1'
 # The full version, including alpha/beta/rc tags
 release = '2021.1'
-html_last_updated_fmt = 'October 10, 2022'
+
+html_last_updated_fmt = datetime.now().strftime("%B %d, %Y")
+
+
+
 
 # -- General configuration ---------------------------------------------------
 

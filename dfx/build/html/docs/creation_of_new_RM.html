@@ -70,9 +70,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -250,27 +250,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul class="simple">
 <li><p>Add the following line to Vivado_init.tcl before launching Vivado. Refer to UG894 for more information on Vivado_init.tcl.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vim ~/.Xilinx/Vivado/Vivado_init.tcl
-set_param bd.gen_bda_file <span class="m">1</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>~/.Xilinx/Vivado/Vivado_init.tcl
+set_param<span class="w"> </span>bd.gen_bda_file<span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Clone kria-dfx-hw repository.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone --branch xlnx_rel_v2022.1 --recursive https://github.com/Xilinx/kria-dfx-hw.git
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2022.1<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/Xilinx/kria-dfx-hw.git
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Navigate to the create_new_rm directory</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> kria-dfx-hw/k26/2rp_design/create_new_rm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>kria-dfx-hw/k26/2rp_design/create_new_rm
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Launch Vivado. In the Vivado Tcl console, run the following Tcl command.
 If a vivado project with the name project_1 already exists, it will be opened. Else, a vivado project with the name project_1 will be created and opened.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> ./hw_prj.tcl
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>./hw_prj.tcl
 </pre></div>
 </div>
 <div class="section" id="rm-bd-creation">
@@ -282,8 +282,8 @@ Follow the below steps to create RM BD using the provided RM template file.</p>
 <p>axis_rm_template.tcl has the required Tcl procedures to create an RM with AXIS accelerators. After sourcing the Tcl template, create an RM BD using the cr_bd_axis_rm command by specifying the RM name and target RP. targetRP can be RP_0 or RP_1.</p>
 </li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> ../rm_tcl/axis_rm_template.tcl
-cr_bd_axis_rm <span class="s2">&quot;&quot;</span> &lt;RMName&gt; &lt;targetRP&gt;
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>../rm_tcl/axis_rm_template.tcl
+cr_bd_axis_rm<span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span>&lt;RMName&gt;<span class="w"> </span>&lt;targetRP&gt;
 </pre></div>
 </div>
 <p>This creates a BD file with the name RMName_targetRP.bd and validates it.</p>
@@ -314,7 +314,7 @@ cr_bd_axis_rm <span class="s2">&quot;&quot;</span> &lt;RMName&gt; &lt;targetRP&g
 <li><p>Validate the BD design.</p></li>
 </ul>
 <p>Run the following command in the Vivado Tcl console.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>validate_bd_design  
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>validate_bd_design<span class="w">  </span>
 </pre></div>
 </div>
 </div>
@@ -324,7 +324,7 @@ cr_bd_axis_rm <span class="s2">&quot;&quot;</span> &lt;RMName&gt; &lt;targetRP&g
 <li><p>This step will create a synthesis DCP for the RM BD created above.
 Run the following command in the Vivado Tcl console.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>export_bd_synth -force <span class="o">[</span>get_files ./project_1/project_1.srcs/sources_1/bd/&lt;RMName&gt;_&lt;targetRP&gt;/&lt;RMName&gt;_&lt;targetRP&gt;.bd<span class="o">]</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>export_bd_synth<span class="w"> </span>-force<span class="w"> </span><span class="o">[</span>get_files<span class="w"> </span>./project_1/project_1.srcs/sources_1/bd/&lt;RMName&gt;_&lt;targetRP&gt;/&lt;RMName&gt;_&lt;targetRP&gt;.bd<span class="o">]</span>
 </pre></div>
 </div>
 <p>This creates a dcp of the BD at the same location where the .bd file is located.</p>
@@ -335,15 +335,15 @@ Run the following command in the Vivado Tcl console.</p></li>
 <ul class="simple">
 <li><p>Navigate to the create_new_rm directory. Launch another instance of Vivado as these steps do not need Vivado project mode.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> kria-dfx-hw/k26/2rp_design/create_new_rm
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>kria-dfx-hw/k26/2rp_design/create_new_rm
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Source the Tcl script that generates RM partial bit file. This script reads RM synthesis DCP and abstract shells of the DFX example design, generates partial bit files and firmware files for the RM. After sourcing the script, run the generate_rm command by using the same RM name and target RP used in the above steps.</p></li>
-<li><p>Run the following command in the vivado tcl console.</p></li>
+<li><p>Run the following command in the Vivado tcl console.</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> ./generate_rm.tcl
-generate_rm RMName targetRP
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>./generate_rm.tcl
+generate_rm<span class="w"> </span>RMName<span class="w"> </span>targetRP
 </pre></div>
 </div>
 </div>
@@ -388,8 +388,8 @@ generate_rm RMName targetRP
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 18, 2024.
+    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on January 23, 2025.
       </span></p>
   </div>
 

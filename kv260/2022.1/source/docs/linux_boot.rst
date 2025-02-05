@@ -4,9 +4,9 @@ Boot Kria Starter Kit Linux on KV260
 
 
 
-For new users evaluating the Kria Starter Kit, we recommend starting with the latest version of Ubuntu (Ubuntu 24.04).
-For users configuring their Kria Starter Kit for a specific application, please refer to the table 
-below to find your application and select the appropriate version of Linux.
+For new users evaluating the AMD® Kria Starter Kit, AMD recommends starting with the latest version of Ubuntu (Ubuntu 24.04), or Ubuntu 22.04 if you want to run example applications.
+
+For users configuring their Kria Starter Kit for a specific application, refer to the table below to find your application and select the appropriate version of Linux.
 
 
 .. list-table:: 
@@ -15,7 +15,7 @@ below to find your application and select the appropriate version of Linux.
 
    * - Starter Kit Linux Version
      - KV260 Instructions
-     - Supported Apps
+     - Out of Box Validated Apps
    * - Kria Ubuntu 22.04
      - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2022.1/linux_boot/ubuntu_22_04/build/html/docs/intro.html>`_
      - 
@@ -29,3 +29,20 @@ below to find your application and select the appropriate version of Linux.
      - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2022.1/linux_boot/ubuntu_24_04/build/html/docs/intro.html>`_
      - 
        - As of now, there are no example application for Ubuntu 24.04.
+   * - Embedded Linux 2021.1
+     - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/linux_boot/petalinux_2021.1/build/html/docs/intro.html>`_
+     - 
+       - `Smart Camera <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/build/html/docs/smartcamera/smartcamera_landing.html>`_
+       - `AI Box ReID <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/build/html/docs/aibox-reid/aibox_landing.html>`_
+       - `Defect Detect <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/build/html/docs/defect-detect/defectdetect_landing.html>`_
+       - `NLP SmartVision <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/build/html/docs/nlp-smartvision/nlp_smartvision_landing.html>`_
+   * - Embedded Linux 2022.1 and newer
+     - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/linux_boot/petalinux_2021.1/build/html/docs/intro.html>`_
+     - 
+       - There are no example application for embedded Linux 2022.1 and newer
+
+
+
+.. note:: Kria KV260 Vision AI Starter Kit eCommerce
+   
+   Kria Starter Kits also support Starter Kit on embedded Linux (generated with PetaLinux or Yocto). Refer to the `Kria Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits>`_ for release pre-builts.

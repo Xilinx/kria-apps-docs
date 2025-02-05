@@ -31,13 +31,9 @@ To begin, a computer with internet connection and with the ability to write to a
 ## Important:  Perform Shutdown Command Before Removing Power
 
 Running the shutdown command enables Ubuntu to bring the system down in a secure manner, ensuring that disk writes complete before storage devices are unmounted.
-For best practice, this should be performed each time before removing power to KD240
+For best practice, this should be performed each time before removing power.
 
 ```sudo shutdown -h now```
-
-## Ubuntu Server
-
-Ubuntu Server is the best choice for getting started with the KR260.
 
 ### Ubuntu Server LTS
 
