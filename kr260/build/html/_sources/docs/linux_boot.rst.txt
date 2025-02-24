@@ -23,6 +23,7 @@ below to find your application and select the appropriate version of Linux.
        - `ROS 2 Perception Node <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/ros2_perception_node.html>`_
        - `Precision Time Management <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/precision_time_management.html>`_
        - `Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/bist.html>`_
+       - `Dynamic Function eXchange (DFX) <https://xilinx.github.io/kria-apps-docs/dfx.html>`_
    * - Kria Ubuntu 24.04
      - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/linux_boot/ubuntu_24_04/build/html/docs/intro.html>`_
      - 

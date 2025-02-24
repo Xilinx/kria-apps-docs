@@ -82,9 +82,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#obtain-or-generate-xsa-file">Obtain or Generate .xsa file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-freertos-platform-application-in-vitis">Create FreeRTOS platform Application in Vitis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#boot-freertos-on-platform">Boot FreeRTOS on platform</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#boot-freertos-vis-jtag">Boot FreeRTOS vis JTAG</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#boot-freertos-using-qspi-in-a-b-update">Boot FreeRTOS Using QSPI in A/B update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boot-freertos-on-the-platform">Boot FreeRTOS on the Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#boot-freertos-via-jtag">Boot FreeRTOS via JTAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boot-freertos-using-qspi-in-a-b-update">Boot FreeRTOS Using QSPI in A/B Update</a></li>
 </ul>
 </li>
 </ul>
@@ -122,49 +122,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="section" id="freertos-kria-som-starter-kits-support">
 <h1>FreeRTOS Kria SOM Starter Kits Support<a class="headerlink" href="#freertos-kria-som-starter-kits-support" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842141/FreeRTOS">FreeRTOS</a> is a real-time operating system (RTOS) kernel designed for embedded systems. It provides scheduling, multitasking, and various other services for applications running on microcontrollers and small microprocessors. FreeRTOS is open-source, allowing developers to use, modify, and distribute it freely under the MIT license.</p>
-<p>Booting FreeRTOS on Kria Starter Kits mirrors the process on a standard ZynqMPSoC platform. This document offers a detailed, step-by-step procedure for running FreeRTOS on a Kria SOM APU processor.</p>
-<p>To boot FreeRTOS, the initial step involves acquiring or generating a .xsa file. Next, the .xsa file is imported into Vitis to establish a FreeRTOS platform and application, and to create artifacts required to boot on target. Finally, various methods for booting FreeRTOS on Kria SOM are outlined.</p>
-<p>In this tutorial, we employ the KV260 as a demonstration and utilized tool version 2023.2.</p>
+<p>Booting FreeRTOS on Kria Starter Kits mirrors the process on a standard AMD Zynq MPSoC platform. This document offers a detailed, step-by-step procedure for running FreeRTOS on a Kria SOM APU processor.</p>
+<p>To boot FreeRTOS, the initial step involves acquiring or generating a .xsa file. Next, the .xsa file is imported into AMD Vitis to establish a FreeRTOS platform and application, and to create artifacts required to boot on target. Finally, various methods for booting FreeRTOS on Kria SOM are outlined.</p>
+<p>In this tutorial, the KV260 is used as a demonstration and utilizes tool version 2023.2.</p>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
-<li><p>Vitis Installation</p></li>
+<li><p>Vitis installation</p></li>
 <li><p>(Optional) Vivado installation</p></li>
 </ol>
 <div class="section" id="obtain-or-generate-xsa-file">
 <h3>Obtain or Generate .xsa file<a class="headerlink" href="#obtain-or-generate-xsa-file" title="Permalink to this heading">¶</a></h3>
-<p>A .xsa file corresponding to target Kria Starter Kit can be found in <a class="reference external" href="https://petalinux.xilinx.com/sswreleases">petalinux.xilinc.com</a> in <code class="docutils literal notranslate"><span class="pre">hdf-examples/</span></code> folder, or from PetaLinux BSP’s hardware/ folder. These are base .xsa file containing support for various PS peripherals, and has minimal PL contents.</p>
-<p>Alternatively, you can generate a .xsa file by utilizing board files as outlined in the tutorial provided <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/Generate_vivado_project_from_boardfile.html">here</a>.</p>
+<p>A .xsa file corresponding to target the Kria Starter Kit can be found in <a class="reference external" href="https://petalinux.xilinx.com/sswreleases">petalinux.xilinc.com</a> in the <code class="docutils literal notranslate"><span class="pre">hdf-examples/</span></code> folder, or from PetaLinux BSP’s hardware/ folder.These are base .xsa files containing support for various PS peripherals and has minimal PL contents.</p>
+<p>Alternatively, you can generate a .xsa file by utilizing the  board files as outlined in the tutorial provided <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/Generate_vivado_project_from_boardfile.html">here</a>.</p>
 </div>
 <div class="section" id="create-freertos-platform-application-in-vitis">
 <h3>Create FreeRTOS platform Application in Vitis<a class="headerlink" href="#create-freertos-platform-application-in-vitis" title="Permalink to this heading">¶</a></h3>
-<p>Please note that this tutorial is crafted using the 2023.2 version of Vitis, featuring the newly introduced interface GUI.</p>
-<p>In Vitis welcome page, select “Create Platform Component” under “Embedded Development”</p>
-<p><img alt="image" src="../_images/freertos_vitis1.PNG" /></p>
-<p>Follow the prompt to enter Vitis Workspace location and platform component name. In this case we used <code class="docutils literal notranslate"><span class="pre">freertos_platform</span></code> as platform name.</p>
-<p><img alt="image" src="../_images/freertos_vitis2.PNG" /></p>
-<p>Select the .xsa generated in <a class="reference external" href="#generate-xsa-file-using-vivado-and-board-file">previous step</a>.</p>
-<p>Select “freertos” as OS, and “psu_cortex53_0” as Processor. Also make sure to select “Generate Boot artifacts” and “Generate PMU Firmware”:</p>
-<p><img alt="image" src="../_images/freertos_vitis3.PNG" /></p>
-<p>Click through “next” and “finish”, and Vitis will create a freertos platform project (it may take a few minutes). In the created project, in “FLOW” tab, click “Build” to build the platform:</p>
-<p><img alt="image" src="../_images/freertos_vitis4.PNG" /></p>
-<p>Now navigate to example applications with the icons on the left, select “Embedded Software Examples” -&gt; “FREERTOS Hello World” and click on  “Create Application Component from Template”:</p>
-<p><img alt="image" src="../_images/freertos_vitis5.PNG" /></p>
-<p>Select Component name and location, in our case we used <code class="docutils literal notranslate"><span class="pre">freertos_hello_world</span></code> as component name. Then select the <code class="docutils literal notranslate"><span class="pre">freertos_platform</span></code> that we created:</p>
-<p><img alt="image" src="../_images/freertos_vitis6.PNG" /></p>
-<p>Click through next and finish. Now Vitis will generate an application component. In “FLOW” tab, select the application in “Component” pull down menu, and select “Build”</p>
-<p><img alt="image" src="../_images/freertos_vitis7.PNG" /></p>
-<p>You can find the generated artifacts in <code class="docutils literal notranslate"><span class="pre">&lt;vitis</span> <span class="pre">workspace&gt;/freertos_hello_world/build/freertos_hello_world.elf</span></code>,  <code class="docutils literal notranslate"><span class="pre">&lt;vitis</span> <span class="pre">workspace&gt;/freertos_platform/zynqmp_fsbl/build/fsbl.elf</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;vitis</span> <span class="pre">workspace&gt;freertos_platform/zynqmp_pmufw/build/pmufw.elf</span></code></p>
-<p>Lastly, for QSPI booting options in later sections, click on “Create Boot Image”:
-<img alt="image" src="../_images/freertos_vitis8.PNG" /></p>
-<p>In the window that pops up, leave everything on default and click “Create Image”, you will find the generated artifact in <code class="docutils literal notranslate"><span class="pre">freertos_hello_world/_ide/bootimage/boot.bin</span></code>.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> This tutorial uses the 2023.2 version of Vitis, featuring the newly introduced interface GUI.</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>On the Vitis welcome page, under Embedded Development, select <strong>Create Platform Component</strong>.
+<img alt="image" src="../_images/freertos_vitis1.PNG" /></p></li>
+<li><p>Follow the prompt to enter the Vitis Workspace location and platform component name. In this case, use <code class="docutils literal notranslate"><span class="pre">freertos_platform</span></code> as the platform name.
+<img alt="image" src="../_images/freertos_vitis2.PNG" /></p></li>
+<li><p>Select the .xsa generated in the <a class="reference external" href="#generate-xsa-file-using-vivado-and-board-file">previous step</a>.</p></li>
+<li><p>Select <strong>freertos</strong> as the operating system, and <strong>psu_cortex53_0</strong> as the processor. Also make sure to select <strong>Generate Boot artifacts</strong> and <strong>Generate PMU Firmware</strong>:
+<img alt="image" src="../_images/freertos_vitis3.PNG" /></p></li>
+<li><p>Click <strong>Next</strong> then <strong>Finish</strong>, and Vitis will create a FreeRTOS platform project (it might take a few minutes). In the created project, in the FLOW tab, click <strong>Build</strong> to build the platform:
+<img alt="image" src="../_images/freertos_vitis4.PNG" /></p></li>
+<li><p>Now navigate to the example applications with the icons on the left, select <strong>Embedded Software Examples</strong> -&gt; <strong>FREERTOS Hello World</strong>, and click  <strong>Create Application Component from Template</strong>:
+<img alt="image" src="../_images/freertos_vitis5.PNG" /></p></li>
+<li><p>Select the component name and location, in this case, you used <code class="docutils literal notranslate"><span class="pre">freertos_hello_world</span></code> as the component name. Then select the <code class="docutils literal notranslate"><span class="pre">freertos_platform</span></code> that you created:
+<img alt="image" src="../_images/freertos_vitis6.PNG" /></p></li>
+<li><p>Click <strong>Next</strong> and <strong>Finish</strong>. Now Vitis will generate an application component. In the FLOW tab, select the application. In the Component drop down menu, select <strong>Build</strong>.
+<img alt="image" src="../_images/freertos_vitis7.PNG" /></p></li>
+<li><p>You can find the generated artifacts in <code class="docutils literal notranslate"><span class="pre">&lt;vitis</span> <span class="pre">workspace&gt;/freertos_hello_world/build/freertos_hello_world.elf</span></code>,  <code class="docutils literal notranslate"><span class="pre">&lt;vitis</span> <span class="pre">workspace&gt;/freertos_platform/zynqmp_fsbl/build/fsbl.elf</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;vitis</span> <span class="pre">workspace&gt;freertos_platform/zynqmp_pmufw/build/pmufw.elf</span></code>.</p></li>
+<li><p>Finally, for the QSPI booting options in later sections, click <strong>Create Boot Image</strong>.
+<img alt="image" src="../_images/freertos_vitis8.PNG" /></p></li>
+<li><p>In the window that displays, leave everything on default and click <strong>Create Image</strong>. You will find the generated artifact in <code class="docutils literal notranslate"><span class="pre">freertos_hello_world/_ide/bootimage/boot.bin</span></code>.</p></li>
+</ol>
 </div>
-<div class="section" id="boot-freertos-on-platform">
-<h3>Boot FreeRTOS on platform<a class="headerlink" href="#boot-freertos-on-platform" title="Permalink to this heading">¶</a></h3>
-<p>There are many ways one can boot FreeRTOS with the artifacts created - we provide a few ideas here but there are more ways such as USB, eMMC, ethernet - all of which are not specific to Kria implementation.</p>
-<div class="section" id="boot-freertos-vis-jtag">
-<h4>Boot FreeRTOS vis JTAG<a class="headerlink" href="#boot-freertos-vis-jtag" title="Permalink to this heading">¶</a></h4>
-<p>To boot freeRTOS via JTAG, we will use XSDB. Create a folder with <code class="docutils literal notranslate"><span class="pre">freertos_hello_world.elf</span></code>, <code class="docutils literal notranslate"><span class="pre">fsbl.elf</span></code> and <code class="docutils literal notranslate"><span class="pre">pmufw.elf</span></code> in the folder. Create a boot.sh in the same folder with the following content:</p>
+<div class="section" id="boot-freertos-on-the-platform">
+<h3>Boot FreeRTOS on the Platform<a class="headerlink" href="#boot-freertos-on-the-platform" title="Permalink to this heading">¶</a></h3>
+<p>There are many ways to boot FreeRTOS with the artifacts created. There are more ways, such as USB, eMMC, and ethernet, all of which are not specific to the Kria implementation.</p>
+<div class="section" id="boot-freertos-via-jtag">
+<h4>Boot FreeRTOS via JTAG<a class="headerlink" href="#boot-freertos-via-jtag" title="Permalink to this heading">¶</a></h4>
+<p>To boot FreeRTOS via JTAG, use XSDB. Create a folder with <code class="docutils literal notranslate"><span class="pre">freertos_hello_world.elf</span></code>, <code class="docutils literal notranslate"><span class="pre">fsbl.elf</span></code>, and <code class="docutils literal notranslate"><span class="pre">pmufw.elf</span></code> in the folder. Create a <code class="docutils literal notranslate"><span class="pre">boot.sh</span></code> in the same folder with the following content:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>puts<span class="w"> </span>stderr<span class="w"> </span><span class="s2">&quot;Starting the script...&quot;</span>
 connect
 targets<span class="w"> </span>-set<span class="w"> </span>-nocase<span class="w"> </span>-filter<span class="w"> </span><span class="o">{</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s2">&quot;PSU&quot;</span><span class="o">}</span>
@@ -203,12 +207,12 @@ after<span class="w"> </span><span class="m">2000</span>
 con
 </pre></div>
 </div>
-<p>In XSDB, source boot.sh, this will execute the three elfs and execute the example freeRTOS hello world application. You will freeRTOS Hello World application prints on UART.</p>
+<p>In XSDB, source <code class="docutils literal notranslate"><span class="pre">boot.sh</span></code>; this will execute the three elfs and execute the example FreeRTOS hello world application. TheFreeRTOS Hello World application prints on UART.</p>
 </div>
 <div class="section" id="boot-freertos-using-qspi-in-a-b-update">
-<h4>Boot FreeRTOS Using QSPI in A/B update<a class="headerlink" href="#boot-freertos-using-qspi-in-a-b-update" title="Permalink to this heading">¶</a></h4>
-<p>If your Starter Kit has the locked QSPI image with A/B boot sections, you can also test the generated boot.bin (renamed to freertos_boot.bin here) by loading it to A or B boot partition and test.</p>
-<p>For an example, you can boot to Ubuntu/PetaLinux and load the freertos_boot.bin into one of the image partition using xmutil:</p>
+<h4>Boot FreeRTOS Using QSPI in A/B Update<a class="headerlink" href="#boot-freertos-using-qspi-in-a-b-update" title="Permalink to this heading">¶</a></h4>
+<p>If your Starter Kit has the locked QSPI image with A/B boot sections, you can also test the generated <code class="docutils literal notranslate"><span class="pre">boot.bin</span></code> (renamed to <code class="docutils literal notranslate"><span class="pre">freertos_boot.bin</span></code> here) by loading it to A or B boot partition and test.</p>
+<p>For an example, you can boot to Ubuntu/PetaLinux, and load the <code class="docutils literal notranslate"><span class="pre">freertos_boot.bin</span></code> into one of the image partition using xmutil:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>bootfw_update<span class="w"> </span>-i<span class="w"> </span>freertos_boot.bin
 Marking<span class="w"> </span>last<span class="w"> </span>booted<span class="w"> </span>image<span class="w"> </span>as<span class="w"> </span>bootable
 Reading<span class="w"> </span>Image<span class="w"> </span>file
@@ -220,13 +224,13 @@ Clearing<span class="w"> </span>multiboot<span class="w"> </span>register<span c
 freertos_boot.bin<span class="w"> </span>successfully<span class="w"> </span>updated<span class="w"> </span>to<span class="w"> </span>Image<span class="w"> </span>B<span class="w"> </span>partition
 </pre></div>
 </div>
-<p>Perform a power cycle - on the first power cycle, image selector will choose the newly updated partition  - you will see hello freeRTOS program printouts on UART. However, note that in this state, on every other power cycle, the image selector will choose the other partition and try to boot Linux. For detailed logics on how image selector chooses which partition to use, see <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw/build/html/docs/bootfw_overview.html#a-b-boot-concept">a/b boot concept</a> section.</p>
+<p>Perform a power cycle. On the first power cycle, the image selector will choose the newly updated partition. You will see the hello FreeRTOS program printouts on UART. However, in this state, on every other power cycle, the image selector will choose the other partition and try to boot Linux. For detailed logics on how image selector chooses which partition to use, see the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw/build/html/docs/bootfw_overview.html#a-b-boot-concept">A/B Boot Voncept</a> section.</p>
 </div>
 </div>
 </div>
 <div class="section" id="next-step">
 <h2>Next Step<a class="headerlink" href="#next-step" title="Permalink to this heading">¶</a></h2>
-<p>Try the lwIP TCP Performance Server application in <a class="reference internal" href="freertos_kria_lwip_tcpperfserver.html"><span class="doc">this tutorial</span></a></p>
+<p>Try the lwIP TCP Performance Server application in <a class="reference internal" href="freertos_kria_lwip_tcpperfserver.html"><span class="doc">this tutorial</span></a>.</p>
 <hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
@@ -244,7 +248,7 @@ freertos_boot.bin<span class="w"> </span>successfully<span class="w"> </span>upd
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 16, 2025.
+      <span class="lastupdated">Last updated on February 14, 2025.
       </span></p>
   </div>
 

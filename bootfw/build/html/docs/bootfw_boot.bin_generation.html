@@ -88,8 +88,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#generate-boot-bin-using-yocto">Generate BOOT.BIN using Yocto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#generate-boot-bin-using-petalinux">Generate BOOT.BIN using PetaLinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-boot-bin-using-yocto">Generate BOOT.BIN Using Yocto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-boot-bin-using-petalinux">Generate BOOT.BIN Using PetaLinux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
@@ -126,36 +126,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code><a class="headerlink" href="#generating-boot-bin" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>As outlined in <a class="reference internal" href="bootfw_overview.html"><span class="doc">bootfw overview</span></a>, Kria SOM Starter Kit BOOT.BIN is part of QSPI image, and contains 4 components - FSBL, PMU_FW, TF-A, U-boot. This page outlines the process to re-create a BOOT.bin for Kria SOM Starter kits used in A/B image update. Both PetaLinux and Yocto supports BOOT.BIN Generation. <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto">Yocto</a> support for generating Kria SOM Starter Kit BOOT.BIN image only starts in 2023.1, previous versions do not have support.</p>
+<p>As outlined in the <a class="reference internal" href="bootfw_overview.html"><span class="doc">bootfw overview</span></a>, the AMD Kria™ SOM Starter Kit BOOT.BIN is part of the quad SPI (QSPI) image, and contains four components: FSBL, PMU_FW, TF-A, and U-Boot. This page outlines the process to recreate a BOOT.bin for Kria SOM Starter kits used in A/B image update. Both PetaLinux and Yocto supports BOOT.BIN generation. <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto">Yocto</a> support for generating the Kria SOM Starter Kit BOOT.BIN image only starts in 2023.1, previous versions do not have support.</p>
 </div>
 <div class="section" id="generate-boot-bin-using-yocto">
-<h2>Generate BOOT.BIN using Yocto<a class="headerlink" href="#generate-boot-bin-using-yocto" title="Permalink to this heading">¶</a></h2>
-<p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Kria Support</a> details how to use Yocto to generate Kria artifacts, go through this page from beginning to “Build the Artifacts” section to setup Yocto.</p>
-<p>The bitbake recipe for BOOT.BIN in Yocto is <code class="docutils literal notranslate"><span class="pre">xilinx-bootbin</span></code> and command to build is:</p>
+<h2>Generate BOOT.BIN Using Yocto<a class="headerlink" href="#generate-boot-bin-using-yocto" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Kria Support</a> details how to use Yocto to generate Kria artifacts; go through this page from beginning to “Build the Artifacts” section to set up Yocto.</p>
+<p>The bitbake recipe for <code class="docutils literal notranslate"><span class="pre">BOOT.BIN</span></code> in Yocto is <code class="docutils literal notranslate"><span class="pre">xilinx-bootbin</span></code> and the command to build is:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>xilinx-bootbin<span class="w"> </span><span class="c1"># for K26</span>
 <span class="nv">MACHINE</span><span class="o">=</span>k24-smk<span class="w"> </span>bitbake<span class="w"> </span>xilinx-bootbin<span class="w"> </span><span class="c1"># for K24</span>
 </pre></div>
 </div>
-<p>To set u-boot configuration, use this command before building:</p>
+<p>To set U-Boot configuration, use this command before building:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>virtual/bootloader<span class="w"> </span>-c<span class="w"> </span>menuconfig
 </pre></div>
 </div>
 </div>
 <div class="section" id="generate-boot-bin-using-petalinux">
-<h2>Generate BOOT.BIN using PetaLinux<a class="headerlink" href="#generate-boot-bin-using-petalinux" title="Permalink to this heading">¶</a></h2>
-<p>Go through <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Build-instructions">Xilinx Wiki PetaLinux Build Instructions</a> - there are instructions to generate BOOT.BIN from PetaLinux. To recap they are the following:</p>
+<h2>Generate BOOT.BIN Using PetaLinux<a class="headerlink" href="#generate-boot-bin-using-petalinux" title="Permalink to this heading">¶</a></h2>
+<p>Go through the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Build-instructions">PetaLinux Build Instructions</a>. There are instructions to generate BOOT.BIN from PetaLinux. To recap, they are the following:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-create<span class="w"> </span>-t<span class="w"> </span>project<span class="w"> </span>-s<span class="w"> </span>&lt;kria_starterkit&gt;.bsp
 <span class="nb">cd</span><span class="w"> </span>&lt;kria_starter_kit_petalinux_folder&gt;
 petalinux-build
 petalinux-package<span class="w"> </span>--boot<span class="w"> </span>--u-boot<span class="w"> </span>--force
 </pre></div>
 </div>
-<p>You will find new boot firmware at /image/linux/BOOT.BIN.</p>
-<p>To set configuration for u-boot, use this command before petalinux-build:</p>
+<p>You will find new boot firmware at <code class="docutils literal notranslate"><span class="pre">/image/linux/BOOT.BIN</span></code>.</p>
+<p>To set the configuration for U-Boot, use this command before <code class="docutils literal notranslate"><span class="pre">petalinux-build</span></code>:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot
 </pre></div>
 </div>
-<p>The new BOOT.BIN can be loaded to the Starter Kit using the xmutil bootfw_update utility described in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-Update-Process">Kria Wiki’s Boot FW Update Process section</a>.</p>
+<p>The new <code class="docutils literal notranslate"><span class="pre">BOOT.BIN</span></code> can be loaded to the Starter Kit using the xmutil bootfw_update utility described in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-Update-Process">Kria Wiki’s Boot FW Update Process section</a>.</p>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
@@ -163,7 +163,7 @@ petalinux-package<span class="w"> </span>--boot<span class="w"> </span>--u-boot<
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -180,7 +180,7 @@ petalinux-package<span class="w"> </span>--boot<span class="w"> </span>--u-boot<
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 16, 2025.
+      <span class="lastupdated">Last updated on February 14, 2025.
       </span></p>
   </div>
 

@@ -87,12 +87,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">U-Boot Handoff</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#u-boot-support-for-kria-som-variants">U-Boot support for Kria SOM Variants</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#starter-kit-som-production-som">Starter Kit SOM &amp; Production SOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#u-boot-support-for-kria-som-variants">U-Boot Support for Kria SOM Variants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#starter-kit-som-and-production-som">Starter Kit SOM and Production SOM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#prioritized-boot-order">Prioritized Boot Order</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#boot-scr-linux-dt-decoupling-dt-selection">boot.scr - Linux DT Decoupling &amp; DT Selection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#boot-scr-linux-dt-decoupling-and-dt-selection"><code class="docutils literal notranslate"><span class="pre">boot.scr</span></code> - Linux DT Decoupling and DT Selection</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#compilation-procedure-and-source-code">Compilation Procedure and Source Code</a></li>
 </ul>
 </li>
@@ -133,36 +133,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>U-Boot Handoff<a class="headerlink" href="#u-boot-handoff" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>In Kria Starter Kits pre-built firmware, U-Boot provides the functionality for the hand-off between the primary boot device (QSPI) and the secondary boot device (SD card default, others available). U-Boot will automatically identify the carrier card (CC) on which it is running, it then enables a full SOM + CC device tree, enables the CC peripherals via the PMU configuration object overlay APIs, and then searches a pre-defined peripheral device list for Linux boot artifacts, and then boots Linux with those artifacts.</p>
-<p>The CC incremental PS subsystem peripherals using the PMU configuration overlay functionality described <a class="reference internal" href="bootfw_pmu_config_obj.html"><span class="doc">here</span></a>. The PMU overlay will enable permissions for the incremental devices not included in the SOM only boot configuration defined by FSBL. U-Boot will drive the PMU configuration overlay APIs dynamically via the power domain (PD) driver when it loads the integrated device tree (DT) for KV260 or KR260. U-Boot locks the PMU configuration overlay function after it has finished loading its EEPROM identified DT. The overall flow is outlined in this flow-chart below.</p>
+<p>In the AMD Kria™ Starter Kit’s pre-built firmware, U-Boot provides the functionality for the hand-off between the primary boot device (QSPI) and the secondary boot device (by default, SD card but others are available). U-Boot automatically identifies the carrier card (CC) on which it is running; it then enables a full SOM + CC device tree, enables the CC peripherals via the platform management unit (PMU) configuration object overlay APIs, then searches a predefined peripheral device list for Linux boot artifacts, and then boots Linux with those artifacts.</p>
+<p>The CC incremental PS subsystem peripherals using the PMU configuration overlay functionality are described <a class="reference internal" href="bootfw_pmu_config_obj.html"><span class="doc">here</span></a>. The PMU overlay enables permissions for the incremental devices not included in the SOM only boot configuration defined by the first stage bootloader (FSBL). U-Boot drives the PMU configuration overlay APIs dynamically via the power domain (PD) driver when it loads the integrated device tree (DT) for the KV260 or KR260. U-Boot locks the PMU configuration overlay function after it has finished loading its electrically erasable programmable read-only memory (EEPROM) identified DT. The overall flow is outlined in the following flowchart.</p>
 <p><img alt="image" src="../_images/ubootflow.png" /></p>
-<p>AMD also provides customers with “flat” KV260 and KR260 BSPs that contains a simpler U-Boot configuration without dynamic CC selection and peripheral enablement. However, U-Boot source code does have support for dynamic initialization of peripherals for users who needs more sophisticated setups.</p>
+<p>AMD also provides “flat” KV260 and KR260 BSPs that contain a simpler U-Boot configuration without dynamic CC selection and peripheral enablement. However, the U-Boot source code does have support for dynamic initialization of peripherals if you need more sophisticated setups.</p>
 </div>
 <div class="section" id="u-boot-support-for-kria-som-variants">
-<h2>U-Boot support for Kria SOM Variants<a class="headerlink" href="#u-boot-support-for-kria-som-variants" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="starter-kit-som-production-som">
-<h3>Starter Kit SOM &amp; Production SOM<a class="headerlink" href="#starter-kit-som-production-som" title="Permalink to this heading">¶</a></h3>
-<p>U-Boot for Kria officially supports the Kria Starter Kits. The Starter Kit SOM and Production SOM are variants of the same hardware design.  The Starter Kit SOM (designated by SMK-K26) is a reduced functionality version  of Production SOM (designated by SM-K26) in that the eMMC non-volatile memory device is NOT populated in the Starter Kit configuration. The power-on “base” HW configuration (Starter Kit SOM) used by the pre-built boot firmware shall be the most reduced set of base SOM functionality. Then at the U-Boot, the platform pivots to either an integrated Starter Kit SOM + CC or a Production SOM + CC.</p>
+<h2>U-Boot Support for Kria SOM Variants<a class="headerlink" href="#u-boot-support-for-kria-som-variants" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="starter-kit-som-and-production-som">
+<h3>Starter Kit SOM and Production SOM<a class="headerlink" href="#starter-kit-som-and-production-som" title="Permalink to this heading">¶</a></h3>
+<p>U-Boot for Kria officially supports the Kria Starter Kits. The Starter Kit SOM and Production SOM are variants of the same hardware design. The Starter Kit SOM (designated by SMK-K26) is a reduced functionality version of the Production SOM (designated by SM-K26) in that the embedded multimedia card (eMMC) non-volatile memory device is <em>not</em> populated in the Starter Kit configuration. The power-on “base” hardware configuration (Starter Kit SOM) used by the pre-built boot firmware is the most reduced set of base SOM functionality. Then at the U-Boot, the platform pivots to either an integrated Starter Kit SOM + CC or a Production SOM + CC.</p>
 <p><img alt="image" src="../_images/ubootflow_SMvsSMK.png" /></p>
 </div>
 <div class="section" id="prioritized-boot-order">
 <h3>Prioritized Boot Order<a class="headerlink" href="#prioritized-boot-order" title="Permalink to this heading">¶</a></h3>
-<p>Prior to 21.2, U-Boot will search for both the SD card and eMMC secondary boot devices; if both are detected it will provide a menu interface to you to select the desired Linux boot target.</p>
-<p>From 22.1 onwards, there is no U-Boot boot menu during the boot process for SOM. The AMD pre-built BOOT.BIN implements a fixed device boot selection as defined by the CC identified. See the following boot device selection order for the KV and KR carrier cards. If a Production SOM is identified by its board-ID EEPROM then U-Boot first query the SOM local eMMC (mmc0) device for boot, before falling to the normal Starter Kit CC boot order.</p>
+<p>Prior to 21.2, U-Boot searched for both the SD card and eMMC secondary boot devices; if both were detected, a menu interface was provided to you to select the desired Linux boot target.</p>
+<p>From 22.1 onwards, there is no U-Boot boot menu during the boot process for SOM. The AMD pre-built <code class="docutils literal notranslate"><span class="pre">BOOT.BIN</span></code> implements a fixed device boot selection as defined by the CC identified. See the following boot device selection order for the KV and KR carrier cards. If a Production SOM is identified by its board-ID EEPROM, then the U-Boot first queries the SOM local eMMC (mmc0) device for boot, before falling to the normal Starter Kit CC boot order.</p>
 <p><img alt="image" src="../_images/ubootflow_KVvsKR.png" /></p>
 </div>
 </div>
-<div class="section" id="boot-scr-linux-dt-decoupling-dt-selection">
-<h2>boot.scr - Linux DT Decoupling &amp; DT Selection<a class="headerlink" href="#boot-scr-linux-dt-decoupling-dt-selection" title="Permalink to this heading">¶</a></h2>
-<p>U-Boot uses boot.scr to help booting Linux with different device trees (DTs) provided in SD image.</p>
-<p>Kria SOM has decoupled the device tree (DT) used by U-Boot firmware from the one selected and passed to Linux. This is to allow the BootFW (BOOT.BIN) and Linux image (SD card image) to have decoupled life-cycles. Note that DT for U-Boot is integrated into BOOT.BIN, while DTs for Linux are stored in the SD card boot partition.</p>
-<p>The U-Boot boot script (boot.scr) has three functions:</p>
+<div class="section" id="boot-scr-linux-dt-decoupling-and-dt-selection">
+<h2><code class="docutils literal notranslate"><span class="pre">boot.scr</span></code> - Linux DT Decoupling and DT Selection<a class="headerlink" href="#boot-scr-linux-dt-decoupling-and-dt-selection" title="Permalink to this heading">¶</a></h2>
+<p>U-Boot uses <code class="docutils literal notranslate"><span class="pre">boot.scr</span></code> to help in booting Linux with different device trees (DTs) provided in the SD image.</p>
+<p>Kria SOM has decoupled the device tree (DT) used by the U-Boot firmware from the one selected and passed to Linux. This is to allow the BootFW (<code class="docutils literal notranslate"><span class="pre">BOOT.BIN</span></code>) and Linux image (SD card image) to have decoupled lifecycles.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The DT for U-Boot is integrated into <code class="docutils literal notranslate"><span class="pre">BOOT.BIN</span></code>, while DTs for Linux are stored in the SD card boot partition.</p>
+</div></blockquote>
+<p>The U-Boot boot script (<code class="docutils literal notranslate"><span class="pre">boot.scr</span></code>) has three functions:</p>
 <ul class="simple">
-<li><p>Select correct Linux DT from pre-built SOM + CC DTs in the Linux SD card boot partition.</p></li>
-<li><p>Define Linux boot argument (bootargs) based on CC identified</p></li>
-<li><p>Lock the PMU configuration object functionality to prevent enabling of any new power domain</p></li>
+<li><p>Select the correct Linux DT from the prebuilt SOM + CC DTs in the Linux SD card boot partition</p></li>
+<li><p>Define the Linux boot argument (bootargs) based on the CC identified</p></li>
+<li><p>Lock the PMU configuration object functionality to prevent the enabling of any new power domain</p></li>
 </ul>
-<p>The pre-built U-Boot functionality provide U-Boot environment variables for boot.scr to use to drive the selection of the Linux DT. The following variables are used:</p>
+<p>The prebuilt U-Boot functionality provides U-Boot environment variables for <code class="docutils literal notranslate"><span class="pre">boot.scr</span></code> to use to drive the selection of the Linux DT. The following variables are used:</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -175,7 +178,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <tr>
 <td>board_name</td>
 <td>SMK-K26-XCL2G</td>
-<td>SOM board product name. Differentiates Starter vs. Production SOMs</td>
+<td>SOM board product name. Differentiates Starter versus Production SOMs</td>
 </tr>
 <tr>
 <td>board_rev</td>
@@ -193,7 +196,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>Carrier card revision.</td>
 </tr>
 </tbody>
-</table><p>An example boot.scr source code can be found below, it needs to be compiled by mkimage:</p>
+</table><p>The following is an example <code class="docutils literal notranslate"><span class="pre">boot.scr</span></code> source code; it needs to be compiled by mkimage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>################
 fitimage_name=image.ub
 kernel_name=Image
@@ -265,12 +268,12 @@ fi
 done
 </pre></div>
 </div>
-<p>The boot.scr can be found in the SD card after programming a .wic image, or it can be found in Yocto build folder <code class="docutils literal notranslate"><span class="pre">build/tmp/deploy/images/&lt;machine_name&gt;/boot.scr</span></code>, or in PetaLinux project (after petalinux-create command) in &lt;petalinux_project&gt;/pre-built/linux/images/boot.scr. the .scr file has been compiled, therefore there will be some binaries prior to the texted source code.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">boot.scr</span></code> can be found in the SD card after programming a .wic image, or it can be found in the Yocto build folder, <code class="docutils literal notranslate"><span class="pre">build/tmp/deploy/images/&lt;machine_name&gt;/boot.scr</span></code>, or in the PetaLinux project (after the <code class="docutils literal notranslate"><span class="pre">petalinux-create</span></code> command) in <code class="docutils literal notranslate"><span class="pre">&lt;petalinux_project&gt;/pre-built/linux/images/boot.scr</span></code>. The .scr file has been compiled; therefore, there are some binaries prior to the texted source code.</p>
 <div class="section" id="compilation-procedure-and-source-code">
 <h3>Compilation Procedure and Source Code<a class="headerlink" href="#compilation-procedure-and-source-code" title="Permalink to this heading">¶</a></h3>
-<p>U-Boot is compiled with Yocto, and its recipe can be found <a class="reference external" href="https://github.com/Xilinx/meta-xilinx/blob/master/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx.inc">here</a> and instructions to build found <a class="reference internal" href="bootfw_boot.bin_generation.html"><span class="doc">here</span></a>. <a class="reference external" href="https://docs.xilinx.com/v/u/2020.1-English/ug1144-petalinux-tools-reference-guide">PetaLinux documentation</a> contains information on U-Boot generation as well.</p>
-<p>The <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx.git">source code for U-Boot</a> is on Xilinx github site as well.</p>
-<p>boot.scr is compiled using mkimage, and more information can be found <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/749142017/Using+Distro+Boot+With+Xilinx+U-Boot">here</a></p>
+<p>U-Boot is compiled with Yocto, and its recipe can be found <a class="reference external" href="https://github.com/Xilinx/meta-xilinx/blob/master/meta-xilinx-core/recipes-bsp/u-boot/u-boot-xlnx.inc">here</a>, and instructions to build are found <a class="reference internal" href="bootfw_boot.bin_generation.html"><span class="doc">here</span></a>. <a class="reference external" href="https://docs.xilinx.com/v/u/2020.1-English/ug1144-petalinux-tools-reference-guide">PetaLinux documentation</a> also contains information on U-Boot generation as well.</p>
+<p>The source code for U-Boot is alsofound <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx.git">here</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">boot.scr</span></code> is compiled using mkimage, and more information can be found <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/749142017/Using+Distro+Boot+With+Xilinx+U-Boot">here</a>.</p>
 </div>
 </div>
 <div class="section" id="license">
@@ -279,7 +282,7 @@ done
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -296,7 +299,7 @@ done
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 16, 2025.
+      <span class="lastupdated">Last updated on February 14, 2025.
       </span></p>
   </div>
 
