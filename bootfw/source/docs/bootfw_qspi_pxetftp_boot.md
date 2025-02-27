@@ -5,27 +5,27 @@
 
 The prioritized boot order for U-Boot is specified in [BootFW U-Boot page](./bootfw_uboot_handoff.md). The last device in the prioritized list is Ethernet using DHCP/PXE. There is [existing PXE support in u-boot](https://github.com/Xilinx/u-boot-xlnx/blob/master/doc/README.pxe) to support Ethernet booting. This document provides instructions for tftp booting on Starter Kits using Ethernet/DHCP/PXE. Instructions are provided for booting both PetaLinux and Ubuntu via PXE. Their tftp server setup differs, but on-target steps are the same.
 
-This example uses K26 on KR260 as an example, but same steps can be taken for other starter kits as well as K24 - as long as names of the SOM or Starter Kits are replaced appropriately.
+This example uses K26 on KR260 as an example, but the same steps can be taken for other starter kits as well as K24, as long as names of the SOM or Starter Kits are replaced appropriately.
 
 ## Setup Requirements
 
-This document assumes that you have had experience booting Linux on Starter Kit via other boot methods (SD by default), familiar with how to interact with the Starter Kit via serial port, and have updated the bootfw on the Starter Kit. If not, please go through [booting Linux on KV260](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html) or [booting Linux on KR260](https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html) before following the steps in this document.
+This document assumes that you have had experience booting Linux on the Starter Kit via other boot methods (SD by default), are familiar with how to interact with the Starter Kit via the serial port, and have updated the bootfw on the Starter Kit. If not, go through [Booting Linux on the KV260](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/kria_starterkit_linux_boot.html) or [Booting Linux on the KR260](https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html) before following the steps in this document.
 
 If booting using Yocto, this assumes that you are familiar with generating artifacts with instructions from [Kria Yocto support](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html).
 
-If booting PetaLinux, this also assumes that you are familiar with PetaLinux and have installed the appropriate version of PetaLinux on the Linux host computer. Refer to [UG1144](https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html) for more information on PetaLinux and [download page](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html) for installation files. Ubuntu booting do not need PetaLinux tools.
+If booting PetaLinux, this also assumes that you are familiar with PetaLinux and have installed the appropriate version of PetaLinux on the Linux host computer. Refer to [UG1144](https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/kria_starterkit_linux_boot.html) for more information on PetaLinux and [download page](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html) for installation files. Ubuntu booting does not need PetaLinux tools.
 
-In this example, we will use a host computer with a tftp server to host files required to boot Linux on Starter Kits. Connect the Starter Kit's PS Ethernet port to local network. Connect a host computer to the same local network. If booting PetaLinux, this host computer needs to be a Linux host running PetaLinux toolchain. If booting Ubuntu, this host computer can be Windows or Linux. Lastly, connect the Starter Kit's micro-USB port to a computer (can be the same host computer or a different one) to interact with u-boot through serial port.
+In this example, you use a host computer with a tftp server to host files required to boot Linux on Starter Kits. Connect the Starter Kit's PS Ethernet port to local network. Connect a host computer to the same local network. If booting PetaLinux, this host computer needs to be a Linux host running the PetaLinux toolchain. If booting Ubuntu, this host computer can be Windows or Linux. Lastly, connect the Starter Kit's micro-USB port to a computer (can be the same host computer or a different one) to interact with U-Boot through the serial port.
 
 ![image](./media/tftp_boot.png)
 
 ## Linux Host Computer Setup
 
-Depending on if booting with Yocto, PetaLinux or Ubuntu - choose one of the sections below to follow:
+Depending on if you are booting with Yocto, PetaLinux, or Ubuntu, choose one of the following sections:
 
 ### Linux Host Computer Setup for Yocto
 
-On the Linux host computer, follow instructions in [Kria Yocto support](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html), and generate bitbake recipe ```kria-image-full-cmdline ``` for the target machine. That will create a pxeboot config file in ```$yocto_workspace/build/tmp/deploy/images/<machine name>/pxelinux.cfg/default``` file with the following content:
+On the Linux host computer, follow the instructions in [Kria Yocto support](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html), and generate the bitbake recipe ```kria-image-full-cmdline``` for the target machine. That will create a pxeboot config file in the ```$yocto_workspace/build/tmp/deploy/images/<machine name>/pxelinux.cfg/default``` file with the following content:
 
 ```text
 LABEL Linux
@@ -34,15 +34,15 @@ FDT system.dtb
 INITRD petalinux-initramfs-image-<machinename>.cpio.gz.u-boot
 ```
 
-```pxelinux.cfg/default``` refers to files that can be found in ```$yocto_workspace/build/tmp/deploy/images/```. Note that it is using the initramfs generated - which is a smaller file system that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC, SD card. If you want to boot to log in prompt purely through pxeboot, replace ```petalinux-initramfs-image-<machinename>.cpio.gz.u-boot``` with ```kria-image-full-cmdline-<machinename>.cpio.gz.u-boot```.
+```pxelinux.cfg/default``` refers to files that can be found in ```$yocto_workspace/build/tmp/deploy/images/```. It is using the initramfs generated, which is a smaller file system that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC or a SD card. If you want to boot to log in prompt purely through pxeboot, replace ```petalinux-initramfs-image-<machinename>.cpio.gz.u-boot``` with ```kria-image-full-cmdline-<machinename>.cpio.gz.u-boot```.
 
-When using MACHINE = k26-smk or k24-smk, system.dtb by default is pointing to a shared dtb for the SOM that does not have information about the carrier card. Keeping the dtb as is will boot, but it will not have any CC peripheral support such as ethernet. The dtb files with CC peripheral support can be found in ```devicetree/SMK-zynqmp-sck-<CC_board>.dtb```. Pick the device tree for your target starter kit, and update the FDT in ```/tftpboot/pxelinux.cfg/default``` to point to that dtb file. If using MACHINE = k26-smk-kv, k26-smk-kr, or k24-smk-kd, system.dtb will point to the device tree blob that have CC peripheral support that you will not need to change it.
+When using MACHINE = k26-smk or k24-smk, by default, `system.dtb` is pointing to a shared dtb for the SOM that does not have information about the carrier card. Keeping the dtb as is will boot, but it will not have any CC peripheral support such as Ethernet. The dtb files with CC peripheral support can be found in ```devicetree/SMK-zynqmp-sck-<CC_board>.dtb```. Pick the device tree for your target Starter Kit, and update the FDT in ```/tftpboot/pxelinux.cfg/default``` to point to that dtb file. If using MACHINE = k26-smk-kv, k26-smk-kr, or k24-smk-kd, `system.dtb` points to the device tree blob that has CC peripheral support that you will not need to change.
 
-Now [set up a TFTP server](#setting-up-tftp-on-the-server) on the Linux host computer. Make sure to point to ```$yocto_workspace/build/tmp/deploy/images/<machine name>/``` as the TFTP folder and start the server. Note the IP address of the Linux host computer, we will refer to it as ```<host ip>```.
+Now [set up a TFTP server](#setting-up-tftp-on-the-server) on the Linux host computer. Make sure to point to ```$yocto_workspace/build/tmp/deploy/images/<machine name>/``` as the TFTP folder and start the server. The IP address of the Linux host computer; refer to it as ```<host ip>```.
 
 ### Linux Host Computer Setup for PetaLinux
 
-On the Linux host computer, download a [PetaLinux BSP](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages) for the target Stater Kit, create project, and configure it for TFTP:
+On the Linux host computer, download a [PetaLinux BSP](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages) for the target Stater Kit, create a project, and configure the project for TFTP:
 
 ``` bash
 petalinux-create -t project -s xilinx-<board>-<version>-<timestamp>.bsp
@@ -53,7 +53,7 @@ petalinux-config
         # exit out of config and let it configure
 ```
 
-By default, PetaLinux uses ```/tftpboot``` folder for nfs/tftp. Create the folder and change permission before building:
+By default, PetaLinux uses the ```/tftpboot``` folder for nfs/tftp. Create the folder and change permissions before building:
 
 ```bash
 sudo mkdir /tftpboot
@@ -72,13 +72,13 @@ INITRD ramdisk.cpio.gz.u-boot
 
 ```/tftpboot/pxelinux.cfg/default``` refers to files that can be found in ```/tftpboot```.
 
-Note that it is using the ramdisk generated - which is a smaller initram that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC, SD card. If you want to boot to log in prompt purely through pxeboot, replace ```ramdisk.cpio.gz.u-boot``` with ```rootfs.cpio.gz.u-boot```.
+>**NOTE:** It is using the ramdisk generated, which is a smaller initram that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC or a SD card. If you want to boot to the log in prompt purely through pxeboot, replace ```ramdisk.cpio.gz.u-boot``` with ```rootfs.cpio.gz.u-boot```.
 
-Now [set up a TFTP server](#setting-up-tftp-on-the-server) on the Linux host computer. Make sure to point to ```/tftpboot/``` as the TFTP folder and start the server. Note the IP address of the Linux host computer, we will refer to it as ```<host ip>```.
+Now [set up a TFTP server](#setting-up-tftp-on-the-server) on the Linux host computer. Make sure to point to ```/tftpboot/``` as the TFTP folder and start the server. Note the IP address of the Linux host computer; it is referred to as ```<host ip>```.
 
 ### Host Computer Setup for Ubuntu
 
-Since Ubuntu do not require PetaLinux tool chain, either a Linux host or a windows host computer can be used for Ubuntu PXE booting. The released Ubuntu image packages the kernel image, initrd, and many device tree blobs into a flat image.fit. PXE booting does not use boot script to automatically select the device tree required for the board. Therefore, we need to regenerate an image.fit file that selects the right configuration for the target Starter Kit. This is done on target with the following steps.
+Because Ubuntu does not require a PetaLinux tool chain, either a Linux host or Windows host computer can be used for Ubuntu PXE booting. The released an Ubuntu image packages the kernel image, initrd, and many device tree blobs into a flat `image.fit`. PXE booting does not use a boot script to automatically select the device tree required for the board. Therefore, you need to regenerate an `image.fi`t file that selects the right configuration for the target Starter Kit. This is done on target with the following steps.
 
 Program an [Ubuntu image](https://ubuntu.com/download/amd-xilinx) into a SD card and boot. After booting, note the following files on target:
 
@@ -90,15 +90,15 @@ ls -l /boot/initrd.img
 ls -l /usr/share/flash-kernel/its/image-kria.its
 ```
 
-Open the .its file, which is the recipe to build the flat image.fit file:
+Open the .its file, which is the recipe to build the flat `image.fit` file:
 
 ```bash
 vi /usr/share/flash-kernel/its/image-kria.its
 ```
 
-There are pointers to kernel, initrd, and device trees. To update the default device tree PXE booting picks, this line needs to be updated ```default = "conf-zynqmp-smk-k26-revA";``` to the configuration appropriate for the target Starter Kit. To figure out which configuration is appropriate for the target Starter Kit, find the Starter Kit type and revision and look at which configuration that revision uses in ```/boot/firmware/boot.scr.uimg```.
+There are pointers to kernel, initrd, and device trees. To update the default device tree PXE booting picks, this line needs to be updated from ```default = "conf-zynqmp-smk-k26-revA";``` to the configuration appropriate for the target Starter Kit. To figure out which configuration is appropriate for the target Starter Kit, find the Starter Kit type and revision, and look at which configuration that revision uses in ```/boot/firmware/boot.scr.uimg```.
 
-The type and revision of the starter kit is printed out by U-boot upon booting. For an example, this is the print-out for a KR260 board, rev1 Starter Kit SOM and rev1 carrier card:
+The type and revision of the Starter Kit is printed out by U-Boot upon booting. For example, this is the print-out for a KR260 board, rev1 Starter Kit SOM, and rev1 carrier card:
 
 ```text
         U-Boot 2023.01 (Mar 29 2023 - 13:08:40 +0000)
@@ -137,7 +137,7 @@ The type and revision of the starter kit is printed out by U-boot upon booting. 
         Bootmode: QSPI_MODE
 ```
 
-Note that in ```/usr/share/flash-kernel/its/image-kria.its```, rev 1 doesn't have its own specific configuration. To find the configuration that rev 1 KR260 uses, look at ```/boot/firmware/boot.scr.uimg``` file on target and observe the following:
+In ```/usr/share/flash-kernel/its/image-kria.its```, rev 1 does not have its own specific configuration. To find the configuration that rev 1 KR260 uses, look at the ```/boot/firmware/boot.scr.uimg``` file on target, and observe the following:
 
 ```text
                         elif test "${card1_name}" = "SCK-KR-G"; then
@@ -146,9 +146,7 @@ Note that in ```/usr/share/flash-kernel/its/image-kria.its```, rev 1 doesn't hav
                                         boot_conf=#conf-smk-k26-revA-sck-kr-g-revB
 ```
 
- This means  the boot_conf ```conf-smk-k26-revA-sck-kr-g-revB``` supports rev1 KR260. Therefore, update ```/usr/share/flash-kernel/its/image-kria.its```
-
- from:
+ This means the boot_conf ```conf-smk-k26-revA-sck-kr-g-revB``` supports rev1 KR260. Therefore, update ```/usr/share/flash-kernel/its/image-kria.its``` from:
 
 ```bash
         default = "conf-zynqmp-smk-k26-revA";
@@ -160,7 +158,7 @@ Note that in ```/usr/share/flash-kernel/its/image-kria.its```, rev 1 doesn't hav
         default = "conf-smk-k26-revA-sck-kr-g-revB";
 ```
 
-Save and regenerate the image.fit with the right configuration using flash-kernel command:
+Save and regenerate `image.fit` with the right configuration using the `flash-kernel` command:
 
 ```bash
 flash-kernel
@@ -168,55 +166,55 @@ ls -l /boot/firmware/image.fit # note new timestamp
 reboot #reboot to force write to SD card and test new kernel 
 ```
 
-Unplug the SD card from target and view the SD card content on the host computer. There is an image.fit file on the SD card's boot partition. Copy that file into a ```<ubuntu_tftp>/``` folder on the host computer. In the same folder, create ```<ubuntu_tftp>/pxelinux.cfg/default``` file and populate the file with this content:
+Unplug the SD card from target, and view the SD card content on the host computer. There is an `image.fit` file on the SD card's boot partition. Copy that file into a ```<ubuntu_tftp>/``` folder on the host computer. In the same folder, create the ```<ubuntu_tftp>/pxelinux.cfg/default``` file, and populate the file with this content:
 
 ``` text
 LABEL Linux_ubuntu
 KERNEL image.fit
 ```
 
-Now [set up a TFTP server](#setting-up-tftp-on-the-server) on the host computer. Make sure to point to ```<ubuntu_tftp>/``` as the TFTP folder and start the server. Note the IP address of the Linux host computer, we will refer to it as ```<host ip>```.
+Now [set up a TFTP server](#setting-up-tftp-on-the-server) on the host computer. Make sure to point to ```<ubuntu_tftp>/``` as the TFTP folder, and start the server. Note the IP address of the Linux host computer; it is referred to as ```<host ip>```.
 
-### Setting up TFTP on the Server
+### Setting Up TFTP on the Server
 
-Each host computer may have different steps to setup TFTP servers.
+Each host computer might have different steps to set up TFTP servers.
 
-With a Windows host, this guide have been tested with using [SolarWinds' TFTP server](https://www.solarwinds.com/free-tools/free-tftp-server). Please note that Windows' firewall settings may need to be adjusted to allow TFTP servers.
+With a Windows host, this guide has been tested with using the [SolarWinds' TFTP server](https://www.solarwinds.com/free-tools/free-tftp-server). Windows' firewall settings might need to be adjusted to allow for TFTP servers.
 
-With a Ubuntu host, this guide was tested using [tftpd-hpa package](https://help.ubuntu.com/community/TFTP).
+With an Ubuntu host, this guide was tested using [tftpd-hpa package](https://help.ubuntu.com/community/TFTP).
 
-You are free to use other TFTP server programs that works.
+You are free to use other TFTP server programs that work.
 
 ## Boot Starter Kit Using PXE
 
-Make sure that the Starter Kit has the [latest bootfw for the tool version](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates) in QSPI. Power on the Starter Kit, it will boot from the boot images in QSPI. Observe serial port output on the computer with serial port connection. Press "enter" at u-boot to enter u-boot command line. On u-boot command line, set serverip variable to that of tftp server:
+Make sure that the Starter Kit has the [latest bootfw for the tool version](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Firmware-Updates) in QSPI. Power on the Starter Kit; it will boot from the boot images in QSPI. Observe the serial port output on the computer with the serial port connection. Press "**enter**" at U-Boot to enter the U-Boot command line. On the U-Boot command line, set serverip variable to that of tftp server:
 
 ```bash
 setenv serverip <host ip>
 ```
 
-Note that by default, saveenv is not enabled in u-boot. This means that serverip will need to be set up every re-boot.
+>**NOTE:** By default, saveenv is not enabled in U-Boot. This means that serverip will need to be set up every reboot.
 
 [//]: # (In order for serverip environment variable to persist through power cycles or re-boot, you will need to enable environments in u-boot configuration, rebuild u-boot, boot.bin and program them into QSPI. )
 
-The following step is optional. Verify connection to the server:
+The following step is optional. Verify the connection to the server:
 
 ``` bash
 dhcp # setup Ethernet and ip address on target, this is done automatically during PXE booting
 ping $serverip # confirm ethernet connection to host
 ```
 
-Note that in the "boot priority order" section of [boot handoff page](./bootfw_uboot_handoff.md) ([code here](https://github.com/Xilinx/u-boot-xlnx/blob/master/include/configs/xilinx_zynqmp.h#L165-L175)), PXE is the last priority. This means if there's boot images in eMMC or SD or USB - they will be used to boot first. If there are no boot images on any of those devices, just a simple ```boot``` command would lead to PXE to be chosen and it will retrieve ```pxelinux.cfg/default``` from ```/tftpboot``` folder on host computer and start booting.
+In the "boot priority order" section of [boot handoff page](./bootfw_uboot_handoff.md) ([code here](https://github.com/Xilinx/u-boot-xlnx/blob/master/include/configs/xilinx_zynqmp.h#L165-L175)), PXE is the last priority. This means if there are boot images in eMMC, SD, or USB, they are used to boot first. If there are no boot images on any of those devices, a simple ```boot``` command leads to PXE to be chosen, and it retrieves ```pxelinux.cfg/default``` from ```/tftpboot``` folder on the host computer and start booting.
 
-If there are other images in other devices thats more prioritized by u-boot, then direct U-Boot to choose PXE boot using the following commands:
+If there are other images in other devices that is more prioritized by U-Boot, then direct U-Boot to choose the PXE boot using the following commands:
 
 ```bash
 run bootcmd_pxe
 ```
 
-If using Yocto/PetaLinux and using the larger rootfs, the kernel and rootfs should load and boot to log-in prompt to PetaLinux, indicating a successful PXE boot! If using the initram, and a SD card with full rootfs is plugged into the SD slot - the above steps will boot using kernel image from tftp server and grab the full rootfs image from the SD card and boot to log-in prompt.
+If using Yocto/PetaLinux and using the larger rootfs, the kernel and rootfs should load and boot to login prompt to PetaLinux, indicating a successful PXE boot. If using the initram, and a SD card with full rootfs is plugged into the SD slot, the preceding steps boot using the kernel image from the tftp server and grab the full rootfs image from the SD card and boot to the login prompt.
 
-If using Ubuntu, image.fit contains a small initram - the Starter Kit will boot into BusyBox and have limited functionality.If a SD card with full rootfs is plugged into the SD slot - the above steps will boot using kernel image from tftp server and grab the full rootfs image from the SD card instead of BusyBox initrd.
+If using Ubuntu, the `image.fit` file contains a small initram; the Starter Kit boots into BusyBox and has limited functionality. If a SD card with full rootfs is plugged into the SD slot, the preceding steps boot using the kernel image from the tftp server and grab the full rootfs image from the SD card instead of BusyBox initrd.
 
 ## License
 
@@ -227,4 +225,4 @@ You may obtain a copy of the License at
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p>
