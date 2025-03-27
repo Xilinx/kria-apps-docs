@@ -1,6 +1,6 @@
 # Generate a Vivado Project from Example Project
 
-This tutorial details how to generate an example Vivado Project for your StarterKit from Vivado Example Projects. The example Vivado projects are used to generate .xsa file in AMD's Yocto flow for Kria SOM.
+This tutorial details how to generate an example Vivado Project for your Starter Kit from Vivado Example Projects. The example Vivado projects are used to generate the .xsa file in AMD's Yocto flow for Kria SOM.
 
 * Assumption: Vivado 2024.2 and later
 * Input: Vivado Example project
@@ -12,72 +12,61 @@ Tool requirement:
 
 * Vivado tools installation that is 2024.2 and later
 
-## Create Vivado project from Vivado Example Projects
+## Create a Vivado Project from Vivado Example Projects
 
-This flows starts with Vivado example projects containing information on K26, K24, KV260 CC, KR260 CC or KD240 CC. The example projects are also used to generate .xsa files for default Yocto flow.
+This flows starts with Vivado example projects containing information on K26, K24, KV260 CC, KR260 CC, or KD240 CC. The example projects are also used to generate .xsa files for the default Yocto flow.
 
-The K26/K24 SOM is supported in Vivado with example designs that configure SOM based peripherals, such as DDR, eMMC (for production SOM), etc.
+The K26/K24 SOM is supported in Vivado with example designs that configure SOM based peripherals, such as DDR, eMMC (for production SOM), and so on.
 
-The KV260/KR260/KD240 StarterKit is supported in Vivado with example designs that configure both StarterKit SOM and CC based peripherals, such as DDR, USB, Ethernet, fan control, etc. It does not contain peripheral such as eMMC by default, as thats available on Production SOM only.
+The KV260/KR260/KD240 StarterKit is supported in Vivado with example designs that configure both Starter Kit SOM and CC based peripherals, such as DDR, USB, Ethernet, fan control, and so on. It does not contain peripherals such as eMMC by default, as that is available on Production SOM only.
 
-Open Vivado, click on ```Open Example Project```:
-
+1. Open Vivado, and click  **Open Example Project**.
 ![CED 1](./media/CED1.PNG)
 
-click through ```next```, search for ```kria``` in template, and select ```Kria Starter Kit Example Design``` and click on ```next```.
-
+2. Click through **Next**, search for ```kria``` in the template, select **Kria Starter Kit Example Design**, and click **Next**.
 ![CED 2](./media/CED2.PNG)
 
-Provide the desired project name and location and click on ```next```. Then select the designed hardware configuration and click on ```next```. 
-
+3. Provide the desired project name and location, and click **next**. Then select the designed hardware configuration, and click **Next**.
 ![CED 3](./media/CED3.PNG)
 
-Then select ```Default bitstream``` and click on ```Next```:
-
+4. Select **Default bitstream**, and click **Next**.
 ![CED 4](./media/CED4.PNG)
 
-click ```Finish```. A vivado base project for the desired Kria Starter Kit is created.
+5. Click **Finish**. A Vivado base project for the desired Kria Starter Kit is created.
 
 ## Optional: Make the Platform an Extensible Platform
 
-If the project is meant for a Vitis platform, developers can now indicate that the platform is an Extensible Vitis Platform. More details on how to create Extensible Platform can be found in [UG1393](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces)
-Project Manager -> Settings -> General -> check "Project is an extensible Vitis Platform"
+If the project is meant for a Vitis platform, you can now indicate that the platform is an Extensible Vitis Platform. For details on how to create Extensible Platform, refer to the *Embedded Design Development Using Vitis User Guide* ([UG1701](https://docs.amd.com/go/en-US/ug1701-vitis-accelerated-embedded/Adding-Hardware-Interfaces)).
+
+1. Select **Project Manager** -> **Settings** -> **General**, and check **Project is an extensible Vitis Platform**.
 ![Extensible Platform](./media/extensible_check.PNG)
 
-Then check window -> platform setup to select interfaces to be exposed as a platform. Below is an example snapshot indicating Vivado is reserving pl_ps_irq0 for the platform to interface with Vitis accelerators.
+2. Then select **window** -> **platform setup** to select the interfaces to expose as a platform. The following example screenshot indicates Vivado is reserving pl_ps_irq0 for the platform to interface with Vitis accelerators.
 ![Platform setup](./media/tool_flow_vivado_platform_setup.PNG)
 
-### Generate Wrapper
+### Generate a Wrapper
 
-We need to now generate a wrapper or top module for the block design:
+Now, generate a wrapper or top module for the block design:
 
-```Block Design window -> sources window -> Design Sources -> right click on design_1``` and select ```Generate HDL wrapper```:
-
+1. Navigate to **Block Design window** -> **sources window** -> **Design Sources**, right click **design_1**, and select **Generate HDL wrapper**.
 ![wrapper](./media/create_HDL_wrapper.PNG)
 
-In the pop-up, select "Let Vivado manage wrapper and auto-update" and press OK.
+2. In the window, select **Let Vivado manage wrapper and auto-update**, and click **OK**.
 
-## Generate bitstream
+## Generate the Bitstream
 
-Now we are ready to generate bitstream. To generate bitstream, click on Program and Debug -> Generate Bitstream. This process will take some time.
-
+Now you are ready to generate the bitstream. To generate the bitstream, click **Program and Debug** -> **Generate Bitstream**. This process takes some time.
 
 ## Generate .xsa file
 
-After generating bitstream, we can generate a .xsa file for either Yocto, PetaLinux, or Vitis to import. Go to ```File -> Export -> Export Hardware``` to launch the Export Hardware Platform wizard. This wizard can also be launched by Export Platform button in Flow Navigator or Platform Setup window.
+After generating the bitstream, generate a .xsa file for either Yocto, PetaLinux, or Vitis to import. Go to **File** -> **Export** -> **Export Hardware** to launch the Export Hardware Platform wizard. This wizard can also be launched by Export Platform button in Flow Navigator or Platform Setup window.
 
-Click through ```next```, leaving most in default except in ```Select Platform State``` select ```Pre-synthesis, enable Include Bitstream```
-Click Finish.
+Click through **Next**, leaving most in default, except in Select Platform State, select **Pre-synthesis, enable Include Bitstream**, and click **Finish**.
 
-A .xsa file is generated. The export path is reported in the Tcl console.
+A .xsa file is generated. The export path is reported in the Tcl Console.
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

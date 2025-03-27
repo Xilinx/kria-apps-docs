@@ -1,27 +1,25 @@
 # Vitis Compile and Link
 
-In this step, you will use the Vitis to compile and link the resize kernel. The Vitis compile and the link is outlined below:
+In this step, you will use Vitis to compile and link the resize kernel. The Vitis compile and the link is outlined as follows:
 
-1. Compile the kernel source code into Xilinx object files. 
+1. Compile the kernel source code into AMD object files
 2. Define the system configuration.
-3. After compilation, the v++ -l command links kernel objects (XO), together with the hardware platform XPFM file, to produce the Xilinx binary *.xclbin* file.
+3. After compilation, the `v++ -l` command links kernel objects (.xo), together with the hardware platform XPFM file, to produce the .xclbin file.
 
-## Compilation of HLS kernels
+## Compilation of HLS Kernels
 
-PL kernels written in C++ can be compiled into Xilinx object files (.xo) using the v++ --compile command described in [compiling C/C++ PL Kernels](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Compiling-C/C-PL-Kernels). The synthesized kernel object (.xo) will be used in linking with System as described in Linking the Kernels section. Multiple options need to be used to compile the PL kernel code using the Vitis compiler. The *v++ -c -k kernel_name* compiles a kernel
+PL kernels written in C++ can be compiled into .xo files using the `v++ --compile` command described in Compiling C/C++ PL Kernels in the []](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Compiling-C/C-PL-Kernels). The synthesized kernel object (.xo) is used in linking with the system as described in Linking the Kernels section. Multiple options need to be used to compile the PL kernel code using the Vitis compiler. The `v++ -c -k kernel_name` command compiles a kernel.
 
-
-## System configuration
+## System Configuration
 
 As described in [Linking the Kernels](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Linking-the-System), the process of linking kernels (.xo)  and the extensible platform (.xpfm) starts with a description of the architecture of the system using a configuration file. This file defines the number of kernel instances, or CUs, the memory layout of kernels, and the connection of streaming interfaces.
 
-In this step, we will define the system configurations for the resizing application smartcam/prj_conf replace the prj_config_1dpu with prj_config_1dpu file; it contains a clock, connectivity, and vivado implementation strategies for the resize kernel. 
-
+In this step, you define the system configurations for the resizing application `smartcam/prj_conf` to replace the `prj_config_1dpu` with the `prj_config_1dpu` file; it contains a clock, connectivity, and Vivado implementation strategies for the resize kernel.
 
 ``` 
 cd prj_conf 
 cp ../../../../../../../code_repo_kria_vitis_acceleration_flow_2022.1/image_resizing/vitis_platform_files/prj_config_1dpu .
-``` 
+```
 
 The contents of the file are described in the [Vitis-compiler-configuration section](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/connectivity-Options).
 
@@ -47,13 +45,13 @@ prop=run.impl_1.strategy=Performance_ExploreWithRemap
 
 ## Linking
 
-After the resize kernel xo and system configuration are available, the system can be built using the *v++ --link* command. The Vitis compiler links the kernel .xo files to create a device executable (.xclbin) for Kria™ SOM devices. 
+After the resize kernel .xo and system configuration are available, the system can be built using the `v++ --link` command. The Vitis compiler links the kernel .xo files to create a device executable (.xclbin) for Kria SOM devices.
 
-# Build the resize kernel. 
+## Build the Resize Kernel
 
-***Important: Replace the files*** 
+>**IMPORTANT:** Replace the files.
 
-- Replace the smartcamera kv260/overlays/examples/smartcam/Makefile with resizing kernel Makefile.  The default makefile contains sources to the DPU and the image pre-processing kernel. Replacing the makefile and system configuration builds only the Image resize kernel.  Run the below command to compile and build the resize application.
+Replace the SmartCam `kv260/overlays/examples/smartcam/Makefile` with the resizing kernel Makefile. The default Makefile contains sources to the DPU and the image pre-processing kernel. Replacing the makefile and system configuration builds only the image resize kernel. Run the following command to compile and build the resize application:
 
 ```
 cd ..
@@ -62,20 +60,24 @@ cd ../../../
 make overlay OVERLAY=smartcam
 ```
 
-The above makefile use the following command to ***compile*** the resize kernel
+The above Makefile uses the following command to ***compile*** the resize kernel:
 
-    v++ -t hw --platform kv260_ispMipiRx_vcu_DP -c -k pp_pipeline_accel -I $(XFOPENCV_INCDIR) -o'pp_pipeline_accel.xo' ./xf_pp_pipeline_accel.cpp
+```
+v++ -t hw --platform kv260_ispMipiRx_vcu_DP -c -k pp_pipeline_accel -I $(XFOPENCV_INCDIR) -o'pp_pipeline_accel.xo' ./xf_pp_pipeline_accel.cpp
+```
 
-The above makefile use the following command to ***link*** the resize kernel to create a device executable (.xclbin):
+The above Makefile uses the following command to ***link*** the resize kernel to create a device executable (.xclbin):
 
-    v++ -t hw --platform kv260_ispMipiRx_vcu_DP --save-temps --config ${DIR_PRJ}/prj_conf/prj_config_1 -l --temp_dir binary_container_1 --log_dir binary_container_1/logs --remote_ip_cache binary_container_1/ip_cache 
+```
+v++ -t hw --platform kv260_ispMipiRx_vcu_DP --save-temps --config ${DIR_PRJ}/prj_conf/prj_config_1 -l --temp_dir binary_container_1 --log_dir binary_container_1/logs --remote_ip_cache binary_container_1/ip_cache
+```
 
-The generated ***bitfile*** and  ***dpu.xclbin*** will be located at the following location
+The generated ***bitfile*** and  ***dpu.xclbin*** are located at the following location:
 
 ```
 ls overlays/examples/smartcam/binary_container_1/link/int/system.bit   
 ls overlays/examples/smartcam/binary_container_1/dpu.xclbin
-``` 
+```
 
 The generated Vivado project will be located at. You can open the Vivado project to see how to resize the kernel that is connected to the system.
 
@@ -85,8 +87,12 @@ cd overlays/examples/smartcam/binary_container_1/link/vivado/vpl/prj
 vivado prj.xpr
 ```
 
+## Next Steps
 
+This completes the Vitis Compile and Link. The next step is the Overview of [VVAS Plug-ins](./vvas-plugins.md).
 
-## Next steps
+<hr class="sphinxhide"></hr>
 
-This completes the Vitis Compile and Link. The next step is the Overview of [VVAS plugins](./vvas-plugins.md).
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
+
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

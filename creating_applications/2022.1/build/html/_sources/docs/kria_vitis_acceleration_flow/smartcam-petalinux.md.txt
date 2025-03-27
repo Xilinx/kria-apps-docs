@@ -1,10 +1,10 @@
-# Petalinux Firmware
+# PetaLinux Firmware
 
-In this step, we will use the fpgamanager class to include the Smarcam hardware FPGA binaries in the Petalinux image. The rest of the recipes and directory structure can be copied from the [Image resizing petalinux step](./petalinux-firmware.md).
+In this step, you use the fpgamanager class to include the SmartCam hardware FPGA binaries in the PetaLinux image. The rest of the recipes and directory structure can be copied from the [Image Resizing PetaLinux step](./petalinux-firmware.md).
 
-## Platform outputs 
+## Platform Outputs
 
-Before creating the smartcam petalinux firmware, lets bring all the platform outputs inside a smartcam platform_outputs directory. 
+Before creating the SmartCam PetaLinux firmware, bring all the platform outputs inside a SmartCam platform_outputs directory:
 
 ```
 cd image_resize/ 
@@ -13,28 +13,25 @@ cp platform/kria-vitis-platforms/kv260/overlays/examples/smartcam/binary_contain
 cp platform/kria-vitis-platforms/kv260/overlays/examples/smartcam/binary_container_1/dpu.xclbin smartcam_platform_outputs/
 
 cp ../platform_outputs/tut_1.dtsi .
-
-
 ```
 
-Rename the files to the following 
+Rename the files to the following:
 
 ```
-
 mv system.bit kv260-smartcam.bit
 mv tut_1.dtsi  kv260-smartcam.dtsi
 mv dpu.xclbnin kv260-smartcam.xclbin
-
 ```
-Modify Line-17 of kv260-smartcam.dtsi to point to the correct binary 
+
+In `kv260-smartcam.dtsi`, modify Line-17 to point to the correct binary:
 
 ```
 firmware-name = "kv260-smartcam.bit.bin";
 ```
 
+## Create a PetaLinux Project
 
-# Create PetaLinux Project
-Create a PetaLinux project with the Starter Kit SOM BSP using the following commands. 
+Create a PetaLinux project with the Starter Kit SOM BSP using the following commands:
 
 ```
 cd image_resize/
@@ -46,10 +43,11 @@ cd xilinx-kv260-starterkit-2022.1/
 petalinux-build
 ```
 
-## FPGA firmware
-Generate the FPGA firmware recipe using the following command. Copy the shell.json  and dtsi files from the previous one and change the name of the binaries to the following.
+## FPGA Firmware
 
-Run the following command to generate the firmware recipe. 
+Generate the FPGA firmware recipe using the following command. Copy the `shell.json` file and .dtsi files from the previous file, and change the name of the binaries to the following.
+
+To generate the firmware recipe, run the following command:
 
 ```
 petalinux-create -t apps --template fpgamanager -n kv260-smartcam --enable --srcuri " ../../smartcam_platform_outputs/kv260-smartcam.bit  ../../smartcam_platform_outputs/shell.json   ../../smartcam_platform_outputs/kv260-smartcam.dtsi ../../smartcam_platform_outputs/kv260-smartcam.xclbin" --force
@@ -58,8 +56,7 @@ petalinux-create -t apps --template fpgamanager -n kv260-smartcam --enable --src
 
 ## Add Recipe for AP1302 Firmware
 
-
-Smartcam uses an AR1335 MIPI sensor, which requires AP1302 firmware. AP1302 is released on GitHub. We will first create a folder called "ap1302-firmware" to keep the AP1302 recipes ap1302-firmware.inc and ap1302-ar1335-single-firmware.bb. 
+SmartCam uses an AR1335 MIPI sensor, which requires AP1302 firmware. AP1302 is released on GitHub. You first create a folder called `ap1302-firmware` to keep the AP1302 recipes, `ap1302-firmware.inc` and `ap1302-ar1335-single-firmware.bb`.
 
 ```
 $> pwd 
@@ -67,7 +64,8 @@ $> pwd
 mkdir -p project-spec/meta-user/recipes-firmware/ap1302-firmware/
 
 ```
-Create a new file."ap1302-ar1335-single-firmware.bb" and Add the below  content for project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb:
+
+Create a new file,`ap1302-ar1335-single-firmware.bb`, and add the following content for `project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb`:
 
 ```
 SUMMARY = "ap1302 ar1335-single firmware binary"
@@ -77,7 +75,7 @@ include ap1302-firmware.inc
 FW_NAME = "ap1302_ar1335_single_fw.bin"
 ```
 
-Create a new file."ap1302-firmware.inc" and add the below content for project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-firmware.inc.
+Create a new file, `ap1302-firmware.inc`, and add the following content for `project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-firmware.inc`.
 
 ```
 LICENSE = "Proprietary"
@@ -103,17 +101,16 @@ FILES:${PN} = "/lib/firmware/${FW_NAME}"
 
 ```
 
-## Add Recipe for VVAS Smartcam 
-Next, we add the recipe for smartcam software, released on [GitHub](https://github.com/Xilinx/smartcam/tree/xlnx_rel_v2022.1) for 2022.1. We first create a folder for the application recipe. 
+## Add the Recipe for VVAS SmartCam
 
+Next, add the recipe for SmartCam software, released on [GitHub](https://github.com/Xilinx/smartcam/tree/xlnx_rel_v2022.1) for 2022.1. You first create a folder for the application recipe:
 
 ```
 $> pwd
 mkdir -p project-spec/meta-user/recipes-apps/resize/
-
 ```
 
-Create a new file, [smartcam.bb](./code/kria_vitis_acceleration_flow/ml_inference/petalinux_firmware/smartcam/smartcam.bb) and add the following content in project-spec/meta-user/recipes-apps/smartcam/smartcam.bb
+Create a new file, [smartcam.bb](./code/kria_vitis_acceleration_flow/ml_inference/petalinux_firmware/smartcam/smartcam.bb), and add the following content in `project-spec/meta-user/recipes-apps/smartcam/smartcam.bb`:
 
 ```
 SUMMARY = "Example Smartcam application"
@@ -160,14 +157,14 @@ FILES:${PN} += " \
     "
 ```
 
-Next, we want to create the package group to include both the firmware and software, as well as the AR1335 driver that is needed for this application. [UG1144](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Adding-a-Package-Group) also details this step. 
+Next, you create the package group to include both the firmware and software, as well as the AR1335 driver that is needed for this application. *PetaLinux Tools Documentation: Reference Guide* ([UG1144](https://docs.amd.com/go/en-US/ug1144-petalinux-tools-reference-guide/Adding-a-Package-Group)) also details this step.
 
 ```
 $> pwd
 mkdir -p project-spec/meta-user/recipes-core/packagegroups/
 ```
 
-Create a new file."packagegroup-kv260-example.bb" and add the following content to file project-spec/meta-user/recipes-core/packagegroups/packagegroup-kv260-example.bb
+Create a new file `packagegroup-kv260-example.bb`, and add the following content to the `project-spec/meta-user/recipes-core/packagegroups/packagegroup-kv260-example.bb` file. 
 
 ```
 DESCRIPTION = "Example Smartcam related Packages"
@@ -185,33 +182,39 @@ RDEPENDS:${PN} = "${EXAMPLE_PACKAGES}"
 COMPATIBLE_MACHINE = "^$"
 COMPATIBLE_MACHINE:k26-kv = "${MACHINE}"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-
 ```
-Add the below line to project-spec/meta-user/conf/user-rootfsconfig:
+
+Add the following line to `project-spec/meta-user/conf/user-rootfsconfig`:
 
 ```
 CONFIG_packagegroup-kv260-example
 ```
 
-Enable the package group by using the below command to get to the configuration GUI,
+Enable the package group by using the following command to get to the configuration GUI:
 
 ```
 petalinux-config -c rootfs
-
 ```
-Go to "user packages" to enable packagegroup-kv260-smartcam and select "packagegroup-kv260-example". Select Yes to save the configurations and Exit.
 
-## Build the Petalinux WIC Image
+Go to `user packages` to enable `packagegroup-kv260-smartcam`, and select **`packagegroup-kv260-example`**. Select **Yes** to save the configurations and exit.
+
+## Build the Petalinux .wic Image
 
 ```
 petalinux-build
 petalinux-package --wic --bootfiles "ramdisk.cpio.gz.u-boot boot.scr Image system.dtb"
 ```
 
-## Image SD card 
+## Image SD Card
 
-Petalinux Image will be generated in the "xilinx-kv260-starterkit-2022.1/images/linux" folder. Navigate to the folder. Using a GUI like balenaEtcher, flash a microSD card with the "petalinux-sdimage.wic" image.
+PetaLinux image is generated in the `xilinx-kv260-starterkit-2022.1/images/linux` folder. Navigate to the folder. Using a GUI like balenaEtcher, flash a microSD card with the `petalinux-sdimage.wic` image.
 
+## Next Steps
 
-## Next steps
-This completes the Petalinux WIC Image generation. The next step is [running smartcam the board](./running-smartcam-on-board.md).
+This completes the Petalinux .wic image generation. The next step is [running SmartCam the board](./running-smartcam-on-board.md).
+
+<hr class="sphinxhide"></hr>
+
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
+
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

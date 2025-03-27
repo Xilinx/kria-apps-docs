@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application &mdash; Kria™ SOM 2022.1 documentation</title>
+  <title>Vitis Accelerator Flow Example: Replacing DPU with Filter2d Accelerator in a SmartCam Application &mdash; Kria™ SOM 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Vitis Platform Flow Example - Adding Raspberry Pi Camera to SmartCam’s Platform" href="vitis_platform_flow_smartcam_raspi_example.html" />
+    <link rel="next" title="Vitis Platform Flow Example: Adding a Raspberry Pi Camera to SmartCam’s Platform" href="vitis_platform_flow_smartcam_raspi_example.html" />
     <link rel="prev" title="Vivado Accelerator Flow Example" href="vivado_accel_example.html" /> 
 </head>
 
@@ -88,23 +88,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="vivado_accel_example.html">Vivado Accelerator Flow Example</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Vitis Accelerator Flow Example: Replacing DPU with Filter2d Accelerator in a SmartCam Application</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#obtaining-platform">Obtaining Platform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#obtaining-filter2d">Obtaining filter2d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#obtaining-the-filter2d-kernel">Obtaining the filter2d Kernel</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#altering-application-overlay">Altering Application/Overlay</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#generate-bitstream-and-xclbin">Generate bitstream and .xclbin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-the-bitstream-and-xclbin">Generate the Bitstream and .xclbin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#optional-steps-to-generate-shell-json-and-dtbo-file">Optional Steps to Generate shell.json and .dtbo file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#compile-software-on-ubuntu-target">Compile software on Ubuntu Target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compile-the-software-on-ubuntu-target">Compile the Software on Ubuntu Target</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#run-application-on-target">Run Application on Target</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="vitis_platform_flow_smartcam_raspi_example.html">Vitis Platform Flow Example - Adding Raspberry Pi Camera to SmartCam’s Platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="custom_cc_flow_example.html">Example - Creating a Platform for a Custom Carrier Card</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dtsi_dtbo_generation_smartcam_example.html">Example - Generating DTSI and DTBO Overlay Files for Smartcam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vitis_platform_flow_smartcam_raspi_example.html">Vitis Platform Flow Example: Adding a Raspberry Pi Camera to SmartCam’s Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom_cc_flow_example.html">Example: Create a Platform for a Custom Carrier Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dtsi_dtbo_generation_smartcam_example.html">Example - Generating DTSI and DTBO Overlay Files for SmartCam</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Baremetal Flow Example</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
 <ul>
@@ -113,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Boot-modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
@@ -144,7 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="examples.html">Examples</a> &raquo;</li>
-      <li>Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application</li>
+      <li>Vitis Accelerator Flow Example: Replacing DPU with Filter2d Accelerator in a SmartCam Application</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/vitis_accel_flow_smartcam_filter2d_example.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -154,62 +153,62 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="vitis-accelerator-flow-example-replacing-dpu-with-filter2d-accelerator-in-smartcam-application">
-<h1>Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application<a class="headerlink" href="#vitis-accelerator-flow-example-replacing-dpu-with-filter2d-accelerator-in-smartcam-application" title="Permalink to this heading">¶</a></h1>
-<p>This page will walk you through an example of replacing pre-processing and DPU in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/smartcamera_landing.html">Smart Camera application</a>
-with a simple accelerator (in this case, filter2d) in the Vitis Accelerator Flow. This particular example make use of the Makefile environment provided with <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms">KV260 Vitis Repository</a>. Please first read <a class="reference internal" href="vitis_accel_flow.html"><span class="doc">Vitis Accelerator Flow</span></a> before trying this example.</p>
-<p>This example was created with 22.1 tools and BSP and is based on Ubuntu. You will need Vitis. This application assumes that you are familiar with smartcam application, and have already booted Linux with a smartcam application running. If you have not yet done that, please go through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/smartcamera_landing.html">smartcam application deployment</a>.</p>
-<p>This example will generate 2 files - .bit.bin (PL bitstream) and .xclbin file for the specific accelerator. You will re-use .dtbo (device tree overlay), and shell.json file from smartcam platform because we are using the same platform.</p>
+  <div class="section" id="vitis-accelerator-flow-example-replacing-dpu-with-filter2d-accelerator-in-a-smartcam-application">
+<h1>Vitis Accelerator Flow Example: Replacing DPU with Filter2d Accelerator in a SmartCam Application<a class="headerlink" href="#vitis-accelerator-flow-example-replacing-dpu-with-filter2d-accelerator-in-a-smartcam-application" title="Permalink to this heading">¶</a></h1>
+<p>This page walks you through an example of replacing pre-processing and DPU in a <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/smartcamera_landing.html">SmartCam application</a> with a simple accelerator (in this case, filter2d) in the Vitis Accelerator Flow. This particular example makes use of the Makefile environment provided with the <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms">KV260 Vitis Repository</a>. Before trying this example, first read the <a class="reference internal" href="vitis_accel_flow.html"><span class="doc">Vitis Accelerator Flow</span></a>.</p>
+<p>This example was created with 2022.1 tools and BSP and is based on Ubuntu. You need Vitis. This application assumes that you are familiar with the Smartcam application and have already booted Linux with a Smartcam application running. If you have not yet done that, go through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/smartcamera_landing.html">Smartcam Application Deployment</a>.</p>
+<p>This example generates two files: .bit.bin (PL bitstream) and .xclbin file for the specific accelerator. You reuse the .dtbo (device tree overlay), and shell.json file from the Smartcam platform because you are using the same platform.</p>
 <div class="section" id="obtaining-platform">
 <h2>Obtaining Platform<a class="headerlink" href="#obtaining-platform" title="Permalink to this heading">¶</a></h2>
-<p>Since we are altering smartcam application only and not the platform, we will first need to get the platform smartcam is based on - kv260_ispMipiRx_vcu_DP. Detailed tutorial is at <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vitis_platform.html">Creating Vitis Platform</a>. Here are the specific commands to use to generate the platform:</p>
+<p>Because you are altering a Smartcam application only and not the platform, you first need to get the platform Smartcam is based on, kv260_ispMipiRx_vcu_DP. A detailed tutorial is at <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vitis_platform.html">Creating Vitis Platform</a>. Use the following commands to generate the platform:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2022.1<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/Xilinx/kria-vitis-platforms.git
 <span class="nb">cd</span><span class="w"> </span><span class="nv">$workdir</span>/kria-vitis-platforms/kv260/platforms
 <span class="nb">source</span><span class="w"> </span>&lt;vitis<span class="w"> </span>path&gt;/settings64.sh
 make<span class="w"> </span>platform<span class="w"> </span><span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx_vcu_DP
 </pre></div>
 </div>
-<p>The platform will be available now in <code class="docutils literal notranslate"><span class="pre">kria-vitis-platforms/kv260/platforms/xilinx_kv260_ispMipiRx_vcu_DP_202110_1/</span></code>.</p>
+<p>The platform is now available in <code class="docutils literal notranslate"><span class="pre">kria-vitis-platforms/kv260/platforms/xilinx_kv260_ispMipiRx_vcu_DP_202110_1/</span></code>.</p>
 </div>
-<div class="section" id="obtaining-filter2d">
-<h2>Obtaining filter2d<a class="headerlink" href="#obtaining-filter2d" title="Permalink to this heading">¶</a></h2>
-<p>Filter2d RTL kernel can be found <a class="reference external" href="https://github.com/Xilinx/vck190-base-trd/tree/2022.1/overlays/filter2d/kernels/filter2d_pl/">here</a>. The repository was targeted for VCK190, a board containing a Versal device, but since it’s a soft IP, it works for Zynq MPSoC as well. In a separate folder, please download and extract the filter2d_pl and copy it to smartcam folder:</p>
+<div class="section" id="obtaining-the-filter2d-kernel">
+<h2>Obtaining the filter2d Kernel<a class="headerlink" href="#obtaining-the-filter2d-kernel" title="Permalink to this heading">¶</a></h2>
+<p>The filter2d RTL kernel is found <a class="reference external" href="https://github.com/Xilinx/vck190-base-trd/tree/2022.1/overlays/filter2d/kernels/filter2d_pl/">here</a>. The repository targets VCK190, a board containing a Versal device, but because it is a soft IP, it also works for the Zynq MPSoC. In a separate folder, download and extract filter2d_pl, and copy it to the smartcam folder:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$workdir</span>
 git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span><span class="m">2022</span>.1<span class="w"> </span>https://github.com/Xilinx/vck190-base-trd
 <span class="nb">cd</span><span class="w"> </span>vck190-base-trd
 cp<span class="w"> </span>overlays/filter2d/kernels/filter2d_pl/<span class="w"> </span>../kria-vitis-platforms/kv260/overlays/examples/smartcam/<span class="w"> </span>-r
 </pre></div>
 </div>
-<p>In ```$workdir/kria-vitis-platforms/kv260/overlays/examples/smartcam//overlays/filter2d/kernels/filter2d_pl/Makefile update the LINK_CFG with a zynqmp.cfg instead of vck190.cfg:</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">$workdir/kria-vitis-platforms/kv260/overlays/examples/smartcam//overlays/filter2d/kernels/filter2d_pl/Makefile</span></code>,  update the LINK_CFG with a <code class="docutils literal notranslate"><span class="pre">zynqmp.cfg</span></code> instead of a <code class="docutils literal notranslate"><span class="pre">vck190.cfg</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>LINK_CFG ?= zynqmp.cfg
 </pre></div>
 </div>
-<p>The zynqmp.cfg should be placed  in the same level as Makefile and vck190.cfg and has the following content:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">zynqmp.cfg</span></code> is placed at the same level as the Makefile and vck190.cfg and has the following content:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[advanced]
 param=compiler.addOutputTypes=hw_export
 [vivado]
 prop=run.impl_1.strategy=Performance_ExploreWithRemap
 </pre></div>
 </div>
-<p>This will help meeting timing on Zynqmp Soc instead of vck190(Versal based)</p>
+<p>This helps meeting timing on the Zynq MPSoC instead of the Versal based VCK190.</p>
 </div>
 <div class="section" id="altering-application-overlay">
 <h2>Altering Application/Overlay<a class="headerlink" href="#altering-application-overlay" title="Permalink to this heading">¶</a></h2>
-<p>The next step is to alter the smartcam overlay. This is the overlay folder:</p>
+<p>The next step is to alter the SmartCam overlay. This is the overlay folder:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$workdir</span>/kria-vitis-platforms/kv260/overlays/examples/smartcam/
 </pre></div>
 </div>
-<p>You will now find a Makefile in that level - open it up and remove DPU and add filter2d. We will first want to remove generation of DPU and its pre-processing. This means removing packing of .xo files for those 2 RTL kernels.</p>
-<p>remove the following lines for DPU (in 3 separate places:</p>
+<p>A Makefile now displays in that level. Open the Makefile, remove DPU, and add filter2d. You first need to remove the generation of the DPU and its preprocessing. This means removing the packing of the .xo files for those two RTL kernels.</p>
+<ol>
+<li><p>Remove the following lines for the DPU (in three separate places):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dpu_HDLSRCS=kernel_xml/dpu/kernel.xml\
-	     scripts/package_dpu_kernel.tcl\
-	     scripts/gen_dpu_xo.tcl\
-	     ../../dpu_ip/Vitis/dpu/hdl/DPUCZDX8G.v\
-	     ../../dpu_ip/Vitis/dpu/inc/arch_def.vh\
-	     ../../dpu_ip/Vitis/dpu/xdc/*.xdc\
-	     ../../dpu_ip/DPUCZDX8G_*/hdl/DPUCZDX8G_*_dpu.sv\
-	     ../../dpu_ip/DPUCZDX8G_*/inc/function.vh\
-             ../../dpu_ip/DPUCZDX8G_*/inc/arch_para.vh
+		scripts/package_dpu_kernel.tcl\
+		scripts/gen_dpu_xo.tcl\
+		../../dpu_ip/Vitis/dpu/hdl/DPUCZDX8G.v\
+		../../dpu_ip/Vitis/dpu/inc/arch_def.vh\
+		../../dpu_ip/Vitis/dpu/xdc/*.xdc\
+		../../dpu_ip/DPUCZDX8G_*/hdl/DPUCZDX8G_*_dpu.sv\
+		../../dpu_ip/DPUCZDX8G_*/inc/function.vh\
+			../../dpu_ip/DPUCZDX8G_*/inc/arch_para.vh
 
 dpu_TCL=scripts/gen_dpu_xo.tcl
 DPU_KERN_NAME = DPUCZDX8G
@@ -225,7 +224,8 @@ binary_container_1/dpu.xo: $(dpu_HDLSRCS)
 	cp ./binary_*/link/vivado/vpl/prj/prj.gen/sources_1/bd/*/ip/*_DPUCZDX8G_1_0/arch.json ./binary_*/sd_card
 </pre></div>
 </div>
-<p>remove the following lines for preprocessing (PP):</p>
+</li>
+<li><p>Remove the following lines for preprocessing (PP):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>KERNEL = pp_pipeline_accel
 KERNEL_XO = $(KERNEL)/$(KERNEL).xo
 
@@ -238,7 +238,8 @@ $(KERNEL_XO): xf_pp_pipeline_accel.cpp
 	-@$(RM) .Xil
 </pre></div>
 </div>
-<p>Add filter2d .xo file generation and Makefile calls in 3 different places:</p>
+</li>
+<li><p>Add the filter2d .xo file generation and Makefile calls in three different places:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>filter2d_xo = filter2d_pl/kernel/filter2d_pl_accel/filter2d_pl_accel.xo
 
 
@@ -250,20 +251,25 @@ $(BINARY_CONTAINER): $(filter2d_xo)
 
 $(filter2d_xo):
 	$(MAKE) -C filter2d_pl/kernel
- 
- 
+
+
 	$(MAKE) -C filter2d_pl/kernel clean
 </pre></div>
 </div>
-<p>Remove invocation for strip_interconnects.tcl as we won’t need it:</p>
+</li>
+<li><p>Remove the invocation for <code class="docutils literal notranslate"><span class="pre">strip_interconnects.tcl</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--xp param:compiler.userPostSysLinkOverlayTcl=${DIR_PRJ}/prj_conf/strip_interconnects.tcl 
 </pre></div>
 </div>
-<p>Replace the 2 kernels with filter2d kernel:
-remove <code class="docutils literal notranslate"><span class="pre">dpu_pp_xo</span> <span class="pre">=</span> <span class="pre">$(KERNEL_XO)</span> <span class="pre">$(dpu_xo)</span></code>
-add <code class="docutils literal notranslate"><span class="pre">dpu_pp_xo</span> <span class="pre">=</span>&#160; <span class="pre">$(filter2d_xo)</span></code></p>
-<p>The resulting Makefile can be found in <a class="reference external" href="./example_src/filter2d_example/vitis_accel_example_smartcam_filter2d_makefile">example Makefile</a> you can compare it with the original Makefile <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms/blob/xlnx_rel_v2022.1/kv260/overlays/examples/smartcam/Makefile">here</a></p>
-<p>Next, we need to connect the filter2d accelerator to the processor subsystem. Open <code class="docutils literal notranslate"><span class="pre">prj_conf/prj_config_1dpu</span></code>, remove DPUCZDX8G and pp_pipeline_accel_1 clocks and connectivity, and connect filter2d to HP1, and set clock to 200Mhz:</p>
+</li>
+<li><p>Replace the two kernels with the filter2d kernel:</p>
+<ul class="simple">
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">dpu_pp_xo</span> <span class="pre">=</span> <span class="pre">$(KERNEL_XO)</span> <span class="pre">$(dpu_xo)</span></code></p></li>
+<li><p>Add dd <code class="docutils literal notranslate"><span class="pre">dpu_pp_xo</span> <span class="pre">=</span>&#160; <span class="pre">$(filter2d_xo)</span></code></p></li>
+</ul>
+<p>The resulting Makefile is found in <a class="reference external" href="./example_src/filter2d_example/vitis_accel_example_smartcam_filter2d_makefile">example Makefile</a>. You can compare it with the original Makefile <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms/blob/xlnx_rel_v2022.1/kv260/overlays/examples/smartcam/Makefile">here</a>.</p>
+</li>
+<li><p>Next, connect the filter2d accelerator to the processor subsystem. Open <code class="docutils literal notranslate"><span class="pre">prj_conf/prj_config_1dpu</span></code>, remove DPUCZDX8G, pp_pipeline_accel_1 clocks and connectivity, and connect filter2d to HP1, and set the clock to 200 MHz:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[clock]
 #freqHz=300000000:DPUCZDX8G_1.aclk
 #freqHz=600000000:DPUCZDX8G_1.ap_clk_2
@@ -286,70 +292,80 @@ sp=filter2d_pl_accel_0.frm_out:HP1
 sp=filter2d_pl_accel_0.kernel:HP1
 </pre></div>
 </div>
-<p>Now you have finished all the modifications needed to replace preprocessor and DPU with filter2d.</p>
+</li>
+</ol>
+<p>You have finished all the modifications needed to replace the preprocessor and DPU with filter2d.</p>
 </div>
-<div class="section" id="generate-bitstream-and-xclbin">
-<h2>Generate bitstream and .xclbin<a class="headerlink" href="#generate-bitstream-and-xclbin" title="Permalink to this heading">¶</a></h2>
-<p>You can now call the top level Makefile to generate the files required:</p>
+<div class="section" id="generate-the-bitstream-and-xclbin">
+<h2>Generate the Bitstream and .xclbin<a class="headerlink" href="#generate-the-bitstream-and-xclbin" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Now, call the top level Makefile to generate the required files:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../../../
 make<span class="w"> </span>overlay<span class="w"> </span><span class="nv">OVERLAY</span><span class="o">=</span>smartcam
 </pre></div>
 </div>
-<p>The generated Vivado project will be located at:</p>
+<p>The generated Vivado project is located at:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$working_dir</span>/kria-vitis-platforms/kv260/overlays/examples/smartcam/binary_container_1/link/vivado/vpl/prj
 </pre></div>
 </div>
 <p>You can open up the Vivado project to see how filter2d is connected into the system.</p>
-<p>The generated bitfile and xclbin will be located at</p>
+<p>The generated bitfile and xclbin will be located at:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$working_dir</span>/kria-vitis-platforms/kv260/overlays/examples/smartcam/binary_container_1/link/int/system.bit<span class="w">   </span>
 <span class="nv">$working_dir</span>/kria-vitis-platforms/kv260/overlays/examples/smartcam/binary_container_1/*.xclbin
 </pre></div>
 </div>
-<p>rename .xclbin file to <code class="docutils literal notranslate"><span class="pre">filter2d.xclbin</span></code></p>
-<p>Now you will need to convert system.bit to a .bit.bin file:</p>
+</li>
+<li><p>Rename the .xclbin file to <code class="docutils literal notranslate"><span class="pre">filter2d.xclbin</span></code></p></li>
+<li><p>Now you need to convert <code class="docutils literal notranslate"><span class="pre">system.bit</span></code> to a <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code> file:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>overlays/examples/smartcam/binary_container_1/link/int/
 <span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;all:{system.bit}&#39;</span>&gt;bootgen.bif
 bootgen<span class="w"> </span>-w<span class="w"> </span>-arch<span class="w"> </span>zynqmp<span class="w"> </span>-process_bitstream<span class="w"> </span>bin<span class="w"> </span>-image<span class="w"> </span>bootgen.bif
 mv<span class="w"> </span>system.bit.bin<span class="w"> </span>filter2d.bit.bin
 </pre></div>
 </div>
-<p>now you have a <code class="docutils literal notranslate"><span class="pre">filter2d.xclbin</span></code> and <code class="docutils literal notranslate"><span class="pre">filter2d.bit.bin</span></code></p>
+</li>
+</ol>
+<p>Now you have the <code class="docutils literal notranslate"><span class="pre">filter2d.xclbin</span></code> and <code class="docutils literal notranslate"><span class="pre">filter2d.bit.bin</span></code> files.</p>
 </div>
 <div class="section" id="optional-steps-to-generate-shell-json-and-dtbo-file">
 <h2>Optional Steps to Generate shell.json and .dtbo file<a class="headerlink" href="#optional-steps-to-generate-shell-json-and-dtbo-file" title="Permalink to this heading">¶</a></h2>
-<p>Because we are re-using the same platform smartcam application is based on, we can re-use the smartcam shell.json and kv260-smartcam.dtbo file in the firmware folder as indicated in the following section. However, if you prefer, you can also generate them separatedly. Note that you will still need to download and install smartcam for the software dependencies this example uses.</p>
-<p>Shell.json can be generated using the instruction <a class="reference external" href="target.html#shelljson-file">here</a>.</p>
-<p>filter2d.dtbo can be generated by using the same <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/kv260/smartcam/kv260-smartcam.dtsi">.dtsi</a> file and compile using <a class="reference external" href="./dtsi_dtbo_generation.html#tools-and-input-required">dtc</a>:</p>
+<p>Because you are reusing the same platform the smartcam application is based on, reuse the smartcam <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> and <code class="docutils literal notranslate"><span class="pre">kv260-smartcam.dtbo</span></code> file in the firmware folder as indicated in the following section. However, if you prefer, you can also generate them separatedly.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> You still need to download and install smartcam for the software dependencies this example uses.</p>
+</div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> is generated using the instructions <a class="reference external" href="target.html#shelljson-file">here</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">filter2d.dtbo</span></code> file is generated by using the same <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/kv260/smartcam/kv260-smartcam.dtsi">.dtsi</a> file and compile using <a class="reference external" href="./dtsi_dtbo_generation.html#tools-and-input-required">dtc</a>:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dtc<span class="w"> </span>-@<span class="w"> </span>-O<span class="w"> </span>dtb<span class="w"> </span>-o<span class="w"> </span>filter2d.dtbo<span class="w"> </span>kv260-smartcam.dtsi
 </pre></div>
 </div>
 </div>
-<div class="section" id="compile-software-on-ubuntu-target">
-<h2>Compile software on Ubuntu Target<a class="headerlink" href="#compile-software-on-ubuntu-target" title="Permalink to this heading">¶</a></h2>
-<p>Next, we will need to boot Ubuntu, and compile the software on target. We want to download the kria-developer container because that contains the environment to compile our code:</p>
+<div class="section" id="compile-the-software-on-ubuntu-target">
+<h2>Compile the Software on Ubuntu Target<a class="headerlink" href="#compile-the-software-on-ubuntu-target" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Next, boot Ubuntu, and compile the software on target. Download the kria-developer container because that contains the environment to compile your code:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>xilinx/kria-developer:latest
 </pre></div>
 </div>
-<p>Then load docker container:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```bash
-docker run \
---env=&quot;DISPLAY&quot; \
--h &quot;xlnx-docker&quot; \
---env=&quot;XDG_SESSION_TYPE&quot; \
---net=host \
---privileged \
---volume=&quot;$HOME/.Xauthority:/root/.Xauthority:rw&quot; \
--v /tmp:/tmp \
--v /dev:/dev \
--v /sys:/sys \
--v /etc/vart.conf:/etc/vart.conf \
--v /lib/firmware/xilinx:/lib/firmware/xilinx \
--v /run:/run \
--it xilinx/kria-developer:latest bash
-```
+</li>
+<li><p>Then load docker container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
+-h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+--net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+--privileged<span class="w"> </span><span class="se">\</span>
+--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/run:/run<span class="w"> </span><span class="se">\</span>
+-it<span class="w"> </span>xilinx/kria-developer:latest<span class="w"> </span>bash
 </pre></div>
 </div>
-<p>in the docker container, cd to /tmp and clone the git repo and build the filder2d app. We want to use /tmp because that folder is accessible inside and outside containers. However, note that the files there may not persist through reboot.</p>
+</li>
+<li><p>In the docker container, change directory to <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>, clone the git repo, and build the filder2d application. Use <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> because that folder is accessible inside and outside containers. However, the files there might not persist through reboot.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/tmp/
 git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span><span class="m">2022</span>.1<span class="w"> </span>https://github.com/Xilinx/vck190-base-trd.git
 <span class="nb">cd</span><span class="w"> </span>vck190-base-trd/overlays/filter2d/apps/filter2d-notebooks/filter2d-notebooks
@@ -358,21 +374,28 @@ mkdir<span class="w"> </span>build<span class="p">;</span>
 cmake<span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>-j<span class="w"> </span><span class="o">&amp;&amp;</span>make<span class="w"> </span>install
 </pre></div>
 </div>
-<p>This produces 2 files we will require and copy to /tmp/ folder</p>
+</li>
+<li><p>This produces the two files you require. Copy the files to the <code class="docutils literal notranslate"><span class="pre">/tmp/</span></code> folder:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>/usr/local/lib/vvas/libvvas_xfilter2d_pl.so<span class="w"> </span>/tmp/
 cp<span class="w"> </span>/usr/local/share/vvas/base-trd/kernel_xfilter2d_pl.json<span class="w"> </span>/tmp/
 </pre></div>
 </div>
+</li>
+</ol>
 </div>
 <div class="section" id="run-application-on-target">
 <h2>Run Application on Target<a class="headerlink" href="#run-application-on-target" title="Permalink to this heading">¶</a></h2>
-<p>This application assumes that you are familiar with smartcam application and knows how to booted Linux with a smartcam application running. If you have not yet done that, please go through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/smartcamera_landing.html">smartcam application deployment</a>.  The following commands in target (KV260) will download smartcam and their dependencies:</p>
+<p>This application assumes that you are familiar with the SmartCam application and know how to boot Linux with a SmartCam application running. If you have not yet done that, go through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/smartcamera_landing.html">SmartCam Application Deployment</a>. The following commands in target (KV260) download SmartCam and their dependencies:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>xilinx/smartcam:2022.1
 </pre></div>
 </div>
-<p>With smartcam application downloaded, we have most of the software dependencies needed to run gstreamer, as well as the .dtbo file and shell.json file. Note that because we reused the same platform from smartcam, we can re-use the .dtbo file from smartcam.</p>
-<p>The filter2d accelerator we included only takes YuY2 format, while our MIPI sensors are in NV12 format. Therefore, we need to find a compatible video to try the filter2d with. In this case we googled and downloaded bbb_sunflower_1080p_30fps_normal.mp4 from <a class="reference external" href="https://mirror.clarkson.edu/blender/demo/movies/BBB/">here</a> or <a class="reference external" href="http://ftp.vim.org/ftp/ftp/pub/graphics/blender/demo/movies/BBB/">here</a> and placed them in /tmp/bbb_sunflower_1080p_30fps_normal.mp4. The /tmp folder is accessible by ubuntu or by containers.</p>
-<p>Transfer  <code class="docutils literal notranslate"><span class="pre">filter2d.xclbin</span></code> and <code class="docutils literal notranslate"><span class="pre">filter2d.bit.bin</span></code> to target KV260 using scp or your chosen method. On target, make a new filter2d directory and copy needed files into directory:</p>
+<p>With the SmartCam application downloaded, you have most of the software dependencies needed to run gstreamer, as well as the .dtbo file and <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> file.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> Because you reused the same platform from SmartCam, you can reuse the .dtbo file from SmartCam.</p>
+</div></blockquote>
+<p>The filter2d accelerator included only takes YuY2 format, while the MIPI sensors are in NV12 format. Therefore, you need to find a compatible video to try the filter2d with. In this case, you can use the <code class="docutils literal notranslate"><span class="pre">bbb_sunflower_1080p_30fps_normal.mp4</span></code> from <a class="reference external" href="https://mirror.clarkson.edu/blender/demo/movies/BBB/">here</a> or <a class="reference external" href="http://ftp.vim.org/ftp/ftp/pub/graphics/blender/demo/movies/BBB/">here</a>, placing them in <code class="docutils literal notranslate"><span class="pre">/tmp/bbb_sunflower_1080p_30fps_normal.mp4</span></code>. The <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> folder is accessible by Ubuntu or by containers.</p>
+<ol>
+<li><p>Transfer  <code class="docutils literal notranslate"><span class="pre">filter2d.xclbin</span></code> and <code class="docutils literal notranslate"><span class="pre">filter2d.bit.bin</span></code> to the target KV260 using SCP or your chosen method. On target, make a new <code class="docutils literal notranslate"><span class="pre">filter2d</span></code> directory and copy the required files into the directory:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/lib/firmware/xilinx/filter2d
 //<span class="w"> </span>sudo<span class="w"> </span>cp<span class="w"> </span>/lib/firmware/xilinx/kv260-smartcam/kv260-smartcam.dtbo<span class="w"> </span>/lib/firmware/xilinx/filter2d/filter2d.dtbo
 sudo<span class="w"> </span>cp<span class="w"> </span>/lib/firmware/xilinx/kv260-smartcam/shell.json<span class="w"> </span>/lib/firmware/xilinx/filter2d/
@@ -381,8 +404,9 @@ sudo<span class="w"> </span>cp<span class="w"> </span>filter2d.bit.bin<span clas
 sudo<span class="w"> </span>cp<span class="w"> </span>filter2d.xclbin<span class="w"> </span>/lib/firmware/xilinx/filter2d/
 </pre></div>
 </div>
-<p>modify  <code class="docutils literal notranslate"><span class="pre">/tmp/kernel_xfilter2d_pl.json</span></code> so that <code class="docutils literal notranslate"><span class="pre">xclbin-location</span></code> points to ```/lib/firmware/xilinx/filter2d/filter2d.xclbin`` location.</p>
-<p>Now load the new application with filter2d firmware and smartcam container:</p>
+</li>
+<li><p>Modify  <code class="docutils literal notranslate"><span class="pre">/tmp/kernel_xfilter2d_pl.json</span></code> so that <code class="docutils literal notranslate"><span class="pre">xclbin-location</span></code> points to the location, ```/lib/firmware/xilinx/filter2d/filter2d.xclbin``.</p></li>
+<li><p>Now load the new application with the filter2d firmware and smartcam container:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>desktop_disable
 sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
 sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>filter2d
@@ -403,27 +427,24 @@ docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</spa
 -it<span class="w"> </span>xilinx/smartcam:2022.1<span class="w"> </span>bash
 </pre></div>
 </div>
-<p>First try running gstreamer with the accelerator by-passed to make sure things work fine, you should expect to see the monitor displaying what it captured in MIPI. This command assumes that we use a MIPI camera mapped to media0, and that monitor supports 1920x1080p:</p>
+</li>
+<li><p>First, try running gstreamer with the accelerator bypassed to make sure things work correctly. Expect to see the monitor displaying what it captured in MIPI. This command assumes that you use a MIPI camera mapped to media0, and that the monitor supports 1920x1080p:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0<span class="w"> </span>mediasrcbin<span class="w"> </span>media-device<span class="o">=</span>/dev/media0<span class="w"> </span>v4l2src0::io-mode<span class="o">=</span>mmap<span class="w"> </span>!<span class="w"> </span><span class="s2">&quot;video/x-raw, width=1920, height=1080, format=NV12, framerate=30/1&quot;</span><span class="w"> </span>!<span class="w"> </span>perf<span class="w"> </span>!<span class="w"> </span>kmssink<span class="w"> </span>plane-id<span class="o">=</span><span class="m">39</span><span class="w"> </span>fullscreen-overlay<span class="o">=</span><span class="nb">true</span><span class="w"> </span>-v
 </pre></div>
 </div>
 <p>This confirms that the monitor is working as expected.</p>
-<p>Next, try running using filter2d in the PL. Copy the software to the following folders:</p>
+</li>
+<li><p>Next, try running using filter2d in the PL. Copy the software to the following folders:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>/usr/lib/vvas/
 cp<span class="w"> </span>/tmp/libvvas_xfilter2d_pl.so<span class="w"> </span>/usr/lib/vvas/
 
 gst-launch-1.0<span class="w"> </span>filesrc<span class="w"> </span><span class="nv">location</span><span class="o">=</span><span class="s2">&quot;/tmp/bbb_sunflower_1080p_30fps_normal.mp4&quot;</span><span class="w"> </span>!<span class="w"> </span>decodebin<span class="w"> </span>!<span class="w"> </span>videoconvert<span class="w"> </span>!<span class="w"> </span>video/x-raw,<span class="w"> </span><span class="nv">width</span><span class="o">=</span><span class="m">1920</span>,<span class="w"> </span><span class="nv">height</span><span class="o">=</span><span class="m">1080</span>,<span class="w"> </span><span class="nv">format</span><span class="o">=</span>YUY2,<span class="w"> </span><span class="nv">framerate</span><span class="o">=</span><span class="m">30</span>/1<span class="w"> </span>!<span class="w"> </span>vvas_xfilter<span class="w"> </span>kernels-config<span class="o">=</span>/tmp/kernel_xfilter2d_pl.json<span class="w"> </span>dynamic-config<span class="o">=</span><span class="s1">&#39;{ &quot;filter_preset&quot; : &quot;edge&quot; }&#39;</span><span class="w"> </span>!<span class="w"> </span>perf<span class="w"> </span>!<span class="w"> </span>kmssink<span class="w"> </span>driver-name<span class="o">=</span>xlnx<span class="w"> </span>plane-id<span class="o">=</span><span class="m">39</span><span class="w"> </span>fullscreen-overlay<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="nv">sync</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span>-v
 </pre></div>
 </div>
-<p>You should be able to see the video being displayed with filter_preset set to “edge”. You can try other presets as well. The list can be found <a class="reference external" href="https://github.com/Xilinx/vck190-base-trd/blob/2022.1/overlays/filter2d/apps/filter2d-notebooks/filter2d-notebooks/vvas-accel-sw-libs/vvas_xfilter2d_pl/src/vvas_xfilter2d.h#L50">here</a>. If there are spaces in preset, replease it with underscore. For an example, <code class="docutils literal notranslate"><span class="pre">horizontal</span> <span class="pre">edge</span></code> should be <code class="docutils literal notranslate"><span class="pre">horizontal_edge</span></code> in above command.  The framerate being displayed will be slow - we had to do format convertation in software, therefore each frame will take time.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
+</li>
+</ol>
+<p>You should see the video being displayed with the filter_preset set to “edge”. You can try other presets as well. The list can be found <a class="reference external" href="https://github.com/Xilinx/vck190-base-trd/blob/2022.1/overlays/filter2d/apps/filter2d-notebooks/filter2d-notebooks/vvas-accel-sw-libs/vvas_xfilter2d_pl/src/vvas_xfilter2d.h#L50">here</a>. If there are spaces in the preset, replace them with an underscore. For example, in the above command, <code class="docutils literal notranslate"><span class="pre">horizontal</span> <span class="pre">edge</span></code> would be <code class="docutils literal notranslate"><span class="pre">horizontal_edge</span></code>.  The framerate being displayed is be slow; you have to do format convertation in software, so each frame takes time.</p>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -433,14 +454,14 @@ gst-launch-1.0<span class="w"> </span>filesrc<span class="w"> </span><span class
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="vivado_accel_example.html" class="btn btn-neutral float-left" title="Vivado Accelerator Flow Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="vitis_platform_flow_smartcam_raspi_example.html" class="btn btn-neutral float-right" title="Vitis Platform Flow Example - Adding Raspberry Pi Camera to SmartCam’s Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="vitis_platform_flow_smartcam_raspi_example.html" class="btn btn-neutral float-right" title="Vitis Platform Flow Example: Adding a Raspberry Pi Camera to SmartCam’s Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 23, 2025.
+      <span class="lastupdated">Last updated on March 26, 2025.
       </span></p>
   </div>
 

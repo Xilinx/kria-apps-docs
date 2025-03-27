@@ -86,7 +86,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Baremetal Flow Example</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
 <ul>
@@ -95,7 +95,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Boot-modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
@@ -106,10 +106,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Soft IP for Kria Notes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#ethernet">Ethernet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ethernet-driver-consideration">Ethernet Driver Consideration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ethernet-driver-considerations">Ethernet Driver Considerations</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 </ul>
@@ -144,18 +143,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="soft-ip-for-kria-notes">
 <h1>Soft IP for Kria Notes<a class="headerlink" href="#soft-ip-for-kria-notes" title="Permalink to this heading">¶</a></h1>
-<p>This section contains notes on PL or “soft IP” selection guidance for use on Kria platforms. The Kria K24 and K26 SOMs are based on the Zynq MPSoC, which has hardened processor subsystem (PS) as well as programmable logic (PL) which the user can select and instantiate a number of soft IPs. For some applications like Ethernet there are multiple IPs available in the Vivado IP catalog to cover different use-cases and devices families. This section provides guidance on specific application areas where there may be multiple IPs in the Vivado IP catalog, but for Zynq MPSoC devices only a subset of them are supported for use in Kria MPSoC platforms.</p>
+<p>This section contains notes on PL or “soft IP” selection guidance for use on Kria platforms. The Kria K24 and K26 SOMs are based on the AMD Zynq™ MPSoC, which has hardened processor subsystem (PS) as well as programmable logic (PL) which you select and instantiate a number of soft IPs. For some applications, like Ethernet, there are multiple IPs available in the Vivado IP catalog to cover different use cases and device families. This section provides guidance on specific application areas where there may be multiple IPs in the Vivado IP catalog, but for Zynq MPSoC devices, only a subset of them are supported for use in Kria MPSoC platforms.</p>
 <div class="section" id="ethernet">
 <h2>Ethernet<a class="headerlink" href="#ethernet" title="Permalink to this heading">¶</a></h2>
-<p>A user’s choice for PL based ethernet implementation must consider the Zynq MPSoC device capabilities, the Kria SOM implementation, and the target carrier card capabilities (AMD carrier card or custom carrier card). Refer to <a class="reference external" href="https://docs.amd.com/r/en-US/ug1085-zynq-ultrascale-trm">ZynqMPSoC TRM</a> for details on ZynqMPSoC capabilities.</p>
+<p>When choosing a PL based Ethernet implementation, you must consider the Zynq MPSoC device capabilities, the Kria SOM implementation, and the target carrier card capabilities (AMD carrier card or custom carrier card). For details on Zynq MPSoC capabilities, refer to the <em>Zynq UltraScale+ Device Technical Reference Manual</em> (<a class="reference external" href="https://docs.amd.com/go/en-US/ug1085-zynq-ultrascale-trm">UG1085</a>).</p>
 <p>K26:</p>
 <ul class="simple">
-<li><p>K26’s ZynqMPSoC has single GTH quad of tranceivers, thus it can support PL multi-Gb Ethernet with soft PL Ethernet IPs requiring a high-speed SerDes interface.</p></li>
-<li><p>K26’s ZynqMPSoC does not have a hardened PL 100G Ethernet.</p></li>
+<li><p>K26’s Zynq MPSoC has single GTH quad of transceivers, so it can support PL multi-Gb Ethernet with soft PL Ethernet IPs requiring a high-speed SerDes interface.</p></li>
+<li><p>K26’s Zynq MPSoC does not have a hardened PL 100G Ethernet.</p></li>
 </ul>
 <p>KV260:</p>
 <ul class="simple">
-<li><p>KV260 implements a 1Gb/s Ethernet interface from PS GEM0. It does not have HW hooks such as an Ethernet PHY, RJ45, or SFP for implementing PL based Ethernet.</p></li>
+<li><p>KV260 implements a 1 Gb/s Ethernet interface from PS GEM0. It does not have hardware hooks, such as an Ethernet PHY, RJ45, or SFP for implementing PL based Ethernet.</p></li>
 </ul>
 <p>KR260:</p>
 <ul class="simple">
@@ -171,7 +170,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p>K24:</p>
 <ul class="simple">
-<li><p>Note that K24’s ZynqMPSoC does not have any PL GTH SerDes tranceivers. Therefore it will support only PHY interfaces that do not have a high-speed SerDes dependent physical interfaces.</p></li>
+<li><p>The K24’s Zynq MPSoC does not have any PL GTH SerDes transceivers. Therefore, it supports only PHY interfaces that do not have a high-speed SerDes dependent physical interfaces.</p></li>
 </ul>
 <p>KD240:</p>
 <ul class="simple">
@@ -183,30 +182,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-<p>As of 2023.2, the Ethernet IPs in AMD’s soft IP offering that are compatible with KR260 and KD240 PL Ethernet PHY (RGMII) is:</p>
+<p>As of 2023.2, the Ethernet IPs in AMD’s soft IP offering that are compatible with KR260 and KD240 PL Ethernet PHY (RGMII) are:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.amd.com/v/u/7.0-English/pg138-axi-ethernet">axi_ethernet subsystem</a> demonstrated by <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/bist/docs/overview.html">BIST design</a> (Vivado design <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms/tree/main/kr260/platforms">here as part of kr260_tsn_rs485pmod platform</a>)</p></li>
-<li><p><a class="reference external" href="https://docs.amd.com/r/en-US/pg051-tri-mode-eth-mac">Tri Mode Ethernet MAC</a></p></li>
+<li><p><a class="reference external" href="https://docs.amd.com/go/en-US/pg138-axi-ethernet">axi_ethernet subsystem</a> demonstrated by <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/bist/docs/overview.html">BIST design</a> (Vivado design <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms/tree/main/kr260/platforms">here as part of the kr260_tsn_rs485pmod platform</a>)</p></li>
+<li><p><a class="reference external" href="https://docs.amd.com/go/en-US/pg051-tri-mode-eth-mac">Tri Mode Ethernet MAC</a></p></li>
 <li><p><a class="reference external" href="https://www.xilinx.com/products/intellectual-property/1gtsn.html">100M/1G TSN Subsystem</a> as demonstrated by <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/ros2_multinode_communication_via_tsn/ros2_multinode_communication_via_tsn_landing.html">TSN app</a>.</p></li>
 </ul>
-<p>The following IPs can also be supported on K26 and KR260 Starter Kits (no example designs available).</p>
+<p>The following IPs are also supported on K26 and KR260 Starter Kits (no example designs available):</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.amd.com/v/u/en-US/pg068-ten-gig-eth-pcs-pma">10G Ethernet PCS/PMA</a> soft IP</p></li>
-<li><p><a class="reference external" href="https://docs.amd.com/r/en-US/pg047-gig-eth-pcs-pma">1G/2.5G Ethernet PCS/PMA</a></p></li>
-<li><p><a class="reference external" href="https://docs.amd.com/r/en-US/pg292-ethernet-1-10-25g">1G/10G/25G Switching Ethernet Subsystem</a> up to 10G. KR260 does not have enough GTH to support 25G.</p></li>
+<li><p><a class="reference external" href="https://docs.amd.com/go/en-US/pg068-ten-gig-eth-pcs-pma">10G Ethernet PCS/PMA</a> soft IP</p></li>
+<li><p><a class="reference external" href="https://docs.amd.com/go/en-US/pg047-gig-eth-pcs-pma">1G/2.5G Ethernet PCS/PMA</a></p></li>
+<li><p><a class="reference external" href="https://docs.amd.com/go/en-US/pg292-ethernet-1-10-25g">1G/10G/25G Switching Ethernet Subsystem</a> up to 10G. KR260 does not have enough GTH to support 25G.</p></li>
 </ul>
-<div class="section" id="ethernet-driver-consideration">
-<h3>Ethernet Driver Consideration<a class="headerlink" href="#ethernet-driver-consideration" title="Permalink to this heading">¶</a></h3>
-<p>Note that KV260, KR260 has different ethernet PHY comparing to KD240, which requires slightly different implementation in LWIP stack. Refer to <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#ethernet-implementation-for-amd-starter-kits">FAQ</a> for more information.</p>
+<div class="section" id="ethernet-driver-considerations">
+<h3>Ethernet Driver Considerations<a class="headerlink" href="#ethernet-driver-considerations" title="Permalink to this heading">¶</a></h3>
+<p>The KV260 and KR260 have different Ethernet PHY compared to KD240, which requires slightly different implementation the LWIP stack. For more information, refer to <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq/build/html/docs/faq.html#ethernet-implementation-for-amd-starter-kits">FAQ</a>.</p>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -222,7 +214,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 23, 2025.
+      <span class="lastupdated">Last updated on March 26, 2025.
       </span></p>
   </div>
 

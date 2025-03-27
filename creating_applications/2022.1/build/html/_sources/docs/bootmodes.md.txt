@@ -1,6 +1,6 @@
-# Setting Bootmodes
+# Setting Boot-modes
 
-Once applications and custom HW designs are generated, developers need to move them to target. If using the Kria Starter Kit, developers can use various boot-modes to test monolithic boot to application software using the following TCL scripts to set the preferred development boot process. Developers will first put the functions in a `<boot>.tcl` script. Then, with the host machine connected with their SOM kit, they use the following commands in XSDB or XSCT:
+When the applications and custom hardware designs are generated, you need to move them to target. If using the AMD Kria&trade; Starter Kit, you can use various boot-modes to test the monolithic boot to the application software using the following Tcl scripts to set the preferred development boot process. You first put the functions in a `<boot>.tcl` script. Then, with the host machine connected with your SOM kit, use the following commands in XSDB or XSCT:
 
 ```bash
 connect
@@ -8,7 +8,7 @@ source <boot>.tcl
 boot_<mode>
 ```
 
-To set K26 to JTAG bootmode using XSDB/XSCT, add the following TCL scripts and call the function:
+To set K26 to the JTAG boot-mode using XSDB/XSCT, add the following Tcl scripts, and call the function:
 
 ```bash
 proc boot_jtag { } {
@@ -25,7 +25,7 @@ rst -system
 }
 ```
 
-To set K26 to SD bootmode using XSDB/XSCT, add the following TCL scripts and call the function:
+To set K26 to the SD boot-mode using XSDB/XSCT, add the following Tcl scripts, and call the function:
 
 ```bash
 proc boot_sd { } {
@@ -45,7 +45,7 @@ con
 }
 ```
 
-To set K26 to QSPI bootmode using XSDB/XSCT, add the following TCL scripts and call the function:
+To set K26 to QSPI boot-mode using XSDB/XSCT, add the following Tcl scripts, and call the function:
 
 ```bash
 proc boot_qspi { } {
@@ -65,7 +65,7 @@ con
 }
 ```
 
-To set K26 to eMMC bootmode using XSDB/XSCT, add the following TCL scripts and call the function:
+To set K26 to the eMMC boot-mode using XSDB/XSCT, add the following Tcl scripts, and call the function:
 
 ```bash
 proc boot_emmc { } {
@@ -86,7 +86,7 @@ con
 } 
 ```
 
-To set K26 to USB bootmode using XSDB/XSCT, add the following TCL scripts and call the function:
+To set K26 to the USB boot-mode using XSDB/XSCT, add the following Tcl scripts, and call the function:
 
 ```bash
 proc boot_usb { } {
@@ -107,13 +107,8 @@ con
 } 
 ```
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

@@ -1,6 +1,6 @@
 # Generate a Vivado Project from Board Files
 
-This tutorial details how to generate a base Vivado Project for your StarterKit from Vivado board files.
+This tutorial details how to generate a base Vivado Project for your Starter Kit from Vivado board files.
 
 * Assumption: AMD provided SOM carrier card with associated Vivado board file automation
 * Input: Vivado SOM Starter Kit board files
@@ -8,13 +8,13 @@ This tutorial details how to generate a base Vivado Project for your StarterKit 
 
 ## Prerequisites and Assumptions
 
-This document assumes that developers will use Vivado versions in which their target starter kit is available in. For an example:
+This document assumes that you use Vivado versions that your target starter kit is available in. For example:
 
 1. KV260 board file is available in Vivado 2021.1 and later
 2. KR260 board file is available in Vivado 2022.1 and later
 3. KD240 board file is available in Vivado 2023.1 and later
 
-Refer to [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Vivado-Board-Support-Packages) for a list of board files required, tool versions that support them.
+For a list of board files required and the tool versions that support them, refer to the [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Vivado-Board-Support-Packages).
 
 Tool requirement:
 
@@ -22,27 +22,27 @@ Tool requirement:
 
 ## Apply Vivado Board File Preset
 
-This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC or KD240 CC.
+This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC, or KD240 CC.
 
-The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals, such as DDR, eMMC (for production SOM), etc.
+The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals, such as DDR, eMMC (for production SOM), and so on.
 
-The KV260/KR260/KD240 StarterKit is supported in Vivado with board files that automate the configuration of both StarterKit SOM and CC based peripherals, such as DDR, USB, Ethernet, etc. It does not contain peripheral such as eMMC by default, as thats available on Production SOM only.
+The KV260/KR260/KD240 Starter Kit is supported in Vivado with board files that automate the configuration of both the Starter Kit SOM and CC based peripherals, such as DDR, USB, Ethernet, and so on. It does not contain peripherals such as eMMC, by default, as it available on Production SOM only.
 
-These board files are available in Vivado's board list in "Create Project" wizard. When Vivado starts, click on ```Quick Start -> Create Project```. Leave everything at default and click ```next``` until you are at "Default Part" selections. click on "Boards" and search for the board you want to generate a Vivado design for.
+These board files are available in Vivado's board list in the "Create Project" wizard. When Vivado starts, click **Quick Start** -> **Create Project**. Leave the default settings, and click ```**Next** until you are at the "Default Part" selections. Click **Boards**, and search for the board you want to generate a Vivado design for.
 
 ![Board Files](./media/tool_flow_boardfile.PNG)
 
-When selecting the Kria starter kit board file, make sure to click on ```connections``` and connect the connectors between the StarterKit SOM and the carrier card. Click ```next``` and ```finish```.
+When selecting the Kria starter kit board file, make sure to click **connections**,and connect the connectors between the StarterKit SOM and the carrier card. Click **Next** then **Finish**.
 
-In ```Flow Navigator```, click on ```IP integrator -> Create Block Design```. In ```Diagram``` window, press "+" button to add IP, Search for PS to add ```Zynq UltraScale+ MPSoC```.
+In ```Flow Navigator```, click **IP integrator** -> **Create Block Design**. In the Diagram window, press the **+** button to add IP, and search for the PS to add ```Zynq UltraScale+ MPSoC```.
 
-Once Zynq_ultra_ps_e_0 block is added to a design, make sure to click ```Run Block Automation```, keeping ```Apply Board Preset``` selected to apply board file settings.
+Once Zynq_ultra_ps_e_0 block is added to a design, click **Run Block Automation**, and to apply the board file settings, keep *Apply Board Preset** selected.
 
 ![Board Files](./media/tool_flow_block_automation_marked.PNG)
 
 ## Optional: Make the Platform an Extensible Platform
 
-If the project is meant for a Vitis platform, developers can now indicate that the platform is an Extensible Vitis Platform. More details on how to create Extensible Platform can be found in [UG1393](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces)
+If the project is meant for a Vitis platform, now indicate that the platform is an Extensible Vitis Platform. More details on how to create Extensible Platform can be found in [UG1393](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces)
 Project Manager -> Settings -> General -> check "Project is an extensible Vitis Platform"
 ![Extensible Platform](./media/extensible_check.PNG)
 
@@ -51,25 +51,25 @@ Then check window -> platform setup to select interfaces to be exposed as a plat
 
 ## Clean Up or Connect Interfaces
 
-By default, the board preset have enabled HPM0 and HPM1. If they are not connected, you will get an error when trying to generate .xsa or bitstream. To remove them, in ```Block Design window -> Diagram``` and double click on the "Zynq UltraScale + MPSoC" block. Go to ```PS-PL Configuration -> PS-PL Interfaces -> Master Interfaces``` to uncheck ```AXI HPM0 FPD``` and ```AXI HPM1 FPD``` interfaces before clicking ```OK```:
+By default, the board presets have enabled HPM0 and HPM1. If they are not connected, an error occurs when trying to generate the .xsa file or bitstream. To remove the error, in ```Block Design window -> Diagram``` and double-click the "Zynq UltraScale + MPSoC" block. Go to **PS-PL Configuration** -> **PS-PL Interfaces** -> **Master Interfaces** to uncheck the ```AXI HPM0 FPD``` and ```AXI HPM1 FPD``` interfaces before clicking **OK**:
 
 ![Remove Interfaces](./media/remove_interfaces.PNG)
 
-### Generate Wrapper
+### Generate a  Wrapper
 
-We need to now generate a wrapper or top module for the block design:
+Now, generate a wrapper or top module for the block design:
 
-```Block Design window -> sources window -> Design Sources -> right click on design_1``` and select ```Generate HDL wrapper```:
+Navigate to the Block Design window -> sources window -> Design Sources, right-click **design_1**, and select **Generate HDL wrapper**:
 
 ![wrapper](./media/create_HDL_wrapper.PNG)
 
-In the pop-up, select "Let Vivado manage wrapper and auto-update" and press OK.
+In the pop up window, select **Let Vivado manage wrapper and auto-update**, and press **OK**.
 
-## Generate bitstream
+## Generate the Bitstream
 
-Now we are ready to generate bitstream. To generate bitstream, click on Program and Debug -> Generate Bitstream. This process will take some time.
+Now, generate the bitstream. To generate the bitstream, click **Program and Debug** -> **Generate Bitstream**. This process takes some time.
 
-Optional: After .bit file has been generated, we may need to convert it to .bit.bin file, a format that xmutil is expecting:
+Optional: After the .bit file is generated, you might need to convert it to a `.bit.bin` file, a format that xmutil is expecting:
 
         ```shell
         cd $kv260-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.runs/impl_1/
@@ -78,22 +78,18 @@ Optional: After .bit file has been generated, we may need to convert it to .bit.
         mv kv260_ispMipiRx_vcu_DP_wrapper.bit.bin kv260-smartcam-raspi.bit.bin
         ```
 
-## Generate .xsa file
+## Generate the .xsa File
 
-After generating bitstream, we can generate a .xsa file for either Yocto, PetaLinux, or Vitis to import. Go to ```File -> Export -> Export Hardware``` to launch the Export Hardware Platform wizard. This wizard can also be launched by Export Platform button in Flow Navigator or Platform Setup window.
+After the generating bitstream, generate a .xsa file for either Yocto, PetaLinux, or Vitis to import. Go to **File** -> **Export** -> **Export Hardware** to launch the Export Hardware Platform wizard. This wizard can also be launched by Export Platform button in the Flow Navigator or Platform Setup window.
 
-Click through ```next```, leaving most in default except in ```Select Platform State``` select ```Pre-synthesis, enable Include Bitstream```
-Click Finish.
+Click through **next**, leaving the defaults except in ```Select Platform State```. Select **Pre-synthesis, enable Include Bitstream**.
 
-A .xsa file is generated. The export path is reported in the Tcl console.
+Click **Finish**.
 
-## License
+A .xsa file is generated. The export path is reported in the Tcl Console.
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<hr class="sphinxhide"></hr>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

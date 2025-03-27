@@ -15,8 +15,6 @@ FreeRTOS Kria SOM Starter Kits Support
    ./docs/freertos_kria
    ./docs/freertos_kria_lwip_tcpperfserver
 
-
-
-.. Copyright © 2021–2024 Advanced Micro Devices, Inc
+.. Copyright © 2021–2025 Advanced Micro Devices, Inc
 
 .. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.

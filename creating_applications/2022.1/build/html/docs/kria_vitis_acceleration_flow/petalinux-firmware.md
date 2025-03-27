@@ -1,33 +1,32 @@
-# Petalinux Firmware
+# PetaLinux Firmware
 
-In this step, we will be creating the firmware for running the Image resizing application. We will use the PetaLinux toolchain to build a new Petalinux wic image with the hardware and software binaries baked in using recipes. 
+In this step, you create the firmware for running the image resizing application. Use the PetaLinux toolchain to build a new PetaLinux .wic image with the hardware and software binaries baked in using recipes.
 
-***IMPORTANT : A ***prerequisite*** for this step is the user should know about the Petalinux flow and familar with Yocto recipes***
+>**IMPORTANT:** A ***prerequisite*** for this step for you to know the PetaLinux flow and be familiar with Yocto recipes.
 
+## PetaLinux eSDK Update
 
-## Petalinux eSDK update
-
-You need PetaLinux 2022.1 with eSDK update 1 or later, as the vvas library is released asynchronously and not included in the main 2022.1 petalinux tools release. Download [PetaLinux Tools Installer 2022.1](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html) 
+You need PetaLinux 2022.1 with eSDK update 1 or later, as the vvas library is released asynchronously and not included in the main 2022.1 PetaLinux tools release. Download the [PetaLinux Tools Installer 2022.1](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html).
 
 To install PetaLinux, extract the petalinux installer, accept the license, and source the tool's settings script.
 
 1. Set up the PetaLinux environment.
 
-```
-source <petaLinux_tool_install_dir>/settings.sh
-```
+    ```
+    source <petaLinux_tool_install_dir>/settings.sh
+    ```
 
-The eSDK can be used to update the petalinux tool for creating new images or SDKs. The eSDK updates are published here. Upgrade the tool with new eSDK for the '2022.1 update1' release and source the tool's settings script.
+    The eSDK is used to update the PetaLinux tool for creating new images or SDKs. The eSDK updates are published here. Upgrade the tool with new eSDK for the '2022.1 update1' release and source the tool's settings script.
 
-```
-petalinux-upgrade -u 'http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2022.1_update3/' -p 'aarch64'
-```
+    ```
+    petalinux-upgrade -u 'http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2022.1_update3/' -p 'aarch64'
+    ```
 
-The petalinux tool is now updated with '2022.1 update1' Yocto eSDK.
+    The petalinux tool is now updated with '2022.1 update1' Yocto eSDK.
 
 ## Platform outputs
 
-Before creating the petalinux firmware, lets bring all the platform outputs inside a platform_outputs directory. 
+Before creating the PetaLinux firmware, bring all the platform outputs inside a `platform_outputs` directory.
 
 ```
 //If you are on a differnet level, go the *tutorial* directory 
@@ -40,7 +39,7 @@ cp kria_platform/kria-vitis-platforms/kv260/overlays/examples/smartcam/binary_co
 
 ## Create PetaLinux Project
 
-The first step is downloading the 22.1 Starter Kit SOM BSP from the [Kria K26 SOM wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Introduction) under the PetaLinux Board Support Package section. Create a PetaLinux project with the Starter Kit SOM BSP using the following commands. 
+The first step is to download the 20022.1 Starter Kit SOM BSP from the [Kria K26 SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Introduction) under the PetaLinux Board Support Package section. Create a PetaLinux project with the Starter Kit SOM BSP using the following commands:
 
 ```
 mkdir firmware
@@ -51,28 +50,26 @@ cd xilinx-kv260-starterkit-2022.1/
 petalinux-build
 ```
 
-We will add recipes for FPGA Binaries, MIPI cameras, VVAS custom plugins, and package groups in the following steps.  These recipes will be part of the project-spec/meta-user folder, which is a meta-layer that's already included in the project.
+Add recipes for FPGA binaries, MIPI cameras, VVAS custom plug-ins, and package groups in the following steps.  These recipes are part of the `project-spec/meta-user` folder, which is a meta-layer that is already included in the project.
 
+## FPGA Firmware
 
-## FPGA firmware
+When you launch the xmutil loadapp application, the xmutil invokes the DFX Manager. The [dfx-mgr](https://github.com/Xilinx/dfx-mgr) is an AMD library that implements an on-target daemon for managing a data model of on-target applications, active PL configuration, and loading/unloading the corresponding bitstreams. The dfx-mgr requires that the application bitstreams be loaded in /`lib/firmware/<company_name>/<app_name>`.
 
-When the user launches the xmutil loadapp application, the xmutil will invoke the DFX Manager. The [dfx-mgr](https://github.com/Xilinx/dfx-mgr) is a Xilinx library that implements an on-target daemon for managing a data model of on-target applications, active PL configuration, and loading/unloading the corresponding bitstreams. The dfx-mgr requires that the application bitstreams be loaded in /lib/firmware/<company_name>/<app_name>.
+The dfx-mgr requires that the files required for an application be loaded in the same <app_name>. The `app_name` directory must contain the following:
 
-The dfx-mgr requires that the files required for an application be loaded in the same <app_name>. The app_name directory must contain the following:
-
-- Application bitstream converted to *.bit.bin format
+- Application bitstream converted to `*.bit.bin` format
 - Application bitstream device tree overlay *.dtbo
-- If it's a Vitis-based PL design using XRT - metadata file in .xclbin format
-- shell.json with metadata about the PL design
+- If it is a Vitis-based PL design using XRT, a metadata file in .xclbin format
+- `shell.json` file with metadata about the PL design
 
+### Converting Bittream to `bit.bin`
 
-### Converting bit stream to bit.bin
+The fpgamanager class automatically converts `system.bit` to `system.bit.bin`.
 
-- The fpgamanager class will automatically convert the system.bit to system.bit.bin.
+### Modifying the .dtbo File
 
-### Modifying DTBO 
-
-- Download the [samrtcam dtsi](https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/boards/kv260/smartcam/kv260-smartcam.dtsi) and rename to tut_1.dtsi file and copy it to the platform_outputs directory. Modify the line 15 contents to the following. 
+Download the [SmartCam .dtsi](https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/boards/kv260/smartcam/kv260-smartcam.dtsi), rename the file as `tut_1.dtsi`, and copy it to the `platform_outputs` directory. Modify the following line 15 contents:
 
 ```
 firmware-name = "system.bit.bin";
@@ -80,7 +77,7 @@ firmware-name = "system.bit.bin";
 
 ### Generating shell.json
 
-- The shell.json file is a metadata file for dfx-mgr. The shell.json only needs the following content. Touch and copy it to the *platform_outputs directory*
+The `shell.json` file is a metadata file for dfx-mgr. The `shell.json` file only needs the following content. Touch and copy it to the `platform_outputs` directory.
 
 ```
 {
@@ -91,10 +88,9 @@ firmware-name = "system.bit.bin";
 
 ### fpgamanager Class
 
-- The fpgamanager provides an interface to Linux for configuring the programmable logic (PL). It packs the dtbos and bitstreams in the /lib/firmware/xilinx directory in the root file system. Use the following command to generate the firmware recipe. The recipe will be generated at "project-spec/meta-user/recipes-firmware/tutorial/"
+The fpgamanager provides an interface to Linux for configuring the programmable logic (PL). It packs the dtbos and bitstreams in the `/lib/firmware/xilinx` directory in the root file system. Use the following command to generate the firmware recipe. The recipe is generated at `project-spec/meta-user/recipes-firmware/tutorial/`.
 
-
-The platform_outputs directory should have the following files:
+The p`latform_output`s directory has the following files:
 
 ```
 system.bit 
@@ -103,19 +99,19 @@ tut_1.dtsi
 dpu.xclbin
 ```
 
-Run the following command to creare a tutorial.bb file. It will be created at this location ***project-spec/meta-user/recipes-apps/tutorial/tutorial.bb***. 
+Run the following command to create a `tutorial.bb` file. It is created at this location `project-spec/meta-user/recipes-apps/tutorial/tutorial.bb`.
 
 ```
 petalinux-create -t apps --template fpgamanager -n tutorial --enable --srcuri " ../../platform_outputs/system.bit  ../../platform_outputs/shell.json   ../../platform_outputs/tut_1.dtsi ../../platform_outputs/dpu.xclbin" --force
 ```
 
-Navigate to the file and add the following content
+Navigate to the file, and add the following content:
 
 ```
 vi project-spec/meta-user/recipes-apps/tutorial/tutorial.bb
 ```
 
-Open the file and add the following content to the end of the tutorial.bb file 
+Open the file, and add the following content to the end of the `tutorial.bb` file:
 
 ```
 PACKAGE_ARCH = "${MACHINE_ARCH}"
@@ -123,16 +119,15 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 COMPATIBLE_MACHINE:k26-kv = "${MACHINE}"
 ```
 
-## Add Recipe for AP1302 Firmware
+## Add Recipe for the AP1302 Firmware
 
-
-Smartcam uses an AR1335 MIPI sensor, which requires AP1302 firmware. AP1302 is released on GitHub. We will first create a folder called "ap1302-firmware" to keep the AP1302 recipes ap1302-firmware.inc and ap1302-ar1335-single-firmware.bb. 
+SmartCam uses an AR1335 MIPI sensor, which requires AP1302 firmware. AP1302 is released on GitHub. First, create a folder called `ap1302-firmware` to keep the AP1302 recipes, `ap1302-firmware.inc` and `ap1302-ar1335-single-firmware.bb`. 
 
 ```
 mkdir -p project-spec/meta-user/recipes-firmware/ap1302-firmware/
 ```
 
-Create a new file [ap1302-ar1335-single-firmware.bb](./code/kria_vitis_acceleration_flow/image_resizing/petalinux_firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb) and add the below  content for project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb:
+Create a new file, [ap1302-ar1335-single-firmware.bb](./code/kria_vitis_acceleration_flow/image_resizing/petalinux_firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb), and add the following content for `project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb`:
 
 ```
 SUMMARY = "ap1302 ar1335-single firmware binary"
@@ -142,7 +137,7 @@ include ap1302-firmware.inc
 FW_NAME = "ap1302_ar1335_single_fw.bin"
 ```
 
-Create a new file [ap1302-firmware.inc](./code/kria_vitis_acceleration_flow/image_resizing/petalinux_firmware/ap1302-firmware/ap1302-firmware.inc) and add the below content for project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-firmware.inc.
+Create a new file, [ap1302-firmware.inc](./code/kria_vitis_acceleration_flow/image_resizing/petalinux_firmware/ap1302-firmware/ap1302-firmware.inc), and add the following content for `project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-firmware.inc`.
 
 ```
 LICENSE = "Proprietary"
@@ -165,18 +160,17 @@ do_install() {
 }
  
 FILES:${PN} = "/lib/firmware/${FW_NAME}"
-
 ```
 
-## Add Recipe for Image resizing software
+## Add Recipe for the Image Resizing Software
 
-Next, we add the recipe for smartcam software, released on [GitHub](https://github.com/Xilinx/smartcam/tree/xlnx_rel_v2022.1) for 2022.1. We first create a folder for the application recipe. 
+Next, add the recipe for the SmartCam software, released on [GitHub](https://github.com/Xilinx/smartcam/tree/xlnx_rel_v2022.1) for 2022.1. First create a folder for the application recipe:
 
 ```
 mkdir -p project-spec/meta-user/recipes-apps/resize/
 ```
 
-Create a new file, [resize.bb](./code/kria_vitis_acceleration_flow/image_resizing/firmware/resize/resize.bb) and add the following content to file project-spec/meta-user/recipes-apps/resize/resize.bb
+Create a new file, [resize.bb](./code/kria_vitis_acceleration_flow/image_resizing/firmware/resize/resize.bb), and add the following content to the `project-spec/meta-user/recipes-apps/resize/resize.bb` file.
 
 ```
 SUMMARY = "Example Smartcam application"
@@ -223,8 +217,9 @@ FILES:${PN} += " \
     "
 ```
 
-##  Create Packagegroup
-Next, we want to create the package group to include both the firmware and software, as well as the AR1335 driver that is needed for this application. [UG1144](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Adding-a-Package-Group) also details this step.
+## Create the Package Group
+
+Next, you create the package group to include both the firmware and software, as well as the AR1335 driver that is needed for this application. The *PetaLinux Tools Documentation: Reference Guide* ([UG1144](https://docs.amd.com/go/en-US/ug1144-petalinux-tools-reference-guide/Adding-a-Package-Group)) also details this step.
 
 ```
 mkdir -p project-spec/meta-user/recipes-core/packagegroups/
@@ -250,28 +245,25 @@ COMPATIBLE_MACHINE:k26-kv = "${MACHINE}"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 ```
 
-Add the below line to project-spec/meta-user/conf/user-rootfsconfig:
+Add the following line to `project-spec/meta-user/conf/user-rootfsconfig`:
 
 ```
 CONFIG_packagegroup-kv260-example
 ```
 
-Enable the package group by using the below command to get to the configuration GUI,
+Enable the package group using the following command to get to the configuration GUI:
 
 ```
 petalinux-config -c rootfs
 ```
 
-Go to "user packages" dir and select "packagegroup-kv260-example". Click Yes to save the configurations and Exit.
+Go to the `user packages` directory, and select **`packagegroup-kv260-example`**. Click **Yes** to save the configurations and exit.
 
+![package group](./images/Images/package-group.png)
 
-![](./images/Images/package-group.png)
-
-
-## Build the Petalinux WIC Image
+## Build the Petalinux .wic Image
 
 Build the image using the following commands.
-
 
 ```
 petalinux-build
@@ -280,11 +272,16 @@ petalinux-package --wic --bootfiles "ramdisk.cpio.gz.u-boot boot.scr Image syste
 
 ## Image SD card
 
-Petalinux Image will be generated in the "xilinx-kv260-starterkit-2022.1/images/linux" folder. Navigate to the folder. Using a GUI like balenaEtcher, flash a microSD card with the "petalinux-sdimage.wic" image:
+PetaLinux Image is generated in the `xilinx-kv260-starterkit-2022.1/images/linux` folder. Navigate to the folder. Using a GUI like balenaEtcher, flash a microSD card with the `petalinux-sdimage.wic` image:
 
-![](./images/Images/balenca-ethcher.png)
+![balenaetcher](./images/Images/balenca-ethcher.png)
 
-## Next steps
+## Next Steps
 
 This completes the Petalinux WIC Image generation. The next step is [running image application on the board](./running-on-board.md).
 
+<hr class="sphinxhide"></hr>
+
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
+
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

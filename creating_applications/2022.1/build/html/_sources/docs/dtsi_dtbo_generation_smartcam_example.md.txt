@@ -1,12 +1,12 @@
-# Example - Generating DTSI and DTBO Overlay Files for Smartcam
+# Example - Generating DTSI and DTBO Overlay Files for SmartCam
 
-In this example, we will show the steps to create a working SmartCam DTBO overlay file. We will first generate a pl.dtsi file using [DTG](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob), and then explain the modifications required to make the .dtsi file fully functional. This example is based on [2022.1 smartcam release](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/smartcamera_landing.html).
+In this example, the steps are shown to create a working SmartCam DTBO overlay file. First, you generate a `pl.dtsi` file using [DTG](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob), and then complete the modifications required to make the .dtsi file fully functional. This example is based on [2022.1 SmartCam release](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/smartcamera_landing.html).
 
-## Pre-requisites
+## Prerequisites
 
-First read through [Generating DTSI and DTBO Overlay Files](./dtsi_dtbo_generation.md) and install required tools.
+Read through [Generating DTSI and DTBO Overlay Files](./dtsi_dtbo_generation.md), and install the required tools.
 
-The XSA file required can be obtained using these [instructions](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vivado_design.html). They are summarized below:
+Obtain the required XSA file using these [instructions](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vivado_design.html). They are summarized as follows:
 
 ```shell
 cd $workdir
@@ -15,9 +15,9 @@ cd $workdir/kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP
 make xsa
 ```
 
-The generated XSA will be located at: ```$workdir/kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.xsa```.
+The generated XSA is located at: ```$workdir/kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.xsa```.
 
-## Generating DTSI based on platform xsa file using DTG
+## Generating the .dtsi File Based on the Platform .xsa File Using DTG
 
 Call XSCT:
 
@@ -26,7 +26,7 @@ cd $workdir
 xsct
 ```
 
-In XSCT, perform the following commands which will extract the HW configuration information and generate a DTSI file: 
+In XSCT, perform the following commands to extract the hardware configuration information and generate a DTSI file:
 
 ```bash
 hsi open_hw_design kria-vitis-platforms/kv260/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.xsa
@@ -38,15 +38,15 @@ hsi generate_target -dir smartcam_dtg_output
 hsi close_hw_design kv260_ispMipiRx_vcu_DP_wrapper
 ```
 
-A file ```smartcam_dtg_output/pl.dtsi``` will be created. It should look identical to [pl.dtsi here](./example_src/smartcam_dtsi_example/pl.dtsi), we will modify it in the next step to add the necessary information that cannot be automatically generated.
+A ```smartcam_dtg_output/pl.dtsi``` file is created. It should look identical to [pl.dtsi here](./example_src/smartcam_dtsi_example/pl.dtsi). You make the modifications to it in the next step to add the necessary information that cannot be automatically generated.
 
-## Modify generated pl.dtsi
+## Modify the Generated pl.dtsi
 
-Note that the released [kv260-smartcam.dtsi](https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/boards/kv260/smartcam/kv260-smartcam.dtsi) is using sugar syntax while the generated [pl.dtsi](./example_src/smartcam_dtsi_example/pl.dtsi) is using fragmented syntax - they both will work. We will continue the fragmented syntax for this tutorial.
+>**NOTE:** The released [kv260-smartcam.dtsi](https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/boards/kv260/smartcam/kv260-smartcam.dtsi) uses sugar syntax while the generated [pl.dtsi](./example_src/smartcam_dtsi_example/pl.dtsi) uses fragmented syntax; both syntaxes work. For this tutorial, continue with the fragmented syntax.
 
-### Add AP1302 Node
+### Add the AP1302 Node
 
-The AP1302 sensor is on the carrier card, and not something the .XSA platform is aware of as the FPGA/PL design only can infer the generic MIPI and I2C interfaces. Add the required information below to overlay2, for AP1302 clock and regulators:
+The AP1302 sensor is on the carrier card and not something the .XSA platform is aware of as the FPGA/PL design only can infer the generic MIPI and I2C interfaces. For the AP1302 clock and regulators, add the following required information to overlay2:
 
 ```dtsi
 ap1302_clk: sensor_clk {
@@ -78,7 +78,9 @@ ap1302_vddio: fixedregulator@2 {
 
 ### I2C MUX
 
-The I2C mux connecting to control AP1302 also exist outside of zynq MPSoC and .xsa file does not have awareness, therefore they also need to be added manually. The device tree binding is documented [here](https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/i2c/nxp%2Cpca9541.txt) and [here](https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/media/i2c/onnn%2Cap1302.yaml). Note that the port connection to mipi_csi_incapture_pipeline_mipi_csi2_rx_subsyst_0 on mipi_csi_portscapture_pipeline_mipi_csi2_rx_subsyst_0 (both names were auto generated by DTG) corresponds to the mipi_phy_if in the platform Vivado design.
+The I2C MUX connecting to control the AP1302 also exists outside of Zynq MPSoC and .xsa file does not have awareness, therefore they also must be added manually. The device tree binding is documented [here](https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/i2c/nxp%2Cpca9541.txt) and [here](https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/media/i2c/onnn%2Cap1302.yaml). 
+
+>**NOTE:** The port connection to `mipi_csi_incapture_pipeline_mipi_csi2_rx_subsyst_0` on `mipi_csi_portscapture_pipeline_mipi_csi2_rx_subsyst_0` (both names are autogenerated by DTG) corresponds to the `mipi_phy_if` in the platform Vivado design.
 
 ```dtsi
 i2c_mux: i2c-mux@74 {
@@ -114,30 +116,31 @@ i2c_mux: i2c-mux@74 {
 };
 ```
 
-### mipi csi node
+### mipi csi Mode
 
-The mipi_csi2_rx_subsystem@80000000 node requires a few modification. the device tree binding information for AMD MIPI CSI-2 Receiver Subsystem is[here](https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/media/xilinx/xlnx%2Ccsi2rxss.yaml)
-Add property:
+The `mipi_csi2_rx_subsystem@80000000` node requires a few modification. The device tree binding information for AMD MIPI CSI-2 Receiver Subsystem is [here](https://github.com/Xilinx/linux-xlnx/blob/master/Documentation/devicetree/bindings/media/xilinx/xlnx%2Ccsi2rxss.yaml).
 
-```dtsi
-xlnx,csi-pxl-format = <0x18>;
-xlnx,en-active-lanes;
-```
+1. Add the property:
 
-Remove xlnx,cfa-pattern, xlnx,video-format, and xlnx,video-width setting  - those are no longer used by driver and 2022.1 through 2023.1 DTG is not yet updated.
+   ```dtsi
+   xlnx,csi-pxl-format = <0x18>;
+   xlnx,en-active-lanes;
+   ```
 
-Connect the remote end point to camera serial output:
+2. Remove xlnx,cfa-pattern, xlnx,video-format, and xlnx,video-width settings. These settings are no longer used by the driver, and the 2022.1 through 2023.1 DTG is not yet updated.
 
-```dtsi
-mipi_csi_incapture_pipeline_mipi_csi2_rx_subsyst_0: endpoint {
-   data-lanes = <1 2 3 4>;
-   remote-endpoint = <&isp_out>;
-};
-```
+3. Connect the remote end point to camera serial output:
 
-### ZOCL node
+   ```dtsi
+   mipi_csi_incapture_pipeline_mipi_csi2_rx_subsyst_0: endpoint {
+      data-lanes = <1 2 3 4>;
+      remote-endpoint = <&isp_out>;
+   };
+   ```
 
-Lastly, in 2022.1 through 2023.1, ZOCL node need to specify the interrupts reserved for the platform (as seen in platform setting tab in Vivado) if interrupts are directly connected to GIC (instead of through a axi_intc). 
+### ZOCL Node
+
+Finally, in 2022.1 through 2023.1, the ZOCL node needs to specify the interrupts reserved for the platform (as seen in platform setting tab in Vivado) if interrupts are directly connected to GIC (instead of through a `axi_intc)`.
 
 ```dtsi
 zyxclmm_drm {
@@ -149,27 +152,22 @@ zyxclmm_drm {
 };
 ```
 
-### Final dtsi file
+### Final dtsi File
 
-The final dtsi file should look like [pl_modify.dtsi](./example_src/smartcam_dtsi_example/pl_modify.dtsi).
+The final dtsi file should similar to [pl_modify.dtsi](./example_src/smartcam_dtsi_example/pl_modify.dtsi).
 
-## Compile the .dtsi to .dtbo using DTC
+## Compile the .dtsi to .dtbo Using DTC
 
-Now generate the .dtbo file using command below:
+Now, generate the .dtbo file using the following command:
 
 ```bash
 dtc -@ -O dtb -o pl_modify.dtbo pl_modify.dtsi
 ```
 
-As a sanity test rename the generated pl.dtbo to a unique name for tracking purposes, move it to the kv260 target and confirm that replacing the kv260_smartcam.dtbo with the generated one that the SmartCam app still works.
+As a sanity test, rename the generated `pl.dtbo` to a unique name for tracking purposes, move it to the kv260 target, and confirm that the SmartCam app still works after replacing the `kv260_smartcam.dtbo` with the generated one.
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

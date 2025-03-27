@@ -25,6 +25,6 @@ Kria Vitis Acceleration Tutorial
 
 
 
-.. Copyright © 2023 Advanced Micro Devices, Inc
+.. Copyright © 2023-2025 Advanced Micro Devices, Inc
 
 .. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.

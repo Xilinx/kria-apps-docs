@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Petalinux Firmware &mdash; Kria™ SOM 2022.1 documentation</title>
+  <title>PetaLinux Firmware &mdash; Kria™ SOM 2022.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/_static/custom.css" type="text/css" />
@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Running on the KV260 Board" href="running-on-board.html" />
-    <link rel="prev" title="Overview of VVAS Plugins" href="vvas-plugins.html" /> 
+    <link rel="prev" title="Overview of VVAS Plug-ins" href="vvas-plugins.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,42 +87,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="../vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../baremetal.html">Bare-metal Flow Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../baremetal.html">Baremetal Flow Example</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="README.html">Kria Vitis Acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html">Kria Vitis Acceleration (<strong>Version: Vitis 2022.1</strong>)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vitis-extensible-platform.html">Vitis Acceleration Flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vitis-Pl-development-flow.html">Vitis PL Kernel Development Flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vitis-compile-link.html">Vitis Compile and Link</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vitis-compile-link.html#build-the-resize-kernel">Build the resize kernel.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vvas-plugins.html">Overview of VVAS Plugins</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Petalinux Firmware</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#petalinux-esdk-update">Petalinux eSDK update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vvas-plugins.html">Overview of VVAS Plug-ins</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PetaLinux Firmware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#petalinux-esdk-update">PetaLinux eSDK Update</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#platform-outputs">Platform outputs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-petalinux-project">Create PetaLinux Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fpga-firmware">FPGA firmware</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#converting-bit-stream-to-bit-bin">Converting bit stream to bit.bin</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#modifying-dtbo">Modifying DTBO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fpga-firmware">FPGA Firmware</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#converting-bittream-to-bit-bin">Converting Bittream to <code class="docutils literal notranslate"><span class="pre">bit.bin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modifying-the-dtbo-file">Modifying the .dtbo File</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#generating-shell-json">Generating shell.json</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#fpgamanager-class">fpgamanager Class</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#add-recipe-for-ap1302-firmware">Add Recipe for AP1302 Firmware</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#add-recipe-for-image-resizing-software">Add Recipe for Image resizing software</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#create-packagegroup">Create Packagegroup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#build-the-petalinux-wic-image">Build the Petalinux WIC Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-recipe-for-the-ap1302-firmware">Add Recipe for the AP1302 Firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-recipe-for-the-image-resizing-software">Add Recipe for the Image Resizing Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-package-group">Create the Package Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-the-petalinux-wic-image">Build the Petalinux .wic Image</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#image-sd-card">Image SD card</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#next-steps">Next steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="running-on-board.html">Running on the KV260 Board</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml-inference.html">Adding ML Inference Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml-inference.html">Adding a ML Inference Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="adding-dpu-ip.html">Adding DPU IP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="smartcam-plugins-overview.html">Overview of the Smartcam VVAS plugin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="smartcam-petalinux.html">Petalinux Firmware</a></li>
-<li class="toctree-l2"><a class="reference internal" href="smartcam-petalinux.html#create-petalinux-project">Create PetaLinux Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adding-dpu-ip.html#id1">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcam-plugins-overview.html">Overview of the Smartcam VVAS Plug-in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcam-petalinux.html">PetaLinux Firmware</a></li>
 <li class="toctree-l2"><a class="reference internal" href="running-smartcam-on-board.html">Running on the KV260 Board</a></li>
 </ul>
 </li>
@@ -130,7 +129,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../target.html">On-target Utilities and Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bootmodes.html">Setting Boot-modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AI_customization.html">AI Customization</a></li>
@@ -161,7 +160,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a> &raquo;</li>
-      <li>Petalinux Firmware</li>
+      <li>PetaLinux Firmware</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/docs/kria_vitis_acceleration_flow/petalinux-firmware.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -172,28 +171,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="petalinux-firmware">
-<h1>Petalinux Firmware<a class="headerlink" href="#petalinux-firmware" title="Permalink to this heading">¶</a></h1>
-<p>In this step, we will be creating the firmware for running the Image resizing application. We will use the PetaLinux toolchain to build a new Petalinux wic image with the hardware and software binaries baked in using recipes.</p>
-<p><em><strong>IMPORTANT : A <em><strong>prerequisite</strong></em> for this step is the user should know about the Petalinux flow and familar with Yocto recipes</strong></em></p>
+<h1>PetaLinux Firmware<a class="headerlink" href="#petalinux-firmware" title="Permalink to this heading">¶</a></h1>
+<p>In this step, you create the firmware for running the image resizing application. Use the PetaLinux toolchain to build a new PetaLinux .wic image with the hardware and software binaries baked in using recipes.</p>
+<blockquote>
+<div><p><strong>IMPORTANT:</strong> A <em><strong>prerequisite</strong></em> for this step for you to know the PetaLinux flow and be familiar with Yocto recipes.</p>
+</div></blockquote>
 <div class="section" id="petalinux-esdk-update">
-<h2>Petalinux eSDK update<a class="headerlink" href="#petalinux-esdk-update" title="Permalink to this heading">¶</a></h2>
-<p>You need PetaLinux 2022.1 with eSDK update 1 or later, as the vvas library is released asynchronously and not included in the main 2022.1 petalinux tools release. Download <a class="reference external" href="https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html">PetaLinux Tools Installer 2022.1</a></p>
+<h2>PetaLinux eSDK Update<a class="headerlink" href="#petalinux-esdk-update" title="Permalink to this heading">¶</a></h2>
+<p>You need PetaLinux 2022.1 with eSDK update 1 or later, as the vvas library is released asynchronously and not included in the main 2022.1 PetaLinux tools release. Download the <a class="reference external" href="https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html">PetaLinux Tools Installer 2022.1</a>.</p>
 <p>To install PetaLinux, extract the petalinux installer, accept the license, and source the tool’s settings script.</p>
-<ol class="simple">
-<li><p>Set up the PetaLinux environment.</p></li>
-</ol>
+<ol>
+<li><p>Set up the PetaLinux environment.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">&lt;</span><span class="n">petaLinux_tool_install_dir</span><span class="o">&gt;/</span><span class="n">settings</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
-<p>The eSDK can be used to update the petalinux tool for creating new images or SDKs. The eSDK updates are published here. Upgrade the tool with new eSDK for the ‘2022.1 update1’ release and source the tool’s settings script.</p>
+<p>The eSDK is used to update the PetaLinux tool for creating new images or SDKs. The eSDK updates are published here. Upgrade the tool with new eSDK for the ‘2022.1 update1’ release and source the tool’s settings script.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">petalinux</span><span class="o">-</span><span class="n">upgrade</span> <span class="o">-</span><span class="n">u</span> <span class="s1">&#39;http://petalinux.xilinx.com/sswreleases/rel-v2021/sdkupdate/2022.1_update3/&#39;</span> <span class="o">-</span><span class="n">p</span> <span class="s1">&#39;aarch64&#39;</span>
 </pre></div>
 </div>
 <p>The petalinux tool is now updated with ‘2022.1 update1’ Yocto eSDK.</p>
+</li>
+</ol>
 </div>
 <div class="section" id="platform-outputs">
 <h2>Platform outputs<a class="headerlink" href="#platform-outputs" title="Permalink to this heading">¶</a></h2>
-<p>Before creating the petalinux firmware, lets bring all the platform outputs inside a platform_outputs directory.</p>
+<p>Before creating the PetaLinux firmware, bring all the platform outputs inside a <code class="docutils literal notranslate"><span class="pre">platform_outputs</span></code> directory.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">If</span> <span class="n">you</span> <span class="n">are</span> <span class="n">on</span> <span class="n">a</span> <span class="n">differnet</span> <span class="n">level</span><span class="p">,</span> <span class="n">go</span> <span class="n">the</span> <span class="o">*</span><span class="n">tutorial</span><span class="o">*</span> <span class="n">directory</span> 
 
 <span class="n">mkdir</span> <span class="n">platform_outputs</span> 
@@ -204,7 +206,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="create-petalinux-project">
 <h2>Create PetaLinux Project<a class="headerlink" href="#create-petalinux-project" title="Permalink to this heading">¶</a></h2>
-<p>The first step is downloading the 22.1 Starter Kit SOM BSP from the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Introduction">Kria K26 SOM wiki</a> under the PetaLinux Board Support Package section. Create a PetaLinux project with the Starter Kit SOM BSP using the following commands.</p>
+<p>The first step is to download the 20022.1 Starter Kit SOM BSP from the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Introduction">Kria K26 SOM Wiki</a> under the PetaLinux Board Support Package section. Create a PetaLinux project with the Starter Kit SOM BSP using the following commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">firmware</span>
 <span class="n">cd</span> <span class="n">firmware</span>
 <span class="o">//</span> <span class="n">copy</span> <span class="n">the</span> <span class="n">Downloaded</span> <span class="n">BSP</span> <span class="n">into</span> <span class="n">the</span> <span class="n">firmware</span> <span class="n">folder</span>
@@ -213,38 +215,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="n">petalinux</span><span class="o">-</span><span class="n">build</span>
 </pre></div>
 </div>
-<p>We will add recipes for FPGA Binaries, MIPI cameras, VVAS custom plugins, and package groups in the following steps.  These recipes will be part of the project-spec/meta-user folder, which is a meta-layer that’s already included in the project.</p>
+<p>Add recipes for FPGA binaries, MIPI cameras, VVAS custom plug-ins, and package groups in the following steps.  These recipes are part of the <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user</span></code> folder, which is a meta-layer that is already included in the project.</p>
 </div>
 <div class="section" id="fpga-firmware">
-<h2>FPGA firmware<a class="headerlink" href="#fpga-firmware" title="Permalink to this heading">¶</a></h2>
-<p>When the user launches the xmutil loadapp application, the xmutil will invoke the DFX Manager. The <a class="reference external" href="https://github.com/Xilinx/dfx-mgr">dfx-mgr</a> is a Xilinx library that implements an on-target daemon for managing a data model of on-target applications, active PL configuration, and loading/unloading the corresponding bitstreams. The dfx-mgr requires that the application bitstreams be loaded in /lib/firmware/&lt;company_name&gt;/&lt;app_name&gt;.</p>
-<p>The dfx-mgr requires that the files required for an application be loaded in the same &lt;app_name&gt;. The app_name directory must contain the following:</p>
+<h2>FPGA Firmware<a class="headerlink" href="#fpga-firmware" title="Permalink to this heading">¶</a></h2>
+<p>When you launch the xmutil loadapp application, the xmutil invokes the DFX Manager. The <a class="reference external" href="https://github.com/Xilinx/dfx-mgr">dfx-mgr</a> is an AMD library that implements an on-target daemon for managing a data model of on-target applications, active PL configuration, and loading/unloading the corresponding bitstreams. The dfx-mgr requires that the application bitstreams be loaded in /<code class="docutils literal notranslate"><span class="pre">lib/firmware/&lt;company_name&gt;/&lt;app_name&gt;</span></code>.</p>
+<p>The dfx-mgr requires that the files required for an application be loaded in the same &lt;app_name&gt;. The <code class="docutils literal notranslate"><span class="pre">app_name</span></code> directory must contain the following:</p>
 <ul class="simple">
-<li><p>Application bitstream converted to *.bit.bin format</p></li>
+<li><p>Application bitstream converted to <code class="docutils literal notranslate"><span class="pre">*.bit.bin</span></code> format</p></li>
 <li><p>Application bitstream device tree overlay *.dtbo</p></li>
-<li><p>If it’s a Vitis-based PL design using XRT - metadata file in .xclbin format</p></li>
-<li><p>shell.json with metadata about the PL design</p></li>
+<li><p>If it is a Vitis-based PL design using XRT, a metadata file in .xclbin format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shell.json</span></code> file with metadata about the PL design</p></li>
 </ul>
-<div class="section" id="converting-bit-stream-to-bit-bin">
-<h3>Converting bit stream to bit.bin<a class="headerlink" href="#converting-bit-stream-to-bit-bin" title="Permalink to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>The fpgamanager class will automatically convert the system.bit to system.bit.bin.</p></li>
-</ul>
+<div class="section" id="converting-bittream-to-bit-bin">
+<h3>Converting Bittream to <code class="docutils literal notranslate"><span class="pre">bit.bin</span></code><a class="headerlink" href="#converting-bittream-to-bit-bin" title="Permalink to this heading">¶</a></h3>
+<p>The fpgamanager class automatically converts <code class="docutils literal notranslate"><span class="pre">system.bit</span></code> to <code class="docutils literal notranslate"><span class="pre">system.bit.bin</span></code>.</p>
 </div>
-<div class="section" id="modifying-dtbo">
-<h3>Modifying DTBO<a class="headerlink" href="#modifying-dtbo" title="Permalink to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>Download the <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/boards/kv260/smartcam/kv260-smartcam.dtsi">samrtcam dtsi</a> and rename to tut_1.dtsi file and copy it to the platform_outputs directory. Modify the line 15 contents to the following.</p></li>
-</ul>
+<div class="section" id="modifying-the-dtbo-file">
+<h3>Modifying the .dtbo File<a class="headerlink" href="#modifying-the-dtbo-file" title="Permalink to this heading">¶</a></h3>
+<p>Download the <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/boards/kv260/smartcam/kv260-smartcam.dtsi">SmartCam .dtsi</a>, rename the file as <code class="docutils literal notranslate"><span class="pre">tut_1.dtsi</span></code>, and copy it to the <code class="docutils literal notranslate"><span class="pre">platform_outputs</span></code> directory. Modify the following line 15 contents:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">firmware</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;system.bit.bin&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="generating-shell-json">
 <h3>Generating shell.json<a class="headerlink" href="#generating-shell-json" title="Permalink to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>The shell.json file is a metadata file for dfx-mgr. The shell.json only needs the following content. Touch and copy it to the <em>platform_outputs directory</em></p></li>
-</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> file is a metadata file for dfx-mgr. The <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> file only needs the following content. Touch and copy it to the <code class="docutils literal notranslate"><span class="pre">platform_outputs</span></code> directory.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;shell_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;XRT_FLAT&quot;</span><span class="p">,</span>
   <span class="s2">&quot;num_slots&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
@@ -254,25 +250,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="fpgamanager-class">
 <h3>fpgamanager Class<a class="headerlink" href="#fpgamanager-class" title="Permalink to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>The fpgamanager provides an interface to Linux for configuring the programmable logic (PL). It packs the dtbos and bitstreams in the /lib/firmware/xilinx directory in the root file system. Use the following command to generate the firmware recipe. The recipe will be generated at “project-spec/meta-user/recipes-firmware/tutorial/”</p></li>
-</ul>
-<p>The platform_outputs directory should have the following files:</p>
+<p>The fpgamanager provides an interface to Linux for configuring the programmable logic (PL). It packs the dtbos and bitstreams in the <code class="docutils literal notranslate"><span class="pre">/lib/firmware/xilinx</span></code> directory in the root file system. Use the following command to generate the firmware recipe. The recipe is generated at <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/recipes-firmware/tutorial/</span></code>.</p>
+<p>The p<code class="docutils literal notranslate"><span class="pre">latform_output</span></code>s directory has the following files:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">system</span><span class="o">.</span><span class="n">bit</span> 
 <span class="n">shell</span><span class="o">.</span><span class="n">json</span>
 <span class="n">tut_1</span><span class="o">.</span><span class="n">dtsi</span>
 <span class="n">dpu</span><span class="o">.</span><span class="n">xclbin</span>
 </pre></div>
 </div>
-<p>Run the following command to creare a tutorial.bb file. It will be created at this location <em><strong>project-spec/meta-user/recipes-apps/tutorial/tutorial.bb</strong></em>.</p>
+<p>Run the following command to create a <code class="docutils literal notranslate"><span class="pre">tutorial.bb</span></code> file. It is created at this location <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/recipes-apps/tutorial/tutorial.bb</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">petalinux</span><span class="o">-</span><span class="n">create</span> <span class="o">-</span><span class="n">t</span> <span class="n">apps</span> <span class="o">--</span><span class="n">template</span> <span class="n">fpgamanager</span> <span class="o">-</span><span class="n">n</span> <span class="n">tutorial</span> <span class="o">--</span><span class="n">enable</span> <span class="o">--</span><span class="n">srcuri</span> <span class="s2">&quot; ../../platform_outputs/system.bit  ../../platform_outputs/shell.json   ../../platform_outputs/tut_1.dtsi ../../platform_outputs/dpu.xclbin&quot;</span> <span class="o">--</span><span class="n">force</span>
 </pre></div>
 </div>
-<p>Navigate to the file and add the following content</p>
+<p>Navigate to the file, and add the following content:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="n">project</span><span class="o">-</span><span class="n">spec</span><span class="o">/</span><span class="n">meta</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">recipes</span><span class="o">-</span><span class="n">apps</span><span class="o">/</span><span class="n">tutorial</span><span class="o">/</span><span class="n">tutorial</span><span class="o">.</span><span class="n">bb</span>
 </pre></div>
 </div>
-<p>Open the file and add the following content to the end of the tutorial.bb file</p>
+<p>Open the file, and add the following content to the end of the <code class="docutils literal notranslate"><span class="pre">tutorial.bb</span></code> file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PACKAGE_ARCH</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{MACHINE_ARCH}</span><span class="s2">&quot;</span>
  
 <span class="n">COMPATIBLE_MACHINE</span><span class="p">:</span><span class="n">k26</span><span class="o">-</span><span class="n">kv</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{MACHINE}</span><span class="s2">&quot;</span>
@@ -280,13 +274,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 </div>
-<div class="section" id="add-recipe-for-ap1302-firmware">
-<h2>Add Recipe for AP1302 Firmware<a class="headerlink" href="#add-recipe-for-ap1302-firmware" title="Permalink to this heading">¶</a></h2>
-<p>Smartcam uses an AR1335 MIPI sensor, which requires AP1302 firmware. AP1302 is released on GitHub. We will first create a folder called “ap1302-firmware” to keep the AP1302 recipes ap1302-firmware.inc and ap1302-ar1335-single-firmware.bb.</p>
+<div class="section" id="add-recipe-for-the-ap1302-firmware">
+<h2>Add Recipe for the AP1302 Firmware<a class="headerlink" href="#add-recipe-for-the-ap1302-firmware" title="Permalink to this heading">¶</a></h2>
+<p>SmartCam uses an AR1335 MIPI sensor, which requires AP1302 firmware. AP1302 is released on GitHub. First, create a folder called <code class="docutils literal notranslate"><span class="pre">ap1302-firmware</span></code> to keep the AP1302 recipes, <code class="docutils literal notranslate"><span class="pre">ap1302-firmware.inc</span></code> and <code class="docutils literal notranslate"><span class="pre">ap1302-ar1335-single-firmware.bb</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">project</span><span class="o">-</span><span class="n">spec</span><span class="o">/</span><span class="n">meta</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">recipes</span><span class="o">-</span><span class="n">firmware</span><span class="o">/</span><span class="n">ap1302</span><span class="o">-</span><span class="n">firmware</span><span class="o">/</span>
 </pre></div>
 </div>
-<p>Create a new file <a class="reference external" href="./code/kria_vitis_acceleration_flow/image_resizing/petalinux_firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb">ap1302-ar1335-single-firmware.bb</a> and add the below  content for project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb:</p>
+<p>Create a new file, <a class="reference external" href="./code/kria_vitis_acceleration_flow/image_resizing/petalinux_firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb">ap1302-ar1335-single-firmware.bb</a>, and add the following content for <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUMMARY</span> <span class="o">=</span> <span class="s2">&quot;ap1302 ar1335-single firmware binary&quot;</span>
  
 <span class="n">include</span> <span class="n">ap1302</span><span class="o">-</span><span class="n">firmware</span><span class="o">.</span><span class="n">inc</span>
@@ -294,7 +288,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="n">FW_NAME</span> <span class="o">=</span> <span class="s2">&quot;ap1302_ar1335_single_fw.bin&quot;</span>
 </pre></div>
 </div>
-<p>Create a new file <a class="reference external" href="./code/kria_vitis_acceleration_flow/image_resizing/petalinux_firmware/ap1302-firmware/ap1302-firmware.inc">ap1302-firmware.inc</a> and add the below content for project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-firmware.inc.</p>
+<p>Create a new file, <a class="reference external" href="./code/kria_vitis_acceleration_flow/image_resizing/petalinux_firmware/ap1302-firmware/ap1302-firmware.inc">ap1302-firmware.inc</a>, and add the following content for <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-firmware.inc</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>LICENSE = &quot;Proprietary&quot;
 LIC_FILES_CHKSUM = &quot;file://LICENSE.txt;md5=9c13aad1aab42f76326f1beceafc40c4&quot;
  
@@ -318,13 +312,13 @@ FILES:${PN} = &quot;/lib/firmware/${FW_NAME}&quot;
 </pre></div>
 </div>
 </div>
-<div class="section" id="add-recipe-for-image-resizing-software">
-<h2>Add Recipe for Image resizing software<a class="headerlink" href="#add-recipe-for-image-resizing-software" title="Permalink to this heading">¶</a></h2>
-<p>Next, we add the recipe for smartcam software, released on <a class="reference external" href="https://github.com/Xilinx/smartcam/tree/xlnx_rel_v2022.1">GitHub</a> for 2022.1. We first create a folder for the application recipe.</p>
+<div class="section" id="add-recipe-for-the-image-resizing-software">
+<h2>Add Recipe for the Image Resizing Software<a class="headerlink" href="#add-recipe-for-the-image-resizing-software" title="Permalink to this heading">¶</a></h2>
+<p>Next, add the recipe for the SmartCam software, released on <a class="reference external" href="https://github.com/Xilinx/smartcam/tree/xlnx_rel_v2022.1">GitHub</a> for 2022.1. First create a folder for the application recipe:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">project</span><span class="o">-</span><span class="n">spec</span><span class="o">/</span><span class="n">meta</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">recipes</span><span class="o">-</span><span class="n">apps</span><span class="o">/</span><span class="n">resize</span><span class="o">/</span>
 </pre></div>
 </div>
-<p>Create a new file, <a class="reference external" href="./code/kria_vitis_acceleration_flow/image_resizing/firmware/resize/resize.bb">resize.bb</a> and add the following content to file project-spec/meta-user/recipes-apps/resize/resize.bb</p>
+<p>Create a new file, <a class="reference external" href="./code/kria_vitis_acceleration_flow/image_resizing/firmware/resize/resize.bb">resize.bb</a>, and add the following content to the <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/recipes-apps/resize/resize.bb</span></code> file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SUMMARY = &quot;Example Smartcam application&quot;
  
 LICENSE = &quot;Apache-2.0&quot;
@@ -370,9 +364,9 @@ FILES:${PN} += &quot; \
 </pre></div>
 </div>
 </div>
-<div class="section" id="create-packagegroup">
-<h2>Create Packagegroup<a class="headerlink" href="#create-packagegroup" title="Permalink to this heading">¶</a></h2>
-<p>Next, we want to create the package group to include both the firmware and software, as well as the AR1335 driver that is needed for this application. <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Adding-a-Package-Group">UG1144</a> also details this step.</p>
+<div class="section" id="create-the-package-group">
+<h2>Create the Package Group<a class="headerlink" href="#create-the-package-group" title="Permalink to this heading">¶</a></h2>
+<p>Next, you create the package group to include both the firmware and software, as well as the AR1335 driver that is needed for this application. The <em>PetaLinux Tools Documentation: Reference Guide</em> (<a class="reference external" href="https://docs.amd.com/go/en-US/ug1144-petalinux-tools-reference-guide/Adding-a-Package-Group">UG1144</a>) also details this step.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">project</span><span class="o">-</span><span class="n">spec</span><span class="o">/</span><span class="n">meta</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">recipes</span><span class="o">-</span><span class="n">core</span><span class="o">/</span><span class="n">packagegroups</span><span class="o">/</span>
 </pre></div>
 </div>
@@ -394,19 +388,19 @@ COMPATIBLE_MACHINE:k26-kv = &quot;${MACHINE}&quot;
 PACKAGE_ARCH = &quot;${MACHINE_ARCH}&quot;
 </pre></div>
 </div>
-<p>Add the below line to project-spec/meta-user/conf/user-rootfsconfig:</p>
+<p>Add the following line to <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/conf/user-rootfsconfig</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_packagegroup</span><span class="o">-</span><span class="n">kv260</span><span class="o">-</span><span class="n">example</span>
 </pre></div>
 </div>
-<p>Enable the package group by using the below command to get to the configuration GUI,</p>
+<p>Enable the package group using the following command to get to the configuration GUI:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">petalinux</span><span class="o">-</span><span class="n">config</span> <span class="o">-</span><span class="n">c</span> <span class="n">rootfs</span>
 </pre></div>
 </div>
-<p>Go to “user packages” dir and select “packagegroup-kv260-example”. Click Yes to save the configurations and Exit.</p>
-<p><img alt="../../_images/package-group.png" src="../../_images/package-group.png" /></p>
+<p>Go to the <code class="docutils literal notranslate"><span class="pre">user</span> <span class="pre">packages</span></code> directory, and select <strong><code class="docutils literal notranslate"><span class="pre">packagegroup-kv260-example</span></code></strong>. Click <strong>Yes</strong> to save the configurations and exit.</p>
+<p><img alt="package group" src="../../_images/package-group.png" /></p>
 </div>
 <div class="section" id="build-the-petalinux-wic-image">
-<h2>Build the Petalinux WIC Image<a class="headerlink" href="#build-the-petalinux-wic-image" title="Permalink to this heading">¶</a></h2>
+<h2>Build the Petalinux .wic Image<a class="headerlink" href="#build-the-petalinux-wic-image" title="Permalink to this heading">¶</a></h2>
 <p>Build the image using the following commands.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">petalinux</span><span class="o">-</span><span class="n">build</span>
 <span class="n">petalinux</span><span class="o">-</span><span class="n">package</span> <span class="o">--</span><span class="n">wic</span> <span class="o">--</span><span class="n">bootfiles</span> <span class="s2">&quot;ramdisk.cpio.gz.u-boot boot.scr Image system.dtb&quot;</span>
@@ -415,13 +409,13 @@ PACKAGE_ARCH = &quot;${MACHINE_ARCH}&quot;
 </div>
 <div class="section" id="image-sd-card">
 <h2>Image SD card<a class="headerlink" href="#image-sd-card" title="Permalink to this heading">¶</a></h2>
-<p>Petalinux Image will be generated in the “xilinx-kv260-starterkit-2022.1/images/linux” folder. Navigate to the folder. Using a GUI like balenaEtcher, flash a microSD card with the “petalinux-sdimage.wic” image:</p>
-<p><img alt="../../_images/balenca-ethcher.png" src="../../_images/balenca-ethcher.png" /></p>
+<p>PetaLinux Image is generated in the <code class="docutils literal notranslate"><span class="pre">xilinx-kv260-starterkit-2022.1/images/linux</span></code> folder. Navigate to the folder. Using a GUI like balenaEtcher, flash a microSD card with the <code class="docutils literal notranslate"><span class="pre">petalinux-sdimage.wic</span></code> image:</p>
+<p><img alt="balenaetcher" src="../../_images/balenca-ethcher.png" /></p>
 </div>
 <div class="section" id="next-steps">
-<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <p>This completes the Petalinux WIC Image generation. The next step is <a class="reference internal" href="running-on-board.html"><span class="doc">running image application on the board</span></a>.</p>
-</div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -430,7 +424,7 @@ PACKAGE_ARCH = &quot;${MACHINE_ARCH}&quot;
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="vvas-plugins.html" class="btn btn-neutral float-left" title="Overview of VVAS Plugins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vvas-plugins.html" class="btn btn-neutral float-left" title="Overview of VVAS Plug-ins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="running-on-board.html" class="btn btn-neutral float-right" title="Running on the KV260 Board" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -438,7 +432,7 @@ PACKAGE_ARCH = &quot;${MACHINE_ARCH}&quot;
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 23, 2025.
+      <span class="lastupdated">Last updated on March 26, 2025.
       </span></p>
   </div>
 

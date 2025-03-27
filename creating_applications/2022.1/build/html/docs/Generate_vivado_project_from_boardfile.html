@@ -87,7 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Baremetal Flow Example</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
 <ul>
@@ -96,7 +96,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Boot-modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
@@ -105,12 +105,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="#apply-vivado-board-file-preset">Apply Vivado Board File Preset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#optional-make-the-platform-an-extensible-platform">Optional: Make the Platform an Extensible Platform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#clean-up-or-connect-interfaces">Clean Up or Connect Interfaces</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#generate-wrapper">Generate Wrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-a-wrapper">Generate a  Wrapper</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#generate-bitstream">Generate bitstream</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#generate-xsa-file">Generate .xsa file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-the-bitstream">Generate the Bitstream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-the-xsa-file">Generate the .xsa File</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
@@ -150,7 +149,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="generate-a-vivado-project-from-board-files">
 <h1>Generate a Vivado Project from Board Files<a class="headerlink" href="#generate-a-vivado-project-from-board-files" title="Permalink to this heading">¶</a></h1>
-<p>This tutorial details how to generate a base Vivado Project for your StarterKit from Vivado board files.</p>
+<p>This tutorial details how to generate a base Vivado Project for your Starter Kit from Vivado board files.</p>
 <ul class="simple">
 <li><p>Assumption: AMD provided SOM carrier card with associated Vivado board file automation</p></li>
 <li><p>Input: Vivado SOM Starter Kit board files</p></li>
@@ -158,13 +157,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <div class="section" id="prerequisites-and-assumptions">
 <h2>Prerequisites and Assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permalink to this heading">¶</a></h2>
-<p>This document assumes that developers will use Vivado versions in which their target starter kit is available in. For an example:</p>
+<p>This document assumes that you use Vivado versions that your target starter kit is available in. For example:</p>
 <ol class="simple">
 <li><p>KV260 board file is available in Vivado 2021.1 and later</p></li>
 <li><p>KR260 board file is available in Vivado 2022.1 and later</p></li>
 <li><p>KD240 board file is available in Vivado 2023.1 and later</p></li>
 </ol>
-<p>Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Vivado-Board-Support-Packages">Wiki</a> for a list of board files required, tool versions that support them.</p>
+<p>For a list of board files required and the tool versions that support them, refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Vivado-Board-Support-Packages">Wiki</a>.</p>
 <p>Tool requirement:</p>
 <ul class="simple">
 <li><p>Vivado tools installation with the appropriate version</p></li>
@@ -172,19 +171,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="apply-vivado-board-file-preset">
 <h2>Apply Vivado Board File Preset<a class="headerlink" href="#apply-vivado-board-file-preset" title="Permalink to this heading">¶</a></h2>
-<p>This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC or KD240 CC.</p>
-<p>The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals, such as DDR, eMMC (for production SOM), etc.</p>
-<p>The KV260/KR260/KD240 StarterKit is supported in Vivado with board files that automate the configuration of both StarterKit SOM and CC based peripherals, such as DDR, USB, Ethernet, etc. It does not contain peripheral such as eMMC by default, as thats available on Production SOM only.</p>
-<p>These board files are available in Vivado’s board list in “Create Project” wizard. When Vivado starts, click on <code class="docutils literal notranslate"><span class="pre">Quick</span> <span class="pre">Start</span> <span class="pre">-&gt;</span> <span class="pre">Create</span> <span class="pre">Project</span></code>. Leave everything at default and click <code class="docutils literal notranslate"><span class="pre">next</span></code> until you are at “Default Part” selections. click on “Boards” and search for the board you want to generate a Vivado design for.</p>
+<p>This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC, or KD240 CC.</p>
+<p>The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the SOM based peripherals, such as DDR, eMMC (for production SOM), and so on.</p>
+<p>The KV260/KR260/KD240 Starter Kit is supported in Vivado with board files that automate the configuration of both the Starter Kit SOM and CC based peripherals, such as DDR, USB, Ethernet, and so on. It does not contain peripherals such as eMMC, by default, as it available on Production SOM only.</p>
+<p>These board files are available in Vivado’s board list in the “Create Project” wizard. When Vivado starts, click <strong>Quick Start</strong> -&gt; <strong>Create Project</strong>. Leave the default settings, and click ```<strong>Next</strong> until you are at the “Default Part” selections. Click <strong>Boards</strong>, and search for the board you want to generate a Vivado design for.</p>
 <p><img alt="Board Files" src="../_images/tool_flow_boardfile.PNG" /></p>
-<p>When selecting the Kria starter kit board file, make sure to click on <code class="docutils literal notranslate"><span class="pre">connections</span></code> and connect the connectors between the StarterKit SOM and the carrier card. Click <code class="docutils literal notranslate"><span class="pre">next</span></code> and <code class="docutils literal notranslate"><span class="pre">finish</span></code>.</p>
-<p>In <code class="docutils literal notranslate"><span class="pre">Flow</span> <span class="pre">Navigator</span></code>, click on <code class="docutils literal notranslate"><span class="pre">IP</span> <span class="pre">integrator</span> <span class="pre">-&gt;</span> <span class="pre">Create</span> <span class="pre">Block</span> <span class="pre">Design</span></code>. In <code class="docutils literal notranslate"><span class="pre">Diagram</span></code> window, press “+” button to add IP, Search for PS to add <code class="docutils literal notranslate"><span class="pre">Zynq</span> <span class="pre">UltraScale+</span> <span class="pre">MPSoC</span></code>.</p>
-<p>Once Zynq_ultra_ps_e_0 block is added to a design, make sure to click <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Block</span> <span class="pre">Automation</span></code>, keeping <code class="docutils literal notranslate"><span class="pre">Apply</span> <span class="pre">Board</span> <span class="pre">Preset</span></code> selected to apply board file settings.</p>
+<p>When selecting the Kria starter kit board file, make sure to click <strong>connections</strong>,and connect the connectors between the StarterKit SOM and the carrier card. Click <strong>Next</strong> then <strong>Finish</strong>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">Flow</span> <span class="pre">Navigator</span></code>, click <strong>IP integrator</strong> -&gt; <strong>Create Block Design</strong>. In the Diagram window, press the <strong>+</strong> button to add IP, and search for the PS to add <code class="docutils literal notranslate"><span class="pre">Zynq</span> <span class="pre">UltraScale+</span> <span class="pre">MPSoC</span></code>.</p>
+<p>Once Zynq_ultra_ps_e_0 block is added to a design, click <strong>Run Block Automation</strong>, and to apply the board file settings, keep <em>Apply Board Preset</em>* selected.</p>
 <p><img alt="Board Files" src="../_images/tool_flow_block_automation_marked.PNG" /></p>
 </div>
 <div class="section" id="optional-make-the-platform-an-extensible-platform">
 <h2>Optional: Make the Platform an Extensible Platform<a class="headerlink" href="#optional-make-the-platform-an-extensible-platform" title="Permalink to this heading">¶</a></h2>
-<p>If the project is meant for a Vitis platform, developers can now indicate that the platform is an Extensible Vitis Platform. More details on how to create Extensible Platform can be found in <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces">UG1393</a>
+<p>If the project is meant for a Vitis platform, now indicate that the platform is an Extensible Vitis Platform. More details on how to create Extensible Platform can be found in <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces">UG1393</a>
 Project Manager -&gt; Settings -&gt; General -&gt; check “Project is an extensible Vitis Platform”
 <img alt="Extensible Platform" src="../_images/extensible_check.PNG" /></p>
 <p>Then check window -&gt; platform setup to select interfaces to be exposed as a platform. Below is an example snapshot indicating Vivado is reserving pl_ps_irq0 for the platform to interface with Vitis accelerators.
@@ -192,20 +191,20 @@ Project Manager -&gt; Settings -&gt; General -&gt; check “Project is an extens
 </div>
 <div class="section" id="clean-up-or-connect-interfaces">
 <h2>Clean Up or Connect Interfaces<a class="headerlink" href="#clean-up-or-connect-interfaces" title="Permalink to this heading">¶</a></h2>
-<p>By default, the board preset have enabled HPM0 and HPM1. If they are not connected, you will get an error when trying to generate .xsa or bitstream. To remove them, in <code class="docutils literal notranslate"><span class="pre">Block</span> <span class="pre">Design</span> <span class="pre">window</span> <span class="pre">-&gt;</span> <span class="pre">Diagram</span></code> and double click on the “Zynq UltraScale + MPSoC” block. Go to <code class="docutils literal notranslate"><span class="pre">PS-PL</span> <span class="pre">Configuration</span> <span class="pre">-&gt;</span> <span class="pre">PS-PL</span> <span class="pre">Interfaces</span> <span class="pre">-&gt;</span> <span class="pre">Master</span> <span class="pre">Interfaces</span></code> to uncheck <code class="docutils literal notranslate"><span class="pre">AXI</span> <span class="pre">HPM0</span> <span class="pre">FPD</span></code> and <code class="docutils literal notranslate"><span class="pre">AXI</span> <span class="pre">HPM1</span> <span class="pre">FPD</span></code> interfaces before clicking <code class="docutils literal notranslate"><span class="pre">OK</span></code>:</p>
+<p>By default, the board presets have enabled HPM0 and HPM1. If they are not connected, an error occurs when trying to generate the .xsa file or bitstream. To remove the error, in <code class="docutils literal notranslate"><span class="pre">Block</span> <span class="pre">Design</span> <span class="pre">window</span> <span class="pre">-&gt;</span> <span class="pre">Diagram</span></code> and double-click the “Zynq UltraScale + MPSoC” block. Go to <strong>PS-PL Configuration</strong> -&gt; <strong>PS-PL Interfaces</strong> -&gt; <strong>Master Interfaces</strong> to uncheck the <code class="docutils literal notranslate"><span class="pre">AXI</span> <span class="pre">HPM0</span> <span class="pre">FPD</span></code> and <code class="docutils literal notranslate"><span class="pre">AXI</span> <span class="pre">HPM1</span> <span class="pre">FPD</span></code> interfaces before clicking <strong>OK</strong>:</p>
 <p><img alt="Remove Interfaces" src="../_images/remove_interfaces.PNG" /></p>
-<div class="section" id="generate-wrapper">
-<h3>Generate Wrapper<a class="headerlink" href="#generate-wrapper" title="Permalink to this heading">¶</a></h3>
-<p>We need to now generate a wrapper or top module for the block design:</p>
-<p><code class="docutils literal notranslate"><span class="pre">Block</span> <span class="pre">Design</span> <span class="pre">window</span> <span class="pre">-&gt;</span> <span class="pre">sources</span> <span class="pre">window</span> <span class="pre">-&gt;</span> <span class="pre">Design</span> <span class="pre">Sources</span> <span class="pre">-&gt;</span> <span class="pre">right</span> <span class="pre">click</span> <span class="pre">on</span> <span class="pre">design_1</span></code> and select <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">HDL</span> <span class="pre">wrapper</span></code>:</p>
+<div class="section" id="generate-a-wrapper">
+<h3>Generate a  Wrapper<a class="headerlink" href="#generate-a-wrapper" title="Permalink to this heading">¶</a></h3>
+<p>Now, generate a wrapper or top module for the block design:</p>
+<p>Navigate to the Block Design window -&gt; sources window -&gt; Design Sources, right-click <strong>design_1</strong>, and select <strong>Generate HDL wrapper</strong>:</p>
 <p><img alt="wrapper" src="../_images/create_HDL_wrapper.PNG" /></p>
-<p>In the pop-up, select “Let Vivado manage wrapper and auto-update” and press OK.</p>
+<p>In the pop up window, select <strong>Let Vivado manage wrapper and auto-update</strong>, and press <strong>OK</strong>.</p>
 </div>
 </div>
-<div class="section" id="generate-bitstream">
-<h2>Generate bitstream<a class="headerlink" href="#generate-bitstream" title="Permalink to this heading">¶</a></h2>
-<p>Now we are ready to generate bitstream. To generate bitstream, click on Program and Debug -&gt; Generate Bitstream. This process will take some time.</p>
-<p>Optional: After .bit file has been generated, we may need to convert it to .bit.bin file, a format that xmutil is expecting:</p>
+<div class="section" id="generate-the-bitstream">
+<h2>Generate the Bitstream<a class="headerlink" href="#generate-the-bitstream" title="Permalink to this heading">¶</a></h2>
+<p>Now, generate the bitstream. To generate the bitstream, click <strong>Program and Debug</strong> -&gt; <strong>Generate Bitstream</strong>. This process takes some time.</p>
+<p>Optional: After the .bit file is generated, you might need to convert it to a <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code> file, a format that xmutil is expecting:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    ```shell
     cd $kv260-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.runs/impl_1/
     echo &#39;all:{kv260_ispMipiRx_vcu_DP_wrapper.bit}&#39;&gt;bootgen.bif
@@ -215,20 +214,13 @@ Project Manager -&gt; Settings -&gt; General -&gt; check “Project is an extens
 </pre></div>
 </div>
 </div>
-<div class="section" id="generate-xsa-file">
-<h2>Generate .xsa file<a class="headerlink" href="#generate-xsa-file" title="Permalink to this heading">¶</a></h2>
-<p>After generating bitstream, we can generate a .xsa file for either Yocto, PetaLinux, or Vitis to import. Go to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Export</span> <span class="pre">-&gt;</span> <span class="pre">Export</span> <span class="pre">Hardware</span></code> to launch the Export Hardware Platform wizard. This wizard can also be launched by Export Platform button in Flow Navigator or Platform Setup window.</p>
-<p>Click through <code class="docutils literal notranslate"><span class="pre">next</span></code>, leaving most in default except in <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Platform</span> <span class="pre">State</span></code> select <code class="docutils literal notranslate"><span class="pre">Pre-synthesis,</span> <span class="pre">enable</span> <span class="pre">Include</span> <span class="pre">Bitstream</span></code>
-Click Finish.</p>
-<p>A .xsa file is generated. The export path is reported in the Tcl console.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
+<div class="section" id="generate-the-xsa-file">
+<h2>Generate the .xsa File<a class="headerlink" href="#generate-the-xsa-file" title="Permalink to this heading">¶</a></h2>
+<p>After the generating bitstream, generate a .xsa file for either Yocto, PetaLinux, or Vitis to import. Go to <strong>File</strong> -&gt; <strong>Export</strong> -&gt; <strong>Export Hardware</strong> to launch the Export Hardware Platform wizard. This wizard can also be launched by Export Platform button in the Flow Navigator or Platform Setup window.</p>
+<p>Click through <strong>next</strong>, leaving the defaults except in <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Platform</span> <span class="pre">State</span></code>. Select <strong>Pre-synthesis, enable Include Bitstream</strong>.</p>
+<p>Click <strong>Finish</strong>.</p>
+<p>A .xsa file is generated. The export path is reported in the Tcl Console.</p>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -245,7 +237,7 @@ Click Finish.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 23, 2025.
+      <span class="lastupdated">Last updated on March 26, 2025.
       </span></p>
   </div>
 
