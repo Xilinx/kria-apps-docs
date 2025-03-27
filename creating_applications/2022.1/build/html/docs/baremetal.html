@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Bare-metal Flow Example &mdash; Kria™ SOM 2022.1 documentation</title>
+  <title>Baremetal Flow Example &mdash; Kria™ SOM 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Kria Vitis Acceleration Tutorial" href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html" />
-    <link rel="prev" title="Example - Generating DTSI and DTBO Overlay Files for Smartcam" href="dtsi_dtbo_generation_smartcam_example.html" /> 
+    <link rel="prev" title="Example - Generating DTSI and DTBO Overlay Files for SmartCam" href="dtsi_dtbo_generation_smartcam_example.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,23 +87,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Bare-metal Flow Example</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Baremetal Flow Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites-and-assumptions">Prerequisites and Assumptions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#vivado-board-file">Vivado board file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vivado-board-file">Vivado Board File</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#step-1-generate-pl-design-in-vivado">Step 1: Generate PL design in Vivado</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-generate-the-pl-design-in-vivado">Step 1: Generate the PL Design in Vivado</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-2-generate-standalone-software-in-vitis">Step 2: Generate Standalone Software in Vitis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-3-boot-baremetal-applications">Step 3: Boot Baremetal Applications</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#option-1-boot-using-jtag">Option 1: Boot using JTAG</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#option-2-boot-using-boot-bin">Option 2: Boot Using boot.bin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#option-1-boot-using-jtag">Option 1: Boot Using JTAG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#option-2-boot-using-boot-bin">Option 2: Boot Using <code class="docutils literal notranslate"><span class="pre">boot.bin</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#step-4-observe-uart-output">Step 4: Observe UART Output</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#optional-restoring-linux-booting-image">Optional: Restoring Linux booting image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-observe-the-uart-output">Step 4: Observe the UART Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#optional-restoring-linux-booting-image">Optional: Restoring Linux Booting Image</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 </ul>
@@ -114,7 +113,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Boot-modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
@@ -144,7 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Bare-metal Flow Example</li>
+      <li>Baremetal Flow Example</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/baremetal.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -154,93 +153,98 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="bare-metal-flow-example">
-<h1>Bare-metal Flow Example<a class="headerlink" href="#bare-metal-flow-example" title="Permalink to this heading">¶</a></h1>
-<p>Developers who wish to use SOM without Linux will be creating a bare-metal(also called standalone) application. This example flow will detail the process of creating a simple PL design with a BRAM connected to the PS, running on the Vision AI Starter Kit. The flow will then create a standalone software in Vitis to read and write from BRAM. Lastly, the flow will suggest two ways to load and test the application on SOM.</p>
+  <div class="section" id="baremetal-flow-example">
+<h1>Baremetal Flow Example<a class="headerlink" href="#baremetal-flow-example" title="Permalink to this heading">¶</a></h1>
+<p>To use SOM without Linux, you create a baremetal (also called standalone) application. This example flow details the process of creating a simple programmable logic (PL) design with a block RAM connected to the processing system (PS), running on the Vision AI Starter Kit. The flow then creates a standalone software in AMD Vitis™ to read and write from block RAM. Finally, the flow suggests two ways to load and test the application on SOM.</p>
 <ul class="simple">
-<li><p>Assumption: AMD built carrier cards with corresponding SOM Starter Kit board file</p></li>
-<li><p>Input: SOM Starter Kit board files (in Vivado), developer’s own accelerator designs in Vivado (in this case, BRAM)</p></li>
-<li><p>Output: <code class="docutils literal notranslate"><span class="pre">&lt;pl&gt;</span></code>.bit, fsbl.elf, pmufw.elf, <code class="docutils literal notranslate"><span class="pre">&lt;application&gt;</span></code>.elf, and boot.bin</p></li>
+<li><p>Assumption: AMD built carrier cards with a corresponding SOM Starter Kit board file</p></li>
+<li><p>Input: SOM Starter Kit board files (in AMD Vivado™), your own accelerator designs in Vivado (in this case, block RAM)</p></li>
+<li><p>Output: <code class="docutils literal notranslate"><span class="pre">&lt;pl&gt;.bit</span></code>, <code class="docutils literal notranslate"><span class="pre">fsbl.elf</span></code>, <code class="docutils literal notranslate"><span class="pre">pmufw.elf</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;application&gt;.elf</span></code>, and <code class="docutils literal notranslate"><span class="pre">boot.bin</span></code></p></li>
 </ul>
 <div class="section" id="prerequisites-and-assumptions">
 <h2>Prerequisites and Assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permalink to this heading">¶</a></h2>
-<p>This document assumes that developers will use 2021.1 or later tools and SOM content releases. The tool versions should match - e.g. use the same tool versions for Vivado, Vitis, Bootgen, XSDB</p>
+<p>This document assumes that you use 2021.1 or later tools and SOM content releases. The tool versions should match, that is, use the same tool versions for Vivado, Vitis, Bootgen, and XSDB.</p>
 <ol class="simple">
-<li><p>Vitis tools installation, which will include Vivado, Bootgen, and XSDB</p></li>
+<li><p>Vitis tools installation, which include Vivado, Bootgen, and XSDB.</p></li>
 </ol>
 <div class="section" id="vivado-board-file">
-<h3>Vivado board file<a class="headerlink" href="#vivado-board-file" title="Permalink to this heading">¶</a></h3>
-<p>This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC or KD240 CC. The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the board peripherals. These board files are available in Vivado’s board list in “Create Project” wizard.</p>
-<p>Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#Vivado-Board-Support-Packages">Wiki</a> for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.</p>
+<h3>Vivado Board File<a class="headerlink" href="#vivado-board-file" title="Permalink to this heading">¶</a></h3>
+<p>This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC, or KD240 CC. The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the board peripherals. These board files are available in Vivado’s board list in the Create Project wizard.</p>
+<p>For a list of board files required, the tool versions that support them, and how to download them from the XHUB store correctly, refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#Vivado-Board-Support-Packages">Wiki</a>.</p>
 </div>
 </div>
-<div class="section" id="step-1-generate-pl-design-in-vivado">
-<h2>Step 1: Generate PL design in Vivado<a class="headerlink" href="#step-1-generate-pl-design-in-vivado" title="Permalink to this heading">¶</a></h2>
-<p>Start Vivado. Choose File -&gt; Project -&gt; New. Then choose RTL project:</p>
-<p><img alt="Tool Flow" src="../_images/01_vivado.png" /></p>
-<p>Click next, then choose <code class="docutils literal notranslate"><span class="pre">boards</span></code> in <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">Part</span></code> section, choose K26*/K24* card (in this case K26C), and then click on <code class="docutils literal notranslate"><span class="pre">connections</span></code>:</p>
-<p><img alt="Tool Flow" src="../_images/02_vivado.png" /></p>
-<p>Choose the carrier card to connect the SOM to, in this case the Vision AI Starter Kit carrier card:</p>
-<p><img alt="Tool Flow" src="../_images/03_vivado.png" /></p>
-<p>Click through to finish creating the project. Now create a block design:</p>
-<p><img alt="Tool Flow" src="../_images/04_vivado.png" /></p>
-<p>In Block Design, click on the + sign, and add PS block:</p>
-<p><img alt="Tool Flow" src="../_images/05_vivado.png" /></p>
-<p>Once the PS block is added, make sure to click <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Block</span> <span class="pre">Automation</span></code> and apply the board preset. This will configure the PS block correctly for SOM + Carrier Card:</p>
-<p><img alt="Tool Flow" src="../_images/06_vivado.png" /></p>
-<p>Now add another block - the AXI BRAM controller:</p>
-<p><img alt="Tool Flow" src="../_images/07_vivado.png" /></p>
-<p>Click on <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Connection</span> <span class="pre">Automation</span></code> and connect the S_AXI port of BRAM controller with <code class="docutils literal notranslate"><span class="pre">M_AXI_HPM0</span></code> port of PS:</p>
-<p><img alt="Tool Flow" src="../_images/08_vivado.png" /></p>
-<p>Click on <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Connection</span> <span class="pre">Automation</span></code> again and connect BRAM_PORTA to a block ram:</p>
-<p><img alt="Tool Flow" src="../_images/09_vivado.png" /></p>
-<p>Double click the BRAM controller and configure it to only have 1 BRAM interface:</p>
-<p><img alt="Tool Flow" src="../_images/10_vivado.png" /></p>
-<p>Double click the PS block, select ``PS-PL Configuration``` and configure it to only enable HPM0 (unselect HPM1):</p>
-<p><img alt="Tool Flow" src="../_images/11_vivado.png" /></p>
-<p>Now connections are complete. Click on Generate Block Design:</p>
-<p><img alt="Tool Flow" src="../_images/12_vivado.png" /></p>
-<p>After that is done generating, right click on the block design you have created and select <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">HDL</span> <span class="pre">Wrapper</span></code>, this will set the created block design as top module:</p>
-<p><img alt="Tool Flow" src="../_images/13_vivado.png" /></p>
-<p>Check the address map of the BRAM slave memory so we can use the same address in software later:</p>
-<p><img alt="Tool Flow" src="../_images/14_vivado.png" /></p>
-<p>Generate the bitstream:</p>
-<p><img alt="Tool Flow" src="../_images/15_vivado.png" /></p>
-<p>This will generate a bitstream at:</p>
-<p><code class="docutils literal notranslate"><span class="pre">try_1/try_1.runs/impl_1/add_bram_wrapper.bit</span></code></p>
-<p>Lastly, export the .xsa file to work the next step in Vitis:</p>
-<p><img alt="Tool Flow" src="../_images/16_vivado.png" /></p>
-<p>Select <code class="docutils literal notranslate"><span class="pre">Include</span> <span class="pre">bitstream</span></code>:</p>
-<p><img alt="Tool Flow" src="../_images/17_vivado.png" /></p>
-<p>Launch Vitis by selecting <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">-&gt;</span> <span class="pre">Layunch</span> <span class="pre">Vitis</span> <span class="pre">IDE</span></code>:</p>
-<p><img alt="Tool Flow" src="../_images/18_vivado.png" /></p>
+<div class="section" id="step-1-generate-the-pl-design-in-vivado">
+<h2>Step 1: Generate the PL Design in Vivado<a class="headerlink" href="#step-1-generate-the-pl-design-in-vivado" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Start Vivado. Choose <strong>File</strong> -&gt; <strong>Project</strong> -&gt; <strong>New</strong>. Then choose the RTL project:
+<img alt="Tool Flow" src="../_images/01_vivado.png" /></p></li>
+<li><p>Click <strong>Next</strong>, then in <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">Part</span></code> section, choose <strong>boards</strong>, choose the K26*/K24* card (in this case K26C), and then click <strong>connections</strong>:
+<img alt="Tool Flow" src="../_images/02_vivado.png" /></p></li>
+<li><p>Choose the carrier card to connect the SOM to, which in this case, the Vision AI Starter Kit carrier card:
+<img alt="Tool Flow" src="../_images/03_vivado.png" /></p></li>
+<li><p>Click through to finish creating the project. Now create a block design:
+<img alt="Tool Flow" src="../_images/04_vivado.png" /></p></li>
+<li><p>In Block Design, click the <strong>+</strong> sign, and add the PS block:
+<img alt="Tool Flow" src="../_images/05_vivado.png" /></p></li>
+<li><p>When the PS block is added, make sure to click <strong>Run Block Automation</strong>, and apply the board preset. This configures the PS block correctly for SOM + Carrier Card:
+<img alt="Tool Flow" src="../_images/06_vivado.png" /></p></li>
+<li><p>Now add another block: the AXI BRAM controller:
+<img alt="Tool Flow" src="../_images/07_vivado.png" /></p></li>
+<li><p>Click <strong>Run Connection Automation</strong> and connect the <code class="docutils literal notranslate"><span class="pre">S_AXI</span></code> port of the block RAM controller with the <code class="docutils literal notranslate"><span class="pre">M_AXI_HPM0</span></code> port of PS:
+<img alt="Tool Flow" src="../_images/08_vivado.png" /></p></li>
+<li><p>Click <strong>Run Connection Automation</strong> again, and connect <code class="docutils literal notranslate"><span class="pre">BRAM_PORTA</span></code> to a block RAM:
+<img alt="Tool Flow" src="../_images/09_vivado.png" /></p></li>
+<li><p>Double-click the block RAM controller, and configure it to only have one block RAM interface:
+<img alt="Tool Flow" src="../_images/10_vivado.png" /></p></li>
+<li><p>Double-click the PS block, select <strong>PS-PL Configuration</strong>, and configure it to only enable HPM0 (deselect HPM1):
+<img alt="Tool Flow" src="../_images/11_vivado.png" /></p></li>
+<li><p>Now connections are complete. Click <strong>Generate Block Design</strong>:
+<img alt="Tool Flow" src="../_images/12_vivado.png" /></p></li>
+<li><p>After it done generating, right click the block design you have created, and select <strong>Create HDL Wrapper</strong>; this will set the created block design as top module:
+<img alt="Tool Flow" src="../_images/13_vivado.png" /></p></li>
+<li><p>Check the address map of the BRAM slave memory so you can use the same address in the software later:
+<img alt="Tool Flow" src="../_images/14_vivado.png" /></p></li>
+<li><p>Generate the bitstream:
+<img alt="Tool Flow" src="../_images/15_vivado.png" /></p>
+<p>This generates a bitstream at <code class="docutils literal notranslate"><span class="pre">try_1/try_1.runs/impl_1/add_bram_wrapper.bit</span></code>.</p>
+</li>
+<li><p>Finally, export the .xsa file to work the next step in Vitis:
+<img alt="Tool Flow" src="../_images/16_vivado.png" /></p></li>
+<li><p>Select <strong>Include bitstream</strong>:
+<img alt="Tool Flow" src="../_images/17_vivado.png" /></p></li>
+<li><p>Launch Vitis by selecting <strong>Tools</strong> -&gt; <strong>Launch Vitis IDE</strong>:
+<img alt="Tool Flow" src="../_images/18_vivado.png" /></p></li>
+</ol>
 </div>
 <div class="section" id="step-2-generate-standalone-software-in-vitis">
 <h2>Step 2: Generate Standalone Software in Vitis<a class="headerlink" href="#step-2-generate-standalone-software-in-vitis" title="Permalink to this heading">¶</a></h2>
-<p>In Vitis, select Project -&gt; Create Application Project:</p>
-<p><img alt="Tool Flow" src="../_images/19_vitis.png" /></p>
-<p>Select <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">platform</span> <span class="pre">from</span> <span class="pre">hardware</span> <span class="pre">(XSA)</span></code> and point to the .xsa file that was just exported in step 1:</p>
-<p><img alt="Tool Flow" src="../_images/20_vitis.png" /></p>
-<p>Name the application and associate with PSU_cortexa53_0:</p>
-<p><img alt="Tool Flow" src="../_images/21_vitis.png" />
-<img alt="Tool Flow" src="../_images/22_vitis.png" /></p>
-<p>Use <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World</span></code> as a template:
-<img alt="Tool Flow" src="../_images/23_vitis.png" /></p>
-<p>In <code class="docutils literal notranslate"><span class="pre">helloworld.c</span></code>, alter the code to read and write from BRAM, and then right click <code class="docutils literal notranslate"><span class="pre">hello_world_system</span></code> and select <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Project</span></code>:</p>
+<ol>
+<li><p>In Vitis, select <strong>Project</strong> -&gt; <strong>Create Application Project</strong>:
+<img alt="Tool Flow" src="../_images/19_vitis.png" /></p></li>
+<li><p>Select <strong>Create a new platform from hardware (XSA)</strong>, and point to the .xsa file that was just exported in step 1:
+<img alt="Tool Flow" src="../_images/20_vitis.png" /></p></li>
+<li><p>Name the application and associate with PSU_cortexa53_0:
+<img alt="Tool Flow" src="../_images/21_vitis.png" />
+<img alt="Tool Flow" src="../_images/22_vitis.png" /></p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World</span></code> as a template:
+<img alt="Tool Flow" src="../_images/23_vitis.png" /></p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">helloworld.c</span></code>, alter the code to read and write from BRAM, and then right-click <code class="docutils literal notranslate"><span class="pre">hello_world_system</span></code> and select <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Project</span></code>:</p>
 <p><img alt="Tool Flow" src="../_images/24_vitis.png" /></p>
-<p>Now developers will have the following files:</p>
+<p>You now have the following files:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vitis_workspace/add_bram_wrapper/export/add_bram_wrapper/sw/add_bram_wrapper/boot/fsbl.elf
 vitis_workspace/add_bram_wrapper/export/add_bram_wrapper/sw/add_bram_wrapper/boot/pmufw.elf
 vitis_workspace/hello_world/Debug/hello_world.elf
 </pre></div>
 </div>
+</li>
+</ol>
 </div>
 <div class="section" id="step-3-boot-baremetal-applications">
 <h2>Step 3: Boot Baremetal Applications<a class="headerlink" href="#step-3-boot-baremetal-applications" title="Permalink to this heading">¶</a></h2>
-<p>There are two ways to boot baremetal applications - using JTAG to download files and start the application, and programming boot files into boot image sectors of QSPI so that the application boots up upon power up without needing XSDB. JTAG booting is ideal for development and debugging, while QSPI booting is ideal for deployment.</p>
+<p>There are two ways to boot baremetal applications: using JTAG to download files and start the application, and programming the boot files into the boot image sectors of QSPI so that the application boots up upon power up without needing XSDB. JTAG booting is ideal for development and debugging, while QSPI booting is ideal for deployment.</p>
 <div class="section" id="option-1-boot-using-jtag">
-<h3>Option 1: Boot using JTAG<a class="headerlink" href="#option-1-boot-using-jtag" title="Permalink to this heading">¶</a></h3>
-<p>Developers can boot using JTAG using the 4 files generated: fsbl.elf, pmufw.elf, hello_world.elf, add_bram_wrapper.bit using the following XSDB script:</p>
+<h3>Option 1: Boot Using JTAG<a class="headerlink" href="#option-1-boot-using-jtag" title="Permalink to this heading">¶</a></h3>
+<p>You can boot using JTAG using the four files generated: <code class="docutils literal notranslate"><span class="pre">fsbl.elf</span></code>, <code class="docutils literal notranslate"><span class="pre">pmufw.elf</span></code>, <code class="docutils literal notranslate"><span class="pre">hello_world.elf</span></code>, and <code class="docutils literal notranslate"><span class="pre">add_bram_wrapper.bit</span></code> using the following XSDB script:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc<span class="w"> </span>boot_jtag<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to JTAG boot mode #</span>
@@ -285,9 +289,9 @@ con
 </div>
 </div>
 <div class="section" id="option-2-boot-using-boot-bin">
-<h3>Option 2: Boot Using boot.bin<a class="headerlink" href="#option-2-boot-using-boot-bin" title="Permalink to this heading">¶</a></h3>
-<p>Alternatively, developers can generate a boot.bin file to be programmed into the A/B image update section.</p>
-<p>Developers first need to create a <code class="docutils literal notranslate"><span class="pre">&lt;test&gt;.bif</span></code> file containing the following:</p>
+<h3>Option 2: Boot Using <code class="docutils literal notranslate"><span class="pre">boot.bin</span></code><a class="headerlink" href="#option-2-boot-using-boot-bin" title="Permalink to this heading">¶</a></h3>
+<p>Alternatively, you can generate a <code class="docutils literal notranslate"><span class="pre">boot.bin</span></code> file to be programmed into the A/B image update section.</p>
+<p>You first need to create a <code class="docutils literal notranslate"><span class="pre">&lt;test&gt;.bif</span></code> file containing the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>the_ROM_image:
 <span class="o">{</span>
 <span class="w">    </span><span class="o">[</span>fsbl_config<span class="o">]</span><span class="w"> </span>a5x_x64
@@ -299,30 +303,23 @@ con
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>Then they need to run <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1283-bootgen-user-guide/Introduction">bootgen</a> to create boot.bin:</p>
+<p>Then run <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1283-bootgen-user-guide/Introduction">bootgen</a> to create <code class="docutils literal notranslate"><span class="pre">boot.bin</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bootgen<span class="w"> </span>-arch<span class="w"> </span>zynqmp<span class="w"> </span>-image<span class="w"> </span>test.bif<span class="w"> </span>-o<span class="w"> </span>boot.bin
 </pre></div>
 </div>
-<p>Then, use the FW update and recovery utility documented in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-FW-Update-Process">wiki</a>
-to update the boot firmware. In this example, we have decided to write boot.bin into image A. Make sure to mark Image A as bootable, and as the requested Boot Image so that SOM will boot image A on every power cycle.</p>
+<p>Then, use the firmware update and recovery utility documented in the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-FW-Update-Process">Wiki</a>
+to update the boot firmware. In this example, write <code class="docutils literal notranslate"><span class="pre">boot.bin</span></code> into Image A. Make sure to mark Image A as bootable, and as the requested Boot Image so that SOM boots Image A on every power cycle.</p>
 <p><img alt="Tool Flow" src="../_images/25_img_recovery.png" /></p>
 </div>
 </div>
-<div class="section" id="step-4-observe-uart-output">
-<h2>Step 4: Observe UART Output<a class="headerlink" href="#step-4-observe-uart-output" title="Permalink to this heading">¶</a></h2>
-<p>After step 3, <code class="docutils literal notranslate"><span class="pre">.bit</span></code> file and the <code class="docutils literal notranslate"><span class="pre">.elf</span></code> files will be programmed, and developers should observe printouts from uart indicating the ability to write and read from BRAM.</p>
+<div class="section" id="step-4-observe-the-uart-output">
+<h2>Step 4: Observe the UART Output<a class="headerlink" href="#step-4-observe-the-uart-output" title="Permalink to this heading">¶</a></h2>
+<p>After step 3, <code class="docutils literal notranslate"><span class="pre">.bit</span></code> file and the <code class="docutils literal notranslate"><span class="pre">.elf</span></code> files are programmed. Observe printouts from UART indicating the ability to write and read from the block RAM.</p>
 <div class="section" id="optional-restoring-linux-booting-image">
-<h3>Optional: Restoring Linux booting image<a class="headerlink" href="#optional-restoring-linux-booting-image" title="Permalink to this heading">¶</a></h3>
-<p>Developers may want to restore a Starter Kit back to its default image and Linux boot FW after one of the image sectors has been overwriten with baremetal boot file. In that case, they can download the released Linux booting BOOT.bin from <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-Firmware-Updates">SOM Wiki</a> and program it into one of the  boot image sectors. They will then mark that image sector as bootable and requested image.</p>
+<h3>Optional: Restoring Linux Booting Image<a class="headerlink" href="#optional-restoring-linux-booting-image" title="Permalink to this heading">¶</a></h3>
+<p>You might want to restore a Starter Kit back to its default image and Linux boot firmware after one of the image sectors has been overwriten with the baremetal boot file. In that case,  download the released Linux booting <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code> from the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-Firmware-Updates">SOM Wiki</a> and program it into one of the boot image sectors. Then mark that image sector as bootable and requested image.</p>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -331,7 +328,7 @@ to update the boot firmware. In this example, we have decided to write boot.bin 
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dtsi_dtbo_generation_smartcam_example.html" class="btn btn-neutral float-left" title="Example - Generating DTSI and DTBO Overlay Files for Smartcam" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dtsi_dtbo_generation_smartcam_example.html" class="btn btn-neutral float-left" title="Example - Generating DTSI and DTBO Overlay Files for SmartCam" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html" class="btn btn-neutral float-right" title="Kria Vitis Acceleration Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -339,7 +336,7 @@ to update the boot firmware. In this example, we have decided to write boot.bin 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 23, 2025.
+      <span class="lastupdated">Last updated on March 26, 2025.
       </span></p>
   </div>
 

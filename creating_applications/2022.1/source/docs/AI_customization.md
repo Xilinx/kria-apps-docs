@@ -1,56 +1,51 @@
 # AI Customization
 
-AI inference capability can be brought in by leverage the Vitis AI development stack, which provides optimized IP, tools, libraries, models, and example designs. In this topic we will introduce how to use Xilinx model set and build your own model demo.
+The AI inference capability can be brought in by leveraging the AMD Vitis&trade; AI development stack, which provides optimized IP, tools, libraries, models, and example designs. In this topic, you are introduced to how to use the AMD model set and build your own model demo.
 
 ## DPU IP Introduction
 
-DPU (Deep Learning processor) is a programmable engine optimized for deep neural networks. It is a group of parameterizable IP cores pre-implemented on the hardware with no place and route required. The DPU is released with the Vitis AI specialized instruction set, allowing for efficient implementation of many deep learning networks.
+Deep learning processor (DPU) is a programmable engine optimized for deep neural networks. It is a group of parameterizable IP cores preimplemented on the hardware with no place and route required. The DPU is released with the Vitis AI specialized instruction set, allowing for efficient implementation of many deep learning networks.
   
-The DPU IP can be implemented in the programmable logic (PL) of the selected Zynq®-7000 SoC or Zynq® UltraScale+™ MPSoC device with direct connections to the processing system (PS). The DPU requires instructions to implement a neural network and accessible memory locations for input images as well as temporary and output data. A program running on the application processing unit (APU) is also required to service interrupts and coordinate data transfers.
+The DPU IP can be implemented in the programmable logic (PL) of the selected AMD Zynq&trade;-7000 SoC or AMD Zynq&trade; UltraScale+&trade; MPSoC device with direct connections to the processing system (PS). The DPU requires instructions to implement a neural network and accessible memory locations for input images as well as temporary and output data. A program running on the application processing unit (APU) is also required to service interrupts and coordinate data transfers.
   
 The following figure shows the DPU Top-Level Block Diagram.
   ![DPU diagram](./media/dpu_diagram.png)
   <p align=center>DPU Top-level Block Diagram</p>
   <p align=center>PE:Processing Engine, DPU:Deep Learning Processor Unit, APU:Application Processing Unit
   
-Refer to [PG338](https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_3/pg338-dpu.pdf) and [UG1354](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_4/ug1354-xilinx-ai-sdk.pdf) for more details on DPU IP.
+For more details on the DPU IP, refer to the *DPUCZDX8G for Zynq UltraScale+ MPSoCs Product Guide* ([PG338](https://docs.amd.com/go/en-US/pg338-dpu)) and the *Vitis AI Library User Guide* ([UG1354](https://docs.amd.com/go/en-US/ug1354-xilinx-ai-sdk)).
 
 ## Vitis AI Model
 
-The Vitis™ AI development environment accelerates AI inference on AMD® hardware platforms, including both edge devices and Alveo™ accelerator cards. It consists of optimized IP cores, tools, libraries, models, and example designs. It is designed with high efficiency and ease of use in mind to unleash the full potential of AI acceleration on AMD FPGAs and on adaptive compute acceleration platforms (ACAPs). The Vitis AI development environment makes it easy for users without FPGA knowledge to develop deep-learning inference applications by abstracting the intricacies of the underlying FPGA and ACAP.
+The Vitis AI development environment accelerates AI inference on AMD hardware platforms, including both edge devices and AMD Alveo&trade; accelerator cards. It consists of optimized IP cores, tools, libraries, models, and example designs. It is designed with high efficiency and ease of use in mind to unleash the full potential of AI acceleration on AMD FPGAs and on adaptive SoCs. The Vitis AI development environment makes it easy for users without FPGA knowledge to develop deep-learning inference applications by abstracting the intricacies of the underlying FPGA and adaptive SOC.
   
-1. Machine Learning and Data Science: <br>
-   Importing a machine learning model from a Caffe, Pytorch, TensorFlow, or other popular framework onto Vitis™ AI, and then optimizing and evaluating its effectiveness.
-    * Setup the environment of the Cloud or Edge. The Vitis AI contains various samples for demonstration.
-    * Quantizing the Model. Quantization and channel pruning techniques are employed to address these issues while achieving high performance and high energy efficiency with little degradation in accuracy. The Vitis AI develop kit has the quantization and channel pruning tool.
+1. Machine Learning and Data Science: Importing a machine learning model from a Caffe, Pytorch, TensorFlow, or other popular framework onto Vitis AI, and then optimizing and evaluating its effectiveness.
+    * Set up the environment of the Cloud or Edge. Vitis AI contains various samples for demonstration.
+    * Quantizing the Model. Quantization and channel pruning techniques are employed to address these issues while achieving high performance and high energy efficiency with little degradation in accuracy. The Vitis AI development kit has the quantization and channel pruning tool.
     * Compiling the Model. The Compiler generates the compiled model based on the DPU microarchitecture. Vitis AI supports several DPUs for different platforms and applications.
 
-2. Host Software Development: <br>
-   Developing the application code, accelerator development, including library, XRT, and Graph API use. Deploy the model on the target and run the model.
+2. Host Software Development: Developing the application code, accelerator development, including library, XRT, and Graph API use. Deploy the model on the target, and run the model.
 
-3. Hardware, IP, and Platform Development: <br>
-   Creating the PL IP blocks for the hardware platform, creating PL kernels, functional simulation, and evaluating the Vivado®timing, resource use, and power closure. Also involves developing the hardware platform for system integration. 
+3. Hardware, IP, and Platform Development: Creating the PL IP blocks for the hardware platform, creating PL kernels, functional simulation, and evaluating the Vivado timing, resource use, and power closure. Also involves developing the hardware platform for system integration.
 
-4. System Integration and Validation: <br>
-   Integrating and validating the system functional performance, including timing, resource use, and power closure.
+4. System Integration and Validation: Integrating and validating the system functional performance, including timing, resource use, and power closure.
 
-Refer to [UG1414](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/2_5/ug1414-vitis-ai.pdf) to know more details on Vitis AI development kit.
+For more details about the Vitis AI development kit, refer to the *Vitis AI User Guide* ([UG1414](https://docs.amd.com/go/en-US/ug1414-vitis-ai)).
 
-## AI model customization for Kria SOM applications
+## AI Model Customization for Kria SOM Applications
 
 ### Model Preparation
 
-Users can customize their own models for the DPU instance integrated into the platform.
+You can customize your own models for the DPU instance integrated into the platform.
 
-As above, the Vitis AI Model Zoo has already provided some ready-to-use models for Vitis AI Library API.
+As above, the Vitis AI Model Zoo has already provided some ready-to-use models for the Vitis AI Library API.
 
-If the model has been trained to an existing Kria example app DPU instance (e.g. DPU3136) then the resulting models can be copied to the Kria Linux file system and used on an existing platform
+If the model has been trained to an existing Kria example app DPU instance (for example, DPU3136), then the resulting models can be copied to the Kria Linux file system and used on an existing platform
 
-**Note** Make sure the Vitis AI version of app and models.
+>**NOTE:** Make sure the Vitis AI version of app and models.
+>**NOTE:** As described in the Hardware Accelerator section, the DPU integrated in the different platform uses different configuration such as **B3136**, and so on.
 
-**Note** As described in the Hardware Accelerator section, the DPU integrated in the different platform uses different configuration such as **B3136** etc.
-
-The arch.json used to compile the xmodel for DPU can be obtained by build the accelerator, but if you won't build all from the start, you can save following code as arch.json
+The `arch.json` used to compile the xmodel for DPU can be obtained by build the accelerator, but if you do not build all from the start, save following code as `arch.json`:
 
 ```json
 {
@@ -58,13 +53,11 @@ The arch.json used to compile the xmodel for DPU can be obtained by build the ac
 }
 ```
 
-### Configuration files
+### Configuration Files
 
 To integrate a different .xmodel into the SmartCam application, the following configuration files must be updated accordingly:
 
-* AI Inference Config:
-
-    Take the refinedet aiinference.json `/opt/xilinx/kv260-smartcam/share/vvas/refinedet/aiinference.json` as an example,
+* AI Inference Config: Take the refinedet aiinference.json, `/opt/xilinx/kv260-smartcam/share/vvas/refinedet/aiinference.json` as an example,
 
 ```json
     {
@@ -89,25 +82,25 @@ To integrate a different .xmodel into the SmartCam application, the following co
 
    You can change the "model-name" and "model-path" fields to use the customized xmdel file at `${model-path}/${model-name}/${model-name}.xmodel`.
 
-   Pay attention to the field "need_preprocess", which is now "false", tells Vitis AI Library the input buffer is already the resized and quantized BGR image as required by the model. And the preprocess is done by the preprocess plugin with the proper configuration which will be detailed in next section.
+   Pay attention to the field "need_preprocess", which is now "false", tells Vitis AI Library the input buffer is already the resized and quantized BGR image as required by the model, and the preprocess is done by the preprocess plugin with the proper configuration which will be detailed in the next section.
 
-   When you set the "need_preprocess" here to "true" for some reason, you should also make change to the process configuration to ask the preprocess IP works just as colour conversion and resizing.
+   When you set the "need_preprocess" field here to "true" for some reason, you also make change to the process configuration to ask the preprocess IP works just as color conversion and resizing.
 
 * Preprocess Config:
 
-```json
-    "config": {
-        "debug_level" : 1,
-        "mean_r": 123,
-        "mean_g": 117,
-        "mean_b": 104,
-        "scale_r": 1,
-        "scale_g": 1,
-        "scale_b": 1
-    }
-```
+    ```json
+        "config": {
+            "debug_level" : 1,
+            "mean_r": 123,
+            "mean_g": 117,
+            "mean_b": 104,
+            "scale_r": 1,
+            "scale_g": 1,
+            "scale_b": 1
+        }
+    ```
 
-The configuration value of mean/scale for r/g/b channels should be the same as the ones specified in Vitis AI Model prototxt file. For example, following  is taken from /opt/xilinx/share/kv260-smartcam/vvas/refinedet/preprocess.json.
+The configuration value of mean/scale for r/g/b channels should be the same as the ones specified in the Vitis AI Model prototxt file. For example, the following is taken from `/opt/xilinx/share/kv260-smartcam/vvas/refinedet/preprocess.json`:
 
 ```prototxt
 model {
@@ -124,17 +117,17 @@ name : "refinedet_480x360_5G"
 }
 ```
 
-**Notice** the channels sequence in the Vitis AI model prototxt file is B, G, R, not R, G, B, as the above samples show.
+>**NOTE:** The channel's sequence in the Vitis AI model prototxt file is B, G, R, not R, G, B, as the above samples show.
 
 ### Example
 
-Take Vitis AI model ssd_mobilenet_v2 as example, we provide the detailed steps to add an AI task for smartcam application.
+Take the Vitis AI model ssd_mobilenet_v2 as example; the detailed steps to add an AI task for smartcam application are provided.
 
-1. Create folder `ssd_mobilenet_v2` under `/opt/xilinx/kv260-smartcam/share/vvas/`, so that `ssd_mobilenet_v2` can be used as the value for argument --AItask.
+1. Create the `ssd_mobilenet_v2` folder under `/opt/xilinx/kv260-smartcam/share/vvas/`, so that `ssd_mobilenet_v2` can be used as the value for the `--AItask` argument .
 
-2. Download model file for GPU from the link provided by <https://github.com/Xilinx/Vitis-AI/blob/master/models/AI-Model-Zoo/model-list/cf_ssdmobilenetv2_bdd_360_480_6.57G_1.4/model.yaml>
+2. Download the model file for the GPU from the following link: <https://github.com/Xilinx/Vitis-AI/blob/master/models/AI-Model-Zoo/model-list/cf_ssdmobilenetv2_bdd_360_480_6.57G_1.4/model.yaml>.
 
-    After extraction, we get such file structure:
+    After extraction, you get the following file structure:
 
     ```text
     ├── README.md
@@ -170,7 +163,7 @@ Take Vitis AI model ssd_mobilenet_v2 as example, we provide the detailed steps t
         └── quantized_train_test.protot
     ```
 
-3. Prepare ssd_mobilenet_v2 Model `ssd_mobilenet_v2.xmodel` for DPU 3136 and put generated xmodel files together with the prototxt file to:
+3. Prepare the ssd_mobilenet_v2 model, `ssd_mobilenet_v2.xmodel`, for DPU 3136 and put the generated xmodel files together with the prototxt file to:
 
     `/opt/xilinx/kv260-smartcam/share/vitis_ai_library/models/ssd_mobilenet_v2/`
      ssd_mobilenet_v2.prototxt
@@ -187,11 +180,9 @@ Take Vitis AI model ssd_mobilenet_v2 as example, we provide the detailed steps t
                               └── ssd_mobilenet_v2.xmodel
     ```
 
-4. Create configuration files for ssd_mobilenet_v2.
+4. Create the configuration files for ssd_mobilenet_v2.
 
-* preprocess.json
-
-    The mean and scale of B, G, R channel is taken from the deploy.protxt of the model.
+* `preprocess.json`: The mean and scale of the B, G, R channel is taken from the `deploy.protxt` of the model.
 
     ```prototxt
     layer {
@@ -243,7 +234,7 @@ Take Vitis AI model ssd_mobilenet_v2 as example, we provide the detailed steps t
     }
      ```
 
-* aiinference.json:
+* `aiinference.json`:
 
    ```json
    {
@@ -267,9 +258,7 @@ Take Vitis AI model ssd_mobilenet_v2 as example, we provide the detailed steps t
   }
   ```
 
-* lable.json:
-
-  SSD model privdes predictation of multiple classes in file `labelmap_voc.prototxt`.
+* `lable.json`: The SSD model provides predictation of multiple classes in the `labelmap_voc.prototxt` file.
 
     ```bash
     item {
@@ -329,7 +318,7 @@ Take Vitis AI model ssd_mobilenet_v2 as example, we provide the detailed steps t
     }
     ```
 
-    We need to convert the above lable info to json file as requested by VVAS framework as bellow.
+    You need to convert the above label info to the .json file as requested by the VVAS framework as follows:
 
     ```json
     {
@@ -395,9 +384,7 @@ Take Vitis AI model ssd_mobilenet_v2 as example, we provide the detailed steps t
     }
     ```
 
-* drawresult.json
-
-  Here we pick up 3 classes to be shown: car, person, bicycle; and also customize the color for each class as bellow.
+* `drawresult.json`: Here, you pick up the three classes to be shown: car, person,and bicycle, and also customize the color for each class as follows:
 
     ```json
     {
@@ -440,13 +427,8 @@ Take Vitis AI model ssd_mobilenet_v2 as example, we provide the detailed steps t
     }
     ```
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

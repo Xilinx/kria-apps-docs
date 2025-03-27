@@ -1,138 +1,115 @@
-# Bare-metal Flow Example
+# Baremetal Flow Example
 
-Developers who wish to use SOM without Linux will be creating a bare-metal(also called standalone) application. This example flow will detail the process of creating a simple PL design with a BRAM connected to the PS, running on the Vision AI Starter Kit. The flow will then create a standalone software in Vitis to read and write from BRAM. Lastly, the flow will suggest two ways to load and test the application on SOM.
+To use SOM without Linux, you create a baremetal (also called standalone) application. This example flow details the process of creating a simple programmable logic (PL) design with a block RAM connected to the processing system (PS), running on the Vision AI Starter Kit. The flow then creates a standalone software in AMD Vitis&trade; to read and write from block RAM. Finally, the flow suggests two ways to load and test the application on SOM.
 
-* Assumption: AMD built carrier cards with corresponding SOM Starter Kit board file
-* Input: SOM Starter Kit board files (in Vivado), developer's own accelerator designs in Vivado (in this case, BRAM)
-* Output: ```<pl>```.bit, fsbl.elf, pmufw.elf, ```<application>```.elf, and boot.bin
+* Assumption: AMD built carrier cards with a corresponding SOM Starter Kit board file
+* Input: SOM Starter Kit board files (in AMD Vivado&trade;), your own accelerator designs in Vivado (in this case, block RAM)
+* Output: ```<pl>.bit```, ```fsbl.elf```, ```pmufw.elf```, ```<application>.elf```, and ```boot.bin```
 
 ## Prerequisites and Assumptions
 
-This document assumes that developers will use 2021.1 or later tools and SOM content releases. The tool versions should match - e.g. use the same tool versions for Vivado, Vitis, Bootgen, XSDB
+This document assumes that you use 2021.1 or later tools and SOM content releases. The tool versions should match, that is, use the same tool versions for Vivado, Vitis, Bootgen, and XSDB.
 
-1. Vitis tools installation, which will include Vivado, Bootgen, and XSDB
+1. Vitis tools installation, which include Vivado, Bootgen, and XSDB.
 
-### Vivado board file
+### Vivado Board File
 
-This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC or KD240 CC. The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the board peripherals. These board files are available in Vivado's board list in "Create Project" wizard.
+This flows starts with Vivado board files containing information on K26, K24, KV260 CC, KR260 CC, or KD240 CC. The K26/K24 SOM is supported in Vivado with board files that automate the configuration of the board peripherals. These board files are available in Vivado's board list in the Create Project wizard.
 
-Refer to [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#Vivado-Board-Support-Packages) for a list of board files required, tool versions that support them and how to download them from XHUB store correctly.
+For a list of board files required, the tool versions that support them, and how to download them from the XHUB store correctly, refer to the [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#Vivado-Board-Support-Packages).
 
-## Step 1: Generate PL design in Vivado
+## Step 1: Generate the PL Design in Vivado
 
-Start Vivado. Choose File -> Project -> New. Then choose RTL project:
+1. Start Vivado. Choose **File** -> **Project** -> **New**. Then choose the RTL project:
+    ![Tool Flow](./media/baremetal_example/01_vivado.png)
 
-![Tool Flow](./media/baremetal_example/01_vivado.png)
-
-Click next, then choose ```boards``` in ```Default Part``` section, choose K26*/K24* card (in this case K26C), and then click on ```connections```:
-
+2. Click **Next**, then in ```Default Part``` section, choose **boards**, choose the K26*/K24* card (in this case K26C), and then click **connections**:
 ![Tool Flow](./media/baremetal_example/02_vivado.png)
 
-Choose the carrier card to connect the SOM to, in this case the Vision AI Starter Kit carrier card:
-
+3. Choose the carrier card to connect the SOM to, which in this case, the Vision AI Starter Kit carrier card:
 ![Tool Flow](./media/baremetal_example/03_vivado.png)
 
-Click through to finish creating the project. Now create a block design:
-
+4. Click through to finish creating the project. Now create a block design:
 ![Tool Flow](./media/baremetal_example/04_vivado.png)
 
-In Block Design, click on the + sign, and add PS block:
-
+5. In Block Design, click the **+** sign, and add the PS block:
 ![Tool Flow](./media/baremetal_example/05_vivado.png)
 
-Once the PS block is added, make sure to click ```Run Block Automation``` and apply the board preset. This will configure the PS block correctly for SOM + Carrier Card:
-
+6. When the PS block is added, make sure to click **Run Block Automation**, and apply the board preset. This configures the PS block correctly for SOM + Carrier Card:
 ![Tool Flow](./media/baremetal_example/06_vivado.png)
 
-Now add another block - the AXI BRAM controller:
-
+7. Now add another block: the AXI BRAM controller:
 ![Tool Flow](./media/baremetal_example/07_vivado.png)
 
-Click on ```Run Connection Automation``` and connect the S_AXI port of BRAM controller with ```M_AXI_HPM0``` port of PS:
-
+8. Click **Run Connection Automation** and connect the `S_AXI` port of the block RAM controller with the ```M_AXI_HPM0``` port of PS:
 ![Tool Flow](./media/baremetal_example/08_vivado.png)
 
-Click on ```Run Connection Automation``` again and connect BRAM_PORTA to a block ram:
-
+9. Click **Run Connection Automation** again, and connect `BRAM_PORTA` to a block RAM:
 ![Tool Flow](./media/baremetal_example/09_vivado.png)
 
-Double click the BRAM controller and configure it to only have 1 BRAM interface:
-
+10. Double-click the block RAM controller, and configure it to only have one block RAM interface:
 ![Tool Flow](./media/baremetal_example/10_vivado.png)
 
-Double click the PS block, select ``PS-PL Configuration``` and configure it to only enable HPM0 (unselect HPM1):
-
+11. Double-click the PS block, select **PS-PL Configuration**, and configure it to only enable HPM0 (deselect HPM1):
 ![Tool Flow](./media/baremetal_example/11_vivado.png)
 
-Now connections are complete. Click on Generate Block Design:
-
+12. Now connections are complete. Click **Generate Block Design**:
 ![Tool Flow](./media/baremetal_example/12_vivado.png)
 
-After that is done generating, right click on the block design you have created and select ```Create HDL Wrapper```, this will set the created block design as top module:
-
+13. After it done generating, right click the block design you have created, and select **Create HDL Wrapper**; this will set the created block design as top module:
 ![Tool Flow](./media/baremetal_example/13_vivado.png)
 
-Check the address map of the BRAM slave memory so we can use the same address in software later:
-
+14. Check the address map of the BRAM slave memory so you can use the same address in the software later:
 ![Tool Flow](./media/baremetal_example/14_vivado.png)
 
-Generate the bitstream:
-
+15. Generate the bitstream:
 ![Tool Flow](./media/baremetal_example/15_vivado.png)
 
-This will generate a bitstream at:
+    This generates a bitstream at ```try_1/try_1.runs/impl_1/add_bram_wrapper.bit```.
 
-```try_1/try_1.runs/impl_1/add_bram_wrapper.bit```
-
-Lastly, export the .xsa file to work the next step in Vitis:
-
+16. Finally, export the .xsa file to work the next step in Vitis:
 ![Tool Flow](./media/baremetal_example/16_vivado.png)
 
-Select ```Include bitstream```:
-
+17. Select **Include bitstream**:
 ![Tool Flow](./media/baremetal_example/17_vivado.png)
 
-Launch Vitis by selecting ```Tools -> Layunch Vitis IDE```:
-
+18. Launch Vitis by selecting **Tools** -> **Launch Vitis IDE**:
 ![Tool Flow](./media/baremetal_example/18_vivado.png)
 
 ## Step 2: Generate Standalone Software in Vitis
 
-In Vitis, select Project -> Create Application Project:
-
+1. In Vitis, select **Project** -> **Create Application Project**:
 ![Tool Flow](./media/baremetal_example/19_vitis.png)
 
-Select ```Create a new platform from hardware (XSA)``` and point to the .xsa file that was just exported in step 1:
-
+2. Select **Create a new platform from hardware (XSA)**, and point to the .xsa file that was just exported in step 1:
 ![Tool Flow](./media/baremetal_example/20_vitis.png)
 
-Name the application and associate with PSU_cortexa53_0:
-
+3. Name the application and associate with PSU_cortexa53_0:
 ![Tool Flow](./media/baremetal_example/21_vitis.png)
 ![Tool Flow](./media/baremetal_example/22_vitis.png)
 
-Use ```Hello World``` as a template:
+4. Use ```Hello World``` as a template:
 ![Tool Flow](./media/baremetal_example/23_vitis.png)
 
-In ```helloworld.c```, alter the code to read and write from BRAM, and then right click ```hello_world_system``` and select ```Build Project```:
+5. In ```helloworld.c```, alter the code to read and write from BRAM, and then right-click ```hello_world_system``` and select ```Build Project```:
 
-![Tool Flow](./media/baremetal_example/24_vitis.png)
+    ![Tool Flow](./media/baremetal_example/24_vitis.png)
 
-Now developers will have the following files:
+    You now have the following files:
 
-```bash
-vitis_workspace/add_bram_wrapper/export/add_bram_wrapper/sw/add_bram_wrapper/boot/fsbl.elf
-vitis_workspace/add_bram_wrapper/export/add_bram_wrapper/sw/add_bram_wrapper/boot/pmufw.elf
-vitis_workspace/hello_world/Debug/hello_world.elf
-```
+    ```bash
+    vitis_workspace/add_bram_wrapper/export/add_bram_wrapper/sw/add_bram_wrapper/boot/fsbl.elf
+    vitis_workspace/add_bram_wrapper/export/add_bram_wrapper/sw/add_bram_wrapper/boot/pmufw.elf
+    vitis_workspace/hello_world/Debug/hello_world.elf
+    ```
 
 ## Step 3: Boot Baremetal Applications
 
-There are two ways to boot baremetal applications - using JTAG to download files and start the application, and programming boot files into boot image sectors of QSPI so that the application boots up upon power up without needing XSDB. JTAG booting is ideal for development and debugging, while QSPI booting is ideal for deployment.
+There are two ways to boot baremetal applications: using JTAG to download files and start the application, and programming the boot files into the boot image sectors of QSPI so that the application boots up upon power up without needing XSDB. JTAG booting is ideal for development and debugging, while QSPI booting is ideal for deployment.
 
-### Option 1: Boot using JTAG
+### Option 1: Boot Using JTAG
 
-Developers can boot using JTAG using the 4 files generated: fsbl.elf, pmufw.elf, hello_world.elf, add_bram_wrapper.bit using the following XSDB script:
+You can boot using JTAG using the four files generated: `fsbl.elf`, `pmufw.elf`, `hello_world.elf`, and `add_bram_wrapper.bit` using the following XSDB script:
 
 ```bash
 proc boot_jtag { } {
@@ -177,11 +154,11 @@ after 500
 con
 ```
 
-### Option 2: Boot Using boot.bin
+### Option 2: Boot Using `boot.bin`
 
-Alternatively, developers can generate a boot.bin file to be programmed into the A/B image update section.
+Alternatively, you can generate a `boot.bin` file to be programmed into the A/B image update section.
 
-Developers first need to create a `<test>.bif` file containing the following:
+You first need to create a `<test>.bif` file containing the following:
 
 ```bash
 the_ROM_image:
@@ -195,32 +172,27 @@ the_ROM_image:
 }
 ```
 
-Then they need to run [bootgen](https://docs.xilinx.com/r/en-US/ug1283-bootgen-user-guide/Introduction) to create boot.bin:
+Then run [bootgen](https://docs.xilinx.com/r/en-US/ug1283-bootgen-user-guide/Introduction) to create `boot.bin`:
 
 ```bash
 bootgen -arch zynqmp -image test.bif -o boot.bin
 ```
 
-Then, use the FW update and recovery utility documented in [wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-FW-Update-Process)
-to update the boot firmware. In this example, we have decided to write boot.bin into image A. Make sure to mark Image A as bootable, and as the requested Boot Image so that SOM will boot image A on every power cycle.
+Then, use the firmware update and recovery utility documented in the [Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-FW-Update-Process)
+to update the boot firmware. In this example, write `boot.bin` into Image A. Make sure to mark Image A as bootable, and as the requested Boot Image so that SOM boots Image A on every power cycle.
 
 ![Tool Flow](./media/baremetal_example/25_img_recovery.png)
 
-## Step 4: Observe UART Output
+## Step 4: Observe the UART Output
 
-After step 3, `.bit` file and the `.elf` files will be programmed, and developers should observe printouts from uart indicating the ability to write and read from BRAM.
+After step 3, `.bit` file and the `.elf` files are programmed. Observe printouts from UART indicating the ability to write and read from the block RAM.
 
-### Optional: Restoring Linux booting image
+### Optional: Restoring Linux Booting Image
 
-Developers may want to restore a Starter Kit back to its default image and Linux boot FW after one of the image sectors has been overwriten with baremetal boot file. In that case, they can download the released Linux booting BOOT.bin from [SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-Firmware-Updates) and program it into one of the  boot image sectors. They will then mark that image sector as bootable and requested image.
+You might want to restore a Starter Kit back to its default image and Linux boot firmware after one of the image sectors has been overwriten with the baremetal boot file. In that case,  download the released Linux booting `BOOT.bin` from the [SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/#Boot-Firmware-Updates) and program it into one of the boot image sectors. Then mark that image sector as bootable and requested image.
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

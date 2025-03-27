@@ -47,6 +47,9 @@ There is no Xen support for combined MACHINE name ```k26-smk```.
 
 Yocto generated wic that contains XENs support can be found in ```<yocto_project>/build/tmp/deploy/images/<machine name>/kria-image-full-cmdline-<machine name>.wic``` in the Yocto project.
 
+<details>
+  <summary>Expand for Xen Artifact generation in PetaLinux tool flow</summary>
+
 ### Xen Artifacts in PetaLinux tool flow
 
 Users are encouraged to use Yocto flow, as it is verified and steps are simpler in [Prepare SD card](#prepare-sd-card) stage. If user still require to use PetaLinux, download a 2023.2 or later [Kria SOM Starter Kit BSP](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages). Extract the PetaLinux project:
@@ -58,17 +61,24 @@ cd xilinx-<hardware>-<version>
 
 The wic image required is in ```pre-built/linux/images/petalinux-sdimage.wic.xz```, and the XEN artifacts required can be found in ```pre-built/linux/xen```.
 
+</details>
+
 ## Prepare SD Card
 
-Flash the embedded Linux wic image from either [Yocto](#generating-xen-artifacts-in-native-yocto-tool-flow) or [PetaLinux flow](#xen-artifacts-in-petalinux-tool-flow) to an SD card using Balena Etcher. This will set up the SD card to contain 2 partitions - partition 1 with boot images (accessible by Windows and Linux) that we will discard and partition 2 with Kria Starter Kit embedded Linux rootfs (not accessible by Windows) that will also be used for XEN DOM0.
+Flash the embedded Linux wic image from either [Yocto](#generating-xen-artifacts-in-native-yocto-tool-flow) or [PetaLinux flow](#xen-artifacts-in-petalinux-tool-flow) to an SD card using Balena Etcher. This will set up the SD card to contain 2 partitions - partition 1 with boot images (accessible by Windows and Linux) that and partition 2 with Kria Starter Kit embedded Linux rootfs (not accessible by Windows) that will also be used for XEN DOM0. A 3rd partition is created to house rootfs of DOMU.
 
 ### Partition 1
 
-If you are using Yocto generated wic image - partition 1 already contain XEN artifacts as the wic is generated with XEN support. Below step is for PetaLinux tool Flow only.
+If you are using Yocto generated wic image - partition 1 already contain XEN artifacts as the wic is generated with XEN support.
+
+<details>
+  <summary>Expand for Partition 1 setup for PetaLinux Flow only</summary>
 
 PetaLinux tool flow only: Open the SD card on a host computer (can be Windows or Linux), go to partition 1, remove the boot images on that partition and copy all the XEN artifacts in ```pre-built/linux/xen``` into partition 1.
+</details>
+<br/>
 
-We then need to copy over the Ubuntu image that we want to boot as DOMU. Download the [iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz](https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz?_ga=2.93916574.2043050383.1684286640-1062417632.1681766747) file from [Kria Ubuntu download site](https://ubuntu.com/download/amd-xilinx), un-compress it, and copy ```image.fit``` file into partition 1 for DOMU later. This file is not being used in XEN booting, but we use SD partition 1 as a place to transfer the file onto target.
+Next, copy over the Ubuntu image that you want to boot as DOMU. You can download the [iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz](https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz?_ga=2.93916574.2043050383.1684286640-1062417632.1681766747) file from [Kria Ubuntu download site](https://ubuntu.com/download/amd-xilinx), un-compress it, and copy ```image.fit``` file into partition 1 for DOMU later. This file is not being used in XEN booting, but is place in partition 1 as a way to transfer the file onto target.
 
 ### Partition 2
 
@@ -86,7 +96,7 @@ Unzip the downloaded rootfs file to .ext4 using following:
 xz -d iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4.xz
 ```
 
-Plug the SD card into a Linux host machine, in this example we assume the sd card is found in ```/dev/sda``` but you may find it in different file path dependent on your machine. Observe the 2 partitions with ```sudo fdisk -l /dev/sda```, it should look like the following with two partitions:
+Plug the SD card into a Linux host machine, in this example we assume the sd card is found in ```/dev/sda``` but you can find it in different file path dependent on your machine. Observe the 2 partitions with ```sudo fdisk -l /dev/sda```, it should look like the following with two partitions:
 
 ```bash
 Device     Boot   Start      End Sectors Size Id Type
@@ -120,7 +130,7 @@ Next, format the newly created partition to support ext4 rootfs. Use following c
 sudo mkfs.ext4 -L root /dev/sda3
 ```
 
-```/dev/sda3``` is the path for new partition that we will use for rootfs for DOMU. Run "sudo fdisk -l" again to verify all the partition. It should look similar to what is shown below with 3 partitions:
+```/dev/sda3``` is the path for new partition that is used for rootfs for DOMU. Run "sudo fdisk -l" again to verify all the partition. It should look similar to what is shown below with 3 partitions:
 
 ```text
 Device     Boot    Start      End  Sectors  Size Id Type
@@ -129,7 +139,7 @@ Device     Boot    Start      End  Sectors  Size Id Type
 /dev/sda3       12584960 31116287 18531328  8.9G 83 Linux
 ```
 
-lastly,  copy Ubuntu rootfs that we download and extracted earlier to partition ```/dev/sda3```:
+lastly,  copy Ubuntu rootfs that was downloaded and extracted earlier to partition ```/dev/sda3```:
 
 ```bash
 sudo dd if=iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4  of=/dev/sda3
@@ -149,6 +159,9 @@ Now partition 3 is ready as well.
 
 Plug the SD card into Starter Kit and turn on the power. If you used Yocto to generate the Xen artifact - it will automatically boot Xen- you can move to the next section.
 
+<details>
+  <summary>Boot XEN with PetaLinux tool flow</summary>
+
 If you used PetaLinux to generate Xen artifacts, you should automatically get to u-boot command prompt. Enter this to load xen_boot_sd.scr to 0xc00000 and source the script to boot xen:
 
 For KV260, SD card is on mmc, therefore use the following commands to boot:
@@ -167,6 +180,8 @@ source 0xc00000
 
 This will boot Kria Starter Kit embedded Linux XEN aka DOM0.
 
+</details>
+
 ### Boot UBuntu as DOMU
 
 First, change to root:
@@ -175,7 +190,7 @@ First, change to root:
 sudo -s
 ```
 
-Locate ```image.fit``` file in ```/boot/image.fit```, but location may vary dependent on release and tool used. One can search for it using ```find / -iname "image.fit"```.
+Locate ```image.fit``` file in ```/boot/image.fit```, but location can vary dependent on release and tool used. You can search for it using ```find / -iname "image.fit"```.
 
 extract the Ubuntu kernel image:
 
@@ -184,7 +199,7 @@ dumpimage -T flat_dt -p 0 /boot/image.fit -o /home/petalinux/ubuntu_Image # for 
 dumpimage -T flat_dt -p 0 /boot/image.fit -o /home/petalinux/ubuntu_Image # for KR260
 ```
 
-Next, check how much memory is dom0 consuming and available memory using ```xl info```. In our example we should have a little more than 1.9G left to use for DOMU and therefore we will allocate 1900MB for DOMU in next step.
+Next, check how much memory is dom0 consuming and available memory using ```xl info```. In this example there should be a little more than 1.9G left to use for DOMU. Therefore you can allocate 1900MB for DOMU in next step.
 
 Create a ```guest0.cfg``` file with the following content:
 

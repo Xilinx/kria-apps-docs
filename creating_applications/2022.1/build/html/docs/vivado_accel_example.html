@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application" href="vitis_accel_flow_smartcam_filter2d_example.html" />
+    <link rel="next" title="Vitis Accelerator Flow Example: Replacing DPU with Filter2d Accelerator in a SmartCam Application" href="vitis_accel_flow_smartcam_filter2d_example.html" />
     <link rel="prev" title="Examples" href="examples.html" /> 
 </head>
 
@@ -88,21 +88,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="examples.html">Examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Vivado Accelerator Flow Example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#generate-bit-bin">Generate .bit.bin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-bit-bin">Generate <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#generate-xsa-file">Generate .xsa file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#generate-dtbo-file">Generate .dtbo file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#create-shell-json-file">Create shell.json file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-shell-json-file">Create the <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test-on-som-target">Test on SOM Target</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="vitis_accel_flow_smartcam_filter2d_example.html">Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vitis_platform_flow_smartcam_raspi_example.html">Vitis Platform Flow Example - Adding Raspberry Pi Camera to SmartCam’s Platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="custom_cc_flow_example.html">Example - Creating a Platform for a Custom Carrier Card</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dtsi_dtbo_generation_smartcam_example.html">Example - Generating DTSI and DTBO Overlay Files for Smartcam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vitis_accel_flow_smartcam_filter2d_example.html">Vitis Accelerator Flow Example: Replacing DPU with Filter2d Accelerator in a SmartCam Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vitis_platform_flow_smartcam_raspi_example.html">Vitis Platform Flow Example: Adding a Raspberry Pi Camera to SmartCam’s Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom_cc_flow_example.html">Example: Create a Platform for a Custom Carrier Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dtsi_dtbo_generation_smartcam_example.html">Example - Generating DTSI and DTBO Overlay Files for SmartCam</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Baremetal Flow Example</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
 <ul>
@@ -111,7 +110,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Boot-modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
@@ -154,48 +153,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="vivado-accelerator-flow-example">
 <h1>Vivado Accelerator Flow Example<a class="headerlink" href="#vivado-accelerator-flow-example" title="Permalink to this heading">¶</a></h1>
-<p>This page will walk you through an example adding a simple accelerator (in this case, a simple BRAM) application into the SOM infrastructure in the Vivado Accelerator Flow. Please first read <a class="reference internal" href="vivado_accel_flow.html"><span class="doc">Vivado Accelerator Flow</span></a> before trying this example.</p>
-<p>This example works with 21.1 and newer tools and BSP. You will need Vivado, XSTC, DTG and DTC. Please refer to <a class="reference internal" href="dtsi_dtbo_generation.html"><span class="doc">Generating DTSI and DTBO Overlay Files</span></a> for how to install DTG and DTC.</p>
-<p>You will need to generate 3 files - .bit.bin (PL bitstream), .dtbo (device tree overlay), and shell.json to load onto SOM.</p>
+<p>This page walks you through an example adding a simple accelerator (in this case, a simple BRAM) application into the SOM infrastructure in the Vivado Accelerator Flow. Before trying this example, first read <a class="reference internal" href="vivado_accel_flow.html"><span class="doc">Vivado Accelerator Flow</span></a>.</p>
+<p>This example works with 2021.1 and newer tools and BSP. You need Vivado, XSTC, DTG and DTC. For information on how to install DTG and DTC, refer to <a class="reference internal" href="dtsi_dtbo_generation.html"><span class="doc">Generating DTSI and DTBO Overlay Files</span></a>.</p>
+<p>You need to generate three files: <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code> (PL bitstream), .dtbo (device tree overlay), and <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> to load onto the SOM.</p>
 <div class="section" id="generate-bit-bin">
-<h2>Generate .bit.bin<a class="headerlink" href="#generate-bit-bin" title="Permalink to this heading">¶</a></h2>
-<p>There are two ways to start the Vivado project for Kria SOM Starter Kits. Since the <a class="reference internal" href="baremetal.html"><span class="doc">baremetal example</span></a> has an example for generating PL design in Vivado using board files, this example will use the base Vivado designs. There are two ways to get the base designs, either using <a class="reference internal" href="Generate_vivado_project_from_boardfile.html"><span class="doc">board files</span></a> or <a class="reference internal" href="Generate_vivado_project_from_CED.html"><span class="doc">example design</span></a>.</p>
-<p>Start Vivado, click <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Project</span></code> and select <code class="docutils literal notranslate"><span class="pre">xilinx-&lt;board&gt;-&lt;version&gt;.xpr</span></code> and the example project will open:</p>
-<p><img alt="01vivado" src="../_images/01_vivado1.png" /></p>
-<p>Click <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Block</span> <span class="pre">Design</span></code> and you will see a pre-configured <code class="docutils literal notranslate"><span class="pre">zynq_ultra_ps_e_0</span></code> block:</p>
-<p><img alt="02vivado" src="../_images/02_vivado1.png" /></p>
-<p>In block design, Click on the <code class="docutils literal notranslate"><span class="pre">+</span></code> sign and add an <code class="docutils literal notranslate"><span class="pre">AXI</span> <span class="pre">BRAM</span> <span class="pre">Controller</span></code>:</p>
-<p><img alt="03vivado" src="../_images/03_vivado1.png" /></p>
-<p>Click <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Connection</span> <span class="pre">Automation</span></code> and connect <code class="docutils literal notranslate"><span class="pre">S_AXI</span></code> of <code class="docutils literal notranslate"><span class="pre">axi_bram_ctrl_0</span></code> to <code class="docutils literal notranslate"><span class="pre">M_AXI_HPM0_FPD</span></code> of <code class="docutils literal notranslate"><span class="pre">zynq_ultra_ps_e_0</span></code>.</p>
-<p><img alt="04vivado" src="../_images/04_vivado1.png" /></p>
-<p>Double click the <code class="docutils literal notranslate"><span class="pre">axi_bram_ctrl_0</span> <span class="pre">block</span></code>, and change Number of BRAM interfaces to 1.</p>
-<p><img alt="05vivado" src="../_images/05_vivado1.png" /></p>
-<p>Double click the <code class="docutils literal notranslate"><span class="pre">zynq_ultra_ps_e_0</span> <span class="pre">block</span></code>, go to <code class="docutils literal notranslate"><span class="pre">PS-PL</span> <span class="pre">Configuration</span></code>, and unselect <code class="docutils literal notranslate"><span class="pre">AXI</span> <span class="pre">HPM1</span> <span class="pre">FPD</span></code> interface since it is unused.</p>
-<p><img alt="06vivado" src="../_images/06_vivado1.png" /></p>
-<p>Click <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Connection</span> <span class="pre">Automation</span></code> again and connect <code class="docutils literal notranslate"><span class="pre">BRAM_PORTA</span></code> of <code class="docutils literal notranslate"><span class="pre">axi_bram_ctrl_0</span></code> to a new blockram.</p>
-<p><img alt="07vivado" src="../_images/07_vivado1.png" /></p>
-<p>Now your block design should look like below:</p>
-<p><img alt="08vivado" src="../_images/08_vivado1.png" /></p>
-<p>You should also check address map to see that bram is mapped to 0xa0000000 because we chose HPM0, we will need this address to test access to bram later:</p>
-<p><img alt="baremetal_vivado" src="../_images/14_vivado.png" /></p>
-<p>By default Vivado generates a .bit file, you need to select <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">-&gt;</span> <span class="pre">Bitstream</span> <span class="pre">-&gt;</span> <span class="pre">-bin_file</span></code> so that it generates a .bin file as well:</p>
-<p><img alt="09vivado" src="../_images/09_vivado1.png" /></p>
-<p>Click on <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">Bitstream</span></code> to generate the .bin file</p>
-<p><img alt="10vivado" src="../_images/10_vivado1.png" /></p>
-<p>Copy the generated .bin file to top level, we will use the name <code class="docutils literal notranslate"><span class="pre">bram</span></code> for this simple application:</p>
+<h2>Generate <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code><a class="headerlink" href="#generate-bit-bin" title="Permalink to this heading">¶</a></h2>
+<p>There are two ways to start the Vivado project for Kria SOM Starter Kits. Because the <a class="reference internal" href="baremetal.html"><span class="doc">baremetal example</span></a> has an example for generating PL design in Vivado using board files, this example uses the base Vivado designs. There are two ways to get the base designs, either using <a class="reference internal" href="Generate_vivado_project_from_boardfile.html"><span class="doc">board files</span></a> or <a class="reference internal" href="Generate_vivado_project_from_CED.html"><span class="doc">example design</span></a>.</p>
+<ol>
+<li><p>Start Vivado, click <strong>Open Project</strong>, select <strong>xilinx-<board>-<version>.xpr</strong>, and the example project opens.
+<img alt="01vivado" src="../_images/01_vivado1.png" /></p></li>
+<li><p>Click <strong>Open Block Design</strong>. A preconfigured <code class="docutils literal notranslate"><span class="pre">zynq_ultra_ps_e_0</span></code> block displays.
+<img alt="02vivado" src="../_images/02_vivado1.png" /></p></li>
+<li><p>In block design, click on the <strong>+</strong> sign, and add an <code class="docutils literal notranslate"><span class="pre">AXI</span> <span class="pre">BRAM</span> <span class="pre">Controller</span></code>.
+<img alt="03vivado" src="../_images/03_vivado1.png" /></p></li>
+<li><p>Click <strong>Run Connection Automation</strong>, and connect <code class="docutils literal notranslate"><span class="pre">S_AXI</span></code> of <code class="docutils literal notranslate"><span class="pre">axi_bram_ctrl_0</span></code> to <code class="docutils literal notranslate"><span class="pre">M_AXI_HPM0_FPD</span></code> of <code class="docutils literal notranslate"><span class="pre">zynq_ultra_ps_e_0</span></code>.
+<img alt="04vivado" src="../_images/04_vivado1.png" /></p></li>
+<li><p>Double click the <strong><code class="docutils literal notranslate"><span class="pre">axi_bram_ctrl_0</span> <span class="pre">block</span></code></strong>, and change the Number of BRAM interfaces to 1.
+<img alt="05vivado" src="../_images/05_vivado1.png" /></p></li>
+<li><p>Double click the <strong><code class="docutils literal notranslate"><span class="pre">zynq_ultra_ps_e_0</span> <span class="pre">block</span></code></strong>, navigate to <code class="docutils literal notranslate"><span class="pre">PS-PL</span> <span class="pre">Configuration</span></code>, and deselect the <strong><code class="docutils literal notranslate"><span class="pre">AXI</span> <span class="pre">HPM1</span> <span class="pre">FPD</span></code></strong> interface because it is unused.
+<img alt="06vivado" src="../_images/06_vivado1.png" /></p></li>
+<li><p>Click <strong>Run Connection Automation</strong> again, and connect <code class="docutils literal notranslate"><span class="pre">BRAM_PORTA</span></code> of <code class="docutils literal notranslate"><span class="pre">axi_bram_ctrl_0</span></code> to a new block RAM.
+<img alt="07vivado" src="../_images/07_vivado1.png" /></p>
+<p>Now your block design should look similar to the following screenshot:
+<img alt="08vivado" src="../_images/08_vivado1.png" /></p>
+</li>
+<li><p>Check the address map to see that bram is mapped to 0xa0000000. Because you chose HPM0, you need this address to test access to bram later:
+<img alt="baremetal_vivado" src="../_images/14_vivado.png" /></p></li>
+<li><p>By default Vivado generates a .bit file. Select <strong>Settings</strong> -&gt; <strong>Bitstream</strong> -&gt; <strong>-bin_file</strong>, so a .bin file is also generated.
+<img alt="09vivado" src="../_images/09_vivado1.png" /></p></li>
+<li><p>To generate the .bin file, click  <strong>Generate Bitstream</strong>.
+<img alt="10vivado" src="../_images/10_vivado1.png" /></p></li>
+<li><p>Copy the generated .bin file to top level. Use the name <code class="docutils literal notranslate"><span class="pre">bram</span></code> for this simple application:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>xilinx-&lt;board&gt;-&lt;version&gt;.runs/impl_1/project_1_wrapper.bin<span class="w"> </span>bram.bit.bin
 </pre></div>
 </div>
+</li>
+</ol>
 </div>
 <div class="section" id="generate-xsa-file">
 <h2>Generate .xsa file<a class="headerlink" href="#generate-xsa-file" title="Permalink to this heading">¶</a></h2>
-<p>A .xsa file is needed for generation of .dtbo device tree overlay file in the next step. This is also generated in Vivado by  using <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Export</span> <span class="pre">-&gt;</span> <span class="pre">Export</span> <span class="pre">Hardware</span></code> , make sure to select “include bitstream” in the generation.</p>
+<p>A .xsa file is needed for generation of .dtbo device tree overlay file in the next step. This is also generated in Vivado by by selecting <strong>File</strong> -&gt; <strong>Export</strong> -&gt; <strong>Export Hardware</strong>. Make sure to select <strong>include bitstream</strong> in the generation.</p>
 <p><img alt="Board Files" src="../_images/tool_flow_xsa_gen.PNG" /></p>
 </div>
 <div class="section" id="generate-dtbo-file">
 <h2>Generate .dtbo file<a class="headerlink" href="#generate-dtbo-file" title="Permalink to this heading">¶</a></h2>
-<p>In this example, we will use the first method in <a class="reference internal" href="dtsi_dtbo_generation.html"><span class="doc">Generating DTSI and DTBO Overlay Files</span></a> to generate the .dtbo file needed.</p>
-<p>In XSCT, generate the dts files needed using <code class="docutils literal notranslate"><span class="pre">project_1_wrapper.xsa</span></code> created in previous step:</p>
+<ol>
+<li><p>In this example, use the first method in <a class="reference internal" href="dtsi_dtbo_generation.html"><span class="doc">Generating DTSI and DTBO Overlay Files</span></a> to generate the .dtbo file needed.</p>
+<p>In XSCT, generate the dts files needed using <code class="docutils literal notranslate"><span class="pre">project_1_wrapper.xsa</span></code> created in the previous step:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>xsct% hsi open_hw_design project_1_wrapper.xsa
 xsct% hsi set_repo_path &lt;path to device-tree-xlnx repository&gt;
 xsct% hsi create_sw_design device-tree -os device_tree -proc psu_cortexa53_0
@@ -205,31 +209,34 @@ xsct% hsi close_hw_design project_1_wrapper
 xsct% exit
 </pre></div>
 </div>
-<p>Then compile .dtsi to binary .dtbo using DTC:</p>
+</li>
+<li><p>Then compile .dtsi to binary .dtbo using DTC:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>bram_dts/
 dtc<span class="w"> </span>-@<span class="w"> </span>-O<span class="w"> </span>dtb<span class="w"> </span>-o<span class="w"> </span>pl.dtbo<span class="w"> </span>pl.dtsi
 <span class="nb">cd</span><span class="w"> </span>../
 cp<span class="w"> </span>bram_dts/pl.dtbo<span class="w"> </span>bram.dtbo
 </pre></div>
 </div>
+</li>
+</ol>
 </div>
-<div class="section" id="create-shell-json-file">
-<h2>Create shell.json file<a class="headerlink" href="#create-shell-json-file" title="Permalink to this heading">¶</a></h2>
-<p>Create a shell.json XRT_FLAT file by referring to <a class="reference internal" href="target.html"><span class="doc">On-target Utilities and Firmware</span></a>.</p>
+<div class="section" id="create-the-shell-json-file">
+<h2>Create the <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> file<a class="headerlink" href="#create-the-shell-json-file" title="Permalink to this heading">¶</a></h2>
+<p>To create a <code class="docutils literal notranslate"><span class="pre">shell.json</span> <span class="pre">XRT_FLAT</span></code> file, refer to <a class="reference internal" href="target.html"><span class="doc">On-target Utilities and Firmware</span></a>.</p>
 </div>
 <div class="section" id="test-on-som-target">
 <h2>Test on SOM Target<a class="headerlink" href="#test-on-som-target" title="Permalink to this heading">¶</a></h2>
-<p>Now you have bram.bit.bin, bram.dtbo, shell.json files, you are ready to move them to SOM Starter Kit and test them. We assume that you have already booted to Linux using the prebuilt .wic images provided <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Starter-Kit-Pre-Built-Binaries">here</a>.</p>
-<p>Move the files over using your preferred method, this example uses scp to move over the files to target.</p>
+<p>Now you have <code class="docutils literal notranslate"><span class="pre">bram.bit.bin</span></code>, <code class="docutils literal notranslate"><span class="pre">bram.dtbo</span></code>, and <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> files. You are ready to move them to SOM Starter Kit and test them. It is assumed that you already booted to Linux using the prebuilt .wic images provided <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Starter-Kit-Pre-Built-Binaries">here</a>.</p>
+<p>Move the files over using your preferred method; this example uses scp to move over the files to target.</p>
 <p><img alt="11target" src="../_images/11_target.png" /></p>
-<p>On SOM’s Linux command prompt, create a folder and copy over the files, and check that the new application shows up in listapps:</p>
+<p>On SOM’s Linux command prompt, create a folder, copy over the files, and check that the new application shows up in listapps:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/lib/firmware/xilinx/bram
 sudo<span class="w"> </span>cp<span class="w"> </span>bram.*<span class="w"> </span>shell.json<span class="w"> </span>/lib/firmware/xilinx/bram/
 sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
 </pre></div>
 </div>
 <p><img alt="12target" src="../_images/12_target.png" /></p>
-<p>Observe that before the bram application is loaded, access to 0xa0000000 (the bram location that we obtained in Vivado) is not successful. But after loading the bram app, you will be able to read and write to 0xa0000000.</p>
+<p>Observe that before the BRAM application is loaded, access to 0xa0000000 (the BRAM location that you obtained in Vivado) is not successful, but after loading the BRAM app, you are be able to read and write to 0xa0000000.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
 sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>bram
 sudo<span class="w"> </span>devmem<span class="w"> </span>0xa0000000<span class="w"> </span><span class="m">32</span>
@@ -238,14 +245,7 @@ sudo<span class="w"> </span>devmem<span class="w"> </span>0xa0000000<span class=
 </pre></div>
 </div>
 <p><img alt="13target" src="../_images/13_target.png" /></p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -255,14 +255,14 @@ sudo<span class="w"> </span>devmem<span class="w"> </span>0xa0000000<span class=
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="vitis_accel_flow_smartcam_filter2d_example.html" class="btn btn-neutral float-right" title="Vitis Accelerator Flow Example - Replacing DPU with Filter2d Accelerator in Smartcam Application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="vitis_accel_flow_smartcam_filter2d_example.html" class="btn btn-neutral float-right" title="Vitis Accelerator Flow Example: Replacing DPU with Filter2d Accelerator in a SmartCam Application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 23, 2025.
+      <span class="lastupdated">Last updated on March 26, 2025.
       </span></p>
   </div>
 

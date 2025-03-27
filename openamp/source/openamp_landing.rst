@@ -1,18 +1,13 @@
-﻿########################################################################################################################
+﻿******************
 OpenAMP on Kria SOM
-########################################################################################################################
-
-
-
+******************
 
 .. include:: ../../shared/somtoctree.txt
 
 
+Starting from 2022.1, `OpenAMP <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP>`_ support is available for the AMD Kria™ SOM prebuilt images. OpenAMP is an open-source standard infrastructure for applications to make use of heterogeneous coprocessors and in Kria, allows the APU to offload tasks to the MPSoC dual-core RPUs.
 
-
-Starting from 2022.1, `OpenAMP <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP>`_ support is available the Kria SOM pre-built images. OpenAMP is an open-source standard infrastructure for applications to make use of heterogeneous co-processors, and in Kria allows the APU to offload tasks to the MPSoC dual-core RPUs.
-
-The Kria Starter Kit OpenAMP PetaLinux implementation uses the Linux kernel implementation of RPMsg for leveraging the MPSoC RPUs as co-processors. The out-of-box Kria Linux OpenAMP only implements a Linux based master on APU with the RPU as a client processor with corresponding pre-built RPU examples.
+The Kria Starter Kit OpenAMP PetaLinux implementation uses the Linux kernel implementation of RPMsg for leveraging the MPSoC RPUs as coprocessors. The out-of-box Kria Linux OpenAMP only implements a Linux based master on the APU with the RPU as a client processor with corresponding prebuilt RPU examples.
 
 ********************************************************
 RPMsg Implementation
@@ -22,49 +17,45 @@ The OpenAMP community supports `two models for RPMsg <https://docs.xilinx.com/r/
 
 1. Linux kernel and RPU remote CPU
    
-   * RPMsg using kernel integrated rpmsg and virtio implementations. The Kria implementation does not make use of the libmetal or OpenAMP libraries in the Linux domain.
-   * Linux kernel space provides rpmsg and remoteproc, but the RPU application requires Linux to load it in order to talk to the RPMsg counterpart in the Linux kernel.
+   * RPMsg uses kernel integrated rpmsg and virtio implementations. The Kria implementation does not make use of the Libmetal or OpenAMP libraries in the Linux domain.
+   * The Linux kernel space provides rpmsg and remoteproc, but the RPU application requires Linux to load it to talk to the RPMsg counterpart in the Linux kernel.
 
 2. Linux userspace OpenAMP application and RPU remote CPU
 
    * Linux rpmsg is implemented using the libmetal library with a userspace implementation of virtio
-   * OpenAMP library can also be used in Linux userspace. In this configuration, the remote processor can run independently to the Linux host processor.
+   * OpenAMP library can also be used in a Linux userspace. In this configuration, the remote processor can run independently to the Linux host processor.
 
-The Kria Starter Kit Linux OpenAMP solution uses Linux kernel implementation (item #1). Details are shown in the block diagram from UG1186 below.
-
-
+The Kria Starter Kit Linux OpenAMP solution uses a Linux kernel implementation (item #1). Details are shown in the following block diagram from the *Libmetal and OpenAMP User Guide* ([UG1186])https://docs.amd.com/go/en-US/ug1186-zynq-openamp-gsg.
 
 .. image:: ./docs/media/ug1186_ch3_1.png
    :alt: openamp implementation
-
 
 ********************************************************
 OpenAMP Device Tree
 ********************************************************
 
-The Kria Starter Kit Linux includes the following device tree place-holders for OpenAMP co-processing applications.
+The Kria Starter Kit Linux includes the following device tree placeholders for OpenAMP coprocessing applications:
 
 * remoteproc node
 * rpmsg shared memory
 
-The Kria 2022.1 PetaLinux BSP and pre-built images folder include the necessary device tree nodes and memory reservations. These can be found in the `openamp.dtb` of the 22.1 release BSP `prebuilt` folder. In order to run openamp example, program SD card with the prebuilt .wic image, and replace system.dtb in the SD card's boot folder with openamp.dtb (which should be renamed to system.dtb) and then boot as usual.
+The Kria 2022.1 PetaLinux BSP and prebuilt images folder include the necessary device tree nodes and memory reservations. These can be found in the `openamp.dtb` of the 2022.1 release BSP `prebuilt` folder. To run the OpenAMP example, program the SD card with the prebuilt .wic image, and replace `system.dtb` in the SD card's boot folder with `openamp.dtb` (which should be renamed to `system.dtb`), and boot as usual.
 
 ********************************************************
 OpenAMP Demos
 ********************************************************
 
-The 2022.1 (and onward) based Kria Starter Kit Linux BSP contains support for the existing OpenAMP community demos summarized below. 
+The 2022.1 (and onward) the based Kria Starter Kit Linux BSP contains support for the existing OpenAMP community demos summarized as follows. 
 
-* openamp-echo-test - Linux to RPU bare metal communication echo test using rpsmsg
-* openamp-matrix-mul - Linux produces two matrices and sends them to the RPU for multiplication.
-* openamp-rpc-demo - Shows proxy behavior of the RPU as a co-processor to the APU
+* openamp-echo-test: Linux to RPU baremetal communication echo test using rpsmsg.
+* openamp-matrix-mul: Linux produces two matrices and sends them to the RPU for multiplication.
+* openamp-rpc-demo: Shows the proxy behavior of the RPU as a coprocessor to the APU.
 
-Details about each example applications can be found in `UG1186 <https://docs.xilinx.com/r/en-US/ug1186-zynq-openamp-gsg/OpenAMP-Demos>`_.
+Details about each example applications can be found in the *Libmetal and OpenAMP User Guide* ([UG1186])<https://docs.amd.com/go/en-US/ug1186-zynq-openamp-gsg/OpenAMP-Demos>.
 
+In 2022.1 and 2022.2, the PetaLinux BSPs with OpenAMP support require `system.dtb` to be replaced with `openamp.dtb` on the SD boot partition. The required .wic image and `openamp.dtb` are included in `BSPs <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#PetaLinux-Board-Support-Packages>`_.
 
-In 2022.1 and 2022.2, the PetaLinux BSPs with openamp support require system.dtb to be replaced with openamp.dtb on the SD boot partition. Required wic image and openamp.dtb are included in `BSPs <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#PetaLinux-Board-Support-Packages>`_.
-
-In 2023.1 and newer, both Yocto built PetaLinux and BSP based PetaLinux has OpenAmp packages available for installation on target. To download support, do the following on target::
+In 2023.1 and newer, both Yocto built PetaLinux and BSP based PetaLinux has OpenAMP packages available for installation on target. To download support, do the following on target::
 
    sudo dnf install open-amp-device-tree
    sudo dnf install packagegroup-petalinux-openamp-echo-test
@@ -72,9 +63,9 @@ In 2023.1 and newer, both Yocto built PetaLinux and BSP based PetaLinux has Open
    sudo dnf install packagegroup-petalinux-openamp-rpc-demo
    sudo reboot
 
-A reboot is required to pick up the OpenAmp device tree.
+A reboot is required to pick up the OpenAMP device tree.
 
-To run the OpenAMP applications reference below commands. Note that the `echo start` and `end stop` commands are required for each execution of the example application.
+To run the OpenAMP applications, reference the following commands. The `echo start` and `end stop` commands are required for each execution of the example application.
 
 Echo Test application::
 
@@ -83,7 +74,6 @@ Echo Test application::
    echo start > /sys/class/remoteproc/remoteproc0/state                # Load and start target Firmware onto remote processor.
    echo_test                                                           # Run echo test linux application.
    echo stop > /sys/class/remoteproc/remoteproc0/state                 # Stop target firmware.
-
 
 Output of Echo Test should look like this::
 
@@ -133,7 +123,6 @@ Matrix Multiplication::
    echo stop > /sys/class/remoteproc/remoteproc0/state                      # Stop target firmware.
    Proxy RPC application:
 
-
 Output of Matrix Multiplication should look like this::
 
    Master : Linux : Input matrix 0
@@ -168,7 +157,6 @@ Output of Matrix Multiplication should look like this::
    Quitting application ..
    Matrix multiply application end
 
-
 Proxy Application::
 
    sudo -s                                                             # This is required so that the ELF loading can occur.
@@ -176,7 +164,6 @@ Proxy Application::
    echo start > /sys/class/remoteproc/remoteproc0/state                # Load and start target Firmware onto remote processor.
    proxy_app                                                           # Run proxy application.
    echo stop > /sys/class/remoteproc/remoteproc0/state                 # Stop target firmware
-
 
 Expected output of Proxy Application::
 
@@ -214,24 +201,12 @@ Expected output of Proxy Application::
    Remote>RPC retargetting quitting ...
    Remote> Firmware's rpmsg-rpc-channel going down!
 
-
 Resources
 ----------------------
 
-* `Xilinx OpenAMP Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP>`_
-* `Libmetal and OpenAMP User Guide <https://docs.xilinx.com/r/en-US/ug1186-zynq-openamp-gsg/Libmetal-and-OpenAMP-User-Guide>`_
+* `OpenAMP Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP>`_
+* `*Libmetal and OpenAMP User Guide* (UG1186) <https://docs.amd.com/go/en-US/ug1186-zynq-openamp-gsg>`_
 
+.. Copyright © 2023–2025 Advanced Micro Devices, Inc
 
-
-
-License
------------------------
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
-
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-
+.. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.

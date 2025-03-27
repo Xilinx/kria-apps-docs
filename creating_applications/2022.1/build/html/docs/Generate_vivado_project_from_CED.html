@@ -87,7 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Baremetal Flow Example</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
 <ul>
@@ -96,21 +96,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Boot-modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Generate a Vivado Project from Example Project</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites-and-assumptions">Prerequisites and Assumptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-vivado-project-from-vivado-example-projects">Create Vivado project from Vivado Example Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-vivado-project-from-vivado-example-projects">Create a Vivado Project from Vivado Example Projects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#optional-make-the-platform-an-extensible-platform">Optional: Make the Platform an Extensible Platform</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#generate-wrapper">Generate Wrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-a-wrapper">Generate a Wrapper</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#generate-bitstream">Generate bitstream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-the-bitstream">Generate the Bitstream</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#generate-xsa-file">Generate .xsa file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
@@ -149,7 +148,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="generate-a-vivado-project-from-example-project">
 <h1>Generate a Vivado Project from Example Project<a class="headerlink" href="#generate-a-vivado-project-from-example-project" title="Permalink to this heading">¶</a></h1>
-<p>This tutorial details how to generate an example Vivado Project for your StarterKit from Vivado Example Projects. The example Vivado projects are used to generate .xsa file in AMD’s Yocto flow for Kria SOM.</p>
+<p>This tutorial details how to generate an example Vivado Project for your Starter Kit from Vivado Example Projects. The example Vivado projects are used to generate the .xsa file in AMD’s Yocto flow for Kria SOM.</p>
 <ul class="simple">
 <li><p>Assumption: Vivado 2024.2 and later</p></li>
 <li><p>Input: Vivado Example project</p></li>
@@ -162,54 +161,52 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Vivado tools installation that is 2024.2 and later</p></li>
 </ul>
 </div>
-<div class="section" id="create-vivado-project-from-vivado-example-projects">
-<h2>Create Vivado project from Vivado Example Projects<a class="headerlink" href="#create-vivado-project-from-vivado-example-projects" title="Permalink to this heading">¶</a></h2>
-<p>This flows starts with Vivado example projects containing information on K26, K24, KV260 CC, KR260 CC or KD240 CC. The example projects are also used to generate .xsa files for default Yocto flow.</p>
-<p>The K26/K24 SOM is supported in Vivado with example designs that configure SOM based peripherals, such as DDR, eMMC (for production SOM), etc.</p>
-<p>The KV260/KR260/KD240 StarterKit is supported in Vivado with example designs that configure both StarterKit SOM and CC based peripherals, such as DDR, USB, Ethernet, fan control, etc. It does not contain peripheral such as eMMC by default, as thats available on Production SOM only.</p>
-<p>Open Vivado, click on <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Example</span> <span class="pre">Project</span></code>:</p>
-<p><img alt="CED 1" src="../_images/CED1.PNG" /></p>
-<p>click through <code class="docutils literal notranslate"><span class="pre">next</span></code>, search for <code class="docutils literal notranslate"><span class="pre">kria</span></code> in template, and select <code class="docutils literal notranslate"><span class="pre">Kria</span> <span class="pre">Starter</span> <span class="pre">Kit</span> <span class="pre">Example</span> <span class="pre">Design</span></code> and click on <code class="docutils literal notranslate"><span class="pre">next</span></code>.</p>
-<p><img alt="CED 2" src="../_images/CED2.PNG" /></p>
-<p>Provide the desired project name and location and click on <code class="docutils literal notranslate"><span class="pre">next</span></code>. Then select the designed hardware configuration and click on <code class="docutils literal notranslate"><span class="pre">next</span></code>.</p>
-<p><img alt="CED 3" src="../_images/CED3.PNG" /></p>
-<p>Then select <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">bitstream</span></code> and click on <code class="docutils literal notranslate"><span class="pre">Next</span></code>:</p>
-<p><img alt="CED 4" src="../_images/CED4.PNG" /></p>
-<p>click <code class="docutils literal notranslate"><span class="pre">Finish</span></code>. A vivado base project for the desired Kria Starter Kit is created.</p>
+<div class="section" id="create-a-vivado-project-from-vivado-example-projects">
+<h2>Create a Vivado Project from Vivado Example Projects<a class="headerlink" href="#create-a-vivado-project-from-vivado-example-projects" title="Permalink to this heading">¶</a></h2>
+<p>This flows starts with Vivado example projects containing information on K26, K24, KV260 CC, KR260 CC, or KD240 CC. The example projects are also used to generate .xsa files for the default Yocto flow.</p>
+<p>The K26/K24 SOM is supported in Vivado with example designs that configure SOM based peripherals, such as DDR, eMMC (for production SOM), and so on.</p>
+<p>The KV260/KR260/KD240 StarterKit is supported in Vivado with example designs that configure both Starter Kit SOM and CC based peripherals, such as DDR, USB, Ethernet, fan control, and so on. It does not contain peripherals such as eMMC by default, as that is available on Production SOM only.</p>
+<ol class="simple">
+<li><p>Open Vivado, and click  <strong>Open Example Project</strong>.
+<img alt="CED 1" src="../_images/CED1.PNG" /></p></li>
+<li><p>Click through <strong>Next</strong>, search for <code class="docutils literal notranslate"><span class="pre">kria</span></code> in the template, select <strong>Kria Starter Kit Example Design</strong>, and click <strong>Next</strong>.
+<img alt="CED 2" src="../_images/CED2.PNG" /></p></li>
+<li><p>Provide the desired project name and location, and click <strong>next</strong>. Then select the designed hardware configuration, and click <strong>Next</strong>.
+<img alt="CED 3" src="../_images/CED3.PNG" /></p></li>
+<li><p>Select <strong>Default bitstream</strong>, and click <strong>Next</strong>.
+<img alt="CED 4" src="../_images/CED4.PNG" /></p></li>
+<li><p>Click <strong>Finish</strong>. A Vivado base project for the desired Kria Starter Kit is created.</p></li>
+</ol>
 </div>
 <div class="section" id="optional-make-the-platform-an-extensible-platform">
 <h2>Optional: Make the Platform an Extensible Platform<a class="headerlink" href="#optional-make-the-platform-an-extensible-platform" title="Permalink to this heading">¶</a></h2>
-<p>If the project is meant for a Vitis platform, developers can now indicate that the platform is an Extensible Vitis Platform. More details on how to create Extensible Platform can be found in <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces">UG1393</a>
-Project Manager -&gt; Settings -&gt; General -&gt; check “Project is an extensible Vitis Platform”
-<img alt="Extensible Platform" src="../_images/extensible_check.PNG" /></p>
-<p>Then check window -&gt; platform setup to select interfaces to be exposed as a platform. Below is an example snapshot indicating Vivado is reserving pl_ps_irq0 for the platform to interface with Vitis accelerators.
-<img alt="Platform setup" src="../_images/tool_flow_vivado_platform_setup.PNG" /></p>
-<div class="section" id="generate-wrapper">
-<h3>Generate Wrapper<a class="headerlink" href="#generate-wrapper" title="Permalink to this heading">¶</a></h3>
-<p>We need to now generate a wrapper or top module for the block design:</p>
-<p><code class="docutils literal notranslate"><span class="pre">Block</span> <span class="pre">Design</span> <span class="pre">window</span> <span class="pre">-&gt;</span> <span class="pre">sources</span> <span class="pre">window</span> <span class="pre">-&gt;</span> <span class="pre">Design</span> <span class="pre">Sources</span> <span class="pre">-&gt;</span> <span class="pre">right</span> <span class="pre">click</span> <span class="pre">on</span> <span class="pre">design_1</span></code> and select <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">HDL</span> <span class="pre">wrapper</span></code>:</p>
-<p><img alt="wrapper" src="../_images/create_HDL_wrapper.PNG" /></p>
-<p>In the pop-up, select “Let Vivado manage wrapper and auto-update” and press OK.</p>
+<p>If the project is meant for a Vitis platform, you can now indicate that the platform is an Extensible Vitis Platform. For details on how to create Extensible Platform, refer to the <em>Embedded Design Development Using Vitis User Guide</em> (<a class="reference external" href="https://docs.amd.com/go/en-US/ug1701-vitis-accelerated-embedded/Adding-Hardware-Interfaces">UG1701</a>).</p>
+<ol class="simple">
+<li><p>Select <strong>Project Manager</strong> -&gt; <strong>Settings</strong> -&gt; <strong>General</strong>, and check <strong>Project is an extensible Vitis Platform</strong>.
+<img alt="Extensible Platform" src="../_images/extensible_check.PNG" /></p></li>
+<li><p>Then select <strong>window</strong> -&gt; <strong>platform setup</strong> to select the interfaces to expose as a platform. The following example screenshot indicates Vivado is reserving pl_ps_irq0 for the platform to interface with Vitis accelerators.
+<img alt="Platform setup" src="../_images/tool_flow_vivado_platform_setup.PNG" /></p></li>
+</ol>
+<div class="section" id="generate-a-wrapper">
+<h3>Generate a Wrapper<a class="headerlink" href="#generate-a-wrapper" title="Permalink to this heading">¶</a></h3>
+<p>Now, generate a wrapper or top module for the block design:</p>
+<ol class="simple">
+<li><p>Navigate to <strong>Block Design window</strong> -&gt; <strong>sources window</strong> -&gt; <strong>Design Sources</strong>, right click <strong>design_1</strong>, and select <strong>Generate HDL wrapper</strong>.
+<img alt="wrapper" src="../_images/create_HDL_wrapper.PNG" /></p></li>
+<li><p>In the window, select <strong>Let Vivado manage wrapper and auto-update</strong>, and click <strong>OK</strong>.</p></li>
+</ol>
 </div>
 </div>
-<div class="section" id="generate-bitstream">
-<h2>Generate bitstream<a class="headerlink" href="#generate-bitstream" title="Permalink to this heading">¶</a></h2>
-<p>Now we are ready to generate bitstream. To generate bitstream, click on Program and Debug -&gt; Generate Bitstream. This process will take some time.</p>
+<div class="section" id="generate-the-bitstream">
+<h2>Generate the Bitstream<a class="headerlink" href="#generate-the-bitstream" title="Permalink to this heading">¶</a></h2>
+<p>Now you are ready to generate the bitstream. To generate the bitstream, click <strong>Program and Debug</strong> -&gt; <strong>Generate Bitstream</strong>. This process takes some time.</p>
 </div>
 <div class="section" id="generate-xsa-file">
 <h2>Generate .xsa file<a class="headerlink" href="#generate-xsa-file" title="Permalink to this heading">¶</a></h2>
-<p>After generating bitstream, we can generate a .xsa file for either Yocto, PetaLinux, or Vitis to import. Go to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Export</span> <span class="pre">-&gt;</span> <span class="pre">Export</span> <span class="pre">Hardware</span></code> to launch the Export Hardware Platform wizard. This wizard can also be launched by Export Platform button in Flow Navigator or Platform Setup window.</p>
-<p>Click through <code class="docutils literal notranslate"><span class="pre">next</span></code>, leaving most in default except in <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Platform</span> <span class="pre">State</span></code> select <code class="docutils literal notranslate"><span class="pre">Pre-synthesis,</span> <span class="pre">enable</span> <span class="pre">Include</span> <span class="pre">Bitstream</span></code>
-Click Finish.</p>
-<p>A .xsa file is generated. The export path is reported in the Tcl console.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
+<p>After generating the bitstream, generate a .xsa file for either Yocto, PetaLinux, or Vitis to import. Go to <strong>File</strong> -&gt; <strong>Export</strong> -&gt; <strong>Export Hardware</strong> to launch the Export Hardware Platform wizard. This wizard can also be launched by Export Platform button in Flow Navigator or Platform Setup window.</p>
+<p>Click through <strong>Next</strong>, leaving most in default, except in Select Platform State, select <strong>Pre-synthesis, enable Include Bitstream</strong>, and click <strong>Finish</strong>.</p>
+<p>A .xsa file is generated. The export path is reported in the Tcl Console.</p>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -226,7 +223,7 @@ Click Finish.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 23, 2025.
+      <span class="lastupdated">Last updated on March 26, 2025.
       </span></p>
   </div>
 

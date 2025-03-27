@@ -87,7 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Baremetal Flow Example</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
 <ul>
@@ -96,7 +96,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Bootmodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Boot-modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
@@ -107,7 +107,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Kria SOM CC FTDI Design Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#example-script">Example Script</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#known-issues">Known Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="soft_ip_notes.html">Soft IP for Kria Notes</a></li>
@@ -143,13 +142,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="kria-som-cc-ftdi-design-guide">
 <h1>Kria SOM CC FTDI Design Guide<a class="headerlink" href="#kria-som-cc-ftdi-design-guide" title="Permalink to this heading">¶</a></h1>
-<p>AMD designed carrier cards for Kria SOM use a FTDI chip for their USB-JTAG / UART implementation. The carrier card contains a dedicated EEPROM used by the FTDI chip to load its configuration at power-on.</p>
-<p>The schematics for each of the AMD carrier cards can be found on their resources tab: <a class="reference external" href="https://www.amd.com/en/products/system-on-modules/kria/k26/k26c-commercial.html#documentation">KV260</a>, <a class="reference external" href="https://www.amd.com/en/products/system-on-modules/kria/k26/kr260-robotics-starter-kit.html#documentation">KR260</a>. <a class="reference external" href="https://www.amd.com/en/products/system-on-modules/kria/k24/kd240-drives-starter-kit.html#documentation">KD240</a>. A “FTDI JTAG/UART” or similiar section in the schematic will detail the FTDI device and its EEPROM implementation on the carrier card.</p>
-<p>The FTDI EEPROM user area guide can be found in <a class="reference external" href="https://www.ftdichip.com/Documents/AppNotes/AN_121_FTDI_Device_EEPROM_User_Area_Usage.pdf">FT_000162</a>. The FDTI EEPROM can be programmed such that Vivado hardware manager can recognize the board as a device by using program_ftdi utility in XSDB. Refer to <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug908-vivado-programming-debugging/Programming-FTDI-Devices-for-Vivado-Hardware-Manager-Support">UG908</a> for more information.</p>
+<p>AMD designed Kria SOM carrier cards use a FTDI chip for their USB-JTAG/UART implementation. The carrier card contains a dedicated EEPROM used by the FTDI chip to load its configuration at power-on.</p>
+<p>The schematics for each of the AMD carrier cards can be found on their resources tab: <a class="reference external" href="https://www.amd.com/en/products/system-on-modules/kria/k26/k26c-commercial.html#documentation">KV260</a>, <a class="reference external" href="https://www.amd.com/en/products/system-on-modules/kria/k26/kr260-robotics-starter-kit.html#documentation">KR260</a>, and <a class="reference external" href="https://www.amd.com/en/products/system-on-modules/kria/k24/kd240-drives-starter-kit.html#documentation">KD240</a>. A “FTDI JTAG/UART” or similar section in the schematic details the FTDI device and its EEPROM implementation on the carrier card.</p>
+<p>The FTDI EEPROM user area guide can be found in <a class="reference external" href="https://www.ftdichip.com/Documents/AppNotes/AN_121_FTDI_Device_EEPROM_User_Area_Usage.pdf">FT_000162</a>. The FDTI EEPROM can be programmed such that Vivado hardware manager can recognize the board as a device by using program_ftdi utility in XSDB. For more information, refer to the <em>Vivado Design Suite User Guide: Programming and Debugging</em> (<a class="reference external" href="https://docs.amd.com/go/en-US/ug908-vivado-programming-debugging/Programming-FTDI-Devices-for-Vivado-Hardware-Manager-Support">UG908</a>).</p>
 <div class="section" id="example-script">
 <h2>Example Script<a class="headerlink" href="#example-script" title="Permalink to this heading">¶</a></h2>
-<p>We have also provided an example FDTI programming script that programs the FTDI EEPROM chip on AMD Kria SOM Starter Kits. Download the scripts <a class="reference external" href="../docs/ftdi_eeprom_example/ftdieeprom.tcl">ftdieeprom.tcl</a> and <a class="reference external" href="../docs/ftdi_eeprom_example/ftd2xx.tcl">ftd2xx.tcl</a>. Place them in the same folder on your PC. The PC should have an Vivado installation (Vivado_lab and HW_server are okay as well) as that provides utilities (XSDB) required in the script. Update the VNAME and MNAME in ftdieeprom.tcl to the appropiate board vendor and manufacturer name.</p>
-<p>In XSDB, cd to the folder containing the script:</p>
+<p>An example FDTI programming script is provided that programs the FTDI EEPROM chip on AMD Kria SOM Starter Kits. Download the scripts <a class="reference external" href="../docs/ftdi_eeprom_example/ftdieeprom.tcl">ftdieeprom.tcl</a> and <a class="reference external" href="../docs/ftdi_eeprom_example/ftd2xx.tcl">ftd2xx.tcl</a>. Place them in the same folder on your PC. The PC should have an Vivado installation (Vivado_lab and HW_server are okay as well) as that provides utilities (XSDB) required in the script. Update the VNAME in <code class="docutils literal notranslate"><span class="pre">ftdieeprom.tcl</span></code> to the appropriate board vendor name (maker for the custom carrier card). Manufacturer name has to be “Xilinx” for AMD tool chain to detect the board.</p>
+<p>In XSDB, change directory to the folder containing the script:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>ftdieeprom.tcl
 device_list
 program_eeprom<span class="w"> </span>&lt;Location&gt;<span class="w"> </span>&lt;boards&gt;<span class="w"> </span>&lt;SerialNumber&gt;
@@ -159,22 +158,15 @@ program_eeprom<span class="w"> </span>&lt;Location&gt;<span class="w"> </span>&l
 <span class="c1">#&lt;SerialNumber&gt; must be 12 characters</span>
 </pre></div>
 </div>
-<p>After programming, you need to unplug and re-plug the USB cable for the device_list command to show the updated EEPROM reads.</p>
+<p>After programming, you need to unplug and replug the USB cable for the <code class="docutils literal notranslate"><span class="pre">device_list</span></code> command to show the updated EEPROM reads.</p>
 </div>
 <div class="section" id="known-issues">
 <h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
-<li><p><a class="reference external" href="https://adaptivesupport.amd.com/s/article/000036977?language=en_US">Libraries are missing in 2024.1 xsdb</a> for programming either using program_ftdi or the example script. Please use other versions of the tool (e.g. 2023.2 or 2024.2 or others)</p></li>
-<li><p>Currently, Linux’s hw_server does not recognize the ZynqMPSoC device if the FTDI programs a different manufacturer name than “Xilinx” in FTDI EEPROM, thus xsdb from Linux will not see any target. Windows’s hw_server/xsdb does not have this issue. Until this is fixed, please use Windows to access the FPGA in XSDB.</p></li>
+<li><p><a class="reference external" href="https://adaptivesupport.amd.com/s/article/000036977?language=en_US">Libraries are missing in 2024.1 xsdb</a> for programming either using program_ftdi or the example script. Use other versions of the tool (that is, 2023.2, 2024.2, or others)</p></li>
+<li><p>Currently, Linux’s hw_server does not recognize the Zynq MPSoC device if the FTDI programs a different manufacturer name than “Xilinx” in FTDI EEPROM; Linux does not see any target from XSDB. Windows’s hw_server/xsdb does not have this issue. Until this is fixed, use Windows to access the FPGA in XSDB.</p></li>
 </ol>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -191,7 +183,7 @@ program_eeprom<span class="w"> </span>&lt;Location&gt;<span class="w"> </span>&l
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 23, 2025.
+      <span class="lastupdated">Last updated on March 26, 2025.
       </span></p>
   </div>
 

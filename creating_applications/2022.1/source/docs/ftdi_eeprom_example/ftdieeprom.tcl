@@ -14,9 +14,9 @@ set ftdi_configs {
 }
 
 set boards {
-    KDCC {FtdiConfig KDCC FirmwareId 0x584a0004 Vendor VNAME Product {SCK-KD} Manufacturer MNAME Description "KD Carrier Card"}
-    MLCC {FtdiConfig MLCC FirmwareId 0x584a0004 Vendor VNAME Product {X-MLCC-01} Manufacturer MNAME Description "ML Carrier Card"}
-    KRCC {FtdiConfig KRCC FirmwareId 0x584a0004 Vendor VNAME Product {SCK-KR} Manufacturer MNAME Description "KR Carrier Card"}
+    KDCC {FtdiConfig KDCC FirmwareId 0x584a0004 Vendor VNAME Product {SCK-KD} Manufacturer "Xilinx" Description "KD Carrier Card"}
+    MLCC {FtdiConfig MLCC FirmwareId 0x584a0004 Vendor VNAME Product {X-MLCC-01} Manufacturer "Xilinx" Description "ML Carrier Card"}
+    KRCC {FtdiConfig KRCC FirmwareId 0x584a0004 Vendor VNAME Product {SCK-KR} Manufacturer "Xilinx" Description "KR Carrier Card"}
 }
 
 proc dict_get_safe {dict args} {

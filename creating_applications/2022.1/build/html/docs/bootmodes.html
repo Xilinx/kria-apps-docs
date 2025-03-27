@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Setting Bootmodes &mdash; Kria™ SOM 2022.1 documentation</title>
+  <title>Setting Boot-modes &mdash; Kria™ SOM 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -87,7 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Bare-metal Flow Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Baremetal Flow Example</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
 <ul>
@@ -96,10 +96,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting Bootmodes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting Boot-modes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
@@ -129,7 +126,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Setting Bootmodes</li>
+      <li>Setting Boot-modes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/bootmodes.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -139,15 +136,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="setting-bootmodes">
-<h1>Setting Bootmodes<a class="headerlink" href="#setting-bootmodes" title="Permalink to this heading">¶</a></h1>
-<p>Once applications and custom HW designs are generated, developers need to move them to target. If using the Kria Starter Kit, developers can use various boot-modes to test monolithic boot to application software using the following TCL scripts to set the preferred development boot process. Developers will first put the functions in a <code class="docutils literal notranslate"><span class="pre">&lt;boot&gt;.tcl</span></code> script. Then, with the host machine connected with their SOM kit, they use the following commands in XSDB or XSCT:</p>
+  <div class="section" id="setting-boot-modes">
+<h1>Setting Boot-modes<a class="headerlink" href="#setting-boot-modes" title="Permalink to this heading">¶</a></h1>
+<p>When the applications and custom hardware designs are generated, you need to move them to target. If using the AMD Kria™ Starter Kit, you can use various boot-modes to test the monolithic boot to the application software using the following Tcl scripts to set the preferred development boot process. You first put the functions in a <code class="docutils literal notranslate"><span class="pre">&lt;boot&gt;.tcl</span></code> script. Then, with the host machine connected with your SOM kit, use the following commands in XSDB or XSCT:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>connect
 <span class="nb">source</span><span class="w"> </span>&lt;boot&gt;.tcl
 boot_&lt;mode&gt;
 </pre></div>
 </div>
-<p>To set K26 to JTAG bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
+<p>To set K26 to the JTAG boot-mode using XSDB/XSCT, add the following Tcl scripts, and call the function:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc<span class="w"> </span>boot_jtag<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to JTAG boot mode #</span>
@@ -162,7 +159,7 @@ rst<span class="w"> </span>-system
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>To set K26 to SD bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
+<p>To set K26 to the SD boot-mode using XSDB/XSCT, add the following Tcl scripts, and call the function:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc<span class="w"> </span>boot_sd<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to SD boot mode #</span>
@@ -180,7 +177,7 @@ con
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>To set K26 to QSPI bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
+<p>To set K26 to QSPI boot-mode using XSDB/XSCT, add the following Tcl scripts, and call the function:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc<span class="w"> </span>boot_qspi<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to QSPI boot mode #</span>
@@ -198,7 +195,7 @@ con
 <span class="o">}</span>
 </pre></div>
 </div>
-<p>To set K26 to eMMC bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
+<p>To set K26 to the eMMC boot-mode using XSDB/XSCT, add the following Tcl scripts, and call the function:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc<span class="w"> </span>boot_emmc<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to emmc boot mode #</span>
@@ -217,7 +214,7 @@ con
 <span class="o">}</span><span class="w"> </span>
 </pre></div>
 </div>
-<p>To set K26 to USB bootmode using XSDB/XSCT, add the following TCL scripts and call the function:</p>
+<p>To set K26 to the USB boot-mode using XSDB/XSCT, add the following Tcl scripts, and call the function:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>proc<span class="w"> </span>boot_usb<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">{</span>
 <span class="c1">############################</span>
 <span class="c1"># Switch to usb0 boot mode #</span>
@@ -236,14 +233,7 @@ con
 <span class="o">}</span><span class="w"> </span>
 </pre></div>
 </div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
-</div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 
 
            </div>
@@ -259,7 +249,7 @@ con
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on January 23, 2025.
+      <span class="lastupdated">Last updated on March 26, 2025.
       </span></p>
   </div>
 

@@ -146,44 +146,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3>Generating Xen Artifacts in Native Yocto Tool Flow<a class="headerlink" href="#generating-xen-artifacts-in-native-yocto-tool-flow" title="Permalink to this heading">¶</a></h3>
 <p>First, set up a Yocto project on a host with Yocto support using the instructions <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html">here</a>, stop after <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">setupsdk</span></code> step.</p>
 <p>Then append the following to the end of <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code> to enable Xen:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">BOOTMODE</span> <span class="o">=</span> <span class="s2">&quot;xen&quot;</span>
-IMAGE_INSTALL:append <span class="o">=</span> <span class="s2">&quot;packagegroup-petalinux-xen&quot;</span>
-<span class="nv">ENABLE_XEN_DTSI</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
-<span class="nv">ENABLE_XEN_QEMU_DTSI</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
-<span class="nv">ENABLE_XEN_UBOOT_SCR</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
-<span class="nv">XEN_SERIAL_CONSOLES</span> <span class="o">=</span> <span class="s2">&quot;serial1&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">BOOTMODE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;xen&quot;</span>
+IMAGE_INSTALL:append<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;packagegroup-petalinux-xen&quot;</span>
+<span class="nv">ENABLE_XEN_DTSI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="nv">ENABLE_XEN_QEMU_DTSI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="nv">ENABLE_XEN_UBOOT_SCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="nv">XEN_SERIAL_CONSOLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;serial1&quot;</span>
 </pre></div>
 </div>
 <p>Then build the image the usual way:</p>
 <p>To generate Xen support for KV260, use k26-smk-kv as the <code class="docutils literal notranslate"><span class="pre">&lt;machine</span> <span class="pre">name&gt;</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kv bitbake kria-image-full-cmdline
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kv<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
 </pre></div>
 </div>
 <p>To generate Xen support for KR260, use k26-smk-kr as the <code class="docutils literal notranslate"><span class="pre">&lt;machine</span> <span class="pre">name&gt;</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kr bitbake kria-image-full-cmdline
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kr<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
 </pre></div>
 </div>
 <p>There is no Xen support for combined MACHINE name <code class="docutils literal notranslate"><span class="pre">k26-smk</span></code>.</p>
 <p>Yocto generated wic that contains XENs support can be found in <code class="docutils literal notranslate"><span class="pre">&lt;yocto_project&gt;/build/tmp/deploy/images/&lt;machine</span> <span class="pre">name&gt;/kria-image-full-cmdline-&lt;machine</span> <span class="pre">name&gt;.wic</span></code> in the Yocto project.</p>
-</div>
+<details>
+  <summary>Expand for Xen Artifact generation in PetaLinux tool flow</summary></div>
 <div class="section" id="xen-artifacts-in-petalinux-tool-flow">
 <h3>Xen Artifacts in PetaLinux tool flow<a class="headerlink" href="#xen-artifacts-in-petalinux-tool-flow" title="Permalink to this heading">¶</a></h3>
 <p>Users are encouraged to use Yocto flow, as it is verified and steps are simpler in <a class="reference external" href="#prepare-sd-card">Prepare SD card</a> stage. If user still require to use PetaLinux, download a 2023.2 or later <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages">Kria SOM Starter Kit BSP</a>. Extract the PetaLinux project:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create -t project -s xilinx-&lt;hardware&gt;-&lt;version&gt;-&lt;timestamp&gt;.bsp
-<span class="nb">cd</span> xilinx-&lt;hardware&gt;-&lt;version&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-create<span class="w"> </span>-t<span class="w"> </span>project<span class="w"> </span>-s<span class="w"> </span>xilinx-&lt;hardware&gt;-&lt;version&gt;-&lt;timestamp&gt;.bsp
+<span class="nb">cd</span><span class="w"> </span>xilinx-&lt;hardware&gt;-&lt;version&gt;
 </pre></div>
 </div>
 <p>The wic image required is in <code class="docutils literal notranslate"><span class="pre">pre-built/linux/images/petalinux-sdimage.wic.xz</span></code>, and the XEN artifacts required can be found in <code class="docutils literal notranslate"><span class="pre">pre-built/linux/xen</span></code>.</p>
-</div>
+</details></div>
 </div>
 <div class="section" id="prepare-sd-card">
 <h2>Prepare SD Card<a class="headerlink" href="#prepare-sd-card" title="Permalink to this heading">¶</a></h2>
-<p>Flash the embedded Linux wic image from either <a class="reference external" href="#generating-xen-artifacts-in-native-yocto-tool-flow">Yocto</a> or <a class="reference external" href="#xen-artifacts-in-petalinux-tool-flow">PetaLinux flow</a> to an SD card using Balena Etcher. This will set up the SD card to contain 2 partitions - partition 1 with boot images (accessible by Windows and Linux) that we will discard and partition 2 with Kria Starter Kit embedded Linux rootfs (not accessible by Windows) that will also be used for XEN DOM0.</p>
+<p>Flash the embedded Linux wic image from either <a class="reference external" href="#generating-xen-artifacts-in-native-yocto-tool-flow">Yocto</a> or <a class="reference external" href="#xen-artifacts-in-petalinux-tool-flow">PetaLinux flow</a> to an SD card using Balena Etcher. This will set up the SD card to contain 2 partitions - partition 1 with boot images (accessible by Windows and Linux) that and partition 2 with Kria Starter Kit embedded Linux rootfs (not accessible by Windows) that will also be used for XEN DOM0. A 3rd partition is created to house rootfs of DOMU.</p>
 <div class="section" id="partition-1">
 <h3>Partition 1<a class="headerlink" href="#partition-1" title="Permalink to this heading">¶</a></h3>
-<p>If you are using Yocto generated wic image - partition 1 already contain XEN artifacts as the wic is generated with XEN support. Below step is for PetaLinux tool Flow only.</p>
-<p>PetaLinux tool flow only: Open the SD card on a host computer (can be Windows or Linux), go to partition 1, remove the boot images on that partition and copy all the XEN artifacts in <code class="docutils literal notranslate"><span class="pre">pre-built/linux/xen</span></code> into partition 1.</p>
-<p>We then need to copy over the Ubuntu image that we want to boot as DOMU. Download the <a class="reference external" href="https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz?_ga=2.93916574.2043050383.1684286640-1062417632.1681766747">iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz</a> file from <a class="reference external" href="https://ubuntu.com/download/amd-xilinx">Kria Ubuntu download site</a>, un-compress it, and copy <code class="docutils literal notranslate"><span class="pre">image.fit</span></code> file into partition 1 for DOMU later. This file is not being used in XEN booting, but we use SD partition 1 as a place to transfer the file onto target.</p>
+<p>If you are using Yocto generated wic image - partition 1 already contain XEN artifacts as the wic is generated with XEN support.</p>
+<details>
+  <summary>Expand for Partition 1 setup for PetaLinux Flow only</summary><p>PetaLinux tool flow only: Open the SD card on a host computer (can be Windows or Linux), go to partition 1, remove the boot images on that partition and copy all the XEN artifacts in <code class="docutils literal notranslate"><span class="pre">pre-built/linux/xen</span></code> into partition 1.</p>
+</details>
+<br/><p>Next, copy over the Ubuntu image that you want to boot as DOMU. You can download the <a class="reference external" href="https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz?_ga=2.93916574.2043050383.1684286640-1062417632.1681766747">iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz</a> file from <a class="reference external" href="https://ubuntu.com/download/amd-xilinx">Kria Ubuntu download site</a>, un-compress it, and copy <code class="docutils literal notranslate"><span class="pre">image.fit</span></code> file into partition 1 for DOMU later. This file is not being used in XEN booting, but is place in partition 1 as a way to transfer the file onto target.</p>
 </div>
 <div class="section" id="partition-2">
 <h3>Partition 2<a class="headerlink" href="#partition-2" title="Permalink to this heading">¶</a></h3>
@@ -194,49 +197,49 @@ IMAGE_INSTALL:append <span class="o">=</span> <span class="s2">&quot;packagegrou
 <p>This step needs to be done a Linux host.</p>
 <p>Download the Ubuntu rootfs for DomU. Ubuntu image can be downloaded from <a class="reference external" href="https://ubuntu.com/download/amd-xilinx">Kria Ubuntu download site</a>. For this example, we will be using <a class="reference external" href="https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4.xz?_ga=2.22151480.2043050383.1684286640-1062417632.1681766747">iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4.xz</a> file.</p>
 <p>Unzip the downloaded rootfs file to .ext4 using following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xz -d iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4.xz
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xz<span class="w"> </span>-d<span class="w"> </span>iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4.xz
 </pre></div>
 </div>
-<p>Plug the SD card into a Linux host machine, in this example we assume the sd card is found in <code class="docutils literal notranslate"><span class="pre">/dev/sda</span></code> but you may find it in different file path dependent on your machine. Observe the 2 partitions with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">fdisk</span> <span class="pre">-l</span> <span class="pre">/dev/sda</span></code>, it should look like the following with two partitions:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Device     Boot   Start      End Sectors Size Id Type
-/dev/sda1  *          <span class="m">8</span>  <span class="m">4194311</span> <span class="m">4194304</span>   2G  c W95 FAT32 <span class="o">(</span>LBA<span class="o">)</span>
-/dev/sda2       <span class="m">4194312</span> <span class="m">12582919</span> <span class="m">8388608</span>   4G <span class="m">83</span> Linux
+<p>Plug the SD card into a Linux host machine, in this example we assume the sd card is found in <code class="docutils literal notranslate"><span class="pre">/dev/sda</span></code> but you can find it in different file path dependent on your machine. Observe the 2 partitions with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">fdisk</span> <span class="pre">-l</span> <span class="pre">/dev/sda</span></code>, it should look like the following with two partitions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Device<span class="w">     </span>Boot<span class="w">   </span>Start<span class="w">      </span>End<span class="w"> </span>Sectors<span class="w"> </span>Size<span class="w"> </span>Id<span class="w"> </span>Type
+/dev/sda1<span class="w">  </span>*<span class="w">          </span><span class="m">8</span><span class="w">  </span><span class="m">4194311</span><span class="w"> </span><span class="m">4194304</span><span class="w">   </span>2G<span class="w">  </span>c<span class="w"> </span>W95<span class="w"> </span>FAT32<span class="w"> </span><span class="o">(</span>LBA<span class="o">)</span>
+/dev/sda2<span class="w">       </span><span class="m">4194312</span><span class="w"> </span><span class="m">12582919</span><span class="w"> </span><span class="m">8388608</span><span class="w">   </span>4G<span class="w"> </span><span class="m">83</span><span class="w"> </span>Linux
 </pre></div>
 </div>
 <p>Enter command <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">fdisk</span> <span class="pre">/dev/sda</span></code>, Enter <code class="docutils literal notranslate"><span class="pre">n</span></code> to create a new partition. It will ask about partition type, enter <code class="docutils literal notranslate"><span class="pre">p</span></code>, next it will ask about Partition number, please hit enter or enter the number <code class="docutils literal notranslate"><span class="pre">3</span></code>. Finally, it will ask for First and Last Sector - hit enter to automatically create partition with all remaining storage on sd card.</p>
 <p>Now it should look like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
-Partition <span class="nb">type</span>
-p primary <span class="o">(</span><span class="m">2</span> primary, <span class="m">0</span> extended, <span class="m">2</span> free<span class="o">)</span>
-e extended <span class="o">(</span>container <span class="k">for</span> logical partitions<span class="o">)</span>
-Select <span class="o">(</span>default p<span class="o">)</span>: p
-Partition number <span class="o">(</span><span class="m">3</span>,4, default <span class="m">3</span><span class="o">)</span>: <span class="m">3</span>
- 
-First sector <span class="o">(</span><span class="m">12582920</span>-31116287, default <span class="m">12584960</span><span class="o">)</span>:
-Last sector, +sectors or +size<span class="o">{</span>K,M,G,T,P<span class="o">}</span> <span class="o">(</span><span class="m">12584960</span>-31116287, default <span class="m">31116287</span><span class="o">)</span>:
- 
-Created a new partition <span class="m">3</span> of <span class="nb">type</span> <span class="s1">&#39;Linux&#39;</span> and of size <span class="m">8</span>.9 GiB.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Command<span class="w"> </span><span class="o">(</span>m<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">help</span><span class="o">)</span>:<span class="w"> </span>n
+Partition<span class="w"> </span><span class="nb">type</span>
+p<span class="w"> </span>primary<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>primary,<span class="w"> </span><span class="m">0</span><span class="w"> </span>extended,<span class="w"> </span><span class="m">2</span><span class="w"> </span>free<span class="o">)</span>
+e<span class="w"> </span>extended<span class="w"> </span><span class="o">(</span>container<span class="w"> </span><span class="k">for</span><span class="w"> </span>logical<span class="w"> </span>partitions<span class="o">)</span>
+Select<span class="w"> </span><span class="o">(</span>default<span class="w"> </span>p<span class="o">)</span>:<span class="w"> </span>p
+Partition<span class="w"> </span>number<span class="w"> </span><span class="o">(</span><span class="m">3</span>,4,<span class="w"> </span>default<span class="w"> </span><span class="m">3</span><span class="o">)</span>:<span class="w"> </span><span class="m">3</span>
+<span class="w"> </span>
+First<span class="w"> </span>sector<span class="w"> </span><span class="o">(</span><span class="m">12582920</span>-31116287,<span class="w"> </span>default<span class="w"> </span><span class="m">12584960</span><span class="o">)</span>:
+Last<span class="w"> </span>sector,<span class="w"> </span>+sectors<span class="w"> </span>or<span class="w"> </span>+size<span class="o">{</span>K,M,G,T,P<span class="o">}</span><span class="w"> </span><span class="o">(</span><span class="m">12584960</span>-31116287,<span class="w"> </span>default<span class="w"> </span><span class="m">31116287</span><span class="o">)</span>:
+<span class="w"> </span>
+Created<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>partition<span class="w"> </span><span class="m">3</span><span class="w"> </span>of<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s1">&#39;Linux&#39;</span><span class="w"> </span>and<span class="w"> </span>of<span class="w"> </span>size<span class="w"> </span><span class="m">8</span>.9<span class="w"> </span>GiB.
 </pre></div>
 </div>
 <p>Next, enter <code class="docutils literal notranslate"><span class="pre">w</span></code> to write the partition table and exit.</p>
 <p>Next, format the newly created partition to support ext4 rootfs. Use following command to format it to a .ext4 format:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkfs.ext4 -L root /dev/sda3
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkfs.ext4<span class="w"> </span>-L<span class="w"> </span>root<span class="w"> </span>/dev/sda3
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">/dev/sda3</span></code> is the path for new partition that we will use for rootfs for DOMU. Run “sudo fdisk -l” again to verify all the partition. It should look similar to what is shown below with 3 partitions:</p>
+<p><code class="docutils literal notranslate"><span class="pre">/dev/sda3</span></code> is the path for new partition that is used for rootfs for DOMU. Run “sudo fdisk -l” again to verify all the partition. It should look similar to what is shown below with 3 partitions:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Device     Boot    Start      End  Sectors  Size Id Type
 /dev/sda1  *           8  4194311  4194304    2G  c W95 FAT32 (LBA)
 /dev/sda2        4194312 12582919  8388608    4G 83 Linux
 /dev/sda3       12584960 31116287 18531328  8.9G 83 Linux
 </pre></div>
 </div>
-<p>lastly,  copy Ubuntu rootfs that we download and extracted earlier to partition <code class="docutils literal notranslate"><span class="pre">/dev/sda3</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dd <span class="k">if</span><span class="o">=</span>iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4  <span class="nv">of</span><span class="o">=</span>/dev/sda3
+<p>lastly,  copy Ubuntu rootfs that was downloaded and extracted earlier to partition <code class="docutils literal notranslate"><span class="pre">/dev/sda3</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4<span class="w">  </span><span class="nv">of</span><span class="o">=</span>/dev/sda3
 </pre></div>
 </div>
 <p>Quick tip: if dd gives error that “No space left on device” yet the file is smaller than space allocated, do the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo rm /dev/sda3
-sudo fdisk /dev/sda <span class="c1"># enter &quot;D&quot; and then &quot;3&quot; to delete partition 3</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>rm<span class="w"> </span>/dev/sda3
+sudo<span class="w"> </span>fdisk<span class="w"> </span>/dev/sda<span class="w"> </span><span class="c1"># enter &quot;D&quot; and then &quot;3&quot; to delete partition 3</span>
 <span class="c1">#then remove the SD card and reinsert and go back to the beginning of this section to start from creating partition 3 again.</span>
 </pre></div>
 </div>
@@ -246,66 +249,67 @@ sudo fdisk /dev/sda <span class="c1"># enter &quot;D&quot; and then &quot;3&quot
 <div class="section" id="boot-xen-on-target">
 <h2>Boot XEN On Target<a class="headerlink" href="#boot-xen-on-target" title="Permalink to this heading">¶</a></h2>
 <p>Plug the SD card into Starter Kit and turn on the power. If you used Yocto to generate the Xen artifact - it will automatically boot Xen- you can move to the next section.</p>
-<p>If you used PetaLinux to generate Xen artifacts, you should automatically get to u-boot command prompt. Enter this to load xen_boot_sd.scr to 0xc00000 and source the script to boot xen:</p>
+<details>
+  <summary>Boot XEN with PetaLinux tool flow</summary><p>If you used PetaLinux to generate Xen artifacts, you should automatically get to u-boot command prompt. Enter this to load xen_boot_sd.scr to 0xc00000 and source the script to boot xen:</p>
 <p>For KV260, SD card is on mmc, therefore use the following commands to boot:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>load mmc <span class="m">1</span>:1 0xc00000 xen_boot_sd.scr <span class="c1">#KV260 only!</span>
-<span class="nb">source</span> 0xc00000
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>load<span class="w"> </span>mmc<span class="w"> </span><span class="m">1</span>:1<span class="w"> </span>0xc00000<span class="w"> </span>xen_boot_sd.scr<span class="w"> </span><span class="c1">#KV260 only!</span>
+<span class="nb">source</span><span class="w"> </span>0xc00000
 </pre></div>
 </div>
 <p>for KR260, SD Card is on USB, therefore use the following commands to boot:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>load usb <span class="m">0</span> 0xc00000 xen_boot_sd.scr <span class="c1">#KR260 only!</span>
-<span class="nb">source</span> 0xc00000
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>load<span class="w"> </span>usb<span class="w"> </span><span class="m">0</span><span class="w"> </span>0xc00000<span class="w"> </span>xen_boot_sd.scr<span class="w"> </span><span class="c1">#KR260 only!</span>
+<span class="nb">source</span><span class="w"> </span>0xc00000
 </pre></div>
 </div>
 <p>This will boot Kria Starter Kit embedded Linux XEN aka DOM0.</p>
-<div class="section" id="boot-ubuntu-as-domu">
+</details><div class="section" id="boot-ubuntu-as-domu">
 <h3>Boot UBuntu as DOMU<a class="headerlink" href="#boot-ubuntu-as-domu" title="Permalink to this heading">¶</a></h3>
 <p>First, change to root:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -s
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-s
 </pre></div>
 </div>
-<p>Locate <code class="docutils literal notranslate"><span class="pre">image.fit</span></code> file in <code class="docutils literal notranslate"><span class="pre">/boot/image.fit</span></code>, but location may vary dependent on release and tool used. One can search for it using <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">/</span> <span class="pre">-iname</span> <span class="pre">&quot;image.fit&quot;</span></code>.</p>
+<p>Locate <code class="docutils literal notranslate"><span class="pre">image.fit</span></code> file in <code class="docutils literal notranslate"><span class="pre">/boot/image.fit</span></code>, but location can vary dependent on release and tool used. You can search for it using <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">/</span> <span class="pre">-iname</span> <span class="pre">&quot;image.fit&quot;</span></code>.</p>
 <p>extract the Ubuntu kernel image:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dumpimage -T flat_dt -p <span class="m">0</span> /boot/image.fit -o /home/petalinux/ubuntu_Image <span class="c1"># for KV260</span>
-dumpimage -T flat_dt -p <span class="m">0</span> /boot/image.fit -o /home/petalinux/ubuntu_Image <span class="c1"># for KR260</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dumpimage<span class="w"> </span>-T<span class="w"> </span>flat_dt<span class="w"> </span>-p<span class="w"> </span><span class="m">0</span><span class="w"> </span>/boot/image.fit<span class="w"> </span>-o<span class="w"> </span>/home/petalinux/ubuntu_Image<span class="w"> </span><span class="c1"># for KV260</span>
+dumpimage<span class="w"> </span>-T<span class="w"> </span>flat_dt<span class="w"> </span>-p<span class="w"> </span><span class="m">0</span><span class="w"> </span>/boot/image.fit<span class="w"> </span>-o<span class="w"> </span>/home/petalinux/ubuntu_Image<span class="w"> </span><span class="c1"># for KR260</span>
 </pre></div>
 </div>
-<p>Next, check how much memory is dom0 consuming and available memory using <code class="docutils literal notranslate"><span class="pre">xl</span> <span class="pre">info</span></code>. In our example we should have a little more than 1.9G left to use for DOMU and therefore we will allocate 1900MB for DOMU in next step.</p>
+<p>Next, check how much memory is dom0 consuming and available memory using <code class="docutils literal notranslate"><span class="pre">xl</span> <span class="pre">info</span></code>. In this example there should be a little more than 1.9G left to use for DOMU. Therefore you can allocate 1900MB for DOMU in next step.</p>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">guest0.cfg</span></code> file with the following content:</p>
 <p>If running Xen on KV260:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;guest0&quot;</span>
-<span class="nv">kernel</span> <span class="o">=</span> <span class="s2">&quot;/home/petalinux/ubuntu_Image&quot;</span> <span class="c1"># Ubuntu Kernel extracted</span>
-<span class="nv">disk</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;/dev/mmcblk1p3,,xvda&#39;</span><span class="o">]</span> <span class="c1"># Ubuntu Rootfs in partition 3</span>
-<span class="nv">extra</span> <span class="o">=</span> <span class="s2">&quot;console=hvc0 root=/dev/xvda&quot;</span>
-<span class="nv">memory</span> <span class="o">=</span> <span class="m">1900</span> <span class="c1"># This can be increased if there is more free memory.</span>
-<span class="nv">vcpus</span> <span class="o">=</span> <span class="m">2</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;guest0&quot;</span>
+<span class="nv">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/home/petalinux/ubuntu_Image&quot;</span><span class="w"> </span><span class="c1"># Ubuntu Kernel extracted</span>
+<span class="nv">disk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;/dev/mmcblk1p3,,xvda&#39;</span><span class="o">]</span><span class="w"> </span><span class="c1"># Ubuntu Rootfs in partition 3</span>
+<span class="nv">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;console=hvc0 root=/dev/xvda&quot;</span>
+<span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1900</span><span class="w"> </span><span class="c1"># This can be increased if there is more free memory.</span>
+<span class="nv">vcpus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
 </pre></div>
 </div>
 <p>If running Xen on KR260:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;guest0&quot;</span>
-<span class="nv">kernel</span> <span class="o">=</span> <span class="s2">&quot;/home/petalinux/ubuntu_Image&quot;</span> <span class="c1"># Ubuntu Kernel extracted</span>
-<span class="nv">disk</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;/dev/sda3,,xvda&#39;</span><span class="o">]</span> <span class="c1"># Ubuntu Rootfs in partition 3</span>
-<span class="nv">extra</span> <span class="o">=</span> <span class="s2">&quot;console=hvc0 root=/dev/xvda&quot;</span>
-<span class="nv">memory</span> <span class="o">=</span> <span class="m">1900</span> <span class="c1"># This can be increased if there is more free memory.</span>
-<span class="nv">vcpus</span> <span class="o">=</span> <span class="m">2</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;guest0&quot;</span>
+<span class="nv">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/home/petalinux/ubuntu_Image&quot;</span><span class="w"> </span><span class="c1"># Ubuntu Kernel extracted</span>
+<span class="nv">disk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;/dev/sda3,,xvda&#39;</span><span class="o">]</span><span class="w"> </span><span class="c1"># Ubuntu Rootfs in partition 3</span>
+<span class="nv">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;console=hvc0 root=/dev/xvda&quot;</span>
+<span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1900</span><span class="w"> </span><span class="c1"># This can be increased if there is more free memory.</span>
+<span class="nv">vcpus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
 </pre></div>
 </div>
 <p>Next, check if /dev/mmcblk1p3 or /dev/sda3 is mounted automatically by dom0 using <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-h</span></code>, if its mounted, unmount it so that DOMU can use it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>umount /dev/mmcblk1p3 <span class="c1"># KV260 only</span>
-umount /dev/sda3 <span class="c1"># KR260 only</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>umount<span class="w"> </span>/dev/mmcblk1p3<span class="w"> </span><span class="c1"># KV260 only</span>
+umount<span class="w"> </span>/dev/sda3<span class="w"> </span><span class="c1"># KR260 only</span>
 </pre></div>
 </div>
 <p>Start guest0/DOMU using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xl create -c guest0.cfg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xl<span class="w"> </span>create<span class="w"> </span>-c<span class="w"> </span>guest0.cfg
 </pre></div>
 </div>
 <p>This will boot to <code class="docutils literal notranslate"><span class="pre">root&#64;ubuntu</span></code>.</p>
 <p>To get out of DOMU, press <code class="docutils literal notranslate"><span class="pre">ctrl-]</span></code>.</p>
 <p>After getting out of DOMU, in XEN DOM0 prompt, Enter <code class="docutils literal notranslate"><span class="pre">xl</span> <span class="pre">list</span></code> to see a list of OSes running, you should see something like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xilinx-kv260-starterkit-20231:/home/petalinux# xl list
-Name                                        ID   Mem VCPUs      State   Time<span class="o">(</span>s<span class="o">)</span>
-Domain-0                                     <span class="m">0</span>  <span class="m">2048</span>     <span class="m">1</span>     r-----   <span class="m">17916</span>.8
-guest0                                       <span class="m">1</span>  <span class="m">1899</span>     <span class="m">2</span>     r-----   <span class="m">28894</span>.7
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xilinx-kv260-starterkit-20231:/home/petalinux#<span class="w"> </span>xl<span class="w"> </span>list
+Name<span class="w">                                        </span>ID<span class="w">   </span>Mem<span class="w"> </span>VCPUs<span class="w">      </span>State<span class="w">   </span>Time<span class="o">(</span>s<span class="o">)</span>
+Domain-0<span class="w">                                     </span><span class="m">0</span><span class="w">  </span><span class="m">2048</span><span class="w">     </span><span class="m">1</span><span class="w">     </span>r-----<span class="w">   </span><span class="m">17916</span>.8
+guest0<span class="w">                                       </span><span class="m">1</span><span class="w">  </span><span class="m">1899</span><span class="w">     </span><span class="m">2</span><span class="w">     </span>r-----<span class="w">   </span><span class="m">28894</span>.7
 </pre></div>
 </div>
 <p>To access the guest0 DOMU again, do <code class="docutils literal notranslate"><span class="pre">xl</span> <span class="pre">console</span> <span class="pre">&lt;ID&gt;</span></code></p>
@@ -368,8 +372,8 @@ vcpus = 1
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on March 26, 2024.
+    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 20, 2025.
       </span></p>
   </div>
 
