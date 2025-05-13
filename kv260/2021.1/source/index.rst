@@ -1,11 +1,10 @@
-﻿###############################################################################################################
+#######################################################################
 Kria KV260 Vision AI Starter Kit Applications
-###############################################################################################################
+#######################################################################
 
 
 
 .. include:: ../../../shared/somtoctree.txt
-
 
 
 .. image:: docs/media/sc_rdme.png
@@ -41,7 +40,7 @@ With both hardware and software development requirements simplified, the KV260 V
 
 .. sidebar:: Getting Started
    
-   For more information, see  `Getting Started with Kria KV260 Vision AI Starter Kit <https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/getting-started.html>`_.
+   For more information, see `Getting Started with Kria KV260 Vision AI Starter Kit <https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/getting-started.html>`_.
 
 
 

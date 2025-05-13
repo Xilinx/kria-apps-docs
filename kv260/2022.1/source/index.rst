@@ -1,6 +1,11 @@
-################################################################################
+####################################################
 Kria KV260 Vision AI Starter Kit Applications
-################################################################################
+####################################################
+
+
+
+
+.. include:: ../../../shared/somtoctree.txt
 
 
 .. image:: docs/media/sc_rdme.png
@@ -32,7 +37,7 @@ Kria KV260 Vision AI Starter Kit Applications
 .. image:: docs/media/bist.png
    :width: 200
    :alt: Built-In Self Test (BIST)
-   :target: ./docs/bist/bist_landing.html
+   :target: https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/bist.html
 
 
 
@@ -69,7 +74,6 @@ With both hardware and software development requirements simplified, the KV260 V
 
 
 
-.. include:: ../../../shared/somtoctree.txt
 
 
 
@@ -83,7 +87,7 @@ With both hardware and software development requirements simplified, the KV260 V
    Defect Detect <docs/defect-detect/defectdetect_landing>
    NLP SmartVision <docs/nlp-smartvision/nlp_smartvision_landing>
    AI Box Distributed ReID <docs/aibox/aibox-dist_landing>
-   Built-In Self Test (BIST) <docs/bist/bist_landing>
+   Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/bist.html>
 
 
 
@@ -112,7 +116,7 @@ With both hardware and software development requirements simplified, the KV260 V
    :caption: Other Releases
    :hidden:
 
-   2021.1 <https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/index.html>
+   2021.1 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/build/html/index.html>
 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
 

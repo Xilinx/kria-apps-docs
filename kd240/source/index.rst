@@ -45,7 +45,7 @@ Kria KD240 Drives Starter Kit
    :caption: KD240 Applications
    :hidden:
 
-   Built-In Self Test (BIST) <./docs/bist/bist_landing>
+   Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/bist.html>
    ROS 2 Multi-Node Communications via TSN <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/ros2_multinode_communication_via_tsn.html>
    FOC Motor Control <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/foc_motor_ctrl.html>
 

@@ -37,7 +37,7 @@ Kria KR260 Robotics Starter Kit Applications
 .. image:: docs/media/bist.png
    :width: 200
    :alt: Built-In Self Test (BIST)
-   :target: ./docs/bist/bist_landing.html
+   :target: https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/bist.html
 
 
 
@@ -59,7 +59,7 @@ Kria KR260 Robotics Starter Kit Applications
    ROS 2 Multi-Node Communications via TSN <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/ros2_multinode_communication_via_tsn.html>
    ROS 2 Perception Node <docs/ros2_perception_node/ros2_perception_node_landing>
    Precision Time Management <docs/gps_1588_ptp/gps_1588_ptp_precision_time_mgmt>
-   Built-In Self Test (BIST) <docs/bist/bist_landing>
+   Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/bist.html>
 
 
 

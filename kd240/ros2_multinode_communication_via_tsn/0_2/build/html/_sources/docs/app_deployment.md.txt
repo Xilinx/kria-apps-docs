@@ -29,23 +29,9 @@ Documentation:
 * Added ROS2 Jazzy installation instructions.
 * Added instructions to add user to the `dialout` group to access `/dev/tty` devices for RS485 Temp-Humidity sensor test.
 
-### Version - v0.1.1
+### Version - v0.1
 
-Added support for CAN Communication between board to board.
-
-#### Change Log
-
-Apps:
-
-* Provides seamless communication between devices through the CAN interface, enabling efficient data exchange for various applications.
-
-Tests:
-
-* Example to support CAN communication using the PMOD CAN between board to board.
-
-Documentation:
-
-* Added steps and instructions to demonstrate CAN Communication.
+Initial release.
 
 ## Pre-requisite
 
@@ -112,7 +98,7 @@ Testing was performed with the following artifacts:
 | xlnx-tsn-utils                 | 0.4.1-0xlnx1                      |
 | xlnx-app-kr260-tsn-examples    | 0.2-0xlnx3                        |
 | xlnx-app-kr260-pmod-rs485-test | 0.2-0xlnx1                        |
-| ros-humble-xlnx-pubsub         | 0.1.0-0noble                      |
+| ros-jazzy-xlnx-pubsub          | 0.1.0-0noble                      |
 | ethtool                        | 5.16                              |
 | lldpad                         | 1.1+git20241016-tsn-0ubuntu1xlnx2 |
 
@@ -124,7 +110,7 @@ Testing was performed with the following artifacts:
 | [Xilinx TSN Utils](https://github.com/Xilinx/tsn-utils)                                  | [v0.4](https://github.com/Xilinx/tsn-utils/releases/tag/v0.4)                                              |
 | [Xilinx TSN Talker-Listener](https://github.com/Xilinx/tsn-talker-listener)              | [v0.2](https://github.com/Xilinx/tsn-talker-listener/releases/tag/v0.2)                                      |
 | [Xilinx PMOD RS485 Test](https://github.com/Xilinx/pmod-rs485-test)                      | [v0.2](https://github.com/Xilinx/pmod-rs485-test/releases/tag/v0.2)                                           |
-| [Xilinx ROS TSN PubSub](https://github.com/Xilinx/ros-tsn-pubsub)                        | [v0.1.1](https://github.com/Xilinx/ros-tsn-pubsub/releases/tag/v0.1.1)                                       |
+| [Xilinx ROS TSN PubSub](https://github.com/Xilinx/ros-tsn-pubsub)                        | [v0.2](https://github.com/Xilinx/ros-tsn-pubsub/releases/tag/v0.2)                                       |
 
 ### Initial Setup
 
@@ -183,7 +169,7 @@ Testing was performed with the following artifacts:
        ```bash
         mkdir -p ~/Downloads
         wget https://github.com/Xilinx/ros-tsn-pubsub/releases/download/v0.1/ros-jazzy-xlnx-pubsub_0.1.0-0noble_arm64.deb -P ~/Downloads/
-        sudo apt install -y ~/Downloads/ros-humble-xlnx-pubsub_0.1.0-0noble_arm64.deb
+        sudo apt install -y ~/Downloads/ros-jazzy-xlnx-pubsub_0.1.0-0noble_arm64.deb
        ```
 
     * Install network-manager related packages.

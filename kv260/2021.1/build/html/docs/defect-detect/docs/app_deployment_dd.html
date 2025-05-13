@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -153,15 +152,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Setting up the Board and Application Deployment</h1> </td>
  </tr>
-</table><section id="setting-up-the-board-and-application-deployment">
+</table><div class="section" id="setting-up-the-board-and-application-deployment">
 <h1>Setting up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document shows how to set up the board and run the <strong>defect-detect</strong> application.</p>
-</section>
-<section id="introduction-to-the-test-environment">
+</div>
+<div class="section" id="introduction-to-the-test-environment">
 <h2>Introduction to the Test Environment<a class="headerlink" href="#introduction-to-the-test-environment" title="Permalink to this heading">¶</a></h2>
-<section id="setting-up-the-live-source">
+<div class="section" id="setting-up-the-live-source">
 <h3>Setting Up the Live Source<a class="headerlink" href="#setting-up-the-live-source" title="Permalink to this heading">¶</a></h3>
 <p>When setting up the SOM Board for the live camera source, adhere to the following guidelines:</p>
 <ul class="simple">
@@ -176,8 +175,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>In the test environment, the light intensity was ~08 LUX.</p></li>
 </ul>
 <p><strong>Note</strong>: If the preview image is not satisfactory, accordingly adjust the parameters mentioned above.</p>
-</section>
-<section id="setting-up-the-test-environment">
+</div>
+<div class="section" id="setting-up-the-test-environment">
 <h3>Setting Up the Test Environment<a class="headerlink" href="#setting-up-the-test-environment" title="Permalink to this heading">¶</a></h3>
 <p><em>Note</em>: Ensure that you have the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c">Gstreamer packages</a> installed on your Linux PC. If you are using Ubuntu as your Linux distribution, ensure that the Ubuntu version is atleast <strong>16.04</strong>.</p>
 <p>You need to download all the sample mango images from the <a class="reference external" href="http://www.cofilab.com/wp-content/downloads/DB_Mango.rar">Cofilab site</a> to the Linux PC.</p>
@@ -216,9 +215,9 @@ cat Mango_*.y8 &gt; input_video.y8
 </ol>
 <p>The Defect Detection application’s design processes these images and sends the results and the processed images on to the monitor.</p>
 <p>See <a class="reference internal" href="known_issues_dd.html"><span class="doc">Known Issues</span></a> with the Defect Detect application.</p>
-</section>
-</section>
-<section id="setting-up-the-som-board">
+</div>
+</div>
+<div class="section" id="setting-up-the-som-board">
 <h2>Setting up the SOM Board<a class="headerlink" href="#setting-up-the-som-board" title="Permalink to this heading">¶</a></h2>
 <blockquote>
 <div><p><strong>Note</strong>: Skip Step 1, if you have already flashed the SD Card with the KV260 Vision AI Starter Kit Image (kv260-sdcard.img.wic)</p>
@@ -282,8 +281,8 @@ passwd: password updated successfully
 </div>
 </li>
 </ol>
-</section>
-<section id="installing-the-defect-detect-package">
+</div>
+<div class="section" id="installing-the-defect-detect-package">
 <h2>Installing the Defect Detect package<a class="headerlink" href="#installing-the-defect-detect-package" title="Permalink to this heading">¶</a></h2>
 <p>Install the latest application packages.</p>
 <ol>
@@ -311,8 +310,8 @@ passwd: password updated successfully
 <blockquote>
 <div><p><strong>NOTE</strong>: For setups without access to the internet, it is possible to download and use the packages locally. Refer to the <a class="reference internal" href="../../local_package_feed.html"><span class="doc">Install from a local package feed</span></a> for instructions.</p>
 </div></blockquote>
-</section>
-<section id="firmware-loading">
+</div>
+<div class="section" id="firmware-loading">
 <h2>Firmware Loading<a class="headerlink" href="#firmware-loading" title="Permalink to this heading">¶</a></h2>
 <p>The Defect Detection application firmware consist of bitstream, device tree overlay (<em>dtbo</em>) and the <em>xclbin</em> file. The Defect Detection firmware is loaded dynamically on user request once Linux is fully booted. Use the <em>xmutil</em> utility to list and load the firmware.</p>
 <p>To list the available accelerator applications, run:</p>
@@ -334,11 +333,11 @@ passwd: password updated successfully
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xmutil</span> <span class="n">loadapp</span> <span class="n">kv260</span><span class="o">-</span><span class="n">defect</span><span class="o">-</span><span class="n">detect</span>
 </pre></div>
 </div>
-</section>
-<section id="running-the-defect-detect-application">
+</div>
+<div class="section" id="running-the-defect-detect-application">
 <h2>Running the Defect Detect Application<a class="headerlink" href="#running-the-defect-detect-application" title="Permalink to this heading">¶</a></h2>
 <p>There are two ways to invoke the Defect Detection application: Jupyter Notebook or command line.</p>
-<section id="jupyter-notebook">
+<div class="section" id="jupyter-notebook">
 <h3>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">¶</a></h3>
 <p>Jupyter notebook works as an example to show the capability of the <strong>defect-detect</strong> application for specific configurations.</p>
 <p>Jupter Notebook Defect Detect application supports the following modes:</p>
@@ -416,8 +415,8 @@ For defect-detection, the defect-detection Jupyter notebook application must be 
 <p>To access the Defect Detection Jupyter Notebook, use the path returned by the <code class="docutils literal notranslate"><span class="pre">jupyter-server</span> <span class="pre">list</span></code> command.</p>
 <p>A Jupyter notebook user can run cell by cell or run the defect detection full pipeline in Jupyter Notebook. To do this, go to defect-detect.ipynb, then from the menu bar, select <strong>Kernel</strong>, and then select <strong>Restart Kernel &amp; Run All Cells</strong>. The notebook by default expects file source location to be /home/petalinux/input_video.y8 - you can make changes in the notebook if needed.</p>
 <p>When using a file sink, data is dumped in the <strong>rootfs (/home/petalinux)</strong>. You will need to offload the output files to your PC and play using a YUV player. In the YUV player select the color as <strong>Y</strong> and the custom size as <strong>1280x800</strong>.</p>
-</section>
-<section id="command-examples">
+</div>
+<div class="section" id="command-examples">
 <h3>Command Examples<a class="headerlink" href="#command-examples" title="Permalink to this heading">¶</a></h3>
 <p><strong>Note</strong>: The application needs to be run with <em>sudo</em>.</p>
 <p>Examples:</p>
@@ -454,8 +453,8 @@ For defect-detection, the defect-detection Jupyter notebook application must be 
 </pre></div>
 </div>
 <p><strong>Note</strong>: The File In Display Out Demo Mode is not supported in the command line application. You can run this mode using <strong>Jupyter Notebook</strong> (See the section named <em>Jupyter Notebook</em> in this document) or by using the <a class="reference internal" href="debug_dd.html"><span class="doc">gst-launch command</span></a>.</p>
-</section>
-<section id="command-line">
+</div>
+<div class="section" id="command-line">
 <h3>Command Line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h3>
 <p>Use the command line to set the resolution, configuration file path and more, using the <strong>defect-detect</strong> application.</p>
 <p>More combinations could be made based on the options provided by the <strong>defect-detect</strong> application.</p>
@@ -492,8 +491,8 @@ For defect-detection, the defect-detection Jupyter notebook application must be 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xmutil</span> <span class="n">unloadapp</span> <span class="n">kv260</span><span class="o">-</span><span class="n">defect</span><span class="o">-</span><span class="n">detect</span>
 </pre></div>
 </div>
-</section>
-<section id="sensor-calibration-for-the-live-source">
+</div>
+<div class="section" id="sensor-calibration-for-the-live-source">
 <h3>Sensor Calibration for the Live Source<a class="headerlink" href="#sensor-calibration-for-the-live-source" title="Permalink to this heading">¶</a></h3>
 <p>While running the Defect Detection application through the command line or the Jupyter Notebook, by default the <code class="docutils literal notranslate"><span class="pre">ar0144-sensor-calib.sh</span></code> is called to perform the sensor calibration.</p>
 <p>If the preview image is not properly displayed, use the <code class="docutils literal notranslate"><span class="pre">ar0144-sensor-calib.sh</span></code> script (present in <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/bin/</span></code>)to change various sensor calibration parameter values such as:</p>
@@ -511,8 +510,8 @@ For defect-detection, the defect-detection Jupyter notebook application must be 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ar0144</span><span class="o">-</span><span class="n">sensor</span><span class="o">-</span><span class="n">calib</span><span class="o">.</span><span class="n">sh</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">mediaX</span> <span class="p">(</span><span class="n">where</span> <span class="n">X</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">corresponding</span> <span class="n">media</span> <span class="n">node</span> <span class="k">for</span> <span class="n">the</span> <span class="n">AR0144</span> <span class="n">sensor</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="file-structure-of-the-application">
+</div>
+<div class="section" id="file-structure-of-the-application">
 <h3>File Structure of the Application<a class="headerlink" href="#file-structure-of-the-application" title="Permalink to this heading">¶</a></h3>
 <details>
 <summary><b>To view details, click here.</b></summary><p>The application is comprised of the following files:</p>
@@ -596,23 +595,23 @@ For defect-detection, the defect-detection Jupyter notebook application must be 
 <td>Jupyter notebook file to run the Defect Defection pipeline</td>
 </tr>
 </tbody>
-</table></details></section>
-</section>
-<section id="next-steps">
+</table></details></div>
+</div>
+<div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><img alt="right arrow button" src="../../../_images/next.jpg" /> <a class="reference internal" href="sw_arch_platform_dd.html"><span class="doc">Software Architecture</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="../defectdetect_landing.html"><span class="doc">KV260 SOM Defect detect design start page</span></a></p></li>
 </ul>
-<section id="license">
+<div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p></section>
-</section>
-</section>
+<p class="sphinxhide" align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+</div>
 
 
            </div>
@@ -628,7 +627,7 @@ For defect-detection, the defect-detection Jupyter notebook application must be 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 04, 2025.
+      <span class="lastupdated">Last updated on May 12, 2025.
       </span></p>
   </div>
 

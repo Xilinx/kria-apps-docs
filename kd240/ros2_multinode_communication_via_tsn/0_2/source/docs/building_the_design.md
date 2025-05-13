@@ -1,1 +1,0 @@
-../../../../../source/docs/building_the_design.md
