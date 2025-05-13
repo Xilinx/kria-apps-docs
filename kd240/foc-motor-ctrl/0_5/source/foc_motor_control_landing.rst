@@ -43,10 +43,10 @@ Features
    :maxdepth: 1
    :caption: Tutorials
 
-   Linux Boot <docs/kria_starterkit_linux_boot>
-   Building the Design Components <docs/building_the_design>
-   Building the Hardware Design Using Vivado <docs/build_vivado_design>
-   Generate Custom Firmware <docs/generating_custom_firmware>
+   Linux Boot <docs/kria_starterkit_linux_boot.md>
+   Building the Design Components <docs/building_the_design.md>
+   Building the Hardware Design Using Vivado <docs/build_vivado_design.md>
+   Generate Custom Firmware <docs/generating_custom_firmware.md>
    Building the Application <https://github.com/Xilinx/foc-motor-ctrl/blob/main/README.md#build-instructions>
 
 

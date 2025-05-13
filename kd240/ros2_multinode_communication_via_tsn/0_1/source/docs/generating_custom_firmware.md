@@ -1,1 +1,0 @@
-../../../../../source/docs/generating_custom_firmware.md

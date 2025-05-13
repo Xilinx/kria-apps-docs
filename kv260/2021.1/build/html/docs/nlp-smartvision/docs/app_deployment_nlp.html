@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -153,13 +152,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Setting up the Board and Application Deployment</h1> </td>
  </tr>
-</table><section id="setting-up-the-board-and-application-deployment">
+</table><div class="section" id="setting-up-the-board-and-application-deployment">
 <h1>Setting up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document shows how to set up the board and run the nlp-smartvision application.</p>
-</section>
-<section id="setting-up-the-board">
+</div>
+<div class="section" id="setting-up-the-board">
 <h2>Setting up the Board<a class="headerlink" href="#setting-up-the-board" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Flash the SD Card</p>
@@ -266,11 +265,11 @@ passwd:<span class="w"> </span>password<span class="w"> </span>updated<span clas
 </ol>
 </li>
 </ol>
-</section>
-<section id="run-the-application">
+</div>
+<div class="section" id="run-the-application">
 <h2>Run the Application<a class="headerlink" href="#run-the-application" title="Permalink to this heading">¶</a></h2>
 <p>There are two ways to interact with application, via Jupyter notebook or Command line</p>
-<section id="jupyter-notebook">
+<div class="section" id="jupyter-notebook">
 <h3>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>The system will auto start a Jupyter server at <code class="docutils literal notranslate"><span class="pre">/home/petalinux/notebooks</span></code>, with user <code class="docutils literal notranslate"><span class="pre">petalinux</span></code>.</p></li>
@@ -331,8 +330,8 @@ passwd:<span class="w"> </span>password<span class="w"> </span>updated<span clas
 <p>In the notebook, we will explain the usage of app and the commands needed to run live usecase</p>
 </li>
 </ul>
-</section>
-<section id="command-line">
+</div>
+<div class="section" id="command-line">
 <h3>Command line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h3>
 <p>This allow the user to run “nlp-smartvision” application on CLI. These are to be executed using the UART/debug interface.</p>
 <hr class="docutils" />
@@ -370,9 +369,9 @@ The user needs to be silent for the first few seconds (2.5s apx.) for the applic
 <div><p>Note: Google Command dataset has audio clips of 1 second duration. Thus, the expectation by KWS task is that one keyword is spoken within a duration of 1 second.
 Note: Stop command resets display setting, but does not change monitor on/off mode.</p>
 </div></blockquote>
-</section>
-</section>
-<section id="file-based-testing-and-accuracy-measurement-of-kws-only">
+</div>
+</div>
+<div class="section" id="file-based-testing-and-accuracy-measurement-of-kws-only">
 <h2>File based Testing and Accuracy Measurement of KWS Only<a class="headerlink" href="#file-based-testing-and-accuracy-measurement-of-kws-only" title="Permalink to this heading">¶</a></h2>
 <p>NLP SmartVision provides a mode which is dedicated for testing the accuracy of keyword spotting (no vision task is running during this mode) on pre-recorded audio files. User needs to provide audio files along with a text file that consists of paths to the audio files which are to be tested. The application expects the audio files to be grouped under folders with keyword as the folder name. Thus, the text file will consist of lines with keyword/*.wav paths corresponding to each audio file (example: yes/audio1.wav). For more details please refer <a class="reference external" href="#testing-accuracy-on-google-command-dataset">Testing Accuracy on Google Command Dataset</a> and <a class="reference external" href="#testing-custom-input-audio-files">Testing Custom Input Audio Files</a>.</p>
 <p>The following command tests the audio files listed in the testing_list.txt file.</p>
@@ -383,7 +382,7 @@ sudo<span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="
 <p align="center"> (or) </p><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/opt/xilinx/lib<span class="w"> </span>nlp-smartvision<span class="w"> </span>--file-audio<span class="w"> </span>testing_list.txt
 </pre></div>
 </div>
-<section id="testing-accuracy-on-google-command-dataset">
+<div class="section" id="testing-accuracy-on-google-command-dataset">
 <h3>Testing Accuracy on Google Command Dataset<a class="headerlink" href="#testing-accuracy-on-google-command-dataset" title="Permalink to this heading">¶</a></h3>
 <p>Users can download the open source Google’s speech command dataset for testing the application in file input mode. This dataset consists of pre-recorded audio files for 30 keywords and the audio files that are separated for testing are listed in the testing_list.txt file. Use the following commands on a linux local host machine to download and extract this dataset. These commands also create the datafiles that are required for testing the application with 10 keywords for which the model has been trained.</p>
 <p><strong>Tip :</strong> You can copy the below commands and create a single script. Then directly execute that script to do all the required steps one after the other.</p>
@@ -409,8 +408,8 @@ Number<span class="w"> </span>of<span class="w"> </span>keywords<span class="w">
 <span class="nv">Accuracy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">93</span>.3777%
 </pre></div>
 </div>
-</section>
-<section id="testing-custom-input-audio-files">
+</div>
+<div class="section" id="testing-custom-input-audio-files">
 <h3>Testing Custom Input Audio Files<a class="headerlink" href="#testing-custom-input-audio-files" title="Permalink to this heading">¶</a></h3>
 <p>The application expects audio file names to be stored as <code class="docutils literal notranslate"><span class="pre">keyword/audio_filename.wav</span></code> format into the audio files list file. For example, a pre-recorded audio file of keyword ‘yes’ needs to be listed as <code class="docutils literal notranslate"><span class="pre">yes/file_001.wav</span></code>. The application uses main directory name (‘yes’ in this example) as ground truth to compare against the detected keyword. New line character must be placed after every audio file name to differentiate multiple audio files (even after the last file name).  Moreover, audio file needs to be copied to the SD card into the directory from which the application will be invoked. For example, <code class="docutils literal notranslate"><span class="pre">/home/petalinux/keywords/yes/file_001.wav</span></code>.</p>
 <p>The test audio files should have the following specifications:</p>
@@ -422,9 +421,9 @@ Number<span class="w"> </span>of<span class="w"> </span>keywords<span class="w">
 <li><p>Supported format: S16_LE (PCM signed 16-bit little-endian)</p></li>
 <li><p>Audio Length: 1 second</p></li>
 </ul>
-</section>
-</section>
-<section id="image-based-testing-of-dpu-only">
+</div>
+</div>
+<div class="section" id="image-based-testing-of-dpu-only">
 <h2>Image based Testing of DPU Only<a class="headerlink" href="#image-based-testing-of-dpu-only" title="Permalink to this heading">¶</a></h2>
 <p>NLP SmartVision provides a mode which is dedicated for testing the Vision models on DPU (no KWS task is running during this mode) on image files. User needs to provide image files along with the AI model thats under test</p>
 <p>The following command tests the image files.</p>
@@ -432,8 +431,8 @@ Number<span class="w"> </span>of<span class="w"> </span>keywords<span class="w">
 </pre></div>
 </div>
 <p>The command returns the metadata along with a jpg fine containing bounding box on the input image</p>
-</section>
-<section id="files-structure-of-the-application">
+</div>
+<div class="section" id="files-structure-of-the-application">
 <h2>Files structure of the application<a class="headerlink" href="#files-structure-of-the-application" title="Permalink to this heading">¶</a></h2>
 <p>The application is installed as:</p>
 <ul class="simple">
@@ -484,22 +483,22 @@ Number<span class="w"> </span>of<span class="w"> </span>keywords<span class="w">
 <td>Jupyter notebook file for nlp-smartvision demo.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="next-steps">
+</table></div>
+<div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Go back to the <a class="reference internal" href="../nlp_smartvision_landing.html"><span class="doc">KV260 SOM NLP Smartvision design start page</span></a></p></li>
 <li><p><a class="reference internal" href="../../building_the_design.html"><span class="doc">Building the Design Tutorial</span></a></p></li>
 </ul>
-<section id="license">
+<div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center">Copyright&copy; 2021 Xilinx</p></section>
-</section>
-</section>
+<p align="center">Copyright&copy; 2021 Xilinx</p></div>
+</div>
+</div>
 
 
            </div>
@@ -515,7 +514,7 @@ Number<span class="w"> </span>of<span class="w"> </span>keywords<span class="w">
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 04, 2025.
+      <span class="lastupdated">Last updated on May 12, 2025.
       </span></p>
   </div>
 

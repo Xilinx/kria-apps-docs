@@ -31,6 +31,7 @@ For users configuring their Kria Starter Kit for a specific application, refer t
        - `NLP SmartVision <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/nlp_smartvision.html>`_
        - `AI Box Distributed ReID <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/aibox_dist.html>`_
        - `Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/bist.html>`_
+       - `Dynamic Function eXchange (DFX) <https://xilinx.github.io/kria-apps-docs/dfx.html>`_
    * - Kria Ubuntu 24.04
      - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2022.1/linux_boot/ubuntu_24_04/build/html/docs/intro.html>`_
      - 
