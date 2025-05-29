@@ -91,16 +91,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#source-code">Source Code</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_recovery.html">Boot Image Recovery Tool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_boot.bin_generation.html">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching QSPI Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC boot for Production SOM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/tftp boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching the QSPI Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC Boot for Production SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/TFTP Boot</a></li>
 </ul>
 
         </div>
@@ -131,24 +130,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Image Selector<a class="headerlink" href="#image-selector" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>The Image Selector(ImgSel) is a small baremetal application running out of OCM after a POR/SRST that implements boot firmware selection used for the full platform boot. ImgSel extends native MPSoC CSU BootROM image search capability to have a more intelligent and flexible image selection including A/B boot firmware selection logic. In Kria Starter Kits the ImgSel application is loaded by CSU from QSPI to OCM to be run. Image Selector reads the persistent registers and based on the values it chooses the system boot image (either “A” or “B”) to be booted. ImgSel then updates the multiboot register with the corresponding image QSPI address and initiates a platform reset to boot the full system.</p>
-<p>The Image Selector for Kria Starter Kits is pre-provisioned as part of the kit manufacturing loaded QSPI image. If a user wants to use the same feature in their production SOM users’ needs to build the Image Selector application with the XIS_UPDATE_A_B_MECHANISM build time flag enabled. Source code has been provided in GitHub for developers wishing to customize further.</p>
+<p>The Image Selector (ImgSel) is a small baremetal application running out of OCM after a POR/SRST that implements boot firmware selection used for the full platform boot. ImgSel extends the native MPSoC CSU BootROM image search capability to have a more intelligent and flexible image selection including A/B boot firmware selection logic. In Kria Starter Kits, the ImgSel application is loaded by CSU from QSPI to OCM to be run. Image Selector reads the persistent registers and based on the values it chooses the system boot image (either “A” or “B”) to be booted. ImgSel then updates the multiboot register with the corresponding image QSPI address and initiates a platform reset to boot the full system.</p>
+<p>The Image Selector for Kria Starter Kits is pre-provisioned as part of the kit manufacturing loaded QSPI image. If you want to use the same feature in your production SOM, you need to build the Image Selector application with the XIS_UPDATE_A_B_MECHANISM build time flag enabled. Source code is provided in GitHub to customize further.</p>
 </div>
 <div class="section" id="code-flow">
 <h2>Code Flow<a class="headerlink" href="#code-flow" title="Permalink to this heading">¶</a></h2>
 <p>The Image Selector has the following code flow:</p>
 <ol class="simple">
-<li><p>Configure PLLs, clocks, MIOs, resets
+<li><p>Configure PLLs, clocks, MIOs, and resets.
 a. PLLs (APLL and IOPLL)
-b. QSPI if image selection based on QSPI A/B update data
+b. QSPI if image selection based on QSPI A/B update data.
 i. MIOs - MIO0-6
-ii. Clocks - QSPI clock configured to 300MHz
+ii. Clocks - QSPI clock configured to 300 MHz.
 iii. Release QSPI reset</p></li>
-<li><p>If image selection based on QSPI A/B update register data
-a. Read QSPI registers and validate them
-b. Update multiboot register based on the requested image (Request image A/B or Recovery Image)</p></li>
-<li><p>Do a system reset, so that ROM loads the correct boot image</p></li>
-<li><p>Upon any error, increment the multiboot register by 1 and reset the system</p></li>
+<li><p>If the image selection is based on QSPI A/B update register data.
+a. Read QSPI registers and validate them.
+b. Update the multiboot register based on the requested image (Request image A/B or Recovery Image).</p></li>
+<li><p>Do a system reset, so that the ROM loads the correct boot image.</p></li>
+<li><p>Upon any error, increment the multiboot register by 1, and reset the system.</p></li>
 </ol>
 </div>
 <div class="section" id="image-selector-usage-instructions">
@@ -156,24 +155,24 @@ b. Update multiboot register based on the requested image (Request image A/B or 
 <div class="section" id="compilation-procedure-vitis-flow">
 <h3>Compilation Procedure (Vitis Flow)<a class="headerlink" href="#compilation-procedure-vitis-flow" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>Provide ZynqMP or Kria XSA file or use a pre-built board description (In welcome page, <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Platform</span></code> to provide XSA file)</p></li>
-<li><p>Select OS as standalone and processor as Cortex-A53_0, architecture as 64-bit</p></li>
-<li><p>right click <code class="docutils literal notranslate"><span class="pre">psu_cortexa53_0</span></code> -&gt; New -&gt; Application Project, select the platform just created, name the application project, select standalone_domain as domain, choose <code class="docutils literal notranslate"><span class="pre">Image</span> <span class="pre">Selector</span></code> application in embedded software development templates and click Finish</p></li>
-<li><p>By default debug prints will be disabled, If Debug prints required to debug need to enable XIS_UART_ENABLE macro in xis_config.h file</p></li>
-<li><p>Below mentioned macros support two different mechanisms defined in xis_config.h file only one mechanism is supported at a time:</p>
+<li><p>Provide the ZynqMP or Kria XSA file, or use a pre-built board description (on the welcome page, <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Platform</span></code> to provide XSA file).</p></li>
+<li><p>Select the OS as standalone, processor as Cortex-A53_0, and architecture as 64-bit.</p></li>
+<li><p>Right-click <code class="docutils literal notranslate"><span class="pre">psu_cortexa53_0</span></code> -&gt; New -&gt; Application Project, select the platform just created, name the application project, select standalone_domain as domain, choose <code class="docutils literal notranslate"><span class="pre">Image</span> <span class="pre">Selector</span></code> application in embedded software development templates, and click <strong>Finish</strong>.</p></li>
+<li><p>By default, debug prints are disabled. If debug prints are required to debug, you need to enable the XIS_UART_ENABLE macro in the <code class="docutils literal notranslate"><span class="pre">xis_config.h</span></code> file.</p></li>
+<li><p>The following mentioned macros support two different mechanisms defined in the <code class="docutils literal notranslate"><span class="pre">xis_config.h</span></code> file. Only one mechanism is supported at a time:</p>
 <ul>
 <li><p>XIS_UPDATE_A_B_MECHANISM (QSPI based ‘A/B’ Firmware Boot Mode)</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">XIS_UPDATE_A_B_MECHANISM</span></code> needs to be uncommented for Kria SOM</p></li>
-<li><p>Image selection based on QSPI A/B update register data</p></li>
-<li><p>It will read the persistent registers from QSPI and based on persistent registers data it will update the multi-boot value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">XIS_UPDATE_A_B_MECHANISM</span></code> needs to be uncommented for Kria SOM.</p></li>
+<li><p>Image selection based on QSPI A/B update register data.</p></li>
+<li><p>It reads the persistent registers from QSPI, and based on persistent registers data, it updates the multi-boot value.</p></li>
 </ul>
 </li>
-<li><p>XIS_GET_BOARD_PARAMS (SD boot mode) - this is not supported for Kria SOM</p>
+<li><p>XIS_GET_BOARD_PARAMS (SD boot mode), this is not supported for Kria SOM.</p>
 <ul>
-<li><p>It will read the board name from EEPROM and based on board name it will update the multi-boot value</p></li>
-<li><p>SD shall have multiple board images with different file names in Partition 0</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">XIS_GET_BOARD_PARAMS</span></code> needs to be commented out for SOM</p></li>
+<li><p>It reads the board name from EEPROM, and based on board name, it updates the multi-boot value.</p></li>
+<li><p>SD has multiple board images with different file names in Partition 0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">XIS_GET_BOARD_PARAMS</span></code> must be commented out for SOM.</p></li>
 </ul>
 </li>
 </ul>
@@ -182,8 +181,10 @@ b. Update multiboot register based on the requested image (Request image A/B or 
 </div>
 <div class="section" id="compilation-procedure-makefile-flow">
 <h3>Compilation Procedure (Makefile Flow)<a class="headerlink" href="#compilation-procedure-makefile-flow" title="Permalink to this heading">¶</a></h3>
-<p>Note that the Makefile below requires tools that are placed in the path by sourcing PetaLinux, or Vitis, or Vivado settings64.* file.</p>
-<p>In a linux terminal</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The following Makefile requires tools that are placed in the path by sourcing the PetaLinux, Vitis, or Vivado settings64.* file.</p>
+</div></blockquote>
+<p>In a Linux terminal:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v&lt;version&gt;<span class="w"> </span>https://github.com/Xilinx/embeddedsw.git
 <span class="nb">cd</span><span class="w"> </span>embeddedsw/lib/sw_apps/imgsel/src
 make<span class="w"> </span>clean<span class="w"> </span>all<span class="w"> </span><span class="nv">BOARD</span><span class="o">=</span>som
@@ -192,18 +193,11 @@ make<span class="w"> </span>clean<span class="w"> </span>all<span class="w"> </s
 </div>
 <div class="section" id="source-code">
 <h3>Source Code<a class="headerlink" href="#source-code" title="Permalink to this heading">¶</a></h3>
-<p>The Image Selector source code can be found in <a class="reference external" href="https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/imgsel">github</a>.
-Image Selector configuration can be changed in the <a class="reference external" href="https://github.com/Xilinx/embeddedsw/blob/master/lib/sw_apps/imgsel/src/xis_config.h">xis_config.h</a> to select selection mechanism, I2C parameters and debug prints.
-The Makefile Flow above automatically updates the correct parameters for som with BOARD=<code class="docutils literal notranslate"><span class="pre">som</span></code>.</p>
+<p>The Image Selector source code can be found in <a class="reference external" href="https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/imgsel">GitHub</a>.
+Image Selector configuration can be changed in the <a class="reference external" href="https://github.com/Xilinx/embeddedsw/blob/master/lib/sw_apps/imgsel/src/xis_config.h">xis_config.h</a> to select selection mechanism, I2C parameters, and debug prints.
+The Makefile Flow above automatically updates the correct parameters for SOM with BOARD=<code class="docutils literal notranslate"><span class="pre">som</span></code>.</p>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
 </div>
 
 
@@ -220,7 +214,7 @@ The Makefile Flow above automatically updates the correct parameters for som wit
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 14, 2025.
+      <span class="lastupdated">Last updated on May 05, 2025.
       </span></p>
   </div>
 

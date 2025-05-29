@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>QSPI to PXE/tftp boot &mdash; Boot SOM Firmware 2022.1 documentation</title>
+  <title>QSPI to PXE/TFTP Boot &mdash; Boot SOM Firmware 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="QSPI to eMMC boot for Production SOM" href="bootfw_qspi_emmc_boot.html" /> 
+    <link rel="prev" title="QSPI to eMMC Boot for Production SOM" href="bootfw_qspi_emmc_boot.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,9 +86,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_boot.bin_generation.html">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching QSPI Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC boot for Production SOM</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">QSPI to PXE/tftp boot</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching the QSPI Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC Boot for Production SOM</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">QSPI to PXE/TFTP Boot</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setup-requirements">Setup Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linux-host-computer-setup">Linux Host Computer Setup</a><ul>
@@ -99,7 +99,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#boot-starter-kit-using-pxe">Boot Starter Kit Using PXE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 </ul>
@@ -118,7 +117,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>QSPI to PXE/tftp boot</li>
+      <li>QSPI to PXE/TFTP Boot</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/bootfw_qspi_pxetftp_boot.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -129,10 +128,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="qspi-to-pxe-tftp-boot">
-<h1>QSPI to PXE/tftp boot<a class="headerlink" href="#qspi-to-pxe-tftp-boot" title="Permalink to this heading">¶</a></h1>
+<h1>QSPI to PXE/TFTP Boot<a class="headerlink" href="#qspi-to-pxe-tftp-boot" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>The prioritized boot order for U-Boot is specified in <a class="reference internal" href="bootfw_uboot_handoff.html"><span class="doc">BootFW U-Boot page</span></a>. The last device in the prioritized list is Ethernet using DHCP/PXE. There is <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx/blob/master/doc/README.pxe">existing PXE support in u-boot</a> to support Ethernet booting. This document provides instructions for tftp booting on Starter Kits using Ethernet/DHCP/PXE. Instructions are provided for booting both PetaLinux and Ubuntu via PXE. Their tftp server setup differs, but on-target steps are the same.</p>
+<p>The prioritized boot order for U-Boot is specified in <a class="reference internal" href="bootfw_uboot_handoff.html"><span class="doc">BootFW U-Boot page</span></a>. The last device in the prioritized list is Ethernet using DHCP/PXE. There is <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx/blob/master/doc/README.pxe">existing PXE support in U-Boot</a> to support Ethernet booting. This document provides instructions for TFTP booting on Starter Kits using Ethernet/DHCP/PXE. Instructions are provided for booting both PetaLinux and Ubuntu via PXE. Their TFTP server setup differs, but the on-target steps are the same.</p>
 <p>This example uses K26 on KR260 as an example, but the same steps can be taken for other starter kits as well as K24, as long as names of the SOM or Starter Kits are replaced appropriately.</p>
 </div>
 <div class="section" id="setup-requirements">
@@ -148,14 +147,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Depending on if you are booting with Yocto, PetaLinux, or Ubuntu, choose one of the following sections:</p>
 <div class="section" id="linux-host-computer-setup-for-yocto">
 <h3>Linux Host Computer Setup for Yocto<a class="headerlink" href="#linux-host-computer-setup-for-yocto" title="Permalink to this heading">¶</a></h3>
-<p>On the Linux host computer, follow the instructions in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html">Kria Yocto support</a>, and generate the bitbake recipe <code class="docutils literal notranslate"><span class="pre">kria-image-full-cmdline</span></code> for the target machine. That will create a pxeboot config file in the <code class="docutils literal notranslate"><span class="pre">$yocto_workspace/build/tmp/deploy/images/&lt;machine</span> <span class="pre">name&gt;/pxelinux.cfg/default</span></code> file with the following content:</p>
+<p>On the Linux host computer, follow the instructions in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html">Kria Yocto Support</a>, and generate the bitbake recipe <code class="docutils literal notranslate"><span class="pre">kria-image-full-cmdline</span></code> for the target machine. That creates a pxeboot config file in the <code class="docutils literal notranslate"><span class="pre">$yocto_workspace/build/tmp/deploy/images/&lt;machine</span> <span class="pre">name&gt;/pxelinux.cfg/default</span></code> file with the following content:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>LABEL Linux
 KERNEL Image
 FDT system.dtb
 INITRD petalinux-initramfs-image-&lt;machinename&gt;.cpio.gz.u-boot
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">pxelinux.cfg/default</span></code> refers to files that can be found in <code class="docutils literal notranslate"><span class="pre">$yocto_workspace/build/tmp/deploy/images/</span></code>. It is using the initramfs generated, which is a smaller file system that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC or a SD card. If you want to boot to log in prompt purely through pxeboot, replace <code class="docutils literal notranslate"><span class="pre">petalinux-initramfs-image-&lt;machinename&gt;.cpio.gz.u-boot</span></code> with <code class="docutils literal notranslate"><span class="pre">kria-image-full-cmdline-&lt;machinename&gt;.cpio.gz.u-boot</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pxelinux.cfg/default</span></code> refers to files that can be found in <code class="docutils literal notranslate"><span class="pre">$yocto_workspace/build/tmp/deploy/images/</span></code>. It is using the initramfs generated, which is a smaller file system that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC or a SD card. If you want to boot to the log in prompt purely through pxeboot, replace <code class="docutils literal notranslate"><span class="pre">petalinux-initramfs-image-&lt;machinename&gt;.cpio.gz.u-boot</span></code> with <code class="docutils literal notranslate"><span class="pre">kria-image-full-cmdline-&lt;machinename&gt;.cpio.gz.u-boot</span></code>.</p>
 <p>When using MACHINE = k26-smk or k24-smk, by default, <code class="docutils literal notranslate"><span class="pre">system.dtb</span></code> is pointing to a shared dtb for the SOM that does not have information about the carrier card. Keeping the dtb as is will boot, but it will not have any CC peripheral support such as Ethernet. The dtb files with CC peripheral support can be found in <code class="docutils literal notranslate"><span class="pre">devicetree/SMK-zynqmp-sck-&lt;CC_board&gt;.dtb</span></code>. Pick the device tree for your target Starter Kit, and update the FDT in <code class="docutils literal notranslate"><span class="pre">/tftpboot/pxelinux.cfg/default</span></code> to point to that dtb file. If using MACHINE = k26-smk-kv, k26-smk-kr, or k24-smk-kd, <code class="docutils literal notranslate"><span class="pre">system.dtb</span></code> points to the device tree blob that has CC peripheral support that you will not need to change.</p>
 <p>Now <a class="reference external" href="#setting-up-tftp-on-the-server">set up a TFTP server</a> on the Linux host computer. Make sure to point to <code class="docutils literal notranslate"><span class="pre">$yocto_workspace/build/tmp/deploy/images/&lt;machine</span> <span class="pre">name&gt;/</span></code> as the TFTP folder and start the server. The IP address of the Linux host computer; refer to it as <code class="docutils literal notranslate"><span class="pre">&lt;host</span> <span class="pre">ip&gt;</span></code>.</p>
 </div>
@@ -176,14 +175,14 @@ sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">766</sp
 petalinux-build
 </pre></div>
 </div>
-<p>This will create a <code class="docutils literal notranslate"><span class="pre">/tftpboot/pxelinux.cfg/default</span></code> file with the following content:</p>
+<p>This creates a <code class="docutils literal notranslate"><span class="pre">/tftpboot/pxelinux.cfg/default</span></code> file with the following content:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>LABEL Linux
 KERNEL Image
 FDT system.dtb
 INITRD ramdisk.cpio.gz.u-boot
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">/tftpboot/pxelinux.cfg/default</span></code> refers to files that can be found in <code class="docutils literal notranslate"><span class="pre">/tftpboot</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">/tftpboot/pxelinux.cfg/default</span></code> refers to files found in <code class="docutils literal notranslate"><span class="pre">/tftpboot</span></code>.</p>
 <blockquote>
 <div><p><strong>NOTE:</strong> It is using the ramdisk generated, which is a smaller initram that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC or a SD card. If you want to boot to the log in prompt purely through pxeboot, replace <code class="docutils literal notranslate"><span class="pre">ramdisk.cpio.gz.u-boot</span></code> with <code class="docutils literal notranslate"><span class="pre">rootfs.cpio.gz.u-boot</span></code>.</p>
 </div></blockquote>
@@ -285,7 +284,7 @@ KERNEL image.fit
 </pre></div>
 </div>
 <blockquote>
-<div><p><strong>NOTE:</strong> By default, saveenv is not enabled in U-Boot. This means that serverip will need to be set up every reboot.</p>
+<div><p><strong>NOTE:</strong> By default, saveenv is not enabled in U-Boot. This means that serverip needs to be set up every reboot.</p>
 </div></blockquote>
 <p>The following step is optional. Verify the connection to the server:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dhcp<span class="w"> </span><span class="c1"># setup Ethernet and ip address on target, this is done automatically during PXE booting</span>
@@ -299,14 +298,7 @@ ping<span class="w"> </span><span class="nv">$serverip</span><span class="w"> </
 </div>
 <p>If using Yocto/PetaLinux and using the larger rootfs, the kernel and rootfs should load and boot to login prompt to PetaLinux, indicating a successful PXE boot. If using the initram, and a SD card with full rootfs is plugged into the SD slot, the preceding steps boot using the kernel image from the tftp server and grab the full rootfs image from the SD card and boot to the login prompt.</p>
 <p>If using Ubuntu, the <code class="docutils literal notranslate"><span class="pre">image.fit</span></code> file contains a small initram; the Starter Kit boots into BusyBox and has limited functionality. If a SD card with full rootfs is plugged into the SD slot, the preceding steps boot using the kernel image from the tftp server and grab the full rootfs image from the SD card instead of BusyBox initrd.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p></div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -315,14 +307,14 @@ ping<span class="w"> </span><span class="nv">$serverip</span><span class="w"> </
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="bootfw_qspi_emmc_boot.html" class="btn btn-neutral float-left" title="QSPI to eMMC boot for Production SOM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bootfw_qspi_emmc_boot.html" class="btn btn-neutral float-left" title="QSPI to eMMC Boot for Production SOM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 14, 2025.
+      <span class="lastupdated">Last updated on May 05, 2025.
       </span></p>
   </div>
 

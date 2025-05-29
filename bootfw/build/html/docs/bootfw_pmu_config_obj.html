@@ -91,21 +91,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#kr260">KR260</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#steps-to-create-overlay-config-object">Steps to create Overlay Config Object</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#steps-to-create-the-overlay-config-object">Steps to Create the Overlay Config Object</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#commands-to-create-binary-file-from-c-file">Commands to create binary file from c file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-permission-to-load-overlay-config-object-from-base-config">Set Permission to load Overlay config object from Base config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#commands-to-create-the-binary-file-from-the-c-file">Commands to Create the Binary file from the C File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-permission-to-load-the-overlay-config-object-from-the-base-config">Set Permission to Load the Overlay Config Object from the Base Config</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#loading-overlay-config-object-in-u-boot">Loading Overlay Config Object in U-Boot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_boot.bin_generation.html">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching QSPI Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC boot for Production SOM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/tftp boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching the QSPI Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC Boot for Production SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/TFTP Boot</a></li>
 </ul>
 
         </div>
@@ -136,11 +135,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>PMU Overlay Config Object<a class="headerlink" href="#pmu-overlay-config-object" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>Kria Starter Kits pre-built firmware and software uses a hierarchical boot process in order to support SOM and its multiple possible carrier cards. This concept of incremental HW configuration is used to have a common “SOM only” base configuration which is then extended after the carrier card (CC) hardware is identified. After CC identification the CC specific peripherals are enabled inclusive of the MPSoC MIO based peripherals. The FSBL loads the “SOM only” PMU configuration object after which the Kria Starter Kit boot FW then dynamically loads a “PMU object overlay” that extends the system configuration having PMU enable the corresponding subsystems and physical pin mappings. In Kria Starter Kits the CC identification and PMU configuration object overlay APIs are exercised as part of U-Boot.</p>
+<p>Kria Starter Kits pre-built firmware and software uses a hierarchical boot process to support SOM and its multiple possible carrier cards. This concept of incremental hardware configuration is used to have a common “SOM only” base configuration which is then extended after the carrier card (CC) hardware is identified. After CC identification, the CC specific peripherals are enabled inclusive of the MPSoC MIO based peripherals. The FSBL loads the “SOM only” PMU configuration object after which the Kria Starter Kit boot firmware then dynamically loads a “PMU object overlay” that extends the system configuration having the PMU enable the corresponding subsystems and physical pin mappings. In Kria Starter Kits, the CC identification and PMU configuration object overlay APIs are exercised as part of U-Boot.</p>
 </div>
 <div class="section" id="reference-overlay-config-object">
 <h2>Reference Overlay Config Object<a class="headerlink" href="#reference-overlay-config-object" title="Permalink to this heading">¶</a></h2>
-<p>As an example, the overlay config object for KV260 and KR260 on top of “base SOM” configuration were created according to the table below. The top half of the table contains MIO definition for the base SOM and a set of shared MIO configurations for all AMD Kria carrier cards. The bottom half of the table defines MIO that are different between KV260 and KR260 and are enabled via a PMU overlay configuration API.</p>
+<p>As an example, the overlay config object for KV260 and KR260 on top of “base SOM” configuration were created according to the following table. The top half of the table contains the MIO definition for the base SOM and a set of shared MIO configurations for all AMD Kria carrier cards. The bottom half of the table defines MIO that are different between KV260 and KR260 and are enabled via a PMU overlay configuration API.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -283,77 +282,79 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3>KV260<a class="headerlink" href="#kv260" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>C-code: <a class="reference external" href="./example_src/overlay_cfg_obj_kv260_v2.c">overlay_cfg_obj_kv260_v2.c</a></p></li>
-<li><p>binary file: <a class="reference external" href="./example_src/overlay_cfg_obj_kv260_v2.bin">overlay_cfg_obj_kv260_v2.bin</a></p></li>
-<li><p>Size of Overlay config object base on object file: <a class="reference external" href="./example_src/overlay_cfg_obj_kv260_v2.o">overlay_cfg_obj_kv260_v2.o</a></p>
+<li><p>Binary file: <a class="reference external" href="./example_src/overlay_cfg_obj_kv260_v2.bin">overlay_cfg_obj_kv260_v2.bin</a></p></li>
+<li><p>Size of overlay config object base on object file: <a class="reference external" href="./example_src/overlay_cfg_obj_kv260_v2.o">overlay_cfg_obj_kv260_v2.o</a></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>text    data     bss     dec     hex filename
   76       0       0      76      4c overlay_cfg_obj_kv260_v2.o
 </pre></div>
 </div>
 </li>
-<li><p>Note: Permission to load next overlay config object are disabled by default for KV260.</p></li>
 </ul>
+<blockquote>
+<div><p><strong>NOTE:</strong> By default, permissions to load the next overlay config object are disabled for the KV260.</p>
+</div></blockquote>
 </div>
 <div class="section" id="kr260">
 <h3>KR260<a class="headerlink" href="#kr260" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>C-code: <a class="reference external" href="./example_src/overlay_cfg_obj_kr260_v2.c">overlay_cfg_obj_kr260_v2.c</a></p></li>
-<li><p>binary file: <a class="reference external" href="./example_src/overlay_cfg_obj_kr260_v2.bin">overlay_cfg_obj_kr260_v2.bin</a></p></li>
-<li><p>Size of Overlay config object base on object file: <a class="reference external" href="./example_src/overlay_cfg_obj_kr260_v2.o">overlay_cfg_obj_kr260_v2.o</a></p>
+<li><p>Binary file: <a class="reference external" href="./example_src/overlay_cfg_obj_kr260_v2.bin">overlay_cfg_obj_kr260_v2.bin</a></p></li>
+<li><p>Size of overlay config object base on object file: <a class="reference external" href="./example_src/overlay_cfg_obj_kr260_v2.o">overlay_cfg_obj_kr260_v2.o</a></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>text    data     bss     dec     hex filename
   88       0       0      88      58 overlay_cfg_obj_kr260_v2.o
 </pre></div>
 </div>
 </li>
-<li><p>Note: Permission to load next overlay config object are disabled by default for KR260.</p></li>
 </ul>
+<blockquote>
+<div><p><strong>NOTE:</strong> By default, permissions to load next overlay config object are disabled for the KR260.</p>
+</div></blockquote>
 </div>
 </div>
-<div class="section" id="steps-to-create-overlay-config-object">
-<h2>Steps to create Overlay Config Object<a class="headerlink" href="#steps-to-create-overlay-config-object" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="steps-to-create-the-overlay-config-object">
+<h2>Steps to Create the Overlay Config Object<a class="headerlink" href="#steps-to-create-the-overlay-config-object" title="Permalink to this heading">¶</a></h2>
 <ol>
-<li><p>Use template <a class="reference external" href="./example_src/Template_for_overlay_config_object_v2.c">Template_for_overlay_config_object_v2.c</a> as base.</p>
+<li><p>Use the template, <a class="reference external" href="./example_src/Template_for_overlay_config_object_v2.c">Template_for_overlay_config_object_v2.c</a>, as base.</p>
 <ul class="simple">
 <li><p>Refer to enum XPmNodeId in template for existing node-IDs</p></li>
-<li><p>Refer to chapter Enumeration XPmNodeId Values in <a class="reference external" href="https://china.xilinx.com/support/documentation/sw_manuals/xilinx2021_1/oslib_rm.pdf">UG643</a> for new node-IDs in future releases.</p></li>
+<li><p>Refer to the Enumeration XPmNodeId Values chapter in the <em>Standalone Library Documentation: BSP and Libraries Document Collection</em> (<a class="reference external" href="https://docs.amd.com/go/en-US/oslib_rm">UG643</a>) for new node-IDs in future releases.</p></li>
 </ul>
 </li>
 <li><p>Modify the template as per requirement.</p>
 <ul>
-<li><p>Developers need to update the Number of slaves value in slave section based on how many device/slave they want to add in overlay config object.</p></li>
-<li><p>Add detailed for device/slave in slave section,</p>
-<ul class="simple">
-<li><p>Each device/slave required three device/slave details as Node-Id, Flag and IPI mask.</p></li>
-</ul>
+<li><p>Update the neededumber of slaves value in slave section based on how many device/slave you want to add in the overlay config object.</p></li>
+<li><p>Add details for the device/slave in the slave section.</p>
+<ul>
+<li><p>Each device/slave required three device/slave details as Node-Id, Flag, and IPI mask.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt; Device Node Id &gt;,
 &lt; Flag &gt;,
 &lt; IPI mask &gt;,
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Flag and IPI mask are hard coded here.</p></li>
-</ul>
+</li>
+<li><p>Flag and IPI mask are hard coded here.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Flag = PM_SLAVE_FLAG_IS_SHAREABLE,
 IPI mask = PM_CONFIG_IPI_PSU_CORTEXA53_0_MASK | PM_CONFIG_IPI_PSU_CORTEXR5_0_MASK | PM_CONFIG_IPI_PSU_CORTEXR5_1_MASK,
 </pre></div>
 </div>
+</li>
+<li><p>Modify the device’s/slave’s Node-Id value as per your requirements.</p></li>
+</ul>
+</li>
+<li><p>Add permission details for the loading of the next overlay config object.</p>
 <ul class="simple">
-<li><p>User needs to modify the device’s/slave’s Node-Id value as per requirement.</p></li>
-</ul>
-</li>
-<li><p>Add permission details for the loading of next overlay config object.</p>
-<ul class="simple">
-<li><p>User needs to provide IPI Mask for masters with ORed as per requirement.</p></li>
+<li><p>Provide the IPI Mask for masters with ORed as per your requirements.</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>Generate the binary file from C-code file using command given in “Command to create binary file from c file” section.</p></li>
+<li><p>Generate the binary file from the C-code file using the command given in the “Command to Create Binary File from the C File” section.</p></li>
 </ol>
 <div class="section" id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
-<p>Please find the following examples to modify slave section:</p>
+<p>Examples to modify the slave section:</p>
 <ul>
-<li><p>Example: Only single device/slave is present in overlay config object.</p>
+<li><p>Example: Only a single device/slave is present in the overlay config object.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/* SLAVE SECTION */
 
 PM_CONFIG_SLAVE_SECTION_ID, /* Section ID */
@@ -365,7 +366,7 @@ PM_CONFIG_IPI_PSU_CORTEXA53_0_MASK | PM_CONFIG_IPI_PSU_CORTEXR5_0_MASK | PM_CONF
 </pre></div>
 </div>
 </li>
-<li><p>Example: Total 3 devices/slaves are present in overlay config object.</p>
+<li><p>Example: A total of three devices/slaves are present in the overlay config object.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/* SLAVE SECTION */
 PM_CONFIG_SLAVE_SECTION_ID, /* Section ID */
 3,              /* Number of slaves */
@@ -385,23 +386,29 @@ PM_CONFIG_IPI_PSU_CORTEXA53_0_MASK | PM_CONFIG_IPI_PSU_CORTEXR5_0_MASK | PM_CONF
 </div>
 </li>
 </ul>
-<p>Please find the following examples to modifiy set config section</p>
+<p>Examples to modify the set config section:</p>
 <ul>
-<li><p>Example: None of the masters has permission to load next overlay config object. (Note: Loading of infinite overlay config object is not secure and not system friendly. Therefore att some time script should disable changing of configs).</p>
+<li><p>Example: None of the masters have permission to load the next overlay config object.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The loading of infinite overlay config objects is not secure and not system friendly. Therefore, at some time the script should disable the changing of configs.</p>
+</div></blockquote>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/* SET CONFIG SECTION */
 PM_CONFIG_SET_CONFIG_SECTION_ID,
 0U, /*  Loading permission to Overlay config object */
 </pre></div>
 </div>
 </li>
-<li><p>Example: Only APU masters has permission to load next overlay config object. (Note: APU subsystem gets represented by CORTEXA53_0 in base config, So CORTEXA53_1 is not listed in base config and CORTEXA53_0 is not needed in overlay config)</p>
+<li><p>Example: Only APU masters have permission to load the next overlay config object.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The APU subsystem gets represented by CORTEXA53_0 in the base config, so CORTEXA53_1 is not listed in the base config and CORTEXA53_0 is not needed in the overlay config.</p>
+</div></blockquote>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/* SET CONFIG SECTION */
 PM_CONFIG_SET_CONFIG_SECTION_ID,
 PM_CONFIG_IPI_PSU_CORTEXA53_0_MASK, /*  Loading permission to Overlay config object */
 </pre></div>
 </div>
 </li>
-<li><p>Example: Both APU and RPU masters has permission to load next overlay config object.</p>
+<li><p>Example: Both APU and RPU masters have permission to load the next overlay config object.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/* SET CONFIG SECTION */
 PM_CONFIG_SET_CONFIG_SECTION_ID,
 PM_CONFIG_IPI_PSU_CORTEXA53_0_MASK | PM_CONFIG_IPI_PSU_CORTEXR5_0_MASK | PM_CONFIG_IPI_PSU_CORTEXR5_1_MASK, /*  Loading permission to Overlay config object */
@@ -411,34 +418,40 @@ PM_CONFIG_IPI_PSU_CORTEXA53_0_MASK | PM_CONFIG_IPI_PSU_CORTEXR5_0_MASK | PM_CONF
 </ul>
 </div>
 </div>
-<div class="section" id="commands-to-create-binary-file-from-c-file">
-<h2>Commands to create binary file from c file<a class="headerlink" href="#commands-to-create-binary-file-from-c-file" title="Permalink to this heading">¶</a></h2>
-<p>Run below commands in sequence to generate the binary file from c-file</p>
+<div class="section" id="commands-to-create-the-binary-file-from-the-c-file">
+<h2>Commands to Create the Binary file from the C File<a class="headerlink" href="#commands-to-create-the-binary-file-from-the-c-file" title="Permalink to this heading">¶</a></h2>
+<p>Run the following commands in sequence to generate the binary file from the C file.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>-c<span class="w"> </span>-nostdlib<span class="w"> </span>-nostartfiles<span class="w"> </span>-nodefaultlibs<span class="w"> </span>&lt;overlay-config-object.c&gt;<span class="w"> </span>-o<span class="w"> </span>&lt;overlay-config-object.o&gt;
 objcopy<span class="w"> </span>-O<span class="w"> </span>binary<span class="w"> </span>&lt;overlay-config-object.o&gt;<span class="w"> </span>&lt;overlay-config-object.bin&gt;
 </pre></div>
 </div>
-<p>Note: Generated binary file work only on little endian tool-chain.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The generated binary file only works on a little endian tool-chain.</p>
+</div></blockquote>
 </div>
-<div class="section" id="set-permission-to-load-overlay-config-object-from-base-config">
-<h2>Set Permission to load Overlay config object from Base config<a class="headerlink" href="#set-permission-to-load-overlay-config-object-from-base-config" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="set-permission-to-load-the-overlay-config-object-from-the-base-config">
+<h2>Set Permission to Load the Overlay Config Object from the Base Config<a class="headerlink" href="#set-permission-to-load-the-overlay-config-object-from-the-base-config" title="Permalink to this heading">¶</a></h2>
 <ul>
-<li><p>Base config is auto generated as part of fsbl build. For reference, the source code of base config can be found <a class="reference external" href="https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/zynqmp_fsbl/misc/som/pm_cfg_obj.c">here</a>, please note that base config contains many more sections than overlay config</p></li>
-<li><p>By default permission to load overlay config object are disabled for all masters(APU/RPU0/RPU1).</p></li>
-<li><p>To load overlay config object enable the permission for required master by use of below listed BSP config flags during FSBL build. Please refer to <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1400-vitis-embedded/bsp-config">UG1400</a> for more details about bsp config.</p></li>
+<li><p>The base config is autogenerated as part of the FSBL build. For reference, the source code of the base config can be found <a class="reference external" href="https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/zynqmp_fsbl/misc/som/pm_cfg_obj.c">here</a>.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The base config contains many more sections than the overlay config.</p>
+</div></blockquote>
+</li>
+<li><p>By default, permissions to load the overlay config object are disabled for all masters (APU/RPU0/RPU1).</p></li>
+<li><p>To load the overlay config object, enable the permission for the required master using the following listed BSP config flags during the FSBL build. For more details about the bsp config refer to the <em>Vitis Unified Software Platform Documentation: Embedded Software Development</em> (<a class="reference external" href="https://docs.amd.com/go/en-US/ug1400-vitis-embedded">UG1400</a>).</p></li>
 <li><p>Flags</p>
 <ul>
-<li><p>Provide permission to APU master: apu_as_overlay_config_master</p>
+<li><p>Provide permission to the APU master: <code class="docutils literal notranslate"><span class="pre">apu_as_overlay_config_master</span></code></p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bsp<span class="w"> </span>config<span class="w"> </span>apu_as_overlay_config_master<span class="w"> </span><span class="s2">&quot;true&quot;</span>
 </pre></div>
 </div>
 </li>
-<li><p>Provide permission to RPU0 master: rpu0_as_overlay_config_master</p>
+<li><p>Provide permission to the RPU0 master: <code class="docutils literal notranslate"><span class="pre">rpu0_as_overlay_config_master</span></code></p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bsp<span class="w"> </span>config<span class="w"> </span>rpu0_as_overlay_config_master<span class="w"> </span><span class="s2">&quot;true&quot;</span>
 </pre></div>
 </div>
 </li>
-<li><p>Provide permission to RPU1 master: rpu1_as_overlay_config_master</p>
+<li><p>Provide permission to the RPU1 master: <code class="docutils literal notranslate"><span class="pre">rpu1_as_overlay_config_master</span></code></p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bsp<span class="w"> </span>config<span class="w"> </span>rpu1_as_overlay_config_master<span class="w"> </span><span class="s2">&quot;true&quot;</span>
 </pre></div>
 </div>
@@ -449,24 +462,17 @@ objcopy<span class="w"> </span>-O<span class="w"> </span>binary<span class="w"> 
 </div>
 <div class="section" id="loading-overlay-config-object-in-u-boot">
 <h2>Loading Overlay Config Object in U-Boot<a class="headerlink" href="#loading-overlay-config-object-in-u-boot" title="Permalink to this heading">¶</a></h2>
-<p>To load overlay config object at U-Boot level use below command at U-Boot on target:</p>
+<p>To load the overlay config object at the U-Boot level, use the following command at U-Boot on target:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>zynqmp<span class="w"> </span>pmufw<span class="w"> </span>&lt;address&gt;<span class="w"> </span>&lt;size&gt;
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>address: Provide address for the memory-location from where wants to load the overlay config object.</p></li>
-<li><p>size: Provide size of the overlay config object which wants to load.</p></li>
+<li><p>address: Provide the address for the memory-location from where you want to load the overlay config object.</p></li>
+<li><p>size: Provide the size of the overlay config object you want to load.</p></li>
 </ul>
-<p>In Starter kit flow, U-Boot dynamically create , use and destroy the overlay config object. Example code can be found <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx/blob/master/drivers/firmware/firmware-zynqmp.c">here</a>. When developers create their own customer carrier card and boot flow, they can dynamically generate their config object, or create it statically and put it on target and load it as above.</p>
-<p>U-boot will perform IPI (inter-processor interrupt) call to PMU with run time API to enable the object overlay. The <code class="docutils literal notranslate"><span class="pre">SET_CONFIGURATION</span></code> API is documented in <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/ug1200-eemi-api">ug1200</a> and an example call can be found <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx/blob/master/drivers/firmware/firmware-zynqmp.c">here</a> as well.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
+<p>In the Starter Kit flow, U-Boot dynamically creates, uses, and destroys the overlay config object. Example code can be found <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx/blob/master/drivers/firmware/firmware-zynqmp.c">here</a>. When you create your own customer carrier card and boot flow, you can dynamically generate your config object, or create it statically, put it on target, and load it as above.</p>
+<p>U-Boot performs an inter-processor interrupt (IPI) call to the PMU with a runtime API to enable the object overlay. The <code class="docutils literal notranslate"><span class="pre">SET_CONFIGURATION</span></code> API is documented in the <em>Embedded Energy Management Interface [EEMI API Reference Guide]</em> (<a class="reference external" href="https://docs.amd.com/go/en-US/ug1200-eemi-api">UG1200</a>), and an example call can also be found <a class="reference external" href="https://github.com/Xilinx/u-boot-xlnx/blob/master/drivers/firmware/firmware-zynqmp.c">here</a>.</p>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -483,7 +489,7 @@ objcopy<span class="w"> </span>-O<span class="w"> </span>binary<span class="w"> 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 14, 2025.
+      <span class="lastupdated">Last updated on May 05, 2025.
       </span></p>
   </div>
 

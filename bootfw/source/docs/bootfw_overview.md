@@ -1,10 +1,10 @@
 # Boot Firmware Overview
 
-The SOM Starter Kits use a two stage boot process. The primary boot firmware is pre-installed at the factory on the QSPI device. The secondary boot device is a SD card containing the Linux kernel and Linux root filesystem (rootfs). The AMD Starter Kit carrier card hardware design sets the MPSoC boot mode to QSPI32. The SOM boots up to U-Boot using the QSPI contents and U-Boot then hand-off to the secondary boot device.
+The AMD Kria &trade; SOM Starter Kits use a two stage boot process. The primary boot firmware is pre-installed at the factory on the QSPI device. The secondary boot device is a SD card containing the Linux kernel and Linux root filesystem (rootfs). The AMD Starter Kit carrier card hardware design sets the MPSoC boot mode to QSPI32. The SOM boots up to U-Boot using the QSPI contents and U-Boot then hand-off to the secondary boot device.
 
-This document gives an overview to various components in the AMD Kria&trade; SOM boot firmware and points to source code available to get started with your implementations for your Kria SOM custom carrier card. For general information about the boot of the AMD Zynq&trade; MPSoC, refer to the [Boot and Configuration](https://docs.amd.com/go/en-US/ug1085-zynq-ultrascale-trm/Boot-and-Configuration) chapter in the *Zynq UltraScale+ Device Technical Reference Manual* (UG1085).
+This document gives an overview to various components in the Kria SOM boot firmware and points to source code available to get started with your implementations for your Kria SOM custom carrier card. For general information about the boot of the AMD Zynq&trade; MPSoC, refer to the [Boot and Configuration](https://docs.amd.com/go/en-US/ug1085-zynq-ultrascale-trm/Boot-and-Configuration) chapter in the *Zynq UltraScale+ Device Technical Reference Manual* (UG1085).
 
-The QSPI image and its boot firmware (FW) contents in SOM Starter Kits are common across all K26 starter kits.
+The QSPI image and its boot firmware (FW) contents in SOM Starter Kits are common across all K26 Starter Kits.
 
 The overall boot device definition and firmware contents are outlined in the following figure.
 
@@ -20,7 +20,7 @@ The primary boot device is a QSPI device physically located on the Kria SOM. The
 
 - FSBL: First-stage boot-loader firmware
   - [Source code](https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/zynqmp_fsbl)
-  - FSBL is generated in [Yocto](https://xilinx.github.io/kria-apps-docs/yocto.html) or [PetaLinux](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/First-Stage-Boot-Loader-for-Zynq-UltraScale-and-Zynq-7000-Devices), the flow is not unique to Kria SOM. Released SOM BSP generates FSBL by default when executing ```petalinux-build```.
+  - FSBL is generated in [Yocto](https://xilinx.github.io/kria-apps-docs/yocto.html) or [PetaLinux](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/First-Stage-Boot-Loader-for-Zynq-UltraScale-and-Zynq-7000-Devices), the flow is not unique to Kria SOM. The released SOM BSP generates FSBL by default when executing ```petalinux-build```.
 - PMU: Platform management unit firmware
   - [Source code](https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/zynqmp_pmufw)
   - SOM specific PMU guidance can be found on [SOM wiki page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#MPSoC-PMU-FW)
@@ -105,7 +105,7 @@ The following is QSPI memory map used for Kira SOM Starter Kits:
 
 \*   QSPI Image Version Information Example: XilinxSom_QspiImage_v1.0_20201030 Last 32Bytes: HashValue Hash Algo: SHA256 It is only 256 bytes but has to be 64 KB aligned. Therefore, the size is 0x10000.
 
-Starting from 2022.2, Yocto can generate QSPI images for Starter Kits. Information can be found in [QSPI Stitching page](./bootfw_qspi_stitching.md).
+Starting from 2022.2, Yocto can generate QSPI images for Starter Kits. Information can be found on the [QSPI Stitching page](./bootfw_qspi_stitching.md).
 
 ## Image Selector Registers
 
@@ -173,13 +173,8 @@ If you are developing on AMD released Starter Kits, the QSPI image is locked and
 
 However, if you are developing your own carrier cards, the production SOM's QSPI section is not locked. The entire QSPI can be customized to meet your boot firmware requirements for your production designs.
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

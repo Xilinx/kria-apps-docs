@@ -4,13 +4,16 @@ import glob
 
 def replace_text_in_file(file_path, replacements):
     with open(file_path, 'r', encoding='utf-8') as file:
-        content = file.read()
-
-    for old_text, new_text in replacements:
-        content = re.sub(old_text, new_text, content)
+        content = file.readlines()
 
     with open(file_path, 'w', encoding='utf-8') as file:
-        file.write(content)
+        for line in content:
+            if "https://github.com/Xilinx/foc-motor-ctrl/blob/main/README.md#build-instructions" not in line:
+                for old_text, new_text in replacements:
+                    if old_text == r'\.md#' and '.md#' not in line:
+                        continue
+                    line = re.sub(old_text, new_text, line)
+            file.write(line)
 
 def main():
     search_directory = os.path.dirname(os.path.abspath(__file__))

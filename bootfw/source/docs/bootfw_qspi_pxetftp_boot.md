@@ -1,9 +1,9 @@
 
-# QSPI to PXE/tftp boot
+# QSPI to PXE/TFTP Boot
 
 ## Introduction
 
-The prioritized boot order for U-Boot is specified in [BootFW U-Boot page](./bootfw_uboot_handoff.md). The last device in the prioritized list is Ethernet using DHCP/PXE. There is [existing PXE support in u-boot](https://github.com/Xilinx/u-boot-xlnx/blob/master/doc/README.pxe) to support Ethernet booting. This document provides instructions for tftp booting on Starter Kits using Ethernet/DHCP/PXE. Instructions are provided for booting both PetaLinux and Ubuntu via PXE. Their tftp server setup differs, but on-target steps are the same.
+The prioritized boot order for U-Boot is specified in [BootFW U-Boot page](./bootfw_uboot_handoff.md). The last device in the prioritized list is Ethernet using DHCP/PXE. There is [existing PXE support in U-Boot](https://github.com/Xilinx/u-boot-xlnx/blob/master/doc/README.pxe) to support Ethernet booting. This document provides instructions for TFTP booting on Starter Kits using Ethernet/DHCP/PXE. Instructions are provided for booting both PetaLinux and Ubuntu via PXE. Their TFTP server setup differs, but the on-target steps are the same.
 
 This example uses K26 on KR260 as an example, but the same steps can be taken for other starter kits as well as K24, as long as names of the SOM or Starter Kits are replaced appropriately.
 
@@ -25,7 +25,7 @@ Depending on if you are booting with Yocto, PetaLinux, or Ubuntu, choose one of 
 
 ### Linux Host Computer Setup for Yocto
 
-On the Linux host computer, follow the instructions in [Kria Yocto support](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html), and generate the bitbake recipe ```kria-image-full-cmdline``` for the target machine. That will create a pxeboot config file in the ```$yocto_workspace/build/tmp/deploy/images/<machine name>/pxelinux.cfg/default``` file with the following content:
+On the Linux host computer, follow the instructions in [Kria Yocto Support](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html), and generate the bitbake recipe ```kria-image-full-cmdline``` for the target machine. That creates a pxeboot config file in the ```$yocto_workspace/build/tmp/deploy/images/<machine name>/pxelinux.cfg/default``` file with the following content:
 
 ```text
 LABEL Linux
@@ -34,7 +34,7 @@ FDT system.dtb
 INITRD petalinux-initramfs-image-<machinename>.cpio.gz.u-boot
 ```
 
-```pxelinux.cfg/default``` refers to files that can be found in ```$yocto_workspace/build/tmp/deploy/images/```. It is using the initramfs generated, which is a smaller file system that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC or a SD card. If you want to boot to log in prompt purely through pxeboot, replace ```petalinux-initramfs-image-<machinename>.cpio.gz.u-boot``` with ```kria-image-full-cmdline-<machinename>.cpio.gz.u-boot```.
+```pxelinux.cfg/default``` refers to files that can be found in ```$yocto_workspace/build/tmp/deploy/images/```. It is using the initramfs generated, which is a smaller file system that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC or a SD card. If you want to boot to the log in prompt purely through pxeboot, replace ```petalinux-initramfs-image-<machinename>.cpio.gz.u-boot``` with ```kria-image-full-cmdline-<machinename>.cpio.gz.u-boot```.
 
 When using MACHINE = k26-smk or k24-smk, by default, `system.dtb` is pointing to a shared dtb for the SOM that does not have information about the carrier card. Keeping the dtb as is will boot, but it will not have any CC peripheral support such as Ethernet. The dtb files with CC peripheral support can be found in ```devicetree/SMK-zynqmp-sck-<CC_board>.dtb```. Pick the device tree for your target Starter Kit, and update the FDT in ```/tftpboot/pxelinux.cfg/default``` to point to that dtb file. If using MACHINE = k26-smk-kv, k26-smk-kr, or k24-smk-kd, `system.dtb` points to the device tree blob that has CC peripheral support that you will not need to change.
 
@@ -61,7 +61,7 @@ sudo chmod 766 /tftpboot
 petalinux-build
 ```
 
-This will create a ```/tftpboot/pxelinux.cfg/default``` file with the following content:
+This creates a ```/tftpboot/pxelinux.cfg/default``` file with the following content:
 
 ```text
 LABEL Linux
@@ -70,7 +70,7 @@ FDT system.dtb
 INITRD ramdisk.cpio.gz.u-boot
 ```
 
-```/tftpboot/pxelinux.cfg/default``` refers to files that can be found in ```/tftpboot```.
+```/tftpboot/pxelinux.cfg/default``` refers to files found in ```/tftpboot```.
 
 >**NOTE:** It is using the ramdisk generated, which is a smaller initram that allows Linux to boot to a place where it can look for existing rootfs in other locations such as eMMC or a SD card. If you want to boot to the log in prompt purely through pxeboot, replace ```ramdisk.cpio.gz.u-boot``` with ```rootfs.cpio.gz.u-boot```.
 
@@ -193,7 +193,7 @@ Make sure that the Starter Kit has the [latest bootfw for the tool version](http
 setenv serverip <host ip>
 ```
 
->**NOTE:** By default, saveenv is not enabled in U-Boot. This means that serverip will need to be set up every reboot.
+>**NOTE:** By default, saveenv is not enabled in U-Boot. This means that serverip needs to be set up every reboot.
 
 [//]: # (In order for serverip environment variable to persist through power cycles or re-boot, you will need to enable environments in u-boot configuration, rebuild u-boot, boot.bin and program them into QSPI. )
 
@@ -216,13 +216,8 @@ If using Yocto/PetaLinux and using the larger rootfs, the kernel and rootfs shou
 
 If using Ubuntu, the `image.fit` file contains a small initram; the Starter Kit boots into BusyBox and has limited functionality. If a SD card with full rootfs is plugged into the SD slot, the preceding steps boot using the kernel image from the tftp server and grab the full rootfs image from the SD card instead of BusyBox initrd.
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

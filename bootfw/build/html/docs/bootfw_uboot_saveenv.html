@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Enable saveenv in U-Boot &mdash; Boot SOM Firmware 2022.1 documentation</title>
+  <title>Enable SaveEnv in U-Boot &mdash; Boot SOM Firmware 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -85,9 +85,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_boot.bin_generation.html">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching QSPI Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC boot for Production SOM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/tftp boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching the QSPI Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC Boot for Production SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/TFTP Boot</a></li>
 </ul>
 
         </div>
@@ -104,7 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Enable saveenv in U-Boot</li>
+      <li>Enable SaveEnv in U-Boot</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/bootfw_uboot_saveenv.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -115,11 +115,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="enable-saveenv-in-u-boot">
-<h1>Enable saveenv in U-Boot<a class="headerlink" href="#enable-saveenv-in-u-boot" title="Permalink to this heading">¶</a></h1>
+<h1>Enable SaveEnv in U-Boot<a class="headerlink" href="#enable-saveenv-in-u-boot" title="Permalink to this heading">¶</a></h1>
 <p>To prevent you from accidentally overwriting bootfw environment variables and rendering the Starter Kits unbootable, by default, saveenv is disabled. If you want to boot via PXE without any serial port interactions, you need to enable saveenv to save serverip variable. This example uses K26, but it can be used for K24 as well by replacing mentioning of K26 with K24.</p>
 <div class="section" id="enable-saveenv-on-u-boot-in-petalinux">
 <h2>Enable SaveEnv on U-Boot in PetaLinux<a class="headerlink" href="#enable-saveenv-on-u-boot-in-petalinux" title="Permalink to this heading">¶</a></h2>
-<p>To enable saveenv in U-Boot generated in PetaLinux, go through the following on PetaLinux with a released BSP:</p>
+<p>To enable SavEenv in U-Boot generated in PetaLinux, go through the following on PetaLinux with a released BSP:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>petalinux-create<span class="w"> </span>-t<span class="w"> </span>project<span class="w"> </span>-s<span class="w"> </span>xilinx-&lt;starterkit<span class="w"> </span>name&gt;-&lt;tool<span class="w"> </span>version&gt;-&lt;timestamp&gt;.bsp
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>xilinx-&lt;starterkit<span class="w"> </span>name&gt;-&lt;tool<span class="w"> </span>version&gt;
 $<span class="w"> </span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot<span class="w"> </span><span class="c1">#---&gt; Environment ---&gt; [ ] Environment is not stored (press N to deselect )</span>
@@ -140,16 +140,16 @@ $<span class="w"> </span>petalinux-build<span class="w"> </span>-c<span class="w
 $<span class="w"> </span>petalinux-package<span class="w"> </span>--boot<span class="w"> </span>--fsbl<span class="w"> </span>images/linux/zynqmp_fsbl.elf<span class="w"> </span>--u-boot<span class="w"> </span>images/linux/u-boot.elf<span class="w"> </span>--pmufw<span class="w"> </span>images/linux/pmufw.elf<span class="w"> </span>--fpga<span class="w"> </span>images/linux/system.bit<span class="w"> </span>--force
 </pre></div>
 </div>
-<p>The folowing code snippet shows the U-Boot configuration for the SPI setting:</p>
+<p>The following code snippet shows the U-Boot configuration for the SPI setting:</p>
 <blockquote>
-<div><p><strong>NOTE:</strong> The environment address corresponds to the QSPI memory map as documented in <a class="reference external" href="./bootfw_overview.html#boot-fw-qspi-memory-map">BootFW Overview</a>.</p>
+<div><p><strong>NOTE:</strong> The environment address corresponds to the QSPI memory map as documented in the <a class="reference external" href="./bootfw_overview.html#boot-fw-qspi-memory-map">Boot Firmware Overview</a>.</p>
 </div></blockquote>
 <p><img alt="image" src="../_images/saveenv_uboot_config.PNG" /></p>
 <p>This generates a new <code class="docutils literal notranslate"><span class="pre">BOOT.BIN</span></code> in <code class="docutils literal notranslate"><span class="pre">image/linux</span></code> that can be programmed via an A/B update method using <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-management-via-xmutil">xmutil bootfw_update</a>.</p>
 </div>
 <div class="section" id="enable-saveenv-on-u-boot-in-yocto">
 <h2>Enable SaveEnv on U-Boot in Yocto<a class="headerlink" href="#enable-saveenv-on-u-boot-in-yocto" title="Permalink to this heading">¶</a></h2>
-<p>If regenerating U-Boot in Yocto, use the following the commands. This assumes you have already went through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Kria Yocto Support</a>.</p>
+<p>If regenerating U-Boot in Yocto, use the following the commands. This assumes you already went through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Kria Yocto Support</a>.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>repo<span class="w"> </span>init<span class="w"> </span>-u<span class="w"> </span>https://github.com/Xilinx/yocto-manifests.git<span class="w"> </span>-b<span class="w"> </span>rel-v&lt;tool<span class="w"> </span>version&gt;
 repo<span class="w"> </span>sync
 <span class="nb">source</span><span class="w"> </span>setupsdk
@@ -161,7 +161,7 @@ repo<span class="w"> </span>sync
 <span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>kria-qspi
 </pre></div>
 </div>
-<p>This generates a new <code class="docutils literal notranslate"><span class="pre">boot.bin</span></code> in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k26-smk/</span></code>, and <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code> is defined in <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code> by default in <code class="docutils literal notranslate"><span class="pre">tmp/</span></code>. The new <code class="docutils literal notranslate"><span class="pre">boot.bin</span></code> can be programmed via an A/B update method using <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-management-via-xmutil">xmutil bootfw_update</a>.</p>
+<p>This generates a new <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code> in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k26-smk/</span></code>, and <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code> is defined in <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code> by default in <code class="docutils literal notranslate"><span class="pre">tmp/</span></code>. The new <code class="docutils literal notranslate"><span class="pre">boot.bin</span></code> can be programmed via an A/B update method using <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-management-via-xmutil">xmutil bootfw_update</a>.</p>
 </div>
 <div class="section" id="on-target-commands">
 <h2>On-target Commands<a class="headerlink" href="#on-target-commands" title="Permalink to this heading">¶</a></h2>
@@ -170,14 +170,7 @@ repo<span class="w"> </span>sync
 saveenv
 </pre></div>
 </div>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p></div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -191,7 +184,7 @@ saveenv
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 14, 2025.
+      <span class="lastupdated">Last updated on May 05, 2025.
       </span></p>
   </div>
 

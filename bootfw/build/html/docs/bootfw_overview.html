@@ -96,7 +96,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#u-boot">U-Boot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qspi-component-and-qspi-update">QSPI Component and QSPI Update</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_image_selector.html">Image Selector</a></li>
@@ -104,9 +103,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_boot.bin_generation.html">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching QSPI Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC boot for Production SOM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/tftp boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_stitching.html">Stitching the QSPI Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC Boot for Production SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/TFTP Boot</a></li>
 </ul>
 
         </div>
@@ -135,9 +134,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="boot-firmware-overview">
 <h1>Boot Firmware Overview<a class="headerlink" href="#boot-firmware-overview" title="Permalink to this heading">¶</a></h1>
-<p>The SOM Starter Kits use a two stage boot process. The primary boot firmware is pre-installed at the factory on the QSPI device. The secondary boot device is a SD card containing the Linux kernel and Linux root filesystem (rootfs). The AMD Starter Kit carrier card hardware design sets the MPSoC boot mode to QSPI32. The SOM boots up to U-Boot using the QSPI contents and U-Boot then hand-off to the secondary boot device.</p>
-<p>This document gives an overview to various components in the AMD Kria™ SOM boot firmware and points to source code available to get started with your implementations for your Kria SOM custom carrier card. For general information about the boot of the AMD Zynq™ MPSoC, refer to the <a class="reference external" href="https://docs.amd.com/go/en-US/ug1085-zynq-ultrascale-trm/Boot-and-Configuration">Boot and Configuration</a> chapter in the <em>Zynq UltraScale+ Device Technical Reference Manual</em> (UG1085).</p>
-<p>The QSPI image and its boot firmware (FW) contents in SOM Starter Kits are common across all K26 starter kits.</p>
+<p>The AMD Kria ™ SOM Starter Kits use a two stage boot process. The primary boot firmware is pre-installed at the factory on the QSPI device. The secondary boot device is a SD card containing the Linux kernel and Linux root filesystem (rootfs). The AMD Starter Kit carrier card hardware design sets the MPSoC boot mode to QSPI32. The SOM boots up to U-Boot using the QSPI contents and U-Boot then hand-off to the secondary boot device.</p>
+<p>This document gives an overview to various components in the Kria SOM boot firmware and points to source code available to get started with your implementations for your Kria SOM custom carrier card. For general information about the boot of the AMD Zynq™ MPSoC, refer to the <a class="reference external" href="https://docs.amd.com/go/en-US/ug1085-zynq-ultrascale-trm/Boot-and-Configuration">Boot and Configuration</a> chapter in the <em>Zynq UltraScale+ Device Technical Reference Manual</em> (UG1085).</p>
+<p>The QSPI image and its boot firmware (FW) contents in SOM Starter Kits are common across all K26 Starter Kits.</p>
 <p>The overall boot device definition and firmware contents are outlined in the following figure.</p>
 <p><img alt="image" src="../_images/boot_location.png" /></p>
 <p>For advanced evaluation, you can customize the boot firmware using Yocto or the corresponding kit PetaLinux BSP. For pointers on how to generate <code class="docutils literal notranslate"><span class="pre">BOOT.BIN</span></code>, refer to <a class="reference internal" href="bootfw_boot.bin_generation.html"><span class="doc">BootFW BOOT.BIN Generation page</span></a>. Yocto or PetaLinux BSP can be used to generate a new <code class="docutils literal notranslate"><span class="pre">BOOT.BIN</span></code> that is then loaded to the QSPI user A/B partition and custom SD card contents summarized in the following diagram:</p>
@@ -149,7 +148,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>FSBL: First-stage boot-loader firmware</p>
 <ul>
 <li><p><a class="reference external" href="https://github.com/Xilinx/embeddedsw/tree/master/lib/sw_apps/zynqmp_fsbl">Source code</a></p></li>
-<li><p>FSBL is generated in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto</a> or <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/First-Stage-Boot-Loader-for-Zynq-UltraScale-and-Zynq-7000-Devices">PetaLinux</a>, the flow is not unique to Kria SOM. Released SOM BSP generates FSBL by default when executing <code class="docutils literal notranslate"><span class="pre">petalinux-build</span></code>.</p></li>
+<li><p>FSBL is generated in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto</a> or <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/First-Stage-Boot-Loader-for-Zynq-UltraScale-and-Zynq-7000-Devices">PetaLinux</a>, the flow is not unique to Kria SOM. The released SOM BSP generates FSBL by default when executing <code class="docutils literal notranslate"><span class="pre">petalinux-build</span></code>.</p></li>
 </ul>
 </li>
 <li><p>PMU: Platform management unit firmware</p>
@@ -357,7 +356,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p>*   QSPI Image Version Information Example: XilinxSom_QspiImage_v1.0_20201030 Last 32Bytes: HashValue Hash Algo: SHA256 It is only 256 bytes but has to be 64 KB aligned. Therefore, the size is 0x10000.</p>
-<p>Starting from 2022.2, Yocto can generate QSPI images for Starter Kits. Information can be found in <a class="reference internal" href="bootfw_qspi_stitching.html"><span class="doc">QSPI Stitching page</span></a>.</p>
+<p>Starting from 2022.2, Yocto can generate QSPI images for Starter Kits. Information can be found on the <a class="reference internal" href="bootfw_qspi_stitching.html"><span class="doc">QSPI Stitching page</span></a>.</p>
 </div>
 <div class="section" id="image-selector-registers">
 <h2>Image Selector Registers<a class="headerlink" href="#image-selector-registers" title="Permalink to this heading">¶</a></h2>
@@ -492,14 +491,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>QSPI used in a commercial grade SOM is <a class="reference external" href="https://www.micron.com/products/nor-flash/serial-nor-flash/part-catalog/mt25qu512abb8e12-0sit">MT25QU512ABB8E12-0SIT</a>. The QSPI used in I-grade SOM is <a class="reference external" href="https://www.micron.com/products/nor-flash/serial-nor-flash/part-catalog/mt25qu512abb8e12-0aat">MT25QU512ABB8E12-0AAT</a>. The QSPI has locking functionality. For details, refer to linked datasheets on Micron.</p>
 <p>If you are developing on AMD released Starter Kits, the QSPI image is locked and the only section that should need an update is the Image A/B section along with the persistent registers.</p>
 <p>However, if you are developing your own carrier cards, the production SOM’s QSPI section is not locked. The entire QSPI can be customized to meet your boot firmware requirements for your production designs.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p></div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -516,7 +508,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 14, 2025.
+      <span class="lastupdated">Last updated on May 05, 2025.
       </span></p>
   </div>
 

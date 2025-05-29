@@ -21,11 +21,17 @@ U-Boot for Kria officially supports the Kria Starter Kits. The Starter Kit SOM a
 
 ### Prioritized Boot Order
 
-Prior to 21.2, U-Boot searched for both the SD card and eMMC secondary boot devices; if both were detected, a menu interface was provided to you to select the desired Linux boot target.
+Prior to 2021.2, U-Boot searched for both the SD card and eMMC secondary boot devices; if both were detected, a menu interface was provided to you to select the desired Linux boot target.
 
-From 22.1 onwards, there is no U-Boot boot menu during the boot process for SOM. The AMD pre-built `BOOT.BIN` implements a fixed device boot selection as defined by the CC identified. See the following boot device selection order for the KV and KR carrier cards. If a Production SOM is identified by its board-ID EEPROM, then the U-Boot first queries the SOM local eMMC (mmc0) device for boot, before falling to the normal Starter Kit CC boot order.
+For Starter Kit SOM, from 2022.1 onwards, there is no U-Boot boot menu during the boot process for SOM. The AMD pre-built `BOOT.BIN` implements a fixed device boot selection as defined by the CC identified. See the following boot device selection order for the KV and KR carrier cards.
 
 ![image](./media/ubootflow_KVvsKR.png)
+
+For production SOM, between 2022.1 and 2023.2, if a Production SOM is identified by its board-ID EEPROM, then the U-Boot first queries the SOM local eMMC (mmc0) device for boot, before falling to the normal Starter Kit CC boot order. After 2023.2, there is a boot menu to choose between eMMC and the the normal Starter Kit CC boot order.
+
+![image](./media/production_som_bootpriority_old.PNG)
+
+![image](./media/production_som_bootpriority.PNG)
 
 ## `boot.scr` - Linux DT Decoupling and DT Selection
 
@@ -124,7 +130,7 @@ fi
 done
 ```
 
-The `boot.scr` can be found in the SD card after programming a .wic image, or it can be found in the Yocto build folder, ```build/tmp/deploy/images/<machine_name>/boot.scr```, or in the PetaLinux project (after the `petalinux-create` command) in `<petalinux_project>/pre-built/linux/images/boot.scr`. The .scr file has been compiled; therefore, there are some binaries prior to the texted source code.
+The `boot.scr` is found in the SD card after programming a .wic image, or it is found in the Yocto build folder, ```build/tmp/deploy/images/<machine_name>/boot.scr```, or in the PetaLinux project (after the `petalinux-create` command) in `<petalinux_project>/pre-built/linux/images/boot.scr`. The .scr file has been compiled; therefore, there are some binaries prior to the texted source code.
 
 ### Compilation Procedure and Source Code
 
@@ -134,13 +140,8 @@ The source code for U-Boot is alsofound [here](https://github.com/Xilinx/u-boot-
 
 `boot.scr` is compiled using mkimage, and more information can be found [here](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/749142017/Using+Distro+Boot+With+Xilinx+U-Boot).
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>
