@@ -1,23 +1,25 @@
 # Porting an Application to PetaLinux - Smartcam
 
-This page documents a step by step example that ports Smartcam application to run on PetaLinux OS. Developers can use this as a guide to port their own applications onto PetaLinux. Note that starting from 2022.1 and newer, example applications are supported on Ubuntu and not PetaLinux, giving an opportunity to show porting process for one of the example applications.
+This page documents a step by step example that ports a SmartCam application to run on a PetaLinux operating system. Use this as a guide to port your own applications onto PetaLinux.
 
-The example here was tested using smartcam and tool version 2022.1. It assumes that you have already familiar with the smartcam application either using [Ubuntu with tool version 2022.1](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/docs/app_deployment.html#) or [PetaLinux 2021.1](https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/docs/smartcamera/docs/app_deployment.html).
+>**NOTE:** From the 2022.1 release and newer, example applications are supported on Ubuntu® and not PetaLinux, which provides an opportunity to show the porting process for one of the example applications.
 
-There are 3 ways to port smartcam onto PetaLinux OS:
+The example here was tested using SmartCam and tool version 2022.1. It assumes that you are already familiar with the SmartCam application either using [Ubuntu with tool version 2022.1](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/docs/app_deployment.html#) or [PetaLinux 2021.1](https://xilinx.github.io/kria-apps-docs/kv260/2021.1/build/html/docs/smartcamera/docs/app_deployment.html).
 
-Without having to use PetaLinux toolchain:
+There are three ways to port SmartCam onto the PetaLinux OS:
+
+Without having to use the PetaLinux toolchain:
 
 * Build on target
 
-Using PetaLinux toolchain, the following two methods has some overlap steps with eachother, therefore they are documented under the [same section](#building-a-wic-image-or-rpm-packages):
+Using the PetaLinux toolchain, the following two methods have some overlap steps with each other; therefore, they are documented under the [same section](#building-a-wic-image-or-rpm-packages):
 
-* Build a new PetaLinux wic image with smartcam baked in using recipes
-* Generate an RPM using PetaLinux and recipes, and move to target
+* Build a new PetaLinux wic image with SmartCam baked in using recipes.
+* Generate a RPM using PetaLinux and recipes, and move to target.
 
 ## Build on Target
 
-This section outlines how to build smartcam on KV260 target running released 2022.1 wic image. First, download and boot with [2022.1 PetaLinux Starter Kit Linux pre-built SD card image](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux). Once booted, download git, and repositories required for building smartcam - the FPGA firmware, AP1302 firmware, and smartcam application software:
+This section outlines how to build SmartCam on a KV260 target running the released 2022.1 wic image. First, download and boot with [2022.1 PetaLinux Starter Kit Linux pre-built SD card image](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux). Once booted, download git and the repositories required for building SmartCam (the FPGA firmware, AP1302 firmware, and SmartCam application software):
 
 ``` shell
 sudo dnf install -y git
@@ -26,7 +28,7 @@ git clone --branch xlnx_rel_v2022.1 https://github.com/Xilinx/ap1302-firmware.gi
 git clone --branch xlnx_rel_v2022.1 https://github.com/Xilinx/smartcam.git
 ```
 
-Next, copy the smartcam FPGA Firmware and AP1302 firmware to the correct location:
+Next, copy the SmartCam FPGA firmware and AP1302 firmware to the correct location:
 
 ```shell
 cd kria-apps-firmware/boards/kv260/smartcam/
@@ -36,9 +38,10 @@ sudo cp kria-apps-firmware/boards/kv260/smartcam/ /lib/firmware/xilinx/kv260-sma
 sudo cp ap1302-firmware/ap1302_ar1335_single_fw.bin /lib/firmware/
 ```
 
-Next, install runtime and build dependencies. Note that 2022.1 smartcam is compatible only with specific versions of zcol and xrt. Therefore install them first with the compatible versions to prevent latest version to be installed when other dependencies are installed. (Tip: copy below section to a .sh file on target and source the .sh file to save time.)
+Next, install runtime and build dependencies.
 
-Note that the example applications are verified with specific versions of XRT, VVAS and Vitis-AI libraries, which may not be backward compatible. So you will need to first install specific versions per instructions below. Find more information in [library dependency](./library_dependency.md) page.
+>**NOTE:** The 2022.1 SmartCam is compatible only with specific versions of ZCOL and XRT. Therefore, install them first with the compatible versions to prevent the latest version to be installed when other dependencies are installed. (Tip: Copy the following section to a .sh file on target, and source the .sh file to save time.)
+>**NOTE:** The example applications are verified with specific versions of XRT, VVAS, and Vitis-AI libraries, which might not be backward compatible. You need to first install specific versions per the following instructions. For more information, refer to the [library dependency](./library_dependency.md) page.
 
 ```shell
 # install specific versions of zocl, xrt, VVAS, and Vitis-AI:
@@ -67,10 +70,9 @@ sudo dnf install -y gstreamer1.0-plugins-bad-videoparsersbad gstreamer1.0-plugin
 sudo dnf install -y gstreamer1.0-plugins-good-rtpmanager gstreamer1.0-plugins-good-udp
 sudo dnf install -y gstreamer1.0-plugins-good-video4linux2 gstreamer1.0-python
 sudo dnf install -y libdrm-tests v4l-utils alsa-utils python3-core
-
 ```
 
-Lastly, build the smartcam application:
+Build the SmartCam application:
 
 ```shell
 # build smartcam
@@ -83,7 +85,7 @@ sudo make install
 # smartcam binary will be available at  /opt/xilinx/kv260-smartcam/bin/smartcam
 ```
 
-Finally, test the smartcam on target:
+Finally, test the SmartCam on target:
 
 ```shell
 sudo xmutil listapps                            # kv260-smartcam should show up in the list
@@ -92,48 +94,46 @@ sudo xmutil loadapp kv260-smartcam              # Load smartcam firmware
 sudo /opt/xilinx/kv260-smartcam/bin/smartcam -m
 ```
 
-## Building a WIC image or RPM packages
+## Building a .wic Image or RPM Packages
 
-You need PetaLinux 2022.1 with eSDK update 3 or later, as vvas library is released asynchronously and not included in the main 2022.1 petalinux tools release. Download PetaLinux Tools Installer 2022.1 from [PetaLinux Download page](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html).
+You need PetaLinux 2022.1 with eSDK update 3 or later because the VVAS library is released asynchronously and not included in the main 2022.1 PetaLinux tools release. Download the PetaLinux Tools Installer 2022.1 from the [PetaLinux Download page](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html).
 
-To install PetaLinux, extract the petalinux installer, accept the license and source the tool's settings script.
+To install PetaLinux, extract the PetaLinux installer, accept the license, and source the tool's settings script.
 
 ```bash
 petalinux-v2021.1-final-installer.run
 source settings.sh
 ```
 
-The eSDK can be used to update the petalinux tool for creating new images or SDKs. The eSDK updates are
-published [here](http://petalinux.xilinx.com/sswreleases/rel-v2022/sdkupdate/2022.1_update3/)
-Upgrade the tool with new eSDK for '2022.1 update3' release and source the tool's settings script.
+The eSDK can be used to update the PetaLinux tool for creating new images or SDKs. The eSDK updates are published [here](http://petalinux.xilinx.com/sswreleases/rel-v2022/sdkupdate/2022.1_update3/). Upgrade the tool with the new eSDK for the '2022.1 update3' release and source the tool's settings script.
 
 ```bash
 petalinux-upgrade -u 'http://petalinux.xilinx.com/sswreleases/rel-v2022/sdkupdate/2022.1_update3/' -p 'aarch64'
 source settings.sh
 ```
 
-The petalinux tool is now updated with '2022.1 update3' Yocto eSDK.
+The PetaLinux tool is now updated with '2022.1 update3' Yocto eSDK.
 
 ### Step 1: Create PetaLinux Project
 
-First, download the KV260 2022.1 BSP from [Kria SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages). Using PetaLinux tool version 2022.1, create a project:
+First, download the KV260 2022.1 BSP from the [Kria SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages). Using the PetaLinux tool version 2022.1, create a project:
 
 ```shell
 petalinux-create -t project -s xilinx-kv260-starterkit-v2022.1-<timestamp>.bsp
 cd xilinx-kv260-starterkit-2022.1/
 ```
 
-Note that we will be now adding 4 recipes for smartcam FPGA firmware, AP1302 firmware, smartcam software, and a packagegroup to bring them together. The recipes will be added to the ```project-spec/meta-user``` folder, which is a meta-layer thats already included in the project, which you can confirm by looking at ```build/conf/bblayers.conf``` after a petalinux-build. If you choose to add the recipes to other meta-layer folders, be sure to [add the layer](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Adding-Layers) first.
+>**NOTE:** You are now adding four recipes for the SmartCam FPGA firmware, AP1302 firmware, SmartCam software, and a package group to bring them together. The recipes will be added to the ```project-spec/meta-user``` folder, which is a meta-layer that is already included in the project, which you can confirm by looking at ```build/conf/bblayers.conf``` after a petalinux-build. If you choose to add the recipes to other meta-layer folders, be sure to [add the layer](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Adding-Layers) first.
 
-### Step 2: Add Recipe for Smartcam FPGA firmware
+### Step 2: Add Recipe for the SmartCam FPGA Firmware
 
-FPGA Firmware for Smartcam 2022.1 is released on [github](https://github.com/Xilinx/kria-apps-firmware/tree/xlnx-rel-v2022.1_update4/boards/kv260/smartcam). It includes the bitstream, and its associated .xclbin, .dtsi and shell.json files. First make the folder example_firmware to keep the recipe file:
+FPGA firmware for SmartCam 2022.1 is released on [GitHub](https://github.com/Xilinx/kria-apps-firmware/tree/xlnx-rel-v2022.1_update4/boards/kv260/smartcam). It includes the bitstream, and its associated .xclbin, .dtsi, and shell.json files. First, make the `example_firmware` folder to keep the recipe file:
 
 ```shell
 mkdir -p project-spec/meta-user/recipes-firmware/example_firmware
 ```
 
-Below is the content for ```project-spec/meta-user/recipes-firmware/example_firmware/kv260-smartcam.bb```. Note the latest commit ID correspond to the tag xlnx-rel-v2022.1_update4 when creating the recipe.
+The following is the content for ```project-spec/meta-user/recipes-firmware/example_firmware/kv260-smartcam.bb```. The latest commit ID corresponds to the xlnx-rel-v2022.1_update4 tag when creating the recipe.
 
 ```python
 
@@ -161,15 +161,15 @@ FW_DIR = "boards/kv260/smartcam" #specifies which folder of the repo to use
 COMPATIBLE_MACHINE:k26-kv = "${MACHINE}"
 ```
 
-### Step 3: Add Recipe for AP1302 Firmware
+### Step 3: Add Recipe for the AP1302 Firmware
 
-Smartcam uses AR1335 MIPI sensor, which requires AP1302 firmware. AP1302 is released on [github](https://github.com/Xilinx/ap1302-firmware/tree/xlnx_rel_v2022.1).  We will first create a folder called "ap1302-firmware" to keep the AP1302 recipes ```ap1302-firmware.inc``` and ```ap1302-ar1335-single-firmware.bb```.
+SmartCam uses AR1335 MIPI sensor, which requires AP1302 firmware. AP1302 is released on [github](https://github.com/Xilinx/ap1302-firmware/tree/xlnx_rel_v2022.1).  We will first create a folder called "ap1302-firmware" to keep the AP1302 recipes ```ap1302-firmware.inc``` and ```ap1302-ar1335-single-firmware.bb```.
 
 ```shell
 mkdir -p project-spec/meta-user/recipes-firmware/ap1302-firmware/
 ```
 
-Below is the content for ```project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb```:
+The following is the content for ```project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb```:
 
 ```python
 SUMMARY = "ap1302 ar1335-single firmware binary"
@@ -179,7 +179,7 @@ include ap1302-firmware.inc
 FW_NAME = "ap1302_ar1335_single_fw.bin"
 ```
 
-Below is the content for ```project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-firmware.inc```, which the above recipe included:
+The following is the content for ```project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-firmware.inc```, which the above recipe included:
 
 ```python
 LICENSE = "Proprietary"
@@ -206,15 +206,15 @@ do_install() {
 FILES:${PN} = "/lib/firmware/${FW_NAME}"
 ```
 
-### Step 4: Add Recipe for Smartcam Software
+### Step 4: Add Recipe for the SmartCam Software
 
-Next, we add the recipe for smartcam software, which is released at [github](https://github.com/Xilinx/smartcam/tree/xlnx_rel_v2022.1) for 2022.1. We first create a folder for application recipe:
+Next, add the recipe for the SmartCam software, which is released at [GitHub](https://github.com/Xilinx/smartcam/tree/xlnx_rel_v2022.1) for 2022.1. Create a folder for the application recipe:
 
 ```shell
 mkdir -p project-spec/meta-user/recipes-apps/smartcam/
 ```
 
-Then we create the following content in file ```project-spec/meta-user/recipes-apps/smartcam/smartcam.bb```, Note the commit ID - move to the latest commit ID if needed.
+Then, create the following content in the ```project-spec/meta-user/recipes-apps/smartcam/smartcam.bb``` file. Note the commit ID, and move it to the latest commit ID if needed.
 
 ```python
 SUMMARY = "Example Smartcam application"
@@ -263,15 +263,15 @@ FILES:${PN} += " \
     "
 ```
 
-### Step 5: Create Packagegroup
+### Step 5: Create Package Group
 
-Next, we want to create the package group to include both the firmware and software, as well as the AR1335 driver that is needed for this application. [UG1144](https://docs.xilinx.com/r/en-US/ug1144-petalinux-tools-reference-guide/Adding-a-Package-Group) also details this step.
+Next, create the package group to include both the firmware and software, as well as the AR1335 driver that is needed for this application. For details, see the *PetaLinux Tools Documentation: Reference Guide* ([UG1144](https://docs.amd.com/go/en-US/ug1144-petalinux-tools-reference-guide/Adding-a-Package-Group)).
 
 ```shell
 mkdir -p project-spec/meta-user/recipes-core/packagegroups/
 ```
 
-Then create  ```project-spec/meta-user/recipes-core/packagegroups/packagegroup-kv260-smartcam.bb``` with the following content:
+Then create ```project-spec/meta-user/recipes-core/packagegroups/packagegroup-kv260-smartcam.bb``` with the following content:
 
 ```text
 DESCRIPTION = "Example Smartcam related Packages"
@@ -291,23 +291,23 @@ COMPATIBLE_MACHINE:k26-kv = "${MACHINE}"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 ```
 
-Add below line to ```project-spec/meta-user/conf/user-rootfsconfig```:
+Add the following line to ```project-spec/meta-user/conf/user-rootfsconfig```:
 
 ```text
 CONFIG_packagegroup-kv260-smartcam
 ```
 
-Enable the package group by using below command to get to configuration gui:
+Enable the package group by using the following command to get to the configuration GUI:
 
 ```shell
 petalinux-config -c rootfs
 ```
 
-Go to ```user packages``` to enable packagegroup-kv260-smartcam
+Go to ```user packages``` to enable packagegroup-kv260-smartcam.
 
 ### Step 6: Build
 
-#### Option 1 - baking into WIC image
+#### Option 1 - Baking into the WIC Image
 
 Now that all the meta layers are in place, build the image:
 
@@ -316,9 +316,9 @@ petalinux-build
 petalinux-package --wic --bootfiles "ramdisk.cpio.gz.u-boot boot.scr Image system.dtb"
 ```
 
-Flash the generated image in ``images/linux/petalinux-sdimage.wic``` onto SD card and boot on a KV260.
+Flash the generated image in ``images/linux/petalinux-sdimage.wic`` onto the SD card and boot it on a KV260.
 
-#### Option 2 - generate RPM and install on released wic image
+#### Option 2 - Generate RPM and Install on the Released wic Image
 
 ```text
 petalinux-build -c smartcam
@@ -336,7 +336,7 @@ $TMP/deploy/rpm/cortexa72_cortexa53/ap1302-ar1335-single-firmware-1.0-r0.0.corte
 
  $TMP location can be found at ```project-spec/configs/config CONFIG_TMP_DIR_LOCATION=$TMP```
 
-Then move the .rpm files to target (that is booted in released 22.1 .wic image) and install using dnf, so they will install dependencies as well. However, note that for 2022.1 version of Smartcam, you need specific, compatible versions of zocl and xrt which is not the latest - therefore we need to first install the specific versions to prevent a later, incompatible version to be installed automatically.
+Then, move the .rpm files to the target (that is booted in released 22.1 .wic image) and install using dnf, so the dependencies are also installed. However, for 2022.1 version of SmartCam, you need specific, compatible versions of ZOCL and XRT which is not the latest; therefore, you need to first install the specific versions to prevent a later, incompatible version to be installed automatically.
 
 ```shell
 sudo dnf install -y zocl-202210.2.13.479-r0.0 
@@ -348,7 +348,7 @@ sudo dnf install -y ap1302-ar1335-single-firmware-1.0-r0.0.cortexa72_cortexa53.r
 
 ### Step 7: Test
 
-Test that firmware and applications have loaded correctly:
+Test that the firmware and applications loaded correctly:
 
 ```shell
 sudo xmutil listapps                            # kv260-smartcam should show up in the list
@@ -357,15 +357,10 @@ sudo xmutil loadapp kv260-smartcam              # Load smartcam firmware
 sudo /opt/xilinx/kv260-smartcam/bin/smartcam -m # Execute smartcam application using a MIPI sensor
 ```
 
-You should see the application displaying image from MIPI sensor to the screen.
+You should see the application displaying the image from the MIPI sensor to the screen.
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023–2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

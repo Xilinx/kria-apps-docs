@@ -1,5 +1,5 @@
 
-# Stitching QSPI Image
+# Stitching the QSPI Image
 
 ## Introduction
 
@@ -7,13 +7,13 @@ This page outlines the process to recreate a QSPI image for Kria SOM Starter kit
 
 ## Requirements
 
-As outlined in [bootfw overview](./bootfw_overview.md), the Kria SOM Starter Kit QSPI image is stitched together from several components. The overview also provides the QSPI memory map that Kria Starter Kit QSPI binaries follow. The rest of the bootfw documentation is also an outlined process to individually generate each component.
+As outlined in the [Boot Firmware Overview](./bootfw_overview.md), the Kria SOM Starter Kit QSPI image is stitched together from several components. The overview also provides the QSPI memory map that Kria Starter Kit QSPI binaries follow. The rest of the Boot Firmware documentation is also an outlined process to individually generate each component.
 
 This document details a Yocto Flow that automates the generation of those binary files and stitches them together.
 
 ### Step 1: Preparing the Build Environment
 
-Before continuing, go through the  [Yocto support on Kria](https://xilinx.github.io/kria-apps-docs/yocto.html) and finish [prepare the build environment section](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html#prepare-the-build-environment).
+Before continuing, go through [Yocto Support on Kria](https://xilinx.github.io/kria-apps-docs/yocto.html) and finish the [Prepare the Build Environment section](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html#prepare-the-build-environment).
 
 ### Step 2: Build the Image
 
@@ -40,13 +40,8 @@ The resulting `boot.bin` image, ```BOOT-k2*-smk.bin```, and its artifacts can be
 
 1. If you see the error, ```error loading hsi package: couldn't load file "libxv_commontasks.so"```, it might be missing libtinfo5 library which can be installed with ```sudo apt-get install -y libtinfo5```.
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

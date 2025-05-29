@@ -1,11 +1,11 @@
-﻿
-# Enable saveenv in U-Boot
+
+# Enable SaveEnv in U-Boot
 
 To prevent you from accidentally overwriting bootfw environment variables and rendering the Starter Kits unbootable, by default, saveenv is disabled. If you want to boot via PXE without any serial port interactions, you need to enable saveenv to save serverip variable. This example uses K26, but it can be used for K24 as well by replacing mentioning of K26 with K24.
 
 ## Enable SaveEnv on U-Boot in PetaLinux
 
-To enable saveenv in U-Boot generated in PetaLinux, go through the following on PetaLinux with a released BSP:
+To enable SavEenv in U-Boot generated in PetaLinux, go through the following on PetaLinux with a released BSP:
 
 ``` shell
 $ petalinux-create -t project -s xilinx-<starterkit name>-<tool version>-<timestamp>.bsp
@@ -28,8 +28,8 @@ $ petalinux-build -c u-boot
 $ petalinux-package --boot --fsbl images/linux/zynqmp_fsbl.elf --u-boot images/linux/u-boot.elf --pmufw images/linux/pmufw.elf --fpga images/linux/system.bit --force
 ```
 
-The folowing code snippet shows the U-Boot configuration for the SPI setting:
->**NOTE:** The environment address corresponds to the QSPI memory map as documented in [BootFW Overview](./bootfw_overview.md#boot-fw-qspi-memory-map).
+The following code snippet shows the U-Boot configuration for the SPI setting:
+>**NOTE:** The environment address corresponds to the QSPI memory map as documented in the [Boot Firmware Overview](./bootfw_overview.md#boot-fw-qspi-memory-map).
 
 ![image](./media/saveenv_uboot_config.PNG)
 
@@ -37,7 +37,7 @@ This generates a new `BOOT.BIN` in `image/linux` that can be programmed via an A
 
 ## Enable SaveEnv on U-Boot in Yocto
 
-If regenerating U-Boot in Yocto, use the following the commands. This assumes you have already went through [Kria Yocto Support](https://xilinx.github.io/kria-apps-docs/yocto.html).
+If regenerating U-Boot in Yocto, use the following the commands. This assumes you already went through [Kria Yocto Support](https://xilinx.github.io/kria-apps-docs/yocto.html).
 
 ``` shell
 repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v<tool version>
@@ -51,7 +51,7 @@ MACHINE=k26-smk bitbake virtual/bootloader -c menuconfig
 MACHINE=k26-smk bitbake kria-qspi
 ```
 
-This generates a new `boot.bin` in ```$TMPDIR/deploy/images/k26-smk/```, and ```$TMPDIR``` is defined in ```build/conf/local.conf``` by default in `tmp/`. The new `boot.bin` can be programmed via an A/B update method using [xmutil bootfw_update](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-management-via-xmutil).
+This generates a new `BOOT.bin` in ```$TMPDIR/deploy/images/k26-smk/```, and ```$TMPDIR``` is defined in ```build/conf/local.conf``` by default in `tmp/`. The new `boot.bin` can be programmed via an A/B update method using [xmutil bootfw_update](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-management-via-xmutil).
 
 ## On-target Commands
 
@@ -62,13 +62,8 @@ setenv serverip <host ip>
 saveenv
 ```
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

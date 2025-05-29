@@ -1,6 +1,6 @@
-########################################################################################
+##############################################
 Yocto Support
-########################################################################################
+##############################################
 
 
 .. include:: ../../shared/somtoctree.txt
@@ -19,9 +19,6 @@ Yocto Support
    ./docs/library_dependency
 
 
-
-
-
-.. Copyright © 2021–2024 Advanced Micro Devices, Inc
+.. Copyright © 2021–2025 Advanced Micro Devices, Inc
 
 .. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.

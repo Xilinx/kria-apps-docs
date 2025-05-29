@@ -3,7 +3,7 @@
 
 ## Introduction
 
-As outlined in the [bootfw overview](./bootfw_overview.md), the AMD Kria&trade; SOM Starter Kit BOOT.BIN is part of the quad SPI (QSPI) image, and contains four components: FSBL, PMU_FW, TF-A, and U-Boot. This page outlines the process to recreate a BOOT.bin for Kria SOM Starter kits used in A/B image update. Both PetaLinux and Yocto supports BOOT.BIN generation. [Yocto](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto) support for generating the Kria SOM Starter Kit BOOT.BIN image only starts in 2023.1, previous versions do not have support.
+As outlined in the [Boot Firmware Overview](./bootfw_overview.md), the Kria SOM Starter Kit BOOT.BIN is part of the quad SPI (QSPI) image, and contains four components: FSBL, PMU_FW, TF-A, and U-Boot. This page outlines the process to recreate a BOOT.bin for Kria SOM Starter kits used in A/B image update. Both PetaLinux and Yocto supports BOOT.BIN generation. [Yocto](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto) support for generating the Kria SOM Starter Kit BOOT.BIN image only starts in 2023.1, previous versions do not have support.
 
 ## Generate BOOT.BIN Using Yocto
 
@@ -33,7 +33,7 @@ petalinux-build
 petalinux-package --boot --u-boot --force
 ```
 
-You will find new boot firmware at `/image/linux/BOOT.BIN`.
+The new boot firmware is found in `/image/linux/BOOT.BIN`.
 
 To set the configuration for U-Boot, use this command before `petalinux-build`:
 
@@ -43,13 +43,8 @@ petalinux-config –c u-boot
 
 The new `BOOT.BIN` can be loaded to the Starter Kit using the xmutil bootfw_update utility described in [Kria Wiki's Boot FW Update Process section](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-FW-Update-Process).
 
-## License
+<hr class="sphinxhide"></hr>
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+<p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p>
 
-You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

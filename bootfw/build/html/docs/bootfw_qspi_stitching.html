@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Stitching QSPI Image &mdash; Boot SOM Firmware 2022.1 documentation</title>
+  <title>Stitching the QSPI Image &mdash; Boot SOM Firmware 2022.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="QSPI to eMMC boot for Production SOM" href="bootfw_qspi_emmc_boot.html" />
+    <link rel="next" title="QSPI to eMMC Boot for Production SOM" href="bootfw_qspi_emmc_boot.html" />
     <link rel="prev" title="Generating BOOT.bin" href="bootfw_boot.bin_generation.html" /> 
 </head>
 
@@ -87,7 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="bootfw_pmu_config_obj.html">PMU Overlay Config Object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_uboot_handoff.html">U-Boot Handoff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bootfw_boot.bin_generation.html">Generating <code class="docutils literal notranslate"><span class="pre">BOOT.bin</span></code></a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Stitching QSPI Image</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Stitching the QSPI Image</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#step-1-preparing-the-build-environment">Step 1: Preparing the Build Environment</a></li>
@@ -95,11 +95,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC boot for Production SOM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/tftp boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_emmc_boot.html">QSPI to eMMC Boot for Production SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootfw_qspi_pxetftp_boot.html">QSPI to PXE/TFTP Boot</a></li>
 </ul>
 
         </div>
@@ -116,7 +115,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Stitching QSPI Image</li>
+      <li>Stitching the QSPI Image</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/bootfw_qspi_stitching.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -126,19 +125,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="stitching-qspi-image">
-<h1>Stitching QSPI Image<a class="headerlink" href="#stitching-qspi-image" title="Permalink to this heading">¶</a></h1>
+  <div class="section" id="stitching-the-qspi-image">
+<h1>Stitching the QSPI Image<a class="headerlink" href="#stitching-the-qspi-image" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This page outlines the process to recreate a QSPI image for Kria SOM Starter kits to help create your own QSPI image to use with your custom carrier cards. <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto">Yocto</a> support for generating Kria SOM Starter Kit QSPI image only starts in 2023.1; previous versions do not have support.</p>
 </div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h2>
-<p>As outlined in <a class="reference internal" href="bootfw_overview.html"><span class="doc">bootfw overview</span></a>, the Kria SOM Starter Kit QSPI image is stitched together from several components. The overview also provides the QSPI memory map that Kria Starter Kit QSPI binaries follow. The rest of the bootfw documentation is also an outlined process to individually generate each component.</p>
+<p>As outlined in the <a class="reference internal" href="bootfw_overview.html"><span class="doc">Boot Firmware Overview</span></a>, the Kria SOM Starter Kit QSPI image is stitched together from several components. The overview also provides the QSPI memory map that Kria Starter Kit QSPI binaries follow. The rest of the Boot Firmware documentation is also an outlined process to individually generate each component.</p>
 <p>This document details a Yocto Flow that automates the generation of those binary files and stitches them together.</p>
 <div class="section" id="step-1-preparing-the-build-environment">
 <h3>Step 1: Preparing the Build Environment<a class="headerlink" href="#step-1-preparing-the-build-environment" title="Permalink to this heading">¶</a></h3>
-<p>Before continuing, go through the  <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto support on Kria</a> and finish <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html#prepare-the-build-environment">prepare the build environment section</a>.</p>
+<p>Before continuing, go through <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support on Kria</a> and finish the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html#prepare-the-build-environment">Prepare the Build Environment section</a>.</p>
 </div>
 <div class="section" id="step-2-build-the-image">
 <h3>Step 2: Build the Image<a class="headerlink" href="#step-2-build-the-image" title="Permalink to this heading">¶</a></h3>
@@ -164,14 +163,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ol class="simple">
 <li><p>If you see the error, <code class="docutils literal notranslate"><span class="pre">error</span> <span class="pre">loading</span> <span class="pre">hsi</span> <span class="pre">package:</span> <span class="pre">couldn't</span> <span class="pre">load</span> <span class="pre">file</span> <span class="pre">&quot;libxv_commontasks.so&quot;</span></code>, it might be missing libtinfo5 library which can be installed with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libtinfo5</span></code>.</p></li>
 </ol>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p></div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
 
 
@@ -181,14 +173,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="bootfw_boot.bin_generation.html" class="btn btn-neutral float-left" title="Generating BOOT.bin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="bootfw_qspi_emmc_boot.html" class="btn btn-neutral float-right" title="QSPI to eMMC boot for Production SOM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="bootfw_qspi_emmc_boot.html" class="btn btn-neutral float-right" title="QSPI to eMMC Boot for Production SOM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 14, 2025.
+      <span class="lastupdated">Last updated on May 05, 2025.
       </span></p>
   </div>
 
