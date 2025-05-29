@@ -11,20 +11,21 @@ The [machine configurations](https://docs.yoctoproject.org/dev/dev-manual/new-ma
 Machine names and recipes for QSPI/boot image generation are listed the following:
 
 - Note that various support starts in different versions, so make sure to align Yocto release versions to the MACHINE + recipe desired.
-- Note that in 2024.2 and onward, the artifacts are generated either using XSCT flow, or SDT flow. Refer to [this](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2743468485/Porting+embeddedsw+components+to+system+device+tree+SDT+based+flow) page for more details on the new SDT flow.
+- Note that in 2024.2, some artifacts are generated either using XSCT flow, or SDT flow. Refer to [this](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2743468485/Porting+embeddedsw+components+to+system+device+tree+SDT+based+flow) page for more details on the new SDT flow.
+- in 2025.1 and onward, XSCT flow is depreciated
 
-| Machine Name | Bitbake Recipe    | Availability      | Description                                                         |
-| ------------ | ----------------- | ----------------- | --------------------------------------------------------------------|
-| k26-smk-sdt  | kria-qspi         | 2025.1** and newer  | QSPI image supporting K26 Starter Kit SOM on KV and KR carrier card, using the SDT flow  |
-| k26-smk      | kria-qspi         | 2023.1 and newer  | QSPI image supporting K26 Starter Kit SOM on KV and KR carrier card, using the XSCT flow |
-| k24-smk-sdt  | kria-qspi         | 2025.1** and newer  | QSPI image supporting K24 Starter Kit SOM on KD carrier card, using the SDT flow         |
-| k24-smk      | kria-qspi         | 2023.1 and newer  | QSPI image supporting K24 Starter Kit SOM on KD carrier card, using the XSCT flow        |
-| k26-sm-sdt   | xilinx-bootbin    | 2024.2 and newer  | boot.bin that supports production SOM K26i and K26c, using the SDT flow                  |
-| k26-sm       | xilinx-bootbin    | 2023.1 and newer  | boot.bin that supports production SOM K26i and K26c, using the XSCT flow                 |
-| k24i-sm-sdt  | xilinx-bootbin    | 2024.2 and newer  | boot.bin that supports production SOM K24i, using the SDT flow                           |
-| k24i-sm      | xilinx-bootbin    | 2023.2* and newer | boot.bin that supports production SOM K24i, using the XSCT flow                          |
-| k24c-sm-sdt  | xilinx-bootbin    | 2025.1 and newer  | boot.bin that supports production SOM K24c, using the SDT flow                           |
-| k24c-sm      | xilinx-bootbin    | 2023.2* and newer | boot.bin that supports production SOM K24c, using the XSCT flow                          |
+| Machine Name | Bitbake Recipe    | Availability           | Description                                                         |
+| ------------ | ----------------- | ---------------------- | --------------------------------------------------------------------|
+| k26-smk-sdt  | kria-qspi         | 2025.1** and newer     | QSPI image supporting K26 Starter Kit SOM on KV and KR carrier card, using the SDT flow  |
+| k24-smk-sdt  | kria-qspi         | 2025.1** and newer     | QSPI image supporting K24 Starter Kit SOM on KD carrier card, using the SDT flow         |
+| k26-sm-sdt   | xilinx-bootbin    | 2024.2 and newer       | boot.bin that supports production SOM K26i and K26c, using the SDT flow                  |
+| k24i-sm-sdt  | xilinx-bootbin    | 2024.2 and newer       | boot.bin that supports production SOM K24i, using the SDT flow                           |
+| k24c-sm-sdt  | xilinx-bootbin    | 2025.1 and newer       | boot.bin that supports production SOM K24c, using the SDT flow                           |
+| k26-smk      | kria-qspi         | 2023.1 through 2024.2  | QSPI image supporting K26 Starter Kit SOM on KV and KR carrier card, using the XSCT flow |
+| k24-smk      | kria-qspi         | 2023.1 through 2024.2  | QSPI image supporting K24 Starter Kit SOM on KD carrier card, using the XSCT flow        |
+| k26-sm       | xilinx-bootbin    | 2023.1 through 2024.2  | boot.bin that supports production SOM K26i and K26c, using the XSCT flow                 |
+| k24i-sm      | xilinx-bootbin    | 2023.2* through 2024.2 | boot.bin that supports production SOM K24i, using the XSCT flow                          |
+| k24c-sm      | xilinx-bootbin    | 2023.2* through 2024.2 | boot.bin that supports production SOM K24c, using the XSCT flow                          |
 
 ```*``` 2023.2 support for production is on the [tag xlnx-rel-v2023.2_update1](https://github.com/Xilinx/yocto-manifests/releases/tag/xlnx-rel-v2023.2_update1) repository.
 ```**``` in 2025.1, image recovery cannot be generated in SDT flow. Therefore, the 2025.1 QSPI generation pulls image recovery prebuilt binary from an artifactory to build QSPI.
@@ -33,30 +34,30 @@ For .wic image generation, there are two groups of machines names: .wic images w
 
 The following table list the flat image generation machine names:
 
-| Machine Name   | Bitbake Recipe          | Availability      | QEMU Support | Description                                                                                            |
-| -------------- | ----------------------- | ----------------- | ------------ | -------------------------------------------------------------------------------------------------------|
-| k26-smk-kv-sdt | kria-image-full-cmdline | 2024.2 and newer  | yes          | Flat wic image that supports KV260, not fully validated on target and meant for development enablement, using the SDT flow  |
-| k26-smk-kv     | kria-image-full-cmdline | 2023.1 and newer  | yes          | Flat wic image that supports KV260, not fully validated on target and meant for development enablement, using the XSCT flow |
-| k26-smk-kr-sdt | kria-image-full-cmdline | 2024.2 and newer  | yes          | Flat wic image that supports KR260, not fully validated on target and meant for development enablement, using the SDT flow  |
-| k26-smk-kr     | kria-image-full-cmdline | 2023.1 and newer  | yes          | Flat wic image that supports KR260, not fully validated on target and meant for development enablement, using the XSCT flow |
-| k24-smk-kd-sdt | kria-image-full-cmdline | 2024.2 and newer  | yes          | Flat wic image that supports KD240, not fully validated on target and meant for development enablement, using the SDT flow  |
-| k24-smk-kd     | kria-image-full-cmdline | 2023.1 and newer  | yes          | Flat wic image that supports KD240, not fully validated on target and meant for development enablement, using the XSCT flow |
-| k26-sm-sdt     | kria-image-full-cmdline | 2024.2 and newer  | no           | Flat wic image that supports production SOM K26i and K26c, not fully validated on target and meant for development enablement, using SDT flow |
-| k26-sm         | kria-image-full-cmdline | 2023.1 and newer  | no           | Flat wic image that supports production SOM K26i and K26c, not fully validated on target and meant for development enablement, using XSCT flow|
-| k24i-sm-sdt    | kria-image-full-cmdline | 2024.2 and newer  | no           | Flat wic image that supports production SOM K24i, not fully validated on target and meant for development enablement, using the SDT flow |
-| k24i-sm        | kria-image-full-cmdline | 2023.2* and newer | no           | Flat wic image that supports production SOM K24i, not fully validated on target and meant for development enablement, using the XSCT flow|
-| k24c-sm-sdt    | kria-image-full-cmdline | 2024.2 and newer  | no           | Flat wic image that supports production SOM K24c, not fully validated on target and meant for development enablement, using the SDT flow |
-| k24c-sm        | kria-image-full-cmdline | 2023.2* and newer | no           | Flat wic image that supports production SOM K24c, not fully validated on target and meant for development enablement, using the XSCT flow|
+| Machine Name   | Bitbake Recipe          | Availability           | QEMU Support | Description                                                                                            |
+| -------------- | ----------------------- | ---------------------- | ------------ | -------------------------------------------------------------------------------------------------------|
+| k26-smk-kv-sdt | kria-image-full-cmdline | 2024.2 and newer       | yes          | Flat wic image that supports KV260, not fully validated on target and meant for development enablement, using the SDT flow  |
+| k26-smk-kr-sdt | kria-image-full-cmdline | 2024.2 and newer       | yes          | Flat wic image that supports KR260, not fully validated on target and meant for development enablement, using the SDT flow  |
+| k24-smk-kd-sdt | kria-image-full-cmdline | 2024.2 and newer       | yes          | Flat wic image that supports KD240, not fully validated on target and meant for development enablement, using the SDT flow  |
+| k26-sm-sdt     | kria-image-full-cmdline | 2024.2 and newer       | no           | Flat wic image that supports production SOM K26i and K26c, not fully validated on target and meant for development enablement, using SDT flow |
+| k24i-sm-sdt    | kria-image-full-cmdline | 2024.2 and newer       | no           | Flat wic image that supports production SOM K24i, not fully validated on target and meant for development enablement, using the SDT flow |
+| k24c-sm-sdt    | kria-image-full-cmdline | 2024.2 and newer       | no           | Flat wic image that supports production SOM K24c, not fully validated on target and meant for development enablement, using the SDT flow |
+| k26-smk-kv     | kria-image-full-cmdline | 2023.1 through 2024.2  | yes          | Flat wic image that supports KV260, not fully validated on target and meant for development enablement, using the XSCT flow |
+| k26-smk-kr     | kria-image-full-cmdline | 2023.1 through 2024.2  | yes          | Flat wic image that supports KR260, not fully validated on target and meant for development enablement, using the XSCT flow |
+| k24-smk-kd     | kria-image-full-cmdline | 2023.1 through 2024.2  | yes          | Flat wic image that supports KD240, not fully validated on target and meant for development enablement, using the XSCT flow |
+| k26-sm         | kria-image-full-cmdline | 2023.1 through 2024.2  | no           | Flat wic image that supports production SOM K26i and K26c, not fully validated on target and meant for development enablement, using XSCT flow|
+| k24i-sm        | kria-image-full-cmdline | 2023.2* through 2024.2 | no           | Flat wic image that supports production SOM K24i, not fully validated on target and meant for development enablement, using the XSCT flow|
+| k24c-sm        | kria-image-full-cmdline | 2023.2* through 2024.2 | no           | Flat wic image that supports production SOM K24c, not fully validated on target and meant for development enablement, using the XSCT flow|
 
 The following table list dynamic image generation machine names:
 
-| Machine Name          | Bitbake Recipe          | Availability     | QEMU Support | Description                                                                                            |
-| --------------------- | ----------------------- | ---------------- | ------------ | -------------------------------------------------------------------------------------------------------|
-| kria-zynqmp-generic** | kria-image-full-cmdline | 2024.2 and newer | no           | wic image that dynamically supports KV260, KR260, and KD240 |
-| k26-smk-sdt           | kria-image-full-cmdline | 2024.2 and newer | yes          | wic image that dynamically supports both KV260 and KR260, using the SDT flow                                                |
-| k26-smk               | kria-image-full-cmdline | 2023.1 and newer | yes          | wic image that dynamically supports both KV260 and KR260, using the XSCT flow                                               |
-| k24-smk-sdt           | kria-image-full-cmdline | 2024.2 and newer | yes          | wic image that dynamically supports KD240, using the SDT flow                                                               |
-| k24-smk               | kria-image-full-cmdline | 2023.1 and newer | yes          | wic image that dynamically supports KD240, using the XSCT flow                                                              |
+| Machine Name          | Bitbake Recipe          | Availability          | QEMU Support | Description                                                                                            |
+| --------------------- | ----------------------- | --------------------- | ------------ | -------------------------------------------------------------------------------------------------------|
+| kria-zynqmp-generic** | kria-image-full-cmdline | 2024.2 and newer      | no           | wic image that dynamically supports KV260, KR260, and KD240 |
+| k26-smk-sdt           | kria-image-full-cmdline | 2024.2 and newer      | yes          | wic image that dynamically supports both KV260 and KR260, using the SDT flow                                                |
+| k24-smk-sdt           | kria-image-full-cmdline | 2024.2 and newer      | yes          | wic image that dynamically supports KD240, using the SDT flow                                                               |
+| k26-smk               | kria-image-full-cmdline | 2023.1 through 2024.2 | yes          | wic image that dynamically supports both KV260 and KR260, using the XSCT flow                                               |
+| k24-smk               | kria-image-full-cmdline | 2023.1 through 2024.2 | yes          | wic image that dynamically supports KD240, using the XSCT flow                                                              |
 
 ```**``` For information on how to generate a .wic image with this MACHINE name, refer to [Build wic image for kria-zynqmp-generic](#build-wic-image-for-kria-zynqmp-generic).
 
@@ -130,30 +131,30 @@ The resulting QSPI image (`kria-qspi-k26-smk.bin`), .wic image (`kria-image-full
 
 ### Build wic image for kria-zynqmp-generic
 
-From 2024.2 onwards, you can generate a common wic image that dynamically supports all three Kria SOM starter kits. However, it requires a few extra steps to generate.
+From 2025.1 onward, you can generate a common wic image that dynamically supports all three Kria SOM starter kits with a single steo:
 
-1. Build the DTB for K26 and K24 machines. You can also use -sdt machines if the SDT flow is desired.
+```shell
+    MACHINE=kria-zynqmp-generic bitbake kria-image-full-cmdline
+```
 
-    ```shell
+In 2024.2 , you can generate a common wic image that dynamically supports all three Kria SOM starter kits with a few extra steps to generate.
+
+```shell
+    # Build the DTB for K26 and K24 machines. You can also use -sdt machines if the SDT flow is desired.
+
     MACHINE=k26-smk bitbake virtual/dtb
     cp tmp/deploy/images/ k26-smk/devicetree/SMK-*.dtb <dtb_path>
     MACHINE=k24-smk bitbake virtual/dtb
     cp tmp/deploy/images/k24-smk/devicetree/SMK-zynqmp-sck-kd-g-revA.dtb  <dtb_path>
-    ```
-
-2. Add the prebuilt DTB build in above path to `conf/local.conf` in the .wic image builds `local.conf`.
-
-    ```shell
+    
+    # Add the prebuilt DTB build in above path to `conf/local.conf` in the .wic image builds `local.conf`.
     PRECOMPILED_DTB_FILES_DIR  = <DTB_PATH>
-    ```
-
-3. Build the common .wic image:
-
-    ```shell
+    
+    #Build the common .wic image:
     MACHINE=kria-zynqmp-generic bitbake kria-image-full-cmdline
-    ```
+```
 
-> **NOTE:** In Yocto 2024.2, the SD card is “locked in” to the started kit when first booted. That is, once you have booted the common image on a KV260, you are not be able to reuse the same SD card with the shared common Linux image on a KR260 or a KD240. This is because on initial boot, the default bitstream is locked in based on the EEPROM reading on first boot, and this is not updated on subsequent boots.
+> **NOTE:** In kria-zynqmp-generic generated wic image, the SD card is “locked in” to the started kit when first booted. That is, once you have booted the common image on a KV260, you are not be able to reuse the same SD card with the shared common Linux image on a KR260 or a KD240. This is because on initial boot, the default bitstream is locked in based on the EEPROM reading on first boot, and this is not updated on subsequent boots.
 
 ## QEMU
 
