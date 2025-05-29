@@ -136,7 +136,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Machine names and recipes for QSPI/boot image generation are listed the following:</p>
 <ul class="simple">
 <li><p>Note that various support starts in different versions, so make sure to align Yocto release versions to the MACHINE + recipe desired.</p></li>
-<li><p>Note that in 2024.2 and onward, the artifacts are generated either using XSCT flow, or SDT flow. Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2743468485/Porting+embeddedsw+components+to+system+device+tree+SDT+based+flow">this</a> page for more details on the new SDT flow.</p></li>
+<li><p>Note that in 2024.2, some artifacts are generated either using XSCT flow, or SDT flow. Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2743468485/Porting+embeddedsw+components+to+system+device+tree+SDT+based+flow">this</a> page for more details on the new SDT flow.</p></li>
+<li><p>in 2025.1 and onward, XSCT flow is depreciated</p></li>
 </ul>
 <table border="1" class="docutils">
 <thead>
@@ -155,22 +156,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>QSPI image supporting K26 Starter Kit SOM on KV and KR carrier card, using the SDT flow</td>
 </tr>
 <tr>
-<td>k26-smk</td>
-<td>kria-qspi</td>
-<td>2023.1 and newer</td>
-<td>QSPI image supporting K26 Starter Kit SOM on KV and KR carrier card, using the XSCT flow</td>
-</tr>
-<tr>
 <td>k24-smk-sdt</td>
 <td>kria-qspi</td>
 <td>2025.1** and newer</td>
 <td>QSPI image supporting K24 Starter Kit SOM on KD carrier card, using the SDT flow</td>
-</tr>
-<tr>
-<td>k24-smk</td>
-<td>kria-qspi</td>
-<td>2023.1 and newer</td>
-<td>QSPI image supporting K24 Starter Kit SOM on KD carrier card, using the XSCT flow</td>
 </tr>
 <tr>
 <td>k26-sm-sdt</td>
@@ -179,22 +168,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>boot.bin that supports production SOM K26i and K26c, using the SDT flow</td>
 </tr>
 <tr>
-<td>k26-sm</td>
-<td>xilinx-bootbin</td>
-<td>2023.1 and newer</td>
-<td>boot.bin that supports production SOM K26i and K26c, using the XSCT flow</td>
-</tr>
-<tr>
 <td>k24i-sm-sdt</td>
 <td>xilinx-bootbin</td>
 <td>2024.2 and newer</td>
 <td>boot.bin that supports production SOM K24i, using the SDT flow</td>
-</tr>
-<tr>
-<td>k24i-sm</td>
-<td>xilinx-bootbin</td>
-<td>2023.2* and newer</td>
-<td>boot.bin that supports production SOM K24i, using the XSCT flow</td>
 </tr>
 <tr>
 <td>k24c-sm-sdt</td>
@@ -203,9 +180,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>boot.bin that supports production SOM K24c, using the SDT flow</td>
 </tr>
 <tr>
+<td>k26-smk</td>
+<td>kria-qspi</td>
+<td>2023.1 through 2024.2</td>
+<td>QSPI image supporting K26 Starter Kit SOM on KV and KR carrier card, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k24-smk</td>
+<td>kria-qspi</td>
+<td>2023.1 through 2024.2</td>
+<td>QSPI image supporting K24 Starter Kit SOM on KD carrier card, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k26-sm</td>
+<td>xilinx-bootbin</td>
+<td>2023.1 through 2024.2</td>
+<td>boot.bin that supports production SOM K26i and K26c, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k24i-sm</td>
+<td>xilinx-bootbin</td>
+<td>2023.2* through 2024.2</td>
+<td>boot.bin that supports production SOM K24i, using the XSCT flow</td>
+</tr>
+<tr>
 <td>k24c-sm</td>
 <td>xilinx-bootbin</td>
-<td>2023.2* and newer</td>
+<td>2023.2* through 2024.2</td>
 <td>boot.bin that supports production SOM K24c, using the XSCT flow</td>
 </tr>
 </tbody>
@@ -232,25 +233,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>Flat wic image that supports KV260, not fully validated on target and meant for development enablement, using the SDT flow</td>
 </tr>
 <tr>
-<td>k26-smk-kv</td>
-<td>kria-image-full-cmdline</td>
-<td>2023.1 and newer</td>
-<td>yes</td>
-<td>Flat wic image that supports KV260, not fully validated on target and meant for development enablement, using the XSCT flow</td>
-</tr>
-<tr>
 <td>k26-smk-kr-sdt</td>
 <td>kria-image-full-cmdline</td>
 <td>2024.2 and newer</td>
 <td>yes</td>
 <td>Flat wic image that supports KR260, not fully validated on target and meant for development enablement, using the SDT flow</td>
-</tr>
-<tr>
-<td>k26-smk-kr</td>
-<td>kria-image-full-cmdline</td>
-<td>2023.1 and newer</td>
-<td>yes</td>
-<td>Flat wic image that supports KR260, not fully validated on target and meant for development enablement, using the XSCT flow</td>
 </tr>
 <tr>
 <td>k24-smk-kd-sdt</td>
@@ -260,25 +247,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>Flat wic image that supports KD240, not fully validated on target and meant for development enablement, using the SDT flow</td>
 </tr>
 <tr>
-<td>k24-smk-kd</td>
-<td>kria-image-full-cmdline</td>
-<td>2023.1 and newer</td>
-<td>yes</td>
-<td>Flat wic image that supports KD240, not fully validated on target and meant for development enablement, using the XSCT flow</td>
-</tr>
-<tr>
 <td>k26-sm-sdt</td>
 <td>kria-image-full-cmdline</td>
 <td>2024.2 and newer</td>
 <td>no</td>
 <td>Flat wic image that supports production SOM K26i and K26c, not fully validated on target and meant for development enablement, using SDT flow</td>
-</tr>
-<tr>
-<td>k26-sm</td>
-<td>kria-image-full-cmdline</td>
-<td>2023.1 and newer</td>
-<td>no</td>
-<td>Flat wic image that supports production SOM K26i and K26c, not fully validated on target and meant for development enablement, using XSCT flow</td>
 </tr>
 <tr>
 <td>k24i-sm-sdt</td>
@@ -288,13 +261,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>Flat wic image that supports production SOM K24i, not fully validated on target and meant for development enablement, using the SDT flow</td>
 </tr>
 <tr>
-<td>k24i-sm</td>
-<td>kria-image-full-cmdline</td>
-<td>2023.2* and newer</td>
-<td>no</td>
-<td>Flat wic image that supports production SOM K24i, not fully validated on target and meant for development enablement, using the XSCT flow</td>
-</tr>
-<tr>
 <td>k24c-sm-sdt</td>
 <td>kria-image-full-cmdline</td>
 <td>2024.2 and newer</td>
@@ -302,9 +268,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>Flat wic image that supports production SOM K24c, not fully validated on target and meant for development enablement, using the SDT flow</td>
 </tr>
 <tr>
+<td>k26-smk-kv</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 through 2024.2</td>
+<td>yes</td>
+<td>Flat wic image that supports KV260, not fully validated on target and meant for development enablement, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k26-smk-kr</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 through 2024.2</td>
+<td>yes</td>
+<td>Flat wic image that supports KR260, not fully validated on target and meant for development enablement, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k24-smk-kd</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 through 2024.2</td>
+<td>yes</td>
+<td>Flat wic image that supports KD240, not fully validated on target and meant for development enablement, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k26-sm</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 through 2024.2</td>
+<td>no</td>
+<td>Flat wic image that supports production SOM K26i and K26c, not fully validated on target and meant for development enablement, using XSCT flow</td>
+</tr>
+<tr>
+<td>k24i-sm</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.2* through 2024.2</td>
+<td>no</td>
+<td>Flat wic image that supports production SOM K24i, not fully validated on target and meant for development enablement, using the XSCT flow</td>
+</tr>
+<tr>
 <td>k24c-sm</td>
 <td>kria-image-full-cmdline</td>
-<td>2023.2* and newer</td>
+<td>2023.2* through 2024.2</td>
 <td>no</td>
 <td>Flat wic image that supports production SOM K24c, not fully validated on target and meant for development enablement, using the XSCT flow</td>
 </tr>
@@ -336,13 +337,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>wic image that dynamically supports both KV260 and KR260, using the SDT flow</td>
 </tr>
 <tr>
-<td>k26-smk</td>
-<td>kria-image-full-cmdline</td>
-<td>2023.1 and newer</td>
-<td>yes</td>
-<td>wic image that dynamically supports both KV260 and KR260, using the XSCT flow</td>
-</tr>
-<tr>
 <td>k24-smk-sdt</td>
 <td>kria-image-full-cmdline</td>
 <td>2024.2 and newer</td>
@@ -350,9 +344,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>wic image that dynamically supports KD240, using the SDT flow</td>
 </tr>
 <tr>
+<td>k26-smk</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 through 2024.2</td>
+<td>yes</td>
+<td>wic image that dynamically supports both KV260 and KR260, using the XSCT flow</td>
+</tr>
+<tr>
 <td>k24-smk</td>
 <td>kria-image-full-cmdline</td>
-<td>2023.1 and newer</td>
+<td>2023.1 through 2024.2</td>
 <td>yes</td>
 <td>wic image that dynamically supports KD240, using the XSCT flow</td>
 </tr>
@@ -419,29 +420,27 @@ repo<span class="w"> </span>start<span class="w"> </span>&lt;release-branch&gt;<
 </div></blockquote>
 <div class="section" id="build-wic-image-for-kria-zynqmp-generic">
 <h3>Build wic image for kria-zynqmp-generic<a class="headerlink" href="#build-wic-image-for-kria-zynqmp-generic" title="Permalink to this heading">¶</a></h3>
-<p>From 2024.2 onwards, you can generate a common wic image that dynamically supports all three Kria SOM starter kits. However, it requires a few extra steps to generate.</p>
-<ol>
-<li><p>Build the DTB for K26 and K24 machines. You can also use -sdt machines if the SDT flow is desired.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>virtual/dtb
-cp<span class="w"> </span>tmp/deploy/images/<span class="w"> </span>k26-smk/devicetree/SMK-*.dtb<span class="w"> </span>&lt;dtb_path&gt;
-<span class="nv">MACHINE</span><span class="o">=</span>k24-smk<span class="w"> </span>bitbake<span class="w"> </span>virtual/dtb
-cp<span class="w"> </span>tmp/deploy/images/k24-smk/devicetree/SMK-zynqmp-sck-kd-g-revA.dtb<span class="w">  </span>&lt;dtb_path&gt;
+<p>From 2025.1 onward, you can generate a common wic image that dynamically supports all three Kria SOM starter kits with a single steo:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nv">MACHINE</span><span class="o">=</span>kria-zynqmp-generic<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
 </pre></div>
 </div>
-</li>
-<li><p>Add the prebuilt DTB build in above path to <code class="docutils literal notranslate"><span class="pre">conf/local.conf</span></code> in the .wic image builds <code class="docutils literal notranslate"><span class="pre">local.conf</span></code>.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">PRECOMPILED_DTB_FILES_DIR</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>&lt;DTB_PATH&gt;
+<p>In 2024.2 , you can generate a common wic image that dynamically supports all three Kria SOM starter kits with a few extra steps to generate.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1"># Build the DTB for K26 and K24 machines. You can also use -sdt machines if the SDT flow is desired.</span>
+
+<span class="w">    </span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>virtual/dtb
+<span class="w">    </span>cp<span class="w"> </span>tmp/deploy/images/<span class="w"> </span>k26-smk/devicetree/SMK-*.dtb<span class="w"> </span>&lt;dtb_path&gt;
+<span class="w">    </span><span class="nv">MACHINE</span><span class="o">=</span>k24-smk<span class="w"> </span>bitbake<span class="w"> </span>virtual/dtb
+<span class="w">    </span>cp<span class="w"> </span>tmp/deploy/images/k24-smk/devicetree/SMK-zynqmp-sck-kd-g-revA.dtb<span class="w">  </span>&lt;dtb_path&gt;
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Add the prebuilt DTB build in above path to `conf/local.conf` in the .wic image builds `local.conf`.</span>
+<span class="w">    </span><span class="nv">PRECOMPILED_DTB_FILES_DIR</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>&lt;DTB_PATH&gt;
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">#Build the common .wic image:</span>
+<span class="w">    </span><span class="nv">MACHINE</span><span class="o">=</span>kria-zynqmp-generic<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
 </pre></div>
 </div>
-</li>
-<li><p>Build the common .wic image:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>kria-zynqmp-generic<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
-</pre></div>
-</div>
-</li>
-</ol>
 <blockquote>
-<div><p><strong>NOTE:</strong> In Yocto 2024.2, the SD card is “locked in” to the started kit when first booted. That is, once you have booted the common image on a KV260, you are not be able to reuse the same SD card with the shared common Linux image on a KR260 or a KD240. This is because on initial boot, the default bitstream is locked in based on the EEPROM reading on first boot, and this is not updated on subsequent boots.</p>
+<div><p><strong>NOTE:</strong> In kria-zynqmp-generic generated wic image, the SD card is “locked in” to the started kit when first booted. That is, once you have booted the common image on a KV260, you are not be able to reuse the same SD card with the shared common Linux image on a KR260 or a KD240. This is because on initial boot, the default bitstream is locked in based on the EEPROM reading on first boot, and this is not updated on subsequent boots.</p>
 </div></blockquote>
 </div>
 </div>
