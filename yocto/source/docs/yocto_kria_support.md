@@ -154,7 +154,7 @@ In 2024.2 , you can generate a common wic image that dynamically supports all th
     MACHINE=kria-zynqmp-generic bitbake kria-image-full-cmdline
 ```
 
-> **NOTE:** In kria-zynqmp-generic generated wic image, the SD card is “locked in” to the started kit when first booted. That is, once you have booted the common image on a KV260, you are not be able to reuse the same SD card with the shared common Linux image on a KR260 or a KD240. This is because on initial boot, the default bitstream is locked in based on the EEPROM reading on first boot, and this is not updated on subsequent boots.
+> **NOTE:** In kria-zynqmp-generic generated wic image in 2024.2, the SD card is “locked in” to the started kit when first booted. That is, once you have booted the common image on a KV260, you are not be able to reuse the same SD card with the shared common Linux image on a KR260 or a KD240. This is because on initial boot, the default bitstream is locked in based on the EEPROM reading on first boot, and this is not updated on subsequent boots.
 
 ## QEMU
 
