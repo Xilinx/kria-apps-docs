@@ -4,7 +4,7 @@
 
 The Kria™ KV260 Vision AI Starter Kit is the premier platform to evaluate your Vision AI based applications. Try all our accelerated applications and get started within minutes by following all the steps. Have fun!
 
-![KV260](./media/starterkit-kria-callout-getting-started.avif)
+![KV260](./media/starterkit-kria-callout-getting-started.jpg)
 
 ## What's Inside the Box
 

@@ -38,6 +38,9 @@ Besides the hardware configurations required in [Kria Starter Kit Linux boot](ht
 
   This application supports the following three camera modules.
   * AR1335 sensor module in J7
+
+        Note: KV260 V2 supports auto-focus with the AR1335 sensor, so the displayed image will automatically adjust for clarity. KV260 V1 hardware does not support auto-focus, and the image may appear blurry at certain distances.
+
   * Raspberry pi sensor module in J9
   * USB webcam in any of the available USB ports
 

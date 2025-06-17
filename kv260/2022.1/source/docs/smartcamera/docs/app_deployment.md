@@ -40,6 +40,8 @@ Besides the hardware configurations required in the [Kria Starter Kit Linux boot
 
   Before powering on, install an AR1335 sensor module in J7.
 
+  Note: KV260 V2 supports auto-focus with the AR1335 sensor, so the displayed image will automatically adjust for clarity. KV260 V1 hardware does not support auto-focus, and the image may appear blurry at certain distances.
+
 * You can also use a USB webcam as an input device.
 
   The webcam is an optional video input device supported in the application.
