@@ -4,7 +4,7 @@
 
 The AMD Kria™ KD240 Drives Starter Kit is the ideal platform to evaluate applications requiring low-latency digital signal processing (DSP), industrial communications, or motor control capabilities. Try all our accelerated applications and get started within minutes by following all the steps. Have fun!
 
-![KD240](./media/2350618-kd240-product-specs.avif)
+![KD240](./media/kd240-callout.jpg)
 
 ## What's Inside the Box
 

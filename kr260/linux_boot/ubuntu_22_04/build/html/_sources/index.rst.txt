@@ -1,5 +1,5 @@
 ##################################################
-Booting Kria Starter Kit Linux on KD240
+Booting Kria Starter Kit Linux on KR260
 ##################################################
 
 

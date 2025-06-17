@@ -4,7 +4,7 @@
 
 The AMD Kria™ KR260 Robotics Starter Kit is the premier platform to evaluate applications targeted to robotics, machine vision, and industrial communications & control. Try all our accelerated applications and get started within minutes by following all the steps. Have fun!
 
-![KR260](./media/starterkit-kria-callout-getting-started.avif)
+![KR260](./media/starterkit-kria-callout-getting-started.jpg)
 
 ## What's Inside the Box
 

@@ -4,6 +4,10 @@ Yocto contains support to generate AMD Kria&trade; artifacts starting in 2023.1.
 
 The Yocto Project provides [extensive documentation](https://docs.yoctoproject.org/), and it is recommended that you familiarize yourself with some of the core concepts before continuing. Xilinx specific Yocto information can be found on the [wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto).
 
+## Board Support Packages
+
+AMD also release the Board Support Packages (BSPs) for each of the Kria platforms. More information are found in [the Kria Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits#PetaLinux-Board-Support-Packages).
+
 ## Machine Configurations for Kria
 
 The [machine configurations](https://docs.yoctoproject.org/dev/dev-manual/new-machine.html) provided for Kria define the settings used for a given machine when building each recipe. Different artifacts would be built with each unique combination of machine name and bitbake recipe. Machine configuration files for Kria SOM and Starter Kits are found on [GitHub](https://gitenterprise.xilinx.com/Yocto/meta-kria/tree/HEAD/conf/machine) in release branches for the perspective tool version.
