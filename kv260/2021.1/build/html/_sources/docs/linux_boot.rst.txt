@@ -4,7 +4,7 @@ Boot Kria Starter Kit PetaLinux on KV260
 
 
 
-For new users evaluating the Kria Starter Kit, AMD recommends starting with the latest version of Ubuntu.
+For new users evaluating the AMD Kria™ Starter Kit, AMD recommends starting with the latest version of Ubuntu.
 
 However, Kria Starter Kits also support Starter Kit embedded Linux (generated with PetaLinux or Yocto). Refer to the `Kria Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits>`_ for release pre-builts.
 

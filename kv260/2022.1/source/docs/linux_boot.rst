@@ -4,7 +4,7 @@ Boot Kria Starter Kit Linux on KV260
 
 
 
-For new users evaluating the AMD® Kria Starter Kit, AMD recommends starting with the latest version of Ubuntu (Ubuntu 24.04), or Ubuntu 22.04 if you want to run example applications.
+For new users evaluating the AMD Kria™ KV260 Vision AI Starter Kit, AMD recommends starting with the latest version of Ubuntu (Ubuntu 24.04), or Ubuntu 22.04 if you want to run example applications.
 
 For users configuring their Kria Starter Kit for a specific application, refer to the table below to find your application and select the appropriate version of Linux.
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -27,14 +27,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=38f6a506"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Step 1: Set up the SD Card Image" href="sdcard.html" />
-    <link rel="prev" title="Booting Kria Starter Kit Linux on KR260" href="../index.html" /> 
+    <link rel="prev" title="Booting Kria Starter Kit Linux on KD240" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -47,6 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Kria™ KD240: Linux Boot
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 Ubuntu 22.04
@@ -83,7 +86,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-s-inside-the-box">What’s Inside the Box</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-youll-need-to-provide">What You’ll Need to Provide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#important-perform-shutdown-command-before-removing-power">Important:  Perform Shutdown Command Before Removing Power</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#important-perform-shutdown-command-before-removing-power">Important:  Perform Shutdown Command Before Removing Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu-server">Ubuntu Server</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ubuntu-server-lts">Ubuntu Server LTS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#additional-embedded-developer-assets-and-resources">Additional Embedded Developer Assets and Resources</a></li>
 </ul>
@@ -127,14 +131,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <section id="booting-kria-starter-kit-linux-on-kr260">
-<h1>Booting Kria Starter Kit Linux on KR260<a class="headerlink" href="#booting-kria-starter-kit-linux-on-kr260" title="Link to this heading">¶</a></h1>
+<h1>Booting Kria Starter Kit Linux on KR260<a class="headerlink" href="#booting-kria-starter-kit-linux-on-kr260" title="Permalink to this heading">¶</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>The AMD Kria™ KR260 Robotics Starter Kit is the premier platform to evaluate applications targeted to robotics, machine vision, and industrial communications &amp; control. Try all our accelerated applications and get started within minutes by following all the steps. Have fun!</p>
-<p><img alt="KR260" src="../_images/starterkit-kria-callout-getting-started.jpg" /></p>
+<p><img alt="KR260" src="../_images/starterkit-kria-callout-getting-started.avif" /></p>
 </section>
 <section id="what-s-inside-the-box">
-<h2>What’s Inside the Box<a class="headerlink" href="#what-s-inside-the-box" title="Link to this heading">¶</a></h2>
+<h2>What’s Inside the Box<a class="headerlink" href="#what-s-inside-the-box" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.amd.com/en/products/system-on-modules/kria/k26/kr260-robotics-starter-kit.html">Kria KR260 Robotics Starter Kit</a> (Kria SOM + Carrier Card + Thermal Solution)
 KR260 Power supply and Adapter (12V, 3A)</p></li>
@@ -146,7 +150,7 @@ KR260 Power supply and Adapter (12V, 3A)</p></li>
 </ul>
 </section>
 <section id="what-youll-need-to-provide">
-<h2>What You’ll Need to Provide<a class="headerlink" href="#what-youll-need-to-provide" title="Link to this heading">¶</a></h2>
+<h2>What You’ll Need to Provide<a class="headerlink" href="#what-youll-need-to-provide" title="Permalink to this heading">¶</a></h2>
 <p>You will need to provide the following in order to be able to take full advantage of the fact that KR260 can provide a full desktop environment that will be very familiar to developers:</p>
 <ul class="simple">
 <li><p>USB Keyboard</p></li>
@@ -158,12 +162,16 @@ KR260 Power supply and Adapter (12V, 3A)</p></li>
 <p>To begin, a computer with internet connection and with the ability to write to a microSD card is needed.</p>
 </section>
 <section id="important-perform-shutdown-command-before-removing-power">
-<h2>Important:  Perform Shutdown Command Before Removing Power<a class="headerlink" href="#important-perform-shutdown-command-before-removing-power" title="Link to this heading">¶</a></h2>
+<h2>Important:  Perform Shutdown Command Before Removing Power<a class="headerlink" href="#important-perform-shutdown-command-before-removing-power" title="Permalink to this heading">¶</a></h2>
 <p>Running the shutdown command enables Ubuntu to bring the system down in a secure manner, ensuring that disk writes complete before storage devices are unmounted.
-For best practice, this should be performed each time before removing power.</p>
+For best practice, this should be performed each time before removing power to KD240</p>
 <p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">shutdown</span> <span class="pre">-h</span> <span class="pre">now</span></code></p>
+</section>
+<section id="ubuntu-server">
+<h2>Ubuntu Server<a class="headerlink" href="#ubuntu-server" title="Permalink to this heading">¶</a></h2>
+<p>Ubuntu Server is the best choice for getting started with the KR260.</p>
 <section id="ubuntu-server-lts">
-<h3>Ubuntu Server LTS<a class="headerlink" href="#ubuntu-server-lts" title="Link to this heading">¶</a></h3>
+<h3>Ubuntu Server LTS<a class="headerlink" href="#ubuntu-server-lts" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Access to Kria SOM accelerated apps and hardware overlays designed specifically to run on the K26 SOM and KR260 Starter Kit. Each Ubuntu Version has a different set of supported applications. Refer to <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/linux_boot.html">Linux boot landing page</a> for compatible applications for each Ubuntu version.</p></li>
 <li><p>Access to a rich set of third-party software libraries in the Ubuntu community</p></li>
@@ -171,12 +179,12 @@ For best practice, this should be performed each time before removing power.</p>
 <p><a class="reference internal" href="sdcard.html"><span class="doc">Access Booting Kria Starter Kit Linux on KR260 tutorial HERE</span></a></p>
 </section>
 <section id="additional-embedded-developer-assets-and-resources">
-<h3>Additional Embedded Developer Assets and Resources<a class="headerlink" href="#additional-embedded-developer-assets-and-resources" title="Link to this heading">¶</a></h3>
+<h3>Additional Embedded Developer Assets and Resources<a class="headerlink" href="#additional-embedded-developer-assets-and-resources" title="Permalink to this heading">¶</a></h3>
 <p>For embedded developers looking to directly use PetaLinux BSPs for application development and deployment rather than Ubuntu, the latest PetaLinux BSPs are available on the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits#K26-Embedded-Linux-(Yocto)">Kria SOM Wiki</a></p>
 </section>
 </section>
 <section id="next-step">
-<h2>Next Step<a class="headerlink" href="#next-step" title="Link to this heading">¶</a></h2>
+<h2>Next Step<a class="headerlink" href="#next-step" title="Permalink to this heading">¶</a></h2>
 <p>Jump to <a class="reference internal" href="sdcard.html"><span class="doc">Step 1: Set up the SD Card Image</span></a>.</p>
 <p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></section>
 </section>
@@ -187,15 +195,15 @@ For best practice, this should be performed each time before removing power.</p>
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Booting Kria Starter Kit Linux on KR260" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Booting Kria Starter Kit Linux on KD240" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="sdcard.html" class="btn btn-neutral float-right" title="Step 1: Set up the SD Card Image" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 17, 2025.
+    <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 
