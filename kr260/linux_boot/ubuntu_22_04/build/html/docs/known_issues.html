@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -27,9 +27,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=38f6a506"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -46,6 +48,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Kria™ KD240: Linux Boot
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 Ubuntu 22.04
@@ -118,7 +121,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <section id="known-issues">
-<h1>Known Issues<a class="headerlink" href="#known-issues" title="Link to this heading">¶</a></h1>
+<h1>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h1>
 <ol>
 <li><p>Sometimes, Ubuntu has a background process ongoing by the time it boots to command prompt and does not yet ask you to change the password. In such cases, doing a snap install might result in a message similar to the following:</p>
 <p><code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">too</span> <span class="pre">early</span> <span class="pre">for</span> <span class="pre">operation,</span> <span class="pre">device</span> <span class="pre">not</span> <span class="pre">yet</span> <span class="pre">seeded</span> <span class="pre">or</span> <span class="pre">device</span> <span class="pre">model</span> <span class="pre">not</span> <span class="pre">acknowledged</span></code></p>
@@ -142,7 +145,7 @@ E: Sub-process /usr/bin/dpkg returned an error code (1)
 <li><p>As of Ubuntu 22.04 and Yocto 2023.2, the Linux image (Ubuntu or Yocto generated wic image) is shared between  KR260 and KV260. However, the SD card would be “locked in” to the started kit on which it first booted. E.g. once you have booted the common image on a KV260, you will not be able to re-use the same SD card with the shared common Linux image on a KR260. This is because on initial boot, the default bitstream will be locked in based on EEPROM reading on first boot, and this is not updated on subsequent boots.</p></li>
 </ol>
 <section id="miscellaneous-information">
-<h2>Miscellaneous Information<a class="headerlink" href="#miscellaneous-information" title="Link to this heading">¶</a></h2>
+<h2>Miscellaneous Information<a class="headerlink" href="#miscellaneous-information" title="Permalink to this heading">¶</a></h2>
 <p>The <em>ubuntu</em> user does not have root privileges. Most commands used in the tutorials must be run using <em>sudo</em>, and you might be prompted to enter your password.</p>
 <p>For security, by default, the root user is disabled. If you want to login as a root user, perform the following steps. Use the <em>ubuntu</em> user’s password on the first password prompt, then set a new password for the root user. You can now login as a root user using the newly set root user password.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:<span class="se">\~\$</span><span class="w"> </span>sudo<span class="w"> </span>-i
@@ -189,8 +192,8 @@ locale
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 17, 2025.
+    <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on December 09, 2024.
       </span></p>
   </div>
 

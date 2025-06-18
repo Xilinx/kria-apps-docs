@@ -3,7 +3,7 @@ Boot Kria Starter Kit Linux on KD240
 ########################################################################################
 
 
-For new users evaluating the Kria Starter Kit, we recommend starting with the latest version of Ubuntu (Ubuntu 24.04).
+For new users evaluating the AMD Kria™ Starter Kit, we recommend starting with the latest version of Ubuntu (Ubuntu 24.04).
 For users configuring their Kria Starter Kit for a specific application, please refer to the table 
 below to find your application and select the appropriate version of Linux.
 
