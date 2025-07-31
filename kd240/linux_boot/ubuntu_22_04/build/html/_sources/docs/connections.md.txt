@@ -13,11 +13,9 @@ The following are the key connections for the AMD Kria™ KD240 Drives Starter K
 1. Insert the microSD card containing the boot image into the microSD card slot (J11) on the starter kit.
 2. Connect the Ethernet cable to the PS ETH ports (J24) for required internet access to download factory loaded firmware.
 3. Get the USB-A to micro-B cable (a.k.a. micro-USB cable), which supports data transfer.* Do not connect the USB-A end to your computer yet. Connect the micro-B end to J4 on the starter kit.
-4. Connect the motor quadrature encoder cable to the KD240 single-ended (SE) encoder input port (J42).
-5. Connect the motor 3-phase connector to the KD240 motor connection port (J32).
-6. Connect the motor XT60 adapter to the KD240 DC link port (J39).
-7. Connect the motor 24V DC adapter to the XT60 adapter and attach the wall adapter to an AC wall supply.
-8. Connect the KD240 power supply to the DC jack (J12) on the starter kit. Do not insert the other end to the AC plug yet.
+4. Connect the motor quadrature encoder cable to the KD240 single-ended (SE) encoder input port (J42). Connect the motor 3-phase connector to the KD240 motor connection port (J32).
+5. Connect the motor XT60 adapter to the KD240 DC link port (J39). Connect the motor 24V DC adapter to the XT60 adapter and attach the wall adapter to an AC wall supply.
+6. Connect the KD240 power supply to the DC jack (J12) on the starter kit. Do not insert the other end to the AC plug yet.
 
 ![SOM Kria KD240 connection animation](./media/2350618-kd240-animation.gif)
 
