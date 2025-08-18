@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Hardware Architecture of the Platform &mdash; Kria™ KR260 2022.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Hardware Architecture of the Accelerator" href="hw_arch_accel_dd.html" />
+    <link rel="prev" title="Generation of Firmware binaries" href="../../generating_custom_firmware.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/freertos.html">FreeRTOS Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240-docs.html">Kria KD240</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KR260 Applications</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../10gige_vision_camera_landing.html">10GigE Vision Camera</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../10gige_vision_camera_landing.html#architecture">Architecture</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Hardware Architecture of the Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#capture-pipeline">Capture Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-sensor-processing-isp-pipeline">Image Sensor Processing (ISP) pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-pipeline-10gige">Output pipeline - 10GigE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resource-utilization-after-synthesis">Resource Utilization after Synthesis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hw_arch_accel_dd.html">Hardware Architecture of the Accelerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sw_arch_platform_dd.html">Software Architecture of the Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sw_arch_accel_dd.html">Software Architecture of the Accelerator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#repositories">Repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10gige_vision_camera_landing.html#other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/ros2_multinode_communication_via_tsn.html">ROS 2 Multi-Node Communications via TSN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ros2_perception_node/ros2_perception_node_landing.html">ROS 2 Perception Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gps_1588_ptp/gps_1588_ptp_precision_time_mgmt.html">Precision Time Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/bist.html">Built-In Self Test (BIST)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KR260 Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_boot.html">Boot Kria Starter Kit Linux on KR260</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Build the Design Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Create a Vitis Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generate Custom Firmware</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Kria™ KR260</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../10gige_vision_camera_landing.html">10GigE Machine Vision Camera - Defect Detect</a> &raquo;</li>
+      <li>Hardware Architecture of the Platform</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/10gige_vision_camera/src/10gige.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide">
+ <tr>
+   <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Kria&trade; KR260 Robotics Starter Kit</h1>
+   </td>
+ </tr>
+ <tr>
+ <td align="center"><h1>Machine Vision Camera Tutorial</h1> </td>
+ </tr>
+</table><div class="section" id="hardware-architecture-of-the-platform">
+<h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This section describes the design implemented in the programmable logic (PL). The following figure shows the top-level hardware architecture of the reference design.</p>
+<p><img alt="Top Level Hardware Architecture" src="../../../_images/Top_level_hardware_architecture.png" /></p>
+<p>At a high-level, the design comprises of four pipelines:</p>
+<ul class="simple">
+<li><p>Capture/Input pipeline: This comprises of pipelines through which video data is captured.</p>
+<ul>
+<li><p>Capture images from a file source (PS)</p></li>
+<li><p>SLVS-EC capture pipeline (PL)</p></li>
+</ul>
+</li>
+<li><p>Image Sensor Processing (ISP) pipeline: This comprises of functions to improve image quality</p>
+<ul>
+<li><p>ISP for color stream (PL)</p></li>
+<li><p>ISP for mono stream (PL)</p></li>
+</ul>
+</li>
+<li><p>Display/Output pipeline: This comprises of pipelines through which video data is output.</p>
+<ul>
+<li><p>Display port as sink for output images (PS)</p></li>
+<li><p>10G Ethernet pipeline (PL)</p></li>
+</ul>
+</li>
+<li><p>Accelerator pipeline: This comprises of overlay accelerator functions integrated into the platform using AMD Vitis™.</p>
+<ul>
+<li><p>The Pre-Process block modifies the input data as required by the Defect Detection function (PL).</p></li>
+<li><p>The Defect Detection block identifies defects in a mango (PL + PS).</p></li>
+<li><p>Both Pre-Process and Defect Detection use Vitis Vision Library functions.</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>NOTE:</strong> The PS interconnects in the figure are conceptual.</p>
+</div></blockquote>
+</div>
+<div class="section" id="capture-pipeline">
+<h2>Capture Pipeline<a class="headerlink" href="#capture-pipeline" title="Permalink to this heading">¶</a></h2>
+<p>SLVS-EC Capture</p>
+<p>A capture pipeline receives video frames from an external source and writes it into memory or streams it to another IP. The SLVS-EC receive capture pipeline is shown in the following figure.</p>
+<p><img alt="Capture Pipeline" src="../../../_images/hw_arch_capture_pipeline.png" /></p>
+<p>This pipeline consists of four components: two that are controlled by the application processing unit (APU) via an AXI4-Lite based register interface; one is controlled by the APU via an Inter Integrated Circuit (I2C) register interface, and one is configured statically.</p>
+<ul class="simple">
+<li><p>The Sony IMX547 CMOS active pixel image sensor, sends sensor data to the SLVS RX IP through a two-lane Gigabit Trasceiver (GT) interface. It is controlled and programmed by via an I2C interface using an AXI I2C controller in the PL. The Framos Sensor Module host the Sony IMX547 camera sensor, and connects to the  KR260 carrier card via a flex cable and Framos Sensor Adaptor (FSA). For more information, refer to <a class="reference internal" href="sensor.html"><span class="doc">MV Camera Sensor</span></a></p></li>
+<li><p>The Framos SLVS-EC RX IP Core is a receiver that handles the byte-to-pixel conversion of the incoming sensor data stream. The IP Core provided by Framos encompasses Xilinx GTs, and the logic to process the sensor image and provide it on Parallel Pixel Interface (PPI). For more information, refer to <a class="reference external" href="https://www.framos.com/en/framos-slvs-ec-rx-ip-core">FRAMOS SLVS-EC RX IP CORE</a></p></li>
+<li><p>The Framos PPI to Video IP Core converts the PPI data to a parallel video stream</p></li>
+<li><p>The LogiCORE™ IP Video In to AXI4-Stream Video In to AXI4-Stream is designed to interface to video data (clocked parallel video data with synchronization signals - active video with either syncs, blanks or both) and convert it to the AXI4-Stream Video Protocol Interface. For more information, refer to <a class="reference external" href="https://docs.amd.com/r/en-US/pg043_v_vid_in_axi4s/Video-In-to-AXI4-Stream-v5.0-LogiCORE-IP-Product-Guide">Video In to AXI4-Stream IP Product Guide</a></p></li>
+</ul>
+<p>The IPs in this pipeline are configured to transport 4 ppc at 237.6 MHz.</p>
+<p>An <a class="reference external" href="https://docs.amd.com/r/en-US/pg085-axi4stream-infrastructure/AXI4-Stream-Broadcaster">AXI4-Stream Broadcaster IP</a> is used in the PL to broadcast 64-bit AXIS Video data from the SLVS_EC pipeline to the ISP pipeline and 10GigE pipeline.</p>
+</div>
+<div class="section" id="image-sensor-processing-isp-pipeline">
+<h2>Image Sensor Processing (ISP) pipeline<a class="headerlink" href="#image-sensor-processing-isp-pipeline" title="Permalink to this heading">¶</a></h2>
+<p>The ISP pipeline converts the sensor data to Y8 format, resizes the image to 1920x1080p and writes it to memory. The acceleration pipeline reads these frames. ISP pipeline is shown in the following figure.</p>
+<p><img alt="ISP Pipeline" src="../../../_images/hw_arch_isp_pipeline.png" /></p>
+<ul>
+<li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/pg085-axi4stream-infrastructure/AXI4-Stream-Subset-Converter">AXI subset converter</a>, is a statically-configured IP core that converts the 64-bit AXI4-Stream from the capture pipeline to a 32-bit AXI4-Stream output data by dropping the least significant bit (LSB) of each data word. The most significant bits carry the relevant information.</p></li>
+<li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/Vitis_Libraries/vision/ISPpipeline-bm.html">ISP function</a> from the AMD Vitis™ Vision libraries is a collection of functions that enhances the overall visual quality of the raw image from the sensor.</p>
+<p>Functions implemented for color sensor</p>
+<ul class="simple">
+<li><p>Gain Control</p></li>
+<li><p>Demoaosaicing</p></li>
+<li><p>Auto white balancing</p></li>
+<li><p>Color correction</p></li>
+<li><p>Gamma correction</p></li>
+<li><p>Resizing to 1920x1080</p></li>
+</ul>
+<p>For color the raw image is converted to BGR8 format, 24 bits per pixel, 96-bits for 4ppc the</p>
+<p>Functions implemented for mono sensor</p>
+<ul class="simple">
+<li><p>Gain Control</p></li>
+<li><p>Gamma correction</p></li>
+<li><p>Resizing to 1920x1080</p></li>
+</ul>
+<p>For mono the raw image is converted to Y8 format, 8 bits per pixel, 32-bits for 4ppc the</p>
+</li>
+<li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/pg085-axi4stream-infrastructure/AXI4-Stream-Subset-Converter">AXI subset converter</a>, is a statically-configured IP core that converts the 32-bit AXI4-Stream input data to a 96-bit AXI4-Stream output data by adding zeros to the most significant bit (MSB) of each data word. At four ppc, the AXI4-Stream width is 96-bits. This is applicable to the mono pipeline only.</p></li>
+<li><p>The video frame buffer takes AXI4-Stream (RGB8 for color and Y8 for mono) input data and converts it to AXI4-MM format, which is written to memory. The AXI-MM (Memory Mapped) interface is connected to the S_AXI port of the PS. For each video frame transfer, an interrupt is generated. A general purpose I/O (GPIO) is used to reset the IP. For more information, see the (<a class="reference external" href="https://docs.amd.com/r/en-US/pg278-v-frmbuf">Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide</a>).</p></li>
+</ul>
+<p>All the IPs in this pipeline are configured to transport 4 ppc at 237.6 MHz.</p>
+</div>
+<div class="section" id="output-pipeline-10gige">
+<h2>Output pipeline - 10GigE<a class="headerlink" href="#output-pipeline-10gige" title="Permalink to this heading">¶</a></h2>
+<p>The 10GigE pipeline transfers the captured raw data to the host system via an SFP connection. The block diagram of the 10GigE Vision pipeline is shown below. The major blocks in the pipeline are provided by Sensor to Image (S2I)</p>
+<p><img alt="Block diagram of the 10GigE Vision pipeline" src="../../../_images/hw_arch_10g_pipeline.png" /></p>
+<p>The pipeline consists of following modules:</p>
+<ul class="simple">
+<li><p><strong>Framebuffer with Gen DC</strong>: The AXI4 stream output of the SLVS-EC IP pipeline is forwarded to Framebuffer IP. This IP buffers the image data in memory. The Framebuffer also prepares the data to be sent in GenICam GenDC format, which allows for sending different types of data, for example, raw image, preprocessed image, metadata etc in a data container. It sends ethernet packet size data chunks to the 10GigE packet composer(XGigE).</p></li>
+<li><p><strong>XGigE core</strong>: This module handles all the low-level networking features to the rest of the system. It forms the GigE Vision stream channel and provides networking interface for the CPU system.</p></li>
+<li><p><strong>10GigE MAC</strong>: This module implements the Media Access Controller (MAC) and sends data to the PHY over XGMII (Media-Independant-Interface).</p></li>
+<li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/pg210-25g-ethernet">AMD 10G/25G High Speed Ethernet Subsystem</a>is configured to support the  physical coding sublayer/physical medium attachment (PCS/PMA) functions at 10G speeds. The IP implements the PHY layer of the 10GigE protocol and transmits the packetized sensor data on the Gigabit transceiver</p></li>
+</ul>
+</div>
+<div class="section" id="resource-utilization-after-synthesis">
+<h2>Resource Utilization after Synthesis<a class="headerlink" href="#resource-utilization-after-synthesis" title="Permalink to this heading">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">Blocks</th>
+<th style="text-align: left;">LUT</th>
+<th style="text-align: left;">FF</th>
+<th style="text-align: left;">BRAM</th>
+<th style="text-align: left;">URAM</th>
+<th style="text-align: left;">DSP</th>
+<th style="text-align: left;">GT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">SLVS-EC</td>
+<td style="text-align: left;">1886</td>
+<td style="text-align: left;">2948</td>
+<td style="text-align: left;">22.5</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">10GigE IPs</td>
+<td style="text-align: left;">13889</td>
+<td style="text-align: left;">18809</td>
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ethernet System</td>
+<td style="text-align: left;">2745</td>
+<td style="text-align: left;">5010</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">ISP-Color</td>
+<td style="text-align: left;">24530</td>
+<td style="text-align: left;">24744</td>
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">166</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">ISP-Mono</td>
+<td style="text-align: left;">8939</td>
+<td style="text-align: left;">9787</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">0</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>To get the 10GigE IP license, <a class="reference external" href="https://www.euresys.com/en/About-us/Contact-us">contact Sensor to Image S2I</a>.</p></li>
+<li><p>S2I Release note <a class="reference external" href="https://www.euresys.com/en/About-us/Blog-event/News/New-GigE-Vision-Viewer-for-AMD-Xilinx-Kria-KR260-R">here</a>.</p></li>
+<li><p>Download the packages from S2I <a class="reference external" href="https://www.euresys.com/en/Support/Download-area">here</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="sw_arch_platform_dd.html"><span class="doc">SW Architecture of the platform</span></a></p></li>
+<li><p><a class="reference internal" href="hw_arch_accel_dd.html"><span class="doc">HW Architecture of the accelerator</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="introduction.html"><span class="doc">Introduction</span></a></p></li>
+</ul>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../generating_custom_firmware.html" class="btn btn-neutral float-left" title="Generation of Firmware binaries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hw_arch_accel_dd.html" class="btn btn-neutral float-right" title="Hardware Architecture of the Accelerator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on July 31, 2025.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

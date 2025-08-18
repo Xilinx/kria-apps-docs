@@ -1,0 +1,149 @@
+﻿<table class="sphinxhide">
+ <tr>
+   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KV260 Vision AI Starter Kit Smart Camera Tutorial</h1>
+   </td>
+ </tr>
+ <tr>
+ <td align="center"><h1> Design Overview </h1>
+
+ </td>
+ </tr>
+</table>
+
+# Design Overview
+
+## Introduction
+
+The Smart Camera application design built on the KV260 Vision AI Starter Kit provides a framework for building and customizing video platforms that consist of four pipeline stages:
+
+* Capture pipeline
+* Video processing pipeline
+* Acceleration pipeline
+* Output pipeline
+
+The design has a platform and integrated accelerator functions. The platform consists of capture pipeline, output pipeline, and some video processing functions. This approach makes the design leaner and provides maximum programmable logic (PL) for the accelerator development. The platform supports capture from MIPI single sensor device, a USB webcam, and a file source. The output can be stored as files, passed forward via ethernet using the real time transport protocol (RTP) or displayed on DisplayPort/HDMI monitor. Along with video, the platform also supports audio capture and playback.
+
+Some video processing functions are performed on hard blocks like the video codec unit (VCU) because it is most performant to do so. Video decoding/decompression and encoding/compression is done using the VCU.
+
+The following example acceleration functions can be run on this platform using programmable deep learning processor units (DPU).
+
+* Face Detection  - Network model: Densebox_640_360
+* Cars, Bicycles, and Person Detection for ADAS -  Network model: ssd_adas_pruned_0_95
+* Pedestrian Detection - Network model: refinedet_pruned_0_96
+
+An example use case for this design is as an endpoint security camera.
+
+The following figure shows the various pipelines supported by the design.
+
+![Pipelines Supported](../../media/pipelines.png)
+
+The application processing unit (APU) in the processing system (PS) consists of four Arm&reg; Cortex&reg;-A53 cores and is configured to run in a symmetric multi-processing (SMP) Linux mode in the design. The application running on Linux is responsible for configuring and controlling the audio/video pipelines and accelerators using Jupyter notebooks or the smartcam application.
+
+The APU application controls the following video data paths implemented in a combination of the PS and PL:
+
+* Capture pipeline capturing video frames into double-data rate (DDR) memory from:
+  * A file on a storage device such as an SD card
+  * A USB webcam using the USB interface inside the PS
+  * An image sensor connected via MIPI CSI-2 RX through the PL
+
+* I2S Rx subsystem via Digilent PMOD I2S2 captures audio along with video.
+
+* Memory-to-memory (M2M) pipeline implementing a neural net inference application. In this design, the neural net is implemented in the DPU, preprocessed video frames are read from DDR memory, processed by the DPU, and then written back to memory.
+
+* An output pipeline reads video frames from memory and sends the frames to a sink.
+  * In this case the sink is a display or VCU-encoded stream through Ethernet.
+  * In the display pipeline sink is a monitor, the DP controller subsystem in the PS is coupled to the STDP4320 De-multiplexer on the carrier card. STDP4320 consists of dual mode output ports configured as DP and HDMI.
+
+* Along with video, the I2S TX subsystem via Digilent PMOD I2S2 forwards audio data to a speaker.
+
+The following figure shows an example end-to-end pipeline which could be a single image sensor as the video source, pre-process and DPU IPs for application NN Inference. The inferred frames are either VCU encoded and streamed via RTP network protocol for delivering audio and video over IP networks, or the video frames are displayed via aDP splitter onto a DP and HDMI port for display, as the video sink. The figure also shows the image processing blocks used in the capture path. The video format in the figure is the output format on each block. Details are described in the [Hardware Architecture document](hw_arch_platform.md).
+
+![End to end example pipelines](../../media/end_to_end_pp.png)
+
+## Design Components
+
+<details>
+ <summary><b>Hardware components</b></summary>
+
+* KV260 Vision AI Starter Kit including
+  * On Semi AP1302 Image Signal Processor (<https://www.onsemi.com/products/sensors/image-sensors-processors/image-processors/ap1302>) on the carrier card
+  * HDMI-DP splitter on the carrier card
+  * On Semi AR1335 CMOS Image sensor (<https://www.onsemi.com/products/sensors/image-sensors-processors/image-sensors/ar1335>)
+  * Digilent's Pmod&trade; I2S2 Stereo Audio Input and Output (<https://store.digilentinc.com/pmod-i2s2-stereo-audio-input-and-output/>)
+
+</details>
+
+<details>
+ <summary><b>Interfaces and IP</b></summary>
+
+* Video inputs
+  * File
+  * USB webcam
+  * MIPI CSI-2 Rx
+* Video outputs
+  * DisplayPort/ HDMI
+  * File
+  * Ethernet - Jupyter notebook/RTSP
+* Audio inputs
+  * I2S receiver
+* Audio outputs
+  * I2S transmitter
+* Video processing
+  * VCU decoding and encoding
+  * Accelerator functions on the DPU
+  * PL and PS based pre and post processing specific to a accelerator function
+* Auxiliary Peripherals
+  * QSPI
+  * SD
+  * I2C
+  * Universal asynchronous receiver-transmitter (UART)
+  * Ethernet
+  * General purpose I/O (GPIO)
+
+</details>
+
+<details>
+ <summary><b>Software components</b></summary>
+
+* Operating system
+  * APU: SMP Linux
+* Linux kernel subsystems
+  * Video source: Video4 Linux (V4L2)
+  * Display: Direct Rendering Manager (DRM)/Kernel Mode Setting (KMS)
+* Linux user space frameworks
+  * Jupyter
+  * GStreamer/VVAS
+  * AMD Vitis&trade; AI
+  * Xilinx run-time (XRT)
+
+ </details>
+
+ <details>
+ <summary><b>Resolution and Format Supported</b></summary>
+
+* Resolutions
+  * 1080p30
+  * 2160p30
+  * Lower resolution and lower frame rates for USB and file I/O
+* Pixel format
+  * YUV 4:2:0 (NV12)
+
+ </details>
+&nbsp;
+
+## Next Steps
+
+* [Setting up the Board and Application Deployment](app_deployment.md)
+* Go back to the [KV260 SOM Smart Camera Design Start Page](../smartcamera_landing)
+
+## References
+
+* *Kria KV260 Vision AI Starter Kit User Guide* ([UG1089](https://docs.xilinx.com/access/sources/dita/map?url=ug1089-kv260-starter-kit&ft:locale=en-US))
+* *Kria SOM Carrier Card Design Guide* ([UG1091](https://docs.xilinx.com/access/sources/dita/map?url=ug1091-carrier-card-design&ft:locale=en-US))
+* *Kria KV260 Vision AI Starter Kit Data Sheet* ([DS986](https://docs.xilinx.com/access/sources/dita/map?url=ds986-kv260-starter-kit&ft:locale=en-US))
+* *Kria K26 SOM Data Sheet* ([DS987](https://docs.xilinx.com/access/sources/dita/map?url=ds987-k26-som&ft:locale=en-US))
+
+
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p>
+
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

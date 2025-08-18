@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Yocto Kria Support &mdash; Yocto Support 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Porting an Application to PetaLinux - Smartcam" href="yocto_port_example.html" />
+    <link rel="prev" title="Yocto Support" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Yocto Support
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/freertos.html">FreeRTOS Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240-docs.html">Kria KD240</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Yocto Support</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Yocto Kria Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#board-support-packages">Board Support Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#machine-configurations-for-kria">Machine Configurations for Kria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-host-requirements">Build Host Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-the-build-environment">Prepare the Build Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-the-artifacts">Build the Artifacts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-wic-image-for-kria-zynqmp-generic">Build wic image for kria-zynqmp-generic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#qemu">QEMU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#variables-overrides-and-the-environment">Variables, Overrides, and the Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-libraries">Working with Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-recipes">Working with Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#importing-a-new-xsa-file">Importing a New XSA File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#updating-default-bitstream">Updating Default Bitstream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="yocto_port_example.html">Porting an Application to PetaLinux - Smartcam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_dependency.html">Library Dependency</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Yocto Support</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Yocto Kria Support</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/yocto_kria_support.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="yocto-kria-support">
+<h1>Yocto Kria Support<a class="headerlink" href="#yocto-kria-support" title="Permalink to this heading">¶</a></h1>
+<p>Yocto contains support to generate AMD Kria™ artifacts starting in 2023.1. PetaLinux is an abstraction of Yocto; it is Yocto + Xilinx meta layers + extra tools such as XSCT, XSDB, and so on. The process and commands of generating artifacts from Yocto versus PetaLinux are different, but the backend is the same (that is, both are Yocto based).</p>
+<p>The Yocto Project provides <a class="reference external" href="https://docs.yoctoproject.org/">extensive documentation</a>, and it is recommended that you familiarize yourself with some of the core concepts before continuing. Xilinx specific Yocto information can be found on the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto">wiki</a>.</p>
+<div class="section" id="board-support-packages">
+<h2>Board Support Packages<a class="headerlink" href="#board-support-packages" title="Permalink to this heading">¶</a></h2>
+<p>AMD also release the Board Support Packages (BSPs) for each of the Kria platforms. More information are found in <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits#PetaLinux-Board-Support-Packages">the Kria Wiki</a>.</p>
+</div>
+<div class="section" id="machine-configurations-for-kria">
+<h2>Machine Configurations for Kria<a class="headerlink" href="#machine-configurations-for-kria" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference external" href="https://docs.yoctoproject.org/dev/dev-manual/new-machine.html">machine configurations</a> provided for Kria define the settings used for a given machine when building each recipe. Different artifacts would be built with each unique combination of machine name and bitbake recipe. Machine configuration files for Kria SOM and Starter Kits are found on <a class="reference external" href="https://github.com/Xilinx/meta-kria/tree/master/conf/machine">GitHub</a> in release branches for the perspective tool version.</p>
+<p>Machine names and recipes for QSPI/boot image generation are listed the following:</p>
+<ul class="simple">
+<li><p>Note that various support starts in different versions, so make sure to align Yocto release versions to the MACHINE + recipe desired.</p></li>
+<li><p>Note that in 2024.2, some artifacts are generated either using XSCT flow, or SDT flow. Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2743468485/Porting+embeddedsw+components+to+system+device+tree+SDT+based+flow">this</a> page for more details on the new SDT flow.</p></li>
+<li><p>in 2025.1 and onward, XSCT flow is depreciated</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Machine Name</th>
+<th>Bitbake Recipe</th>
+<th>Availability</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>k26-smk-sdt</td>
+<td>kria-qspi</td>
+<td>2025.1** and newer</td>
+<td>QSPI image supporting K26 Starter Kit SOM on KV and KR carrier card, using the SDT flow</td>
+</tr>
+<tr>
+<td>k24-smk-sdt</td>
+<td>kria-qspi</td>
+<td>2025.1** and newer</td>
+<td>QSPI image supporting K24 Starter Kit SOM on KD carrier card, using the SDT flow</td>
+</tr>
+<tr>
+<td>k26-sm-sdt</td>
+<td>xilinx-bootbin</td>
+<td>2024.2 and newer</td>
+<td>boot.bin that supports production SOM K26i and K26c, using the SDT flow</td>
+</tr>
+<tr>
+<td>k24i-sm-sdt</td>
+<td>xilinx-bootbin</td>
+<td>2024.2 and newer</td>
+<td>boot.bin that supports production SOM K24i, using the SDT flow</td>
+</tr>
+<tr>
+<td>k24c-sm-sdt</td>
+<td>xilinx-bootbin</td>
+<td>2025.1 and newer</td>
+<td>boot.bin that supports production SOM K24c, using the SDT flow</td>
+</tr>
+<tr>
+<td>k26-smk</td>
+<td>kria-qspi</td>
+<td>2023.1 through 2024.2</td>
+<td>QSPI image supporting K26 Starter Kit SOM on KV and KR carrier card, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k24-smk</td>
+<td>kria-qspi</td>
+<td>2023.1 through 2024.2</td>
+<td>QSPI image supporting K24 Starter Kit SOM on KD carrier card, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k26-sm</td>
+<td>xilinx-bootbin</td>
+<td>2023.1 through 2024.2</td>
+<td>boot.bin that supports production SOM K26i and K26c, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k24i-sm</td>
+<td>xilinx-bootbin</td>
+<td>2023.2* through 2024.2</td>
+<td>boot.bin that supports production SOM K24i, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k24c-sm</td>
+<td>xilinx-bootbin</td>
+<td>2023.2* through 2024.2</td>
+<td>boot.bin that supports production SOM K24c, using the XSCT flow</td>
+</tr>
+</tbody>
+</table><p><code class="docutils literal notranslate"><span class="pre">*</span></code> 2023.2 support for production is on the <a class="reference external" href="https://github.com/Xilinx/yocto-manifests/releases/tag/xlnx-rel-v2023.2_update1">tag xlnx-rel-v2023.2_update1</a> repository.
+<code class="docutils literal notranslate"><span class="pre">**</span></code> in 2025.1, image recovery cannot be generated in SDT flow. Therefore, the 2025.1 QSPI generation pulls image recovery prebuilt binary from an artifactory to build QSPI.</p>
+<p>For .wic image generation, there are two groups of machines names: .wic images with flat support (that is, they only support one type of Kria SOM board) and .wic images with dynamic support (they can be used with multiple types of Kria SOM boards).</p>
+<p>The following table list the flat image generation machine names:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Machine Name</th>
+<th>Bitbake Recipe</th>
+<th>Availability</th>
+<th>QEMU Support</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>k26-smk-kv-sdt</td>
+<td>kria-image-full-cmdline</td>
+<td>2024.2 and newer</td>
+<td>yes</td>
+<td>Flat wic image that supports KV260, not fully validated on target and meant for development enablement, using the SDT flow</td>
+</tr>
+<tr>
+<td>k26-smk-kr-sdt</td>
+<td>kria-image-full-cmdline</td>
+<td>2024.2 and newer</td>
+<td>yes</td>
+<td>Flat wic image that supports KR260, not fully validated on target and meant for development enablement, using the SDT flow</td>
+</tr>
+<tr>
+<td>k24-smk-kd-sdt</td>
+<td>kria-image-full-cmdline</td>
+<td>2024.2 and newer</td>
+<td>yes</td>
+<td>Flat wic image that supports KD240, not fully validated on target and meant for development enablement, using the SDT flow</td>
+</tr>
+<tr>
+<td>k26-sm-sdt</td>
+<td>kria-image-full-cmdline</td>
+<td>2024.2 and newer</td>
+<td>no</td>
+<td>Flat wic image that supports production SOM K26i and K26c, not fully validated on target and meant for development enablement, using SDT flow</td>
+</tr>
+<tr>
+<td>k24i-sm-sdt</td>
+<td>kria-image-full-cmdline</td>
+<td>2024.2 and newer</td>
+<td>no</td>
+<td>Flat wic image that supports production SOM K24i, not fully validated on target and meant for development enablement, using the SDT flow</td>
+</tr>
+<tr>
+<td>k24c-sm-sdt</td>
+<td>kria-image-full-cmdline</td>
+<td>2024.2 and newer</td>
+<td>no</td>
+<td>Flat wic image that supports production SOM K24c, not fully validated on target and meant for development enablement, using the SDT flow</td>
+</tr>
+<tr>
+<td>k26-smk-kv</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 through 2024.2</td>
+<td>yes</td>
+<td>Flat wic image that supports KV260, not fully validated on target and meant for development enablement, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k26-smk-kr</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 through 2024.2</td>
+<td>yes</td>
+<td>Flat wic image that supports KR260, not fully validated on target and meant for development enablement, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k24-smk-kd</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 through 2024.2</td>
+<td>yes</td>
+<td>Flat wic image that supports KD240, not fully validated on target and meant for development enablement, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k26-sm</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 through 2024.2</td>
+<td>no</td>
+<td>Flat wic image that supports production SOM K26i and K26c, not fully validated on target and meant for development enablement, using XSCT flow</td>
+</tr>
+<tr>
+<td>k24i-sm</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.2* through 2024.2</td>
+<td>no</td>
+<td>Flat wic image that supports production SOM K24i, not fully validated on target and meant for development enablement, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k24c-sm</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.2* through 2024.2</td>
+<td>no</td>
+<td>Flat wic image that supports production SOM K24c, not fully validated on target and meant for development enablement, using the XSCT flow</td>
+</tr>
+</tbody>
+</table><p>The following table list dynamic image generation machine names:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Machine Name</th>
+<th>Bitbake Recipe</th>
+<th>Availability</th>
+<th>QEMU Support</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kria-zynqmp-generic**</td>
+<td>kria-image-full-cmdline</td>
+<td>2024.2 and newer</td>
+<td>no</td>
+<td>wic image that dynamically supports KV260, KR260, and KD240</td>
+</tr>
+<tr>
+<td>k26-smk-sdt</td>
+<td>kria-image-full-cmdline</td>
+<td>2024.2 and newer</td>
+<td>yes</td>
+<td>wic image that dynamically supports both KV260 and KR260, using the SDT flow</td>
+</tr>
+<tr>
+<td>k24-smk-sdt</td>
+<td>kria-image-full-cmdline</td>
+<td>2024.2 and newer</td>
+<td>yes</td>
+<td>wic image that dynamically supports KD240, using the SDT flow</td>
+</tr>
+<tr>
+<td>k26-smk</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 through 2024.2</td>
+<td>yes</td>
+<td>wic image that dynamically supports both KV260 and KR260, using the XSCT flow</td>
+</tr>
+<tr>
+<td>k24-smk</td>
+<td>kria-image-full-cmdline</td>
+<td>2023.1 through 2024.2</td>
+<td>yes</td>
+<td>wic image that dynamically supports KD240, using the XSCT flow</td>
+</tr>
+</tbody>
+</table><p><code class="docutils literal notranslate"><span class="pre">**</span></code> For information on how to generate a .wic image with this MACHINE name, refer to <a class="reference external" href="#build-wic-image-for-kria-zynqmp-generic">Build wic image for kria-zynqmp-generic</a>.</p>
+</div>
+<div class="section" id="build-host-requirements">
+<h2>Build Host Requirements<a class="headerlink" href="#build-host-requirements" title="Permalink to this heading">¶</a></h2>
+<p>Before starting, make sure the build host PC meets <a class="reference external" href="https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#compatible-linux-distribution">these requirements</a>.</p>
+<p>Besides installing the packages/tools specified by the requirement page, refer to the <a class="reference external" href="#issues">Issues</a> section for possible additional requirements.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> Building using a NFS mount is not supported; use a local or scratch disk.</p>
+</div></blockquote>
+<p>Besides installing the packages/tools specified by the requirement page, refer to the <a class="reference external" href="#issues">Issues</a> section for possible additional requirements.</p>
+</div>
+<div class="section" id="prepare-the-build-environment">
+<h2>Prepare the Build Environment<a class="headerlink" href="#prepare-the-build-environment" title="Permalink to this heading">¶</a></h2>
+<p>Install the <a class="reference external" href="https://gerrit.googlesource.com/git-repo">repo</a>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#download the Repo script:</span>
+curl<span class="w"> </span>https://storage.googleapis.com/git-repo-downloads/repo<span class="w"> </span>&gt;<span class="w"> </span>repo
+<span class="c1">#Make it executable:</span>
+chmod<span class="w"> </span>a+x<span class="w"> </span>repo
+<span class="c1">#Move it on to your system path:</span>
+mv<span class="w"> </span>repo<span class="w"> </span>~/bin/
+<span class="c1">#Add it to your path</span>
+<span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/bin
+<span class="c1">#If it is correctly installed, you should see a Usage message when invoked with the help flag.</span>
+repo<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>Fetch all sources. Note that in 2024.2 and older, all images are generated with PetaLinux distribution. In 2025.1, the wic images are generated with <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/3250585601/AMD+Embedded+Development+Framework+EDF">EDF</a> distribution, while the bootbin and QSPI images are still generated with PEtaLinux distribution. The repo init command below selects between the two distributions with the presence of a -m option.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># repo init to the Xilinx yocto project</span>
+repo<span class="w"> </span>init<span class="w"> </span>-u<span class="w"> </span>https://github.com/Xilinx/yocto-manifests.git<span class="w"> </span>-b<span class="w"> </span>&lt;release-branch&gt;<span class="w"> </span><span class="c1">#PetaLinux Distribution</span>
+repo<span class="w"> </span>init<span class="w"> </span>-u<span class="w"> </span>https://github.com/Xilinx/yocto-manifests.git<span class="w"> </span>-b<span class="w"> </span>rel-v2025.1<span class="w"> </span>-m<span class="w"> </span>default-edf.xml<span class="w"> </span><span class="c1">#EDF Distribution</span>
+<span class="c1"># Example: repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2025.1</span>
+<span class="c1"># or for tags instead of branch: repo init -u https://github.com/Xilinx/yocto-manifests.git -b refs/tags/xlnx-rel-v2023.2_update1</span>
+<span class="c1"># repo sync to get all sources</span>
+repo<span class="w"> </span>sync
+<span class="c1"># repo start a branch</span>
+repo<span class="w"> </span>start<span class="w"> </span>&lt;release-branch&gt;<span class="w"> </span>--all
+<span class="c1"># example:  repo start rel-v2025.1 --all</span>
+<span class="c1"># or for tags instead of branch: repo start xlnx-rel-v2023.2_update1 --all</span>
+</pre></div>
+</div>
+<p>Source environment:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#source the environment to build using bitbake</span>
+<span class="nb">source</span><span class="w"> </span>setupsdk<span class="w">  </span><span class="c1">#PetaLinux Distribution only</span>
+<span class="nb">source</span><span class="w"> </span>edf-init-build-env<span class="w"> </span><span class="c1">#EDF distibution only</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-the-artifacts">
+<h2>Build the Artifacts<a class="headerlink" href="#build-the-artifacts" title="Permalink to this heading">¶</a></h2>
+<p>To build the artifacts, use the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>&lt;machine<span class="w"> </span>name&gt;<span class="w"> </span>bitbake<span class="w"> </span>&lt;bitbake<span class="w"> </span>recipe&gt;<span class="w"> </span>
+</pre></div>
+</div>
+<p>For example, to build the QSPI image and wic image for the K26 starter kits, use the following command for 2023.1:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>kria-qspi
+<span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline<span class="w"> </span>
+</pre></div>
+</div>
+<p>The resulting QSPI image (<code class="docutils literal notranslate"><span class="pre">kria-qspi-k26-smk.bin</span></code>), .wic image (<code class="docutils literal notranslate"><span class="pre">kria-image-full-cmdline-k26-smk.wic.xz</span></code>), and their artifacts are found in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k26-smk</span></code>, and $TMPDIR is defined in <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code>, by default in <code class="docutils literal notranslate"><span class="pre">tmp/</span></code>.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The username for the Yocto generated image is <code class="docutils literal notranslate"><span class="pre">petalinux</span></code> for 2024,2 and older, <code class="docutils literal notranslate"><span class="pre">amd-edf</span></code> for 2025.1 and newer, and you are immediately prompted to update the password.</p>
+</div></blockquote>
+<div class="section" id="build-wic-image-for-kria-zynqmp-generic">
+<h3>Build wic image for kria-zynqmp-generic<a class="headerlink" href="#build-wic-image-for-kria-zynqmp-generic" title="Permalink to this heading">¶</a></h3>
+<p>From 2025.1 onward, you can generate a common wic image that dynamically supports all three Kria SOM starter kits with a single steo:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nv">MACHINE</span><span class="o">=</span>kria-zynqmp-generic<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
+</pre></div>
+</div>
+<p>In 2024.2 , you can generate a common wic image that dynamically supports all three Kria SOM starter kits with a few extra steps to generate.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1"># Build the DTB for K26 and K24 machines. You can also use -sdt machines if the SDT flow is desired.</span>
+
+<span class="w">    </span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>virtual/dtb
+<span class="w">    </span>cp<span class="w"> </span>tmp/deploy/images/<span class="w"> </span>k26-smk/devicetree/SMK-*.dtb<span class="w"> </span>&lt;dtb_path&gt;
+<span class="w">    </span><span class="nv">MACHINE</span><span class="o">=</span>k24-smk<span class="w"> </span>bitbake<span class="w"> </span>virtual/dtb
+<span class="w">    </span>cp<span class="w"> </span>tmp/deploy/images/k24-smk/devicetree/SMK-zynqmp-sck-kd-g-revA.dtb<span class="w">  </span>&lt;dtb_path&gt;
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Add the prebuilt DTB build in above path to `conf/local.conf` in the .wic image builds `local.conf`.</span>
+<span class="w">    </span><span class="nv">PRECOMPILED_DTB_FILES_DIR</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>&lt;DTB_PATH&gt;
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">#Build the common .wic image:</span>
+<span class="w">    </span><span class="nv">MACHINE</span><span class="o">=</span>kria-zynqmp-generic<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>NOTE:</strong> In kria-zynqmp-generic generated wic image in 2024.2, the SD card is “locked in” to the started kit when first booted. That is, once you have booted the common image on a KV260, you are not be able to reuse the same SD card with the shared common Linux image on a KR260 or a KD240. This is because on initial boot, the default bitstream is locked in based on the EEPROM reading on first boot, and this is not updated on subsequent boots.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="qemu">
+<h2>QEMU<a class="headerlink" href="#qemu" title="Permalink to this heading">¶</a></h2>
+<p>Yocto can boot each of the various MACHINEs using QEMU once a build completes using the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>&lt;machine<span class="w"> </span>name&gt;<span class="w"> </span>runqemu<span class="w"> </span>nographic<span class="w"> </span>slirp
+</pre></div>
+</div>
+<p>Exit from QEMU with <code class="docutils literal notranslate"><span class="pre">ctrl-a,x</span></code>.</p>
+<p>During the build process, a QEMU configuration file is created in the output directory containing all of the configuration options set for the machine and used by the runqemu command. For example, for k26-smk, this file is found in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k26-smk/kria-image-full-cmdline-k26-smk.qemuboot.conf</span></code>.</p>
+<p>In 2023.1, the combined starterkit k26-smk supports QEMU, and the default hardware which it emulates is KV260. To change it to KR260, update <code class="docutils literal notranslate"><span class="pre">sources/meta-kria/conf/machine/k26-smk.conf</span></code> according to the comment in the file.</p>
+</div>
+<div class="section" id="variables-overrides-and-the-environment">
+<h2>Variables, Overrides, and the Environment<a class="headerlink" href="#variables-overrides-and-the-environment" title="Permalink to this heading">¶</a></h2>
+<p>Most of the Yocto recipes and configuration files assign values to <a class="reference external" href="https://docs.yoctoproject.org/dev/dev-manual/new-recipe.html">variables</a> to influence the build. Machine specific overrides can be used to replace default or previously defined values with ones that are specific to the machine you are building for. Each machine will have a series of overrides which defines, in order of priority, which overrides will be considered when parsing all of the recipes and config files. It is possible to get a list of the MACHINEOVERRIDEs that are used for a given recipe as well as the log of how the system came to the final value of a variable by using the “-e” flag on a build:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline<span class="w"> </span>-e<span class="w"> </span>
+</pre></div>
+</div>
+<p>You can see if you redirect the output of bitbake -e to a file how each of the variables in the build got to its final value; for example, here is how SERIAL_CONSOLES was set for a recipe:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># $SERIAL_CONSOLES [5 operations]
+#   set? /scratch/jtoomey/2023/sources/poky/../meta-xilinx/meta-xilinx-core/conf/machine/zynqmp-generic.conf:46
+#     &quot;115200;ttyPS0&quot;
+#   set /scratch/jtoomey/2023/sources/poky/../meta-kria/conf/machine/include/kria-common.inc:14
+#     &quot;115200;ttyPS1&quot;
+#   set /scratch/jtoomey/2023/sources/poky/meta/conf/documentation.conf:380
+#     [doc] &quot;Defines the serial consoles (TTYs) to enable using getty.&quot;
+#   set /scratch/jtoomey/2023/sources/poky/meta/conf/bitbake.conf:918
+#     [_defaultval] &quot;${@d.getVar(&#39;SERIAL_CONSOLE&#39;).replace(&#39; &#39;, &#39;;&#39;)}&quot;
+#   override[qemuarm64]:set? /scratch/jtoomey/2023/sources/poky/../meta-virtualization/conf/distro/include/meta-virt-xen.inc:15
+#     &quot;115200;ttyAMA0&quot;
+# pre-expansion value:
+#   &quot;115200;ttyPS1&quot;
+SERIAL_CONSOLES=&quot;115200;ttyPS1&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="working-with-libraries">
+<h2>Working with Libraries<a class="headerlink" href="#working-with-libraries" title="Permalink to this heading">¶</a></h2>
+<p>If some libraries have specific <a class="reference internal" href="library_dependency.html"><span class="doc">version dependencies</span></a>, they can be specified in recipes (.bb files). For details, refer to the <a class="reference external" href="https://docs.yoctoproject.org/singleindex.html#term-PREFERRED_VERSION">Yocto documentation</a>.</p>
+</div>
+<div class="section" id="working-with-recipes">
+<h2>Working with Recipes<a class="headerlink" href="#working-with-recipes" title="Permalink to this heading">¶</a></h2>
+<p>It is possible to work with individual components (such as recipes in <a class="reference external" href="https://github.com/Xilinx/meta-kria">github meta-kria</a>) for the purpose of integration, debugging, or updates. For example, if you want to build the xmutil utility, you can bitbake that recipe:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>MACHINE=k26-smk bitbake xmutil
+</pre></div>
+</div>
+<p>This downloads and builds the xmutil sources, as well as any other recipes it depends on. For the purpose of development or debugging, it might be necessary to point the recipe to a different repo, branch, or commit by updating the SRC_URI or SRCREV (an example of the local repo commented out the following):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>diff<span class="w"> </span>--git<span class="w"> </span>a/recipes-utils/xmutil/xmutil.inc<span class="w"> </span>b/recipes-utils/xmutil/xmutil.inc
+index<span class="w"> </span>f83bcb3..2839b62<span class="w"> </span><span class="m">100644</span>
+---<span class="w"> </span>a/recipes-utils/xmutil/xmutil.inc
++++<span class="w"> </span>b/recipes-utils/xmutil/xmutil.inc
+@@<span class="w"> </span>-1,5<span class="w"> </span>+1,5<span class="w"> </span>@@
+-REPO<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;git://github.com/Xilinx/xmutil.git;protocol=https&quot;</span>
+-SRCREV<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;b5b1ad13bcc48d4cbd20476c97d05589bdfc7772&quot;</span>
++REPO<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;git://gitenterprise.xilinx.com/jtoomey/xmutil.git;protocol=https&quot;</span>
++#REPO<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;file:///path/to/xmutil;protocol=file&quot;</span>
++SRCREV<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0000000000000000000000000000000000000000&quot;</span>
+<span class="w"> </span><span class="nv">BRANCH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;master&quot;</span>
+<span class="w"> </span><span class="nv">LICENSE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;MIT&quot;</span>
+<span class="w"> </span><span class="nv">LIC_FILES_CHKSUM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;file://MIT;md5=0835ade698e0bcf8506ecda2f7b4f302&quot;</span>
+</pre></div>
+</div>
+<p>Once this has been updated, the package can be rebuilt, and bitbake picks up the new code.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>xmutil
+</pre></div>
+</div>
+<p>It is also possible to clean in between builds to force a clean build:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>xmutil<span class="w"> </span>-c<span class="w"> </span>clean
+</pre></div>
+</div>
+</div>
+<div class="section" id="importing-a-new-xsa-file">
+<h2>Importing a New XSA File<a class="headerlink" href="#importing-a-new-xsa-file" title="Permalink to this heading">¶</a></h2>
+<p>By default, the Kria Yocto project downloads the .xsa files from artifactory to generate device trees for generating artifacts. To use a local .xsa file, modify the corresponding .conf file in <code class="docutils literal notranslate"><span class="pre">sources/meta-kria/conf/machine/&lt;MACHINE</span> <span class="pre">name&gt;.conf</span></code> for the target MACHINE. Comment out lines started with <code class="docutils literal notranslate"><span class="pre">HDF_URI</span></code> and add the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HDF_BASE = &quot;file://&quot;
+HDF_PATH = &quot;/path/to/XSA/file.xsa&quot;
+</pre></div>
+</div>
+<p>sha256sum is not needed for local files.</p>
+<p>The default values for the .conf files come from <code class="docutils literal notranslate"><span class="pre">sources/meta-xilinx-tools/recipes-bsp/hdf/hdf-repository.inc</span></code>.</p>
+</div>
+<div class="section" id="updating-default-bitstream">
+<h2>Updating Default Bitstream<a class="headerlink" href="#updating-default-bitstream" title="Permalink to this heading">¶</a></h2>
+<p>In the Kria Starter Kits boot flow, the PL portion of the Zynq MPSoC is not programmed until during the Linux boot, DFX_manager loads the default bitstream in <code class="docutils literal notranslate"><span class="pre">/lib/firmware/xilinx/k26-starter-kits/</span> <span class="pre">or</span> <span class="pre">/lib/firmware/xilinx/k24-starter-kits/</span></code>. If you need to change the PL design that is loaded by default, update the firmware folder, which is managed by the recipe located in <code class="docutils literal notranslate"><span class="pre">$yocto_project_folder/sources/meta-kria/recipes-firmware/kria-base-firmware/</span></code>. In that folder, the recipes can be updated to take the firmware from a local folder instead of from GitHub.</p>
+<p>For example, to update the PL firmware for K26 only, comment out the the license and source lines in <code class="docutils literal notranslate"><span class="pre">kria-base-firmware.inc</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#LICENSE = &quot;Proprietary &amp; GPL-2.0-only&quot;</span>
+<span class="c1">#LIC_FILES_CHKSUM = &quot; \</span>
+<span class="c1">#       file://${WORKDIR}/git/LICENSE-BINARIES;md5=09db6fa082215924b1374f4f02a49f72 \</span>
+<span class="c1">#       file://${WORKDIR}/git/LICENSE-GPLv2;md5=9afdcd1be3f71bd3791fa5961075d776 \</span>
+<span class="c1">#       &quot;</span>
+
+<span class="c1">#BRANCH = &quot;xlnx_rel_v2023.1&quot;</span>
+<span class="c1">#SRC_URI = &quot;git://github.com/Xilinx/kria-base-firmware.git;protocol=https;branch=${BRANCH}&quot;</span>
+<span class="c1">#SRCREV = &quot;d512881ad56fcb8ad3bffea543280c5b357bb9ea&quot;</span>
+</pre></div>
+</div>
+<p>Put the firmware files into a folder with the same name as the <code class="docutils literal notranslate"><span class="pre">k26-starter-kits</span></code>.bb file :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>/tmp/jues_yocto_2024.1_xen/sources/meta-kria/recipes-firmware/kria-base-firmware/k26-starter-kits/
+k26_starter_kits.bit<span class="w">  </span>k26_starter_kits.dtsi<span class="w">  </span>shell.json
+</pre></div>
+</div>
+<p>Add these lines in <code class="docutils literal notranslate"><span class="pre">k26-starter-kits.bb</span></code> to point to the local firmware:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SRC_URI</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="se">\</span>
+<span class="s2">    file://k26_starter_kits.bit </span><span class="se">\</span>
+<span class="s2">    file://k26_starter_kits.dtsi </span><span class="se">\</span>
+<span class="s2">    file://shell.json </span><span class="se">\</span>
+<span class="s2">    &quot;</span>
+</pre></div>
+</div>
+<p>Then rebuild Yocto; the added firmware are loaded during the Linux boot by dfx-manager.</p>
+</div>
+<div class="section" id="issues">
+<h2>Issues<a class="headerlink" href="#issues" title="Permalink to this heading">¶</a></h2>
+<ol class="simple">
+<li><p>If you see the error, <code class="docutils literal notranslate"><span class="pre">error</span> <span class="pre">loading</span> <span class="pre">hsi</span> <span class="pre">package:</span> <span class="pre">couldn't</span> <span class="pre">load</span> <span class="pre">file</span> <span class="pre">&quot;libxv_commontasks.so&quot;</span></code>, it might be missing the libtinfo5 library which can be installed with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libtinfo5</span></code>.</p></li>
+</ol>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Yocto Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="yocto_port_example.html" class="btn btn-neutral float-right" title="Porting an Application to PetaLinux - Smartcam" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on August 14, 2025.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

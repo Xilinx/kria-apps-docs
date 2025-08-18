@@ -1,0 +1,49 @@
+name: Cache Busting
+
+on:
+  workflow_run:
+    workflows: ["bootfw.yml", "creating_applications_2022-1.yml", "dfx.yml", "faq.yml", "freertos.yml", "kr260.yml", "openamp.yml", "xen.yml", "yocto.yml"]
+    branches:
+      - gh-pages
+    types:
+      - completed
+
+permissions: write-all
+
+jobs:
+  cache_busting:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository with full history
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: "gh-pages"
+
+      - name: Add cache-busting JavaScript to index.html
+        run: |
+          echo "<script>$(cat <<-EOF
+          function addCacheBustingQueryParam() {
+            var links = document.querySelectorAll('link[rel="stylesheet"], script[src]');
+            var randomNumber = Math.floor(Math.random() * 1000000);
+            for (var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if (link.href) {
+                link.href = link.href.split('?')[0] + '?v=' + randomNumber;
+              } else if (link.src) {
+                link.src = link.src.split('?')[0] + '?v=' + randomNumber;
+              }
+            }
+          }
+          document.addEventListener('DOMContentLoaded', function () {
+            addCacheBustingQueryParam();
+          });
+          EOF
+          )</script>" >> home/build/html/index.html
+      - name: Push cache-busting updates
+        run: |
+          git config user.email "cachebuster@github.com"
+          git config user.name "Cache Buster"
+          git add -A
+          git commit -m "Add cache-busting JavaScript to index.html"
+          git push origin gh-pages

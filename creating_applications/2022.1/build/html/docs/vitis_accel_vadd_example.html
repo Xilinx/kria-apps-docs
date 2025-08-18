@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Vitis Accelerator Flow Example - Adding the VADD Accelerator Using the Vitis GUI &mdash; Kria™ SOM 2022.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Kria™ SOM
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/freertos.html">FreeRTOS Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240-docs.html">Kria KD240</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Flows</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Development Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vitis_accel_flow.html">Vitis Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vitis_platform_flow.html">Vitis Platform Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Baremetal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Boot-modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soft_ip_notes.html">Soft IP for Kria Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2021.1/build/html/index.html">2021.1</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kria™ SOM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Vitis Accelerator Flow Example - Adding the VADD Accelerator Using the Vitis GUI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/vitis_accel_vadd_example.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="vitis-accelerator-flow-example-adding-the-vadd-accelerator-using-the-vitis-gui">
+<h1>Vitis Accelerator Flow Example - Adding the VADD Accelerator Using the Vitis GUI<a class="headerlink" href="#vitis-accelerator-flow-example-adding-the-vadd-accelerator-using-the-vitis-gui" title="Permalink to this heading">¶</a></h1>
+<p>This example provide an example to add an acceleration application into an existing released SOM platforms using Vitis GUI. By default, the released platforms and applications uses a Makefile flow (example <a class="reference internal" href="vitis_accel_flow_smartcam_filter2d_example.html"><span class="doc">here</span></a>). However, this example shows an alternative way to add accelerator applications using the Vitis IDE. You import a Vitis Platform into Vitis and insert an acceleration application there. AMD prebuilt KV260 platform examples and their associated applications are:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Application</th>
+<th>Platform</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smartcam</td>
+<td>kv260_ispMipiRx_vcu_DP</td>
+</tr>
+<tr>
+<td>aibox-reid</td>
+<td>kv260_vcuDecode_vmixDP</td>
+</tr>
+<tr>
+<td>defect-detect</td>
+<td>kv260_ispMipiRx_vmixDP</td>
+</tr>
+<tr>
+<td>nlp-smartvision</td>
+<td>kv260_ispMipiRx_rpiMipiRx_DP</td>
+</tr>
+</tbody>
+</table><p>This example adds a VADD acceleration application into kv260_ispMipiRx_DP used by nlp-smartvision and uses 2022.1 tools. You can use any of the released platforms to try out the example. Note an overlay and its application needs to be both present for an acceleration application to execute. Because you are inserting the VADD accelerator without the original NLP-smartvision overlay, the original smartvision applications do not work on this newly generated overlay.</p>
+<div class="section" id="obtain-the-platform">
+<h2>Obtain the Platform<a class="headerlink" href="#obtain-the-platform" title="Permalink to this heading">¶</a></h2>
+<p>Because you are altering an existing platform, first get the platform, kv260_ispMipiRx_DP. A detailed tutorial is provided in <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vitis_platform.html">Creating Vitis Platform</a>. Here are the specific commands to generate the platform:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2022.1<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/Xilinx/kria-vitis-platforms.git
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$workdir</span>/kria-vitis-platforms/kv260/platforms
+<span class="nb">source</span><span class="w"> </span>&lt;vitis<span class="w"> </span>path&gt;/settings64.sh
+make<span class="w"> </span>platform<span class="w"> </span><span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx_rpiMipiRx_DP<span class="w"> </span>
+</pre></div>
+</div>
+<p>The platform required in later steps is now available in <code class="docutils literal notranslate"><span class="pre">$workdir/kria-vitis-platforms/kv260/platforms/xilinx_kv260_ispMipiRx_rpiMipiRx_DP_202210_1</span></code>.</p>
+<div class="section" id="optional-step">
+<h3>Optional Step<a class="headerlink" href="#optional-step" title="Permalink to this heading">¶</a></h3>
+<p>Up to 2022.1 (this will be fixed in 2022.2.), Vitis still tries to generate <code class="docutils literal notranslate"><span class="pre">sd_card.img</span></code> even if the .bif file is empty, resulting in an error, <code class="docutils literal notranslate"><span class="pre">ERROR:BootGen</span> <span class="pre">-</span> <span class="pre">syntax</span> <span class="pre">error</span></code>, when completing step 7 of “Generating overlay in Vitis”. This error is harmless. All the required files are still generated. However, to avoid the error, you can populate <code class="docutils literal notranslate"><span class="pre">$workdir/kria-vitis-platforms/kv260/platforms/xilinx_kv260_ispMipiRx_rpiMipiRx_DP_202210_1/sw/kv260_ispMipiRx_rpiMipiRx_DP/boot/linux.bif</span></code> with the following content, assuming that your <code class="docutils literal notranslate"><span class="pre">kv260-vitis/</span></code> and <code class="docutils literal notranslate"><span class="pre">xilinx-k26-starterkit-v2022.1/</span></code> are both top level in <code class="docutils literal notranslate"><span class="pre">$workdir</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>the_ROM_image:
+{
+ [fsbl_config] a53_x64
+ [bootloader] &lt;../../../../xilinx-k26-starterkit-2022.1/images/linux/zynqmp_fsbl.elf&gt;
+ [pmufw_image] &lt;../../../../xilinx-k26-starterkit-2022.1/images/linux/pmufw.elf&gt;
+ [destination_cpu=a53-0, exception_level=el-3, trustzone] &lt;../../../../xilinx-k26-starterkit-2022.1/images/linux/bl31.elf&gt;
+ [load=0x00100000] &lt;../../../../xilinx-k26-starterkit-2022.1/images/linux/system.dtb&gt;
+ [destination_cpu=a53-0, exception_level=el-2] &lt;../../../../xilinx-k26-starterkit-2022.1/images/linux/u-boot.elf&gt;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="download-sysroot-for-ubuntu-os">
+<h2>Download Sysroot for Ubuntu OS<a class="headerlink" href="#download-sysroot-for-ubuntu-os" title="Permalink to this heading">¶</a></h2>
+<p>If you are using Ubuntu, you can download the sysroot for the corresponding version being used <a class="reference external" href="https://ubuntu.com/download/amd-xilinx">here</a>. Make sure to download the 22.04 sysroot for this example because your target is running Ubuntu 22.04.</p>
+<p>Unlike PetaLinux 2021.1, Ubuntu sysroot already has XRT installed so you do not need to regenerate, but the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file has information on regenerating sysroot in case other libraries are needed.</p>
+<p>Unzip the sysroot file:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$ubuntu</span>
+tar<span class="w"> </span>-xf<span class="w"> </span>iot-limerick-kria-classic-desktop-2204-x06-20220614-78-sysroot.tar.xz
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;target</span> <span class="pre">sysroot&gt;</span></code> is <code class="docutils literal notranslate"><span class="pre">$ubuntu/sysroots/aarch64-xilinx-linux</span></code>.</p>
+</div>
+<div class="section" id="generate-the-overlay-in-vitis-hardware">
+<h2>Generate the Overlay in Vitis - Hardware<a class="headerlink" href="#generate-the-overlay-in-vitis-hardware" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Start Vitis, select <strong>Create Application Projects</strong>, and skip the welcome page.</p></li>
+<li><p>In <strong>Select a platform from repository</strong>, click <strong>+</strong>, navigate to the folder containing <code class="docutils literal notranslate"><span class="pre">.xpfm</span></code> file in  <code class="docutils literal notranslate"><span class="pre">$workdir/kv260-vitis/platforms/xilinx_kv260_ispMipiRx_DP_202110_1</span></code>, and click <strong>Open</strong>. This opens the .xpfm file and its associated platform. Click  <strong>Next</strong>.
+<img alt="vadd1.png" src="../_images/vadd1.PNG" /></p></li>
+<li><p>Name the project <code class="docutils literal notranslate"><span class="pre">vadd</span></code>, and click <strong>Next</strong>.</p></li>
+<li><p>In Domain page:</p>
+<ul class="simple">
+<li><p>Set Domain to <code class="docutils literal notranslate"><span class="pre">smp_linux</span></code></p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">Sys_root</span> <span class="pre">path</span></code> to <code class="docutils literal notranslate"><span class="pre">&lt;target</span> <span class="pre">sysroot&gt;</span></code>.</p></li>
+<li><p>Leave <code class="docutils literal notranslate"><span class="pre">Root</span> <span class="pre">FS</span></code> empty</p></li>
+<li><p>Leave <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">Image</span></code>  empty</p></li>
+<li><p>Click <strong>Next</strong>.</p></li>
+</ul>
+</li>
+<li><p>Select <strong>Acceleration templates with PL and AIE accelerators</strong> -&gt; <strong>Simple Vector Addition</strong>, and click <strong>Finish</strong> to generate the application.</p></li>
+<li><p>In the Explorer window, double-click the <strong>vadd_system-&gt;vadd-&gt;vadd.prj</strong> file to open it, change the <strong>Active Build configuration</strong> from <strong>Emulation-SW</strong> to <strong>Hardware</strong>.</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">vadd_system</span></code> in the Explorer window, and click the <strong>Build</strong> icon in the toolbar. The build task takes 10-30 minutes. When the build completes, the build result is located in <code class="docutils literal notranslate"><span class="pre">vadd_system/Hardware/</span></code> directory.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> IFf step 8 in section “Create Sysroot” was not performed, there is an error, and it can be ignored.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vadd_system_hw_link/Hardware/binary_container_1.build/link/int/system.bit</span></code>: PL bitstream including vadd kernel and platform components.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vadd_system_hw_link/Hardware/binary_container_1.xclbin</span></code>: Acceleration binary container for XRT configuration. It includes metadata that describes the kernels.</p></li>
+</ul>
+<p>Usually, vadd/Hardware/vadd contains the compiled application, but in this case, the software generation portion has an error:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fatal error: bits/libc-header-start.h no such file
+</pre></div>
+</div>
+<p>Ignore this for now; it is addressed in the “Compiling the Application - Software” section.</p>
+</li>
+<li><p>The bitstream needs to be in .bin format so that fpgamanager can load it. Convert the <code class="docutils literal notranslate"><span class="pre">.bit</span></code> file to a <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code> file with the following commands.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>vadd_system_hw_link/Hardware/binary_container_1.build/link/int/
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;all:{system.bit}&#39;</span>&gt;bootgen.bif
+bootgen<span class="w"> </span>-w<span class="w"> </span>-arch<span class="w"> </span>zynqmp<span class="w"> </span>-process_bitstream<span class="w"> </span>bin<span class="w"> </span>-image<span class="w"> </span>bootgen.bif
+mv<span class="w"> </span>system.bit.bin<span class="w"> </span>vadd.bit.bin<span class="w">    </span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="compile-the-application-software">
+<h2>Compile the Application - Software<a class="headerlink" href="#compile-the-application-software" title="Permalink to this heading">¶</a></h2>
+<p>The native g++ compiler used by Vitis is not compatible with the Ubuntu 22.04 sysroot. To compile the software, use the Ubuntu 22.04 tool chain (aarch64-linux-gnu-g++) instead of the Vitis tool chain.</p>
+<div class="section" id="ubuntu-host">
+<h3>22.04 Ubuntu Host<a class="headerlink" href="#ubuntu-host" title="Permalink to this heading">¶</a></h3>
+<p>If you happen to be running Vitis on Ubuntu 22.04 (this is not officially supported), first run these commands to install the tools:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>crossbuild-essential-arm64
+</pre></div>
+</div>
+<p>This installs the tool chain, and you see files including <code class="docutils literal notranslate"><span class="pre">/usr/bin/aarch64-linux-gnu-g++</span></code>, added the installed folder to your <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>.</p>
+<p>In Vitis, open the project with vadd again. Rightclick <strong>vadd</strong> -&gt; <strong>C/C++ Build Settings</strong>:</p>
+<p><img alt="image" src="../_images/vadd_cbuild.png" /></p>
+<p>Give the path of <code class="docutils literal notranslate"><span class="pre">/usr/bin/aarch64-linux-gnu-g++</span></code> for both the compiler and linker before rebuilding the software by right-clicking <strong>vadd</strong> -&gt; <strong>build project</strong>.
+<img alt="image" src="../_images/vadd_compiler.png" />
+<img alt="image" src="../_images/vadd_builder.png" /></p>
+</div>
+<div class="section" id="id1">
+<h3>20.04 Ubuntu Host<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>If you are using a 20.04 Ubuntu Host, there is a CHROOT workaround to compile with a Ubuntu 22.04 tool chain. Refer to the [Wiki](need to getlink for this!!!!!!!!!)</p>
+</div>
+</div>
+<div class="section" id="obtaining-the-dtbo-file">
+<h2>Obtaining the .dtbo File<a class="headerlink" href="#obtaining-the-dtbo-file" title="Permalink to this heading">¶</a></h2>
+<p>Download the corresponding .dtsi file (in this case, nlp-smartvision from <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/tree/xlnx_rel_v2022.1">kv260_firmware 2022.1 release</a> and compile them using the following command. For more information on dtc, refer to <a class="reference internal" href="dtsi_dtbo_generation.html"><span class="doc">dtsi_dtbo_generation</span></a>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dtc<span class="w"> </span>-@<span class="w"> </span>-O<span class="w"> </span>dtb<span class="w"> </span>-o<span class="w"> </span>vadd.dtbo<span class="w"> </span>kv260-nlp-smartvision.dtsi
+</pre></div>
+</div>
+<p>The output is <code class="docutils literal notranslate"><span class="pre">vadd.dtbo</span></code>.</p>
+</div>
+<div class="section" id="create-shell-json">
+<h2>Create <code class="docutils literal notranslate"><span class="pre">shell.json</span></code><a class="headerlink" href="#create-shell-json" title="Permalink to this heading">¶</a></h2>
+<p>Prepare <code class="docutils literal notranslate"><span class="pre">shell.json</span></code>. Copy it from other applications or create one with the following contents:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;shell_type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;XRT_FLAT&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;num_slots&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-application">
+<h2>Test Application<a class="headerlink" href="#test-application" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Transferring the files to the board.</p>
+<p>Make sure the Ethernet cable of SOM Starter Kit is connected. Use SCP or SFTP to upload the files from the host to the target board.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Running on host machine</span>
+scp<span class="w"> </span>vadd.dtbo<span class="w"> </span>vadd.bit.bin<span class="w"> </span>shell.json<span class="w"> </span>vadd<span class="w"> </span>binary_container_1.xclbin<span class="w"> </span>ubuntu@&lt;SOM<span class="w"> </span>Starter<span class="w"> </span>Kit<span class="w"> </span>IP&gt;:/home/ubuntu/
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>NOTE:</strong> Thee vadd file above is a file generated in the “Compiling the Application - Software” section.</p>
+</div></blockquote>
+</li>
+<li><p>Load the hardware on target.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Running on target board</span>
+sudo<span class="w"> </span>mkdir<span class="w"> </span>/lib/firmware/xilinx/vadd
+<span class="nb">cd</span><span class="w"> </span>/home/ubuntu
+sudo<span class="w"> </span>mv<span class="w"> </span>vadd.dtbo<span class="w"> </span>vadd.bit.bin<span class="w"> </span>shell.json<span class="w"> </span>/lib/firmware/xilinx/vadd/
+sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
+sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>vadd
+</pre></div>
+</div>
+</li>
+<li><p>Run Vector Addition Application on the board.</p>
+<ul class="simple">
+<li><p>Run the vadd application</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>./vadd
+./vadd<span class="w"> </span>binary_container_1.xclbin
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It shows the following program prints.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>xilinx-k26-starterkit-2021_1:~$<span class="w"> </span>./vadd<span class="w"> </span>binary_container_1.xclbin
+<span class="w"> </span>INFO:<span class="w"> </span>Reading<span class="w"> </span>binary_container_1.xclbin
+<span class="w"> </span>Loading:<span class="w"> </span><span class="s1">&#39;binary_container_1.xclbin&#39;</span>
+<span class="w"> </span>TEST<span class="w"> </span>PASSED
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Congratulations, you have added an accelerator to an existing Platform!</p>
+<p>This tutorial is based on Vitis GUI based <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2021.1/Vitis_Platform_Creation/Design_Tutorials/01-Edge-KV260/">Vitis Platform flow example</a>, but many of the steps that create and set up the platform in Vivado are not followed prebuilt platform was used.</p>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on April 10, 2025.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

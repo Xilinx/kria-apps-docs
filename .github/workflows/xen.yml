@@ -1,0 +1,46 @@
+name: Make XEN HTML
+
+on:
+  push:
+    branches: [gh-pages]
+    paths:
+      - 'xen/**'
+
+permissions: write-all
+
+jobs:
+  publish_docs:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: 'gh-pages'
+          fetch-depth: 0
+
+      - name: Install Python
+        uses: actions/setup-python@v2.3.0
+        with:
+          python-version: 3.9
+
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install rst2pdf rinohtype==0.5.5 recommonmark==0.7.1 sphinx_markdown_tables==0.0.17 sphinx==5.1.1 docutils==0.16 bs4 linuxdoc sphinx-math-dollar
+
+      - name: Build HTML
+        working-directory: './xen'
+        run: make html
+
+      - name: Configure Git User
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Action"
+
+      - name: Commit and push changes to main
+        run: |
+          git add -A
+          git commit -m "Build XEN HTML"
+          git push origin gh-pages
+
+

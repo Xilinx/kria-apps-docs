@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Vitis Platform Flow Example: Adding a Raspberry Pi Camera to SmartCam’s Platform &mdash; Kria™ SOM 2022.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example: Create a Platform for a Custom Carrier Card" href="custom_cc_flow_example.html" />
+    <link rel="prev" title="Vitis Accelerator Flow Example: Replacing DPU with Filter2d Accelerator in a SmartCam Application" href="vitis_accel_flow_smartcam_filter2d_example.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../index.html" class="icon icon-home"> Kria™ SOM
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/freertos.html">FreeRTOS Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240-docs.html">Kria KD240</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Flows</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Development Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vitis_accel_flow.html">Vitis Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vitis_platform_flow.html">Vitis Platform Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vivado_accel_flow.html">Vivado Accelerator Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_cc_flow.html">Custom Carrier Card Flow</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vivado_accel_example.html">Vivado Accelerator Flow Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vitis_accel_flow_smartcam_filter2d_example.html">Vitis Accelerator Flow Example: Replacing DPU with Filter2d Accelerator in a SmartCam Application</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Vitis Platform Flow Example: Adding a Raspberry Pi Camera to SmartCam’s Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites-and-hardware-setup">Prerequisites and Hardware Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-the-platform">Generating the Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#obtaining-the-platform">Obtaining the Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#obtaining-the-isp-single-ip">Obtaining the isp_single IP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#importing-the-raspberry-pi-pipeline">Importing the Raspberry Pi Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating-the-block-design">Updating the Block Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#constraint-file">Constraint File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#address-map">Address Map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lower-the-clock-rate">Lower the Clock Rate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#platform-setup">Platform Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#validate-the-design">Validate the Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generate-the-wrapper">Generate the Wrapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generate-the-output-products">Generate the Output Products</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generate-the-bitstream">Generate the Bitstream</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-the-dtsi-file">Creating the .dtsi File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#base-address">Base Address</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interrupt">Interrupt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gpio">GPIO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#i2c">I2C</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#afi-ports">AFI Ports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bitstream-file-name">Bitstream File Name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clock-frequency">Clock Frequency</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compile-dtsi-to-dtbo">Compile .dtsi to .dtbo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-drivers-on-ubuntu">Installing Drivers on Ubuntu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-the-platform-on-target">Testing the Platform on Target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exporting-the-design">Exporting the Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-the-accelerator">Adding the Accelerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-with-the-accelerator-on-target">Test with the Accelerator on Target</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="custom_cc_flow_example.html">Example: Create a Platform for a Custom Carrier Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dtsi_dtbo_generation_smartcam_example.html">Example - Generating DTSI and DTBO Overlay Files for SmartCam</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="baremetal.html">Baremetal Flow Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kria Vitis Acceleration Flow</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kria_vitis_acceleration_flow/kria-vitis-acceleration.html">Kria Vitis Acceleration Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="target.html">On-target Utilities and Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootmodes.html">Setting Boot-modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dtsi_dtbo_generation.html">Generating DTSI and DTBO Overlay Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bitstream_management.html">Bitstream Management on Kria SOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AI_customization.html">AI Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_boardfile.html">Generate a Vivado Project from Board Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generate_vivado_project_from_CED.html">Generate a Vivado Project from Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IPMI_EEPROM_design_guide.html">Kria SOM EEPROM Design Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EEPROM_mapping_for_Kria_products.html">Kria SOM EEPROM Content</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FTDI_EEPROM_design_guide.html">Kria SOM CC FTDI Design Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soft_ip_notes.html">Soft IP for Kria Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2021.1/build/html/index.html">2021.1</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kria™ SOM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="examples.html">Examples</a> &raquo;</li>
+      <li>Vitis Platform Flow Example: Adding a Raspberry Pi Camera to SmartCam’s Platform</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/vitis_platform_flow_smartcam_raspi_example.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="vitis-platform-flow-example-adding-a-raspberry-pi-camera-to-smartcam-s-platform">
+<h1>Vitis Platform Flow Example: Adding a Raspberry Pi Camera to SmartCam’s Platform<a class="headerlink" href="#vitis-platform-flow-example-adding-a-raspberry-pi-camera-to-smartcam-s-platform" title="Permalink to this heading">¶</a></h1>
+<p>This example takes SmartCam’s platform, kv260_ispMipiRx_vcu_DP, removes its MIPI ISP and audio IPs, and adds Raspberry Pi support instead. Then you add in the DPU accelerator overlay for the SmartCam application. Functionally, this allows the SmartCam application to take the image sensor input from the Raspberry Pi Camera on J9 instead of the AP1305 sensors on J7.</p>
+<p>The tutorial first regenerates the platform with the Raspberry Pi pipeline, creating its corresponding bitstream and device tree artifacts. You then test those artifacts with the Raspberry Pi Camera to display Raspberry Pi capture on the monitor without any accelerator functions. Then you take the platform and add a DPU accelerator, and retest the firmware with accelerator function added in; the accelerator function creates a blue bounding box on faces detected.</p>
+<p>This example is targeted for the 20022.1 release on Ubuntu 22.04 for KV260.</p>
+<div class="section" id="prerequisites-and-hardware-setup">
+<h2>Prerequisites and Hardware Setup<a class="headerlink" href="#prerequisites-and-hardware-setup" title="Permalink to this heading">¶</a></h2>
+<p>You must have gone through tutorial on running <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/smartcamera_landing.html">SmartCam</a> on the KV260 Ubuntu 22.04, based on tool version 2022.1, so that you understand how to program the SD card and basics of running an application on the KV260. The example also uses SmartCam docker container to provide the drivers needed.</p>
+<p>The hardware setup is similar to that of <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/docs/app_deployment.html#application-specific-hardware-setup">SmartCam</a>, except you do not need to the IAS sensor in J7 but a Raspberry Pi Camera on J9 instead. This tutorial has been tested with the <a class="reference external" href="https://community.element14.com/products/raspberry-pi/w/documents/1502/new-pi-camera-and-pi-camera-noir-v2">Rasberry Pi Camera V2 from element14</a>.</p>
+<p>This example is based on 2022.1 releases, so be sure to use 2022.1 tools, BSPs, repositories, and so on.</p>
+</div>
+<div class="section" id="generating-the-platform">
+<h2>Generating the Platform<a class="headerlink" href="#generating-the-platform" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="obtaining-the-platform">
+<h3>Obtaining the Platform<a class="headerlink" href="#obtaining-the-platform" title="Permalink to this heading">¶</a></h3>
+<p>Because you are altering the SmartCam platform, kv260_ispMipiRx_vcu_DP, you first need to get the platform. Detailed tutorial is at <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/build_vitis_platform.html">Creating Vitis Platform</a>. Here are the specific commands to use to generate the platform:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2022.1<span class="w"> </span>https://github.com/Xilinx/kria-vitis-platforms.git
+<span class="nb">cd</span><span class="w"> </span>kria-vitis-platforms/kv260/
+</pre></div>
+</div>
+<p>In this page, the preceding directory is referred to as <code class="docutils literal notranslate"><span class="pre">$kv260-vitis</span></code> .</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>platform<span class="w"> </span><span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx_vcu_DP
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/
+</pre></div>
+</div>
+<p>The Vivado project is located in <code class="docutils literal notranslate"><span class="pre">$kv260-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.xpr</span></code>.</p>
+<p>In Vivado, open the .xpr project.</p>
+</div>
+<div class="section" id="obtaining-the-isp-single-ip">
+<h3>Obtaining the isp_single IP<a class="headerlink" href="#obtaining-the-isp-single-ip" title="Permalink to this heading">¶</a></h3>
+<p>In this example, you use a Raspberry Pi pipeline that uses a ISP block. This is a custom IP that is not present in AMD IP catalog, so you need to manually copy it to your project. This IP is found in <code class="docutils literal notranslate"><span class="pre">$kv260-vitis/platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/ip/isp_single_kv260/</span></code>, this is the platform for nlp_smartvision app that has support for Raspberry Pi.</p>
+<ol>
+<li><p>To generate the IP, use the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/ip/isp_single_kv260/
+make<span class="w"> </span>ip
+</pre></div>
+</div>
+<p>This generates a <code class="docutils literal notranslate"><span class="pre">isppipeline.prj/</span></code> folder; this is the ISP IP you use in this project.</p>
+</li>
+<li><p>In Vivado project where you have <code class="docutils literal notranslate"><span class="pre">kv260_ispMipiRx_vcu_DP.xpr</span></code> opened, click <strong>Project Manager</strong> -&gt; <strong>IP Catalog</strong>, and notice the user repository. This is where you copy the <code class="docutils literal notranslate"><span class="pre">isp_single_kv260/</span></code> IP to which is located in <code class="docutils literal notranslate"><span class="pre">$kv260-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/ip/</span></code>.</p></li>
+<li><p>Copy the single_isp IP over:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$kv260</span>-vitis/
+cp<span class="w"> </span>platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/ip/isp_single_kv260/<span class="w"> </span>platforms/vivado/kv260_ispMipiRx_vcu_DP/ip/<span class="w"> </span>-rf
+</pre></div>
+</div>
+</li>
+<li><p>Then, refresh the repo:
+<img alt="refresh repo" src="../_images/1refresh_repo.PNG" /></p></li>
+</ol>
+</div>
+<div class="section" id="importing-the-raspberry-pi-pipeline">
+<h3>Importing the Raspberry Pi Pipeline<a class="headerlink" href="#importing-the-raspberry-pi-pipeline" title="Permalink to this heading">¶</a></h3>
+<p>Next, import the Raspberry Pi pipeline that replaces the original ISP pipeline in kv260_ispMipiRx_vcu_DP.</p>
+<ol>
+<li><p>Download the source <a class="reference external" href="./example_src/raspi_example/capture_pipeline_raspi.tcl">capture_pipeline_raspi.tcl</a>, and source it in the Vivado Tcl Console.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>capture_pipeline_raspi.tcl
+</pre></div>
+</div>
+</li>
+<li><p>Next, click <strong>Flow Navigator</strong> -&gt; <strong>IP Integrator</strong> -&gt; <strong>Open Block Design</strong>, and then in Tcl Console, type in the following to instantiate the subblock of the ISP pipeline for Raspberry Pi:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>create_hier_cell_capture_pipeline_raspi<span class="w"> </span>./<span class="w"> </span>raspi_pipeline
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This creates a new, unconnected block of the Raspberry Pi ISP pipeline in the existing block design. You can double click the block to see the component of this subblock.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> You can find pin assignment for Raspberry Pi in mipi_csi2_rx_subsyst_0 by double clicking the IP and navigating to the Pin Assignment tab.</p>
+</div></blockquote>
+<div class="section" id="optional-generating-capture-pipeline-raspi-tcl">
+<h4>Optional: Generating <code class="docutils literal notranslate"><span class="pre">capture_pipeline_raspi.tcl</span></code><a class="headerlink" href="#optional-generating-capture-pipeline-raspi-tcl" title="Permalink to this heading">¶</a></h4>
+<p>The following steps show how to generate <code class="docutils literal notranslate"><span class="pre">capture_pipeline_raspi.tcl</span></code> in the platform used for Raspberry Pi-supported NLP application. This is not required because we have provided the file is already provided, but instructions to show you how it was imported from one project to another are also provided.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$kv260</span>-vitis
+make<span class="w"> </span>platform<span class="w"> </span><span class="nv">PFM</span><span class="o">=</span>kv260_ispMipiRx_rpiMipiRx_DP
+</pre></div>
+</div>
+<ol>
+<li><p>In Vivado, open <code class="docutils literal notranslate"><span class="pre">platforms/vivado/kv260_ispMipiRx_rpiMipiRx_DP/project/kv260_ispMipiRx_rpiMipiRx_DP.xpr</span></code>. Click <strong>IP Integrator</strong> -&gt; <strong>Open Block Design</strong>.</p></li>
+<li><p>Double click <strong>capture_pipeline_raspi</strong>, double click <strong>mipi_csi2_rx_subsyst_0</strong>, select the Shared Logic tab, change to <strong>Include Shared Logic in Core</strong>, and click <strong>okay</strong>. This removes the <code class="docutils literal notranslate"><span class="pre">pll_lock_in</span></code> and <code class="docutils literal notranslate"><span class="pre">clkoutphy_in</span></code> pins. Also remove the unconnected pins from the capture_pipeline_raspi hierarchy’s pin list.</p></li>
+<li><p>In the Vivado Tcl Console, enter:</p>
+<p><code class="docutils literal notranslate"><span class="pre">write_bd_tcl</span> <span class="pre">-hier_blks</span> <span class="pre">[get_bd_cells</span> <span class="pre">capture_pipeline_raspi]</span> <span class="pre">capture_pipeline_raspi.tcl</span></code></p>
+<p>This generates <code class="docutils literal notranslate"><span class="pre">capture_pipeline_raspi.tcl</span></code>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="updating-the-block-design">
+<h3>Updating the Block Design<a class="headerlink" href="#updating-the-block-design" title="Permalink to this heading">¶</a></h3>
+<ol>
+<li><p>Next, you replace the capture_pipeline with this raspi_pipeline. Most of the signals can be replaced one to one;if it is the same signal between capture_pipeline and raspi_pipeline, disconnect the signal/bus on capture_pipeline and connect other IP/interfaces to raspi_pipeline instead. At the end, click <strong>capture pipeline</strong>, and press <strong>delete</strong>” to remove it. Most of the raspi_pipeline is connected by now:
+<img alt="disconnect capture_pipeline" src="../_images/2disconnectap1302.PNG" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">s_axi_CTR</span></code>L and <code class="docutils literal notranslate"><span class="pre">s_axi_ctrl_vpss</span></code> are still not connected. You need to create connections for them. Find axi_ic_ctrl_300; it currently only has one <code class="docutils literal notranslate"><span class="pre">M00_AXI</span></code> port connected to <code class="docutils literal notranslate"><span class="pre">raspi_pipeline/s_axi_ctrl_frm_buf</span></code>. Double click <strong>axi_ic_ctrl_300</strong>, and change the Number of Master Interfaces from 1 to 3:
+<img alt="connect raspi_pipeline" src="../_images/3connect_raspi_axi.PNG" /></p></li>
+<li><p>Now, connect the <code class="docutils literal notranslate"><span class="pre">ACLK</span></code> and <code class="docutils literal notranslate"><span class="pre">ARRESETN</span></code> signals on <code class="docutils literal notranslate"><span class="pre">axi_ic_ctrl_300</span></code>, and connect the <code class="docutils literal notranslate"><span class="pre">M01_AXI</span></code> and <code class="docutils literal notranslate"><span class="pre">M02_AXI</span></code> to the two <code class="docutils literal notranslate"><span class="pre">s_axi</span> <span class="pre">ports</span></code> on raspi_pipeline that are still unconnected.
+<img alt="connect raspi_pipeline" src="../_images/4connect_raspi_axi2.PNG" /></p></li>
+<li><p>Next, you must free up an interrupt port because the raspi_pipeline has more interrupts than the <code class="docutils literal notranslate"><span class="pre">capture_pipeline</span></code> you deleted. You do not need the audio path in this experiment, so remove them. In the block design, find the <code class="docutils literal notranslate"><span class="pre">Audio_ss_0</span></code> block to delete them. Next, update <code class="docutils literal notranslate"><span class="pre">axi_ic_audio_mcu</span></code> to have one single slave port instead of three; this interconnect is still needed because of the address width difference between the <code class="docutils literal notranslate"><span class="pre">m_axi_vcu_mcu</span> <span class="pre">port</span></code> of <code class="docutils literal notranslate"><span class="pre">axi_ic_audio_mcu</span></code> and the <code class="docutils literal notranslate"><span class="pre">s_axi_lpd</span></code> port of <code class="docutils literal notranslate"><span class="pre">ps_0</span></code>. This also frees up three ports on <code class="docutils literal notranslate"><span class="pre">axi_ic_ctrl_100</span></code>; double click that and change it from six master ports to three master ports.</p></li>
+<li><p>Next, <code class="docutils literal notranslate"><span class="pre">PS_0/S_AXI_HP0_FPD</span></code> is currently 128 bits wide, but the new connection raspi_pipeline/m_axi_mm_video is only 64 bits. Double click <strong>PS_0</strong>, select <strong>PS-PL Configuration</strong> -&gt; <strong>PS-PL Interfaces</strong> -&gt; <strong>Slave Interfaces</strong> -&gt; <strong>AXI HP</strong> -&gt; <strong>AXI HP0 FPD</strong>, and change the AXI HP0 FPD Data Width from 128 to 64.</p>
+<p>It should look similar to the following screenshot. Click <strong>OK</strong>:
+<img alt="connect raspi_pipeline" src="../_images/7HP64bit.PNG" /></p>
+</li>
+<li><p>Next, connect the interrupts:</p>
+<p><img alt="connect raspi_pipeline" src="../_images/5connect_raspi_interrupt.PNG" /></p>
+</li>
+<li><p>Raspberry Pi requires you to enable <code class="docutils literal notranslate"><span class="pre">HDA09</span></code> via the <code class="docutils literal notranslate"><span class="pre">F11</span></code> pin. Right-click Add IP “Constant” with “Const Val” = 1, right click <strong>-&gt;</strong>, create a port with “Port name” = raspi_enable, Direction = Output, Type = other. Connect them.  This ensures that you enable HDA09.
+<img alt="connect raspi_pipeline" src="../_images/6enableHDA09.PNG" /></p></li>
+</ol>
+</div>
+<div class="section" id="constraint-file">
+<h3>Constraint File<a class="headerlink" href="#constraint-file" title="Permalink to this heading">¶</a></h3>
+<p>Reuse the constraints for MIPI PHY. Raspberry Pi requires you to enable HDA09 via the F11 pin.  To add the raspi_enable constraint, add the following to <code class="docutils literal notranslate"><span class="pre">prj/prj.srcs/constrs_1/imports/xdc/pin.xdc</span></code> :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#Raspi Enable HDA09</span>
+set_property<span class="w"> </span>PACKAGE_PIN<span class="w"> </span>F11<span class="w"> </span><span class="o">[</span>get_ports<span class="w"> </span><span class="o">{</span>raspi_enable<span class="o">}]</span>
+set_property<span class="w"> </span>IOSTANDARD<span class="w"> </span>LVCMOS33<span class="w"> </span><span class="o">[</span>get_ports<span class="w"> </span><span class="o">{</span>raspi_enable<span class="o">}]</span>
+set_property<span class="w"> </span>SLEW<span class="w"> </span>SLOW<span class="w"> </span><span class="o">[</span>get_ports<span class="w"> </span><span class="o">{</span>raspi_enable<span class="o">}]</span>
+set_property<span class="w"> </span>DRIVE<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">[</span>get_ports<span class="w"> </span><span class="o">{</span>raspi_enable<span class="o">}]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="address-map">
+<h3>Address Map<a class="headerlink" href="#address-map" title="Permalink to this heading">¶</a></h3>
+<p>Go to the Address Editor tab, and modify the address of the ones in green boxes (see the following snapshot). First, select all the unassigned address, right click, and click <strong>assign</strong>. Then go back and modify their address and range to match the following screenshot (you can also leave the PS_0/raspi_pipeline* address as the default, just matching the range, but you then need to update .dtsi to match).</p>
+<p><img alt="connect raspi_pipeline" src="../_images/8address.PNG" /></p>
+</div>
+<div class="section" id="lower-the-clock-rate">
+<h3>Lower the Clock Rate<a class="headerlink" href="#lower-the-clock-rate" title="Permalink to this heading">¶</a></h3>
+<ol class="simple">
+<li><p>Double-click <strong>clk_wiz_0</strong>, change <code class="docutils literal notranslate"><span class="pre">clk_300M</span></code> to <code class="docutils literal notranslate"><span class="pre">clkv_200M</span></code>, and update theoutput frequency. The Raspberry Pi IP does meet timing at 300 MHz.
+<img alt="update clk" src="../_images/8_5_updateclk.PNG" /></p></li>
+<li><p>Now go to Platform Setup tab, click on “Clock” and enable the new clkv_200M and set it as default clock:
+<img alt="update clk" src="../_images/8_5_updateclk2.PNG" /></p></li>
+</ol>
+</div>
+<div class="section" id="platform-setup">
+<h3>Platform Setup<a class="headerlink" href="#platform-setup" title="Permalink to this heading">¶</a></h3>
+<p>Navigate to the Platform Setup tab. No changes are needed, but notice that you are keeping the same ports for accelerator insertion in Vitis.</p>
+</div>
+<div class="section" id="validate-the-design">
+<h3>Validate the Design<a class="headerlink" href="#validate-the-design" title="Permalink to this heading">¶</a></h3>
+<p>Select <strong>Tools</strong> (top tool bar) -&gt; <strong>Validate Design</strong>. When asked if you want to add an autoa assign unassigned address segment, click <strong>No</strong>.</p>
+</div>
+<div class="section" id="generate-the-wrapper">
+<h3>Generate the Wrapper<a class="headerlink" href="#generate-the-wrapper" title="Permalink to this heading">¶</a></h3>
+<p>Regenerate the wrapper because you added a <code class="docutils literal notranslate"><span class="pre">raspi_enable</span></code> signal.</p>
+<p>Navigate to <strong>Block Design</strong> -&gt; <strong>sources</strong> -&gt; <strong>Design Sources</strong>, right-click <strong>kv260_ispMipiRx_vcu_DP_wrapper</strong>, and select <strong>Remove File from Project</strong>:</p>
+<p><img alt="wrapper" src="../_images/9removewrapper.PNG" /></p>
+<p>In pop-up select “Ignore and continue with invalid top module”</p>
+<p>Block Design -&gt; sources -&gt; Design Sources -&gt; right click on kv260_ispMipiRx_vcu_DP and select “Generate HDL wrapper”:</p>
+<p><img alt="wrapper" src="../_images/10createwrapper.PNG" /></p>
+<p>In the pop-up, select <strong>Let Vivado manage wrapper and auto-update</strong>, and click <strong>OK</strong>.</p>
+<p>Double-click the kv260_ispMipiRx_vcu_DP_wrapper file, and <code class="docutils literal notranslate"><span class="pre">raspi_enable</span></code> displays as one of the outputs in the wrapper.</p>
+</div>
+<div class="section" id="generate-the-output-products">
+<h3>Generate the Output Products<a class="headerlink" href="#generate-the-output-products" title="Permalink to this heading">¶</a></h3>
+<p>Navigate to <strong>Block Design</strong> -&gt; <strong>sources</strong> -&gt; <strong>Design Sources</strong>, right-click <strong>kv260_ispMipiRx_vcu_DP_i</strong>, and select <strong>Reset Output Products</strong>. Then navigate to <strong>Block Design</strong> -&gt; <strong>sources</strong> -&gt; <strong>Design Sources</strong>, right-click <strong>kv260_ispMipiRx_vcu_DP_i</strong>, select <strong>Generate Output Products</strong>, select <strong>out of context per IP</strong>, and click <strong>Generate</strong>:</p>
+<p><img alt="wrapper" src="../_images/11createoutput.PNG" /></p>
+</div>
+<div class="section" id="generate-the-bitstream">
+<h3>Generate the Bitstream<a class="headerlink" href="#generate-the-bitstream" title="Permalink to this heading">¶</a></h3>
+<p>Now you are ready to generate the bitstream. To generate the bitstream, click <strong>Program and Debug</strong> -&gt; <strong>Generate Bitstream</strong>. This process takes some time.</p>
+<p>After the .bit file is generated, convert it to a <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code> file, the format that xmutil is expecting:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.runs/impl_1/
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;all:{kv260_ispMipiRx_vcu_DP_wrapper.bit}&#39;</span>&gt;bootgen.bif
+bootgen<span class="w"> </span>-w<span class="w"> </span>-arch<span class="w"> </span>zynqmp<span class="w"> </span>-process_bitstream<span class="w"> </span>bin<span class="w"> </span>-image<span class="w"> </span>bootgen.bif
+mv<span class="w"> </span>kv260_ispMipiRx_vcu_DP_wrapper.bit.bin<span class="w"> </span>kv260-smartcam-raspi.bit.bin
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-the-dtsi-file">
+<h2>Creating the .dtsi File<a class="headerlink" href="#creating-the-dtsi-file" title="Permalink to this heading">¶</a></h2>
+<p>Base your .dtsi file from the <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/boards/kv260/smartcam/kv260-smartcam.dtsi">SmartCam .dtsi file</a>. Remove the ISP and audio devices, as well as ap1302 on I2C port 0.</p>
+<p>In their stead, we will need to add the imx devices and their associated support functions. The resulting dtsi file can be found in <a class="reference external" href="./example_src/raspi_example/kv260-smartcam-raspi_2022.1.dtsi">kv260-smartcam-raspi.dtsi</a>. There are a few things to correlate to the PL design:</p>
+<div class="section" id="base-address">
+<h3>Base Address<a class="headerlink" href="#base-address" title="Permalink to this heading">¶</a></h3>
+<p>Each device in the .dtsi file needs to have the correct address corresponding to what you set in the “Address Map” section. The provided .dtsi file corresponds to the screenshot. If your address map is different, make the necessary changes.</p>
+<ul class="simple">
+<li><p>imx_isp0 in .dtsi corresponds to ISPPipeline_accel_0</p></li>
+<li><p>imx_csiss_1 in .dtsi corresponds to mipi_csi2_rx_subsyst_0</p></li>
+<li><p>imx_scalar_1 in .dtsi corresponds to v_proc_ss_0</p></li>
+<li><p>imx_fb_wr_csi corresponds to v_frmbuf_wr_0</p></li>
+</ul>
+</div>
+<div class="section" id="interrupt">
+<h3>Interrupt<a class="headerlink" href="#interrupt" title="Permalink to this heading">¶</a></h3>
+<p>The interrupt numbers 104 through 111 are corresponding to <code class="docutils literal notranslate"><span class="pre">pl_ps_irq1[0]</span></code> through <code class="docutils literal notranslate"><span class="pre">pl_ps_irq1[7]</span></code>. Thus, make sure that:</p>
+<ul class="simple">
+<li><p>imx_csiss_1 has interrupt 104, if csirxss_csi_irq is connected to In0 of xlconcat_0_0, which feeds to pl_ps_irq1[0]</p></li>
+<li><p>imx_isp0 has interrupt 105, if dem_irq is connected to In1 of xlconcat_0_0, which feeds to pl_ps_irq1[1]</p></li>
+<li><p>imx_fb_wr_csi has interrupt 108, if dem_irq is connected to In4 of xlconcat_0_0, which feeds to pl_ps_irq1[4]</p></li>
+</ul>
+</div>
+<div class="section" id="gpio">
+<h3>GPIO<a class="headerlink" href="#gpio" title="Permalink to this heading">¶</a></h3>
+<p>This does not require any changes, but the <code class="docutils literal notranslate"><span class="pre">reset-gpio[86:82]</span></code> in the .dtsi file corresponds to <code class="docutils literal notranslate"><span class="pre">PS_0/emio_gpio_o[8:4]</span></code>. You can see that the emio_gpio_o ius routed into raspi_pipeline to some rstn signals, and their position correspond to the gpio settings for each device in the .dtsi file.</p>
+</div>
+<div class="section" id="i2c">
+<h3>I2C<a class="headerlink" href="#i2c" title="Permalink to this heading">¶</a></h3>
+<p>On the KV260 carrier card, Raspberry Pi is on I2C port 2, so imx219 is on i2x&#64;2 in the .dtsi file.</p>
+</div>
+<div class="section" id="afi-ports">
+<h3>AFI Ports<a class="headerlink" href="#afi-ports" title="Permalink to this heading">¶</a></h3>
+<p>Lastly, you changed the <code class="docutils literal notranslate"><span class="pre">S_AXI_HP0_FPD</span></code> port from 128 bits to 62 bits, so you need to set the AFI device in the .dtsi file. Configure 4, 5, to 1 to indicate 64 bits (0 = 128 bit, 1 = 64 bit, 2 = 32 bit):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>config-afi = &lt;0 0&gt;, &lt;1 0&gt;, &lt;2 0&gt;, &lt;3 0&gt;, &lt;4 1&gt;, &lt;5 1&gt;, &lt;6 0&gt;, &lt;7 0&gt;, &lt;8 0&gt;, &lt;9 0&gt;, &lt;10 0&gt;, &lt;11 0&gt;, &lt;12 0&gt;, &lt;13 0&gt;, &lt;14 0x0&gt;, &lt;15 0x000&gt;;
+</pre></div>
+</div>
+</div>
+<div class="section" id="bitstream-file-name">
+<h3>Bitstream File Name<a class="headerlink" href="#bitstream-file-name" title="Permalink to this heading">¶</a></h3>
+<p>Change <code class="docutils literal notranslate"><span class="pre">firmware-name</span></code> to its corresponding <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code> file name. This step is optional because the reference is not being used by dfx-mgr.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>firmware-name = &quot;kv260-smartcam-raspi.bit.bin&quot;;
+</pre></div>
+</div>
+</div>
+<div class="section" id="clock-frequency">
+<h3>Clock Frequency<a class="headerlink" href="#clock-frequency" title="Permalink to this heading">¶</a></h3>
+<p>Because you changed one of the clocks from 300 MHz to 200 MHz, change the corresponding clocks (<code class="docutils literal notranslate"><span class="pre">misc_clk_2</span></code>) in the .dtsi file to 200 MHz:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>misc_clk_2: misc_clk_2 {
+        #clock-cells = &lt;0x0&gt;;
+        clock-frequency = &lt;199998000&gt;;
+        compatible = &quot;fixed-clock&quot;;
+};
+</pre></div>
+</div>
+</div>
+<div class="section" id="compile-dtsi-to-dtbo">
+<h3>Compile .dtsi to .dtbo<a class="headerlink" href="#compile-dtsi-to-dtbo" title="Permalink to this heading">¶</a></h3>
+<p>After you are done, your .dtsi file looks like <a class="reference external" href="./example_src/raspi_example/kv260-smartcam-raspi_2022.1.dtsi">this</a>.</p>
+<p>Now compile the .dtsi file into the .dtbo binary:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dtc<span class="w"> </span>-@<span class="w"> </span>-O<span class="w"> </span>dtb<span class="w"> </span>-o<span class="w"> </span>kv260-raspi.dtbo<span class="w"> </span>kv260-raspi.dtsi
+</pre></div>
+</div>
+<p>Several warning messages display; it is okay to ignore them. <code class="docutils literal notranslate"><span class="pre">kv260-smartcam-raspi.dtbo</span></code> displays in the folder.</p>
+</div>
+</div>
+<div class="section" id="installing-drivers-on-ubuntu">
+<h2>Installing Drivers on Ubuntu<a class="headerlink" href="#installing-drivers-on-ubuntu" title="Permalink to this heading">¶</a></h2>
+<p>This step assumes you have installed SmartCam and are able to run the SmartCam application through the Docker container on Ubuntu. If not, to install SmartCam, follow the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/smartcamera/smartcamera_landing.html">SmartCam app deployment</a> instructions in Ubuntu 22.1 SmartCam app deployment page.</p>
+</div>
+<div class="section" id="testing-the-platform-on-target">
+<h2>Testing the Platform on Target<a class="headerlink" href="#testing-the-platform-on-target" title="Permalink to this heading">¶</a></h2>
+<p>Now, you need to test the generated platform to make sure the Raspberry Pi pipeline is working.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> You have not yet added in the DPU accelerator, so you cannot test the Raspberry Pi with SmartCam application itself until later.</p>
+</div></blockquote>
+<p>First, SCP the <code class="docutils literal notranslate"><span class="pre">kv260-raspi.dtbo</span> <span class="pre">kv260-raspi.bit.bin</span></code> over to target or copy them to the SD card, finding them in <code class="docutils literal notranslate"><span class="pre">/boot/firmware/</span></code>, and reuse the <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> file in <code class="docutils literal notranslate"><span class="pre">/lib/firmware/xilinx/kv260-smartcam/shell.json</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi
+sudo<span class="w"> </span>mv<span class="w"> </span>kv260-raspi.dtbo<span class="w"> </span>kv260-raspi.bit.bin<span class="w"> </span>shell.json<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi
+sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
+sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>kv260-raspi
+sudo<span class="w"> </span>xmutil<span class="w"> </span>desktop_disable
+</pre></div>
+</div>
+<p>If the hardware and the device tree is created correctly, you see Raspberry Pi in <code class="docutils literal notranslate"><span class="pre">/dev/media0</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@kria:~#<span class="w"> </span>media-ctl<span class="w"> </span>-d<span class="w"> </span>/dev/media0<span class="w"> </span>-p
+Media<span class="w"> </span>controller<span class="w"> </span>API<span class="w"> </span>version<span class="w"> </span><span class="m">5</span>.15.39
+
+Media<span class="w"> </span>device<span class="w"> </span>information
+------------------------
+driver<span class="w">          </span>xilinx-video
+model<span class="w">           </span>Xilinx<span class="w"> </span>Video<span class="w"> </span>Composite<span class="w"> </span>Device
+serial
+bus<span class="w"> </span>info
+hw<span class="w"> </span>revision<span class="w">     </span>0x0
+driver<span class="w"> </span>version<span class="w">  </span><span class="m">5</span>.15.39
+
+Device<span class="w"> </span>topology
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>imx_vcap_csi<span class="w"> </span>output<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>pad,<span class="w"> </span><span class="m">1</span><span class="w"> </span>link<span class="o">)</span>
+<span class="w">            </span><span class="nb">type</span><span class="w"> </span>Node<span class="w"> </span>subtype<span class="w"> </span>V4L<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">            </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/video0
+<span class="w">        </span>pad0:<span class="w"> </span>Sink
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;b0040000.scaler&quot;</span>:1<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">5</span>:<span class="w"> </span>b0040000.scaler<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>pads,<span class="w"> </span><span class="m">2</span><span class="w"> </span>links<span class="o">)</span>
+<span class="w">            </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Unknown<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">            </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev0
+<span class="w">        </span>pad0:<span class="w"> </span>Sink
+<span class="w">                </span><span class="o">[</span>fmt:RBG888_1X24/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="o">]</span>
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;b0000000.isp_accel&quot;</span>:1<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+<span class="w">        </span>pad1:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:VYYUYY8_1X24/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;imx_vcap_csi output 0&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">8</span>:<span class="w"> </span>imx219<span class="w"> </span><span class="m">6</span>-0010<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>pad,<span class="w"> </span><span class="m">1</span><span class="w"> </span>link<span class="o">)</span>
+<span class="w">            </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Sensor<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">            </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev1
+<span class="w">        </span>pad0:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:SRGGB10_1X10/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="w"> </span>xfer:srgb<span class="w"> </span>ycbcr:601<span class="w"> </span>quantization:full-range
+<span class="w">                 </span>crop.bounds:<span class="o">(</span><span class="m">8</span>,8<span class="o">)</span>/3280x2464
+<span class="w">                 </span>crop:<span class="o">(</span><span class="m">688</span>,700<span class="o">)</span>/1920x1080<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;80002000.csiss&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">10</span>:<span class="w"> </span><span class="m">80002000</span>.csiss<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>pads,<span class="w"> </span><span class="m">2</span><span class="w"> </span>links<span class="o">)</span>
+<span class="w">             </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Unknown<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">             </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev2
+<span class="w">        </span>pad0:<span class="w"> </span>Sink
+<span class="w">                </span><span class="o">[</span>fmt:SRGGB10_1X10/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="w"> </span>xfer:srgb<span class="w"> </span>ycbcr:601<span class="w"> </span>quantization:full-range<span class="o">]</span>
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;imx219 6-0010&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+<span class="w">        </span>pad1:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:SRGGB10_1X10/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="w"> </span>xfer:srgb<span class="w"> </span>ycbcr:601<span class="w"> </span>quantization:full-range<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;b0000000.isp_accel&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+
+-<span class="w"> </span>entity<span class="w"> </span><span class="m">13</span>:<span class="w"> </span>b0000000.isp_accel<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>pads,<span class="w"> </span><span class="m">2</span><span class="w"> </span>links<span class="o">)</span>
+<span class="w">             </span><span class="nb">type</span><span class="w"> </span>V4L2<span class="w"> </span>subdev<span class="w"> </span>subtype<span class="w"> </span>Unknown<span class="w"> </span>flags<span class="w"> </span><span class="m">0</span>
+<span class="w">             </span>device<span class="w"> </span>node<span class="w"> </span>name<span class="w"> </span>/dev/v4l-subdev3
+<span class="w">        </span>pad0:<span class="w"> </span>Sink
+<span class="w">                </span><span class="o">[</span>fmt:SRGGB10_1X10/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="w"> </span>xfer:srgb<span class="w"> </span>ycbcr:601<span class="w"> </span>quantization:full-range<span class="o">]</span>
+<span class="w">                </span>&lt;-<span class="w"> </span><span class="s2">&quot;80002000.csiss&quot;</span>:1<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+<span class="w">        </span>pad1:<span class="w"> </span>Source
+<span class="w">                </span><span class="o">[</span>fmt:RBG888_1X24/1920x1080<span class="w"> </span>field:none<span class="w"> </span>colorspace:srgb<span class="o">]</span>
+<span class="w">                </span>-&gt;<span class="w"> </span><span class="s2">&quot;b0040000.scaler&quot;</span>:0<span class="w"> </span><span class="o">[</span>ENABLED<span class="o">]</span>
+</pre></div>
+</div>
+<p>Once you confirm that Raspberry Pi has been connected correctly, start the SmartCam Docker container so that you have the necessary dependencies for the next command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
+-h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+--net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+--privileged<span class="w"> </span><span class="se">\</span>
+--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/run:/run<span class="w"> </span><span class="se">\</span>
+-it<span class="w"> </span>xilinx/smartcam:2022.1<span class="w"> </span>bash
+</pre></div>
+</div>
+<p>In the Docker container, now use the following gstreamer commands to display the Raspberry Pi sensor information onto a 1080p monitor:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0<span class="w"> </span>mediasrcbin<span class="w"> </span>media-device<span class="o">=</span>/dev/media0<span class="w"> </span>v4l2src0::io-mode<span class="o">=</span>mmap<span class="w"> </span>!<span class="w"> </span><span class="s2">&quot;video/x-raw, width=1920, height=1080, format=NV12, framerate=30/1&quot;</span><span class="w"> </span>!<span class="w"> </span>kmssink<span class="w"> </span>plane-id<span class="o">=</span><span class="m">39</span><span class="w"> </span>fullscreen-overlay<span class="o">=</span><span class="nb">true</span><span class="w"> </span>-v
+</pre></div>
+</div>
+</div>
+<div class="section" id="exporting-the-design">
+<h2>Exporting the Design<a class="headerlink" href="#exporting-the-design" title="Permalink to this heading">¶</a></h2>
+<p>Now that you verified that the Raspberry Pi pipeline is working, export the block design in Vivado Tcl:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>write_bd_tcl<span class="w"> </span>config_bd.tcl
+</pre></div>
+</div>
+<p>View a working version of this block design <a class="reference external" href="./example_src/raspi_example/config_bd.tcl">here</a>.</p>
+<p>A working version of the constraint is <a class="reference external" href="./example_src/raspi_example/pin.xdc">here</a>.</p>
+</div>
+<div class="section" id="adding-the-accelerator">
+<h2>Adding the Accelerator<a class="headerlink" href="#adding-the-accelerator" title="Permalink to this heading">¶</a></h2>
+<p>In <code class="docutils literal notranslate"><span class="pre">overlays/examples/smartcam/prj_conf/prj_config_1dpu</span></code>, update <code class="docutils literal notranslate"><span class="pre">clk</span></code> because you changed the 300 MHz clock to 200 MHz.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>freqHz=200000000:DPUCZDX8G_1.aclk
+freqHz=400000000:DPUCZDX8G_1.ap_clk_2
+freqHz=200000000:pp_pipeline_accel_1.ap_clk
+</pre></div>
+</div>
+<p>Ensure that <code class="docutils literal notranslate"><span class="pre">$kv260-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/ip/</span></code> has <code class="docutils literal notranslate"><span class="pre">isppipeline.prj/</span></code> from the previous step. This is necessary if you jumped in from the provided block design and pin constraints.</p>
+<p>Copy the block design (<code class="docutils literal notranslate"><span class="pre">config_bd.tcl</span></code>), pin constraint (<code class="docutils literal notranslate"><span class="pre">pin.xdc</span></code>), and IP into the SmartCam overlay area that was generated in previous step.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cp<span class="w">  </span><span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/project/kv260_ispMipiRx_vcu_DP.srcs/constrs_1/imports/xdc/pin.xdc<span class="w"> </span><span class="nv">$kv260</span>-vitis/platforms/vivado/kv260_ispMipiRx_vcu_DP/xdc/pin.xdc
+cp<span class="w"> </span>config_bd.tcl<span class="w">  </span>platforms/vivado/kv260_ispMipiRx_vcu_DP/scripts/config_bd.tcl<span class="w"> </span>
+</pre></div>
+</div>
+<p>Now in <code class="docutils literal notranslate"><span class="pre">$kv260-vitis</span></code>, do a make clean so that the scripts regenerate ther platform with the updated artifacts when you call <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">overlay</span> <span class="pre">OVERLAY=smartcam</span></code> in the next step:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>clean
+</pre></div>
+</div>
+<p>Now you can run the makefile that was provided for SmartCam to put the DPU overlay into this platform:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>overlay<span class="w"> </span><span class="nv">OVERLAY</span><span class="o">=</span>smartcam
+</pre></div>
+</div>
+<p>After the makefile completes, the following displays:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$working_dir</span>/overlays/examples/smartcam/binary_container_1/link/int/system.bit<span class="w">   </span>
+<span class="nv">$working_dir</span>/overlays/examples/smartcam/binary_container_1/dpu.xclbin
+</pre></div>
+</div>
+<p>Perform the following to convert <code class="docutils literal notranslate"><span class="pre">system.bit</span></code> to <code class="docutils literal notranslate"><span class="pre">kv260-raspi-dpu.bit.bin</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$working_dir</span>/overlays/examples/smartcam/binary_container_1/link/int/
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;all:{system.bit}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>bootgen.bif
+bootgen<span class="w"> </span>-w<span class="w"> </span>-arch<span class="w"> </span>zynqmp<span class="w"> </span>-process_bitstream<span class="w"> </span>bin<span class="w"> </span>-image<span class="w"> </span>bootgen.bif
+mv<span class="w"> </span>system.bit.bin<span class="w"> </span>kv260-raspi-dpu.bit.bin
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-with-the-accelerator-on-target">
+<h2>Test with the Accelerator on Target<a class="headerlink" href="#test-with-the-accelerator-on-target" title="Permalink to this heading">¶</a></h2>
+<p>SCP <code class="docutils literal notranslate"><span class="pre">kv260-raspi-dpu.bit.bin</span></code> and <code class="docutils literal notranslate"><span class="pre">kv260-raspi-dpu.dtbo</span></code> (the same file as <code class="docutils literal notranslate"><span class="pre">kv260-raspi.dtbo</span></code>; you can reuse the same .dtbo file across designs generated from the same platform in this flow), and <code class="docutils literal notranslate"><span class="pre">dpu.xclbin</span></code> onto target. Create a new app:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi-dpu
+sudo<span class="w"> </span>mv<span class="w">  </span>kv260-raspi-dpu.bit.bin<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi-dpu/
+sudo<span class="w"> </span>mv<span class="w">  </span>kv260-raspi-dpu.dtbo<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi-dpu/
+sudo<span class="w"> </span>mv<span class="w"> </span>dpu.xclbin<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi-dpu/kv260-raspi-dpu.xclbin
+sudo<span class="w"> </span>cp<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi/shell.json<span class="w"> </span>/lib/firmware/xilinx/kv260-raspi-dpu/
+</pre></div>
+</div>
+<p>Next, find facedetect’s <code class="docutils literal notranslate"><span class="pre">preprocess.json</span></code> file using <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">find</span> <span class="pre">/</span> <span class="pre">-iname</span> <span class="pre">preprocess.json</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">facedetect</span></code>, and then update the file found on target <code class="docutils literal notranslate"><span class="pre">/var/lib/docker/overlay2/&lt;id&gt;/diff/opt/xilinx/kv260-smartcam/share/vvas/facedetect/preprocess.json</span></code> to point to the correct xclbin <code class="docutils literal notranslate"><span class="pre">/lib/firmware/xilinx/kv260-raspi-dpu/kv260-raspi-dpu.xclbin</span></code>. Do this outside of the Docker environment because the Docker container does not have a text editor by default.</p>
+<p>Alternatively, launch the Docker container, install vim using <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">vim</span></code>, and edit <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-smartcam/share/vvas/facedetect/preprocess.json</span></code> from the Docker container. You must loadapp before launching the Docker shown as follows.</p>
+<p>Execute the application with gst-launch, so that SmartCam uses the Raspberry Pi pipeline on <code class="docutils literal notranslate"><span class="pre">/dev/media0</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
+sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>kv260-raspi-dpu
+docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
+-h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+--net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+--privileged<span class="w"> </span><span class="se">\</span>
+--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/run:/run<span class="w"> </span><span class="se">\</span>
+-it<span class="w"> </span>xilinx/smartcam:latest<span class="w"> </span>bash
+
+check<span class="w"> </span><span class="k">if</span><span class="w"> </span>above<span class="w"> </span>is<span class="w"> </span><span class="nb">true</span><span class="w"> </span>after<span class="w"> </span>release!!!!!!!!!!!!!!!!!!!!!!!!!!!!<span class="w"> </span><span class="k">for</span><span class="w"> </span>now<span class="w"> </span>use:
+sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span>-h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span>--net<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span>-v<span class="w"> </span>/tmp:/tmp<span class="w"> </span>-v<span class="w"> </span>/dev:/dev<span class="w"> </span>-v<span class="w"> </span>/sys:/sys<span class="w"> </span>-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span>-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span>-v<span class="w"> </span>/run:/run<span class="w"> </span>-it<span class="w"> </span>smartcam:latest<span class="w"> </span>bash
+</pre></div>
+</div>
+<p>In the Docker container:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0<span class="w"> </span>mediasrcbin<span class="w"> </span><span class="nv">name</span><span class="o">=</span>videosrc<span class="w"> </span>media-device<span class="o">=</span>/dev/media0<span class="w">  </span>v4l2src0::io-mode<span class="o">=</span>mmap<span class="w"> </span>v4l2src0::stride-align<span class="o">=</span><span class="m">256</span><span class="w"> </span>!<span class="w">  </span>video/x-raw,<span class="w"> </span><span class="nv">width</span><span class="o">=</span><span class="m">1920</span>,<span class="w"> </span><span class="nv">height</span><span class="o">=</span><span class="m">1080</span>,<span class="w"> </span><span class="nv">format</span><span class="o">=</span>NV12,<span class="w"> </span><span class="nv">framerate</span><span class="o">=</span><span class="m">30</span>/1<span class="w">  </span>!<span class="w"> </span>tee<span class="w"> </span><span class="nv">name</span><span class="o">=</span>t<span class="w"> </span>!<span class="w"> </span>queue<span class="w"> </span>!<span class="w"> </span>vvas_xmultisrc<span class="w"> </span><span class="nv">kconfig</span><span class="o">=</span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/share/vvas/facedetect/preprocess.json&quot;</span><span class="w"> </span>!<span class="w"> </span>queue<span class="w"> </span>!<span class="w"> </span>vvas_xfilter<span class="w"> </span>kernels-config<span class="o">=</span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/share/vvas/facedetect/aiinference.json&quot;</span><span class="w"> </span>!<span class="w"> </span>ima.sink_master<span class="w">                     </span>vvas_xmetaaffixer<span class="w"> </span><span class="nv">name</span><span class="o">=</span>ima<span class="w"> </span>ima.src_master<span class="w"> </span>!<span class="w"> </span>fakesink<span class="w"> </span>t.<span class="w"> </span>!<span class="w"> </span>queue<span class="w"> </span>max-size-buffers<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">leaky</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>!<span class="w"> </span>ima.sink_slave_0<span class="w"> </span>ima.src_slave_0<span class="w"> </span>!<span class="w"> </span>queue<span class="w"> </span>!<span class="w"> </span>vvas_xfilter<span class="w"> </span>kernels-config<span class="o">=</span><span class="s2">&quot;/opt/xilinx/kv260-smartcam/share/vvas/facedetect/drawresult.json&quot;</span><span class="w">          </span>!<span class="w"> </span>queue<span class="w"> </span>!<span class="w"> </span>kmssink<span class="w"> </span>driver-name<span class="o">=</span>xlnx<span class="w"> </span>plane-id<span class="o">=</span><span class="m">39</span><span class="w"> </span><span class="nv">sync</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span>fullscreen-overlay<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>Congratulations! You should be able to see Raspberry Pi capture on the display port monitor, with a blue bounding box around the faces detected. In case you do not and want to test with a known working set of firmware, find them <a class="reference external" href="./example_src/raspi_example/smartcam-raspi_firmware_works/">here</a>, but be sure to update the folder name or file names and commands to align with each other.</p>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023-2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vitis_accel_flow_smartcam_filter2d_example.html" class="btn btn-neutral float-left" title="Vitis Accelerator Flow Example: Replacing DPU with Filter2d Accelerator in a SmartCam Application" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="custom_cc_flow_example.html" class="btn btn-neutral float-right" title="Example: Create a Platform for a Custom Carrier Card" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on April 10, 2025.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

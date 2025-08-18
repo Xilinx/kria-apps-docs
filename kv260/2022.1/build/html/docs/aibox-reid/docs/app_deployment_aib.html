@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Setting Up the Board and Application Deployment &mdash; Kria™ KV260 2022.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Customizing the AI Models Used in the Application" href="customize_ai_models-aib.html" />
+    <link rel="prev" title="Design Overview" href="introduction_aib.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../index.html" class="icon icon-home"> Kria™ KV260
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                2022.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/freertos.html">FreeRTOS Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240-docs.html">Kria KD240</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KV260 Applications</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../smartcamera/smartcamera_landing.html">Smart Camera</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../aibox_landing.html">AI Box ReID</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#overview">Overview</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../aibox_landing.html#quick-start">Quick Start</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Setting Up the Board and Application Deployment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#booting-up-linux">Booting up Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application-specific-hardware-setup">Application Specific Hardware Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#downloading-and-loading-application-firmware">Downloading and Loading Application Firmware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-based-application-preparation">Docker Based Application Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-the-application">Running the Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#files-structure">Files Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#repository">Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aibox_landing.html#other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../defect-detect/defectdetect_landing.html">Defect Detect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp-smartvision/nlp_smartvision_landing.html">NLP SmartVision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aibox/aibox-dist_landing.html">AI Box Distributed ReID</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/bist.html">Built-In Self Test (BIST)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">KV260 Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_boot.html">Boot Kria Starter Kit Linux on KV260</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building_the_design.html">Build the Design Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_vitis_platform.html">Create a Vitis Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_accel.html">Integrate Accelerator Overlay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../integrating_new_sensors.html">Integrating New IAS Sensor Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generating_custom_firmware.html">Generate Custom Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_application_docker_container.html">Rebuilding Application Docker Containers Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/build/html/index.html">2021.1</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Kria™ KV260</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../aibox_landing.html">AIBox-ReID</a> &raquo;</li>
+      <li>Setting Up the Board and Application Deployment</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide">
+ <tr>
+   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KV260 Vision AI Starter Kit AIBox-ReID Tutorial</h1>
+   </td>
+ </tr>
+ <tr>
+ <td align="center"><h1>Setting Up the Board and Application Deployment</h1> </td>
+ </tr>
+</table><div class="section" id="setting-up-the-board-and-application-deployment">
+<h1>Setting Up the Board and Application Deployment<a class="headerlink" href="#setting-up-the-board-and-application-deployment" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This document shows how to set up the board and run the aibox-reid application.</p>
+<p>This guide and its prebuilt are targeted for Ubuntu® 22.04 and AMD 2022.1 toolchain. The previous version of this application (on AMD 2021.1 toolchain) targeted to PetaLinux is still available <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/2021.1/build/html/index.html">online</a>.</p>
+</div>
+<div class="section" id="booting-up-linux">
+<h2>Booting up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
+<p>Before continuing with the aibox-reid application specific instructions, if not yet done so, boot Linux with instructions from the <a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> page.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The AIBox application requires starting the application using command line through a universal asynchronous receiver-transmitter (UART) instead of GNOME Desktop and recommends using a 4k monitor.</p>
+</div></blockquote>
+</div>
+<div class="section" id="application-specific-hardware-setup">
+<h2>Application Specific Hardware Setup<a class="headerlink" href="#application-specific-hardware-setup" title="Permalink to this heading">¶</a></h2>
+<p>Besides the hardware configurations required in the <a class="reference external" href="https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/linux_boot.html">Kria Starter Kit Linux boot</a> for booting Linux, the AIBox application requires a 4k monitor to display up to four channels of 1080p video.</p>
+</div>
+<div class="section" id="downloading-and-loading-application-firmware">
+<h2>Downloading and Loading Application Firmware<a class="headerlink" href="#downloading-and-loading-application-firmware" title="Permalink to this heading">¶</a></h2>
+<ol>
+<li><p>Get the latest kv260-aibox-reid firmware package.</p>
+<ul>
+<li><p>Search the package feed for packages compatible with KV260.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>search<span class="w"> </span>xlnx-firmware-kv260
+Sorting...<span class="w"> </span>Done
+Full<span class="w"> </span>Text<span class="w"> </span>Search...<span class="w"> </span>Done
+xlnx-firmware-kv260-aibox-reid/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64<span class="w"> </span><span class="o">[</span>installed<span class="o">]</span>
+FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>aibox-reid<span class="w"> </span>application
+
+xlnx-firmware-kv260-benchmark-b4096/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>benchmark-b4096<span class="w"> </span>application
+
+xlnx-firmware-kv260-defect-detect/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64
+FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>defect-detect<span class="w"> </span>application
+
+xlnx-firmware-kv260-nlp-smartvision/jammy,now<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64<span class="w"> </span>
+FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>nlp-smartvision<span class="w"> </span>application
+
+xlnx-firmware-kv260-smartcam/jammy<span class="w"> </span><span class="m">0</span>.1-0xlnx1<span class="w"> </span>arm64<span class="w"> </span>
+FPGA<span class="w"> </span>firmware<span class="w"> </span><span class="k">for</span><span class="w"> </span>Xilinx<span class="w"> </span>boards<span class="w"> </span>-<span class="w"> </span>kv260<span class="w"> </span>smartcam<span class="w"> </span>application
+</pre></div>
+</div>
+</li>
+<li><p>Install the firmware binaries.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>xlnx-firmware-kv260-aibox-reid
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Dynamically load the application package.</p>
+<p>The firmware consists of a bitstream, device tree overlay (dtbo) file. The firmware is loaded dynamically on user request once Linux is fully booted. The xmutil utility can be used for that purpose.</p>
+<ul>
+<li><p>Disable the desktop environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w">      </span>desktop_disable
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>NOTE:</strong> Executing “xmutil desktop_disable” will cause the monitor to go blank. Use the serial terminal to continue issuing Linux commands via port J4, and do not rely completely on the desktop environment.</p>
+</div></blockquote>
+<p>After running the application, the desktop environment can be enabled again with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w">      </span>desktop_enable
+</pre></div>
+</div>
+</li>
+<li><p>After installing the firmware, execute xmutil listapps to verify that it is captured under the listapps function and to have dfx-mgrd re-scan and register all accelerators in the firware directory tree.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
+</pre></div>
+</div>
+</li>
+<li><p>If xmutil listapps reveals that there is already another accelerator being activated apart from the kv260-aibox-reid, unload it first.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
+</pre></div>
+</div>
+</li>
+<li><p>When there is no other accelerator loaded, activate the kv260-aibox-reid.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w">      </span>dp_unbind
+sudo<span class="w"> </span>xmutil<span class="w">      </span>loadapp<span class="w"> </span>kv260-aibox-reid
+sudo<span class="w"> </span>xmutil<span class="w">      </span>dp_bind
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="docker-based-application-preparation">
+<h2>Docker Based Application Preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p>Pull the 2022.1 docker image for aibox-reid using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>xilinx/aibox-reid:2022.1
+</pre></div>
+</div>
+</li>
+<li><p>The storage volume on the SD card can be limited with multiple dockers. If there are space issues, you can use following command to remove the existing container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rmi<span class="w"> </span>--force<span class="w"> </span>&lt;installed<span class="w"> </span>container&gt;
+<span class="c1"># example: docker rmi --force xilinx/aibox-reid:2022.1</span>
+</pre></div>
+</div>
+</li>
+<li><p>You can find the images installed with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>images
+</pre></div>
+</div>
+</li>
+<li><p>Launch the docker using the following command:</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> The firmware must have been loaded before starting the docker container.</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--privileged<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/etc/vart.conf:/etc/vart.conf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/lib/firmware/xilinx:/lib/firmware/xilinx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/run:/run<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-it<span class="w"> </span>xilinx/aibox-reid:2022.1<span class="w"> </span>bash
+</pre></div>
+</div>
+<p>It will launch the aibox-reid image in a new container.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@xlnx-docker/#
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="running-the-application">
+<h2>Running the Application<a class="headerlink" href="#running-the-application" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="two-types-of-input-sources">
+<h3>Two Types of Input Sources<a class="headerlink" href="#two-types-of-input-sources" title="Permalink to this heading">¶</a></h3>
+<p>The AIBOX application is targeted to run with RTSP streams as the input source, but for convienience, video files as input are also supported.</p>
+<p>Assume the RTSP or video file to be <strong>1080P H264/H265 30FPS</strong>. The AIBOX application can adjust for other FPS with <code class="docutils literal notranslate"><span class="pre">-r</span></code> flag, but resolution must be 1080p.</p>
+<ul>
+<li><p>RTSP source <a name="rtsp-source"> </a></p>
+<ul>
+<li><p>IP Camera</p>
+<p>IP cameras normally have a configuration page to configure the RTSP stream related parameters. Refer to the manual of your camera, configure it to <strong>1080P H264/H265 30FPS</strong>, and get the RTSP URL to be used as input parameter for the AIBox application. The URL is in the form of “rtsp://user:passwd&#64;ip-address:port/name”.</p>
+</li>
+<li><p>VLC player</p>
+<p>Alternatively, you can use VLC in windows to set up the RTSP Streaming server. You must first turn off any firewalls (McAfee, etc.) and VPN, and make sure your windows machine is on the same subnet as the SOM board. In the folder with <code class="docutils literal notranslate"><span class="pre">vlc.exe</span></code> (typically <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\VideoLAN\VLC</span></code>), do a shift-right click, and select “Open PowerShell window here”. In PowerShell window, enter the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>.<span class="se">\v</span>lc.exe<span class="w"> </span>-vvv<span class="w"> </span>path_to_a_mp4_file<span class="w"> </span>--sout<span class="w"> </span><span class="s1">&#39;#rtp{dst=windows_ip_address,port=1234,sdp=rtsp://windows_ip_address/test.sdp}&#39;</span><span class="w"> </span>--loop
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>File source</p>
+<p>To demonstrate the application in the case where no IP camera is available, a video source migth be played from a file on the SD card instead.</p>
+<p>You can download video files from the following links in MP4 format:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pixabay.com/videos/liverpool-people-couple-pier-head-46090/">https://pixabay.com/videos/liverpool-people-couple-pier-head-46090/</a></p></li>
+<li><p><a class="reference external" href="https://pixabay.com/videos/liverpool-pier-head-england-uk-46098/">https://pixabay.com/videos/liverpool-pier-head-england-uk-46098/</a></p></li>
+<li><p><a class="reference external" href="https://pixabay.com/videos/spring-walk-park-trees-flowers-15252/">https://pixabay.com/videos/spring-walk-park-trees-flowers-15252/</a></p></li>
+<li><p><a class="reference external" href="https://pixabay.com/videos/walking-people-city-bucharest-6099/">https://pixabay.com/videos/walking-people-city-bucharest-6099/</a></p></li>
+</ul>
+<p>Then you need to transcode it to the H264 file, which is the supported input format.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg<span class="w"> </span>-i<span class="w"> </span>input-video.mp4<span class="w"> </span>-c:v<span class="w"> </span>libx264<span class="w"> </span>-pix_fmt<span class="w"> </span>nv12<span class="w"> </span>-vf<span class="w"> </span><span class="nv">scale</span><span class="o">=</span><span class="m">1920</span>:1080<span class="w"> </span>-r<span class="w"> </span><span class="m">30</span><span class="w"> </span>output.nv12.h264
+</pre></div>
+</div>
+<p>Finally, upload or copy these transcoded H264 files to the board, and place it somewhere under <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="interacting-with-the-application">
+<h3>Interacting with the Application<a class="headerlink" href="#interacting-with-the-application" title="Permalink to this heading">¶</a></h3>
+<p>There are two ways to interact with application: via Jupyuter notebook or command line.</p>
+<div class="section" id="jupyter-notebook">
+<h4>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>You need to run following command to install the package shipped notebooks which reside in <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-reid/share/notebooks</span></code> to the folder <code class="docutils literal notranslate"><span class="pre">/root/notebooks/aibox-reid</span></code>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">aibox-reid-install.py</span></code></p>
+<p>This script also provides more options to install the notebook of current application to specified location.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    usage: aibox-reid-install [-h] [-d DIR] [-f]
+
+    Script to copy aibox-reid Jupyter notebook to user directory
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -d DIR, --dir DIR  Install the Jupyter notebook to the specified directory.
+      -f, --force        Force to install the Jupyter notebook even if the destination directory exists.
+</pre></div>
+</div>
+</li>
+<li><p>Get the list of running Jupyter servers with the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">jupyter-server</span> <span class="pre">list</span></code></p>
+<p>Output example:</p>
+<blockquote>
+<div><p>Currently running servers:</p>
+<p><code class="docutils literal notranslate"><span class="pre">http://ip:port/?token=xxxxxxxxxxxxxxxxxx</span></code>  :: /root/notebooks/aibox-reid</p>
+</div></blockquote>
+</li>
+<li><p>Stop the currently running server with the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">jupyter-server</span> <span class="pre">stop</span> <span class="pre">8888</span></code></p>
+</li>
+<li><p>To launch Jupyter notebook on the target, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>jupyter-lab<span class="w"> </span>--notebook-dir<span class="o">=</span>/root/notebooks/aibox-reid<span class="w"> </span>--allow-root<span class="w"> </span>--ip<span class="o">=</span>ip-address<span class="w"> </span><span class="p">&amp;</span>
+
+<span class="w">  </span>//<span class="w"> </span>fill<span class="w"> </span><span class="k">in</span><span class="w"> </span>ip-address<span class="w"> </span>from<span class="w"> </span>ifconfig,<span class="w"> </span>eth0
+</pre></div>
+</div>
+<p>Output example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.644<span class="w"> </span>LabApp<span class="o">]</span><span class="w"> </span>JupyterLab<span class="w"> </span>extension<span class="w"> </span>loaded<span class="w"> </span>from<span class="w"> </span>/usr/local/lib/python3.10/dist-packages/jupyterlab
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.644<span class="w"> </span>LabApp<span class="o">]</span><span class="w"> </span>JupyterLab<span class="w"> </span>application<span class="w"> </span>directory<span class="w"> </span>is<span class="w"> </span>/usr/local/share/jupyter/lab
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.664<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>jupyterlab<span class="w"> </span><span class="p">|</span><span class="w"> </span>extension<span class="w"> </span>was<span class="w"> </span>successfully<span class="w"> </span>loaded.
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.683<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>nbclassic<span class="w"> </span><span class="p">|</span><span class="w"> </span>extension<span class="w"> </span>was<span class="w"> </span>successfully<span class="w"> </span>loaded.
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.685<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Serving<span class="w"> </span>notebooks<span class="w"> </span>from<span class="w"> </span><span class="nb">local</span><span class="w"> </span>directory:<span class="w"> </span>/root/notebooks/aibox-reid
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.685<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Jupyter<span class="w"> </span>Server<span class="w"> </span><span class="m">1</span>.18.1<span class="w"> </span>is<span class="w"> </span>running<span class="w"> </span>at:
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.685<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.686<span class="w"> </span>ServerApp<span class="o">]</span><span class="w">  </span>or<span class="w"> </span>http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="o">[</span>I<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.686<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Use<span class="w"> </span>Control-C<span class="w"> </span>to<span class="w"> </span>stop<span class="w"> </span>this<span class="w"> </span>server<span class="w"> </span>and<span class="w"> </span>shut<span class="w"> </span>down<span class="w"> </span>all<span class="w"> </span>kernels<span class="w"> </span><span class="o">(</span>twice<span class="w"> </span>to<span class="w"> </span>skip<span class="w"> </span>confirmation<span class="o">)</span>.
+<span class="o">[</span>W<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.702<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>No<span class="w"> </span>web<span class="w"> </span>browser<span class="w"> </span>found:<span class="w"> </span>could<span class="w"> </span>not<span class="w"> </span>locate<span class="w"> </span>runnable<span class="w"> </span>browser.
+<span class="o">[</span>C<span class="w"> </span><span class="m">2022</span>-09-05<span class="w"> </span><span class="m">10</span>:26:26.703<span class="w"> </span>ServerApp<span class="o">]</span>
+
+<span class="w">    </span>To<span class="w"> </span>access<span class="w"> </span>the<span class="w"> </span>server,<span class="w"> </span>open<span class="w"> </span>this<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>browser:
+<span class="w">        </span>file:///root/.local/share/jupyter/runtime/jpserver-40-open.html
+<span class="w">    </span>Or<span class="w"> </span>copy<span class="w"> </span>and<span class="w"> </span>paste<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>these<span class="w"> </span>URLs:
+<span class="w">        </span>http://192.168.1.233:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+<span class="w">    </span>or<span class="w"> </span>http://127.0.0.1:8888/lab?token<span class="o">=</span>385858bbf1e5541dbba08d811bcac67d805b051ef37c6211
+</pre></div>
+</div>
+</li>
+<li><p>You can access the server by opening the server URL from the previous steps with a Chrome browser.</p>
+<p>In the notebook, the GStreamer pipeline string is constructed; you can get it by adding simple python code to print it out and played with the <code class="docutils literal notranslate"><span class="pre">gst-launch-1.0</span></code> command in the console, and there are some user options variables that can be changed and run with. For other parts of the pipeline, you can also change and play to see the effect easily.</p>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>NOTE:</strong> <a class="reference external" href="issue-aib.md#notebook-one-channel">Known Limitation</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="command-line">
+<h4>Command Line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h4>
+<p>Alternatively, you can use command line on a serial port to use the aivox-reid application.</p>
+<div class="section" id="examples">
+<h5>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h5>
+<ul>
+<li><p>Run one channel RTSP stream.</p>
+<blockquote>
+<div><p>aibox-reid -s <a class="reference external" href="#rtsp-source">rtsp://username:passwd&#64;ip_address:port/name</a> -t rtsp -p 0</p>
+</div></blockquote>
+<p>or</p>
+<blockquote>
+<div><p>aibox-reid -s <a class="reference external" href="#rtsp-source">rtsp://username:passwd&#64;ip_address:port</a> -t rtsp -p 0</p>
+</div></blockquote>
+<p>or (for windows VLC server set up):</p>
+<blockquote>
+<div><p>aibox-reid -s rtsp://windows_ip_address:1234/test.sdp -t rtsp -p 0</p>
+</div></blockquote>
+</li>
+<li><p>Run one channel video file.</p>
+<blockquote>
+<div><p>aibox-reid -s /tmp/movies/shop.nv12.30fps.1080p.h264 -t file -p 1</p>
+</div></blockquote>
+</li>
+<li><p>Run multiple channels.</p>
+<blockquote>
+<div><p>aibox-reid -s <a class="reference external" href="#rtsp-source">rtsp://username:passwd&#64;ip_address:port/name</a> -t rtsp -p 2 -s /tmp/movies/shop.nv12.30fps.1080p.h264 -t file -p 1</p>
+</div></blockquote>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>NOTE:</strong> Only one instance of the aibox-reid application can run at a time because it requires exclusive access to a DPU engine, and there is only one instance of DPU that exists in the aibox-reid platform.</p>
+</div></blockquote>
+</div>
+<div class="section" id="command-options">
+<h5>Command Options<a class="headerlink" href="#command-options" title="Permalink to this heading">¶</a></h5>
+<p>The examples show the capability of the aibox-reid for specific configurations. You can get more and detailed application options by invoking the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">aibox-reid</span> <span class="pre">--help</span></code></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Usage:
+
+aibox-reid [OPTION?] - AI Application of pedestrian + reid + tracking for multi RTSP streams, on SoM board of Xilinx
+
+   Help Options:
+
+   -h, --help      Show help options
+
+        --help-all                                       Show all help options
+        --help-gst                                       Show GStreamer Options
+
+   Application Options:
+
+        -s, --src=[rtsp://server:port/id |file path]     URI of rtsp src, or location of h264|h265 video file. Must set. Can set up to four times
+        -t, --srctype=[f|file, r|rtsp]                   Type of the input source: file (f)|rtsp (r). Optional. Can set up to four times.
+        -e, --srcenc=[h264|h265]                         Encoding type of the input source. Optional and defaults to h264. Can set up to four times.
+        -p, --pos=[0|1|2|3]                              Location of the display in the four grids of 4k monitor. Optional.
+                                                         0: top left, 1: top right, 2: bottom left, 3: bottom right. Optional. Can set up to four times.
+        -r, --framerate                                  Framerate of the input. Optional. Can set up to four times.
+        -R, --report                                     Report fps
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="files-structure">
+<h2>Files Structure<a class="headerlink" href="#files-structure" title="Permalink to this heading">¶</a></h2>
+<p>The application is installed as:</p>
+<ul class="simple">
+<li><p>Binary File Directory: <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-reid/bin</span></code></p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aibox-reid</td>
+<td>main app</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>Configuration File Directory: <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-reid/share/vvas</span></code></p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ped_pp.json</td>
+<td>Config of preprocess for refinedet.</td>
+</tr>
+<tr>
+<td>refinedet.json</td>
+<td>Config of refinedet.</td>
+</tr>
+<tr>
+<td>crop.json</td>
+<td>Config of cropping for reid.</td>
+</tr>
+<tr>
+<td>reid.json</td>
+<td>Config of reid.</td>
+</tr>
+<tr>
+<td>draw_reid.json</td>
+<td>Config of final results drawing.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Configuration File Directory: <code>/opt/xilinx/kv260-aibox-reid/share/vitis_ai_library/models</code></li>
+</ul><p>The model files integrated in the application using the B3136 DPU configuration.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Foldername</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>personreid-res18_pt</td>
+<td>Model files for reid</td>
+</tr>
+<tr>
+<td>refinedet_pruned_0_96</td>
+<td>Model files for refinedet</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p>Jupyter Notebook Directory: <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kv260-aibox-reid/share/notebooks</span></code></p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aibox-reid.ipynb</td>
+<td>Jupyter Notebook file for aibox-reid.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Go back to the <a class="reference internal" href="../aibox_landing.html"><span class="doc">KV260 SOM AIBox-ReID Design Start Page</span></a>.</p></li>
+</ul>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction_aib.html" class="btn btn-neutral float-left" title="Design Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="customize_ai_models-aib.html" class="btn btn-neutral float-right" title="Customizing the AI Models Used in the Application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on June 18, 2025.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
