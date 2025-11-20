@@ -166,15 +166,19 @@ IMAGE_INSTALL:append<span class="w"> </span><span class="o">=</span><span class=
 </div>
 <p>Then, build the image the usual way:</p>
 <p>To generate Xen support for KV260, use k26-smk-kv as the <code class="docutils literal notranslate"><span class="pre">&lt;machine</span> <span class="pre">name&gt;</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kv<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kv-sdt<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
+<span class="c1"># or in older tools:</span>
+<span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kv<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
 </pre></div>
 </div>
 <p>To generate Xen support for KR260, use k26-smk-kr as the <code class="docutils literal notranslate"><span class="pre">&lt;machine</span> <span class="pre">name&gt;</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kr<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kr-sdt<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
+<span class="c1"># or in older tools:</span>
+<span class="nv">MACHINE</span><span class="o">=</span>k26-smk-kr<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline
 </pre></div>
 </div>
 <p>There is no Xen support for the combined MACHINE name <code class="docutils literal notranslate"><span class="pre">k26-smk</span></code>.</p>
-<p>In the Yocto project, the Yocto generated .wic that contains Xen support is found in <code class="docutils literal notranslate"><span class="pre">&lt;yocto_project&gt;/build/tmp/deploy/images/&lt;machine</span> <span class="pre">name&gt;/kria-image-full-cmdline-&lt;machine</span> <span class="pre">name&gt;.wic</span></code>.</p>
+<p>In the Yocto project, the Yocto generated .wic that contains Xen support is found in <code class="docutils literal notranslate"><span class="pre">&lt;yocto_project&gt;/build/tmp/deploy/images/&lt;machine</span> <span class="pre">name&gt;/kria-image-full-cmdline-&lt;machine</span> <span class="pre">name&gt;*.wic</span></code>.</p>
 <details>
   <summary>Expand for Xen Artifact generation in the PetaLinux tool flow</summary></div>
 <div class="section" id="xen-artifacts-in-petalinux-tool-flow">
@@ -367,6 +371,7 @@ vcpus = 1
 <ol class="simple">
 <li><p>With the current Xem hypervisor configuration, DOMU does not have access to peripherals. Peripheral access is mapped to dom0. Therefore, Ethernet is not accessible for DOMU. Upon DOMU initialization (tested with Kria Starter Kit embedded Linux 2023.2 XEN + Ubuntu 22.04 x07 image) you see cloud init errors.</p></li>
 <li><p>XEN on Kria currently do not save its state across reboot. For example, the files in rootfs or password do not persist over power cycles or reboots.</p></li>
+<li><p>on XEN - xlnx_platformstats number of CPU information is not accurate - this is because domains only see vCPUs, not pCPUs. It also doesnt have information on the CPU frequency as Xen do not expose it vit the device tree.</p></li>
 </ol>
 <hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2025 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
 </div>
@@ -384,7 +389,7 @@ vcpus = 1
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 06, 2025.
+      <span class="lastupdated">Last updated on November 13, 2025.
       </span></p>
   </div>
 

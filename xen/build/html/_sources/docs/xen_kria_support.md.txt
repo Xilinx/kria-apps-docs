@@ -45,18 +45,22 @@ Then, build the image the usual way:
 To generate Xen support for KV260, use k26-smk-kv as the ```<machine name>```:
 
 ```bash
+MACHINE=k26-smk-kv-sdt bitbake kria-image-full-cmdline
+# or in older tools:
 MACHINE=k26-smk-kv bitbake kria-image-full-cmdline
 ```
 
 To generate Xen support for KR260, use k26-smk-kr as the ```<machine name>```:
 
 ```bash
+MACHINE=k26-smk-kr-sdt bitbake kria-image-full-cmdline
+# or in older tools:
 MACHINE=k26-smk-kr bitbake kria-image-full-cmdline
 ```
 
 There is no Xen support for the combined MACHINE name ```k26-smk```.
 
-In the Yocto project, the Yocto generated .wic that contains Xen support is found in ```<yocto_project>/build/tmp/deploy/images/<machine name>/kria-image-full-cmdline-<machine name>.wic```.
+In the Yocto project, the Yocto generated .wic that contains Xen support is found in ```<yocto_project>/build/tmp/deploy/images/<machine name>/kria-image-full-cmdline-<machine name>*.wic```.
 
 <details>
   <summary>Expand for Xen Artifact generation in the PetaLinux tool flow</summary>
@@ -312,6 +316,7 @@ vcpus = 1
 
 1. With the current Xem hypervisor configuration, DOMU does not have access to peripherals. Peripheral access is mapped to dom0. Therefore, Ethernet is not accessible for DOMU. Upon DOMU initialization (tested with Kria Starter Kit embedded Linux 2023.2 XEN + Ubuntu 22.04 x07 image) you see cloud init errors.
 2. XEN on Kria currently do not save its state across reboot. For example, the files in rootfs or password do not persist over power cycles or reboots.
+3. on XEN - xlnx_platformstats number of CPU information is not accurate - this is because domains only see vCPUs, not pCPUs. It also doesnt have information on the CPU frequency as Xen do not expose it vit the device tree.
 
 <hr class="sphinxhide"></hr>
 

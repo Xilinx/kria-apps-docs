@@ -1,4 +1,4 @@
-﻿# Booting Linux on KD240 Step 5: Boot Linux
+# Booting Linux on KD240 Step 5: Boot Linux
 
 ## First Boot
 
@@ -21,7 +21,7 @@ The standard system policy requires you to change the password the first time yo
 
 Note: If you login very quickly during the first boot, you may find that the password does not have to be changed. In this case, you will be required to update it the next time you login or use the sudo command to initiate the password change.
 
-``` bash
+```bash
 ping 8.8.8.8
 ```
 
@@ -33,9 +33,9 @@ Note: Without internet connectivity, you will not be able to perform all of the 
 
 Install the application specific repositories, Ubuntu updates, and upgrade the system (which may take 10-20 minutes to complete):
 
-``` bash
+```bash
 sudo add-apt-repository ppa:xilinx-apps --yes &&
-sudo add-apt-repository ppa:ubuntu-xilinx/sdk --yes &&
+sudo add-apt-repository ppa:ubuntu-xilinx/default --yes &&
 sudo add-apt-repository ppa:xilinx-apps/xilinx-drivers --yes &&
 sudo add-apt-repository ppa:lely/ppa --yes &&
 sudo apt update --yes &&
@@ -46,14 +46,12 @@ For more detailed information regarding setting up the environment, refer to: [G
 
 Some Ubuntu applications are deployed as Docker containers. Follow the instructions from [docker.com](https://docs.docker.com/engine/install/ubuntu/) to install Docker.
 
-   Enable the user to properly use the Docker commands without using sudo for every Docker command.
+Enable the user to properly use the Docker commands without using sudo for every Docker command.
 
-    ```bash
-    sudo groupadd docker
-    sudo usermod -a -G docker  $USER
-    ```
-
-   This is only needed to be done once if reusing the same SD card for running multiple applications.
+```bash
+sudo groupadd docker
+sudo usermod -a -G docker  $USER
+```
 
 This flow is only needed to be done once if reusing the same SD card for multiple applications. However, you can choose to update and upgrade again to install newly available updates that are made available later.
 
@@ -65,4 +63,4 @@ Try out one of the applications! Check the [Ubuntu 22.04 row](https://pages.gite
 
 Refer to [Kria Adventure map](https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm) for an organized view of different documentations available for Kria SOM.
 
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p>
