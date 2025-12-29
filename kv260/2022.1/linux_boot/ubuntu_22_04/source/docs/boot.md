@@ -35,7 +35,7 @@ Install the application specific repositories, Ubuntu updates, and upgrade the s
 
 ``` bash
 sudo add-apt-repository ppa:xilinx-apps --yes &&
-sudo add-apt-repository ppa:ubuntu-xilinx/sdk --yes &&
+sudo add-apt-repository ppa:ubuntu-xilinx/default --yes &&
 sudo add-apt-repository ppa:xilinx-apps/xilinx-drivers --yes &&
 sudo add-apt-repository ppa:lely/ppa --yes &&
 sudo apt update --yes &&

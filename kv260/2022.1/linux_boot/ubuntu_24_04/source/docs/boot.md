@@ -21,7 +21,7 @@ The standard system policy requires you to change the password the first time yo
 
 Note: If you login very quickly during the first boot, you may find that the password does not have to be changed. In this case, you will be required to update it the next time you login or use the sudo command to initiate the password change.
 
-``` bash
+```bash
 ping 8.8.8.8
 ```
 
@@ -35,7 +35,7 @@ Install the application specific repositories, Ubuntu updates, and upgrade the s
 
 ``` bash
 sudo add-apt-repository ppa:xilinx-apps --yes &&
-sudo add-apt-repository ppa:ubuntu-xilinx/sdk --yes &&
+sudo add-apt-repository ppa:ubuntu-xilinx/default --yes &&
 sudo add-apt-repository ppa:xilinx-apps/xilinx-drivers --yes &&
 sudo add-apt-repository ppa:lely/ppa --yes &&
 sudo apt update --yes &&
@@ -57,7 +57,7 @@ Some Ubuntu applications are deployed as Docker containers. Follow the instructi
 
 Lastly, on K26 based Kria Starter Kits, it is possible to enable ubuntu-desktop on top of the server image. Assuming that a monitor is connected upon power up, manual enablement steps on Ubuntu 24.04 are:
 
-   ``` bash
+   ```bash
    sudo apt update
    sudo apt install ubuntu-desktop-kria
    sudo reboot
@@ -74,4 +74,4 @@ As indicated in the [Ubuntu 24.04 row](https://pages.gitenterprise.xilinx.com/te
 Refer to [Kria Adventure map](https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm) for an organized view of different documentations available for Kria SOM.
 
 
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2025 Advanced Micro Devices, Inc</p>
