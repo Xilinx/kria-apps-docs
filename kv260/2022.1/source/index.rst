@@ -1,6 +1,6 @@
-####################################################
+###################################################
 Kria KV260 Vision AI Starter Kit Applications
-####################################################
+###################################################
 
 
 
@@ -73,10 +73,6 @@ With both hardware and software development requirements simplified, the KV260 V
 
 
 
-
-
-
-
 .. toctree::
    :maxdepth: 3
    :caption: KV260 Applications
@@ -88,6 +84,8 @@ With both hardware and software development requirements simplified, the KV260 V
    NLP SmartVision <docs/nlp-smartvision/nlp_smartvision_landing>
    AI Box Distributed ReID <docs/aibox/aibox-dist_landing>
    Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/bist.html>
+   Raspberry Pi Camera V3 Example <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/rpi.html>
+
 
 
 
@@ -105,9 +103,6 @@ With both hardware and software development requirements simplified, the KV260 V
    ./docs/integrating_new_sensors
    Generate Custom Firmware <./docs/generating_custom_firmware>
    ./docs/build_application_docker_container
-
-
-
 
 
 

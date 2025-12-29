@@ -19,7 +19,6 @@ KV260 J8 is an IAS connector interfaced directly to the FPGA. Integration of new
 
 To bring support for new sensors on J8, contact [onsemi sales support](https://www.onsemi.com/support/sales) for details.
 
-An example application featuring a direct sensor module interface (J8) with a custom PL implementation can be found [here](https://xfuse.ai/phoenix-isp-for-kria-som-3/).
 
 
 <p class="sphinxhide" align="center"><sub>Copyright © 2021-2024 Advanced Micro Devices, Inc</sub></p>
