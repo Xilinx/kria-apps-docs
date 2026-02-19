@@ -21,7 +21,7 @@ The standard system policy requires you to change the password the first time yo
 
 Note: If you login very quickly during the first boot, you may find that the password does not have to be changed. In this case, you will be required to update it the next time you login or use the sudo command to initiate the password change.
 
-``` bash
+```bash
 ping 8.8.8.8
 ```
 
@@ -33,9 +33,9 @@ Note: Without internet connectivity, you will not be able to perform all of the 
 
 Install the application specific repositories, Ubuntu updates, and upgrade the system (which may take 10-20 minutes to complete):
 
-``` bash
+```bash
 sudo add-apt-repository ppa:xilinx-apps --yes &&
-sudo add-apt-repository ppa:ubuntu-xilinx/sdk --yes &&
+sudo add-apt-repository ppa:ubuntu-xilinx/default --yes &&
 sudo add-apt-repository ppa:xilinx-apps/xilinx-drivers --yes &&
 sudo add-apt-repository ppa:lely/ppa --yes &&
 sudo apt update --yes &&
@@ -46,22 +46,22 @@ For more detailed information regarding setting up the environment, refer to: [G
 
 Some Ubuntu applications are deployed as Docker containers. Follow the instructions from [docker.com](https://docs.docker.com/engine/install/ubuntu/) to install Docker.
 
-   Enable the user to properly use the Docker commands without using sudo for every Docker command.
+Enable the user to properly use the Docker commands without using sudo for every Docker command.
 
-    ```bash
-    sudo groupadd docker
-    sudo usermod -a -G docker  $USER
-    ```
+```bash
+sudo groupadd docker
+sudo usermod -a -G docker  $USER
+```
 
-   This is only needed to be done once if reusing the same SD card for running multiple applications.
+his is only needed to be done once if reusing the same SD card for running multiple applications.
 
 Lastly, on K26 based Kria Starter Kits, it is possible to enable ubuntu-desktop on top of the server image. Assuming that a monitor is connected upon power up, manual enablement steps on Ubuntu 24.04 are:
 
-   ``` bash
-   sudo apt update
-   sudo apt install ubuntu-desktop-kria
-   sudo reboot
-   ```
+```bash
+sudo apt update
+sudo apt install ubuntu-desktop-kria
+sudo reboot
+```
 
 This flow is only needed to be done once if reusing the same SD card for multiple applications. However, you can choose to update and upgrade again to install newly available updates that are made available later.
 

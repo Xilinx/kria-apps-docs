@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
 <script type="text/javascript">
-function OptanonWrapper() { }
+(function() {
+    var host = window.location.hostname;
+    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
+        s.type = 'text/javascript';
+        s.charset = 'UTF-8';
+        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
+        s.setAttribute('data-document-language', 'true');
+        document.head.appendChild(s);
+
+        window.OptanonWrapper = function() { };
+    }
+})();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -26,11 +39,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -48,7 +59,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../index.html" class="icon icon-home"> Kria™ KR260
-            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -149,35 +159,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="precision-time-management">
-<h1>Precision time Management<a class="headerlink" href="#precision-time-management" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+  <section id="precision-time-management">
+<h1>Precision time Management<a class="headerlink" href="#precision-time-management" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>GPS-1588-PTP Application is built on KR260 Robotics starter kit, to Synchronize the linux platform System Time with GPS Time and distribute the system time to another KR260 board using linux PTP tools. The application uses ubuntu daemons gpsd, chrony and linux ptp utilities.</p>
 <p>The below figure shows the architecture of the Application.</p>
 <img alt="Setup with two KR260 boards" src="../../_images/2boards_setup_new.jpg" />
 <p>This Application uses two KR260 Robotics starter kits for master and slave communication. Digilent pmod-gps receiver is connected to the master board. The master board captures the gps data which is in NMEA format through uart lite interface and one pps input through GPIO for system time correction .</p>
-<div class="section" id="features">
-<h3>Features<a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h3>
+<section id="features">
+<h3>Features<a class="headerlink" href="#features" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>GPS-1588-PTP application Synchronizes the SOM embedded platform system time with GPS time.</p></li>
 <li><p>Demonstrate 1588 Precision time protocol(ptp) time synchronization between master and multiple slaves .</p></li>
 <li><p>Demonstrate time synchronization using ubuntu daemons (gpsd ,chrony) and linuxptp utilities(phc2sys,ptp4l).</p></li>
 <li><p>Precision time Management uses 1 PPS output from pmod-gps receiver.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="quick-start">
-<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux_boot.html">KR260 Starter Kit Linux Boot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src/app_deployment.html">Setting up the Board and Application deployment</a></li>
 </ul>
 </div>
-</div>
-<div class="section" id="tutorials">
-<h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="tutorials">
+<h2>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux_boot.html">KR260 Starter Kit Linux Boot</a></li>
@@ -189,33 +199,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul class="simple">
 <li><p>Please first review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">FAQ</a> for commonly encountered issues across Kria SOM applications.</p></li>
 </ul>
-</div>
-<div class="section" id="architecture">
-<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="src/sw_arch_platform.html">Software Architecture - Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src/hw_arch_platform.html">Hardware Architecture - Platform</a></li>
 </ul>
 </div>
-</div>
-<div class="section" id="repository">
-<h2>Repository<a class="headerlink" href="#repository" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="repository">
+<h2>Repository<a class="headerlink" href="#repository" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Kria_GPS_1588_PTP">Application Sources</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware">PL firmware files</a></li>
 </ul>
 </div>
-<div class="section" id="xilinx-support">
-<h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this heading">¶</a></h3>
+<section id="xilinx-support">
+<h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Link to this heading">¶</a></h3>
 <p>GitHub issues will be used for tracking requests and bugs. For questions, go to <a class="reference external" href="http://forums.xilinx.com/">forums.xilinx.com</a>.</p>
 <blockquote>
 <div><p>Copyright (C) 2023 Advanced Micro Devices,Inc.</p>
 </div></blockquote>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
@@ -230,8 +240,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on July 31, 2025.
+    <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 19, 2026.
       </span></p>
   </div>
 

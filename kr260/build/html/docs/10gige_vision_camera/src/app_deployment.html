@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
 <script type="text/javascript">
-function OptanonWrapper() { }
+(function() {
+    var host = window.location.hostname;
+    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
+        s.type = 'text/javascript';
+        s.charset = 'UTF-8';
+        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
+        s.setAttribute('data-document-language', 'true');
+        document.head.appendChild(s);
+
+        window.OptanonWrapper = function() { };
+    }
+})();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -26,11 +39,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -48,7 +59,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -153,13 +163,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Machine Vision Camera Tutorial</h1> </td>
  </tr>
-</table><div class="section" id="gige-machine-vision-defect-detect-application-deployment">
-<h1>10GigE Machine Vision Defect Detect Application Deployment<a class="headerlink" href="#gige-machine-vision-defect-detect-application-deployment" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction-to-the-test-environment">
-<h2>Introduction to the Test Environment<a class="headerlink" href="#introduction-to-the-test-environment" title="Permalink to this heading">¶</a></h2>
+</table><section id="gige-machine-vision-defect-detect-application-deployment">
+<h1>10GigE Machine Vision Defect Detect Application Deployment<a class="headerlink" href="#gige-machine-vision-defect-detect-application-deployment" title="Link to this heading">¶</a></h1>
+<section id="introduction-to-the-test-environment">
+<h2>Introduction to the Test Environment<a class="headerlink" href="#introduction-to-the-test-environment" title="Link to this heading">¶</a></h2>
 <p>This document shows how to set up the board and run the <strong>MV-Defect Detect</strong> and <strong>10GigE</strong> applications.</p>
-<div class="section" id="hardware-requirements">
-<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this heading">¶</a></h3>
+<section id="hardware-requirements">
+<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Link to this heading">¶</a></h3>
 <ol class="simple">
 <li><p>KR260 Robotics Starter Kit</p></li>
 <li><p>KR260 Power Supply &amp; Adapter (Included with KR260 Robotics Starter Kit)</p></li>
@@ -174,9 +184,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference external" href="https://www.amazon.com/dp/B06X9T683K">10G NIC Card</a></p></li>
 <li><p><a class="reference external" href="https://www.amazon.com/dp/B08BP55663">Two 10G SFP+ Transceivers</a></p></li>
 </ol>
-</div>
-<div class="section" id="setting-up-the-live-source-for-defect-detect">
-<h3>Setting Up the Live Source for Defect-Detect<a class="headerlink" href="#setting-up-the-live-source-for-defect-detect" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="setting-up-the-live-source-for-defect-detect">
+<h3>Setting Up the Live Source for Defect-Detect<a class="headerlink" href="#setting-up-the-live-source-for-defect-detect" title="Link to this heading">¶</a></h3>
 <p>When setting up the SOM Board for the live camera source capturing mango image displayed on a monitor, adhere to the following guidelines:</p>
 <ul>
 <li><p>Keep the IMX547 Camera module firmly held in a static position, preferably on a tripod and at a height of ~17 cm from the base.</p></li>
@@ -193,9 +203,9 @@ If the preview image is not satisfactory, adjust the above mentioned parameters.
 it to 1.6 and 0.8 respectively.</p>
 </li>
 </ul>
-</div>
-<div class="section" id="setting-up-the-test-environment">
-<h3>Setting Up the Test Environment<a class="headerlink" href="#setting-up-the-test-environment" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="setting-up-the-test-environment">
+<h3>Setting Up the Test Environment<a class="headerlink" href="#setting-up-the-test-environment" title="Link to this heading">¶</a></h3>
 <p><em><strong>Note</strong></em>: Ensure that the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c">Gstreamer packages</a> are installed on Linux PC. If Linux distribution is on Ubuntu, make sure its version is at least <strong>16.04</strong>.</p>
 <p>Download all the sample mango images from the <a class="reference external" href="http://www.cofilab.com/wp-content/downloads/DB_Mango.rar">Cofilab site</a> to the Linux PC.</p>
 <p><em><strong>Note</strong></em>: If the file fails to download, copy the link and open in a new browser tab to download the file.</p>
@@ -226,9 +236,9 @@ it to 1.6 and 0.8 respectively.</p>
 </ol>
 <p>The MV-Defect-Detect application’s design takes, processes, and displays images on to the monitor.</p>
 <p>See <a class="reference internal" href="known_issues.html"><span class="doc">Known Issues and Limitations</span></a> with the MV-Defect-Detect application.</p>
-</div>
-<div class="section" id="som-board-setup">
-<h3>SOM Board setup<a class="headerlink" href="#som-board-setup" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="som-board-setup">
+<h3>SOM Board setup<a class="headerlink" href="#som-board-setup" title="Link to this heading">¶</a></h3>
 <p>Refer to the following KR260 Board and Interface layout for connector reference numbers:</p>
 <p><img alt="board interfaces" src="../../../_images/board_interfaces.png" /></p>
 <p><img alt="usb slot" src="../../../_images/usb_slot.png" /></p>
@@ -238,12 +248,12 @@ it to 1.6 and 0.8 respectively.</p>
 <li><p>Keep the KR260 board and sensor module firmly held in a static position.</p></li>
 <li><p>Connect the Ethernet cable from PS ethernet ‘J10C’ to local network with DHCP enabled to install packages.</p></li>
 <li><p>Connect the fiber optic cable to SFP+ connector in the KR260 board, other end to host machine (Windows/Ubuntu) NIC card as follows:</p>
-<p><img alt="KR260 SFP+" src="../../../_images/KR260_SFP+_Host.jpg" /></p>
+<p><img alt="KR260 SFP+" src="../../../_images/KR260_SFP%2B_Host.jpg" /></p>
 </li>
 </ol>
-</div>
-<div class="section" id="tested-artifacts">
-<h3>Tested Artifacts<a class="headerlink" href="#tested-artifacts" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="tested-artifacts">
+<h3>Tested Artifacts<a class="headerlink" href="#tested-artifacts" title="Link to this heading">¶</a></h3>
 <p>Testing was performed with the following artifacts:</p>
 <table border="1" class="docutils">
 <thead>
@@ -270,9 +280,9 @@ it to 1.6 and 0.8 respectively.</p>
 <td>0.12-0xlnx2</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="host-machine-setup">
-<h3>Host Machine Setup<a class="headerlink" href="#host-machine-setup" title="Permalink to this heading">¶</a></h3>
+</table></section>
+<section id="host-machine-setup">
+<h3>Host Machine Setup<a class="headerlink" href="#host-machine-setup" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Check the available network interfaces before inserting the 10G NIC card using:</p>
 <ul>
@@ -291,10 +301,10 @@ it to 1.6 and 0.8 respectively.</p>
 </ul>
 <p><strong>Note:</strong> On windows host, ensure that the network related drivers are installed from the <a class="reference external" href="https://www.euresys.com/en/Products/IP-Cores/Vision-Standard-IP-Cores-for-FPGA/GigE-Vision-IP-Core-(2)">link</a>, before running the Host Sphinx application.</p>
 <p><strong>Note:</strong> Ensure that the 10GigE interface is enabled on the Host PC before loading MV-Camera application firmware.</p>
-</div>
-</div>
-<div class="section" id="installing-the-application-packages">
-<h2>Installing the Application packages<a class="headerlink" href="#installing-the-application-packages" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="installing-the-application-packages">
+<h2>Installing the Application packages<a class="headerlink" href="#installing-the-application-packages" title="Link to this heading">¶</a></h2>
 <p>Make sure that you had gone through  <a class="reference internal" href="../../linux_boot.html"><span class="doc">Booting Kria Starter Kit Linux</span></a> as indicated in the previous step to complete the minimum setup required to boot Linux before continuing with instructions in this page.</p>
 <p>Install the latest application packages.</p>
 <ol>
@@ -320,9 +330,9 @@ outlined in the “Sensor Calibration for the Live Source” further below.</p>
 </div></blockquote>
 </li>
 </ol>
-</div>
-<div class="section" id="docker-based-application-preparation">
-<h2>Docker based application preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="docker-based-application-preparation">
+<h2>Docker based application preparation<a class="headerlink" href="#docker-based-application-preparation" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>Pull the latest docker image for mv-defect-detect using the following command.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>sudo<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>xilinx/mv-defect-detect:2022.2
@@ -335,13 +345,13 @@ outlined in the “Sensor Calibration for the Live Source” further below.</p>
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="firmware-loading">
-<h2>Firmware Loading<a class="headerlink" href="#firmware-loading" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="firmware-loading">
+<h2>Firmware Loading<a class="headerlink" href="#firmware-loading" title="Link to this heading">¶</a></h2>
 <p>The MV-Camera application firmware consists of bitstream (bit.bin) and device tree overlay (<em>dtbo</em>). The MV-Camera firmware is loaded dynamically on the user request once the ubuntu system is fully booted. Use the <em>xmutil</em> utility to list and load the firmware.</p>
 <p><em><strong>Note</strong></em>: <code class="docutils literal notranslate"><span class="pre">xmutil</span></code> utility runs only in Ubuntu.</p>
-<div class="section" id="dynamically-load-the-application-firmware">
-<h3>Dynamically load the application firmware:<a class="headerlink" href="#dynamically-load-the-application-firmware" title="Permalink to this heading">¶</a></h3>
+<section id="dynamically-load-the-application-firmware">
+<h3>Dynamically load the application firmware:<a class="headerlink" href="#dynamically-load-the-application-firmware" title="Link to this heading">¶</a></h3>
 <ul>
 <li><p>Disable the desktop environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>desktop_disable
@@ -376,10 +386,10 @@ outlined in the “Sensor Calibration for the Live Source” further below.</p>
 </div>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="launching-the-docker">
-<h2>Launching the Docker<a class="headerlink" href="#launching-the-docker" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="launching-the-docker">
+<h2>Launching the Docker<a class="headerlink" href="#launching-the-docker" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>Launch the docker using the below command. The firmware must be loaded before launching the docker container.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
@@ -404,9 +414,9 @@ outlined in the “Sensor Calibration for the Live Source” further below.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>root@xlnx-docker/#
 </pre></div>
 </div>
-</div>
-<div class="section" id="running-the-10gige-application-on-target">
-<h2>Running the 10GigE Application on Target<a class="headerlink" href="#running-the-10gige-application-on-target" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="running-the-10gige-application-on-target">
+<h2>Running the 10GigE Application on Target<a class="headerlink" href="#running-the-10gige-application-on-target" title="Link to this heading">¶</a></h2>
 <p>The only way to invoke the application is by command line.</p>
 <blockquote>
 <div><p><em><strong>Note</strong></em>: Docker starts with the <em>root</em> user access. Only one instance of the application can run at a time. Only 2472 x 2128 &#64;122fps – 10bpp configuration is validated.</p>
@@ -553,9 +563,9 @@ Discovery –&gt; Open</p>
 <p>g). In Sphinx host application, select <em>Use filter Driver</em> checkbox, and <em>Grab</em> checkbox to capture the frames from KR260 10GigE network.</p>
 </li>
 </ol>
-</div>
-<div class="section" id="sphinx-gev-viewer-observations">
-<h2>Sphinx GEV Viewer Observations<a class="headerlink" href="#sphinx-gev-viewer-observations" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="sphinx-gev-viewer-observations">
+<h2>Sphinx GEV Viewer Observations<a class="headerlink" href="#sphinx-gev-viewer-observations" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>For 60 fps on a Monochrome Sensor</p>
 <p><img alt="60fps_mono" src="../../../_images/60fps_Mono.png" /></p>
@@ -576,12 +586,12 @@ Discovery –&gt; Open</p>
 <p><strong>NOTE</strong>: You will record ~25-35 fps for a 60 fps pipeline and ~75-95 fps for a 120 fps pipeline. Since we are transmitting Raw
 Bayer Format from Kria to X86 Host, that needs to be debayered by X86 Host and converted to RGB for displaying which
 consumes additional compute time, hence the fps drop.</p>
-</div>
-<div class="section" id="running-the-mv-defect-detect-application">
-<h2>Running the MV-Defect-Detect Application<a class="headerlink" href="#running-the-mv-defect-detect-application" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="running-the-mv-defect-detect-application">
+<h2>Running the MV-Defect-Detect Application<a class="headerlink" href="#running-the-mv-defect-detect-application" title="Link to this heading">¶</a></h2>
 <p>Follow the procedure mentioned below to invoke the MV-Defect-Detect application.</p>
-<div class="section" id="command-line">
-<h3>Command Line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h3>
+<section id="command-line">
+<h3>Command Line<a class="headerlink" href="#command-line" title="Link to this heading">¶</a></h3>
 <p>Use the command line to set the resolution, configuration file path, and more, using the <strong>mv-defect-detect</strong> application.</p>
 <p>More combinations could be made based on the options provided by the <strong>mv-defect-detect</strong> application.</p>
 <p><em><strong>Note</strong></em>: ‘demomode’ application option is not supported for File sink. It is only supported for live out.</p>
@@ -618,9 +628,9 @@ consumes additional compute time, hence the fps drop.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
 </pre></div>
 </div>
-</div>
-<div class="section" id="command-examples-for-monochrome-sensor">
-<h3>Command Examples for Monochrome sensor<a class="headerlink" href="#command-examples-for-monochrome-sensor" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="command-examples-for-monochrome-sensor">
+<h3>Command Examples for Monochrome sensor<a class="headerlink" href="#command-examples-for-monochrome-sensor" title="Link to this heading">¶</a></h3>
 <p><strong>Examples:</strong> Follow the below examples for different use cases of the above mentioned command options.</p>
 <p><em><strong>Note</strong></em>: Only one instance of the application can run at a time.</p>
 <ul class="simple">
@@ -731,9 +741,9 @@ consumes additional compute time, hence the fps drop.</p>
 <td>Final output displays on DP.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="command-examples-for-color-sensor">
-<h3>Command Examples for Color Sensor<a class="headerlink" href="#command-examples-for-color-sensor" title="Permalink to this heading">¶</a></h3>
+</table></section>
+<section id="command-examples-for-color-sensor">
+<h3>Command Examples for Color Sensor<a class="headerlink" href="#command-examples-for-color-sensor" title="Link to this heading">¶</a></h3>
 <p><strong>Examples:</strong> Follow the below examples for different use cases of the above mentioned command options.</p>
 <p><em><strong>Note</strong></em>: Only one instance of the application can run at a time.</p>
 <ul class="simple">
@@ -844,9 +854,9 @@ mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_final.y8<s
 <td>Final output displays on DP.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="sensor-calibration-for-the-live-source">
-<h3>Sensor Calibration for the Live Source<a class="headerlink" href="#sensor-calibration-for-the-live-source" title="Permalink to this heading">¶</a></h3>
+</table></section>
+<section id="sensor-calibration-for-the-live-source">
+<h3>Sensor Calibration for the Live Source<a class="headerlink" href="#sensor-calibration-for-the-live-source" title="Link to this heading">¶</a></h3>
 <ul>
 <li><p>You can use v4l2 utilities to tune various sensor parameters. For example:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>v4l2-ctl<span class="w"> </span>-d<span class="w"> </span>/dev/video0<span class="w"> </span>-L<span class="w">                      </span>List<span class="w"> </span>all<span class="w"> </span>available<span class="w"> </span>parameters<span class="w"> </span>to<span class="w"> </span>tune
@@ -906,9 +916,9 @@ Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"
 <p><img alt="QV4l2" src="../../../_images/qv4l2_tuning.JPG" /></p>
 </li>
 </ul>
-</div>
-<div class="section" id="file-structure-of-the-mv-defect-detect-application">
-<h3>File Structure of the MV-Defect-Detect Application<a class="headerlink" href="#file-structure-of-the-mv-defect-detect-application" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="file-structure-of-the-mv-defect-detect-application">
+<h3>File Structure of the MV-Defect-Detect Application<a class="headerlink" href="#file-structure-of-the-mv-defect-detect-application" title="Link to this heading">¶</a></h3>
 <p>The application is comprised of the following files:</p>
 <p>Below files are present in the <em>app</em> directory:</p>
 <p><code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xlnx-app-kr260-mv-defect-detect/</span></code></p>
@@ -1066,10 +1076,10 @@ Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"
 <td>Configuration of text2overlay</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+</table></section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="debug.html"><span class="doc">Debug</span></a></p></li>
 <li><p><a class="reference internal" href="known_issues.html"><span class="doc">Known Issues</span></a></p></li>
@@ -1079,8 +1089,8 @@ Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"
 <li><p><a class="reference internal" href="sw_arch_accel_dd.html"><span class="doc">Software Architecture of the Accelerator</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="introduction.html"><span class="doc">Introduction</span></a></p></li>
 </ul>
-<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -1095,8 +1105,8 @@ Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on July 31, 2025.
+    <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 19, 2026.
       </span></p>
   </div>
 
