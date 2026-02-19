@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
 <script type="text/javascript">
-function OptanonWrapper() { }
+(function() {
+    var host = window.location.hostname;
+    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
+        s.type = 'text/javascript';
+        s.charset = 'UTF-8';
+        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
+        s.setAttribute('data-document-language', 'true');
+        document.head.appendChild(s);
+
+        window.OptanonWrapper = function() { };
+    }
+})();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -26,11 +39,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -46,7 +57,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../index.html" class="icon icon-home"> Kria™ KR260
-            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -118,15 +128,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="bist-tty-test-module">
-<h1>BIST Tty Test Module<a class="headerlink" href="#bist-tty-test-module" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+  <section id="bist-tty-test-module">
+<h1>BIST Tty Test Module<a class="headerlink" href="#bist-tty-test-module" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>This module tests the tty interface(s) on the AMD Kria™ starter kits.</p>
 <p>Note that this test is expected to fail in on KD240 with Ubuntu classic-22.04-kd05 version as the RS485 driver is in the process of being upstreamed for certified Ubuntu image. This test will still pass with Ubuntu 22.04-kd03 image on KD240, and it will also pass for KR260’s RS485 over AXI lite interface.</p>
-</div>
-<div class="section" id="tests">
-<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading">¶</a></h2>
 <p>The Tty module contains one self-validating test. This test uses the pymodbus
 python package. The package establishes a client connection with the connected
 RS485 temperature sensor’s tty terminal and reads the holding registers
@@ -136,9 +146,9 @@ containing the temperature and humidity values.</p>
 <li><p>label: The test label</p></li>
 <li><p>controller_name: Uart controller name</p></li>
 </ul>
-</div>
-<div class="section" id="test-execution">
-<h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="test-execution">
+<h2>Test Execution<a class="headerlink" href="#test-execution" title="Link to this heading">¶</a></h2>
 <p>The example commands for this module are provided below (KD240):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-m<span class="w"> </span>tty<span class="w">                                     </span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
 pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>rs485_temp_humidity_sensor_read<span class="w">         </span>//<span class="w"> </span>Run<span class="w"> </span>inidvidual<span class="w"> </span><span class="nb">test</span>
@@ -150,16 +160,16 @@ values recorded by the sensor. The test pass depends on the successful reading
 of both the values. The test typically fails when the connection with the serial
 client could not be established or values were not recorded; this typically
 points to improper connections.</p>
-</div>
-<div class="section" id="test-debug">
-<h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="test-debug">
+<h2>Test Debug<a class="headerlink" href="#test-debug" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure that the BIST firmware is loaded.</p></li>
 <li><p>Make sure that the sensor is connected correctly.</p></li>
 </ul>
-</div>
-<div class="section" id="known-issues-and-limitations">
-<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="known-issues-and-limitations">
+<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Occasionally, erroneous values (for example 3276.8) are reported for
 temperature/humidity sensor data and this is due to error in the sensor itself,
@@ -167,14 +177,14 @@ which can be ignored and the test rerun to clear the error.</p></li>
 <li><p>RS485 does not function in Ubuntu 22.04 kd05 as the driver is in the process of
 being upstreamed. The driver is also <a class="reference external" href="https://support.xilinx.com/s/article/000035701?language=en_US">not present in PetaLinux 2023.2 KD240 BSP</a>. Thus, this test is expected to fail in that version.</p></li>
 </ul>
-</div>
-<div class="section" id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
-<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -186,8 +196,8 @@ being upstreamed. The driver is also <a class="reference external" href="https:/
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on July 31, 2025.
+    <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 19, 2026.
       </span></p>
   </div>
 

@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
 <script type="text/javascript">
-function OptanonWrapper() { }
+(function() {
+    var host = window.location.hostname;
+    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
+        s.type = 'text/javascript';
+        s.charset = 'UTF-8';
+        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
+        s.setAttribute('data-document-language', 'true');
+        document.head.appendChild(s);
+
+        window.OptanonWrapper = function() { };
+    }
+})();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -26,11 +39,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -48,7 +59,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -153,10 +163,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Machine Vision Camera Tutorial</h1> </td>
  </tr>
-</table><div class="section" id="hardware-architecture-of-the-platform">
-<h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+</table><section id="hardware-architecture-of-the-platform">
+<h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>This section describes the design implemented in the programmable logic (PL). The following figure shows the top-level hardware architecture of the reference design.</p>
 <p><img alt="Top Level Hardware Architecture" src="../../../_images/Top_level_hardware_architecture.png" /></p>
 <p>At a high-level, the design comprises of four pipelines:</p>
@@ -190,9 +200,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div><p><strong>NOTE:</strong> The PS interconnects in the figure are conceptual.</p>
 </div></blockquote>
-</div>
-<div class="section" id="capture-pipeline">
-<h2>Capture Pipeline<a class="headerlink" href="#capture-pipeline" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="capture-pipeline">
+<h2>Capture Pipeline<a class="headerlink" href="#capture-pipeline" title="Link to this heading">¶</a></h2>
 <p>SLVS-EC Capture</p>
 <p>A capture pipeline receives video frames from an external source and writes it into memory or streams it to another IP. The SLVS-EC receive capture pipeline is shown in the following figure.</p>
 <p><img alt="Capture Pipeline" src="../../../_images/hw_arch_capture_pipeline.png" /></p>
@@ -205,9 +215,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p>The IPs in this pipeline are configured to transport 4 ppc at 237.6 MHz.</p>
 <p>An <a class="reference external" href="https://docs.amd.com/r/en-US/pg085-axi4stream-infrastructure/AXI4-Stream-Broadcaster">AXI4-Stream Broadcaster IP</a> is used in the PL to broadcast 64-bit AXIS Video data from the SLVS_EC pipeline to the ISP pipeline and 10GigE pipeline.</p>
-</div>
-<div class="section" id="image-sensor-processing-isp-pipeline">
-<h2>Image Sensor Processing (ISP) pipeline<a class="headerlink" href="#image-sensor-processing-isp-pipeline" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="image-sensor-processing-isp-pipeline">
+<h2>Image Sensor Processing (ISP) pipeline<a class="headerlink" href="#image-sensor-processing-isp-pipeline" title="Link to this heading">¶</a></h2>
 <p>The ISP pipeline converts the sensor data to Y8 format, resizes the image to 1920x1080p and writes it to memory. The acceleration pipeline reads these frames. ISP pipeline is shown in the following figure.</p>
 <p><img alt="ISP Pipeline" src="../../../_images/hw_arch_isp_pipeline.png" /></p>
 <ul>
@@ -235,9 +245,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>The video frame buffer takes AXI4-Stream (RGB8 for color and Y8 for mono) input data and converts it to AXI4-MM format, which is written to memory. The AXI-MM (Memory Mapped) interface is connected to the S_AXI port of the PS. For each video frame transfer, an interrupt is generated. A general purpose I/O (GPIO) is used to reset the IP. For more information, see the (<a class="reference external" href="https://docs.amd.com/r/en-US/pg278-v-frmbuf">Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide</a>).</p></li>
 </ul>
 <p>All the IPs in this pipeline are configured to transport 4 ppc at 237.6 MHz.</p>
-</div>
-<div class="section" id="output-pipeline-10gige">
-<h2>Output pipeline - 10GigE<a class="headerlink" href="#output-pipeline-10gige" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="output-pipeline-10gige">
+<h2>Output pipeline - 10GigE<a class="headerlink" href="#output-pipeline-10gige" title="Link to this heading">¶</a></h2>
 <p>The 10GigE pipeline transfers the captured raw data to the host system via an SFP connection. The block diagram of the 10GigE Vision pipeline is shown below. The major blocks in the pipeline are provided by Sensor to Image (S2I)</p>
 <p><img alt="Block diagram of the 10GigE Vision pipeline" src="../../../_images/hw_arch_10g_pipeline.png" /></p>
 <p>The pipeline consists of following modules:</p>
@@ -247,9 +257,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><strong>10GigE MAC</strong>: This module implements the Media Access Controller (MAC) and sends data to the PHY over XGMII (Media-Independant-Interface).</p></li>
 <li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/pg210-25g-ethernet">AMD 10G/25G High Speed Ethernet Subsystem</a>is configured to support the  physical coding sublayer/physical medium attachment (PCS/PMA) functions at 10G speeds. The IP implements the PHY layer of the 10GigE protocol and transmits the packetized sensor data on the Gigabit transceiver</p></li>
 </ul>
-</div>
-<div class="section" id="resource-utilization-after-synthesis">
-<h2>Resource Utilization after Synthesis<a class="headerlink" href="#resource-utilization-after-synthesis" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="resource-utilization-after-synthesis">
+<h2>Resource Utilization after Synthesis<a class="headerlink" href="#resource-utilization-after-synthesis" title="Link to this heading">¶</a></h2>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -309,24 +319,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td style="text-align: left;">0</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+</table></section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>To get the 10GigE IP license, <a class="reference external" href="https://www.euresys.com/en/About-us/Contact-us">contact Sensor to Image S2I</a>.</p></li>
 <li><p>S2I Release note <a class="reference external" href="https://www.euresys.com/en/About-us/Blog-event/News/New-GigE-Vision-Viewer-for-AMD-Xilinx-Kria-KR260-R">here</a>.</p></li>
 <li><p>Download the packages from S2I <a class="reference external" href="https://www.euresys.com/en/Support/Download-area">here</a>.</p></li>
 </ul>
-</div>
-<div class="section" id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="sw_arch_platform_dd.html"><span class="doc">SW Architecture of the platform</span></a></p></li>
 <li><p><a class="reference internal" href="hw_arch_accel_dd.html"><span class="doc">HW Architecture of the accelerator</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="introduction.html"><span class="doc">Introduction</span></a></p></li>
 </ul>
-<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -341,8 +351,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on July 31, 2025.
+    <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 19, 2026.
       </span></p>
   </div>
 

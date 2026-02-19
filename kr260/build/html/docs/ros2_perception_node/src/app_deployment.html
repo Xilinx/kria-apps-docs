@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
 <script type="text/javascript">
-function OptanonWrapper() { }
+(function() {
+    var host = window.location.hostname;
+    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
+        s.type = 'text/javascript';
+        s.charset = 'UTF-8';
+        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
+        s.setAttribute('data-document-language', 'true');
+        document.head.appendChild(s);
+
+        window.OptanonWrapper = function() { };
+    }
+})();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -26,11 +39,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -48,7 +59,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -147,16 +157,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Setting up the Board and Application Deployment</h1> </td>
  </tr>
-</table><div class="section" id="board-setup-and-application-deployment">
-<h1>Board Setup and Application Deployment<a class="headerlink" href="#board-setup-and-application-deployment" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+</table><section id="board-setup-and-application-deployment">
+<h1>Board Setup and Application Deployment<a class="headerlink" href="#board-setup-and-application-deployment" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>This document shows how to setup the board and environment to execute the Perception stack application.</p>
-</div>
-<div class="section" id="pre-requisite">
-<h2>Pre-requisite<a class="headerlink" href="#pre-requisite" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="hardware-requirement">
-<h3>Hardware Requirement<a class="headerlink" href="#hardware-requirement" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="pre-requisite">
+<h2>Pre-requisite<a class="headerlink" href="#pre-requisite" title="Link to this heading">¶</a></h2>
+<section id="hardware-requirement">
+<h3>Hardware Requirement<a class="headerlink" href="#hardware-requirement" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>KR260 Robotics Starter Kit</p></li>
 <li><p>KR260 Power Supply &amp; Adapter (Included with KR260 Robotics Starter Kit)</p></li>
@@ -165,15 +175,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>16GB MicroSD Cards (Included with KR260 Robotics Starter Kit)</p></li>
 <li><p>Ubuntu 22.04 workstation(x86 Host) with ethernet port for setting up simulation on Gazebo and Visualizing the simulated nodes on RQT</p></li>
 </ul>
-</div>
-<div class="section" id="hardware-setup">
-<h3>Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="hardware-setup">
+<h3>Hardware Setup<a class="headerlink" href="#hardware-setup" title="Link to this heading">¶</a></h3>
 <p>Connect the Workstation and KR260 board to the same network as shown below.</p>
 <p><img alt="Hardware setup" src="../../../_images/hardware_setup.png" /></p>
-</div>
-</div>
-<div class="section" id="environment-setup-on-host-x86-machine-ubuntu-22-04">
-<h2>Environment Setup On Host(x86) Machine(Ubuntu 22.04)<a class="headerlink" href="#environment-setup-on-host-x86-machine-ubuntu-22-04" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="environment-setup-on-host-x86-machine-ubuntu-22-04">
+<h2>Environment Setup On Host(x86) Machine(Ubuntu 22.04)<a class="headerlink" href="#environment-setup-on-host-x86-machine-ubuntu-22-04" title="Link to this heading">¶</a></h2>
 <ol>
 <li><p>Install ROS2 using debian package, see install guide <a class="reference external" href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">here</a>. Here is the snippet of what is needed for this application:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>sudo<span class="w"> </span>curl<span class="w"> </span>-sSL<span class="w"> </span>https://raw.githubusercontent.com/ros/rosdistro/master/ros.key<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/ros-archive-keyring.gpg
@@ -212,8 +222,8 @@ ros2<span class="w"> </span>launch<span class="w"> </span>perception_2nodes<span
 <p><img alt="../../../_images/gazebo_sim.png" src="../../../_images/gazebo_sim.png" /></p>
 </li>
 </ol>
-<div class="section" id="setting-up-rqt-on-host-x86-machine-to-view-the-demo">
-<h3>Setting up RQT on Host(x86) Machine to view the demo<a class="headerlink" href="#setting-up-rqt-on-host-x86-machine-to-view-the-demo" title="Permalink to this heading">¶</a></h3>
+<section id="setting-up-rqt-on-host-x86-machine-to-view-the-demo">
+<h3>Setting up RQT on Host(x86) Machine to view the demo<a class="headerlink" href="#setting-up-rqt-on-host-x86-machine-to-view-the-demo" title="Link to this heading">¶</a></h3>
 <ol>
 <li><p>Open new terminal and launch <a class="reference external" href="https://docs.ros.org/en/humble/Concepts/About-RQt.html">RQT</a> using rqt command as shown below for visualizing the perception graph. It opens a window that appears as shown below:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash<span class="w">  </span><span class="c1"># source ROS2 Humble</span>
@@ -232,10 +242,10 @@ rqt
 <blockquote>
 <div><p><strong><em>NOTE:</em></strong>  You are expected to launch as many RQT plugins as required for visualizing the perception show as shown in the below gif animations.</p>
 </div></blockquote>
-<br></div>
-</div>
-<div class="section" id="initial-setup-setting-up-the-kr260-board">
-<h2>Initial Setup, Setting Up The KR260 Board<a class="headerlink" href="#initial-setup-setting-up-the-kr260-board" title="Permalink to this heading">¶</a></h2>
+<br></section>
+</section>
+<section id="initial-setup-setting-up-the-kr260-board">
+<h2>Initial Setup, Setting Up The KR260 Board<a class="headerlink" href="#initial-setup-setting-up-the-kr260-board" title="Link to this heading">¶</a></h2>
 <ol>
 <li><p>Go through  <a class="reference internal" href="../../linux_boot.html"><span class="doc">Booting Kria Starter Kit Linux</span></a> to complete the minimum setup required to boot Linux before continuing with the instructions in this page.</p></li>
 <li><p>Get the latest ROS perception application and firmware package:</p>
@@ -285,9 +295,9 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </div>
 </li>
 </ol>
-<br></div>
-<div class="section" id="run-the-application-on-kr260">
-<h2>Run The Application on KR260<a class="headerlink" href="#run-the-application-on-kr260" title="Permalink to this heading">¶</a></h2>
+<br></section>
+<section id="run-the-application-on-kr260">
+<h2>Run The Application on KR260<a class="headerlink" href="#run-the-application-on-kr260" title="Link to this heading">¶</a></h2>
 <p>This application has two flavours, which are developed in way that you can understand how he can tweak the application to achieve a desired performance during the development. Below are the versions and their details:</p>
 <blockquote>
 <div><p><strong><em>NOTE:</em></strong> This application assumes camera resolution to be 640x480, and uses a custom map for rectifying the image</p>
@@ -316,9 +326,9 @@ ros2<span class="w"> </span>launch<span class="w"> </span>perception_2nodes<span
 <blockquote>
 <div><p><strong><em>NOTE:</em></strong> For benchmark results using Tracetools and other ROS2 acceleration examples, refer to <a class="reference external" href="https://xilinx.github.io/KRS/sphinx/build/html/index.html">Kria Robotics Stack</a> (KRS).</p>
 </div></blockquote>
-</div>
-<div class="section" id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://xilinx.github.io/KRS/sphinx/build/html/docs/intro.html">Kria Robotics Stack (KRS)</a></p></li>
 <li><p><a class="reference internal" href="issue-perception.html"><span class="doc">Known Issues</span></a></p></li>
@@ -331,8 +341,8 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></div>
-</div>
+--><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></section>
+</section>
 
 
            </div>
@@ -347,8 +357,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on July 31, 2025.
+    <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 19, 2026.
       </span></p>
   </div>
 

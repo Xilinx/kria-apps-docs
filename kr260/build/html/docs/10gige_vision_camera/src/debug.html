@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
 <script type="text/javascript">
-function OptanonWrapper() { }
+(function() {
+    var host = window.location.hostname;
+    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
+        s.type = 'text/javascript';
+        s.charset = 'UTF-8';
+        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
+        s.setAttribute('data-document-language', 'true');
+        document.head.appendChild(s);
+
+        window.OptanonWrapper = function() { };
+    }
+})();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -26,11 +39,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -48,7 +59,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -153,8 +163,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Machine Vision Camera Tutorial</h1> </td>
  </tr>
-</table><div class="section" id="debug">
-<h1>Debug<a class="headerlink" href="#debug" title="Permalink to this heading">¶</a></h1>
+</table><section id="debug">
+<h1>Debug<a class="headerlink" href="#debug" title="Link to this heading">¶</a></h1>
 <p>First review the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">FAQ</a> for commonly encountered issues across AMD Kria™ SOM applications.</p>
 <ol>
 <li><p>To get the maximum fps in the sphinx GEV viewer, you can change the draw value in sphinx –&gt; options based on the host type (windows or ubuntu)</p>
@@ -203,8 +213,8 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 </div>
 </li>
 </ol>
-<div class="section" id="gst-launch-examples-for-live-input-and-raw-output">
-<h2>Gst-launch Examples for Live Input and Raw Output<a class="headerlink" href="#gst-launch-examples-for-live-input-and-raw-output" title="Permalink to this heading">¶</a></h2>
+<section id="gst-launch-examples-for-live-input-and-raw-output">
+<h2>Gst-launch Examples for Live Input and Raw Output<a class="headerlink" href="#gst-launch-examples-for-live-input-and-raw-output" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>Live In - Live Out - Mono</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 v4l2src device=/dev/video0 io-mode=5 ! video/x-raw, width=1920, height=1080, format=GRAY8, framerate=60/1 ! perf ! kmssink bus-id=fd4a0000.display fullscreen-overlay=true -v
@@ -227,9 +237,9 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="gst-launch-examples-for-live-input-and-pre-process-output">
-<h2>Gst-launch Examples for Live Input and Pre-process Output<a class="headerlink" href="#gst-launch-examples-for-live-input-and-pre-process-output" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="gst-launch-examples-for-live-input-and-pre-process-output">
+<h2>Gst-launch Examples for Live Input and Pre-process Output<a class="headerlink" href="#gst-launch-examples-for-live-input-and-pre-process-output" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>Live In - Live Out - Mono</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 v4l2src device=/dev/video0 io-mode=4 ! video/x-raw, width=1920, height=1080, format=GRAY8, framerate=60/1 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/mono/otsu-accelarator.json ! queue ! video/x-raw, width=1920, height=1080, format=GRAY8 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/mono/preprocess-accelarator-stride.json ! video/x-raw, width=1920, height=1080, format=GRAY8 ! perf ! kmssink bus-id=fd4a0000.display fullscreen-overlay=true -v
@@ -242,9 +252,9 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="gst-launch-examples-for-live-input-and-cca-with-text-overlay-output">
-<h2>Gst-launch Examples for Live Input and CCA with Text Overlay Output<a class="headerlink" href="#gst-launch-examples-for-live-input-and-cca-with-text-overlay-output" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="gst-launch-examples-for-live-input-and-cca-with-text-overlay-output">
+<h2>Gst-launch Examples for Live Input and CCA with Text Overlay Output<a class="headerlink" href="#gst-launch-examples-for-live-input-and-cca-with-text-overlay-output" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>Live In - Live Out - Color</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 v4l2src device=/dev/video0 io-mode=4 ! video/x-raw, width=1920, height=1080, format=GRAY8, framerate=60/1 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/color/otsu-accelarator.json ! queue ! video/x-raw, width=1920, height=1080, format=GRAY8 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/color/preprocess-accelarator.json ! queue ! video/x-raw, width=1920, height=1080, format=NV16 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/color/cca-accelarator-stride.json ! queue ! video/x-raw, width=1920, height=1080, format=GRAY8 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/color/text2overlay.json ! video/x-raw, width=1920, height=1080, format=GRAY8 ! perf ! kmssink bus-id=fd4a0000.display fullscreen-overlay=true sync=false -v
@@ -257,9 +267,9 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="gst-launch-examples-for-file-input-and-raw-output">
-<h2>Gst-launch Examples for File Input and Raw Output<a class="headerlink" href="#gst-launch-examples-for-file-input-and-raw-output" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="gst-launch-examples-for-file-input-and-raw-output">
+<h2>Gst-launch Examples for File Input and Raw Output<a class="headerlink" href="#gst-launch-examples-for-file-input-and-raw-output" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>File In - Live Out - Mono</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 filesrc location=./input.y8 blocksize=2073600 ! rawvideoparse use-sink-caps=false width=1920 height=1080 format=gray8 framerate=2/1 ! perf ! kmssink bus-id=fd4a0000.display fullscreen-overlay=true sync=true -v
@@ -272,9 +282,9 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="gst-launch-examples-for-file-input-and-pre-process-output">
-<h2>Gst-launch Examples for File Input and Pre-process Output<a class="headerlink" href="#gst-launch-examples-for-file-input-and-pre-process-output" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="gst-launch-examples-for-file-input-and-pre-process-output">
+<h2>Gst-launch Examples for File Input and Pre-process Output<a class="headerlink" href="#gst-launch-examples-for-file-input-and-pre-process-output" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>File In - Live Out - Color</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 filesrc location=./input.rgb blocksize=6220800 ! rawvideoparse use-sink-caps=false width=1920 height=1080 format=rgb framerate=2/1 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/color/otsu-accelarator.json ! queue ! video/x-raw, width=1920, height=1080, format=GRAY8 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/color/preprocess-accelarator-stride.json ! queue ! video/x-raw, width=1920, height=1080, format=GRAY8 ! perf ! kmssink bus-id=fd4a0000.display fullscreen-overlay=true sync=true -v
@@ -287,9 +297,9 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="gst-launch-examples-for-file-input-and-cca-with-text-overlay-output">
-<h2>Gst-launch Examples for File Input and CCA with Text Overlay Output<a class="headerlink" href="#gst-launch-examples-for-file-input-and-cca-with-text-overlay-output" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="gst-launch-examples-for-file-input-and-cca-with-text-overlay-output">
+<h2>Gst-launch Examples for File Input and CCA with Text Overlay Output<a class="headerlink" href="#gst-launch-examples-for-file-input-and-cca-with-text-overlay-output" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p>File In - Live Out - Mono</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 filesrc location=./input.y8 blocksize=2073600 ! rawvideoparse use-sink-caps=false width=1920 height=1080 format=gray8 framerate=2/1 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/mono/otsu-accelarator.json ! queue ! video/x-raw, width=1920, height=1080, format=GRAY8 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/mono/preprocess-accelarator.json ! queue ! video/x-raw, width=1920, height=1080, format=NV16 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/mono/cca-accelarator-stride.json ! queue ! video/x-raw, width=1920, height=1080, format=GRAY8 ! vvas_xfilter kernels-config=/opt/xilinx/xlnx-app-kr260-mv-defect-detect/share/vvas/mono/text2overlay.json ! video/x-raw, width=1920, height=1080, format=GRAY8 ! perf ! kmssink bus-id=fd4a0000.display fullscreen-overlay=true sync=true -v
@@ -302,15 +312,15 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="known_issues.html"><span class="doc">Known Issues and Limitations</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="app_deployment.html"><span class="doc">MV Camera Application Deployment</span></a></p></li>
 </ul>
-<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
@@ -325,8 +335,8 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on July 31, 2025.
+    <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 19, 2026.
       </span></p>
   </div>
 

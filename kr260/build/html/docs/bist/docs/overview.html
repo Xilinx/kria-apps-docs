@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
 <script type="text/javascript">
-function OptanonWrapper() { }
+(function() {
+    var host = window.location.hostname;
+    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
+        s.type = 'text/javascript';
+        s.charset = 'UTF-8';
+        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
+        s.setAttribute('data-document-language', 'true');
+        document.head.appendChild(s);
+
+        window.OptanonWrapper = function() { };
+    }
+})();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -26,11 +39,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=2406f4f9"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -46,7 +57,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -118,16 +128,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="bist-overview">
-<h1>BIST Overview<a class="headerlink" href="#bist-overview" title="Permalink to this heading">¶</a></h1>
+  <section id="bist-overview">
+<h1>BIST Overview<a class="headerlink" href="#bist-overview" title="Link to this heading">¶</a></h1>
 <p>The Built-In Self Test (BIST) application tests the interfaces on the AMD Kria™ starter kits to verify functionality and/or performance. If a custom design is not working as expected, this application can be used to differentiate hardware issues from design issues.</p>
 <p>The BIST application is based on the pytest framework and designed to be modular and configurable so that it can be used across different starter kits. The tests are grouped into modules based on the interface which allows testing individual interfaces if needed. Some tests are self-validating, while others require user input based on observation. Each individual test either verifies the functionality or performance of an interface.</p>
-<div class="section" id="framework">
-<h2>Framework<a class="headerlink" href="#framework" title="Permalink to this heading">¶</a></h2>
+<section id="framework">
+<h2>Framework<a class="headerlink" href="#framework" title="Link to this heading">¶</a></h2>
 <p>The Built-In Self Test (BIST) application is based on the <a class="reference external" href="https://pytest.org/">pytest</a> framework. Pytest allows <a class="reference external" href="https://docs.pytest.org/parametrize.html">parametrizing</a> the test functions so that they can be reused across different boards and interfaces. The tests are enumerated based on the target board and you can choose to run all tests for the target board, selected test modules, or selected individual tests. The file structure is described in the next section.</p>
-</div>
-<div class="section" id="file-structure">
-<h2>File Structure<a class="headerlink" href="#file-structure" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="file-structure">
+<h2>File Structure<a class="headerlink" href="#file-structure" title="Link to this heading">¶</a></h2>
 <p>The source code for the BIST application can be found in the <a class="reference external" href="https://github.com/Xilinx/kria-bist">kria-bist</a> repository. The tests directory contains
 a module directory for each interface, along with a top level conftest.py and
 pytest.ini.</p>
@@ -159,9 +169,9 @@ function receives all the parameters from the config file and uses the label
 parameter to determine which run function should be called for each test. Once
 the run function returns either True or False, the test function asserts this
 value and this determines whether a test passed or failed.</p>
-</div>
-<div class="section" id="test-modules">
-<h2>Test Modules<a class="headerlink" href="#test-modules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="test-modules">
+<h2>Test Modules<a class="headerlink" href="#test-modules" title="Link to this heading">¶</a></h2>
 <p>The test modules are listed below. Refer to the individual module pages for more details.</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -182,12 +192,12 @@ value and this determines whether a test passed or failed.</p>
 <li class="toctree-l1"><a class="reference internal" href="modules/video.html">Video Test Module</a></li>
 </ul>
 </div>
-<div class="section" id="support">
-<h3>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h3>
+<section id="support">
+<h3>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h3>
 <p>GitHub issues will be used for tracking requests and bugs. For questions, go to <a class="reference external" href="http://forums.xilinx.com/">forums.xilinx.com</a>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
@@ -199,8 +209,8 @@ value and this determines whether a test passed or failed.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on July 31, 2025.
+    <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 19, 2026.
       </span></p>
   </div>
 
