@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-<script type="text/javascript">
-(function() {
-    var host = window.location.hostname;
-    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-        s.type = 'text/javascript';
-        s.charset = 'UTF-8';
-        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
-        s.setAttribute('data-document-language', 'true');
-        document.head.appendChild(s);
 
-        window.OptanonWrapper = function() { };
-    }
+<script type="text/javascript">
+(function () {
+  // Load OneTrust only on approved domains.
+  var allowedHosts = [
+    "xilinx.github.io",
+    "www.xilinx.com"
+  ];
+
+  var host = window.location.hostname.toLowerCase();
+  var isAllowed = allowedHosts.some(function (d) {
+    return host === d || host.endsWith("." + d);
+  });
+
+  if (!isAllowed) {
+    return;
+  }
+
+  var s = document.createElement("script");
+  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+  s.type = "text/javascript";
+  s.charset = "UTF-8";
+  s.setAttribute("data-document-language", "true");
+  s.setAttribute("data-domain-script", "03af8d57-0a04-47a6-8f10-322fa00d8fc7");
+  document.head.appendChild(s);
+
+  window.OptanonWrapper = function () {};
 })();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -39,9 +50,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=2406f4f9"></script>
-        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
-        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -57,6 +70,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../index.html" class="icon icon-home"> Kria™ KR260
+            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -128,14 +142,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="bist-motor-test-module">
-<h1>BIST Motor Test Module<a class="headerlink" href="#bist-motor-test-module" title="Link to this heading">¶</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+  <div class="section" id="bist-motor-test-module">
+<h1>BIST Motor Test Module<a class="headerlink" href="#bist-motor-test-module" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>The Motor test module verifies the functionality of KD240 starter kit.</p>
-</section>
-<section id="tests">
-<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
 <p>The module contains seven self-validating functional tests. It uses py_foc_motor_ctrl
 library to create the motor control instance for calling member functions, such as getSpeed(),
 setOperationMode(), and so on.</p>
@@ -212,9 +226,9 @@ below predefined threshold value of 0.6A for the test to pass.</p>
 </ul>
 </li>
 </ol>
-</section>
-<section id="test-dependencies">
-<h2>Test Dependencies<a class="headerlink" href="#test-dependencies" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="test-dependencies">
+<h2>Test Dependencies<a class="headerlink" href="#test-dependencies" title="Permalink to this heading">¶</a></h2>
 <p>Some of the above tests include dependency tests that are run prior to the main test.
 The test dependencies are summarized in the following table. The dependency tests must
 pass before the main test is run to ensure the results from the main test are accurate.
@@ -240,9 +254,9 @@ If a dependency test fails, the main test is aborted.</p>
 <td style="text-align: center;">dc_link_volt_adc_fb_test, qei_gate_drive_test</td>
 </tr>
 </tbody>
-</table></section>
-<section id="test-execution">
-<h2>Test Execution<a class="headerlink" href="#test-execution" title="Link to this heading">¶</a></h2>
+</table></div>
+<div class="section" id="test-execution">
+<h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
 <p>The example commands for this module are provided below (KD240):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-m<span class="w"> </span>motor<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
 pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>qei_gate_drive_test<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>QEI<span class="w"> </span>interface<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;Speed&#39;</span><span class="w"> </span>mode
@@ -255,30 +269,30 @@ pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class=
 </pre></div>
 </div>
 <p>The test prints out the messages indicating the motor mode and readings of the motor object for each test.</p>
-</section>
-<section id="test-debug">
-<h2>Test Debug<a class="headerlink" href="#test-debug" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="test-debug">
+<h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure to load the BIST firmware before running the motor tests as motor hls_foc_periodic device
 is not detected otherwise.</p></li>
 </ul>
-</section>
-<section id="known-issues-and-limitations">
-<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="known-issues-and-limitations">
+<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The motor test is limited to verifying the functionalities specified in the configuration file on loading
 the BIST firmware only.</p></li>
 <li><p>The established threshold values or ranges are based on the outputs observed during experimentation.
 The values might differ slightly from board to board.</p></li>
 </ul>
-</section>
-<section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
-<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
-</section>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
 
 
            </div>
@@ -291,7 +305,7 @@ The values might differ slightly from board to board.</p></li>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 19, 2026.
+      <span class="lastupdated">Last updated on April 23, 2026.
       </span></p>
   </div>
 
@@ -303,7 +317,7 @@ The values might differ slightly from board to board.</p></li>
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/legal/copyright.html">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/legal/privacy.html">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/legal/trademarks.html">Trademarks</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/cr/supply-chain-transparency.pdf">Supply Chain Transparency</a> | <a target="_blank" href="https://www.amd.com/en/legal/competition.html">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://www.amd.com/en/legal/cookies.html">Cookies Policy</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

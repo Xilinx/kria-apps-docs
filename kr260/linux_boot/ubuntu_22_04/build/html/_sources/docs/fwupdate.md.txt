@@ -12,5 +12,4 @@ The QSPI boot firmware image update persists through power cycles or SD card cha
 
 Jump to [Step 5: Boot Linux](./boot.md).
 
-
 <p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>

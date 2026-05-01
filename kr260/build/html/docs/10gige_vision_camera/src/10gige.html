@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-<script type="text/javascript">
-(function() {
-    var host = window.location.hostname;
-    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-        s.type = 'text/javascript';
-        s.charset = 'UTF-8';
-        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
-        s.setAttribute('data-document-language', 'true');
-        document.head.appendChild(s);
 
-        window.OptanonWrapper = function() { };
-    }
+<script type="text/javascript">
+(function () {
+  // Load OneTrust only on approved domains.
+  var allowedHosts = [
+    "xilinx.github.io",
+    "www.xilinx.com"
+  ];
+
+  var host = window.location.hostname.toLowerCase();
+  var isAllowed = allowedHosts.some(function (d) {
+    return host === d || host.endsWith("." + d);
+  });
+
+  if (!isAllowed) {
+    return;
+  }
+
+  var s = document.createElement("script");
+  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+  s.type = "text/javascript";
+  s.charset = "UTF-8";
+  s.setAttribute("data-document-language", "true");
+  s.setAttribute("data-domain-script", "03af8d57-0a04-47a6-8f10-322fa00d8fc7");
+  document.head.appendChild(s);
+
+  window.OptanonWrapper = function () {};
 })();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -39,9 +50,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=2406f4f9"></script>
-        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -59,6 +72,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -100,8 +114,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Hardware Architecture of the Platform</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#capture-pipeline">Capture Pipeline</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#image-sensor-processing-isp-pipeline">Image Sensor Processing (ISP) pipeline</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#output-pipeline-10gige">Output pipeline - 10GigE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-sensor-processing-isp-pipeline">Image Sensor Processing (ISP) Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-pipeline-10gige">Output Pipeline — 10GigE</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#resource-utilization-after-synthesis">Resource Utilization after Synthesis</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
@@ -161,112 +175,113 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Machine Vision Camera Tutorial</h1> </td>
+ <td align="center"><h1>Machine Vision Camera Tutorial</h1>
+ </td>
  </tr>
-</table><section id="hardware-architecture-of-the-platform">
-<h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Link to this heading">¶</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+</table><div class="section" id="hardware-architecture-of-the-platform">
+<h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This section describes the design implemented in the programmable logic (PL). The following figure shows the top-level hardware architecture of the reference design.</p>
 <p><img alt="Top Level Hardware Architecture" src="../../../_images/Top_level_hardware_architecture.png" /></p>
-<p>At a high-level, the design comprises of four pipelines:</p>
+<p>At a high level, the design comprises four pipelines:</p>
 <ul class="simple">
-<li><p>Capture/Input pipeline: This comprises of pipelines through which video data is captured.</p>
+<li><p>Capture/Input pipeline: This comprises pipelines through which video data is captured.</p>
 <ul>
 <li><p>Capture images from a file source (PS)</p></li>
 <li><p>SLVS-EC capture pipeline (PL)</p></li>
 </ul>
 </li>
-<li><p>Image Sensor Processing (ISP) pipeline: This comprises of functions to improve image quality</p>
+<li><p>Image Sensor Processing (ISP) pipeline: This comprises functions to improve image quality.</p>
 <ul>
 <li><p>ISP for color stream (PL)</p></li>
 <li><p>ISP for mono stream (PL)</p></li>
 </ul>
 </li>
-<li><p>Display/Output pipeline: This comprises of pipelines through which video data is output.</p>
+<li><p>Display/Output pipeline: This comprises pipelines through which video data is output.</p>
 <ul>
 <li><p>Display port as sink for output images (PS)</p></li>
 <li><p>10G Ethernet pipeline (PL)</p></li>
 </ul>
 </li>
-<li><p>Accelerator pipeline: This comprises of overlay accelerator functions integrated into the platform using AMD Vitis™.</p>
+<li><p>Accelerator pipeline: This comprises overlay accelerator functions integrated into the platform using AMD Vitis™.</p>
 <ul>
 <li><p>The Pre-Process block modifies the input data as required by the Defect Detection function (PL).</p></li>
 <li><p>The Defect Detection block identifies defects in a mango (PL + PS).</p></li>
-<li><p>Both Pre-Process and Defect Detection use Vitis Vision Library functions.</p></li>
+<li><p>Both Pre-Process and Defect Detection use AMD Vitis™ Vision Library functions.</p></li>
 </ul>
 </li>
 </ul>
 <blockquote>
 <div><p><strong>NOTE:</strong> The PS interconnects in the figure are conceptual.</p>
 </div></blockquote>
-</section>
-<section id="capture-pipeline">
-<h2>Capture Pipeline<a class="headerlink" href="#capture-pipeline" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="capture-pipeline">
+<h2>Capture Pipeline<a class="headerlink" href="#capture-pipeline" title="Permalink to this heading">¶</a></h2>
 <p>SLVS-EC Capture</p>
-<p>A capture pipeline receives video frames from an external source and writes it into memory or streams it to another IP. The SLVS-EC receive capture pipeline is shown in the following figure.</p>
+<p>A capture pipeline receives video frames from an external source and writes it into memory or streams it to another IP. The following figure shows the SLVS-EC receive capture pipeline.</p>
 <p><img alt="Capture Pipeline" src="../../../_images/hw_arch_capture_pipeline.png" /></p>
-<p>This pipeline consists of four components: two that are controlled by the application processing unit (APU) via an AXI4-Lite based register interface; one is controlled by the APU via an Inter Integrated Circuit (I2C) register interface, and one is configured statically.</p>
+<p>This pipeline consists of four components: two that are controlled by the application processing unit (APU) using an AXI4-Lite based register interface, one is controlled by the APU using an Inter-integrated Circuit (I2C) register interface, and one is configured statically.</p>
 <ul class="simple">
-<li><p>The Sony IMX547 CMOS active pixel image sensor, sends sensor data to the SLVS RX IP through a two-lane Gigabit Trasceiver (GT) interface. It is controlled and programmed by via an I2C interface using an AXI I2C controller in the PL. The Framos Sensor Module host the Sony IMX547 camera sensor, and connects to the  KR260 carrier card via a flex cable and Framos Sensor Adaptor (FSA). For more information, refer to <a class="reference internal" href="sensor.html"><span class="doc">MV Camera Sensor</span></a></p></li>
-<li><p>The Framos SLVS-EC RX IP Core is a receiver that handles the byte-to-pixel conversion of the incoming sensor data stream. The IP Core provided by Framos encompasses Xilinx GTs, and the logic to process the sensor image and provide it on Parallel Pixel Interface (PPI). For more information, refer to <a class="reference external" href="https://www.framos.com/en/framos-slvs-ec-rx-ip-core">FRAMOS SLVS-EC RX IP CORE</a></p></li>
-<li><p>The Framos PPI to Video IP Core converts the PPI data to a parallel video stream</p></li>
-<li><p>The LogiCORE™ IP Video In to AXI4-Stream Video In to AXI4-Stream is designed to interface to video data (clocked parallel video data with synchronization signals - active video with either syncs, blanks or both) and convert it to the AXI4-Stream Video Protocol Interface. For more information, refer to <a class="reference external" href="https://docs.amd.com/r/en-US/pg043_v_vid_in_axi4s/Video-In-to-AXI4-Stream-v5.0-LogiCORE-IP-Product-Guide">Video In to AXI4-Stream IP Product Guide</a></p></li>
+<li><p>The Sony IMX547 CMOS active pixel image sensor sends sensor data to the SLVS RX IP through a two-lane Gigabit Transceiver (GT) interface. It is controlled and programmed using an I2C interface using an AXI I2C controller in the PL. The Framos Sensor Module hosts the Sony IMX547 camera sensor and connects to the KR260 carrier card using a flex cable and Framos Sensor Adaptor (FSA). For more information, refer to <a class="reference internal" href="sensor.html"><span class="doc">MV Camera Sensor</span></a>.</p></li>
+<li><p>The Framos SLVS-EC RX IP Core is a receiver that handles the byte-to-pixel conversion of the incoming sensor data stream. The IP Core provided by Framos encompasses AMD GTs and the logic to process the sensor image and provide it on Parallel Pixel Interface (PPI). For more information, refer to <a class="reference external" href="https://www.framos.com/en/framos-slvs-ec-rx-ip-core">FRAMOS SLVS-EC RX IP CORE</a>.</p></li>
+<li><p>The Framos PPI to Video IP Core converts the PPI data to a parallel video stream.</p></li>
+<li><p>The LogiCORE™ IP Video In to AXI4-Stream is designed to interface to video data (clocked parallel video data with synchronization signals — active video with either syncs, blanks, or both) and convert it to the AXI4-Stream Video Protocol Interface. For more information, refer to <a class="reference external" href="https://docs.amd.com/r/en-US/pg043_v_vid_in_axi4s/Video-In-to-AXI4-Stream-v5.0-LogiCORE-IP-Product-Guide">Video In to AXI4-Stream IP Product Guide</a>.</p></li>
 </ul>
 <p>The IPs in this pipeline are configured to transport 4 ppc at 237.6 MHz.</p>
 <p>An <a class="reference external" href="https://docs.amd.com/r/en-US/pg085-axi4stream-infrastructure/AXI4-Stream-Broadcaster">AXI4-Stream Broadcaster IP</a> is used in the PL to broadcast 64-bit AXIS Video data from the SLVS_EC pipeline to the ISP pipeline and 10GigE pipeline.</p>
-</section>
-<section id="image-sensor-processing-isp-pipeline">
-<h2>Image Sensor Processing (ISP) pipeline<a class="headerlink" href="#image-sensor-processing-isp-pipeline" title="Link to this heading">¶</a></h2>
-<p>The ISP pipeline converts the sensor data to Y8 format, resizes the image to 1920x1080p and writes it to memory. The acceleration pipeline reads these frames. ISP pipeline is shown in the following figure.</p>
+</div>
+<div class="section" id="image-sensor-processing-isp-pipeline">
+<h2>Image Sensor Processing (ISP) Pipeline<a class="headerlink" href="#image-sensor-processing-isp-pipeline" title="Permalink to this heading">¶</a></h2>
+<p>The ISP pipeline converts the sensor data to Y8 format, resizes the image to 1920x1080p, and writes it to memory. The acceleration pipeline reads these frames. The following figure shows the ISP pipeline.</p>
 <p><img alt="ISP Pipeline" src="../../../_images/hw_arch_isp_pipeline.png" /></p>
 <ul>
-<li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/pg085-axi4stream-infrastructure/AXI4-Stream-Subset-Converter">AXI subset converter</a>, is a statically-configured IP core that converts the 64-bit AXI4-Stream from the capture pipeline to a 32-bit AXI4-Stream output data by dropping the least significant bit (LSB) of each data word. The most significant bits carry the relevant information.</p></li>
+<li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/pg085-axi4stream-infrastructure/AXI4-Stream-Subset-Converter">AXI subset converter</a> is a statically configured IP core that converts the 64-bit AXI4-Stream from the capture pipeline to a 32-bit AXI4-Stream output data by dropping the least significant bit (LSB) of each data word. The most significant bits carry the relevant information.</p></li>
 <li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/Vitis_Libraries/vision/ISPpipeline-bm.html">ISP function</a> from the AMD Vitis™ Vision libraries is a collection of functions that enhances the overall visual quality of the raw image from the sensor.</p>
-<p>Functions implemented for color sensor</p>
+<p>Functions implemented for color sensor:</p>
 <ul class="simple">
 <li><p>Gain Control</p></li>
-<li><p>Demoaosaicing</p></li>
+<li><p>Demosaicing</p></li>
 <li><p>Auto white balancing</p></li>
 <li><p>Color correction</p></li>
 <li><p>Gamma correction</p></li>
 <li><p>Resizing to 1920x1080</p></li>
 </ul>
-<p>For color the raw image is converted to BGR8 format, 24 bits per pixel, 96-bits for 4ppc the</p>
-<p>Functions implemented for mono sensor</p>
+<p>For color, the raw image is converted to BGR8 format, 24 bits per pixel, 96-bits for 4ppc.</p>
+<p>Functions implemented for mono sensor:</p>
 <ul class="simple">
 <li><p>Gain Control</p></li>
 <li><p>Gamma correction</p></li>
 <li><p>Resizing to 1920x1080</p></li>
 </ul>
-<p>For mono the raw image is converted to Y8 format, 8 bits per pixel, 32-bits for 4ppc the</p>
+<p>For mono, the raw image is converted to Y8 format, 8 bits per pixel, 32-bits for 4ppc.</p>
 </li>
-<li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/pg085-axi4stream-infrastructure/AXI4-Stream-Subset-Converter">AXI subset converter</a>, is a statically-configured IP core that converts the 32-bit AXI4-Stream input data to a 96-bit AXI4-Stream output data by adding zeros to the most significant bit (MSB) of each data word. At four ppc, the AXI4-Stream width is 96-bits. This is applicable to the mono pipeline only.</p></li>
-<li><p>The video frame buffer takes AXI4-Stream (RGB8 for color and Y8 for mono) input data and converts it to AXI4-MM format, which is written to memory. The AXI-MM (Memory Mapped) interface is connected to the S_AXI port of the PS. For each video frame transfer, an interrupt is generated. A general purpose I/O (GPIO) is used to reset the IP. For more information, see the (<a class="reference external" href="https://docs.amd.com/r/en-US/pg278-v-frmbuf">Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide</a>).</p></li>
+<li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/pg085-axi4stream-infrastructure/AXI4-Stream-Subset-Converter">AXI subset converter</a> is a statically configured IP core that converts the 32-bit AXI4-Stream input data to a 96-bit AXI4-Stream output data by adding zeros to the most significant bit (MSB) of each data word. At four ppc, the AXI4-Stream width is 96-bits. This is applicable to the mono pipeline only.</p></li>
+<li><p>The video frame buffer takes AXI4-Stream (RGB8 for color and Y8 for mono) input data and converts it to AXI4-MM format, which is written to memory. The memory-mapped AXI interface is connected to the S_AXI port of the PS. For each video frame transfer, an interrupt is generated. A general-purpose I/O (GPIO) resets the IP. For more information, refer to the <a class="reference external" href="https://docs.amd.com/r/en-US/pg278-v-frmbuf">Video Frame Buffer Read and Video Frame Buffer Write LogiCORE IP Product Guide</a>.</p></li>
 </ul>
-<p>All the IPs in this pipeline are configured to transport 4 ppc at 237.6 MHz.</p>
-</section>
-<section id="output-pipeline-10gige">
-<h2>Output pipeline - 10GigE<a class="headerlink" href="#output-pipeline-10gige" title="Link to this heading">¶</a></h2>
-<p>The 10GigE pipeline transfers the captured raw data to the host system via an SFP connection. The block diagram of the 10GigE Vision pipeline is shown below. The major blocks in the pipeline are provided by Sensor to Image (S2I)</p>
+<p>All the IPs in this pipeline can transport 4 ppc at 237.6 MHz.</p>
+</div>
+<div class="section" id="output-pipeline-10gige">
+<h2>Output Pipeline — 10GigE<a class="headerlink" href="#output-pipeline-10gige" title="Permalink to this heading">¶</a></h2>
+<p>The 10GigE pipeline transfers the captured raw data to the host system using an SFP connection. The following block diagram shows the 10GigE Vision pipeline. The major blocks in the pipeline are provided by Sensor to Image (S2I).</p>
 <p><img alt="Block diagram of the 10GigE Vision pipeline" src="../../../_images/hw_arch_10g_pipeline.png" /></p>
-<p>The pipeline consists of following modules:</p>
+<p>The pipeline consists of the following modules:</p>
 <ul class="simple">
-<li><p><strong>Framebuffer with Gen DC</strong>: The AXI4 stream output of the SLVS-EC IP pipeline is forwarded to Framebuffer IP. This IP buffers the image data in memory. The Framebuffer also prepares the data to be sent in GenICam GenDC format, which allows for sending different types of data, for example, raw image, preprocessed image, metadata etc in a data container. It sends ethernet packet size data chunks to the 10GigE packet composer(XGigE).</p></li>
+<li><p><strong>Framebuffer with Gen DC</strong>: The AXI4 stream output of the SLVS-EC IP pipeline is forwarded to Framebuffer IP. This IP buffers the image data in memory. The Framebuffer also prepares the data to be sent in GenICam GenDC format, which allows for sending different types of data (for example, raw image, preprocessed image, and metadata) in a data container. It sends ethernet packet size data chunks to the 10GigE packet composer (XGigE).</p></li>
 <li><p><strong>XGigE core</strong>: This module handles all the low-level networking features to the rest of the system. It forms the GigE Vision stream channel and provides networking interface for the CPU system.</p></li>
-<li><p><strong>10GigE MAC</strong>: This module implements the Media Access Controller (MAC) and sends data to the PHY over XGMII (Media-Independant-Interface).</p></li>
-<li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/pg210-25g-ethernet">AMD 10G/25G High Speed Ethernet Subsystem</a>is configured to support the  physical coding sublayer/physical medium attachment (PCS/PMA) functions at 10G speeds. The IP implements the PHY layer of the 10GigE protocol and transmits the packetized sensor data on the Gigabit transceiver</p></li>
+<li><p><strong>10GigE MAC</strong>: This module implements the Media Access Controller (MAC) and sends data to the PHY over XGMII (Media-Independent-Interface).</p></li>
+<li><p>The <a class="reference external" href="https://docs.amd.com/r/en-US/pg210-25g-ethernet">AMD 10G/25G High Speed Ethernet Subsystem</a> is configured to support the physical coding sublayer/physical medium attachment (PCS/PMA) functions at 10G speeds. The IP implements the PHY layer of the 10GigE protocol and transmits the packetized sensor data on the Gigabit transceiver.</p></li>
 </ul>
-</section>
-<section id="resource-utilization-after-synthesis">
-<h2>Resource Utilization after Synthesis<a class="headerlink" href="#resource-utilization-after-synthesis" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="resource-utilization-after-synthesis">
+<h2>Resource Utilization after Synthesis<a class="headerlink" href="#resource-utilization-after-synthesis" title="Permalink to this heading">¶</a></h2>
 <table border="1" class="docutils">
 <thead>
 <tr>
 <th style="text-align: left;">Blocks</th>
 <th style="text-align: left;">LUT</th>
 <th style="text-align: left;">FF</th>
-<th style="text-align: left;">BRAM</th>
+<th style="text-align: left;">Block RAM</th>
 <th style="text-align: left;">URAM</th>
 <th style="text-align: left;">DSP</th>
 <th style="text-align: left;">GT</th>
@@ -319,24 +334,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td style="text-align: left;">0</td>
 </tr>
 </tbody>
-</table></section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+</table></div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>To get the 10GigE IP license, <a class="reference external" href="https://www.euresys.com/en/About-us/Contact-us">contact Sensor to Image S2I</a>.</p></li>
-<li><p>S2I Release note <a class="reference external" href="https://www.euresys.com/en/About-us/Blog-event/News/New-GigE-Vision-Viewer-for-AMD-Xilinx-Kria-KR260-R">here</a>.</p></li>
-<li><p>Download the packages from S2I <a class="reference external" href="https://www.euresys.com/en/Support/Download-area">here</a>.</p></li>
+<li><p>Refer to the <a class="reference external" href="https://www.euresys.com/en/About-us/Blog-event/News/New-GigE-Vision-Viewer-for-AMD-Xilinx-Kria-KR260-R">S2I Release note</a>.</p></li>
+<li><p><a class="reference external" href="https://www.euresys.com/en/Support/Download-area">Download the packages from S2I</a>.</p></li>
 </ul>
-</section>
-<section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="sw_arch_platform_dd.html"><span class="doc">SW Architecture of the platform</span></a></p></li>
-<li><p><a class="reference internal" href="hw_arch_accel_dd.html"><span class="doc">HW Architecture of the accelerator</span></a></p></li>
+<li><p><a class="reference internal" href="sw_arch_platform_dd.html"><span class="doc">SW Architecture of the Platform</span></a></p></li>
+<li><p><a class="reference internal" href="hw_arch_accel_dd.html"><span class="doc">HW Architecture of the Accelerator</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="introduction.html"><span class="doc">Introduction</span></a></p></li>
 </ul>
-<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
-</section>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
 
 
            </div>
@@ -352,7 +367,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 19, 2026.
+      <span class="lastupdated">Last updated on April 23, 2026.
       </span></p>
   </div>
 
@@ -364,7 +379,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/legal/copyright.html">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/legal/privacy.html">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/legal/trademarks.html">Trademarks</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/cr/supply-chain-transparency.pdf">Supply Chain Transparency</a> | <a target="_blank" href="https://www.amd.com/en/legal/competition.html">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://www.amd.com/en/legal/cookies.html">Cookies Policy</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

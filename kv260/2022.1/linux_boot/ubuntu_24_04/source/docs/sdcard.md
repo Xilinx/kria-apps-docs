@@ -13,9 +13,18 @@ Once your microSD card is flashed with the image, proceed to the next step.
 Looking for OS specific tools to write the image to the SD card?
 
 <details>
-<summary>Instructions for Windows</summary>
+<summary>Instructions for Raspberry Pi Imager (any OS) </summary>
 
-For Windows users, you can also use the Win32 Disk Imager tool instead of [Raspberry Pi Imager](https://www.raspberrypi.com/software/). Ensure that your SD card is correctly formatted before using the tool.  Also, ensure that the compressed SD card image for the Kria Starter Kit has been extracted using an archive decompression tool.
+For any OS users, visit the page below for instructions to copy the image to the SD card:
+
+https://documentation.ubuntu.com/core/how-to-guides/deploy-an-image/install-on-amd/#write-the-ubuntu-core-image-to-the-microsd-card 
+
+</details>
+
+<details>
+<summary>Instructions for Win32 Disk Imager tool (Windows only)</summary>
+
+For Windows users, you can also use the Win32 Disk Imager toolWin32 Disk Imager tool instead of [Raspberry Pi Imager](https://www.raspberrypi.com/software/). Ensure that your SD card is correctly formatted before using the tool.  Also, ensure that the compressed SD card image for the Kria Starter Kit has been extracted using an archive decompression tool.
 
 ![Win 32 disk image](./media/win32-disk-image.avif)
 
@@ -26,34 +35,8 @@ Click on ‘Write’ and then ‘Yes’ at the prompt to continue the write proc
 
 </details>
 
-<details>
-<summary>Instructions for macOS</summary>
-
-For macOS users, visit the Ubuntu download page below to copy the image to the SD card:
-
-https://ubuntu.com/download/iot/installation-media 
-
-Once on the Ubuntu download page, as seen below, click on the macOS link to jump to the instructions.
-
-![MAC OS imager](./media/ubunut-macos.avif)
-
-</details>
-
-<details>
-<summary>Instructions for Linux</summary>
-
-For Linux OS users, visit the Ubuntu download page below to copy the image to the SD card:
-
-https://ubuntu.com/download/iot/installation-media 
-
-Once on the Ubuntu download page, as seen below, click on the Ubuntu link to jump to the instructions.
-
-![Linux imager](./media/ubunut-linux.avif)
-
-</details>
-
 ## Next Step
 
 Jump to [Step 2: Connect Everything](./connections.md).
 
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2026 Advanced Micro Devices, Inc</p>

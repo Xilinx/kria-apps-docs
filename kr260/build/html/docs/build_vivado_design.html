@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-<script type="text/javascript">
-(function() {
-    var host = window.location.hostname;
-    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-        s.type = 'text/javascript';
-        s.charset = 'UTF-8';
-        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
-        s.setAttribute('data-document-language', 'true');
-        document.head.appendChild(s);
 
-        window.OptanonWrapper = function() { };
-    }
+<script type="text/javascript">
+(function () {
+  // Load OneTrust only on approved domains.
+  var allowedHosts = [
+    "xilinx.github.io",
+    "www.xilinx.com"
+  ];
+
+  var host = window.location.hostname.toLowerCase();
+  var isAllowed = allowedHosts.some(function (d) {
+    return host === d || host.endsWith("." + d);
+  });
+
+  if (!isAllowed) {
+    return;
+  }
+
+  var s = document.createElement("script");
+  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+  s.type = "text/javascript";
+  s.charset = "UTF-8";
+  s.setAttribute("data-document-language", "true");
+  s.setAttribute("data-domain-script", "03af8d57-0a04-47a6-8f10-322fa00d8fc7");
+  document.head.appendChild(s);
+
+  window.OptanonWrapper = function () {};
 })();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -39,9 +50,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=2406f4f9"></script>
-        <script src="../_static/doctools.js?v=9bcbadda"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -59,6 +72,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Kria™ KR260
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -150,14 +164,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Using Vivado to Build the Hardware Design</h1> </td>
  </tr>
-</table><section id="using-vivado-to-build-the-hardware-design">
-<h1>Using Vivado to Build the Hardware Design<a class="headerlink" href="#using-vivado-to-build-the-hardware-design" title="Link to this heading">¶</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+</table><div class="section" id="using-vivado-to-build-the-hardware-design">
+<h1>Using Vivado to Build the Hardware Design<a class="headerlink" href="#using-vivado-to-build-the-hardware-design" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This tutorial shows how to build the hardware design for applications running on KR260 Robotics AI Starter Kit.</p>
-</section>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>AMD Vivado Design Suite™ of the appropiate version</p></li>
 <li><p>TSN Subsytem IP evaluation license when building the kr260_tsn_rs485pmod platform</p></li>
@@ -165,8 +179,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div><p><strong>Info</strong>: To request TSN Subsystem IP evaluation license, send an email to <a class="reference external" href="1gtsn_eval_request&#64;amd.com">1gtsn_eval_request&#64;amd.com</a>.</p>
 </div></blockquote>
-<section id="accessing-the-tutorial-reference-files">
-<h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Link to this heading">¶</a></h3>
+<div class="section" id="accessing-the-tutorial-reference-files">
+<h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Permalink to this heading">¶</a></h3>
 <blockquote>
 <div><p><em><strong>Note</strong></em>: Skip the following steps if the design files have already been cloned and extracted to a working repository.</p>
 </div></blockquote>
@@ -178,10 +192,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">kria-vitis-platforms/kr260</span></code>, which is the working directory.</p></li>
 </ol>
-</section>
-</section>
-<section id="generating-an-extensible-xsa">
-<h2>Generating an Extensible XSA<a class="headerlink" href="#generating-an-extensible-xsa" title="Link to this heading">¶</a></h2>
+</div>
+</div>
+<div class="section" id="generating-an-extensible-xsa">
+<h2>Generating an Extensible XSA<a class="headerlink" href="#generating-an-extensible-xsa" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Go to the platform directory specific to the application.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;
@@ -222,9 +236,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div><p><em><strong>Note</strong></em>: The steps under <em>Modifying the Vivado design and creating a new XSA</em> are optional and are required only if you need to change the platform design.</p>
 </div></blockquote>
-</section>
-<section id="modifying-the-vivado-design-and-creating-a-new-xsa">
-<h2>Modifying the Vivado design and creating a new XSA<a class="headerlink" href="#modifying-the-vivado-design-and-creating-a-new-xsa" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="modifying-the-vivado-design-and-creating-a-new-xsa">
+<h2>Modifying the Vivado design and creating a new XSA<a class="headerlink" href="#modifying-the-vivado-design-and-creating-a-new-xsa" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Go to the directory specific to the platform design.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$working_dir</span>/platforms/vivado/&lt;platform_name&gt;
@@ -253,18 +267,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ol>
 <p>The generated XSA or the modified XSA file can now be used to create a Vitis Platform.</p>
-</section>
-<section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="build_vitis_platform.html"><span class="doc">Creating a Vitis Platform</span></a></p></li>
 </ul>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <p>For more information on how to setup Platform Interfaces, refer to Xilinx Vitis Unified Software Platform Documentation <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces">UG1393</a>.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2024 Advanced Micro Devices, Inc.</p></section>
-</section>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2024 Advanced Micro Devices, Inc.</p></div>
+</div>
 
 
            </div>
@@ -280,7 +294,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 19, 2026.
+      <span class="lastupdated">Last updated on April 23, 2026.
       </span></p>
   </div>
 
@@ -292,7 +306,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/legal/copyright.html">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/legal/privacy.html">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/legal/trademarks.html">Trademarks</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/cr/supply-chain-transparency.pdf">Supply Chain Transparency</a> | <a target="_blank" href="https://www.amd.com/en/legal/competition.html">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://www.amd.com/en/legal/cookies.html">Cookies Policy</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

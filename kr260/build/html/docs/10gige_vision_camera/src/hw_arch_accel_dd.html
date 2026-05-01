@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-<script type="text/javascript">
-(function() {
-    var host = window.location.hostname;
-    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-        s.type = 'text/javascript';
-        s.charset = 'UTF-8';
-        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
-        s.setAttribute('data-document-language', 'true');
-        document.head.appendChild(s);
 
-        window.OptanonWrapper = function() { };
-    }
+<script type="text/javascript">
+(function () {
+  // Load OneTrust only on approved domains.
+  var allowedHosts = [
+    "xilinx.github.io",
+    "www.xilinx.com"
+  ];
+
+  var host = window.location.hostname.toLowerCase();
+  var isAllowed = allowedHosts.some(function (d) {
+    return host === d || host.endsWith("." + d);
+  });
+
+  if (!isAllowed) {
+    return;
+  }
+
+  var s = document.createElement("script");
+  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+  s.type = "text/javascript";
+  s.charset = "UTF-8";
+  s.setAttribute("data-document-language", "true");
+  s.setAttribute("data-domain-script", "03af8d57-0a04-47a6-8f10-322fa00d8fc7");
+  document.head.appendChild(s);
+
+  window.OptanonWrapper = function () {};
 })();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -39,9 +50,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=2406f4f9"></script>
-        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -59,6 +72,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -161,11 +175,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Machine Vision Camera Tutorial</h1> </td>
  </tr>
-</table><section id="hardware-architecture-of-the-accelerator">
-<h1>Hardware Architecture of the Accelerator<a class="headerlink" href="#hardware-architecture-of-the-accelerator" title="Link to this heading">¶</a></h1>
+</table><div class="section" id="hardware-architecture-of-the-accelerator">
+<h1>Hardware Architecture of the Accelerator<a class="headerlink" href="#hardware-architecture-of-the-accelerator" title="Permalink to this heading">¶</a></h1>
 <p>The AMD Vitis™ overlay includes the Pre-Process block and the MV-Defect-Detect blocks.</p>
-<section id="pre-process">
-<h2>Pre-Process<a class="headerlink" href="#pre-process" title="Link to this heading">¶</a></h2>
+<div class="section" id="pre-process">
+<h2>Pre-Process<a class="headerlink" href="#pre-process" title="Permalink to this heading">¶</a></h2>
 <p>The Pre-Process pipeline reads a video frame from memory, processes it as required for the MV-Defect Detect function, and writes it back to memory. The Pre-Process pipeline consists of the Gaussian + OTSU accelerator and the Threshold + Median accelerator.</p>
 <p>In case of the color sensor, additionally a Vitis color conversion function is used to convert the BGR8 video frame from the capture pipeline to a Y8 frame before streaming it to the Gaussian function.</p>
 <p>Gaussian + OTSU accelerator:</p>
@@ -187,9 +201,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div><p><em><strong>Note</strong></em>: This proprietary image is from <a class="reference external" href="http://www.cofilab.com/wp-content/downloads/DB_Mango.rar">Cofilab site</a>.</p>
 </div></blockquote>
-</section>
-<section id="defect-detection">
-<h2>Defect Detection<a class="headerlink" href="#defect-detection" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="defect-detection">
+<h2>Defect Detection<a class="headerlink" href="#defect-detection" title="Permalink to this heading">¶</a></h2>
 <p>The block in the MV-Defect-Detect accelerator reads a video frame from memory, processes it, and writes it back to memory. The MV-Defect-Detect data flow is as shown below:</p>
 <p><img alt="Passes and Computations" src="../../../_images/defect-detection-computations.png" /></p>
 <p>In hardware, the processing is done in two passes. In pass 1, the forward and reverse passes are computed in parallel.
@@ -202,9 +216,9 @@ Two input pointers are used, which point to the same video data in the DDR, one 
 <div><p><em><strong>Note</strong></em>: This proprietary image is from <a class="reference external" href="http://www.cofilab.com/wp-content/downloads/DB_Mango.rar">Cofilab site</a>.</p>
 </div></blockquote>
 <p>For more information on the functions used in this design refer to the <a class="reference external" href="https://docs.amd.com/r/en-US/Vitis_Libraries/vision/index.html">Vitis Vision user guide</a></p>
-</section>
-<section id="resource-utilization">
-<h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="resource-utilization">
+<h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this heading">¶</a></h2>
 <p>Vitis integrates the pre-processing functions and mv-defect-detection function into the platform. The following table shows utilization numbers post implementation.</p>
 <p><strong>Color</strong>:</p>
 <p>|K26			              |CLB		  |BRAM	    |URAM	    |DSP	    |
@@ -224,22 +238,22 @@ Two input pointers are used, which point to the same video data in the DDR, one 
 |CCA			              |5736		  |5	      |0	      |5	      |
 |Platform + accelerators|59336		|99 	    |6	      |111	    |
 |Total %		            |50.69%		|68.75%	  |9.38%	  |8.89%	  |</p>
-<br /></section>
-<section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+<br /></div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="sw_arch_accel_dd.html"><span class="doc">Software Architecture of the Accelerator</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="10gige.html"><span class="doc">Hardware Architecture of the Platform</span></a></p></li>
 </ul>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>https://github.com/Xilinx/Vitis_Libraries/tree/master/vision</p></li>
 <li><p>https://docs.amd.com/r/en-US/Vitis_Libraries/vision/index.html</p></li>
 </ul>
-<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
-</section>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
 
 
            </div>
@@ -255,7 +269,7 @@ Two input pointers are used, which point to the same video data in the DDR, one 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 19, 2026.
+      <span class="lastupdated">Last updated on April 23, 2026.
       </span></p>
   </div>
 
@@ -267,7 +281,7 @@ Two input pointers are used, which point to the same video data in the DDR, one 
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/legal/copyright.html">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/legal/privacy.html">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/legal/trademarks.html">Trademarks</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/cr/supply-chain-transparency.pdf">Supply Chain Transparency</a> | <a target="_blank" href="https://www.amd.com/en/legal/competition.html">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://www.amd.com/en/legal/cookies.html">Cookies Policy</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

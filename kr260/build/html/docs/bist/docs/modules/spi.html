@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-<script type="text/javascript">
-(function() {
-    var host = window.location.hostname;
-    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-        s.type = 'text/javascript';
-        s.charset = 'UTF-8';
-        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
-        s.setAttribute('data-document-language', 'true');
-        document.head.appendChild(s);
 
-        window.OptanonWrapper = function() { };
-    }
+<script type="text/javascript">
+(function () {
+  // Load OneTrust only on approved domains.
+  var allowedHosts = [
+    "xilinx.github.io",
+    "www.xilinx.com"
+  ];
+
+  var host = window.location.hostname.toLowerCase();
+  var isAllowed = allowedHosts.some(function (d) {
+    return host === d || host.endsWith("." + d);
+  });
+
+  if (!isAllowed) {
+    return;
+  }
+
+  var s = document.createElement("script");
+  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+  s.type = "text/javascript";
+  s.charset = "UTF-8";
+  s.setAttribute("data-document-language", "true");
+  s.setAttribute("data-domain-script", "03af8d57-0a04-47a6-8f10-322fa00d8fc7");
+  document.head.appendChild(s);
+
+  window.OptanonWrapper = function () {};
 })();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -39,9 +50,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=2406f4f9"></script>
-        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
-        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -57,6 +70,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../index.html" class="icon icon-home"> Kria™ KR260
+            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -128,15 +142,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="bist-spi-test-module">
-<h1>BIST SPI Test Module<a class="headerlink" href="#bist-spi-test-module" title="Link to this heading">¶</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+  <div class="section" id="bist-spi-test-module">
+<h1>BIST SPI Test Module<a class="headerlink" href="#bist-spi-test-module" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>The SPI test module verifies the presence of Torque sensor on the SPI bus of
 KD240 starter kit using python-periphery.</p>
-</section>
-<section id="tests">
-<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
 <p>The module contains self-validating functional tests. The Torque sensor detection is
 done with the help of two separate tests by dynamic SPI device path lookup. The
 run_torque_sensor_id_test() verifies the Torque sensor AD7797 ID and run_torque_sensor_temp_test()
@@ -155,9 +169,9 @@ setting the SPI clock, mode, and sending initialization sequence message using i
 The Torque sensor ID read command is sent with the help of spi_transfer_command() function and the response
 is analyzed. Similarly, for run_torque_sensor_temp_test(), once the device is initialized, the SPI command
 sequence for reading the inbuilt temperature raw value is sent to the SPI device and the response is analyzed.</p>
-</section>
-<section id="test-execution">
-<h2>Test Execution<a class="headerlink" href="#test-execution" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="test-execution">
+<h2>Test Execution<a class="headerlink" href="#test-execution" title="Permalink to this heading">¶</a></h2>
 <p>The example commands for this module are provided below:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-m<span class="w"> </span>spi<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module
 pytest-3<span class="w"> </span>--board<span class="w"> </span>kd240<span class="w"> </span>-k<span class="w"> </span>ad7797_torque_sensor_id_read<span class="w">  </span>//<span class="w"> </span>Run<span class="w"> </span>Torque<span class="w"> </span>sensor<span class="w"> </span>ID<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="nb">test</span>
@@ -170,26 +184,26 @@ device ID otherwise.</p>
 <p>For run_torque_sensor_temp_test() functional test, the test is passed if the response received from the SPI
 device is raw temperature value on sending the SPI command sequence for temperature read. The test prints out a
 message indicating error in reading the temperature value otherwise.</p>
-</section>
-<section id="test-debug">
-<h2>Test Debug<a class="headerlink" href="#test-debug" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="test-debug">
+<h2>Test Debug<a class="headerlink" href="#test-debug" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make sure to load the BIST firmware before running the SPI test as the Torque sensor is not detected otherwise.</p></li>
 </ul>
-</section>
-<section id="known-issues-and-limitations">
-<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="known-issues-and-limitations">
+<h2>Known Issues and Limitations<a class="headerlink" href="#known-issues-and-limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The SPI test is limited to verifying the presence of Torque sensor only.</p></li>
 </ul>
-</section>
-<section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../overview.html"><span class="doc">BIST Overview</span></a></p></li>
 </ol>
-<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
-</section>
+<p class="sphinxhide" align="center"><sub>Copyright © 2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
 
 
            </div>
@@ -202,7 +216,7 @@ message indicating error in reading the temperature value otherwise.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 19, 2026.
+      <span class="lastupdated">Last updated on April 23, 2026.
       </span></p>
   </div>
 
@@ -214,7 +228,7 @@ message indicating error in reading the temperature value otherwise.</p>
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/legal/copyright.html">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/legal/privacy.html">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/legal/trademarks.html">Trademarks</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/cr/supply-chain-transparency.pdf">Supply Chain Transparency</a> | <a target="_blank" href="https://www.amd.com/en/legal/competition.html">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://www.amd.com/en/legal/cookies.html">Cookies Policy</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

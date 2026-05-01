@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-<script type="text/javascript">
-(function() {
-    var host = window.location.hostname;
-    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-        s.type = 'text/javascript';
-        s.charset = 'UTF-8';
-        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
-        s.setAttribute('data-document-language', 'true');
-        document.head.appendChild(s);
 
-        window.OptanonWrapper = function() { };
-    }
+<script type="text/javascript">
+(function () {
+  // Load OneTrust only on approved domains.
+  var allowedHosts = [
+    "xilinx.github.io",
+    "www.xilinx.com"
+  ];
+
+  var host = window.location.hostname.toLowerCase();
+  var isAllowed = allowedHosts.some(function (d) {
+    return host === d || host.endsWith("." + d);
+  });
+
+  if (!isAllowed) {
+    return;
+  }
+
+  var s = document.createElement("script");
+  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+  s.type = "text/javascript";
+  s.charset = "UTF-8";
+  s.setAttribute("data-document-language", "true");
+  s.setAttribute("data-domain-script", "03af8d57-0a04-47a6-8f10-322fa00d8fc7");
+  document.head.appendChild(s);
+
+  window.OptanonWrapper = function () {};
 })();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -39,9 +50,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/documentation_options.js?v=2406f4f9"></script>
-        <script src="_static/doctools.js?v=9bcbadda"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -58,6 +71,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="#" class="icon icon-home"> Kria™ KR260
+            <img src="_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -129,24 +143,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="kria-kr260-robotics-starter-kit-applications">
-<h1>Kria KR260 Robotics Starter Kit Applications<a class="headerlink" href="#kria-kr260-robotics-starter-kit-applications" title="Link to this heading">¶</a></h1>
+  <div class="section" id="kria-kr260-robotics-starter-kit-applications">
+<h1>Kria KR260 Robotics Starter Kit Applications<a class="headerlink" href="#kria-kr260-robotics-starter-kit-applications" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<a class="reference external image-reference" href="./docs/10gige_vision_camera/10gige_vision_camera_landing.html"><img alt="10GigE Vision Camera" src="_images/machine-vision.png" style="width: 200px;" />
-</a>
-<a class="reference external image-reference" href="https://xilinx.github.io/kria-apps-docs/kr260/ros2_multinode_communication_via_tsn.html"><img alt="ROS 2 Multi-Node Communications via TSN" src="_images/tsn-communications.png" style="width: 200px;" />
-</a>
-<a class="reference external image-reference" href="./docs/ros2_perception_node/ros2_perception_node_landing.html"><img alt="ROS 2 Perception Node" src="_images/Perception.png" style="width: 200px;" />
-</a>
-<a class="reference external image-reference" href="./docs/gps_1588_ptp/gps_1588_ptp_precision_time_mgmt.html"><img alt="Precision Time Management" src="_images/precision-time.png" style="width: 200px;" />
-</a>
-<a class="reference external image-reference" href="https://xilinx.github.io/kria-apps-docs/kr260/bist.html"><img alt="Built-In Self Test (BIST)" src="_images/bist.png" style="width: 200px;" />
-</a>
-<aside class="sidebar">
+<a class="reference external image-reference" href="./docs/10gige_vision_camera/10gige_vision_camera_landing.html"><img alt="10GigE Vision Camera" src="_images/machine-vision.png" style="width: 200px;" /></a>
+<a class="reference external image-reference" href="https://xilinx.github.io/kria-apps-docs/kr260/ros2_multinode_communication_via_tsn.html"><img alt="ROS 2 Multi-Node Communications via TSN" src="_images/tsn-communications.png" style="width: 200px;" /></a>
+<a class="reference external image-reference" href="./docs/ros2_perception_node/ros2_perception_node_landing.html"><img alt="ROS 2 Perception Node" src="_images/Perception.png" style="width: 200px;" /></a>
+<a class="reference external image-reference" href="./docs/gps_1588_ptp/gps_1588_ptp_precision_time_mgmt.html"><img alt="Precision Time Management" src="_images/precision-time.png" style="width: 200px;" /></a>
+<a class="reference external image-reference" href="https://xilinx.github.io/kria-apps-docs/kr260/bist.html"><img alt="Built-In Self Test (BIST)" src="_images/bist.png" style="width: 200px;" /></a>
+<div class="sidebar">
 <p class="sidebar-title">Getting Started</p>
 <p>For more information, see <a class="reference internal" href="docs/linux_boot.html"><span class="doc">Getting Started with Kria KR260 Robotics Starter Kit</span></a>.</p>
-</aside>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -163,20 +172,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The DisplayPort 1.2a connector helps output video data on a supported DisplayPort compatible monitor and can be used to drive real-time video feed from cameras/sensors or to interface with human operators.</p>
 <p>For any robot, security is a priority. The KR260 Starter Kit sets a higher standard for security through the MPSoC hardware root of trust (RoT) and Infineon TPM2.0, making it one of the most secured platforms for robotics.</p>
 <p>Enabled by a growing ecosystem of accelerated applications from the Xilinx App Store, developers of all types can get applications up and running in under one hour, with no FPGA experience needed. From there, customization and differentiation can be added via preferred design environments, at any level of abstraction—from hardware accelerated software applications to AI inference models to traditional FPGA design flows.</p>
-<aside class="sidebar">
+<div class="sidebar">
 <p class="sidebar-title">Kria KR260 Robotics Starter Kit eCommerce</p>
 <p>For the latest pricing and availability of the KR260 Robotics Starter Kit, check the <a class="reference external" href="https://www.amd.com/kr260">eCommerce site</a>.</p>
-</aside>
-<figure class="align-default">
-<a class="reference internal image-reference" href="_images/KR260banner2.png"><img alt="_images/KR260banner2.png" src="_images/KR260banner2.png" style="width: 800px;" />
-</a>
-</figure>
-<section id="ros-2-support">
-<h2>ROS 2 Support<a class="headerlink" href="#ros-2-support" title="Link to this heading">¶</a></h2>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/KR260banner2.png"><img alt="_images/KR260banner2.png" src="_images/KR260banner2.png" style="width: 800px;" /></a>
+</div>
+<div class="section" id="ros-2-support">
+<h2>ROS 2 Support<a class="headerlink" href="#ros-2-support" title="Permalink to this heading">¶</a></h2>
 <p>Robotics developers benefit from greater flexibility that comes with native ROS 2 (Humble Hawksbill release with Ubuntu) support and increased development productivity through the Kria Robotics Stack also referred to as KRS for short.  KRS is an Open Source ROS 2 superset for industry, an integrated set of robot libraries and utilities to accelerate the development, maintenance and commercialization of industrial-grade robotic solutions while using adaptive computing. KRS provides ROS 2 users an easy and robust path to implement hardware acceleration for computationally intensive robotics functions. It allows ROS 2 roboticists to create custom secure compute architectures with higher productivity. KRS leverages Xilinx technology targeting the Kria SOM portfolio to deliver low latency (real-fast), determinism (predictable), real-time (on-time), security and high throughput to robotics applications.</p>
 <p>With both hardware and software development requirements simplified, the KR260 Robotics Starter Kit, coupled with KRS, is the fastest and easiest platform for application development with the goal of heading towards production volume deployment with the Kria K26 SOMs. The KR260 Robotics Starter Kit is very accessible and competitively priced, it is the perfect vehicle to leverage during the development phase of your innovative robotics applications and further accelerates your time to market.</p>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
@@ -191,7 +199,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 19, 2026.
+      <span class="lastupdated">Last updated on April 23, 2026.
       </span></p>
   </div>
 
@@ -203,7 +211,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/legal/copyright.html">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/legal/privacy.html">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/legal/trademarks.html">Trademarks</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/cr/supply-chain-transparency.pdf">Supply Chain Transparency</a> | <a target="_blank" href="https://www.amd.com/en/legal/competition.html">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://www.amd.com/en/legal/cookies.html">Cookies Policy</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

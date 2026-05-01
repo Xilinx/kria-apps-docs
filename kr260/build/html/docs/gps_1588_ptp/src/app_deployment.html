@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-<script type="text/javascript">
-(function() {
-    var host = window.location.hostname;
-    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-        s.type = 'text/javascript';
-        s.charset = 'UTF-8';
-        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
-        s.setAttribute('data-document-language', 'true');
-        document.head.appendChild(s);
 
-        window.OptanonWrapper = function() { };
-    }
+<script type="text/javascript">
+(function () {
+  // Load OneTrust only on approved domains.
+  var allowedHosts = [
+    "xilinx.github.io",
+    "www.xilinx.com"
+  ];
+
+  var host = window.location.hostname.toLowerCase();
+  var isAllowed = allowedHosts.some(function (d) {
+    return host === d || host.endsWith("." + d);
+  });
+
+  if (!isAllowed) {
+    return;
+  }
+
+  var s = document.createElement("script");
+  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+  s.type = "text/javascript";
+  s.charset = "UTF-8";
+  s.setAttribute("data-document-language", "true");
+  s.setAttribute("data-domain-script", "03af8d57-0a04-47a6-8f10-322fa00d8fc7");
+  document.head.appendChild(s);
+
+  window.OptanonWrapper = function () {};
 })();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -39,9 +50,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=2406f4f9"></script>
-        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -59,6 +72,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -162,18 +176,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Setting up the Board and Application Deployment</h1> </td>
  </tr>
-</table><section id="board-setup-and-application-deployment">
-<h1>Board Setup and Application Deployment<a class="headerlink" href="#board-setup-and-application-deployment" title="Link to this heading">¶</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+</table><div class="section" id="board-setup-and-application-deployment">
+<h1>Board Setup and Application Deployment<a class="headerlink" href="#board-setup-and-application-deployment" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This document shows the steps to setup the board and runs the GPS_1588_PTP application.</p>
-</section>
-<section id="pre-requisite">
-<h2>Pre-requisite<a class="headerlink" href="#pre-requisite" title="Link to this heading">¶</a></h2>
-<section id="hardware-requirements">
-<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Link to this heading">¶</a></h3>
-<section id="kria-kr260-robotics-starter-kit-accessories">
-<h4>Kria™ KR260 Robotics Starter Kit &amp; Accessories<a class="headerlink" href="#kria-kr260-robotics-starter-kit-accessories" title="Link to this heading">¶</a></h4>
+</div>
+<div class="section" id="pre-requisite">
+<h2>Pre-requisite<a class="headerlink" href="#pre-requisite" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="hardware-requirements">
+<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="kria-kr260-robotics-starter-kit-accessories">
+<h4>Kria™ KR260 Robotics Starter Kit &amp; Accessories<a class="headerlink" href="#kria-kr260-robotics-starter-kit-accessories" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>KR260 Robotics Starter Kit -2 Nos</p></li>
 <li><p>KR260 Power Supply &amp; Adapter (Included with KR260 Robotics Starter Kit)</p></li>
@@ -182,9 +196,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>16GB MicroSD Cards (Included with KR260 Robotics Starter Kit)</p></li>
 <li><p>Monitor with DP port, keyboard, and mouse (Optional - for running application using GUI)</p></li>
 </ul>
-</section>
-<section id="gps-modules-and-accessories">
-<h4>GPS Modules and Accessories<a class="headerlink" href="#gps-modules-and-accessories" title="Link to this heading">¶</a></h4>
+</div>
+<div class="section" id="gps-modules-and-accessories">
+<h4>GPS Modules and Accessories<a class="headerlink" href="#gps-modules-and-accessories" title="Permalink to this heading">¶</a></h4>
 <p>The app is tested for the below GPS modules</p>
 <table border="1" class="docutils">
 <thead>
@@ -218,22 +232,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </table><blockquote>
 <div><p><em><strong>Note</strong></em>: Digilent Pmod - GPS Receiver is retired and no longer available for sale from the vendor.</p>
 </div></blockquote>
-</section>
-</section>
-</section>
-<section id="hardware-setup-with-2-kr260-boards">
-<h2>Hardware setup with 2 KR260 boards<a class="headerlink" href="#hardware-setup-with-2-kr260-boards" title="Link to this heading">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="section" id="hardware-setup-with-2-kr260-boards">
+<h2>Hardware setup with 2 KR260 boards<a class="headerlink" href="#hardware-setup-with-2-kr260-boards" title="Permalink to this heading">¶</a></h2>
 <p>The setup used for deploying the application is shown below:</p>
-<section id="board-setup">
-<h3>Board Setup<a class="headerlink" href="#board-setup" title="Link to this heading">¶</a></h3>
+<div class="section" id="board-setup">
+<h3>Board Setup<a class="headerlink" href="#board-setup" title="Permalink to this heading">¶</a></h3>
 <ol class="simple">
 <li><p>Connect the two boards to the same ethernet network via J10C RJ45 PS GEM1 port. Assume one of the KR260 as Master and the other one as Slave.</p></li>
 <li><p>Connect JTAG ports of both boards to the host PC.</p></li>
 <li><p>Connect Display port of the both Master and Slave to Monitors to utilize GNOME Desktop.</p></li>
 </ol>
-</section>
-<section id="gps-module-connection">
-<h3>GPS module Connection<a class="headerlink" href="#gps-module-connection" title="Link to this heading">¶</a></h3>
+</div>
+<div class="section" id="gps-module-connection">
+<h3>GPS module Connection<a class="headerlink" href="#gps-module-connection" title="Permalink to this heading">¶</a></h3>
 <p><em>With Digilent PMOD GPS Receiver :</em></p>
 <ol class="simple">
 <li><p>Solder the SMA Connector Receptacle on the header J4 of the Digilent PMOD GPS Receiver. For more details refer <a class="reference external" href="https://digilent.com/reference/_media/reference/pmod/pmod-interface-specification-1_2_0.pdf">here</a>.</p></li>
@@ -289,17 +303,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Power on both the boards and follow the next steps in “Booting up Linux.”</p></li>
 </ol>
 <p><img alt="2board" src="../../../_images/Adafruit_Precision_time_hardware_setup.png" /></p>
-</section>
-</section>
-<section id="booting-up-linux">
-<h2>Booting up Linux<a class="headerlink" href="#booting-up-linux" title="Link to this heading">¶</a></h2>
-<p>Go through <a class="reference internal" href="../../linux_boot.html"><span class="doc">Booting Kria Starter Kit Linux</span></a> to complete minimum setup required to boot Linux on both Master and Slave KR260 boards before continuing with instructions in this page.</p>
+</div>
+</div>
+<div class="section" id="booting-up-linux">
+<h2>Booting up Linux<a class="headerlink" href="#booting-up-linux" title="Permalink to this heading">¶</a></h2>
+<p>Go through <a class="reference external" href="../../kria_starterkit_linux_boot">Booting Kria Starter Kit Linux</a> to complete minimum setup required to boot Linux on both Master and Slave KR260 boards before continuing with instructions in this page.</p>
 <blockquote>
 <div><p><em><strong>Note</strong></em>: Make sure that you use the latest KR260 Starter Kit Boot firmware (2022.2_update 1 or later). Otherwise, this application might not work.</p>
 </div></blockquote>
-</section>
-<section id="downloading-and-loading-application-firmware-on-master">
-<h2>Downloading and Loading Application Firmware on Master<a class="headerlink" href="#downloading-and-loading-application-firmware-on-master" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="downloading-and-loading-application-firmware-on-master">
+<h2>Downloading and Loading Application Firmware on Master<a class="headerlink" href="#downloading-and-loading-application-firmware-on-master" title="Permalink to this heading">¶</a></h2>
 <p>Get the latest GPS_1588_PTP firmware package:</p>
 <ol>
 <li><p>Search the package feed for packages compatible with KR260.</p>
@@ -350,9 +364,9 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 </ul>
 </li>
 </ol>
-</section>
-<section id="installing-application">
-<h2>Installing application<a class="headerlink" href="#installing-application" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="installing-application">
+<h2>Installing application<a class="headerlink" href="#installing-application" title="Permalink to this heading">¶</a></h2>
 <ul>
 <li><p>On Master</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="c1"># Remove incompatible packages</span>
@@ -374,8 +388,8 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 <blockquote>
 <div><p><em><strong>Note</strong></em>: <code class="docutils literal notranslate"><span class="pre">linuxptp</span></code>, <code class="docutils literal notranslate"><span class="pre">gpsd-tools</span></code>,<code class="docutils literal notranslate"><span class="pre">gpsd-clients</span></code>,<code class="docutils literal notranslate"><span class="pre">linuxptp</span></code>,<code class="docutils literal notranslate"><span class="pre">chrony</span></code>,<code class="docutils literal notranslate"><span class="pre">python3-tk</span></code>, <code class="docutils literal notranslate"><span class="pre">ppstools</span></code> are dependencies to GPS_1588_PTP applications that are installed automatically with above commands.</p>
 </div></blockquote>
-<section id="set-path-to-application-bin">
-<h3>Set PATH to application bin<a class="headerlink" href="#set-path-to-application-bin" title="Link to this heading">¶</a></h3>
+<div class="section" id="set-path-to-application-bin">
+<h3>Set PATH to application bin<a class="headerlink" href="#set-path-to-application-bin" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>Add the following path in the environment variable for an AMD demo application on both Master and Slave. This application using Linux utilities, which are only accessible from sudo user. It is recommended to switch to the root user with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-i</span></code> before proceeding to the following commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>sudo<span class="w"> </span>-i
@@ -387,10 +401,10 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"
 <blockquote>
 <div><p><em><strong>Note</strong></em>: Consider adding the above commands to ~/.bashrc to avoid executing on every new shell created.</p>
 </div></blockquote>
-</section>
-</section>
-<section id="verify-gps-pulse-on-master">
-<h2>Verify GPS pulse on Master<a class="headerlink" href="#verify-gps-pulse-on-master" title="Link to this heading">¶</a></h2>
+</div>
+</div>
+<div class="section" id="verify-gps-pulse-on-master">
+<h2>Verify GPS pulse on Master<a class="headerlink" href="#verify-gps-pulse-on-master" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Run the below command to get the pps node corresponding to the GPS module.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>axi:pps_axi_gpio_0<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1
@@ -425,9 +439,9 @@ ok,<span class="w"> </span>found<span class="w"> </span><span class="m">1</span>
 </div></blockquote>
 </li>
 </ol>
-</section>
-<section id="steps-to-configure-linux-utilities-to-use-gps-device-as-clock-source-on-master">
-<h2>Steps to configure linux utilities to use GPS device as clock source on Master<a class="headerlink" href="#steps-to-configure-linux-utilities-to-use-gps-device-as-clock-source-on-master" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="steps-to-configure-linux-utilities-to-use-gps-device-as-clock-source-on-master">
+<h2>Steps to configure linux utilities to use GPS device as clock source on Master<a class="headerlink" href="#steps-to-configure-linux-utilities-to-use-gps-device-as-clock-source-on-master" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Update the gpsd configuration files with the below content.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cp<span class="w"> </span>/etc/default/gpsd<span class="w"> </span>/etc/default/gpsd.bak
@@ -463,9 +477,9 @@ refclock<span class="w"> </span>SHM<span class="w"> </span><span class="m">0</sp
 </div></blockquote>
 </li>
 </ol>
-</section>
-<section id="run-out-of-box-applications">
-<h2>Run Out Of Box Applications<a class="headerlink" href="#run-out-of-box-applications" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="run-out-of-box-applications">
+<h2>Run Out Of Box Applications<a class="headerlink" href="#run-out-of-box-applications" title="Permalink to this heading">¶</a></h2>
 <p>The GPS_1588_PTP application synchronizes the Linux platform System Time with GPS Time and distributes the system time to an another KR260 board using Linux PTP tools. The application uses gpsd, chrony daemons, and Linux PTP utilities.</p>
 <p><img alt="osc" src="../../../_images/2boards_setup_new.jpg" /></p>
 <p>The application provides three ways to interact.</p>
@@ -477,8 +491,8 @@ refclock<span class="w"> </span>SHM<span class="w"> </span><span class="m">0</sp
 <blockquote>
 <div><p><em><strong>Note</strong></em>: Ensure to load the GPS_1588_PTP firmware on Master (refer to <a class="reference external" href="#downloading-and-loading-application-firmware-on-master">step-3</a> from ‘Downloading and Loading Application Firmware on Master’) using <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">loadapp</span> <span class="pre">kr260-gps-1588-ptp</span></code> before testing theexample application. If the firmware is already loaded, ignore this step and proceed.</p>
 </div></blockquote>
-<section id="via-jupyter-notebook">
-<h3>Via Jupyter Notebook<a class="headerlink" href="#via-jupyter-notebook" title="Link to this heading">¶</a></h3>
+<div class="section" id="via-jupyter-notebook">
+<h3>Via Jupyter Notebook<a class="headerlink" href="#via-jupyter-notebook" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>Run the following command to install the package shipped notebooks, which reside in <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/kr260-gps-1588-ptp/share/notebooks</span></code> to the folder <code class="docutils literal notranslate"><span class="pre">/home/&lt;user&gt;/notebooks</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">gps-1588-ptp-install.py</span></code></p>
@@ -507,9 +521,9 @@ refclock<span class="w"> </span>SHM<span class="w"> </span><span class="m">0</sp
 </div>
 </li>
 </ul>
-</section>
-<section id="via-terminal">
-<h3>Via Terminal<a class="headerlink" href="#via-terminal" title="Link to this heading">¶</a></h3>
+</div>
+<div class="section" id="via-terminal">
+<h3>Via Terminal<a class="headerlink" href="#via-terminal" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>On Master, run the following command to sync the master with GPS time.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gps-1588-ptp-master
@@ -640,9 +654,9 @@ phc_ctl<span class="o">[</span><span class="m">1121</span>.254<span class="o">]<
 </ul>
 </li>
 </ul>
-</section>
-<section id="via-ubuntu-gui">
-<h3>Via Ubuntu GUI<a class="headerlink" href="#via-ubuntu-gui" title="Link to this heading">¶</a></h3>
+</div>
+<div class="section" id="via-ubuntu-gui">
+<h3>Via Ubuntu GUI<a class="headerlink" href="#via-ubuntu-gui" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>On Master, open the terminal in Ubuntu GUI and run the below command to the open GUI</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gps-1588-ptp-master<span class="w"> </span>-gui
@@ -667,10 +681,10 @@ phc_ctl<span class="o">[</span><span class="m">1121</span>.254<span class="o">]<
 <blockquote>
 <div><p><em><strong>Note</strong></em>:  Make sure to run the slave Application, after running the Application on the master side.</p>
 </div></blockquote>
-</section>
-</section>
-<section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+</div>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="known-issues.html"><span class="doc">Known Issues</span></a></p></li>
 <li><p><a class="reference internal" href="sw_arch_platform.html"><span class="doc">Software Architecture of the Platform</span></a></p></li>
@@ -685,8 +699,8 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright (C) 2023 Advanced Micro Devices, Inc.</p></section>
-</section>
+--><p class="sphinxhide" align="center">Copyright (C) 2023 Advanced Micro Devices, Inc.</p></div>
+</div>
 
 
            </div>
@@ -702,7 +716,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 19, 2026.
+      <span class="lastupdated">Last updated on April 23, 2026.
       </span></p>
   </div>
 
@@ -714,7 +728,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/legal/copyright.html">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/legal/privacy.html">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/legal/trademarks.html">Trademarks</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/cr/supply-chain-transparency.pdf">Supply Chain Transparency</a> | <a target="_blank" href="https://www.amd.com/en/legal/competition.html">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://www.amd.com/en/legal/cookies.html">Cookies Policy</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>
