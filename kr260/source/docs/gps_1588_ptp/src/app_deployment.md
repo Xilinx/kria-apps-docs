@@ -86,7 +86,7 @@ The setup used for deploying the application is shown below:
 
 ## Booting up Linux
 
-Go through [Booting Kria Starter Kit Linux](../../linux_boot) to complete minimum setup required to boot Linux on both Master and Slave KR260 boards before continuing with instructions in this page.
+Go through [Booting Kria Starter Kit Linux](../../kria_starterkit_linux_boot.md) to complete minimum setup required to boot Linux on both Master and Slave KR260 boards before continuing with instructions in this page.
 > ***Note***: Make sure that you use the latest KR260 Starter Kit Boot firmware (2022.2_update 1 or later). Otherwise, this application might not work.
 
 ## Downloading and Loading Application Firmware on Master

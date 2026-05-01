@@ -13,7 +13,7 @@ The following are the key connections for the AMD Kria™ KR260 Robotics Starter
 
 At this point, a supported USB camera/webcam can be connected to the Starter Kit. For DisplayPort video output, you must have a DisplayPort cable and supported DisplayPort monitor. Connecting to a USB keyboard and mouse is optional but is recommended for optimal experience.
 
-*Note that not all micro-USB cables support data transfer - some micro-USB cables are for charging-only and will not work with your Starter Kit.
+>**Note:** Not all micro-USB cables support data transfer. Some micro-USB cables are for charging only and will not work with your Starter Kit.
 
 
 ## Next Step

@@ -1,6 +1,6 @@
 # Step 3: Connect to UART Serial Port
 
-When using the Kria Starter Kit Ubuntu server image you will primarily log in over the USB-UART serial port to access the command line interface. This is required to launch some Kria™ SOM apps. To login and access the command line interface over the USB-UART serial port, please choose the appropriate host OS section below:
+When using the Kria Starter Kit Ubuntu server image you will primarily log in over the USB-UART serial port to access the command line interface. This is required to launch some Kria™ SOM apps. To login and access the command line interface over the USB-UART serial port, choose the appropriate host OS section below:
 
 <details>
 <summary>COM Port Setup Instructions for Windows Click to expand</summary>

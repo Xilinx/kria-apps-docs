@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-<script type="text/javascript">
-(function() {
-    var host = window.location.hostname;
-    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-        s.type = 'text/javascript';
-        s.charset = 'UTF-8';
-        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
-        s.setAttribute('data-document-language', 'true');
-        document.head.appendChild(s);
 
-        window.OptanonWrapper = function() { };
-    }
+<script type="text/javascript">
+(function () {
+  // Load OneTrust only on approved domains.
+  var allowedHosts = [
+    "xilinx.github.io",
+    "www.xilinx.com"
+  ];
+
+  var host = window.location.hostname.toLowerCase();
+  var isAllowed = allowedHosts.some(function (d) {
+    return host === d || host.endsWith("." + d);
+  });
+
+  if (!isAllowed) {
+    return;
+  }
+
+  var s = document.createElement("script");
+  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+  s.type = "text/javascript";
+  s.charset = "UTF-8";
+  s.setAttribute("data-document-language", "true");
+  s.setAttribute("data-domain-script", "03af8d57-0a04-47a6-8f10-322fa00d8fc7");
+  document.head.appendChild(s);
+
+  window.OptanonWrapper = function () {};
 })();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -39,9 +50,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=2406f4f9"></script>
-        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -58,6 +71,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -148,16 +162,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="hardware-architecture-of-the-platform">
-<h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Link to this heading">¶</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+  <div class="section" id="hardware-architecture-of-the-platform">
+<h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This section describes the hardware block design components implemented in Programmable Logic (PL).</p>
 <p>The PL design read data from the PMOD GPS Receiver to get the GPS time from Global Navigation Satellite System (GNSS). The platform uses an AXI UART Lite IP to interface with the PMOD Receiver’s UART interface for getting the GPS data in NMEA format. The 1PPS signal from the PMOD receiver is connected to PS GPIO via EMIO pins. Gigabit Ethernet MAC (GEM) Controller (GEM0,GEM1) is enabled in the PS to transmit, receive PTP packets, or ethernet traffic.</p>
 <p>The following figure shows the top-level hardware architecture of the reference design.</p>
 <p><img alt="Hardware Architecture block diagram" src="../../../_images/hw_arch_gps.png" /></p>
-<section id="pmod-gps-receiver">
-<h3>PMOD GPS Receiver<a class="headerlink" href="#pmod-gps-receiver" title="Link to this heading">¶</a></h3>
+<div class="section" id="pmod-gps-receiver">
+<h3>PMOD GPS Receiver<a class="headerlink" href="#pmod-gps-receiver" title="Permalink to this heading">¶</a></h3>
 <p>The following figure shows the PMOD GPS receiver:</p>
 <p>GPS receiver has</p>
 <ol class="simple">
@@ -166,17 +180,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ol>
 <p><img alt="PMOD GPS Receiver" src="../../../_images/pmod_gps_receiver.png" /></p>
 <p>For more information on the Digilent PMOD Receiver, refer to the <a href="https://digilent.com/reference/_media/pmod:pmod:PmodGPS_rm.pdf"> PMOD GPS Receiver Reference Manual</a>.</p>
-</section>
-</section>
-<section id="axi-uart-lite">
-<h2>AXI UART LITE<a class="headerlink" href="#axi-uart-lite" title="Link to this heading">¶</a></h2>
+</div>
+</div>
+<div class="section" id="axi-uart-lite">
+<h2>AXI UART LITE<a class="headerlink" href="#axi-uart-lite" title="Permalink to this heading">¶</a></h2>
 <p>The AMD LogiCORE™ IP AXI UART Lite core converts AXI4 Lite register transactions to RS232 signaling. PMOD GPS receiver provides GPS time and GPS Coordinate data in NMEA format using the embedded UART interface. AXI UART LITE IP has UART controller to read data from PMOD receiver and convert it into AXI4 Lite register transactions to be read by the PS.</p>
 <p>For more information on the IP, refer to <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/pg142-axi-uartlite">AXI UART Lite v2.0 Product Guide</a>.</p>
-</section>
-<section id="clocks-and-resets">
-<h2>Clocks and Resets<a class="headerlink" href="#clocks-and-resets" title="Link to this heading">¶</a></h2>
-<section id="clocks">
-<h3>Clocks<a class="headerlink" href="#clocks" title="Link to this heading">¶</a></h3>
+</div>
+<div class="section" id="clocks-and-resets">
+<h2>Clocks and Resets<a class="headerlink" href="#clocks-and-resets" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="clocks">
+<h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this heading">¶</a></h3>
 <p>The following table identifies the main clocks of the PL design, the source, clock frequency, and the function.</p>
 <table border="1" class="docutils">
 <thead>
@@ -195,9 +209,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td style="text-align: left;">Clock source for AXI Interconnect, AXI UART lite and AXI GPIO</td>
 </tr>
 </tbody>
-</table></section>
-<section id="resets">
-<h3>Resets<a class="headerlink" href="#resets" title="Link to this heading">¶</a></h3>
+</table></div>
+<div class="section" id="resets">
+<h3>Resets<a class="headerlink" href="#resets" title="Permalink to this heading">¶</a></h3>
 <p>The following table summarizes the resets used in this design.</p>
 <table border="1" class="docutils">
 <thead>
@@ -216,10 +230,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td style="text-align: left;">Synchronous resets w.r.t 100M clock domain for AXI interconnect, AXI UART lite and AXI GPIO.</td>
 </tr>
 </tbody>
-</table></section>
-</section>
-<section id="resource-utilization">
-<h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Link to this heading">¶</a></h2>
+</table></div>
+</div>
+<div class="section" id="resource-utilization">
+<h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this heading">¶</a></h2>
 <p>The resource utilization numbers of the platform post implementation is reported in the following table.</p>
 <table border="1" class="docutils">
 <thead>
@@ -268,9 +282,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td style="text-align: left;">25</td>
 </tr>
 </tbody>
-</table></section>
-<section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+</table></div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="app_deployment.html"><span class="doc">Application Deployment</span></a></p></li>
 <li><p><a class="reference internal" href="sw_arch_platform.html"><span class="doc">Software Architecture of the Platform</span></a></p></li>
@@ -284,8 +298,8 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
---><p class="sphinxhide" align="center">Copyright (C) 2023 Advanced Micro Devices, Inc.</p></section>
-</section>
+--><p class="sphinxhide" align="center">Copyright (C) 2023 Advanced Micro Devices, Inc.</p></div>
+</div>
 
 
            </div>
@@ -300,7 +314,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 19, 2026.
+      <span class="lastupdated">Last updated on April 23, 2026.
       </span></p>
   </div>
 
@@ -312,7 +326,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/legal/copyright.html">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/legal/privacy.html">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/legal/trademarks.html">Trademarks</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/cr/supply-chain-transparency.pdf">Supply Chain Transparency</a> | <a target="_blank" href="https://www.amd.com/en/legal/competition.html">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://www.amd.com/en/legal/cookies.html">Cookies Policy</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

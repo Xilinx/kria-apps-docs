@@ -10,8 +10,31 @@ For setting up the microSD card, you’ll need to download the latest SD card im
 
 Once your microSD card is flashed with the image, proceed to the next step.
 
+<details>
+<summary>Instructions for Raspberry Pi Imager  (any OS)</summary>
+
+For any OS users, visit the page below for instructions to copy the image to the SD card:
+
+https://documentation.ubuntu.com/core/how-to-guides/deploy-an-image/install-on-amd/#write-the-ubuntu-core-image-to-the-microsd-card 
+
+</details>
+
+<details>
+<summary>Instructions for Win32 Disk Imager tool (Windows only)</summary>
+
+For Windows users, you can also use the Win32 Disk Imager toolWin32 Disk Imager tool instead of [Raspberry Pi Imager](https://www.raspberrypi.com/software/). Ensure that your SD card is correctly formatted before using the tool.  Also, ensure that the compressed SD card image for the Kria Starter Kit has been extracted using an archive decompression tool.
+
+![Win 32 disk image](./media/win32-disk-image.avif)
+
+Browse to the location of the uncompressed image in the tool using the Blue folder icon.
+From the device drop-down menu, select the correct microSD card.
+
+Click on ‘Write’ and then ‘Yes’ at the prompt to continue the write process and wait till the process is completed.
+
+</details>
+
 ## Next Step
 
 Jump to [Step 2: Connect Everything](./connections.md).
 
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2026 Advanced Micro Devices, Inc</p>

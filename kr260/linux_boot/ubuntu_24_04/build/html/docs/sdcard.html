@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-<script type="text/javascript">
-(function() {
-    var host = window.location.hostname;
-    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-        s.type = 'text/javascript';
-        s.charset = 'UTF-8';
-        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
-        s.setAttribute('data-document-language', 'true');
-        document.head.appendChild(s);
 
-        window.OptanonWrapper = function() { };
-    }
+<script type="text/javascript">
+(function () {
+  // Load OneTrust only on approved domains.
+  var allowedHosts = [
+    "xilinx.github.io",
+    "www.xilinx.com"
+  ];
+
+  var host = window.location.hostname.toLowerCase();
+  var isAllowed = allowedHosts.some(function (d) {
+    return host === d || host.endsWith("." + d);
+  });
+
+  if (!isAllowed) {
+    return;
+  }
+
+  var s = document.createElement("script");
+  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+  s.type = "text/javascript";
+  s.charset = "UTF-8";
+  s.setAttribute("data-document-language", "true");
+  s.setAttribute("data-domain-script", "03af8d57-0a04-47a6-8f10-322fa00d8fc7");
+  document.head.appendChild(s);
+
+  window.OptanonWrapper = function () {};
 })();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -39,9 +50,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=56622d5a"></script>
-        <script src="../_static/doctools.js?v=9bcbadda"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -59,6 +72,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../index.html" class="icon icon-home"> Kria™ KD240: Linux Boot
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 Ubuntu 24.04
@@ -130,8 +144,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="step-1-set-up-the-sd-card-image">
-<h1>Step 1: Set up the SD Card Image<a class="headerlink" href="#step-1-set-up-the-sd-card-image" title="Link to this heading">¶</a></h1>
+  <div class="section" id="step-1-set-up-the-sd-card-image">
+<h1>Step 1: Set up the SD Card Image<a class="headerlink" href="#step-1-set-up-the-sd-card-image" title="Permalink to this heading">¶</a></h1>
 <p>The Starter Kit has a primary and secondary boot device, isolating the boot firmware from the run-time OS and application. This allows you to focus on developing and updating your application code within the application image on the secondary boot device, without having to develop the boot firmware. The primary boot device is a QSPI memory located on the SOM, which is pre-programmed (pre-loaded QSPI image) at the factory.  The secondary boot device is a microSD card interface on the carrier card.</p>
 <p>For setting up the microSD card, you’ll need to download the latest SD card image and then write it using an Image Flashing tool.</p>
 <ol class="simple">
@@ -140,28 +154,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Follow the instructions in the tool and select the downloaded image to flash onto your microSD card.</p></li>
 </ol>
 <p>Once your microSD card is flashed with the image, proceed to the next step.</p>
-<p>Looking for OS specific tools to write the image to the SD card?</p>
 <details>
-<summary>Instructions for Windows</summary><p>For Windows users, you can also use the Win32 Disk Imager tool instead of <a class="reference external" href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a>. Ensure that your SD card is correctly formatted before using the tool.  Also, ensure that the compressed SD card image for the Kria Starter Kit has been extracted using an archive decompression tool.</p>
+<summary>Instructions for Raspberry Pi Imager  (any OS) </summary><p>For any OS users, visit the page below for instructions to copy the image to the SD card:</p>
+<p>https://documentation.ubuntu.com/core/how-to-guides/deploy-an-image/install-on-amd/#write-the-ubuntu-core-image-to-the-microsd-card</p>
+</details><details>
+<summary>Instructions for Win32 Disk Imager tool (Windows only)</summary><p>For Windows users, you can also use the Win32 Disk Imager toolWin32 Disk Imager tool instead of <a class="reference external" href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a>. Ensure that your SD card is correctly formatted before using the tool.  Also, ensure that the compressed SD card image for the Kria Starter Kit has been extracted using an archive decompression tool.</p>
 <p><img alt="Win 32 disk image" src="../_images/win32-disk-image.avif" /></p>
 <p>Browse to the location of the uncompressed image in the tool using the Blue folder icon.
 From the device drop-down menu, select the correct microSD card.</p>
 <p>Click on ‘Write’ and then ‘Yes’ at the prompt to continue the write process and wait till the process is completed.</p>
-</details><details>
-<summary>Instructions for macOS</summary><p>For macOS users, visit the Ubuntu download page below to copy the image to the SD card:</p>
-<p>https://ubuntu.com/download/iot/installation-media</p>
-<p>Once on the Ubuntu download page, as seen below, click on the macOS link to jump to the instructions.</p>
-<p><img alt="MAC OS imager" src="../_images/ubunut-macos.avif" /></p>
-</details><details>
-<summary>Instructions for Linux</summary><p>For Linux OS users, visit the Ubuntu download page below to copy the image to the SD card:</p>
-<p>https://ubuntu.com/download/iot/installation-media</p>
-<p>Once on the Ubuntu download page, as seen below, click on the Ubuntu link to jump to the instructions.</p>
-<p><img alt="Linux imager" src="../_images/ubunut-linux.avif" /></p>
-</details><section id="next-step">
-<h2>Next Step<a class="headerlink" href="#next-step" title="Link to this heading">¶</a></h2>
+</details><div class="section" id="next-step">
+<h2>Next Step<a class="headerlink" href="#next-step" title="Permalink to this heading">¶</a></h2>
 <p>Jump to <a class="reference internal" href="connections.html"><span class="doc">Step 2: Connect Everything</span></a>.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></section>
-</section>
+<p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc</p></div>
+</div>
 
 
            </div>
@@ -177,7 +183,7 @@ From the device drop-down menu, select the correct microSD card.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 19, 2026.
+      <span class="lastupdated">Last updated on April 24, 2026.
       </span></p>
   </div>
 
@@ -189,7 +195,7 @@ From the device drop-down menu, select the correct microSD card.</p>
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/legal/copyright.html">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/legal/privacy.html">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/legal/trademarks.html">Trademarks</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/cr/supply-chain-transparency.pdf">Supply Chain Transparency</a> | <a target="_blank" href="https://www.amd.com/en/legal/competition.html">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://www.amd.com/en/legal/cookies.html">Cookies Policy</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

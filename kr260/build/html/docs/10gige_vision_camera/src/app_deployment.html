@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-<script type="text/javascript">
-(function() {
-    var host = window.location.hostname;
-    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-        s.type = 'text/javascript';
-        s.charset = 'UTF-8';
-        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
-        s.setAttribute('data-document-language', 'true');
-        document.head.appendChild(s);
 
-        window.OptanonWrapper = function() { };
-    }
+<script type="text/javascript">
+(function () {
+  // Load OneTrust only on approved domains.
+  var allowedHosts = [
+    "xilinx.github.io",
+    "www.xilinx.com"
+  ];
+
+  var host = window.location.hostname.toLowerCase();
+  var isAllowed = allowedHosts.some(function (d) {
+    return host === d || host.endsWith("." + d);
+  });
+
+  if (!isAllowed) {
+    return;
+  }
+
+  var s = document.createElement("script");
+  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+  s.type = "text/javascript";
+  s.charset = "UTF-8";
+  s.setAttribute("data-document-language", "true");
+  s.setAttribute("data-domain-script", "03af8d57-0a04-47a6-8f10-322fa00d8fc7");
+  document.head.appendChild(s);
+
+  window.OptanonWrapper = function () {};
 })();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -39,9 +50,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=2406f4f9"></script>
-        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -59,6 +72,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Kria™ KR260
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2022.1
@@ -98,8 +112,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="../../linux_boot.html">KR260 Starter Kit Linux Boot</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Setting up the Board and Application deployment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction-to-the-test-environment">Introduction to the Test Environment</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#installing-the-application-packages">Installing the Application packages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#docker-based-application-preparation">Docker based application preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-the-application-packages">Installing the Application Packages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-based-application-preparation">Docker Based Application Preparation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#firmware-loading">Firmware Loading</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#launching-the-docker">Launching the Docker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#running-the-10gige-application-on-target">Running the 10GigE Application on Target</a></li>
@@ -161,51 +175,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Machine Vision Camera Tutorial</h1> </td>
+ <td align="center"><h1>Machine Vision Camera Tutorial</h1>
+ </td>
  </tr>
-</table><section id="gige-machine-vision-defect-detect-application-deployment">
-<h1>10GigE Machine Vision Defect Detect Application Deployment<a class="headerlink" href="#gige-machine-vision-defect-detect-application-deployment" title="Link to this heading">¶</a></h1>
-<section id="introduction-to-the-test-environment">
-<h2>Introduction to the Test Environment<a class="headerlink" href="#introduction-to-the-test-environment" title="Link to this heading">¶</a></h2>
+</table><div class="section" id="gige-machine-vision-defect-detect-application-deployment">
+<h1>10GigE Machine Vision Defect Detect Application Deployment<a class="headerlink" href="#gige-machine-vision-defect-detect-application-deployment" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction-to-the-test-environment">
+<h2>Introduction to the Test Environment<a class="headerlink" href="#introduction-to-the-test-environment" title="Permalink to this heading">¶</a></h2>
 <p>This document shows how to set up the board and run the <strong>MV-Defect Detect</strong> and <strong>10GigE</strong> applications.</p>
-<section id="hardware-requirements">
-<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Link to this heading">¶</a></h3>
-<ol class="simple">
+<div class="section" id="hardware-requirements">
+<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
 <li><p>KR260 Robotics Starter Kit</p></li>
 <li><p>KR260 Power Supply &amp; Adapter (Included with KR260 Robotics Starter Kit)</p></li>
 <li><p>Cat 5e Ethernet Cable (Included with KR260 Robotics Starter Kit)</p></li>
 <li><p>USB-A to micro-B Cable (Included with KR260 Robotics Starter Kit)</p></li>
-<li><p>16GB MicroSD Cards (Included with KR260 Robotics Starter Kit)</p></li>
+<li><p>16 GB MicroSD Cards (Included with KR260 Robotics Starter Kit)</p></li>
 <li><p>1080p Monitor and Power Supply</p></li>
 <li><p>Display Port Cable</p></li>
-<li><p>1-Windows PC, for capturing the UART/console logs from KR260 board, and to act as host PC</p></li>
+<li><p>1 Windows PC, for capturing the UART/console logs from KR260 board, and to act as host PC</p></li>
 <li><p><a class="reference external" href="https://www.amazon.com/dp/B089K3VYZ1">Fiber Optic Cable</a></p></li>
 <li><p><a class="reference external" href="https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/imx547-camera-kit-monochrome.html">Sony IMX547 Monochrome Camera sensor Module</a> OR <a class="reference external" href="https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/imx547-camera-kit-color.html">Sony IMX547 Color Camera sensor Module</a></p></li>
 <li><p><a class="reference external" href="https://www.amazon.com/dp/B06X9T683K">10G NIC Card</a></p></li>
 <li><p><a class="reference external" href="https://www.amazon.com/dp/B08BP55663">Two 10G SFP+ Transceivers</a></p></li>
-</ol>
-</section>
-<section id="setting-up-the-live-source-for-defect-detect">
-<h3>Setting Up the Live Source for Defect-Detect<a class="headerlink" href="#setting-up-the-live-source-for-defect-detect" title="Link to this heading">¶</a></h3>
-<p>When setting up the SOM Board for the live camera source capturing mango image displayed on a monitor, adhere to the following guidelines:</p>
-<ul>
-<li><p>Keep the IMX547 Camera module firmly held in a static position, preferably on a tripod and at a height of ~17 cm from the base.</p></li>
-<li><p>IMX547 Camera module should be facing straight directly to the monitor(not at an angle) at an appropriate distance of ~35 cm from the screen.</p></li>
-<li><p>According to the model of the monitor(Dell U2718Q Ultra Sharp 27 used here), set brightness and contrast to 94 and 85, respectively. Optimal values may be different for different make/model.</p></li>
-<li><p>The setup should be covered completely so that no outside light is captured by the sensor.</p></li>
-<li><p>To avoid over exposure of light, do NOT place the monitor opposite to an open door or window.</p></li>
+</ul>
+</div>
+<div class="section" id="setting-up-the-live-source-for-defect-detect">
+<h3>Setting Up the Live Source for Defect-Detect<a class="headerlink" href="#setting-up-the-live-source-for-defect-detect" title="Permalink to this heading">¶</a></h3>
+<p>Follow these steps to set up the SOM Board for the live camera source capturing mango image displayed on a monitor:</p>
+<ol>
+<li><p>Keep the IMX547 Camera module firmly held in a static position, preferably on a tripod and at a height of approximately 17 cm from the base.</p></li>
+<li><p>Position the IMX547 Camera module facing straight directly to the monitor (not at an angle) at an appropriate distance of approximately 35 cm from the screen.</p></li>
+<li><p>According to the model of the monitor (Dell U2718Q Ultra Sharp 27 used here), set brightness and contrast to 94 and 85, respectively. Optimal values may be different for different make/model.</p></li>
+<li><p>Cover the setup completely so that no outside light is captured by the sensor.</p></li>
+<li><p>To avoid over exposure of light, do not place the monitor opposite to an open door or window.</p></li>
 <li><p>Ensure that the live source is able to capture the mango completely.</p></li>
-<li><p>The camera should be focused ONLY on the mango image that was displayed.</p></li>
+<li><p>Focus the camera only on the mango image that was displayed.</p></li>
 <li><p>The setup should be as follows:</p>
 <p><img alt="IMX547 Sensor Camera" src="../../../_images/IMX547_Camera_Setup.jpg" /></p>
-<p><strong>Note</strong>: The above setup should be covered completely so that no outisde light is captured by the sensor. In the setup above, a black cloth is used to cover the setup entirely.
-If the preview image is not satisfactory, adjust the above mentioned parameters. Adjust the camera aperture using the adjustment ring on the sensor lens. For Monochrome and Color sensor set
-it to 1.6 and 0.8 respectively.</p>
+<p><strong>Note</strong>: The above setup should be covered completely so that no outside light is captured by the sensor. In the setup above, a black cloth is used to cover the setup entirely. If the preview image is not satisfactory, adjust the above mentioned parameters. Adjust the camera aperture using the adjustment ring on the sensor lens. For Monochrome and Color sensor, set it to 1.6 and 0.8, respectively.</p>
 </li>
-</ul>
-</section>
-<section id="setting-up-the-test-environment">
-<h3>Setting Up the Test Environment<a class="headerlink" href="#setting-up-the-test-environment" title="Link to this heading">¶</a></h3>
+</ol>
+</div>
+<div class="section" id="setting-up-the-test-environment">
+<h3>Setting Up the Test Environment<a class="headerlink" href="#setting-up-the-test-environment" title="Permalink to this heading">¶</a></h3>
 <p><em><strong>Note</strong></em>: Ensure that the <a class="reference external" href="https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c">Gstreamer packages</a> are installed on Linux PC. If Linux distribution is on Ubuntu, make sure its version is at least <strong>16.04</strong>.</p>
 <p>Download all the sample mango images from the <a class="reference external" href="http://www.cofilab.com/wp-content/downloads/DB_Mango.rar">Cofilab site</a> to the Linux PC.</p>
 <p><em><strong>Note</strong></em>: If the file fails to download, copy the link and open in a new browser tab to download the file.</p>
@@ -219,14 +232,14 @@ it to 1.6 and 0.8 respectively.</p>
 </pre></div>
 </div>
 </li>
-<li><p>Copy the scripts to <code class="docutils literal notranslate"><span class="pre">DB_Mango</span></code> directory</p></li>
+<li><p>Copy the scripts to <code class="docutils literal notranslate"><span class="pre">DB_Mango</span></code> directory.</p></li>
 <li><p>Run the scripts as follows:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./convert_jpeg_y8.sh<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="w"> </span>file.txt<span class="w">     </span>For<span class="w"> </span>GRAY8<span class="w"> </span>format
 
 ./convert_jpeg_rgb.sh<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="w"> </span>file.txt<span class="w">    </span>For<span class="w"> </span>RGB<span class="w"> </span>format
 </pre></div>
 </div>
-<p>Once the above command is completed, the script produces <code class="docutils literal notranslate"><span class="pre">input_video.y8</span> <span class="pre">|</span> <span class="pre">input_video.rgb</span></code> as input to the MV-Defect-Detect application.</p>
+<p>After the above command completes, the script produces <code class="docutils literal notranslate"><span class="pre">input_video.y8</span> <span class="pre">|</span> <span class="pre">input_video.rgb</span></code> as input to the MV-Defect-Detect application.</p>
 </li>
 <li><p>Copy the video from the Linux PC to the SOM board. If copied to an SD card, it can be found in <code class="docutils literal notranslate"><span class="pre">/boot/firmware/&lt;input_video.y8/rgb&gt;</span></code>. For containers to access the file, copy it to <code class="docutils literal notranslate"><span class="pre">/tmp/</span></code> and containers can then also access it from its /tmp/ folder. Then copy it to <code class="docutils literal notranslate"><span class="pre">/home/</span></code> directory in the container.</p>
 <blockquote>
@@ -234,26 +247,27 @@ it to 1.6 and 0.8 respectively.</p>
 </div></blockquote>
 </li>
 </ol>
-<p>The MV-Defect-Detect application’s design takes, processes, and displays images on to the monitor.</p>
-<p>See <a class="reference internal" href="known_issues.html"><span class="doc">Known Issues and Limitations</span></a> with the MV-Defect-Detect application.</p>
-</section>
-<section id="som-board-setup">
-<h3>SOM Board setup<a class="headerlink" href="#som-board-setup" title="Link to this heading">¶</a></h3>
+<p>The MV-Defect-Detect application design takes, processes, and displays images on to the monitor.</p>
+<p>Refer to <a class="reference internal" href="known_issues.html"><span class="doc">Known Issues and Limitations</span></a> with the MV-Defect-Detect application.</p>
+</div>
+<div class="section" id="som-board-setup">
+<h3>SOM Board Setup<a class="headerlink" href="#som-board-setup" title="Permalink to this heading">¶</a></h3>
 <p>Refer to the following KR260 Board and Interface layout for connector reference numbers:</p>
 <p><img alt="board interfaces" src="../../../_images/board_interfaces.png" /></p>
 <p><img alt="usb slot" src="../../../_images/usb_slot.png" /></p>
+<p>Follow these steps to set up the SOM board:</p>
 <ol>
 <li><p>Go through the <a class="reference internal" href="../../linux_boot.html"><span class="doc">Booting Kria Starter Kit Linux</span></a> to complete minimum setup required to boot Linux before continuing with the instructions in this page.</p></li>
 <li><p>Ensure that the board is powered off. Connect IMX547 Monochrome sensor module to J22 in KR260 using flex cable.</p></li>
 <li><p>Keep the KR260 board and sensor module firmly held in a static position.</p></li>
 <li><p>Connect the Ethernet cable from PS ethernet ‘J10C’ to local network with DHCP enabled to install packages.</p></li>
 <li><p>Connect the fiber optic cable to SFP+ connector in the KR260 board, other end to host machine (Windows/Ubuntu) NIC card as follows:</p>
-<p><img alt="KR260 SFP+" src="../../../_images/KR260_SFP%2B_Host.jpg" /></p>
+<p><img alt="KR260 SFP+" src="../../../_images/KR260_SFP+_Host.jpg" /></p>
 </li>
 </ol>
-</section>
-<section id="tested-artifacts">
-<h3>Tested Artifacts<a class="headerlink" href="#tested-artifacts" title="Link to this heading">¶</a></h3>
+</div>
+<div class="section" id="tested-artifacts">
+<h3>Tested Artifacts<a class="headerlink" href="#tested-artifacts" title="Permalink to this heading">¶</a></h3>
 <p>Testing was performed with the following artifacts:</p>
 <table border="1" class="docutils">
 <thead>
@@ -280,32 +294,37 @@ it to 1.6 and 0.8 respectively.</p>
 <td>0.12-0xlnx2</td>
 </tr>
 </tbody>
-</table></section>
-<section id="host-machine-setup">
-<h3>Host Machine Setup<a class="headerlink" href="#host-machine-setup" title="Link to this heading">¶</a></h3>
-<ul class="simple">
+</table></div>
+<div class="section" id="host-machine-setup">
+<h3>Host Machine Setup<a class="headerlink" href="#host-machine-setup" title="Permalink to this heading">¶</a></h3>
+<p>Follow these steps to set up the host machine:</p>
+<ol class="simple">
 <li><p>Check the available network interfaces before inserting the 10G NIC card using:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">ifconfig</span> <span class="pre">-a</span></code> for ubuntu host</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ipconfig</span> <span class="pre">/all</span></code> for windows host</p></li>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ifconfig</span> <span class="pre">-a</span></code> for Ubuntu host</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ipconfig</span> <span class="pre">/all</span></code> for Windows host</p></li>
 </ul>
 </li>
-<li><p>Install the 10Gb PCIe NIC Network Card in the PCIe slot of host machine.</p></li>
+<li><p>Install the 10 GB PCIe NIC Network Card in the PCIe slot of host machine.</p></li>
 <li><p>Connect the fiber optic cable one end to the NIC card in host machine and the other end to the KR260 board SFP+ connector.</p></li>
 <li><p>The newly inserted NIC card shows the new interface in the host machine. You can run the same command to verify that:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">ifconfig</span> <span class="pre">-a</span></code> for ubuntu host</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ipconfig</span> <span class="pre">/all</span></code> for windows host</p></li>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ifconfig</span> <span class="pre">-a</span></code> for Ubuntu host</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ipconfig</span> <span class="pre">/all</span></code> for Windows host</p></li>
 </ul>
 </li>
-</ul>
-<p><strong>Note:</strong> On windows host, ensure that the network related drivers are installed from the <a class="reference external" href="https://www.euresys.com/en/Products/IP-Cores/Vision-Standard-IP-Cores-for-FPGA/GigE-Vision-IP-Core-(2)">link</a>, before running the Host Sphinx application.</p>
-<p><strong>Note:</strong> Ensure that the 10GigE interface is enabled on the Host PC before loading MV-Camera application firmware.</p>
-</section>
-</section>
-<section id="installing-the-application-packages">
-<h2>Installing the Application packages<a class="headerlink" href="#installing-the-application-packages" title="Link to this heading">¶</a></h2>
-<p>Make sure that you had gone through  <a class="reference internal" href="../../linux_boot.html"><span class="doc">Booting Kria Starter Kit Linux</span></a> as indicated in the previous step to complete the minimum setup required to boot Linux before continuing with instructions in this page.</p>
+</ol>
+<blockquote>
+<div><p><strong>Note:</strong> On a Windows host, ensure that the network related drivers are installed from the <a class="reference external" href="https://www.euresys.com/en/Products/IP-Cores/Vision-Standard-IP-Cores-for-FPGA/GigE-Vision-IP-Core-(2)">link</a> before running the Host Sphinx application.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Note:</strong> Ensure that the 10GigE interface is enabled on the Host PC before loading MV-Camera application firmware.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="installing-the-application-packages">
+<h2>Installing the Application Packages<a class="headerlink" href="#installing-the-application-packages" title="Permalink to this heading">¶</a></h2>
+<p>Make sure that you had gone through <a class="reference internal" href="../../linux_boot.html"><span class="doc">Booting Kria Starter Kit Linux</span></a> as indicated in the previous step to complete the minimum setup required to boot Linux before continuing with instructions in this page.</p>
 <p>Install the latest application packages.</p>
 <ol>
 <li><p>Get the list of available packages in the feed:</p>
@@ -319,51 +338,53 @@ it to 1.6 and 0.8 respectively.</p>
 </pre></div>
 </div>
 </li>
-<li><p>Install <code class="docutils literal notranslate"><span class="pre">qv4l2</span></code>, GUI like test bench application for video4linux devices, which can be used to tune the sensor/ISP parameters as an alternative to standard <code class="docutils literal notranslate"><span class="pre">v4l2-ctl</span></code> commands</p>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">qv4l2</span></code>, GUI like test bench application for video4linux devices, which can be used to tune the sensor/ISP parameters as an alternative to standard <code class="docutils literal notranslate"><span class="pre">v4l2-ctl</span></code> commands.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>qv4l2
 </pre></div>
 </div>
 <blockquote>
-<div><p><strong>Note</strong>: The default sensor/ISP parameters are set to defect-detection mode, which uses a completely covered setup and blocks sensor from capturing any natural light. Please tune the
-sensor/ISP settings, via v4l2 commands or GUI, to optimal values based on your lighting conditions for 10Gige or defect-detect in bypass mode. The process to tune the settings are
-outlined in the “Sensor Calibration for the Live Source” further below.</p>
+<div><p><strong>Note</strong>: The default sensor/ISP parameters are set to defect-detection mode, which uses a completely covered setup and blocks sensor from capturing any natural light. Tune the sensor/ISP settings using v4l2 commands or GUI to optimal values based on your lighting conditions for 10GigE or defect-detect in bypass mode. The process to tune the settings is outlined in the “Sensor Calibration for the Live Source” section.</p>
 </div></blockquote>
 </li>
 </ol>
-</section>
-<section id="docker-based-application-preparation">
-<h2>Docker based application preparation<a class="headerlink" href="#docker-based-application-preparation" title="Link to this heading">¶</a></h2>
-<ul>
-<li><p>Pull the latest docker image for mv-defect-detect using the following command.</p>
+</div>
+<div class="section" id="docker-based-application-preparation">
+<h2>Docker Based Application Preparation<a class="headerlink" href="#docker-based-application-preparation" title="Permalink to this heading">¶</a></h2>
+<ol class="simple">
+<li><p>Pull the latest docker image for mv-defect-detect using the following command.</p></li>
+</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>sudo<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>xilinx/mv-defect-detect:2022.2
 </pre></div>
 </div>
-</li>
-<li><p>Find the images installed with the following command:</p>
+<ol class="simple">
+<li><p>Find the images installed with the following command:</p></li>
+</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>sudo<span class="w"> </span>docker<span class="w"> </span>images
 </pre></div>
 </div>
-</li>
-</ul>
-</section>
-<section id="firmware-loading">
-<h2>Firmware Loading<a class="headerlink" href="#firmware-loading" title="Link to this heading">¶</a></h2>
-<p>The MV-Camera application firmware consists of bitstream (bit.bin) and device tree overlay (<em>dtbo</em>). The MV-Camera firmware is loaded dynamically on the user request once the ubuntu system is fully booted. Use the <em>xmutil</em> utility to list and load the firmware.</p>
-<p><em><strong>Note</strong></em>: <code class="docutils literal notranslate"><span class="pre">xmutil</span></code> utility runs only in Ubuntu.</p>
-<section id="dynamically-load-the-application-firmware">
-<h3>Dynamically load the application firmware:<a class="headerlink" href="#dynamically-load-the-application-firmware" title="Link to this heading">¶</a></h3>
-<ul>
+</div>
+<div class="section" id="firmware-loading">
+<h2>Firmware Loading<a class="headerlink" href="#firmware-loading" title="Permalink to this heading">¶</a></h2>
+<p>The MV-Camera application firmware consists of bitstream (bit.bin) and device tree overlay (<em>dtbo</em>). The MV-Camera firmware is loaded dynamically on the user request once the Ubuntu system is fully booted. Use the <em>xmutil</em> utility to list and load the firmware.</p>
+<blockquote>
+<div><p><em><strong>Note</strong></em>: <code class="docutils literal notranslate"><span class="pre">xmutil</span></code> utility runs only in Ubuntu.</p>
+</div></blockquote>
+<div class="section" id="dynamically-load-the-application-firmware">
+<h3>Dynamically Load the Application Firmware<a class="headerlink" href="#dynamically-load-the-application-firmware" title="Permalink to this heading">¶</a></h3>
+<p>Follow these steps to dynamically load the application firmware:</p>
+<ol>
 <li><p>Disable the desktop environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>desktop_disable
 </pre></div>
 </div>
-<p><em><strong>Note</strong></em>: Executing “xmutil desktop_disable” causes the desktop on the monitor to be disabled. Use any serial terminal to continue issuing Linux commands via port J4 and do not rely completely on the desktop environment.</p>
-<p>After running the application, the desktop environment can be enabled again with:</p>
+<blockquote>
+<div><p><strong>Note</strong>: Executing “xmutil desktop_disable” causes the desktop on the monitor to be disabled. Use any serial terminal to continue issuing Linux commands using port J4 and do not rely completely on the desktop environment. After running the application, the desktop environment can be enabled again with:</p>
+</div></blockquote>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>desktop_enable
 </pre></div>
 </div>
 </li>
-<li><p>After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.</p>
+<li><p>After installing the FW, run <code class="docutils literal notranslate"><span class="pre">xmutil</span> <span class="pre">listapps</span></code> to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
 </pre></div>
 </div>
@@ -372,12 +393,10 @@ outlined in the “Sensor Calibration for the Live Source” further below.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>listapps
 </pre></div>
 </div>
-</li>
-</ul>
 <blockquote>
-<div><p><em><strong>Note</strong></em>: The Active_Slot column shows the application firmware that is currently loaded in the system. The value ‘-1’ indicates that the firmware is not loaded, while the value of ‘0’ indicates that the firmware is loaded. By default, only the <em>k26-starter-kits</em> firmware is loaded.</p>
+<div><p><em><strong>Note</strong></em>: The Active_Slot column shows the application firmware that is currently loaded in the system. The value ‘-1’ indicates that the firmware is not loaded, while the value of ‘0’ indicates that the firmware is loaded. By default, only the <em>k26-starter-kits</em> firmware is loaded.</p>
 </div></blockquote>
-<ul>
+</li>
 <li><p>To load the MV-Camera application firmware, unload the existing firmware and then load either mono/color MV-Camera application firmware based on the sensor connected:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
 <span class="w">  </span>sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>kr260-mv-camera-mono<span class="w">      </span>//For<span class="w"> </span>Monochrome<span class="w"> </span>Sensor
@@ -385,13 +404,12 @@ outlined in the “Sensor Calibration for the Live Source” further below.</p>
 </pre></div>
 </div>
 </li>
-</ul>
-</section>
-</section>
-<section id="launching-the-docker">
-<h2>Launching the Docker<a class="headerlink" href="#launching-the-docker" title="Link to this heading">¶</a></h2>
-<ul>
-<li><p>Launch the docker using the below command. The firmware must be loaded before launching the docker container.</p>
+</ol>
+</div>
+</div>
+<div class="section" id="launching-the-docker">
+<h2>Launching the Docker<a class="headerlink" href="#launching-the-docker" title="Permalink to this heading">¶</a></h2>
+<p>To launch the docker container for MV-Defect-Detect application, run the following command. The firmware must be loaded before launching the docker container.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>--env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>--env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -408,29 +426,27 @@ outlined in the “Sensor Calibration for the Live Source” further below.</p>
 <span class="w">      </span>-it<span class="w"> </span>xilinx/mv-defect-detect:2022.2<span class="w"> </span>bash
 </pre></div>
 </div>
-</li>
-<li><p>It launches the mv-defect-detect docker image container.</p></li>
-</ul>
+<p>It launches the mv-defect-detect docker image container.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>root@xlnx-docker/#
 </pre></div>
 </div>
-</section>
-<section id="running-the-10gige-application-on-target">
-<h2>Running the 10GigE Application on Target<a class="headerlink" href="#running-the-10gige-application-on-target" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="running-the-10gige-application-on-target">
+<h2>Running the 10GigE Application on Target<a class="headerlink" href="#running-the-10gige-application-on-target" title="Permalink to this heading">¶</a></h2>
 <p>The only way to invoke the application is by command line.</p>
 <blockquote>
-<div><p><em><strong>Note</strong></em>: Docker starts with the <em>root</em> user access. Only one instance of the application can run at a time. Only 2472 x 2128 &#64;122fps – 10bpp configuration is validated.</p>
+<div><p><em><strong>Note</strong></em>: Docker starts with the <em>root</em> user access. Only one instance of the application can run at a time. Only 2472 x 2128 &#64;122fps  —  10bpp configuration is validated.</p>
 </div></blockquote>
-<p>To run the application, follow the steps mentioned below:</p>
+<p>To run the application, follow these steps:</p>
 <ol>
 <li><p>Run the configure script to configure the media nodes and the IPs in the capture path.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>configure<span class="w"> </span>-f<span class="w"> </span>mono<span class="w"> </span>-r<span class="w"> </span><span class="m">60</span><span class="w">         </span>//For<span class="w"> </span>Monochrome<span class="w"> </span>Sensor<span class="w"> </span>at<span class="w"> </span>60fps
 <span class="w">  </span>configure<span class="w"> </span>-f<span class="w"> </span>color<span class="w"> </span>-r<span class="w"> </span><span class="m">60</span><span class="w">        </span>//For<span class="w"> </span>Color<span class="w"> </span>Sensor<span class="w"> </span>at<span class="w"> </span>60fps
 </pre></div>
 </div>
-<p>*<strong>NOTE</strong>: Valid values for <code class="docutils literal notranslate"><span class="pre">-r</span></code> are 60 and 120. If user does not specify the rate, default value is set to 60 fps.</p>
+<p>*<strong>NOTE</strong>: Valid values for <code class="docutils literal notranslate"><span class="pre">-r</span></code> are 60 and 120. If you do not specify the rate, default value is set to 60 fps.</p>
 </li>
-<li><p>Set Static IP address on the SFP eth interface on the KR260. It should be under same subnet as Host Machines SFP IP</p>
+<li><p>Set Static IP address on the SFP eth interface on the KR260. It should be under same subnet as Host Machines SFP IP.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">#Example</span>
 <span class="w">  </span>busybox<span class="w"> </span>ifconfig<span class="w"> </span>eth2<span class="w"> </span>down
 <span class="w">  </span>busybox<span class="w"> </span>ifconfig<span class="w"> </span>eth2<span class="w"> </span><span class="m">192</span>.168.0.19
@@ -441,11 +457,11 @@ outlined in the “Sensor Calibration for the Live Source” further below.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>update_eeprom_wrapper
 </pre></div>
 </div>
-<p>It asks the user to give a few inputs and gets the following logs (the size of the following xml file might vary):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Update</span> <span class="n">eeprom</span>
+<p>It asks you to give a few inputs and gets the following logs (the size of the following xml file might vary):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Update<span class="w"> </span>eeprom
 
-<span class="n">file</span><span class="p">:</span> <span class="n">xgvrd</span><span class="o">-</span><span class="n">kr260</span><span class="o">.</span><span class="n">xml</span>
-<span class="n">size</span><span class="p">:</span> <span class="mi">113757</span>
+file:<span class="w"> </span>xgvrd-kr260.xml
+size:<span class="w"> </span><span class="m">113757</span>
 </pre></div>
 </div>
 <blockquote>
@@ -456,8 +472,8 @@ outlined in the “Sensor Calibration for the Live Source” further below.</p>
 </div>
 </div></blockquote>
 <p>Then, you can select the type of network:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="mi">1</span><span class="p">:</span> <span class="n">dhcp</span>
-  <span class="mi">2</span><span class="p">:</span> <span class="n">static</span> <span class="n">ip</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="m">1</span>:<span class="w"> </span>dhcp
+<span class="w">  </span><span class="m">2</span>:<span class="w"> </span>static<span class="w"> </span>ip
 </pre></div>
 </div>
 <blockquote>
@@ -469,14 +485,14 @@ outlined in the “Sensor Calibration for the Live Source” further below.</p>
 </li>
 <li><p>Run the following command and get the interface name, which has memory address like <strong>memory 0xa0060000-a006ffff</strong>.</p>
 <p>a.  <code class="docutils literal notranslate"><span class="pre">ifconfig</span> <span class="pre">-a</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">eth2</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">3</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">BROADCAST</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">1500</span>
-    <span class="n">inet</span> <span class="mf">192.168.0.19</span>  <span class="n">netmask</span> <span class="mf">255.255.255.0</span>  <span class="n">broadcast</span> <span class="mf">192.168.0.255</span>
-    <span class="n">ether</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">a</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">02</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Ethernet</span><span class="p">)</span>
-    <span class="n">RX</span> <span class="n">packets</span> <span class="mi">0</span>  <span class="nb">bytes</span> <span class="mi">0</span> <span class="p">(</span><span class="mf">0.0</span> <span class="n">B</span><span class="p">)</span>
-    <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
-    <span class="n">TX</span> <span class="n">packets</span> <span class="mi">8</span>  <span class="nb">bytes</span> <span class="mi">1156</span> <span class="p">(</span><span class="mf">1.1</span> <span class="n">KB</span><span class="p">)</span>
-    <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
-    <span class="n">device</span> <span class="n">interrupt</span> <span class="mi">66</span>  <span class="n">memory</span> <span class="mh">0xa0060000</span><span class="o">-</span><span class="n">a006ffff</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    eth2: flags=3&lt;UP,BROADCAST&gt;  mtu 1500
+    inet 192.168.0.19  netmask 255.255.255.0  broadcast 192.168.0.255
+    ether 00:0a:35:00:22:02  txqueuelen 1000  (Ethernet)
+    RX packets 0  bytes 0 (0.0 B)
+    RX errors 0  dropped 0  overruns 0  frame 0
+    TX packets 8  bytes 1156 (1.1 KB)
+    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+    device interrupt 66  memory 0xa0060000-a006ffff
 </pre></div>
 </div>
 <p>Keyword <strong>memory 0xa0060000-a006ffff</strong> belongs to eth2 port. This interface information is required to feed while running gvrd application on target.</p>
@@ -516,86 +532,80 @@ outlined in the “Sensor Calibration for the Live Source” further below.</p>
 </div></blockquote>
 </li>
 <li><p>On Host PC to run the Sphinx application:</p>
-<p>Sphinx GEV Viewer can be downloaded from <a class="reference external" href="https://www.euresys.com/en/About-us/Blog-event/News/New-GigE-Vision-Viewer-for-AMD-Xilinx-Kria-KR260-R">here</a> along with Sphinx GEV Viewer user guide link to run the Sphinx application.</p>
+<p>Sphinx GEV Viewer can be downloaded from <a class="reference external" href="https://www.euresys.com/en/About-us/Blog-event/News/New-GigE-Vision-Viewer-for-AMD-Xilinx-Kria-KR260-R">Euresys</a> along with Sphinx GEV Viewer user guide link to run the Sphinx application.</p>
 <p><strong>Prerequisites:</strong></p>
-<p>a). If you are setting the IP statically, make sure that both KR260 and host machine should be on the same network class address.</p>
+<p>a. If you are setting the IP statically, make sure that both KR260 and host machine should be on the same network class address.</p>
 <ul>
-<li><p>On ubuntu : sudo ifconfig &lt;10G network interface&gt; <IPv4 adress> up</p>
-<p>For Example: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">enp23s0</span> <span class="pre">192.168.0.10</span> <span class="pre">up</span></code></p>
+<li><p>On Ubuntu: sudo ifconfig &lt;10G network interface&gt; <IPv4 address> up</p>
+<p>For example: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">enp23s0</span> <span class="pre">192.168.0.10</span> <span class="pre">up</span></code></p>
 </li>
-<li><p>On Windows : Set from network settings – IPv4 IP</p></li>
+<li><p>On Windows: Set from network settings  —  IPv4 IP</p></li>
 </ul>
-<p>b). To change the MTU Size, follow the procedure as mentioned below:</p>
+<p>b. To change the MTU Size, follow the procedure as mentioned below:</p>
 <ul>
-<li><p>For ubuntu : sudo ifconfig &lt;10G network interface&gt; mtu 9014 up</p>
-<p>For Example: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">enp23s0</span> <span class="pre">mtu</span> <span class="pre">9014</span> <span class="pre">up</span></code></p>
+<li><p>For Ubuntu: sudo ifconfig &lt;10G network interface&gt; mtu 9014 up</p>
+<p>For example: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">enp23s0</span> <span class="pre">mtu</span> <span class="pre">9014</span> <span class="pre">up</span></code></p>
 </li>
-<li><p>For Windows :</p>
-<ul class="simple">
-<li><p>Go to settings, navigate to control panel, and select <strong>Network and Sharing Centre</strong>,</p></li>
-<li><p>Select <strong>Change adapter settings</strong>,</p></li>
-<li><p>Right click on the NIC interface on which the place to enable Jumbo Frames and select <strong>Properties</strong>,</p></li>
-<li><p>From the NIC properties, select <strong>Configure</strong>,</p></li>
-<li><p>Click on <strong>Advanced</strong> tab,</p></li>
-<li><p>In Advanced section, select <strong>Jumbo Frame</strong>,</p></li>
-<li><p>In the Value field <strong>Value</strong> – select 9KB MTU s.</p></li>
-</ul>
+<li><p>For Windows:</p>
+<ol class="simple">
+<li><p>Go to settings, navigate to control panel, and select <strong>Network and Sharing Centre</strong>.</p></li>
+<li><p>Select <strong>Change adapter settings</strong>.</p></li>
+<li><p>Right-click the NIC interface to enable Jumbo Frames and select <strong>Properties</strong>.</p></li>
+<li><p>From the NIC properties, select <strong>Configure</strong>.</p></li>
+<li><p>Click on <strong>Advanced</strong> tab.</p></li>
+<li><p>In Advanced section, select <strong>Jumbo Frame</strong>.</p></li>
+<li><p>In the Value field <strong>Value</strong>, select 9 KB MTU s.</p></li>
+</ol>
 </li>
 </ul>
-<p>c). Sphinx GEV Viewer GUI start-up window should look something like below image. If all the control elements are not
-visible, you can reduce the size of text, apps and other items in the Display settings.</p>
+<p>c. Sphinx GEV Viewer GUI start-up window should look something like below image. If all the control elements are not visible, you can reduce the size of text, apps, and other items in the Display settings.</p>
 <p><img alt="GUI-Window" src="../../../_images/GUI-Window.JPG" /></p>
-<p>d). On the Sphinx GUI click on <code class="docutils literal notranslate"><span class="pre">Discovery</span></code> to establish a connection from KR260 over SFP. Then click on
-Discovery –&gt; Open</p>
-<p><img alt="Sphinx_Discovert" src="../../../_images/Sphinx_Discovery.JPG" /></p>
-<p>e). To get the maximum fps in the Sphinx GUI, you can change the draw value in Sphinx –&gt; Options based on the host type  (windows or ubuntu)</p>
+<p>d. On the Sphinx GUI, click on <code class="docutils literal notranslate"><span class="pre">Discovery</span></code> to establish a connection from KR260 over SFP. Then click on Discovery –&gt; Open.</p>
+<p><img alt="Sphinx_Discovery" src="../../../_images/Sphinx_Discovery.JPG" /></p>
+<p>e. To get the maximum fps in the Sphinx GUI, you can change the draw value in Sphinx –&gt; Options based on the host type (Windows or Ubuntu).</p>
 <ul>
-<li><p>On ubuntu host,</p>
-<p>For 60 fps, set the draw value to <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
-<p>For 120 fps, set the draw value to <code class="docutils literal notranslate"><span class="pre">50</span></code>.</p>
+<li><p>On Ubuntu host:</p>
+<p>For 60 fps, set the draw value to <code class="docutils literal notranslate"><span class="pre">10</span></code>.
+For 120 fps, set the draw value to <code class="docutils literal notranslate"><span class="pre">50</span></code>.</p>
 </li>
-<li><p>On windows host,</p>
+<li><p>On Windows host:</p>
 <p>For 60/120 fps, set the draw value to <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
 <p><img alt="Sphinx GE Viewer" src="../../../_images/Sphinx_GE_Viewer.png" /></p>
 </li>
 </ul>
-<p>f). Download <a class="reference external" href="https://github.com/Xilinx/mv-defect-detect/blob/main/10gige/application/xgvrd-kr260.xml">xgvrd-kr260.xml</a> into the host machine. In sphinx GEV viewer application, set the downloaded xml file path in the GUI.</p>
-<p>g). In Sphinx host application, select <em>Use filter Driver</em> checkbox, and <em>Grab</em> checkbox to capture the frames from KR260 10GigE network.</p>
+<p>f. Download <a class="reference external" href="https://github.com/Xilinx/mv-defect-detect/blob/main/10gige/application/xgvrd-kr260.xml">xgvrd-kr260.xml</a> into the host machine. In Sphinx GEV viewer application, set the downloaded xml file path in the GUI.</p>
+<p>g. In Sphinx host application, select <em>Use filter Driver</em> checkbox, and <em>Grab</em> checkbox to capture the frames from KR260 10GigE network.</p>
 </li>
 </ol>
-</section>
-<section id="sphinx-gev-viewer-observations">
-<h2>Sphinx GEV Viewer Observations<a class="headerlink" href="#sphinx-gev-viewer-observations" title="Link to this heading">¶</a></h2>
+</div>
+<div class="section" id="sphinx-gev-viewer-observations">
+<h2>Sphinx GEV Viewer Observations<a class="headerlink" href="#sphinx-gev-viewer-observations" title="Permalink to this heading">¶</a></h2>
 <ul>
-<li><p>For 60 fps on a Monochrome Sensor</p>
+<li><p>For 60 fps on a Monochrome Sensor:</p>
 <p><img alt="60fps_mono" src="../../../_images/60fps_Mono.png" /></p>
 </li>
-<li><p>For 120 fps on a Monochrome Sensor</p>
+<li><p>For 120 fps on a Monochrome Sensor:</p>
 <p><img alt="120fps_mono" src="../../../_images/120fps_Mono.JPG" /></p>
 </li>
 </ul>
-<p><strong>NOTE</strong>: You will record ~40-50 fps for a 60 fps pipeline and ~90-100 fps for a 120 fps pipeline.</p>
+<p><strong>NOTE</strong>: Record approximately 40-50 fps for a 60 fps pipeline and approximately 90-100 fps for a 120 fps pipeline.</p>
 <ul>
-<li><p>For 60 fps on a Color Sensor</p>
+<li><p>For 60 fps on a Color Sensor:</p>
 <p><img alt="60fps_color" src="../../../_images/60fps_color.JPG" /></p>
 </li>
-<li><p>For 120 fps on a Color Sensor</p>
+<li><p>For 120 fps on a Color Sensor:</p>
 <p><img alt="120fps_color" src="../../../_images/120fps_color.JPG" /></p>
 </li>
 </ul>
-<p><strong>NOTE</strong>: You will record ~25-35 fps for a 60 fps pipeline and ~75-95 fps for a 120 fps pipeline. Since we are transmitting Raw
-Bayer Format from Kria to X86 Host, that needs to be debayered by X86 Host and converted to RGB for displaying which
-consumes additional compute time, hence the fps drop.</p>
-</section>
-<section id="running-the-mv-defect-detect-application">
-<h2>Running the MV-Defect-Detect Application<a class="headerlink" href="#running-the-mv-defect-detect-application" title="Link to this heading">¶</a></h2>
+<p><strong>NOTE</strong>: Record approximately 25-35 fps for a 60 fps pipeline and approximately 75-95 fps for a 120 fps pipeline. Because raw Bayer Format is transmitted from Kria to X86 Host, it must be debayered by the X86 Host and converted to RGB for displaying. This consumes additional compute time, and therefore the fps drops.</p>
+</div>
+<div class="section" id="running-the-mv-defect-detect-application">
+<h2>Running the MV-Defect-Detect Application<a class="headerlink" href="#running-the-mv-defect-detect-application" title="Permalink to this heading">¶</a></h2>
 <p>Follow the procedure mentioned below to invoke the MV-Defect-Detect application.</p>
-<section id="command-line">
-<h3>Command Line<a class="headerlink" href="#command-line" title="Link to this heading">¶</a></h3>
 <p>Use the command line to set the resolution, configuration file path, and more, using the <strong>mv-defect-detect</strong> application.</p>
 <p>More combinations could be made based on the options provided by the <strong>mv-defect-detect</strong> application.</p>
 <p><em><strong>Note</strong></em>: ‘demomode’ application option is not supported for File sink. It is only supported for live out.</p>
-<p>MV-Defect-Detect Application Usage</p>
+<p>MV-Defect-Detect Application Usage:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv-defect-detect<span class="w"> </span>--help
 </pre></div>
 </div>
@@ -614,7 +624,7 @@ consumes additional compute time, hence the fps drop.</p>
 <p>Application Options:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-i,<span class="w"> </span>--infile<span class="o">=</span>file<span class="w"> </span>path<span class="w">                                                   </span>Location<span class="w"> </span>of<span class="w"> </span>input<span class="w"> </span>file
 -f,<span class="w"> </span>--outfile<span class="o">=</span>file<span class="w"> </span>path<span class="w">                                                  </span>Location<span class="w"> </span>of<span class="w"> </span>output<span class="w"> </span>file
--s,<span class="w"> </span>--sensor-fmt<span class="w">                                                         </span>Sensor<span class="w"> </span>format<span class="w"> </span>i.e<span class="w"> </span>mono<span class="w"> </span>or<span class="w"> </span>color
+-s,<span class="w"> </span>--sensor-fmt<span class="w">                                                         </span>Sensor<span class="w"> </span>format<span class="w"> </span>that<span class="w"> </span>is<span class="w"> </span>mono<span class="w"> </span>or<span class="w"> </span>color
 -w,<span class="w"> </span>--width<span class="o">=</span><span class="m">1920</span><span class="w">                                                         </span>Resolution<span class="w"> </span>width<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>input
 -h,<span class="w"> </span>--height<span class="o">=</span><span class="m">1080</span><span class="w">                                                        </span>Resolution<span class="w"> </span>height<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>input
 -o,<span class="w"> </span>--output<span class="o">=</span><span class="m">0</span><span class="w">                                                           </span>Display/dump<span class="w"> </span>stage<span class="w"> </span>on<span class="w"> </span>DP/File
@@ -624,15 +634,16 @@ consumes additional compute time, hence the fps drop.</p>
 </pre></div>
 </div>
 <p>The application is targeted to run an input source that supports GRAY8 (Y8) or RGB (RGB) format with a resolution of <strong>1920x1080</strong>.</p>
-<p>Once done with the MV-Defect-Detect application, To switch to another accelerator application after mv-defect-detect application, first exit the docker container using <code class="docutils literal notranslate"><span class="pre">exit</span></code>, then unload the firmware by running the below command:</p>
+<p>After the MV-Defect-Detect application is run, switch to another accelerator application. First exit the docker container using <code class="docutils literal notranslate"><span class="pre">exit</span></code>, then unload the firmware by running the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
 </pre></div>
 </div>
-</section>
-<section id="command-examples-for-monochrome-sensor">
-<h3>Command Examples for Monochrome sensor<a class="headerlink" href="#command-examples-for-monochrome-sensor" title="Link to this heading">¶</a></h3>
-<p><strong>Examples:</strong> Follow the below examples for different use cases of the above mentioned command options.</p>
-<p><em><strong>Note</strong></em>: Only one instance of the application can run at a time.</p>
+<div class="section" id="command-examples-for-monochrome-sensor">
+<h3>Command Examples for Monochrome Sensor<a class="headerlink" href="#command-examples-for-monochrome-sensor" title="Permalink to this heading">¶</a></h3>
+<p>Follow these examples for different use cases of the above mentioned command options.</p>
+<blockquote>
+<div><p><em><strong>Note</strong></em>: Only one instance of the application can run at a time.</p>
+</div></blockquote>
 <ul class="simple">
 <li><p>For File-In and File-Out mode, run the following command.</p></li>
 </ul>
@@ -657,7 +668,7 @@ consumes additional compute time, hence the fps drop.</p>
 <td>Final output dumps into file.</td>
 </tr>
 </tbody>
-</table><p><em><strong>Note</strong></em>: File-In and File-Out demo mode is not supported. To playback the generated output video files run any of the below example commands:</p>
+</table><p><em><strong>Note</strong></em>: File-In and File-Out demo mode is not supported. To playback the generated output video files, run any of the below example commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_raw.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-d<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span>mono<span class="w">       </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
 <span class="w">  </span>mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_preproc.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-d<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span>mono<span class="w">   </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
 <span class="w">  </span>mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_final.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-d<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span>mono<span class="w">     </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
@@ -676,7 +687,7 @@ consumes additional compute time, hence the fps drop.</p>
 <tbody>
 <tr>
 <td><code>mv-defect-detect -i input.y8 -o 0 -d 1 -s mono</code></td>
-<td>Raw output displays on DP.Input file path should change as per the requirement.</td>
+<td>Raw output displays on DP. Input file path should change as per the requirement.</td>
 </tr>
 <tr>
 <td><code>mv-defect-detect -i input.y8 -o 1 -d 1 -s mono</code></td>
@@ -711,7 +722,7 @@ consumes additional compute time, hence the fps drop.</p>
 <td>Final output dumps into file.</td>
 </tr>
 </tbody>
-</table><p><em><strong>Note</strong></em>: Live-In and File-Out demo mode is not supported. To playback the generated output video files run any of the below example commands:</p>
+</table><p><em><strong>Note</strong></em>: Live-In and File-Out demo mode is not supported. To playback the generated output video files, run any of the below example commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_raw.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-s<span class="w"> </span>mono<span class="w">       </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
 <span class="w">  </span>mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_preproc.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-s<span class="w"> </span>mono<span class="w">   </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
 <span class="w">  </span>mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_final.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-s<span class="w"> </span>mono<span class="w">     </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
@@ -741,11 +752,13 @@ consumes additional compute time, hence the fps drop.</p>
 <td>Final output displays on DP.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="command-examples-for-color-sensor">
-<h3>Command Examples for Color Sensor<a class="headerlink" href="#command-examples-for-color-sensor" title="Link to this heading">¶</a></h3>
-<p><strong>Examples:</strong> Follow the below examples for different use cases of the above mentioned command options.</p>
-<p><em><strong>Note</strong></em>: Only one instance of the application can run at a time.</p>
+</table></div>
+<div class="section" id="command-examples-for-color-sensor">
+<h3>Command Examples for Color Sensor<a class="headerlink" href="#command-examples-for-color-sensor" title="Permalink to this heading">¶</a></h3>
+<p>Follow these examples for different use cases of the above mentioned command options.</p>
+<blockquote>
+<div><p><em><strong>Note</strong></em>: Only one instance of the application can run at a time.</p>
+</div></blockquote>
 <ul class="simple">
 <li><p>For File-In and File-Out mode, run the following command.</p></li>
 </ul>
@@ -770,7 +783,7 @@ consumes additional compute time, hence the fps drop.</p>
 <td>Final output dumps into file.</td>
 </tr>
 </tbody>
-</table><p><em><strong>Note</strong></em>: File-In and File-Out demo mode is not supported. To playback the generated output video files run any of the below commands:</p>
+</table><p><em><strong>Note</strong></em>: File-In and File-Out demo mode is not supported. To playback the generated output video files, run any of the below commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_raw.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-d<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span>color<span class="w">       </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
 mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_preproc.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-d<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span>mono<span class="w">    </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
 mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_final.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-d<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span>mono<span class="w">      </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
@@ -824,7 +837,7 @@ mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_final.y8<s
 <td>Final output dumps into file.</td>
 </tr>
 </tbody>
-</table><p><em><strong>Note</strong></em>: Live-In and File-Out demo mode is not supported. To playback the generated output video files run any of the below commands:</p>
+</table><p><em><strong>Note</strong></em>: Live-In and File-Out demo mode is not supported. To playback the generated output video files, run any of the below commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_raw.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-s<span class="w"> </span>color<span class="w">       </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
 <span class="w">  </span>mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_preproc.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-s<span class="w"> </span>mono<span class="w">    </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
 <span class="w">  </span>mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_final.y8<span class="w"> </span>-o<span class="w"> </span><span class="m">0</span><span class="w"> </span>-s<span class="w"> </span>mono<span class="w">      </span>//Input<span class="w"> </span>file<span class="w"> </span>path<span class="w"> </span>should<span class="w"> </span>change<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>the<span class="w"> </span>requirement
@@ -854,11 +867,10 @@ mv-defect-detect<span class="w"> </span>-i<span class="w"> </span>out_final.y8<s
 <td>Final output displays on DP.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="sensor-calibration-for-the-live-source">
-<h3>Sensor Calibration for the Live Source<a class="headerlink" href="#sensor-calibration-for-the-live-source" title="Link to this heading">¶</a></h3>
-<ul>
-<li><p>You can use v4l2 utilities to tune various sensor parameters. For example:</p>
+</table></div>
+<div class="section" id="sensor-calibration-for-the-live-source">
+<h3>Sensor Calibration for the Live Source<a class="headerlink" href="#sensor-calibration-for-the-live-source" title="Permalink to this heading">¶</a></h3>
+<p>You can use v4l2 utilities to tune various sensor parameters. For example:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>v4l2-ctl<span class="w"> </span>-d<span class="w"> </span>/dev/video0<span class="w"> </span>-L<span class="w">                      </span>List<span class="w"> </span>all<span class="w"> </span>available<span class="w"> </span>parameters<span class="w"> </span>to<span class="w"> </span>tune
 
 v4l2-ctl<span class="w"> </span>-d<span class="w"> </span>/dev/video0<span class="w"> </span>-c<span class="w"> </span><span class="nv">exposure</span><span class="o">=</span><span class="m">10000</span><span class="w">       </span>Tune<span class="w"> </span>and<span class="w"> </span><span class="nb">set</span><span class="w"> </span>the<span class="w"> </span>exposure<span class="w"> </span>to<span class="w"> </span>some<span class="w"> </span>value
@@ -870,57 +882,41 @@ v4l2-ctl<span class="w"> </span>-d<span class="w"> </span>/dev/video0<span class
 v4l2-ctl<span class="w"> </span>-d<span class="w"> </span>/dev/video0<span class="w"> </span>-c<span class="w"> </span><span class="nv">red_gain</span><span class="o">=</span><span class="m">250</span><span class="w">         </span>Tune<span class="w"> </span>and<span class="w"> </span><span class="nb">set</span><span class="w"> </span>the<span class="w"> </span>red_gain<span class="w"> </span>to<span class="w"> </span>some<span class="w"> </span>value
 </pre></div>
 </div>
-</li>
-<li><p>Alternatively, you can also use qv4l2 to tune the sensor parameters through a GUI.</p></li>
-<li><p>To use qv4l2, the command should run over an SSH connection with X-forwarding enabled.</p></li>
-<li><p>On Host, run:</p>
+<p>Alternatively, you can also use qv4l2 to tune the sensor parameters through a GUI.</p>
+<p>To use qv4l2, run the command over an SSH connection with X-forwarding enabled.</p>
+<p>On Host, run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-X<span class="w"> </span>ubuntu@&lt;Kria<span class="w"> </span>Starter<span class="w"> </span>Kit<span class="w"> </span>IP<span class="w"> </span>address&gt;
 </pre></div>
 </div>
 <p><strong>NOTE</strong>: If all ethernet cables are plugged in, feel free to use any IP.</p>
-</li>
-<li><p>On Windows, download <a class="reference external" href="https://mobaxterm.mobatek.net/download.html">Mobaxterm</a>, which automatically enables X-forwarding when creating a new ssh connection.</p></li>
-<li><p>Verify if the SSH terminal is using the correct authority file.</p>
-<ul class="simple">
-<li><p>The output should look something like this.</p></li>
-</ul>
+<p>On Windows, download <a class="reference external" href="https://mobaxterm.mobatek.net/download.html">Mobaxterm</a>, which automatically enables X-forwarding when creating a new ssh connection.</p>
+<p>Verify if the SSH terminal is using the correct authority file. The output should look something like this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>xauth<span class="w"> </span>-v<span class="w"> </span>list
 Using<span class="w"> </span>authority<span class="w"> </span>file<span class="w"> </span>/home/ubuntu/.Xauthority
 kria/unix:10<span class="w">  </span>MIT-MAGIC-COOKIE-1<span class="w">  </span>f5212118305f75678a69daa4a6eda703
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>If incorrect or no authority file is present, do the following steps:</p></li>
-</ul>
+<p>If incorrect or no authority file is present, complete the following steps:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>~/.Xaut*
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Reboot the target board.</p></li>
-</ul>
+<p>Reboot the target board:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>reboot
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Check the <code class="docutils literal notranslate"><span class="pre">xauth</span> <span class="pre">-v</span> <span class="pre">list</span></code> after reboot(in SSH terminal), it should display
-the correct authority file on the output console.</p></li>
-</ul>
-</li>
-<li><p>You can now run the following command on SSH side to open up the qv4l2 GUI.</p>
+<p>Check the <code class="docutils literal notranslate"><span class="pre">xauth</span> <span class="pre">-v</span> <span class="pre">list</span></code> after reboot (in SSH terminal). It should display the correct authority file on the output console.</p>
+<p>You can now run the following command on SSH side to open up the qv4l2 GUI:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>qv4l2<span class="w"> </span>-d<span class="w"> </span>/dev/video0
 Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"> </span><span class="k">for</span><span class="w"> </span>capture
 </pre></div>
 </div>
-</li>
-<li><p>Use the GUI to tune the sensor/ISP params:</p>
+<p>Use the GUI to tune the sensor/ISP params:</p>
 <p><img alt="QV4l2" src="../../../_images/qv4l2_tuning.JPG" /></p>
-</li>
-</ul>
-</section>
-<section id="file-structure-of-the-mv-defect-detect-application">
-<h3>File Structure of the MV-Defect-Detect Application<a class="headerlink" href="#file-structure-of-the-mv-defect-detect-application" title="Link to this heading">¶</a></h3>
-<p>The application is comprised of the following files:</p>
-<p>Below files are present in the <em>app</em> directory:</p>
+</div>
+<div class="section" id="file-structure-of-the-mv-defect-detect-application">
+<h3>File Structure of the MV-Defect-Detect Application<a class="headerlink" href="#file-structure-of-the-mv-defect-detect-application" title="Permalink to this heading">¶</a></h3>
+<p>The application has the following files:</p>
+<p>The following files are present in the <em>app</em> directory:</p>
 <p><code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xlnx-app-kr260-mv-defect-detect/</span></code></p>
 <table border="1" class="docutils">
 <thead>
@@ -947,7 +943,7 @@ Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"
 <td>Contains the application information</td>
 </tr>
 </tbody>
-</table><p>Below files are present in bin directory:</p>
+</table><p>The following files are present in the <em>bin</em> directory:</p>
 <p><code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xlnx-app-kr260-mv-defect-detect/bin/</span></code></p>
 <table border="1" class="docutils">
 <thead>
@@ -1002,7 +998,7 @@ Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"
 <td>Binary for mv-defect-detect application</td>
 </tr>
 </tbody>
-</table><p>Below files are present in <em>lib</em> directory:</p>
+</table><p>The following files are present in the <em>lib</em> directory:</p>
 <p><code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xlnx-app-kr260-mv-defect-detect/lib/</span></code></p>
 <table border="1" class="docutils">
 <thead>
@@ -1026,7 +1022,7 @@ Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"
 </tr>
 <tr>
 <td>libvvas_preprocess.so</td>
-<td>vvas pre-process accelarator library</td>
+<td>vvas pre-process accelerator library</td>
 </tr>
 <tr>
 <td>libvvas_otsu.so</td>
@@ -1060,26 +1056,26 @@ Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"
 <td>Configuration of CCA accelerator with stride</td>
 </tr>
 <tr>
-<td>otsu-accelarator.json</td>
+<td>otsu-accelerator.json</td>
 <td>Configuration of OTSU accelerator</td>
 </tr>
 <tr>
-<td>preprocess-accelarator.json</td>
-<td>Configuration of pre-process accelarator</td>
+<td>preprocess-accelerator.json</td>
+<td>Configuration of pre-process accelerator</td>
 </tr>
 <tr>
-<td>preprocess-accelarator-stride.json</td>
-<td>Configuration of pre-process accelarator with stride</td>
+<td>preprocess-accelerator-stride.json</td>
+<td>Configuration of pre-process accelerator with stride</td>
 </tr>
 <tr>
 <td>text2overlay.json</td>
 <td>Configuration of text2overlay</td>
 </tr>
 </tbody>
-</table></section>
-</section>
-<section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+</table></div>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="debug.html"><span class="doc">Debug</span></a></p></li>
 <li><p><a class="reference internal" href="known_issues.html"><span class="doc">Known Issues</span></a></p></li>
@@ -1089,8 +1085,8 @@ Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"
 <li><p><a class="reference internal" href="sw_arch_accel_dd.html"><span class="doc">Software Architecture of the Accelerator</span></a></p></li>
 <li><p>Go back to the <a class="reference internal" href="introduction.html"><span class="doc">Introduction</span></a></p></li>
 </ul>
-<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
-</section>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2023–2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
 
 
            </div>
@@ -1106,7 +1102,7 @@ Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 19, 2026.
+      <span class="lastupdated">Last updated on April 23, 2026.
       </span></p>
   </div>
 
@@ -1118,7 +1114,7 @@ Using<span class="w"> </span>mplane<span class="w"> </span>plugin<span class="w"
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/legal/copyright.html">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/legal/privacy.html">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/legal/trademarks.html">Trademarks</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/cr/supply-chain-transparency.pdf">Supply Chain Transparency</a> | <a target="_blank" href="https://www.amd.com/en/legal/competition.html">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/content/dam/amd/en/documents/corporate/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://www.amd.com/en/legal/cookies.html">Cookies Policy</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

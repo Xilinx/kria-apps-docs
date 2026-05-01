@@ -1,11 +1,10 @@
-﻿<table class="sphinxhide">
+<table class="sphinxhide">
  <tr>
    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Kria&trade; KR260 Robotics Starter Kit</h1>
    </td>
  </tr>
  <tr>
  <td align="center"><h1>Machine Vision Camera Tutorial</h1>
-
  </td>
  </tr>
 </table>
@@ -18,48 +17,35 @@ This document shows how to set up the board and run the **MV-Defect Detect** and
 
 ### Hardware Requirements
 
-1. KR260 Robotics Starter Kit
-
-2. KR260 Power Supply & Adapter (Included with KR260 Robotics Starter Kit)
-
-3. Cat 5e Ethernet Cable (Included with KR260 Robotics Starter Kit)
-
-4. USB-A to micro-B Cable (Included with KR260 Robotics Starter Kit)
-
-5. 16GB MicroSD Cards (Included with KR260 Robotics Starter Kit)
-
-6. 1080p Monitor and Power Supply
-
-7. Display Port Cable
-
-8. 1-Windows PC, for capturing the UART/console logs from KR260 board, and to act as host PC
-
-9. [Fiber Optic Cable](https://www.amazon.com/dp/B089K3VYZ1)
-
-10. [Sony IMX547 Monochrome Camera sensor Module](https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/imx547-camera-kit-monochrome.html) OR [Sony IMX547 Color Camera sensor Module](https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/imx547-camera-kit-color.html)
-
-11. [10G NIC Card](https://www.amazon.com/dp/B06X9T683K)
-
-12. [Two 10G SFP+ Transceivers](https://www.amazon.com/dp/B08BP55663)
+- KR260 Robotics Starter Kit
+- KR260 Power Supply & Adapter (Included with KR260 Robotics Starter Kit)
+- Cat 5e Ethernet Cable (Included with KR260 Robotics Starter Kit)
+- USB-A to micro-B Cable (Included with KR260 Robotics Starter Kit)
+- 16 GB MicroSD Cards (Included with KR260 Robotics Starter Kit)
+- 1080p Monitor and Power Supply
+- Display Port Cable
+- 1 Windows PC, for capturing the UART/console logs from KR260 board, and to act as host PC
+- [Fiber Optic Cable](https://www.amazon.com/dp/B089K3VYZ1)
+- [Sony IMX547 Monochrome Camera sensor Module](https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/imx547-camera-kit-monochrome.html) OR [Sony IMX547 Color Camera sensor Module](https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/imx547-camera-kit-color.html)
+- [10G NIC Card](https://www.amazon.com/dp/B06X9T683K)
+- [Two 10G SFP+ Transceivers](https://www.amazon.com/dp/B08BP55663)
 
 ### Setting Up the Live Source for Defect-Detect
 
-When setting up the SOM Board for the live camera source capturing mango image displayed on a monitor, adhere to the following guidelines:
+Follow these steps to set up the SOM Board for the live camera source capturing mango image displayed on a monitor:
 
-- Keep the IMX547 Camera module firmly held in a static position, preferably on a tripod and at a height of ~17 cm from the base.
-- IMX547 Camera module should be facing straight directly to the monitor(not at an angle) at an appropriate distance of ~35 cm from the screen.
-- According to the model of the monitor(Dell U2718Q Ultra Sharp 27 used here), set brightness and contrast to 94 and 85, respectively. Optimal values may be different for different make/model.
-- The setup should be covered completely so that no outside light is captured by the sensor.
-- To avoid over exposure of light, do NOT place the monitor opposite to an open door or window.
-- Ensure that the live source is able to capture the mango completely.
-- The camera should be focused ONLY on the mango image that was displayed.
-- The setup should be as follows:
+1. Keep the IMX547 Camera module firmly held in a static position, preferably on a tripod and at a height of approximately 17 cm from the base.
+2. Position the IMX547 Camera module facing straight directly to the monitor (not at an angle) at an appropriate distance of approximately 35 cm from the screen.
+3. According to the model of the monitor (Dell U2718Q Ultra Sharp 27 used here), set brightness and contrast to 94 and 85, respectively. Optimal values may be different for different make/model.
+4. Cover the setup completely so that no outside light is captured by the sensor.
+5. To avoid over exposure of light, do not place the monitor opposite to an open door or window.
+6. Ensure that the live source is able to capture the mango completely.
+7. Focus the camera only on the mango image that was displayed.
+8. The setup should be as follows:
 
     ![IMX547 Sensor Camera](./media/IMX547_Camera_Setup.jpg)
 
-   **Note**: The above setup should be covered completely so that no outisde light is captured by the sensor. In the setup above, a black cloth is used to cover the setup entirely. 
-   If the preview image is not satisfactory, adjust the above mentioned parameters. Adjust the camera aperture using the adjustment ring on the sensor lens. For Monochrome and Color sensor set 
-   it to 1.6 and 0.8 respectively.
+   **Note**: The above setup should be covered completely so that no outside light is captured by the sensor. In the setup above, a black cloth is used to cover the setup entirely. If the preview image is not satisfactory, adjust the above mentioned parameters. Adjust the camera aperture using the adjustment ring on the sensor lens. For Monochrome and Color sensor, set it to 1.6 and 0.8, respectively.
 
 ### Setting Up the Test Environment
 
@@ -82,7 +68,7 @@ As the downloaded images are in a JPG format, convert them into the GRAY8 (Y8) o
    cd mv-defect-detect/scripts
    ```
 
-4. Copy the scripts to `DB_Mango` directory
+4. Copy the scripts to `DB_Mango` directory.
 
 5. Run the scripts as follows:
 
@@ -92,17 +78,17 @@ As the downloaded images are in a JPG format, convert them into the GRAY8 (Y8) o
    ./convert_jpeg_rgb.sh >& file.txt    For RGB format
    ```
 
-   Once the above command is completed, the script produces `input_video.y8 | input_video.rgb` as input to the MV-Defect-Detect application.
+   After the above command completes, the script produces `input_video.y8 | input_video.rgb` as input to the MV-Defect-Detect application.
 
 6. Copy the video from the Linux PC to the SOM board. If copied to an SD card, it can be found in `/boot/firmware/<input_video.y8/rgb>`. For containers to access the file, copy it to `/tmp/` and containers can then also access it from its /tmp/ folder. Then copy it to `/home/` directory in the container.
 
    > ***Note***: Delete all files *except* `input_video.y8 or input_video.rgb`.
 
-The MV-Defect-Detect application's design takes, processes, and displays images on to the monitor.
+The MV-Defect-Detect application design takes, processes, and displays images on to the monitor.
 
-See [Known Issues and Limitations](known_issues.md) with the MV-Defect-Detect application.
+Refer to [Known Issues and Limitations](known_issues.md) with the MV-Defect-Detect application.
 
-### SOM Board setup
+### SOM Board Setup
 
 Refer to the following KR260 Board and Interface layout for connector reference numbers:
 
@@ -110,13 +96,15 @@ Refer to the following KR260 Board and Interface layout for connector reference 
 
 ![usb slot](./media/usb_slot.png)
 
+Follow these steps to set up the SOM board:
+
 1. Go through the [Booting Kria Starter Kit Linux](../../linux_boot.md) to complete minimum setup required to boot Linux before continuing with the instructions in this page.
 
 2. Ensure that the board is powered off. Connect IMX547 Monochrome sensor module to J22 in KR260 using flex cable.
 
 3. Keep the KR260 board and sensor module firmly held in a static position.
 
-4. Connect the Ethernet cable from PS ethernet \'J10C\' to local network with DHCP enabled to install packages.
+4. Connect the Ethernet cable from PS ethernet 'J10C' to local network with DHCP enabled to install packages.
 
 5. Connect the fiber optic cable to SFP+ connector in the KR260 board, other end to host machine (Windows/Ubuntu) NIC card as follows:
 
@@ -135,27 +123,29 @@ Testing was performed with the following artifacts:
 
 ### Host Machine Setup
 
-* Check the available network interfaces before inserting the 10G NIC card using:
+Follow these steps to set up the host machine:
 
-  - `ifconfig -a` for ubuntu host
-  - `ipconfig /all` for windows host
+1. Check the available network interfaces before inserting the 10G NIC card using:
 
-* Install the 10Gb PCIe NIC Network Card in the PCIe slot of host machine.
+   - `ifconfig -a` for Ubuntu host
+   - `ipconfig /all` for Windows host
 
-* Connect the fiber optic cable one end to the NIC card in host machine and the other end to the KR260 board SFP+ connector.
+2. Install the 10 GB PCIe NIC Network Card in the PCIe slot of host machine.
 
-* The newly inserted NIC card shows the new interface in the host machine. You can run the same command to verify that:
+3. Connect the fiber optic cable one end to the NIC card in host machine and the other end to the KR260 board SFP+ connector.
 
-  - `ifconfig -a` for ubuntu host
-  - `ipconfig /all` for windows host
+4. The newly inserted NIC card shows the new interface in the host machine. You can run the same command to verify that:
 
-**Note:** On windows host, ensure that the network related drivers are installed from the [link](https://www.euresys.com/en/Products/IP-Cores/Vision-Standard-IP-Cores-for-FPGA/GigE-Vision-IP-Core-(2)), before running the Host Sphinx application.
+   - `ifconfig -a` for Ubuntu host
+   - `ipconfig /all` for Windows host
 
-**Note:** Ensure that the 10GigE interface is enabled on the Host PC before loading MV-Camera application firmware.
+> **Note:** On a Windows host, ensure that the network related drivers are installed from the [link](https://www.euresys.com/en/Products/IP-Cores/Vision-Standard-IP-Cores-for-FPGA/GigE-Vision-IP-Core-(2)) before running the Host Sphinx application.
 
-## Installing the Application packages
+> **Note:** Ensure that the 10GigE interface is enabled on the Host PC before loading MV-Camera application firmware.
 
-Make sure that you had gone through  [Booting Kria Starter Kit Linux](../../linux_boot.md) as indicated in the previous step to complete the minimum setup required to boot Linux before continuing with instructions in this page.
+## Installing the Application Packages
+
+Make sure that you had gone through [Booting Kria Starter Kit Linux](../../linux_boot.md) as indicated in the previous step to complete the minimum setup required to boot Linux before continuing with instructions in this page.
 
 Install the latest application packages.
 
@@ -172,24 +162,23 @@ Install the latest application packages.
       sudo apt install xlnx-firmware-kr260-mv-camera-color    //For Color Sensor
     ```
 
-3. Install `qv4l2`, GUI like test bench application for video4linux devices, which can be used to tune the sensor/ISP parameters as an alternative to standard `v4l2-ctl` commands
+3. Install `qv4l2`, GUI like test bench application for video4linux devices, which can be used to tune the sensor/ISP parameters as an alternative to standard `v4l2-ctl` commands.
 
     ```bash
       sudo apt install qv4l2
     ```
-    > **Note**: The default sensor/ISP parameters are set to defect-detection mode, which uses a completely covered setup and blocks sensor from capturing any natural light. Please tune the 
-    sensor/ISP settings, via v4l2 commands or GUI, to optimal values based on your lighting conditions for 10Gige or defect-detect in bypass mode. The process to tune the settings are
-    outlined in the "Sensor Calibration for the Live Source" further below.
 
-## Docker based application preparation
+    > **Note**: The default sensor/ISP parameters are set to defect-detection mode, which uses a completely covered setup and blocks sensor from capturing any natural light. Tune the sensor/ISP settings using v4l2 commands or GUI to optimal values based on your lighting conditions for 10GigE or defect-detect in bypass mode. The process to tune the settings is outlined in the "Sensor Calibration for the Live Source" section.
 
-* Pull the latest docker image for mv-defect-detect using the following command.
+## Docker Based Application Preparation
+
+1. Pull the latest docker image for mv-defect-detect using the following command.
 
   ```bash
     sudo docker pull xilinx/mv-defect-detect:2022.2
   ```
 
-* Find the images installed with the following command:
+2. Find the images installed with the following command:
 
   ```bash
     sudo docker images
@@ -197,41 +186,41 @@ Install the latest application packages.
 
 ## Firmware Loading
 
-The MV-Camera application firmware consists of bitstream (bit.bin) and device tree overlay (*dtbo*). The MV-Camera firmware is loaded dynamically on the user request once the ubuntu system is fully booted. Use the *xmutil* utility to list and load the firmware.
+The MV-Camera application firmware consists of bitstream (bit.bin) and device tree overlay (*dtbo*). The MV-Camera firmware is loaded dynamically on the user request once the Ubuntu system is fully booted. Use the *xmutil* utility to list and load the firmware.
 
-***Note***: `xmutil` utility runs only in Ubuntu.
+>***Note***: `xmutil` utility runs only in Ubuntu.
 
-### Dynamically load the application firmware:
+### Dynamically Load the Application Firmware
 
-* Disable the desktop environment:
+Follow these steps to dynamically load the application firmware:
+
+1. Disable the desktop environment:
 
     ```bash
        sudo xmutil desktop_disable
     ```
 
-    ***Note***: Executing "xmutil desktop_disable" causes the desktop on the monitor to be disabled. Use any serial terminal to continue issuing Linux commands via port J4 and do not rely completely on the desktop environment.
-
-    After running the application, the desktop environment can be enabled again with:
+    > **Note**: Executing "xmutil desktop_disable" causes the desktop on the monitor to be disabled. Use any serial terminal to continue issuing Linux commands using port J4 and do not rely completely on the desktop environment. After running the application, the desktop environment can be enabled again with:
 
     ```bash
        sudo xmutil desktop_enable
     ```
 
-* After installing the FW, execute xmutil listapps to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.
+2. After installing the FW, run `xmutil listapps` to verify that it is captured under the listapps function, and to have dfx-mgrd re-scan and register all accelerators in the FW directory tree.
 
     ```bash
       sudo xmutil listapps
     ```
 
-* To list the available accelerator applications, run:
+3. To list the available accelerator applications, run:
 
     ```bash
       sudo xmutil listapps
     ```
 
-> ***Note***: The Active_Slot column shows the application firmware that is currently loaded in the system. The value '-1' indicates that the firmware is not loaded, while the value of '0' indicates that the firmware is loaded. By default, only the *k26-starter-kits* firmware is loaded.
+    > ***Note***: The Active_Slot column shows the application firmware that is currently loaded in the system. The value '-1' indicates that the firmware is not loaded, while the value of '0' indicates that the firmware is loaded. By default, only the *k26-starter-kits* firmware is loaded.
 
-* To load the MV-Camera application firmware, unload the existing firmware and then load either mono/color MV-Camera application firmware based on the sensor connected:
+4. To load the MV-Camera application firmware, unload the existing firmware and then load either mono/color MV-Camera application firmware based on the sensor connected:
 
     ```bash
       sudo xmutil unloadapp
@@ -241,7 +230,7 @@ The MV-Camera application firmware consists of bitstream (bit.bin) and device tr
 
 ## Launching the Docker
 
-* Launch the docker using the below command. The firmware must be loaded before launching the docker container.
+To launch the docker container for MV-Defect-Detect application, run the following command. The firmware must be loaded before launching the docker container.
 
   ```bash
       sudo docker run \
@@ -260,7 +249,7 @@ The MV-Camera application firmware consists of bitstream (bit.bin) and device tr
         -it xilinx/mv-defect-detect:2022.2 bash
   ```
 
-*  It launches the mv-defect-detect docker image container.
+It launches the mv-defect-detect docker image container.
 
   ```bash
       root@xlnx-docker/#
@@ -270,9 +259,9 @@ The MV-Camera application firmware consists of bitstream (bit.bin) and device tr
 
 The only way to invoke the application is by command line.
 
->***Note***: Docker starts with the *root* user access. Only one instance of the application can run at a time. Only 2472 x 2128 \@122fps -- 10bpp configuration is validated.
+>***Note***: Docker starts with the *root* user access. Only one instance of the application can run at a time. Only 2472 x 2128 @122fps  —  10bpp configuration is validated.
 
-To run the application, follow the steps mentioned below:
+To run the application, follow these steps:
 
 1. Run the configure script to configure the media nodes and the IPs in the capture path.
 
@@ -280,9 +269,10 @@ To run the application, follow the steps mentioned below:
       configure -f mono -r 60         //For Monochrome Sensor at 60fps
       configure -f color -r 60        //For Color Sensor at 60fps
     ```
-    ***NOTE**: Valid values for `-r` are 60 and 120. If user does not specify the rate, default value is set to 60 fps.
 
-2. Set Static IP address on the SFP eth interface on the KR260. It should be under same subnet as Host Machines SFP IP
+    ***NOTE**: Valid values for `-r` are 60 and 120. If you do not specify the rate, default value is set to 60 fps.
+
+2. Set Static IP address on the SFP eth interface on the KR260. It should be under same subnet as Host Machines SFP IP.
 
     ```bash
       #Example
@@ -295,9 +285,10 @@ To run the application, follow the steps mentioned below:
     ```bash
       update_eeprom_wrapper
     ```
-    It asks the user to give a few inputs and gets the following logs (the size of the following xml file might vary):
 
-    ```
+    It asks you to give a few inputs and gets the following logs (the size of the following xml file might vary):
+
+    ```bash
     Update eeprom
 
     file: xgvrd-kr260.xml
@@ -313,7 +304,7 @@ To run the application, follow the steps mentioned below:
 
     Then, you can select the type of network:
 
-    ```
+    ```bash
       1: dhcp
       2: static ip
     ```
@@ -330,7 +321,7 @@ To run the application, follow the steps mentioned below:
 
     a.  `ifconfig -a`
 
-    ```
+    ```text
         eth2: flags=3<UP,BROADCAST>  mtu 1500
         inet 192.168.0.19  netmask 255.255.255.0  broadcast 192.168.0.255
         ether 00:0a:35:00:22:02  txqueuelen 1000  (Ethernet)
@@ -340,6 +331,7 @@ To run the application, follow the steps mentioned below:
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
         device interrupt 66  memory 0xa0060000-a006ffff
     ```
+
       Keyword **memory 0xa0060000-a006ffff** belongs to eth2 port. This interface information is required to feed while running gvrd application on target.
 
 5. Run the *gst-launch* command in the background to trigger the pipeline.
@@ -384,90 +376,83 @@ To run the application, follow the steps mentioned below:
 
 7. On Host PC to run the Sphinx application:
 
-    Sphinx GEV Viewer can be downloaded from [here](https://www.euresys.com/en/About-us/Blog-event/News/New-GigE-Vision-Viewer-for-AMD-Xilinx-Kria-KR260-R) along with Sphinx GEV Viewer user guide link to run the Sphinx application.
+    Sphinx GEV Viewer can be downloaded from [Euresys](https://www.euresys.com/en/About-us/Blog-event/News/New-GigE-Vision-Viewer-for-AMD-Xilinx-Kria-KR260-R) along with Sphinx GEV Viewer user guide link to run the Sphinx application.
 
      **Prerequisites:**
 
-    a). If you are setting the IP statically, make sure that both KR260 and host machine should be on the same network class address.
+    a. If you are setting the IP statically, make sure that both KR260 and host machine should be on the same network class address.
 
-    - On ubuntu : sudo ifconfig <10G network interface> <IPv4 adress> up
+      - On Ubuntu: sudo ifconfig <10G network interface> <IPv4 address> up
 
-        For Example: `sudo ifconfig enp23s0 192.168.0.10 up`
+        For example: `sudo ifconfig enp23s0 192.168.0.10 up`
 
-    - On Windows : Set from network settings – IPv4 IP
+      - On Windows: Set from network settings  —  IPv4 IP
 
-    b). To change the MTU Size, follow the procedure as mentioned below:
+    b. To change the MTU Size, follow the procedure as mentioned below:
 
-    - For ubuntu : sudo ifconfig <10G network interface> mtu 9014 up
+      - For Ubuntu: sudo ifconfig <10G network interface> mtu 9014 up
 
-        For Example: `sudo ifconfig enp23s0 mtu 9014 up`
+        For example: `sudo ifconfig enp23s0 mtu 9014 up`
 
-    - For Windows :
-        * Go to settings, navigate to control panel, and select **Network and Sharing Centre**,
-        * Select **Change adapter settings**,
-        * Right click on the NIC interface on which the place to enable Jumbo Frames and select **Properties**,
-        * From the NIC properties, select **Configure**,
-        * Click on **Advanced** tab,  
-        * In Advanced section, select **Jumbo Frame**,
-        * In the Value field **Value** – select 9KB MTU s.
+      - For Windows:
+        1. Go to settings, navigate to control panel, and select **Network and Sharing Centre**.
+        2. Select **Change adapter settings**.
+        3. Right-click the NIC interface to enable Jumbo Frames and select **Properties**.
+        4. From the NIC properties, select **Configure**.
+        5. Click on **Advanced** tab.
+        6. In Advanced section, select **Jumbo Frame**.
+        7. In the Value field **Value**, select 9 KB MTU s.
 
-    c). Sphinx GEV Viewer GUI start-up window should look something like below image. If all the control elements are not 
-    visible, you can reduce the size of text, apps and other items in the Display settings.
+    c. Sphinx GEV Viewer GUI start-up window should look something like below image. If all the control elements are not visible, you can reduce the size of text, apps, and other items in the Display settings.
 
       ![GUI-Window](./media/GUI-Window.JPG)
-    
-    d). On the Sphinx GUI click on `Discovery` to establish a connection from KR260 over SFP. Then click on
-    Discovery --> Open
 
-      ![Sphinx_Discovert](./media/Sphinx_Discovery.JPG)
+    d. On the Sphinx GUI, click on `Discovery` to establish a connection from KR260 over SFP. Then click on Discovery --> Open.
 
-    e). To get the maximum fps in the Sphinx GUI, you can change the draw value in Sphinx --> Options based on the host type  (windows or ubuntu)
+      ![Sphinx_Discovery](./media/Sphinx_Discovery.JPG)
 
-      - On ubuntu host,
+    e. To get the maximum fps in the Sphinx GUI, you can change the draw value in Sphinx --> Options based on the host type (Windows or Ubuntu).
+
+      - On Ubuntu host:
 
         For 60 fps, set the draw value to `10`.
-
         For 120 fps, set the draw value to `50`.
 
-      - On windows host,
+      - On Windows host:
 
          For 60/120 fps, set the draw value to `10`.
 
          ![Sphinx GE Viewer](media/Sphinx_GE_Viewer.png)
 
-    f). Download [xgvrd-kr260.xml](https://github.com/Xilinx/mv-defect-detect/blob/main/10gige/application/xgvrd-kr260.xml) into the host machine. In sphinx GEV viewer application, set the downloaded xml file path in the GUI.
+    f. Download [xgvrd-kr260.xml](https://github.com/Xilinx/mv-defect-detect/blob/main/10gige/application/xgvrd-kr260.xml) into the host machine. In Sphinx GEV viewer application, set the downloaded xml file path in the GUI.
 
-    g). In Sphinx host application, select *Use filter Driver* checkbox, and *Grab* checkbox to capture the frames from KR260 10GigE network.
+    g. In Sphinx host application, select *Use filter Driver* checkbox, and *Grab* checkbox to capture the frames from KR260 10GigE network.
 
 ## Sphinx GEV Viewer Observations
 
-  * For 60 fps on a Monochrome Sensor
+  * For 60 fps on a Monochrome Sensor:
 
       ![60fps_mono](./media/60fps_Mono.png)
 
-  * For 120 fps on a Monochrome Sensor
+  * For 120 fps on a Monochrome Sensor:
 
       ![120fps_mono](./media/120fps_Mono.JPG)
 
-  **NOTE**: You will record ~40-50 fps for a 60 fps pipeline and ~90-100 fps for a 120 fps pipeline.
+  **NOTE**: Record approximately 40-50 fps for a 60 fps pipeline and approximately 90-100 fps for a 120 fps pipeline.
 
-  * For 60 fps on a Color Sensor
+  * For 60 fps on a Color Sensor:
 
       ![60fps_color](./media/60fps_color.JPG)
   
-  * For 120 fps on a Color Sensor
+  * For 120 fps on a Color Sensor:
 
       ![120fps_color](./media/120fps_color.JPG)
 
-  **NOTE**: You will record ~25-35 fps for a 60 fps pipeline and ~75-95 fps for a 120 fps pipeline. Since we are transmitting Raw
-            Bayer Format from Kria to X86 Host, that needs to be debayered by X86 Host and converted to RGB for displaying which
-            consumes additional compute time, hence the fps drop.
+  **NOTE**: Record approximately 25-35 fps for a 60 fps pipeline and approximately 75-95 fps for a 120 fps pipeline. Because raw Bayer Format is transmitted from Kria to X86 Host, it must be debayered by the X86 Host and converted to RGB for displaying. This consumes additional compute time, and therefore the fps drops.
 
 ## Running the MV-Defect-Detect Application
 
 Follow the procedure mentioned below to invoke the MV-Defect-Detect application.
-
-### Command Line
 
 Use the command line to set the resolution, configuration file path, and more, using the **mv-defect-detect** application.
 
@@ -475,7 +460,7 @@ More combinations could be made based on the options provided by the **mv-defect
 
 ***Note***: 'demomode' application option is not supported for File sink. It is only supported for live out.
 
-MV-Defect-Detect Application Usage
+MV-Defect-Detect Application Usage:
 
 ```bash
 mv-defect-detect --help
@@ -502,7 +487,7 @@ Application Options:
 ```bash
 -i, --infile=file path                                                   Location of input file
 -f, --outfile=file path                                                  Location of output file
--s, --sensor-fmt                                                         Sensor format i.e mono or color
+-s, --sensor-fmt                                                         Sensor format that is mono or color
 -w, --width=1920                                                         Resolution width of the input
 -h, --height=1080                                                        Resolution height of the input
 -o, --output=0                                                           Display/dump stage on DP/File
@@ -513,17 +498,17 @@ Application Options:
 
 The application is targeted to run an input source that supports GRAY8 (Y8) or RGB (RGB) format with a resolution of **1920x1080**.
 
-Once done with the MV-Defect-Detect application, To switch to another accelerator application after mv-defect-detect application, first exit the docker container using ```exit```, then unload the firmware by running the below command:
+After the MV-Defect-Detect application is run, switch to another accelerator application. First exit the docker container using ```exit```, then unload the firmware by running the following command:
 
 ```bash
 sudo xmutil unloadapp
 ```
 
-### Command Examples for Monochrome sensor
+### Command Examples for Monochrome Sensor
 
-**Examples:** Follow the below examples for different use cases of the above mentioned command options.
+Follow these examples for different use cases of the above mentioned command options.
 
-***Note***: Only one instance of the application can run at a time.
+>***Note***: Only one instance of the application can run at a time.
 
 * For File-In and File-Out mode, run the following command.
 
@@ -533,7 +518,8 @@ sudo xmutil unloadapp
   `mv-defect-detect -i input.y8 -o 1 -f out_preproc.y8 -s mono`  | Pre-process output dumps into file.
   `mv-defect-detect -i input.y8 -o 2 -f out_final.y8 -s mono`  | Final output dumps into file.
 
-  ***Note***: File-In and File-Out demo mode is not supported. To playback the generated output video files run any of the below example commands:
+  ***Note***: File-In and File-Out demo mode is not supported. To playback the generated output video files, run any of the below example commands:
+
   ```bash
     mv-defect-detect -i out_raw.y8 -o 0 -d 1 -s mono       //Input file path should change as per the requirement
     mv-defect-detect -i out_preproc.y8 -o 0 -d 1 -s mono   //Input file path should change as per the requirement
@@ -544,7 +530,7 @@ sudo xmutil unloadapp
 
    Command  | Description
   ------------- | -------------
-  `mv-defect-detect -i input.y8 -o 0 -d 1 -s mono`       | Raw output displays on DP.Input file path should change as per the requirement.
+  `mv-defect-detect -i input.y8 -o 0 -d 1 -s mono`       | Raw output displays on DP. Input file path should change as per the requirement.
   `mv-defect-detect -i input.y8 -o 1 -d 1 -s mono`       | Preprocess output displays on DP. Input file path should change as per the requirement.
   `mv-defect-detect -i input.y8 -o 2 -d 1 -s mono`       | Final output displays on DP. Input file path should change as per the requirement.
 
@@ -556,7 +542,7 @@ sudo xmutil unloadapp
   `mv-defect-detect -o 1 -f out_preproc.y8 -s mono`  | Preprocess output dumps into file.
   `mv-defect-detect -o 2 -f out_final.y8 -s mono`  | Final output dumps into file.
 
-  ***Note***: Live-In and File-Out demo mode is not supported. To playback the generated output video files run any of the below example commands:
+  ***Note***: Live-In and File-Out demo mode is not supported. To playback the generated output video files, run any of the below example commands:
   ```bash
     mv-defect-detect -i out_raw.y8 -o 0 -s mono       //Input file path should change as per the requirement
     mv-defect-detect -i out_preproc.y8 -o 0 -s mono   //Input file path should change as per the requirement
@@ -573,9 +559,9 @@ sudo xmutil unloadapp
 
 ### Command Examples for Color Sensor
 
-**Examples:** Follow the below examples for different use cases of the above mentioned command options.
+Follow these examples for different use cases of the above mentioned command options.
 
-***Note***: Only one instance of the application can run at a time.
+>***Note***: Only one instance of the application can run at a time.
 
 * For File-In and File-Out mode, run the following command.
 
@@ -585,7 +571,8 @@ sudo xmutil unloadapp
   `mv-defect-detect -i input.rgb -o 1 -f out_preproc.y8 -s color`  | Pre-process output dumps into file.
   `mv-defect-detect -i input.rgb -o 2 -f out_final.y8 -s color`  | Final output dumps into file.
 
-  ***Note***: File-In and File-Out demo mode is not supported. To playback the generated output video files run any of the below commands:
+  ***Note***: File-In and File-Out demo mode is not supported. To playback the generated output video files, run any of the below commands:
+
   ```bash
   mv-defect-detect -i out_raw.y8 -o 0 -d 1 -s color       //Input file path should change as per the requirement
   mv-defect-detect -i out_preproc.y8 -o 0 -d 1 -s mono    //Input file path should change as per the requirement
@@ -608,7 +595,7 @@ sudo xmutil unloadapp
   `mv-defect-detect -o 1 -f out_preproc.y8 -s color`  | Preprocess output dumps into file.
   `mv-defect-detect -o 2 -f out_final.y8 -s color`  | Final output dumps into file.
 
-  ***Note***: Live-In and File-Out demo mode is not supported. To playback the generated output video files run any of the below commands:
+  ***Note***: Live-In and File-Out demo mode is not supported. To playback the generated output video files, run any of the below commands:
   ```bash
     mv-defect-detect -i out_raw.y8 -o 0 -s color       //Input file path should change as per the requirement
     mv-defect-detect -i out_preproc.y8 -o 0 -s mono    //Input file path should change as per the requirement
@@ -625,66 +612,72 @@ sudo xmutil unloadapp
 
 ### Sensor Calibration for the Live Source
 
-- You can use v4l2 utilities to tune various sensor parameters. For example:
+You can use v4l2 utilities to tune various sensor parameters. For example:
 
-  ```bash
-  v4l2-ctl -d /dev/video0 -L                      List all available parameters to tune
+```bash
+v4l2-ctl -d /dev/video0 -L                      List all available parameters to tune
 
-  v4l2-ctl -d /dev/video0 -c exposure=10000       Tune and set the exposure to some value
+v4l2-ctl -d /dev/video0 -c exposure=10000       Tune and set the exposure to some value
 
-  v4l2-ctl -d /dev/video0 -c black_level=150      Tune and set the black_level to some value
+v4l2-ctl -d /dev/video0 -c black_level=150      Tune and set the black_level to some value
 
-  v4l2-ctl -d /dev/video0 -c gain=250             Tune and set the gain to some value
+v4l2-ctl -d /dev/video0 -c gain=250             Tune and set the gain to some value
 
-  v4l2-ctl -d /dev/video0 -c red_gain=250         Tune and set the red_gain to some value
-  ```
+v4l2-ctl -d /dev/video0 -c red_gain=250         Tune and set the red_gain to some value
+```
 
-- Alternatively, you can also use qv4l2 to tune the sensor parameters through a GUI.
+Alternatively, you can also use qv4l2 to tune the sensor parameters through a GUI.
 
-- To use qv4l2, the command should run over an SSH connection with X-forwarding enabled.
+To use qv4l2, run the command over an SSH connection with X-forwarding enabled.
 
-- On Host, run:
+On Host, run:
 
-    ```bash
-    ssh -X ubuntu@<Kria Starter Kit IP address>
-    ```
-    **NOTE**: If all ethernet cables are plugged in, feel free to use any IP.
+```bash
+ssh -X ubuntu@<Kria Starter Kit IP address>
+```
 
-- On Windows, download [Mobaxterm](https://mobaxterm.mobatek.net/download.html), which automatically enables X-forwarding when creating a new ssh connection.
+**NOTE**: If all ethernet cables are plugged in, feel free to use any IP.
 
-- Verify if the SSH terminal is using the correct authority file.
-  * The output should look something like this.
-   ```bash
-   ubuntu@kria:~$ xauth -v list
-   Using authority file /home/ubuntu/.Xauthority
-   kria/unix:10  MIT-MAGIC-COOKIE-1  f5212118305f75678a69daa4a6eda703
-   ```
-   * If incorrect or no authority file is present, do the following steps:
-   ```bash
-   ubuntu@kria:~$ rm -rf ~/.Xaut*
-   ```
-   * Reboot the target board.
-   ```bash
-   ubuntu@kria:~$ sudo reboot
-   ```
-   * Check the `xauth -v list` after reboot(in SSH terminal), it should display 
-   the correct authority file on the output console.
+On Windows, download [Mobaxterm](https://mobaxterm.mobatek.net/download.html), which automatically enables X-forwarding when creating a new ssh connection.
 
-- You can now run the following command on SSH side to open up the qv4l2 GUI.
-  ```bash
-  ubuntu@kria:~$ qv4l2 -d /dev/video0
-  Using mplane plugin for capture
-  ```
+Verify if the SSH terminal is using the correct authority file. The output should look something like this:
 
-- Use the GUI to tune the sensor/ISP params:
+```bash
+ubuntu@kria:~$ xauth -v list
+Using authority file /home/ubuntu/.Xauthority
+kria/unix:10  MIT-MAGIC-COOKIE-1  f5212118305f75678a69daa4a6eda703
+```
 
-    ![QV4l2](./media/qv4l2_tuning.JPG)
+If incorrect or no authority file is present, complete the following steps:
+
+```bash
+ubuntu@kria:~$ rm -rf ~/.Xaut*
+```
+
+Reboot the target board:
+
+```bash
+ubuntu@kria:~$ sudo reboot
+```
+
+Check the `xauth -v list` after reboot (in SSH terminal). It should display the correct authority file on the output console.
+
+You can now run the following command on SSH side to open up the qv4l2 GUI:
+
+```bash
+ubuntu@kria:~$ qv4l2 -d /dev/video0
+Using mplane plugin for capture
+```
+
+Use the GUI to tune the sensor/ISP params:
+
+![QV4l2](./media/qv4l2_tuning.JPG)
 
 ### File Structure of the MV-Defect-Detect Application
 
-The application is comprised of the following files:
+The application has the following files:
 
-Below files are present in the *app* directory:
+The following files are present in the *app* directory:
 
   `/opt/xilinx/xlnx-app-kr260-mv-defect-detect/`
 
@@ -695,7 +688,7 @@ Below files are present in the *app* directory:
 | share/vvas/       | Contains the configuration files for vvas accelerators |
 | README_MV_DEFECT_DETECT       | Contains the application information |
 
-Below files are present in bin directory:
+The following files are present in the *bin* directory:
 
    `/opt/xilinx/xlnx-app-kr260-mv-defect-detect/bin/`
 
@@ -713,7 +706,7 @@ Below files are present in bin directory:
 | update_eeprom_wrapper | Wrapper file to configure 10GigE pipeline              |
 | mv-defect-detect      | Binary for mv-defect-detect application         |
 
-Below files are present in *lib* directory:
+The following files are present in the *lib* directory:
 
   `/opt/xilinx/xlnx-app-kr260-mv-defect-detect/lib/`
 
@@ -722,7 +715,7 @@ Below files are present in *lib* directory:
 | libgigev.so.2.0.1 | Contains the GigE Vision core firmware        |
 | libgigev.so.2.0   | Contains the symbolic link to libgigev.so.2.0.1 |
 | libgigev.so       | Contains the Symbolic link to libgigev.so.2.0 |
-| libvvas_preprocess.so | vvas pre-process accelarator library|
+| libvvas_preprocess.so | vvas pre-process accelerator library|
 | libvvas_otsu.so    | vvas OTSU accelerator library |
 | libvvas_cca.so       | vvas CCA accelerator library |
 | libvvas_text2overlay.so       | vvas text2overlay library |
@@ -735,9 +728,9 @@ There are two sets of `json` files present, one set for mono and other for color
 |-----------------------|--------------------------------------------------------|
 | cca-accelerator.json         | Configuration of CCA accelerator               |
 | cca-accelerator-stride.json  | Configuration of CCA accelerator with stride   |
-| otsu-accelarator.json   | Configuration of OTSU accelerator              |
-| preprocess-accelarator.json  | Configuration of pre-process accelarator           |
-| preprocess-accelarator-stride.json          | Configuration of pre-process accelarator with stride |
+| otsu-accelerator.json   | Configuration of OTSU accelerator              |
+| preprocess-accelerator.json  | Configuration of pre-process accelerator           |
+| preprocess-accelerator-stride.json          | Configuration of pre-process accelerator with stride |
 | text2overlay.json       | Configuration of text2overlay      |
 
 ## Next Steps
