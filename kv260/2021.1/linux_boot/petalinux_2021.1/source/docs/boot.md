@@ -13,10 +13,13 @@ The starter kit QSPI boots the board using SD boot mode and loads the SD content
 The default login credentials are:
 
 ```
+for wic images released 2024.2 and older:
 username: petalinux
+for wic images released 2025.1 and older:
+username: amd-edf
 ```
 
-To enable the root user, use the command below because “petalinux” has limited privileges. Enter the same password that you created for “petalinux” in the above step.
+To enable the root user, use the command below because “petalinux/amd-edf” has limited privileges. Enter the same password that you created for “petalinux/amd-edf” in the above step.
 
 ```bash
 sudo su -l root
@@ -35,7 +38,7 @@ Note: Without internet connectivity, you will not be able to perform all of the 
 
 ## Next Steps
 
-You may now select an application in the [PetaLinux 2021.1 row](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/linux_boot.html), to try an example application in 2021.1. Some steps listed in applications "Setting up the Board and Application deployment" may overlap with the steps to boot PetaLinux.
+You may now select an application in the supported in the [Linux version you have booted](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/linux_boot.html), to try an example application in 2021.1. Some steps listed in applications "Setting up the Board and Application deployment" may overlap with the steps to boot PetaLinux.
 
 Refer to [Kria Adventure map](https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm) for an organized view of different documentations available for Kria SOM.
 
