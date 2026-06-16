@@ -1,4 +1,4 @@
-# Booting Kria Starter Kit Linux on KV260 - PetaLinux
+# Booting Kria Starter Kit Linux on KV260 - Embedded Linux
 
 ## Introduction
 
@@ -39,9 +39,10 @@ For best practice, this should be performed each time before removing power
 
 ```sudo shutdown -h now```
 
-## PetaLinux vs Ubuntu
+## PetaLinux/embedded Linux vs Ubuntu
 
-Ubuntu is the best choice for getting started with the KV260. This tutorial is for booting PetaLinux 2021.1 on KV260 - 2021.1 is the last version of PetaLinux that officially supports example applications. The same steps can be used to boot other PetaLinux versions, but example applications may not be supported on those versions.
+Ubuntu is the best choice for getting started with the KV260. This tutorial is for booting PetaLinux 2021.1 on KV260 - 2021.1 is the last version of PetaLinux that officially supports example applications. The same steps can be used to boot other PetaLinux or embedded Linux versions, but example applications may not be supported on those versions. 
+
 
 [Access Booting Kria Starter Kit Linux on KV260 tutorial HERE](./sdcard.md)
 
