@@ -37,13 +37,21 @@ For users configuring their Kria Starter Kit for a specific application, refer t
        - `AI Box ReID <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/build/html/docs/aibox-reid/aibox_landing.html>`_
        - `Defect Detect <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/build/html/docs/defect-detect/defectdetect_landing.html>`_
        - `NLP SmartVision <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/build/html/docs/nlp-smartvision/nlp_smartvision_landing.html>`_
-   * - Embedded Linux 2022.1 and newer
+   * - Embedded Linux 2022.1 through 2025.2
      - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/linux_boot/petalinux_2021.1/build/html/docs/intro.html>`_
      - 
        - There are no example applications for embedded Linux 2022.1 and newer.
+   * - Embedded Linux 2026.1 and newer
+     - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/2021.1/linux_boot/petalinux_2021.1/build/html/docs/intro.html>`_
+     - 
+       - `Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kv260/bist.html>`_
+
 
 
 
 .. note:: Kria KV260 Vision AI Starter Kit eCommerce
    
    Kria Starter Kits also support Starter Kit on embedded Linux (generated with PetaLinux or Yocto). Refer to the `Kria Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits>`_ for release pre-builts.
+   
+
+

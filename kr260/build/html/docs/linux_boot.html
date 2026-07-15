@@ -5,36 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
 <script type="text/javascript">
-(function () {
-  // Load OneTrust only on approved domains.
-  var allowedHosts = [
-    "xilinx.github.io",
-    "www.xilinx.com"
-  ];
+(function() {
+    var host = window.location.hostname;
+    if (!host.endsWith('pages.gitenterprise.xilinx.com')) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
+        s.type = 'text/javascript';
+        s.charset = 'UTF-8';
+        s.setAttribute('data-domain-script', '03af8d57-0a04-47a6-8f10-322fa00d8fc7');
+        s.setAttribute('data-document-language', 'true');
+        document.head.appendChild(s);
 
-  var host = window.location.hostname.toLowerCase();
-  var isAllowed = allowedHosts.some(function (d) {
-    return host === d || host.endsWith("." + d);
-  });
-
-  if (!isAllowed) {
-    return;
-  }
-
-  var s = document.createElement("script");
-  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
-  s.type = "text/javascript";
-  s.charset = "UTF-8";
-  s.setAttribute("data-document-language", "true");
-  s.setAttribute("data-domain-script", "03af8d57-0a04-47a6-8f10-322fa00d8fc7");
-  document.head.appendChild(s);
-
-  window.OptanonWrapper = function () {};
+        window.OptanonWrapper = function() { };
+    }
 })();
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -149,7 +137,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Boot Kria Starter Kit Linux on KR260<a class="headerlink" href="#boot-kria-starter-kit-linux-on-kr260" title="Permalink to this heading">¶</a></h1>
 <p>For new users evaluating the AMD Kria™ Starter Kit, we recommend starting with the latest version of Ubuntu (Ubuntu 24.04).
 For users configuring their Kria Starter Kit for a specific application, please refer to the table
-below to find your application and select the appropriate version of Linux.</p>
+below to find your application and select the appropriate version of Linux.
+Kria Starter Kits also support Starter Kit on embedded Linux (generated with PetaLinux or Yocto). Refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits">Kria Wiki</a> for release pre-builts.</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 25%" />
@@ -183,6 +172,20 @@ below to find your application and select the appropriate version of Linux.</p>
 </ul>
 </td>
 </tr>
+<tr class="row-even"><td><p>Embedded Linux 2022.1 through 2025.2</p></td>
+<td><p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/linux_boot/embedded_linux/build/html/docs/intro.html">Boot Linux Instructions</a></p></td>
+<td><ul class="simple">
+<li><p>There are no example applications for embedded Linux 2022.1 through 2025.2.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Embedded Linux 2026.1 and newer</p></td>
+<td><p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/linux_boot/embedded_linux/build/html/docs/intro.html">Boot Linux Instructions</a></p></td>
+<td><ul class="simple">
+<li><p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/bist.html">Built-In Self Test (BIST)</a></p></li>
+</ul>
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -201,7 +204,7 @@ below to find your application and select the appropriate version of Linux.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on April 23, 2026.
+      <span class="lastupdated">Last updated on July 15, 2026.
       </span></p>
   </div>
 
