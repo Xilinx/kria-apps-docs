@@ -32,9 +32,9 @@ copyright = '2021-' + datetime.now().strftime("%Y") + ', ' + author
 # YYYY = First year of copyright
 
 # The short X.Y version
-version = 'PetaLinux 2021.1'
+version = 'Embedded Linux'
 # The full version, including alpha/beta/rc tags
-release = 'PetaLinux 2021.1'
+release = 'Embedded Linux'
 
 html_last_updated_fmt = datetime.now().strftime("%B %d, %Y")
 

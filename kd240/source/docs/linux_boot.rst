@@ -6,6 +6,7 @@ Boot Kria Starter Kit Linux on KD240
 For new users evaluating the AMD Kria™ Starter Kit, we recommend starting with the latest version of Ubuntu (Ubuntu 24.04).
 For users configuring their Kria Starter Kit for a specific application, please refer to the table 
 below to find your application and select the appropriate version of Linux.
+Kria Starter Kits also support Starter Kit on embedded Linux (generated with Yocto). Refer to the `Kria Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits>`_ for release pre-builts.
 
 
 .. list-table:: 
@@ -27,5 +28,14 @@ below to find your application and select the appropriate version of Linux.
        - `Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/bist/1_2/build/html/bist_landing.html>`_
        - `Field Oriented Control (FOC) Motor Control <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/foc-motor-ctrl/0_5/build/html/foc_motor_control_landing.html>`_
        - `ROS 2 Multi-Node Communications Via TSN <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/ros2_multinode_communication_via_tsn/0_2/build/html/ros2_multinode_communication_via_tsn_landing.html>`_
+   * - Embedded Linux 2023.1 through 2025.2
+     - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/linux_boot/embedded_linux/build/html/docs/intro.html>`_
+     - 
+       - There are no example applications for embedded Linux 2022.1 through 2025.2.
+   * - Embedded Linux 2026.1 and newer
+     - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/linux_boot/embedded_linux/build/html/docs/intro.html>`_
+     - 
+       - `Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/bist.html>`_
+
 
 
