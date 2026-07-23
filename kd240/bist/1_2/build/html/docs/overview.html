@@ -116,7 +116,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Repository</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/kria-bist">Software Repository</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/xilinx/kria-bist/tree/v1.2">Software Repository</a></li>
 </ul>
 
         </div>
@@ -154,32 +154,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="file-structure">
 <h2>File Structure<a class="headerlink" href="#file-structure" title="Permalink to this heading">¶</a></h2>
 <p>The source code for the BIST application can be found in the <a class="reference external" href="https://github.com/Xilinx/kria-bist">kria-bist</a> repository. The tests directory contains
-a module directory for each interface, along with a top level conftest.py and
-pytest.ini.</p>
+a module directory for each interface, along with a top level <code class="docutils literal notranslate"><span class="pre">conftest.py</span></code> and
+<code class="docutils literal notranslate"><span class="pre">pytest.ini</span></code>.</p>
 <p>The top level conftest.py implements a Helpers class, which contains helper
 functions that can be used by all other test functions. This file also adds
 an option to specify the target board when running pytest.</p>
-<p>The pytest.ini file defines markers that can be used when running pytest. Each
+<p>The <code class="docutils literal notranslate"><span class="pre">pytest.ini</span></code> file defines markers that can be used when running pytest. Each
 module has a marker, which can be used to run tests for the selected module(s).
 The logging configuration for the test output is also defined here. By default,
 INFO level (or higher) messages are printed to the terminal and the log
 file, and DEBUG level messages will only be printed to the log file.
 This file also defines the command line options that are used every time pytest
 is called from the tests directory.</p>
-<p>Each test module contains four files: bist_module.py, bist_module_config.py,
-conftest.py, and test_bist_module.py, where ‘module’ is the name of the module.</p>
-<p>The module level conftest.py contains a function, which parametrizes the tests
-based on the target board and the parameters in bist_module_config.py.</p>
-<p>The bist_module_config.py contains a dictionary of supported boards for that
+<p>Each test module contains four files: <code class="docutils literal notranslate"><span class="pre">bist_module.py</span></code>, <code class="docutils literal notranslate"><span class="pre">bist_module_config.py</span></code>,
+<code class="docutils literal notranslate"><span class="pre">conftest.py</span></code>, and <code class="docutils literal notranslate"><span class="pre">test_bist_module.py</span></code>, where ‘module’ is the name of the module.</p>
+<p>The module level <code class="docutils literal notranslate"><span class="pre">conftest.py</span></code> contains a function, which parametrizes the tests
+based on the target board and the parameters in <code class="docutils literal notranslate"><span class="pre">bist_module_config.py</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">bist_module_config.py</span></code> contains a dictionary of supported boards for that
 module. There is a key for each supported board and each key maps to a list of
 tests. The length of this list corresponds to the number of tests that are
 generated for the target board and module. Each item in this list is a
 dictionary, which contains a label and other test-specific parameters. The label
 is seen in the pytest output and can be used to differentiate individual tests.</p>
-<p>The bist_module.py contains helper functions and run functions. The run
+<p><code class="docutils literal notranslate"><span class="pre">bist_module.py</span></code> contains helper functions and run functions. The run
 functions perform a specific test based on the parameters it is given and
 return True or False.</p>
-<p>The test_bist_module.py contains the test function called by pytest. The test
+<p><code class="docutils literal notranslate"><span class="pre">test_bist_module.py</span></code> contains the test function called by pytest. The test
 function receives all the parameters from the config file and uses the label
 parameter to determine which run function should be called for each test. Once
 the run function returns either True or False, the test function asserts this
@@ -227,8 +227,8 @@ value and this determines whether a test passed or failed.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on October 28, 2025.
+    <p>&#169; Copyright 2023-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on July 23, 2026.
       </span></p>
   </div>
 
