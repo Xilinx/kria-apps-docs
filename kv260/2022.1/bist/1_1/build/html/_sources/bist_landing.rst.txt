@@ -34,16 +34,14 @@ The BIST application is based on the pytest framework and designed to be modular
    :maxdepth: 1
    :caption: Repository
 
-   Software Repository <https://github.com/Xilinx/kria-bist>
-
-
-
+   Software Repository <https://github.com/xilinx/kria-bist/tree/v1.1>
 
 
 .. important::
    Other releases:
 
-   * `BIST 1.2 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/bist/1_2/build/html/bist_landing.html>`_
+   * `BIST 1.2 <../../../1_2/build/html/bist_landing.html>`_
+   * `BIST 1.3 <../../../1_3/build/html/bist_landing.html>`_
 
 
 

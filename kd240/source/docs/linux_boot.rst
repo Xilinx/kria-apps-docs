@@ -8,7 +8,6 @@ For users configuring their Kria Starter Kit for a specific application, please 
 below to find your application and select the appropriate version of Linux.
 Kria Starter Kits also support Starter Kit on embedded Linux (generated with Yocto). Refer to the `Kria Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits>`_ for release pre-builts.
 
-
 .. list-table:: 
    :widths: 25 25 50
    :header-rows: 1
@@ -36,6 +35,7 @@ Kria Starter Kits also support Starter Kit on embedded Linux (generated with Yoc
      - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/linux_boot/embedded_linux/build/html/docs/intro.html>`_
      - 
        - `Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/bist.html>`_
+
 
 
 

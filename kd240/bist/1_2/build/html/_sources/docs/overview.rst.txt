@@ -25,14 +25,14 @@ File Structure
 
 
 The source code for the BIST application can be found in the `kria-bist <https://github.com/Xilinx/kria-bist>`_ repository. The tests directory contains
-a module directory for each interface, along with a top level conftest.py and
-pytest.ini.
+a module directory for each interface, along with a top level ``conftest.py`` and
+``pytest.ini``.
 
 The top level conftest.py implements a Helpers class, which contains helper
 functions that can be used by all other test functions. This file also adds
 an option to specify the target board when running pytest.
 
-The pytest.ini file defines markers that can be used when running pytest. Each
+The ``pytest.ini`` file defines markers that can be used when running pytest. Each
 module has a marker, which can be used to run tests for the selected module(s).
 The logging configuration for the test output is also defined here. By default,
 INFO level (or higher) messages are printed to the terminal and the log
@@ -40,24 +40,24 @@ file, and DEBUG level messages will only be printed to the log file.
 This file also defines the command line options that are used every time pytest
 is called from the tests directory.
 
-Each test module contains four files: bist_module.py, bist_module_config.py,
-conftest.py, and test_bist_module.py, where 'module' is the name of the module.
+Each test module contains four files: ``bist_module.py``, ``bist_module_config.py``,
+``conftest.py``, and ``test_bist_module.py``, where 'module' is the name of the module.
 
-The module level conftest.py contains a function, which parametrizes the tests
-based on the target board and the parameters in bist_module_config.py.
+The module level ``conftest.py`` contains a function, which parametrizes the tests
+based on the target board and the parameters in ``bist_module_config.py``.
 
-The bist_module_config.py contains a dictionary of supported boards for that
+``bist_module_config.py`` contains a dictionary of supported boards for that
 module. There is a key for each supported board and each key maps to a list of
 tests. The length of this list corresponds to the number of tests that are
 generated for the target board and module. Each item in this list is a
 dictionary, which contains a label and other test-specific parameters. The label
 is seen in the pytest output and can be used to differentiate individual tests.
 
-The bist_module.py contains helper functions and run functions. The run
+``bist_module.py`` contains helper functions and run functions. The run
 functions perform a specific test based on the parameters it is given and
 return True or False.
 
-The test_bist_module.py contains the test function called by pytest. The test
+``test_bist_module.py`` contains the test function called by pytest. The test
 function receives all the parameters from the config file and uses the label
 parameter to determine which run function should be called for each test. Once
 the run function returns either True or False, the test function asserts this
