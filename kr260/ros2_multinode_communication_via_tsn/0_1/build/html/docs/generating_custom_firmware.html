@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -19,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Generation of Firmware Binaries &mdash; Kria™ KD240: ROS 2 Multi-Node Communications Via TSN 0.1 documentation</title>
+  <title>Generation of Firmware binaries &mdash; Kria™ KD240: ROS 2 Multi-Node Communications Via TSN 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -90,12 +89,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="kria_starterkit_linux_boot.html">Linux Boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_boot.html">Linux Boot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_the_design.html">Building the Design Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Generate Custom Firmware</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#testing-custom-accelerator-firmware-binaries">Testing Custom Accelerator/Firmware Binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-custom-accelerator-firmware-binaries">Testing custom Accelerator/firmware binaries</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html">Software Build Instructions</a></li>
@@ -107,7 +106,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Repository</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/ros-tsn-pubsub">Software Repository</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/xilinx/ros-tsn-pubsub/tree/v0.1">Software Repository</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other KR260 Applications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/10gige_vision_camera.html">10GigE Machine Vision Camera</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/ros2_perception_node.html">ROS 2 Perception Node</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/precision_time_management.html">Precision Time Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/bist.html">Built-In Self Test (BIST)</a></li>
 </ul>
 
         </div>
@@ -124,7 +130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../ros2_multinode_communication_via_tsn_landing.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Generation of Firmware Binaries</li>
+      <li>Generation of Firmware binaries</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/docs/generating_custom_firmware.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -136,45 +142,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <table class="sphinxhide">
  <tr>
-   <td align="center"><img src="media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KD240 Drives Starter Kit Tutorial</h1>
+   <td align="center"><img src="media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KR260 Robotics Starter Kit Tutorial</h1>
    </td>
  </tr>
  <tr>
- <td align="center"><h1>Generation of Firmware Binaries</h1> </td>
+ <td align="center"><h1>Generation of Firmware binaries</h1> </td>
  </tr>
-</table><section id="generation-of-firmware-binaries">
-<h1>Generation of Firmware Binaries<a class="headerlink" href="#generation-of-firmware-binaries" title="Permalink to this heading">¶</a></h1>
-<section id="testing-custom-accelerator-firmware-binaries">
-<h2>Testing Custom Accelerator/Firmware Binaries<a class="headerlink" href="#testing-custom-accelerator-firmware-binaries" title="Permalink to this heading">¶</a></h2>
-<p>Customers requiring to test custom hardware/accelerator can do so by using the following steps on the Ubuntu® platform.</p>
-<p>It is assumed that a custom platform design has been generated using an AMD Vivado™/AMD Vitis™ and the bitstream/xclbin is available. Similarly, a correct device-tree overlay for the custom hardware is created or generated. AMD  DTG could be used for the device-tree generation. Refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob">link</a> for more information on DTG.</p>
-<p>From previous steps, the following binaries are available:</p>
+</table><div class="section" id="generation-of-firmware-binaries">
+<h1>Generation of Firmware binaries<a class="headerlink" href="#generation-of-firmware-binaries" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="testing-custom-accelerator-firmware-binaries">
+<h2>Testing custom Accelerator/firmware binaries<a class="headerlink" href="#testing-custom-accelerator-firmware-binaries" title="Permalink to this heading">¶</a></h2>
+<p>Customers requiring to test custom hardware/accelerator can do so by following the below steps on the ubuntu platform.</p>
+<p>It is assumed that a custom platform design has been generated using an AMD Vivado™/AMD Vitis™ and bitstream/xclbin is available. Similarly, a correct device-tree overlay for the custom hardware is created or generated. AMD  DTG could be used for the device-tree generation. Refer to the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob">link</a> for more information on DTG.</p>
+<p>From previous steps, following binaries are available:</p>
 <ul class="simple">
-<li><p>custom-hardware.bit     (obtained by Vitis or Vivado)</p></li>
+<li><p>custom-hardware.bit     (obtained by Vitis)</p></li>
 <li><p>custom-metadata.xclbin  (obtained by Vitis) (optional)</p></li>
-<li><p>custom-devicetree.dtsi  (obtained by DTG or handwritten)</p></li>
+<li><p>custom-devicetree.dtsi  (obtained by DTG)</p></li>
 </ul>
-<p>On the Ubuntu platform, the bitstream header is stripped to obtain fpga configuration data as a bin object (<code class="docutils literal notranslate"><span class="pre">*.bin</span></code>). The metadata xclbin is consumed as is from Vitis. A runtime device-tree blob corresponding to the programmable logic (PL) bitstream is required (<code class="docutils literal notranslate"><span class="pre">.dtbo</span></code>) to be loaded as an overlay, which when loaded in the kernel, invokes all the drivers corresponding to the PL bitstream.</p>
-<p>A Makefile is provided to generate the required firmware binaries and install. This Makefile takes the above binaries and provides the following outputs as follows. The artifacts of the Makefile are installed on the target device at <code class="docutils literal notranslate"><span class="pre">/lib/firmware/xilinx/&lt;</span> <span class="pre">app-dir</span> <span class="pre">&gt;</span></code>. The firmware is loaded at runtime using xmutil.</p>
+<p>On the ubuntu platform, the bitstream header is stripped to obtain fpga configuration data as a bin object (<code class="docutils literal notranslate"><span class="pre">*.bin</span></code>).
+The metadata xclbin is consumed as is from Vitis.
+A runtime device-tree blob corresponding to the PL bitstream is required (<code class="docutils literal notranslate"><span class="pre">.dtbo</span></code>) to be loaded as an overlay, which when loaded in kernel, invokes all the drivers corresponding to the PL bitstream.</p>
+<p>A makefile is provided to generate the required firmware binaries and install. This makefile takes the above binaries and provides the following outputs as shown below. The artifacts of the makefile are installed on the target device at <code class="docutils literal notranslate"><span class="pre">/lib/firmware/xilinx/&lt;</span> <span class="pre">accelerator-dir</span> <span class="pre">&gt;</span></code>. The firmware is loaded at runtime using xmutil.</p>
 <ul class="simple">
 <li><p>custom-hardware.bit    -&gt; custom-hardware.bin</p></li>
 <li><p>custom-devicetree.dtsi -&gt; custom-devicetree.dtbo</p></li>
 </ul>
-<p>An following example has been illustrated as a reference:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w">  </span>https://github.com/Xilinx/kria-apps-firmware.git
+<p>An example has been illustrated below as a reference:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2022.1<span class="w"> </span>https://github.com/Xilinx/kria-apps-firmware.git
+mv<span class="w"> </span>custom-hardware.bit<span class="w"> </span>kria-apps-firmware/kr260/tsn-rs485pmod/kr260-tsn-rs485pmod.bit
+mv<span class="w"> </span>custom-device-tree.dtsi<span class="w"> </span>kria-apps-firmware/kr260/tsn-rs485pmod/kr260-tsn-rs485pmod.dtsi
 <span class="nb">cd</span><span class="w"> </span>kria-apps-firmware
-mkdir<span class="w"> </span>-p<span class="w"> </span>kd240/custom
-mv<span class="w"> </span>custom-hardware.bit<span class="w"> </span>custom-devicetree.dtsi<span class="w"> </span>kd240/custom
-cp<span class="w"> </span>kv260/smartcam/shell.json<span class="w"> </span>kd240/custom
-make
+make<span class="w"> </span>
 </pre></div>
 </div>
-<blockquote>
-<div><p><strong>NOTE:</strong> The above make command will build all the firmware artifacts available in the repository. The output products will be available in the <code class="docutils literal notranslate"><span class="pre">kd240/custom</span></code> folder. The <code class="docutils literal notranslate"><span class="pre">shell.json</span></code> file is copied form an existing example as is.</p>
-</div></blockquote>
-<p>For more information, refer to the instructions provided on <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware">github.com/Xilinx/kria-apps-firmware</a>.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2024 Advanced Micro Devices, Inc.</p></section>
-</section>
+<p>For more information, refer to the instructions provided in the readme file <a class="reference external" href="https://github.com/Xilinx/kria-apps-firmware/blob/xlnx_rel_v2022.1/README.md">here</a>.</p>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2024 Advanced Micro Devices, Inc.</p></div>
+</div>
 
 
            </div>
@@ -189,8 +193,8 @@ make
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 19, 2024.
+    <p>&#169; Copyright 2023-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on August 14, 2026.
       </span></p>
   </div>
 

@@ -26,6 +26,6 @@ Boot Firmware
 
 
 
-.. Copyright © 2021–2025 Advanced Micro Devices, Inc
+.. Copyright © 2021–2026 Advanced Micro Devices, Inc
 
 .. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.

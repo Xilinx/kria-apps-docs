@@ -13,9 +13,7 @@ Once your microSD card is flashed with the image, proceed to the next step.
 <details>
 <summary>Instructions for Raspberry Pi Imager  (any OS) </summary>
 
-For any OS users, visit the page below for instructions to copy the image to the SD card:
-
-https://documentation.ubuntu.com/core/how-to-guides/deploy-an-image/install-on-amd/#write-the-ubuntu-core-image-to-the-microsd-card 
+For any OS users, visit [this page](https://documentation.ubuntu.com/core/how-to-guides/deploy-an-image/install-on-amd/#write-the-ubuntu-core-image-to-the-microsd-card) for instructions to copy the image to the SD card.
 
 </details>
 

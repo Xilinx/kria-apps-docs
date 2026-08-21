@@ -2,9 +2,7 @@
 Booting Kria Starter Kit Linux on KD240
 ############################################
 
-
 .. include:: ../../../../shared/somtoctree.txt
-
 
 
 .. toctree::
@@ -20,7 +18,6 @@ Booting Kria Starter Kit Linux on KD240
 
 
 
-
 .. toctree::
    :maxdepth: 1
    :caption: Other
@@ -28,6 +25,6 @@ Booting Kria Starter Kit Linux on KD240
    docs/known_issues.md
 
 
-.. Copyright © 2024-2025 Advanced Micro Devices, Inc
+.. Copyright © 2024-2026 Advanced Micro Devices, Inc
 
 .. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.

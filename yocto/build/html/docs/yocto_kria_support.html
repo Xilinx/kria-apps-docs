@@ -70,9 +70,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ipmi_eeprom.html">IPMI EEPROM Design Guide</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
@@ -84,16 +84,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Yocto Kria Support</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#board-support-packages">Board Support Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#machine-configurations-for-kria">Machine Configurations for Kria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#build-host-requirements">Build Host Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#prepare-the-build-environment">Prepare the Build Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-host-requirements-and-build-environment-setup">Build Host Requirements and Build Environment setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#build-the-artifacts">Build the Artifacts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#minimum-linux-image">Minimum Linux Image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qemu">QEMU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#variables-overrides-and-the-environment">Variables, Overrides, and the Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#working-with-libraries">Working with Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#working-with-recipes">Working with Recipes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#older-tool-machine-names-and-recipe">Older tool machine names and recipe</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#build-wic-image-for-kria-zynqmp-generic">Build wic image for kria-zynqmp-generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-a-new-xsa-file-aka-sdt-in-sdt-flow">Importing a New XSA File (Aka SDT) in SDT Flow</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#importing-a-new-xsa-file">Importing a New XSA File</a></li>
 </ul>
 </li>
@@ -144,7 +141,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul class="simple">
 <li><p>Note that various support starts in different versions, so make sure to align Yocto release versions to the MACHINE + recipe desired.For supports in older tool version, refer to <a class="reference external" href="#older-tool-machine-names-and-recipe">older tool machine names and recipe section</a>.</p></li>
 <li><p>in the latest tool set, XSCT flow is depreciated, only <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2743468485/Porting+embeddedsw+components+to+system+device+tree+SDT+based+flow">SDT flow</a> is used.</p></li>
-<li><p>in the latest tool set, Petalinux Distribution is depreciated, only <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/3250585601/AMD+Embedded+Development+Framework+EDF">EDF distribution</a> is used.</p></li>
+<li><p>in the latest tool set, Petalinux Distribution is depreciated, only <a class="reference external" href="https://edf.docs.amd.com/">EDF distribution</a> is used.</p></li>
 </ul>
 <p>The 2026.1 release introduces several key updates: :</p>
 <ul class="simple">
@@ -231,44 +228,9 @@ The recipes supports includes Linux-only and platform categories. The platform r
 </tr>
 </tbody>
 </table></div>
-<div class="section" id="build-host-requirements">
-<h2>Build Host Requirements<a class="headerlink" href="#build-host-requirements" title="Permalink to this heading">¶</a></h2>
-<p>Before starting, make sure the build host PC meets <a class="reference external" href="https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#compatible-linux-distribution">these requirements</a>.</p>
-<p>Besides installing the packages/tools specified by the requirement page, refer to the <a class="reference external" href="#issues">Issues</a> section for possible additional requirements.</p>
-<blockquote>
-<div><p><strong>NOTE:</strong> Building using a NFS mount is not supported; use a local or scratch disk.</p>
-</div></blockquote>
-<p>Besides installing the packages/tools specified by the requirement page, refer to the <a class="reference external" href="#issues">Issues</a> section for possible additional requirements.</p>
-</div>
-<div class="section" id="prepare-the-build-environment">
-<h2>Prepare the Build Environment<a class="headerlink" href="#prepare-the-build-environment" title="Permalink to this heading">¶</a></h2>
-<p>Install the <a class="reference external" href="https://gerrit.googlesource.com/git-repo">repo</a>.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#download the Repo script:</span>
-curl<span class="w"> </span>https://storage.googleapis.com/git-repo-downloads/repo<span class="w"> </span>&gt;<span class="w"> </span>repo
-<span class="c1">#Make it executable:</span>
-chmod<span class="w"> </span>a+x<span class="w"> </span>repo
-<span class="c1">#Move it on to your system path:</span>
-mv<span class="w"> </span>repo<span class="w"> </span>~/bin/
-<span class="c1">#Add it to your path</span>
-<span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/bin
-<span class="c1">#If it is correctly installed, you should see a Usage message when invoked with the help flag.</span>
-repo<span class="w"> </span>--help
-</pre></div>
-</div>
-<p>Fetch all sources. Note that in 2026.1 and newer, all images are generated with EDF distribution.</p>
-<p>To setup for EDF distribution:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># repo init to the Xilinx yocto project</span>
-repo<span class="w"> </span>init<span class="w"> </span>-u<span class="w"> </span>https://github.com/Xilinx/yocto-manifests.git<span class="w"> </span>-b<span class="w"> </span>&lt;release-branch&gt;<span class="w"> </span>-m<span class="w"> </span>default-edf.xml<span class="w"> </span>
-<span class="c1"># Example: repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2026.1 -m default-edf.xml</span>
-<span class="c1"># repo sync to get all sources</span>
-repo<span class="w"> </span>sync
-<span class="c1"># repo start a branch</span>
-repo<span class="w"> </span>start<span class="w"> </span>&lt;release-branch&gt;<span class="w"> </span>--all
-<span class="c1"># example:  repo start rel-v2026.1 --all</span>
-<span class="nb">unset</span><span class="w"> </span>TEMPLATECONF
-<span class="nb">source</span><span class="w"> </span>edf-init-build-env<span class="w"> </span>
-</pre></div>
-</div>
+<div class="section" id="build-host-requirements-and-build-environment-setup">
+<h2>Build Host Requirements and Build Environment setup<a class="headerlink" href="#build-host-requirements-and-build-environment-setup" title="Permalink to this heading">¶</a></h2>
+<p>For detailed steps on setting up the EDF Yocto environment, including host requirements, layer configuration, and build instructions, refer to the <a class="reference external" href="https://edf.docs.amd.com/">AMD EDF Documentation</a>.</p>
 </div>
 <div class="section" id="build-the-artifacts">
 <h2>Build the Artifacts<a class="headerlink" href="#build-the-artifacts" title="Permalink to this heading">¶</a></h2>
@@ -308,72 +270,13 @@ repo<span class="w"> </span>start<span class="w"> </span>&lt;release-branch&gt;<
 <p>During the build process, a QEMU configuration file is created in the output directory containing all of the configuration options set for the machine and used by the runqemu command. For example, for k26-smk, this file is found in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k26-smk/kria-image-full-cmdline-k26-smk.qemuboot.conf</span></code>.</p>
 <p>In 2023.1, the combined starterkit k26-smk supports QEMU, and the default hardware which it emulates is KV260. To change it to KR260, update <code class="docutils literal notranslate"><span class="pre">sources/meta-kria/conf/machine/k26-smk.conf</span></code> according to the comment in the file.</p>
 </div>
-<div class="section" id="variables-overrides-and-the-environment">
-<h2>Variables, Overrides, and the Environment<a class="headerlink" href="#variables-overrides-and-the-environment" title="Permalink to this heading">¶</a></h2>
-<p>Most of the Yocto recipes and configuration files assign values to <a class="reference external" href="https://docs.yoctoproject.org/dev/dev-manual/new-recipe.html">variables</a> to influence the build. Machine specific overrides can be used to replace default or previously defined values with ones that are specific to the machine you are building for. Each machine will have a series of overrides which defines, in order of priority, which overrides will be considered when parsing all of the recipes and config files. It is possible to get a list of the MACHINEOVERRIDEs that are used for a given recipe as well as the log of how the system came to the final value of a variable by using the “-e” flag on a build:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>kria-image-full-cmdline<span class="w"> </span>-e<span class="w"> </span>
-</pre></div>
-</div>
-<p>You can see if you redirect the output of bitbake -e to a file how each of the variables in the build got to its final value; for example, here is how SERIAL_CONSOLES was set for a recipe:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># $SERIAL_CONSOLES [5 operations]
-#   set? /scratch/jtoomey/2023/sources/poky/../meta-xilinx/meta-xilinx-core/conf/machine/zynqmp-generic.conf:46
-#     &quot;115200;ttyPS0&quot;
-#   set /scratch/jtoomey/2023/sources/poky/../meta-kria/conf/machine/include/kria-common.inc:14
-#     &quot;115200;ttyPS1&quot;
-#   set /scratch/jtoomey/2023/sources/poky/meta/conf/documentation.conf:380
-#     [doc] &quot;Defines the serial consoles (TTYs) to enable using getty.&quot;
-#   set /scratch/jtoomey/2023/sources/poky/meta/conf/bitbake.conf:918
-#     [_defaultval] &quot;${@d.getVar(&#39;SERIAL_CONSOLE&#39;).replace(&#39; &#39;, &#39;;&#39;)}&quot;
-#   override[qemuarm64]:set? /scratch/jtoomey/2023/sources/poky/../meta-virtualization/conf/distro/include/meta-virt-xen.inc:15
-#     &quot;115200;ttyAMA0&quot;
-# pre-expansion value:
-#   &quot;115200;ttyPS1&quot;
-SERIAL_CONSOLES=&quot;115200;ttyPS1&quot;
-</pre></div>
-</div>
-</div>
-<div class="section" id="working-with-libraries">
-<h2>Working with Libraries<a class="headerlink" href="#working-with-libraries" title="Permalink to this heading">¶</a></h2>
-<p>If some libraries have specific <a class="reference internal" href="library_dependency.html"><span class="doc">version dependencies</span></a>, they can be specified in recipes (.bb files). For details, refer to the <a class="reference external" href="https://docs.yoctoproject.org/singleindex.html#term-PREFERRED_VERSION">Yocto documentation</a>.</p>
-</div>
-<div class="section" id="working-with-recipes">
-<h2>Working with Recipes<a class="headerlink" href="#working-with-recipes" title="Permalink to this heading">¶</a></h2>
-<p>It is possible to work with individual components (such as recipes in <a class="reference external" href="https://github.com/Xilinx/meta-kria">github meta-kria</a>) for the purpose of integration, debugging, or updates. For example, if you want to build the xmutil utility, you can bitbake that recipe:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>MACHINE=k26-smk bitbake xmutil
-</pre></div>
-</div>
-<p>This downloads and builds the xmutil sources, as well as any other recipes it depends on. For the purpose of development or debugging, it might be necessary to point the recipe to a different repo, branch, or commit by updating the SRC_URI or SRCREV (an example of the local repo commented out the following):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>diff<span class="w"> </span>--git<span class="w"> </span>a/recipes-utils/xmutil/xmutil.inc<span class="w"> </span>b/recipes-utils/xmutil/xmutil.inc
-index<span class="w"> </span>f83bcb3..2839b62<span class="w"> </span><span class="m">100644</span>
----<span class="w"> </span>a/recipes-utils/xmutil/xmutil.inc
-+++<span class="w"> </span>b/recipes-utils/xmutil/xmutil.inc
-@@<span class="w"> </span>-1,5<span class="w"> </span>+1,5<span class="w"> </span>@@
--REPO<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;git://github.com/Xilinx/xmutil.git;protocol=https&quot;</span>
--SRCREV<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;b5b1ad13bcc48d4cbd20476c97d05589bdfc7772&quot;</span>
-+REPO<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;git://gitenterprise.xilinx.com/jtoomey/xmutil.git;protocol=https&quot;</span>
-+#REPO<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;file:///path/to/xmutil;protocol=file&quot;</span>
-+SRCREV<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0000000000000000000000000000000000000000&quot;</span>
-<span class="w"> </span><span class="nv">BRANCH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;master&quot;</span>
-<span class="w"> </span><span class="nv">LICENSE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;MIT&quot;</span>
-<span class="w"> </span><span class="nv">LIC_FILES_CHKSUM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;file://MIT;md5=0835ade698e0bcf8506ecda2f7b4f302&quot;</span>
-</pre></div>
-</div>
-<p>Once this has been updated, the package can be rebuilt, and bitbake picks up the new code.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>xmutil
-</pre></div>
-</div>
-<p>It is also possible to clean in between builds to force a clean build:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>xmutil<span class="w"> </span>-c<span class="w"> </span>clean
-</pre></div>
-</div>
-</div>
 <div class="section" id="older-tool-machine-names-and-recipe">
 <h2>Older tool machine names and recipe<a class="headerlink" href="#older-tool-machine-names-and-recipe" title="Permalink to this heading">¶</a></h2>
 <p>This table list Machine names and corresponding recipe for older tool versions for QSPI/boot.bin generation.</p>
 <ul class="simple">
 <li><p>Note that in 2024.2, some artifacts are generated either using XSCT flow, or SDT flow. Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2743468485/Porting+embeddedsw+components+to+system+device+tree+SDT+based+flow">this</a> page for more details on the new SDT flow.</p></li>
 <li><p>in 2025.1 and onward, XSCT flow is depreciated</p></li>
-<li><p>Note that in 2024.2 and older, all images are generated with PetaLinux distribution. In 2025.1, the wic images are generated with <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/3250585601/AMD+Embedded+Development+Framework+EDF">EDF</a> distribution, while the bootbin and QSPI images are still generated with PetaLinux distribution. In 2025.2 and newer, both the wic images and the bootbin/QSPI images are generated with EDF distribution. The repo init command below selects between the two distributions with the presence of a -m option.This changes Yocto repo commands.</p></li>
+<li><p>Note that in 2024.2 and older, all images are generated with PetaLinux distribution. In 2025.1, the wic images are generated with <a class="reference external" href="https://edf.docs.amd.com/">EDF</a> distribution, while the bootbin and QSPI images are still generated with PetaLinux distribution. In 2025.2 and newer, both the wic images and the bootbin/QSPI images are generated with EDF distribution. The repo init command below selects between the two distributions with the presence of a -m option.This changes Yocto repo commands.</p></li>
 </ul>
 <p>To setup for EDF distribution:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># repo init to the Xilinx yocto project</span>
@@ -637,6 +540,26 @@ repo<span class="w"> </span>start<span class="w"> </span>&lt;release-branch&gt;<
 <div><p><strong>NOTE:</strong> In kria-zynqmp-generic generated wic image in 2024.2, the SD card is “locked in” to the started kit when first booted. That is, once you have booted the common image on a KV260, you are not be able to reuse the same SD card with the shared common Linux image on a KR260 or a KD240. This is because on initial boot, the default bitstream is locked in based on the EEPROM reading on first boot, and this is not updated on subsequent boots.</p>
 </div></blockquote>
 </div>
+<div class="section" id="importing-a-new-xsa-file-aka-sdt-in-sdt-flow">
+<h3>Importing a New XSA File (Aka SDT) in SDT Flow<a class="headerlink" href="#importing-a-new-xsa-file-aka-sdt-in-sdt-flow" title="Permalink to this heading">¶</a></h3>
+<p>In SDT flow, the system device tree that was generated from .xsa file is imported yocto flow, instead of directly use .xsa file.</p>
+<p>To generate a system device tree from .xsa file, use these commands in sdtgen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set output directory</span>
+<span class="n">set_dt_param</span> <span class="o">-</span><span class="nb">dir</span> <span class="o">./&lt;</span><span class="n">new</span> <span class="n">SDT</span> <span class="n">directory</span><span class="o">&gt;</span>
+<span class="c1"># Configure XSA files (static and reconfigurable modules)</span>
+<span class="n">sdtgen</span> <span class="n">set_dt_param</span> <span class="o">-</span><span class="n">xsa</span> <span class="o">&lt;</span><span class="n">path</span> <span class="n">to</span> <span class="o">.</span><span class="n">xsa</span> <span class="n">file</span><span class="o">&gt;</span> 
+<span class="c1"># Set board device tree</span>
+<span class="n">set_dt_param</span> <span class="o">-</span><span class="n">board_dts</span> <span class="o">&lt;</span><span class="n">board</span> <span class="n">dts</span><span class="o">&gt;</span>
+<span class="c1"># Generate the system device tree</span>
+<span class="n">generate_sdt</span>
+<span class="c1"># Exit SDTGEN</span>
+<span class="n">exit</span>
+</pre></div>
+</div>
+<p>in Yocto, regenerate the conf file:
+gen-machineconf –template ../sources/meta-amd-adaptive-socs/meta-amd-adaptive-socs-bsp/conf/machineyaml/<machine name>.yaml –hw-description <SDT path></p>
+<p>The <machine name> is now updated with the custom xsa file/SDT.</p>
+</div>
 <div class="section" id="importing-a-new-xsa-file">
 <h3>Importing a New XSA File<a class="headerlink" href="#importing-a-new-xsa-file" title="Permalink to this heading">¶</a></h3>
 <p>Note: this is applicable for none-SDT flow (XSCT)  only.</p>
@@ -702,7 +625,7 @@ k26_starter_kits.bit<span class="w">  </span>k26_starter_kits.dtsi<span class="w
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on June 08, 2026.
+      <span class="lastupdated">Last updated on August 12, 2026.
       </span></p>
   </div>
 
