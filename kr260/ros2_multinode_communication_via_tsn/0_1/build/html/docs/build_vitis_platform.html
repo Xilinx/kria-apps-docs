@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -35,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Generation of Firmware Binaries" href="generating_custom_firmware.html" />
+    <link rel="next" title="Generation of Firmware binaries" href="generating_custom_firmware.html" />
     <link rel="prev" title="Using Vivado to Build the Hardware Design" href="build_vivado_design.html" /> 
 </head>
 
@@ -90,7 +89,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="kria_starterkit_linux_boot.html">Linux Boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_boot.html">Linux Boot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_the_design.html">Building the Design Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Creating a Vitis Platform</a><ul>
@@ -112,7 +111,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Repository</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/ros-tsn-pubsub">Software Repository</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/xilinx/ros-tsn-pubsub/tree/v0.1">Software Repository</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other KR260 Applications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/10gige_vision_camera.html">10GigE Machine Vision Camera</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/ros2_perception_node.html">ROS 2 Perception Node</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/precision_time_management.html">Precision Time Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/bist.html">Built-In Self Test (BIST)</a></li>
 </ul>
 
         </div>
@@ -139,41 +145,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <table class="sphinxhide">
- <tr>
-   <td align="center"><img src="media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KD240 Drives Starter Kit Tutorial</h1>
-   </td>
- </tr>
- <tr>
- <td align="center"><h1>Using Vivado to Build the Hardware Design</h1> </td>
- </tr>
-</table><section id="creating-a-vitis-platform">
+  <div class="section" id="creating-a-vitis-platform">
 <h1>Creating a Vitis Platform<a class="headerlink" href="#creating-a-vitis-platform" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This tutorial shows how to build a Platform for applications running on the KD240 Drives Starter Kit.</p>
-</section>
-<section id="prerequisites">
+<p>This tutorial shows how to build a Platform for applications running on the KR260 Robotics Starter Kit.</p>
+</div>
+<div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>AMD Vitis™­ Unified Software Platform of the appropriate version</p></li>
+<li><p>AMD Vitis™ Unified Software Platform of the appropriate version</p></li>
 </ul>
-<section id="accessing-the-tutorial-reference-files">
+<div class="section" id="accessing-the-tutorial-reference-files">
 <h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Permalink to this heading">¶</a></h3>
 <blockquote>
 <div><p><em><strong>Note</strong></em>: Skip the following steps if the design files have already been cloned and extracted to a working repository.</p>
 </div></blockquote>
 <ol>
 <li><p>To access the reference files, type the following into a terminal:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2023.1<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/Xilinx/kria-vitis-platforms.git
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>xlnx_rel_v2022.1<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/Xilinx/kria-vitis-platforms.git
 </pre></div>
 </div>
 </li>
-<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">kria-vitis-platforms/kd260</span></code>, which is the working directory.</p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">kria-vitis-platforms/kr260-vitis</span></code>, which is the working directory.</p></li>
 </ol>
-</section>
-</section>
-<section id="generating-a-vitis-software-platform">
+</div>
+</div>
+<div class="section" id="generating-a-vitis-software-platform">
 <h2>Generating a Vitis Software Platform<a class="headerlink" href="#generating-a-vitis-software-platform" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Go to the working directory.</p>
@@ -182,7 +180,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </li>
 <li><p>To build the platform, run the following command. The Makefile calls a lower-level Makefile to generate a platform. It also builds an XSA if it is not already available.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>platform<span class="w"> </span><span class="nv">PLATFORM</span><span class="o">=</span>&lt;platform_name&gt;
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>platform<span class="w"> </span><span class="nv">PFM</span><span class="o">=</span>&lt;platform_name&gt;
 </pre></div>
 </div>
 <p>Applications and their corresponding platforms are listed in the following table.</p>
@@ -197,16 +195,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </thead>
 <tbody>
 <tr>
-<td>KD240 ROS 2 Multi-Node Communications via TSN</td>
-<td>kd240_motor_ctrl_qei</td>
+<td>ROS 2 Multi-Node Communications via TSN</td>
+<td>kr260_tsn_rs485pmod</td>
 </tr>
 <tr>
-<td>KD240 BIST</td>
-<td>kd240_bist</td>
+<td>10GigE Vision Camera - Defect Detect</td>
+<td>Not Available Publicly due to Propriety IP</td>
 </tr>
 <tr>
-<td>FOC Motor Control</td>
-<td>kd240_motor_ctrl_qei</td>
+<td>ROS 2 Perception Node</td>
+<td>Not released publicly</td>
+</tr>
+<tr>
+<td>Precision Time</td>
+<td>kr260_pmod_gps</td>
+</tr>
+<tr>
+<td>BIST</td>
+<td>Not Available Publicly due to Propriety IP</td>
 </tr>
 </tbody>
 </table><ol>
@@ -220,8 +226,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div><p><em><strong>Note</strong></em>: The software components (boot, smp_linux, and so on.) in this platform are empty. The software components are generated later when building PetaLinux.</p>
 </div></blockquote>
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2024 Advanced Micro Devices, Inc.</p></section>
-</section>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2024 Advanced Micro Devices, Inc.</p></div>
+</div>
 
 
            </div>
@@ -230,14 +236,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="build_vivado_design.html" class="btn btn-neutral float-left" title="Using Vivado to Build the Hardware Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="generating_custom_firmware.html" class="btn btn-neutral float-right" title="Generation of Firmware Binaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="generating_custom_firmware.html" class="btn btn-neutral float-right" title="Generation of Firmware binaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 19, 2024.
+    <p>&#169; Copyright 2023-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on August 14, 2026.
       </span></p>
   </div>
 

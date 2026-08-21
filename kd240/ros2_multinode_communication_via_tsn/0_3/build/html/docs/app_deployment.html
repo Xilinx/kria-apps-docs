@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start
+  <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+          data-document-language="true" type="text/javascript" charset="UTF-8"
+          data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7"></script>
+  <script type="text/javascript">function OptanonWrapper() { }</script>
+  
+OneTrust Cookies Consent Notice end -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Board Setup and Application Deployment &mdash; Kria™ KD240: ROS 2 Multi-Node Communications Via TSN 0.3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Boot Kria Starter Kit Linux on KD240" href="linux_boot.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../ros2_multinode_communication_via_tsn_landing.html" class="icon icon-home"> Kria™ KD240: ROS 2 Multi-Node Communications Via TSN
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting Up the Board and Application deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#revision-history">Revision History</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-v0-3">Version - v0.3</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#change-log">Change Log</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#version-v0-2">Version - v0.2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Change Log</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#version-v0-1-1">Version - v0.1.1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Change Log</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pre-requisite">Pre-requisite</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tested-artifact-versions">Tested Artifact versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#kr260-platform-artifacts">KR260 Platform artifacts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kd240-platform-artifacts">KD240 Platform artifacts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#repositories-information">Repositories Information</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#initial-setup">Initial Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#run-out-of-box-applications">Run Out Of Box Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#network-configuration-1-two-kr260-kd240-boards">Network Configuration 1 : Two KR260/KD240 boards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#two-kr260-boards-board-setup">Two KR260 boards: Board setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#run-tsn-docker-image">Run TSN Docker Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#load-tsn-firmware-and-modules">Load TSN Firmware and Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#run-tsn-ros-out-of-box-applications">Run TSN-ROS Out of Box Applications</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#network-time-synchronization-kr260-kr260-ptp-demo">Network Time Synchronization KR260-KR260 (PTP Demo)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#oscilloscope-or-analog-discovery-2-setup">Oscilloscope or Analog Discovery 2 Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#network-configuration-2-network-manager-cnc-and-two-kr260-kd240-boards">Network Configuration 2 : Network Manager(CNC) and Two KR260/KD240 Boards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#two-kr260-kd240-and-one-kv260-kr260-kd240-cnc">Two KR260/KD240 and one KV260/KR260/KD240(CNC)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#two-kr260-kd240-and-one-linux-running-machine-cnc">Two KR260/KD240 and one Linux Running Machine(CNC)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Run TSN-ROS Out of Box Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-frame-preemption-optional">Enable frame Preemption - Optional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-configuration-3-kr260-kd240-and-pc-workstation">Network Configuration 3 : KR260/KD240 and PC Workstation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#kr260-kd240-and-pc-workstation-board-setup">KR260/KD240 and PC Workstation: Board Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#network-time-synchronization-workstation-kr260-kd240-ptp-demo">Network Time Synchronization Workstation-KR260/KD240 (PTP Demo)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#network-time-shaper-function-other-802-1qbv-demo">Network Time Shaper Function (other 802.1Qbv Demo)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#communication-using-rs485">Communication using RS485</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rs485-board-setup">RS485: Board Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rs485-temperature-humidity-sensor-demo">RS485 Temperature/Humidity Sensor Demo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Observe Results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#can-communication-setup-and-demonstration">CAN Communication Setup and Demonstration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#can-board-setup">CAN: Board Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#can-communication-demo">CAN Communication Demo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linux_boot.html">Linux Boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_the_design.html">Building the Design Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generating_custom_firmware.html">Generate Custom Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html#building-the-container">Building the container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html#bundled-components">Bundled components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Architecture</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sw_arch_platform.html">Software Architecture - Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw_arch_platform.html">Hardware Architecture - Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/xilinx/ros-tsn-pubsub/tree/v0.3">Software Repository</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other KD240 Applications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/bist.html">BIST</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/foc_motor_ctrl.html">FOC Motor Control</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../ros2_multinode_communication_via_tsn_landing.html">Kria™ KD240: ROS 2 Multi-Node Communications Via TSN</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../ros2_multinode_communication_via_tsn_landing.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Board Setup and Application Deployment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/app_deployment.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide">
+ <tr>
+   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KR260 Robotics Starter Kit <br>ROS 2 Multi-Node Communications via TSN Tutorial</h1>
+   </td>
+ </tr>
+ <tr>
+ <td align="center"><h1>Setting up the Board and Application Deployment</h1> </td>
+ </tr>
+</table><div class="section" id="board-setup-and-application-deployment">
+<h1>Board Setup and Application Deployment<a class="headerlink" href="#board-setup-and-application-deployment" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This document shows how to set up the board and run the TSN ROS application.</p>
+</div>
+<div class="section" id="revision-history">
+<h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="version-v0-3">
+<h3>Version - v0.3<a class="headerlink" href="#version-v0-3" title="Permalink to this heading">¶</a></h3>
+<p>Refreshed app for AMD EDF 26.06 compatibility with updates across apps and documentation</p>
+<div class="section" id="change-log">
+<h4>Change Log<a class="headerlink" href="#change-log" title="Permalink to this heading">¶</a></h4>
+<p>Apps:</p>
+<ul class="simple">
+<li><p>Application is now deployed as a docker container.</p></li>
+</ul>
+<p>Tests:</p>
+<ul class="simple">
+<li><p>Updated scripts to add support for dfx-mgr to replace xmutil.</p></li>
+<li><p>Modified tftpd start/status service-manager to be agnostic.</p></li>
+<li><p>Test update to auto-detect TSN module name for sysfs parameter path.</p></li>
+<li><p>Fixed st_pcp detection for missing or renamed kernel parameter.</p></li>
+<li><p>Validate ROS Setup via ROS_PREFIX instead of ROS_VERSION.</p></li>
+</ul>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Updated for compatibility with AMD EDF 26.06</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="version-v0-2">
+<h3>Version - v0.2<a class="headerlink" href="#version-v0-2" title="Permalink to this heading">¶</a></h3>
+<p>Refreshed app for Ubuntu 24.04 compatibility with updates across the documentation.</p>
+<div class="section" id="id1">
+<h4>Change Log<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Added ROS2 Jazzy installation instructions.</p></li>
+<li><p>Added instructions to add user to the <code class="docutils literal notranslate"><span class="pre">dialout</span></code> group to access <code class="docutils literal notranslate"><span class="pre">/dev/tty</span></code> devices for RS485 Temp-Humidity sensor test.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="version-v0-1-1">
+<h3>Version - v0.1.1<a class="headerlink" href="#version-v0-1-1" title="Permalink to this heading">¶</a></h3>
+<p>Added support for CAN Communication between board to board.</p>
+<div class="section" id="id2">
+<h4>Change Log<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<p>Apps:</p>
+<ul class="simple">
+<li><p>Provides seamless communication between devices through the CAN interface, enabling efficient data exchange for various applications.</p></li>
+</ul>
+<p>Tests:</p>
+<ul class="simple">
+<li><p>Example to support CAN communication using the PMOD CAN between board to board.</p></li>
+</ul>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Added steps and instructions to demonstrate CAN Communication.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="pre-requisite">
+<h2>Pre-requisite<a class="headerlink" href="#pre-requisite" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="hardware-requirements">
+<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Two Kria SOM starter kits which can be two KR260 Robotics Starter Kit or two KD240 Drive Starter Kits, or one KR260 and one KD240</p></li>
+<li><p>Two KR260 Power Supply &amp; Adapter or two KD240 Power Supply &amp; Adapter</p></li>
+<li><p>Cat 5e Ethernet Cable</p></li>
+<li><p>USB-A to micro-B Cable</p></li>
+<li><p>16GB MicroSD Cards</p></li>
+<li><p>CNC - Optional (KV260/KR260/KD240 or Linux Running Standalone machine)</p></li>
+<li><p>Ethernet Switch - Optional</p></li>
+<li><p><a class="reference external" href="https://digilent.com/shop/pmod-tph2-12-pin-test-point-header/">Digilent TPH2 Pmod - 12-pin Test Point Header</a> - Optional (Sold Separately)</p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/gp/product/B00ESFF2JC/">I210-T1 Network Adapter</a> installed on a PC host machine - Optional (Sold Separately)</p></li>
+<li><p><a class="reference external" href="https://digilent.com/reference/test-and-measurement/analog-discovery-2/start">Oscilloscope or Analog Discovery 2</a> – Minimum 100MS/s USB Oscilloscope - Optional (Sold Separately)</p></li>
+<li><p>RS485 Modbus Temperature Humidity Sensor - Optional (Sold Separately at <a class="reference external" href="https://www.aliexpress.com/item/33054683552.html">aliexpress.com</a> or <a class="reference external" href="https://www.amazon.com/Temperature-Humidity-Sensor-Display-Modbus/dp/B078NRYBVZ">amazon.com</a>)</p></li>
+<li><p>Digilent RS485 Pmod - High-speed Isolated Communications - Optional (Sold Separately at <a class="reference external" href="https://digilent.com/reference/pmod/pmodrs485/start">digilent.com</a>)</p></li>
+<li><p><a class="reference external" href="https://digilent.com/shop/12v-3a-power-supply/">12VDC Power Supply</a> with Prototyping or Bare Terminals – Optional (Sold Separately)</p></li>
+<li><p>Two Digilent Pmod CAN devices - Optional for KR260 CAN testing only (Sold Separately at <a class="reference external" href="https://digilent.com/reference/pmod/pmodcan/start">digilent.com</a>)</p></li>
+<li><p>Wireshark tools installed on host machine (Ubuntu 22.04 Linux used for documentation)</p></li>
+</ul>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> This tutorial can be run with one KD240 and one KR260 configuration as well</p>
+</div></blockquote>
+</div>
+<div class="section" id="tested-artifact-versions">
+<h3>Tested Artifact versions<a class="headerlink" href="#tested-artifact-versions" title="Permalink to this heading">¶</a></h3>
+<p>Testing was performed with the following artifacts:</p>
+<div class="section" id="kr260-platform-artifacts">
+<h4>KR260 Platform artifacts<a class="headerlink" href="#kr260-platform-artifacts" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Components</th>
+<th>Versions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux Kernel(xlnx)</td>
+<td>6.18.10</td>
+</tr>
+<tr>
+<td>Boot Firmware</td>
+<td>K26-BootFW-01.07.bin</td>
+</tr>
+<tr>
+<td>kr260-tsn-rs485pmod-firmware</td>
+<td>v1.2</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="kd240-platform-artifacts">
+<h4>KD240 Platform artifacts<a class="headerlink" href="#kd240-platform-artifacts" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Components</th>
+<th>Versions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux Kernel(xlnx)</td>
+<td>6.18.10</td>
+</tr>
+<tr>
+<td>Boot Firmware</td>
+<td>K24-BootFW-01.06.bin</td>
+</tr>
+<tr>
+<td>kd240-motor-ctrl-qei-firmware</td>
+<td>v1.2</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="repositories-information">
+<h4>Repositories Information<a class="headerlink" href="#repositories-information" title="Permalink to this heading">¶</a></h4>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Component</th>
+<th>Repository</th>
+<th>Tag/Commit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TSN Utils</td>
+<td>https://github.com/Xilinx/tsn-utils</td>
+<td><a href="https://github.com/Xilinx/tsn-utils/commit/1db91b04d98927a05f868e6365899b13657e76d5">main:1db91b0</a></td>
+</tr>
+<tr>
+<td>TSN Talker Listener</td>
+<td>https://github.com/Xilinx/tsn-talker-listener</td>
+<td><a href="https://github.com/Xilinx/tsn-talker-listener/commit/b55887eaf939399868c17a2e7f1fb7684a6be980">main:b55887e</a></td>
+</tr>
+<tr>
+<td>ROS TSN PubSub</td>
+<td>https://github.com/Xilinx/ros-tsn-pubsub</td>
+<td><a href="https://github.com/Xilinx/ros-tsn-pubsub/releases/tag/v0.3">v0.3</a></td>
+</tr>
+<tr>
+<td>PMOD RS485 Test</td>
+<td>https://github.com/Xilinx/pmod-rs485-test</td>
+<td><a href="https://github.com/Xilinx/pmod-rs485-test/releases/tag/v0.2">v0.2</a></td>
+</tr>
+<tr>
+<td>Container Recipe</td>
+<td>https://github.com/Xilinx/meta-kria-apps</td>
+<td><a href="https://github.com/Xilinx/meta-kria-apps/tree/rel-v2026.1">rel-v2026.1</a></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="initial-setup">
+<h3>Initial Setup<a class="headerlink" href="#initial-setup" title="Permalink to this heading">¶</a></h3>
+<ol>
+<li><p>Go through the minimum setup required to boot Linux before continuing with instructions in this page:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/linux_boot.html">Kria Starter Kit Linux Boot on KR260</a></p></li>
+<li><p><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240/linux_boot.html">Kria Starter Kit Linux Boot on KD240</a></p></li>
+</ul>
+</li>
+<li><p>Download TSN Docker Image</p>
+<ul>
+<li><p>Pull the docker image</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>xilinx/kria-tsn-rs485pmod:0.3-edf-26.06
+</pre></div>
+</div>
+</li>
+<li><p>The storage volume on the SD card can be limited with multiple docker
+images installed. If there are space issues, use the following command
+to remove existing docker images.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>rmi<span class="w"> </span>--force<span class="w"> </span>&lt;image&gt;
+</pre></div>
+</div>
+</li>
+<li><p>You can find the images installed with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>images
+</pre></div>
+</div>
+</li>
+<li><p>This docker image is common across both boards which contains TSN application, board firmwares, dependent packages and kernel modules.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Xilinx/meta-kria-apps/blob/rel-v2026.1/recipes-containers/container-tsn/container-tsn-rs485pmod.bb">Container Recipe</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Install TSN PL Firmware on the Host</p>
+<p>Copy and install the application firmware from the container into the host system (in /lib/firmware Xilinx). This installation only needs to be performed once per target board.</p>
+<ul>
+<li><p>Export the FW_NAME Environment Variable. Set FW_NAME variable to correct firmware for desired board</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">FW_NAME</span><span class="o">=</span>kr260-tsn-rs485pmod<span class="w">      </span><span class="c1">#For kr260 TSN Firmware</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">FW_NAME</span><span class="o">=</span>kd240-motor-ctrl-qei<span class="w">     </span><span class="c1">#For kd240 TSN Firmware</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create Firmware directory on target Host</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/lib/firmware/xilinx/<span class="si">${</span><span class="nv">FW_NAME</span><span class="si">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install TSN firmware</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/lib/firmware/xilinx/<span class="si">${</span><span class="nv">FW_NAME</span><span class="si">}</span>:/opt/firmware/xilinx/<span class="si">${</span><span class="nv">FW_NAME</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>xilinx/kria-tsn-rs485pmod:0.3-edf-26.06<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">    dfx-fw-install     --fw-name </span><span class="si">${</span><span class="nv">FW_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="run-out-of-box-applications">
+<h2>Run Out Of Box Applications<a class="headerlink" href="#run-out-of-box-applications" title="Permalink to this heading">¶</a></h2>
+<p>The TSN example applications demonstrate Network Time Synchronization and Network Time Shaper Function that can be achieved through TSN based network infrastructure across a distributed system, which are two key features of the FPGA based TSN capabilities.</p>
+<p>Two different configurations are shown below for deterministic communication. After completing the initial setup from above, you can navigate to the following subsections to evaluate the desired features:</p>
+<ul class="simple">
+<li><p>Master - Slave deterministic communication with 2 KR260/KD240 boards : Network Configuration 1</p></li>
+<li><p>KRS based DDS implementation on ROS 2 pub/sub definition : Network Configuration 1</p></li>
+<li><p>CNC(KV260/KR260/KD240 or Linux Running Machine) and Master - Slave with 2 KR260/KD240 boards : Network Configuration 2</p></li>
+<li><p>Master - Slave deterministic communication with I210 card : Network Configuration 3</p></li>
+<li><p>RS485 Temperature/humidity sensor demo : Communicating using RS485</p></li>
+</ul>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> RS485 Temperature/humidity sensor demo is not applicable to KD240</p>
+</div></blockquote>
+<div class="section" id="network-configuration-1-two-kr260-kd240-boards">
+<h3>Network Configuration 1 : Two KR260/KD240 boards<a class="headerlink" href="#network-configuration-1-two-kr260-kd240-boards" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> This turotial can be run with one KD240 and one KR260 configuration as well.</p>
+</div></blockquote>
+<p>This configuration requires two KR260/KD240 units; TSN subsystem is connected to form a network where one of the units is configured to be master and the other one as slave. The following figure represents this configuration:</p>
+<p>KR260-KR260 Setup:</p>
+<p><img alt="osc" src="../_images/2board-osc.png" /></p>
+<p>KD240-KD240 Setup:</p>
+<p><img alt="setup" src="../_images/2board-osc-kd240.JPG" /></p>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> For KD240 J24 is PS Eth, J25B top is PL Eth. For KR260 J10D is PS Eth, J10B top is PL Eth</p>
+</div></blockquote>
+<div class="section" id="two-kr260-boards-board-setup">
+<h4>Two KR260 boards: Board setup<a class="headerlink" href="#two-kr260-boards-board-setup" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Connect Ethernet cable from PL ETH1 of Board1 (J10 top of KR260)/(J25B top of KD240) to PL ETH1 of  Board2.</p></li>
+<li><p>Connect JTAG/UART ports of both boards to your PC.</p></li>
+<li><p>Connect Digilent TPH2 Pmod into the PMOD2 connector on the KR260/KD240 board.</p></li>
+<li><p>The Analog Discovery 2  or Oscilloscope can be connected to Board1 and Board2 for observing the PTP clock synchronization, Qbv scheduling, and measuring latency.</p></li>
+<li><p>Power on both the boards with the prebuilt wic image in the sd_card that was prepared in the prerequisite section.</p></li>
+</ul>
+<p>KR260-KR260 Setup</p>
+<p><img alt="2board" src="../_images/2board-live.png" /></p>
+<p>KD240-KD240 Setup</p>
+<p><img alt="2board-kd240" src="../_images/KD240-KD240.jpg" /></p>
+</div>
+</div>
+</div>
+<div class="section" id="run-tsn-docker-image">
+<h2>Run TSN Docker Image<a class="headerlink" href="#run-tsn-docker-image" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p>Launch the docker container using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--privileged<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/var/run/dfx-mgrd.socket:/var/run/dfx-mgrd.socket<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>xilinx/kria-tsn-rs485pmod:0.3-edf-26.06<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>/bin/bash
+</pre></div>
+</div>
+</li>
+<li><p>It launches the TSN image in a new container and drops the user into a bash shell.</p>
+<p>When there is already another accelerator/firmware being activated apart from xlnx-app-kr260-pmod-rs485-test, unload it first and then switch to xlnx-app-kr260-pmod-rs485-test.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#
+</pre></div>
+</div>
+</li>
+</ul>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> Unless otherwise specified, the commands in the following sections are intended to be
+executed from within the running TSN container.</p>
+</div></blockquote>
+</div>
+<div class="section" id="load-tsn-firmware-and-modules">
+<h2>Load TSN Firmware and Modules<a class="headerlink" href="#load-tsn-firmware-and-modules" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p>Before running the test suite, load TSN application firmware and the required kernel modules from as shown below.</p></li>
+<li><p>Export the FW_NAME Environment Variable</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">FW_NAME</span><span class="o">=</span>kr260-tsn-rs485pmod<span class="w">      </span><span class="c1">#For kr260 TSN Firmware</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">FW_NAME</span><span class="o">=</span>kd240-motor-ctrl-qei<span class="w">     </span><span class="c1">#For kd240 TSN Firmware</span>
+</pre></div>
+</div>
+</li>
+<li><p>List the installed application firmware binaries.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>dfx-mgr-client<span class="w"> </span>-listPackage
+
+Example<span class="w"> </span>output:
+ID<span class="w"> </span>accelType<span class="w">   </span>Base<span class="w">        </span>slotLoc<span class="w"> </span>Accelerator
+--<span class="w"> </span>-----------<span class="w"> </span>-----------<span class="w"> </span>-------<span class="w"> </span>-----------
+<span class="m">1</span><span class="w"> </span>RPU<span class="w">         </span>rpu<span class="w">         </span>-1<span class="w">      </span>k26-r5-0-proxy-freertos
+<span class="m">2</span><span class="w"> </span>RPU<span class="w">         </span>rpu<span class="w">         </span>-1<span class="w">      </span>k26-r5-0-matrix-freertos
+<span class="m">3</span><span class="w"> </span>RPU<span class="w">         </span>rpu<span class="w">         </span>-1<span class="w">      </span>k26-r5-0-echo-freertos
+<span class="m">4</span><span class="w"> </span>XRT_FLAT<span class="w">    </span>k26-star...<span class="w"> </span><span class="m">0</span><span class="w">       </span>k26-starter-kits
+</pre></div>
+</div>
+</li>
+<li><p>Load Kernel Modules</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>kria-modules-load<span class="w">  </span>--fw-name<span class="w"> </span><span class="si">${</span><span class="nv">FW_NAME</span><span class="si">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Load Application Firmware</p>
+<ul>
+<li><p>When there is already another accelerator/firmware being activated, unload it
+first, then load the desired TSN firmware.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>dfx-mgr-client<span class="w"> </span>-unload<span class="w"> </span><span class="m">4</span><span class="w">                    </span><span class="c1">#Previous FW ID(in above case)</span>
+bash-5.2#<span class="w"> </span>dfx-mgr-client<span class="w"> </span>-loadByName<span class="w"> </span><span class="si">${</span><span class="nv">FW_NAME</span><span class="si">}</span><span class="w">       </span><span class="c1">#Load desired TSN Firmware</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> The firmware consists of bitstream, device tree overlay (dtbo) file. The firmware is
+loaded dynamically on user request once Linux is fully booted.</p>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="run-tsn-ros-out-of-box-applications">
+<h3>Run TSN-ROS Out of Box Applications<a class="headerlink" href="#run-tsn-ros-out-of-box-applications" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p>Setup Ethernet ports by running the following commands on the serial terminal. This sets the MAC/IP/VLAN on the EP and ETH ports of the TSN switch IP.</p>
+<ul>
+<li><p><em>KR260/KD240 Board1 interface setup</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/net_setup.sh<span class="w"> </span>-b1
+</pre></div>
+</div>
+</li>
+<li><p><em>KR260/KD240 Board2 interface setup</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/net_setup.sh<span class="w"> </span>-b2
+</pre></div>
+</div>
+</li>
+<li><p><em>Setup ros env on both KR260/KD240 Board 1 &amp; Board2</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/jazzy/setup.sh
+</pre></div>
+</div>
+</li>
+</ul>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> Set MAC filters when using both TSN ethernet ports in the loopback mode. Refer to net_setup.sh script for setting MAC filters.</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="section" id="network-time-synchronization-kr260-kr260-ptp-demo">
+<h4>Network Time Synchronization KR260-KR260 (PTP Demo)<a class="headerlink" href="#network-time-synchronization-kr260-kr260-ptp-demo" title="Permalink to this heading">¶</a></h4>
+<p>In this demo, Board1 sets its clock as master. Board2 is the slave. Board2 clock syncs with Board1 clock after a brief synchronization period.
+Oscilloscope or Analog Discovery 2 Setup (optional)</p>
+<ul>
+<li><p>Connect P1 on the Test Pmod of Board1 to Channel1 of the oscilloscope - Monitors PTP clock on Board1</p></li>
+<li><p>Connect P1 on the Test Pmod of Board2 to Channel2 of the oscilloscope - Monitors PTP clock on Board2</p></li>
+<li><p>There are also additional signals exposed to the test Pmod if you want to observe them with additional oscilloscope channels:</p>
+<p><img alt="pmod" src="../_images/ptp-pmod.png" /></p>
+</li>
+<li><p><em>Start ptp on Board1 in master mode</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/start_ptp.sh<span class="w"> </span>-m
+</pre></div>
+</div>
+</li>
+<li><p><em>Start ptp on Board2 in slave mode</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/start_ptp.sh<span class="w"> </span>-s
+</pre></div>
+</div>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> Ensure to run PTP master before starting PTP slave as slave fails to sync when the grandmaster clock is not set. The sync takes about 30 seconds to complete.</p>
+</div></blockquote>
+</li>
+</ul>
+<p><strong>Observe Results:</strong></p>
+<ul>
+<li><p>The file ptplog saves the ptp4l output on Board2. The rms value starts out high and goes down to a single-digit value showing the clocks are now in sync.</p>
+<p><img alt="ptp" src="../_images/ptp-sync.png" /></p>
+</li>
+<li><p>To see the current status of PTP, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tail<span class="w"> </span>-f<span class="w"> </span>~/.local/log/ptplog
+</pre></div>
+</div>
+</li>
+<li><p>Using an Oscilloscope, or the Analog Discovery 2 and the WaveForms application, the clocks do not start out in sync but begin to sync with each other and this can be observed by the phase alignment between Channel1 and Channel2.</p>
+<p><img alt="b2p" src="../_images/b2p-algdis.png" /></p>
+<p><img alt="ptp" src="../_images/ptp-osc-sync.png" /></p>
+</li>
+</ul>
+<div class="section" id="ros-publisher-and-subscriber-demo">
+<h5>ROS Publisher and Subscriber Demo<a class="headerlink" href="#ros-publisher-and-subscriber-demo" title="Permalink to this heading">¶</a></h5>
+<ul>
+<li><p>Start the Subscriber (listener) first on Board2 so that it is ready to receive messages from the Publisher once it has begun sending messages.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/xilinx/ros-tsn-example/bin/start_ros_test.sh<span class="w"> </span>-l
+</pre></div>
+</div>
+</li>
+<li><p>Start Publisher (talker) next on Board1 to begin sending messages to boards that are Subscribed to the topic.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/xilinx/ros-tsn-example/bin/start_ros_test.sh<span class="w"> </span>-t
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="section" id="observe-results">
+<h6>Observe Results<a class="headerlink" href="#observe-results" title="Permalink to this heading">¶</a></h6>
+<ul>
+<li><p>The xlnx-pubsub talker generates a packet of schedule traffic type every second.</p></li>
+<li><p>The xlnx-pubsub listener prints a message when it receives a packet.</p>
+<p><img alt="pubsub" src="../_images/ros-pubsub.png" /></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="latency-measurement-demo">
+<h5>Latency measurement Demo<a class="headerlink" href="#latency-measurement-demo" title="Permalink to this heading">¶</a></h5>
+<p>To measure latency, an oscilloscope or Analog Discovery 2 device is required. This demo measures the latency between packet transmitted from Board1 and received on Board2. It includes the latency of the software stack as well.</p>
+</div>
+</div>
+<div class="section" id="oscilloscope-or-analog-discovery-2-setup">
+<h4>Oscilloscope or Analog Discovery 2 Setup<a class="headerlink" href="#oscilloscope-or-analog-discovery-2-setup" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>Connect P7 on the Test PMOD of Board1 to Channel1 of the oscilloscope - Monitors TX packet from Publisher1. Publisher1 can transmit a Scheduled Traffic (ST) packet or a Best effort (BE) packet.</p></li>
+<li><p>Connect P8 on the Test PMOD of Board2 to Channel2 of the oscilloscope - Monitors RX packet from Listener1. Listener 1 receives a ST packet or BE packet.</p></li>
+<li><p>Set up triggers on Channel1 and Channel2 with an OR condition and set the time scale interval to 50us.</p>
+<p><img alt="pmod" src="../_images/ros-pmod.png" /></p>
+<p>Figure: Test PMOD pins when MUX is set to SW trigger</p>
+</li>
+</ul>
+<p>The talker application generates a packet, which triggers the Publisher1 pin in the previous figure. When the packet is received on Board2, the listener application triggers the Listener1 pin. Measure the time difference between Channel1 and Channel2 of the scope to find out the latency. It is ideally found to be between 80us to 160us.</p>
+<ul>
+<li><p><em>Start listener on Board2</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/xilinx/tsn-examples/bin/start_latency_test.sh<span class="w"> </span>-l
+</pre></div>
+</div>
+</li>
+<li><p><em>Start talker on Board1 with best effort traffic class</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/xilinx/tsn-examples/bin/start_latency_test.sh<span class="w"> </span>-b
+</pre></div>
+</div>
+</li>
+<li><p><em>Start talker on Board1 with scheduled traffic class</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/xilinx/tsn-examples/bin/start_latency_test.sh<span class="w"> </span>-s
+</pre></div>
+</div>
+</li>
+<li><p>To exit the Listener mode, on Board2, press <strong>Enter</strong>.</p></li>
+</ul>
+<div class="section" id="id3">
+<h5>Observe Results<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h5>
+<ul>
+<li><p>The next steps measure the time difference between Channel1 and Channel2 of the scope to find out the latency. It is ideally found to be between 80us to 160us. The latency numbers are similar between Best Effort and Scheduled Traffic. If you set the Qbv priority, the latency might increase depending on the order of the slot (BE first or ST first) and Time allotted for each slot.</p>
+<p><img alt="latency" src="../_images/latency.png" /></p>
+</li>
+</ul>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> The latency  measurement on the oscilloscope is from a software trigger. This includes the processing time of the processor to read the packet received over the network stack and initiates a trigger signal to the PMOD. When work load on the processor is high, latency measurements could reflect a higher value.</p>
+</div></blockquote>
+</div>
+<div class="section" id="network-time-shaper-function-802-1qbv-demo">
+<h5>Network Time Shaper Function (802.1Qbv Demo)<a class="headerlink" href="#network-time-shaper-function-802-1qbv-demo" title="Permalink to this heading">¶</a></h5>
+<p>This demo allots a time slot for scheduled traffic and best effort and it can be visualized on an oscilloscope. For a cycle time period of 1ms, ST traffic is sent for 700us and BE traffic for 300us.</p>
+</div>
+<div class="section" id="id4">
+<h5>Oscilloscope or Analog Discovery 2 Setup<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h5>
+<ul class="simple">
+<li><p>Connect P8 on the Test PMOD of <strong>Board2</strong> to Channel1 of the oscilloscope - ST packet Rx</p></li>
+<li><p>Connect P10 on the Test PMOD of <strong>Board2</strong> to Channel2 of the oscilloscope - BE packet Rx</p></li>
+<li><p>Set up triggers on Channel1 and Channel2 with an OR condition and set the time scale interval to 1 millisecond.</p></li>
+</ul>
+<p><img alt="pmod" src="../_images/qbv_pmod.png" /></p>
+<p><strong>Board2</strong> listens for packets. On Board1, the application sets up time slots for the traffic classes.  It generates packets in continuous mode for both traffic types. The oscilloscope monitors the tlast signal of scheduled packets and best effort packets exposed by the TSN IP.</p>
+<ul>
+<li><p><em>Start Receive on Board2</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/start_qbv_test.sh<span class="w"> </span>-rx
+</pre></div>
+</div>
+</li>
+<li><p><em>Start Transmit on Board1</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/start_qbv_test.sh<span class="w"> </span>-tx
+</pre></div>
+</div>
+<p>The talker on Board1 runs for 30 seconds and exits.</p>
+</li>
+</ul>
+<div class="section" id="id5">
+<h6>Observe Results<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h6>
+<p>The scope shot shows a 70% Scheduled traffic 30 % Best Effort traffic distribution.</p>
+<p><img alt="osc" src="../_images/qbv_osc.png" /></p>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> You can also monitor Tlast TX ST (P7) and  Tlast TX BE (P9) on Board1, but the distribution is not as clean as the RX because we are monitoring the data going into the TSN IP before it is scheduled to go out on the Ethernet MAC.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="no-oscilloscope-setup">
+<h5>No Oscilloscope Setup<a class="headerlink" href="#no-oscilloscope-setup" title="Permalink to this heading">¶</a></h5>
+<ul>
+<li><p>No connections to the Pmods are required in this case since the oscilloscope is not used.  Instead, the Wireshark application is used to analyze traffic types.</p></li>
+<li><p><em>Start Receive mode on Board2 and use tcpdump to begin capturing received packets</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/start_qbv_test.sh<span class="w"> </span>-rx
+tcpdump<span class="w"> </span>-i<span class="w"> </span>ep<span class="w"> </span>-w<span class="w"> </span>qbv.pcap
+</pre></div>
+</div>
+</li>
+<li><p><em>Start Transmit mode on Board1</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/start_qbv_test.sh<span class="w"> </span>-tx
+</pre></div>
+</div>
+<p>The talker on Board1 runs for 30 seconds and exits automatically.</p>
+</li>
+<li><p>Exit tcpdump using CTRL-c key combination to end capture on Board2.</p></li>
+<li><p>Move the qbv.pcap capture file to the SD card located under the /boot directory.</p></li>
+<li><p>Move the qbv.pcap file from the SD card to the host PC to analyze the packet distribution within Wireshark.</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h5>Observe Results<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h5>
+<p>Wireshark trace shows a 70% Scheduled traffic 30 % Best Effort traffic distribution.</p>
+<ul>
+<li><p>Start Wireshark on the host PC. Use the one available under Ubuntu.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wireshark<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+</li>
+<li><p>In the Wireshark GUI, select File → Open → Browse and select the qbv.pcap file.</p></li>
+<li><p>Observe that there are two sets of packets within the capture, one set with packet length=900, another set with packet length=800, which when plotted against time forms a 70:30 distribution. The packet length is based on the setting from the talker script. Below is an example of lengths 900 and 800 for Scheduled and Best Effort traffic, respectively.</p>
+<p><img alt="wireshark" src="../_images/i210-wireshark.png" /></p>
+</li>
+<li><p>Click on a packet with length=900 bytes and observe the vlan ID=10, Priority (PCP/PRI=4) where a packet with PCP=4 indicates that it is Scheduled traffic.</p>
+<p><img alt="wsn" src="../_images/i210-wsn1.png" /></p>
+</li>
+<li><p>Click on a packet with length=800 bytes and observe the vlan ID=20, Priority (PCP/PRI=1) where a packet with PCP=1 indicates that it is Best Effort traffic.</p>
+<p><img alt="wsn" src="../_images/i210-wsn2.png" /></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="network-configuration-2-network-manager-cnc-and-two-kr260-kd240-boards">
+<h3>Network Configuration 2 : Network Manager(CNC) and Two KR260/KD240 Boards<a class="headerlink" href="#network-configuration-2-network-manager-cnc-and-two-kr260-kd240-boards" title="Permalink to this heading">¶</a></h3>
+<p>This configuration requires either two KR260/KD240 units and one KV260/KR260/KD240 unit(CNC) or two KR260/KD240 units and one Linux Running Machine(CNC). The following images represent these configurations:</p>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> This tutorial can be run with one KD240 and one KR260 configuration as well.</p>
+</div></blockquote>
+<div class="section" id="two-kr260-kd240-and-one-kv260-kr260-kd240-cnc">
+<h4>Two KR260/KD240 and one KV260/KR260/KD240(CNC)<a class="headerlink" href="#two-kr260-kd240-and-one-kv260-kr260-kd240-cnc" title="Permalink to this heading">¶</a></h4>
+<p><img alt="NM_Setup_1" src="../_images/NM_Setup_1.JPG" /></p>
+</div>
+<div class="section" id="two-kr260-kd240-and-one-linux-running-machine-cnc">
+<h4>Two KR260/KD240 and one Linux Running Machine(CNC)<a class="headerlink" href="#two-kr260-kd240-and-one-linux-running-machine-cnc" title="Permalink to this heading">¶</a></h4>
+<p><img alt="NM_Setup_2" src="../_images/NM_Setup_2.JPG" /></p>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> For KD240 J24 is PS Eth, J25B top is PL Eth. For KR260 J10D is PS Eth, J10B top is PL Eth</p>
+</div></blockquote>
+</div>
+<div class="section" id="id7">
+<h4>Run TSN-ROS Out of Box Applications<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>Ensure to load TSN docker and accelerator/firmware (refer to <a class="reference external" href="#run-tsn-docker-image">Run Docker</a> and <a class="reference external" href="#load-tsn-firmware-and-modules">Load Firmware and Modules</a> sections) before testing example application. If the firmware is already loaded, ignore this step and proceed.</p></li>
+<li><p>Setup Ethernet ports by running the following commands on the serial terminal. This sets the MAC/IP/VLAN on the EP and ETH ports of the TSN switch IP.</p>
+<ul>
+<li><p><em>KR260/KD240 Board1 interface setup</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/net_setup.sh<span class="w"> </span>-b1
+</pre></div>
+</div>
+</li>
+<li><p><em>KR260/KD240 Board2 interface setup</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/net_setup.sh<span class="w"> </span>-b2
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="run-instructions">
+<h5>Run Instructions<a class="headerlink" href="#run-instructions" title="Permalink to this heading">¶</a></h5>
+<ol>
+<li><p>Run parser on the both KR260/KD240 units.</p>
+<ul>
+<li><p>Setup one board as Master and one as Slave. Run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/network-manager/tsn-parsers/xnm.sh<span class="w"> </span>-m<span class="w"> </span><span class="p">&amp;</span><span class="w">          </span><span class="c1">#On Board1/Master</span>
+<span class="nb">source</span><span class="w"> </span>/usr/bin/network-manager/tsn-parsers/xnm.sh<span class="w"> </span>-s<span class="w"> </span><span class="p">&amp;</span><span class="w">          </span><span class="c1">#On Board2/Slave</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Setup Network Manager</p>
+<ul>
+<li><p>Download and Run TSN Docker image on CNC as well.</p></li>
+<li><p>Discover the two nodes by pinging them.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bash-5.2# ping -c 3 10.0.0.106                                            #Board1 or Master
+PING 10.0.0.106 (10.0.0.106) 56(84) bytes of data.
+64 bytes from 10.0.0.106: icmp_seq=1 ttl=64 time=0.242 ms
+64 bytes from 10.0.0.106: icmp_seq=2 ttl=64 time=0.200 ms
+64 bytes from 10.0.0.106: icmp_seq=3 ttl=64 time=0.203 ms
+
+--- 10.0.0.106 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2047ms
+rtt min/avg/max/mdev = 0.200/0.215/0.242/0.019 ms
+
+bash-5.2# ping -c 3 10.0.0.208                                            #Board2 or Slave
+PING 10.0.0.208 (10.0.0.208) 56(84) bytes of data.
+64 bytes from 10.0.0.208: icmp_seq=1 ttl=64 time=0.242 ms
+64 bytes from 10.0.0.208: icmp_seq=2 ttl=64 time=0.200 ms
+64 bytes from 10.0.0.208: icmp_seq=3 ttl=64 time=0.203 ms
+
+--- 10.0.0.208 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2047ms
+rtt min/avg/max/mdev = 0.200/0.215/0.242/0.019 ms
+</pre></div>
+</div>
+</li>
+<li><p>Run the CNC setup script from the install location to create/modify nodes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>/usr/bin/network-manager/xcnc_setup
+</pre></div>
+</div>
+</li>
+<li><p>If a node is not already created, navigate through the options and create two new nodes using Master’s and Slave’s MAC Address(eth1).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bash-5.2# /usr/bin/network-manager/xcnc_setup
+
+                              Hi!
+          Welcome to the TSN Network Management Engine
+
+Please choose one of the options below:
+Option 1: Create new node
+Option 2: Modify existing node
+Option 3: Show current nodes
+Option 4: Exit
+Please enter a number:
+1
+Please enter the node&#39;s MAC address
+00:0a:35:10:37:fa                           #Board1 or Master
+Creating new node
+Please choose one of the options below:
+Option 1: Create new node
+Option 2: Modify existing node
+Option 3: Show current nodes
+Option 4: Exit
+Please enter a number:
+1
+Please enter the node&#39;s MAC address
+00:0a:35:10:39:c2                           #Board2 or Slave
+Creating new node
+Please choose one of the options below:
+Option 1: Create new node
+Option 2: Modify existing node
+Option 3: Show current nodes
+Option 4: Exit
+Please enter a number:
+2
+Nodes currently added:
+node_000a351037fa                           #Board1 or Master
+node_000a351039c2                           #Board2 or Slave
+</pre></div>
+</div>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> Do not exit and follow next steps.</p>
+</div></blockquote>
+</li>
+<li><p>On CNC, set qbv configs for swp0 for Board1/Master(70% Scheduled traffic and 30% Best Effort traffic)</p>
+<ul class="simple">
+<li><p>cycle_time in to be entered nS. Max cycle time is 1sec.</p></li>
+<li><p>cycle start time. Should be ‘0,’ which starts traffic as soon as the talker is running.</p></li>
+<li><p>gate list length can have MAX 256 entries. (gate list length &gt; 0).</p></li>
+<li><p>time for gate list entry to be entered in nS, should not be more the 8000000nS. Sets the time for which gate-state-value that is set will occupy (time &gt; 0).</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bash-5.2# /usr/bin/network-manager/xcnc_setup
+
+                              Hi!
+          Welcome to the TSN Network Management Engine
+Please choose one of the options below:
+Option 1: Create new node
+Option 2: Modify existing node
+Option 3: Show current nodes
+Option 4: Exit
+Please enter a number:
+2
+
+Please enter the node&#39;s MAC address
+00:0a:35:10:37:fa                                   #Board1 or Master
+/etc/tsn-networkmanager/node_000a351037fa
+Qbv/fdb?
+qbv
+Enter the switch port whose qbv schedule needs to be modified:
+swp0
+Enter cycle time in nanoseconds, Maximum cycle time is 1 sec
+1000000
+Enter cycle start time (base time)
+0
+Enter gate list length:
+2
+Entry 1
+To open BE use state : 1
+To open ST use state : 4
+To open RES use state : 2
+Open both ST &amp; BE state: 5(1+4)
+Enter gate state value
+4
+Enter time for the gate list entry
+700000
+Entry 2
+To open BE use state : 1
+To open ST use state : 4
+To open RES use state : 2
+Open both ST &amp; BE state: 5(1+4)
+Enter gate state value
+1
+Enter time for the gate list entry
+300000
+10.0.0.106               ether   00:0a:35:10:37:fa   C                     end0
+
+Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json
+
+curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json tftp://10.0.0.106
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                         Dload  Upload   Total   Spent    Left  Speed
+100  9374    0     0  100  9374      0   767k --:--:-- --:--:-- --:--:--  767k
+100  9374    0     0  100  9374      0   746k --:--:-- --:--:-- --:--:--  746k
+</pre></div>
+</div>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> Do not exit and set fdb configs.</p>
+</div></blockquote>
+</li>
+<li><p>On CNC, set fdb configs for both the nodes.</p>
+<ul class="simple">
+<li><p>While creating “fdb,” configs destmac should be “e0:e0:e0:e0:e0:e0”, vlan ID should be 10, port should be swp1 for Master configs, and swp0 for Slave configs.</p></li>
+</ul>
+<p><strong>Example configuration for Board1/Master:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bash-5.2# /usr/bin/network-manager/xcnc_setup
+
+                              Hi!
+          Welcome to the TSN Network Management Engine
+Please choose one of the options below:
+Option 1: Create new node
+Option 2: Modify existing node
+Option 3: Show current nodes
+Option 4: Exit
+Please enter a number:
+2
+Nodes currently added:
+node_000a351037fa                           #Board1 or Master
+node_000a351039c2                           #Board2 or Slave
+
+Please enter the node&#39;s MAC address
+00:0a:35:10:37:fa                           #Board1 or Master
+/etc/tsn-networkmanager/node_000a351037fa
+Qbv/fdb?
+fdb
+Please enter a destination MAC address for the CAM entry
+e0:e0:e0:e0:e0:e0
+Please enter a vlan ID(s)/range of vlan&#39;s for the CAM Entry
+10
+Please specify destination switch port/s:
+swp0: 3, swp1: 1, swp2: 2
+Multiple ports can be specified using a comma separated string
+1
+Static CAM entry added locally, Want to add more entries [Y/N]? If you enter N/n, device will be programmed immediately
+n
+10.0.0.106               ether   00:0a:35:10:37:fa   C                     end0
+
+Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json
+
+curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json tftp://10.0.0.106
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                         Dload  Upload   Total   Spent    Left  Speed
+100  2574    0     0  100  2574      0   440k --:--:-- --:--:-- --:--:--  440k
+100  2574    0     0  100  2574      0   414k --:--:-- --:--:-- --:--:--  414k
+</pre></div>
+</div>
+<p><strong>Example configuration for Board2/Slave:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bash-5.2# /usr/bin/network-manager/xcnc_setup
+
+                              Hi!
+          Welcome to the TSN Network Management Engine
+Please choose one of the options below:
+Option 1: Create new node
+Option 2: Modify existing node
+Option 3: Show current nodes
+Option 4: Exit
+Please enter a number:
+2
+Nodes currently added:
+node_000a351037fa                           #Board1 or Master
+node_000a351039c2                           #Board2 or Slave
+
+Please enter the node&#39;s MAC address
+00:0a:35:10:39:c2                           #Board1 or Master
+/etc/tsn-networkmanager/node_000a351037fa
+Qbv/fdb?
+fdb
+Please enter a destination MAC address for the CAM entry
+e0:e0:e0:e0:e0:e0
+Please enter a vlan ID(s)/range of vlan&#39;s for the CAM Entry
+10
+Please specify destination switch port/s:
+swp0: 3, swp1: 1, swp2: 2
+Multiple ports can be specified using a comma separated string
+3
+Static CAM entry added locally, Want to add more entries [Y/N]? If you enter N/n, device will be programmed immediately
+n
+10.0.0.208               ether   00:0a:35:10:39:c2   C                     end0
+
+Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json
+
+curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_fdb.json tftp://10.0.0.208
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                         Dload  Upload   Total   Spent    Left  Speed
+100  2574    0     0  100  2574      0   440k --:--:-- --:--:-- --:--:--  440k
+100  2574    0     0  100  2574      0   414k --:--:-- --:--:-- --:--:--  414k
+</pre></div>
+</div>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> Exit after setting fdb configs.</p>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p>Run Traffic</p>
+<ul>
+<li><p>Verify if the schedule is set for ep(swp0) on Board1/Master.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>qbv_sched<span class="w"> </span>-g<span class="w"> </span>ep
+
+List<span class="w"> </span>length:<span class="w"> </span><span class="m">2</span>
+Cycle<span class="w"> </span>time:<span class="w"> </span><span class="m">1000000</span>
+Base<span class="w"> </span>time:<span class="w"> </span>1684277666s<span class="w"> </span>0ns
+List<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>Gate<span class="w"> </span>State:<span class="w"> </span><span class="m">4</span><span class="w"> </span>Gate<span class="w"> </span>Time:<span class="w"> </span>700000ns
+List<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>Gate<span class="w"> </span>State:<span class="w"> </span><span class="m">1</span><span class="w"> </span>Gate<span class="w"> </span>Time:<span class="w"> </span>300000ns
+</pre></div>
+</div>
+</li>
+<li><p>Start talker on Board1/Master</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>tsn_talker<span class="w"> </span>-n<span class="w"> </span>-1<span class="w"> </span>-l<span class="w"> </span><span class="m">900</span><span class="w"> </span>-v<span class="w"> </span><span class="m">10</span><span class="w"> </span>-p<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="p">&amp;</span><span class="w">       </span><span class="c1">#for ST Traffic</span>
+bash-5.2#<span class="w"> </span>tsn_talker<span class="w"> </span>-n<span class="w"> </span>-1<span class="w"> </span>-l<span class="w"> </span><span class="m">900</span><span class="w"> </span>-v<span class="w"> </span><span class="m">10</span><span class="w"> </span>-p<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span><span class="w">       </span><span class="c1">#for BE Traffic</span>
+</pre></div>
+</div>
+</li>
+<li><p>Start capture of received packets on Board2/Slave</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>tcpdump<span class="w"> </span>-i<span class="w"> </span>ep<span class="w"> </span>-w<span class="w"> </span>qbv.pcap<span class="w"> </span>-vvv
+
+tcpdump:<span class="w"> </span>listening<span class="w"> </span>on<span class="w"> </span>ep,<span class="w"> </span>link-type<span class="w"> </span>EN10MB<span class="w"> </span><span class="o">(</span>Ethernet<span class="o">)</span>,<span class="w"> </span>snapshot<span class="w"> </span>length<span class="w"> </span><span class="m">262144</span><span class="w"> </span>bytes
+^C696566<span class="w"> </span>packets<span class="w"> </span>captured
+<span class="m">768225</span><span class="w"> </span>packets<span class="w"> </span>received<span class="w"> </span>by<span class="w"> </span>filter
+<span class="m">71379</span><span class="w"> </span>packets<span class="w"> </span>dropped<span class="w"> </span>by<span class="w"> </span>kernel
+</pre></div>
+</div>
+</li>
+</ul>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> Packet count should increment quickly as soon as you run the tcpdump command.</p>
+</div></blockquote>
+<ul>
+<li><p>Exit out of tcpdump after a few seconds using the CTRL-c key combination to end capture on Board2.</p></li>
+<li><p>qbv.pcap file saved in the current directory shows packet distribution.</p></li>
+<li><p>Move the qbv.pcap file from the SD card to the host PC to analyze the packet distribution within Wireshark.</p></li>
+<li><p>Kill talker on Board1/Master</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>killall<span class="w"> </span>tsn_talker
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Analyze the packet distribution on wireshark</p>
+<p>Wireshark trace shows a 70% Scheduled traffic 30 % Best Effort traffic distribution</p>
+<ul>
+<li><p>Start Wireshark on the host PC</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Linux</span>
+
+wireshark<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>For Windows, download <a class="reference external" href="https://www.wireshark.org/download.html">Wireshark</a>.</p>
+<ul class="simple">
+<li><p>In the Wireshark GUI, select File → Open → Browse and select the qbv.pcap file.</p></li>
+<li><p>Observe that there are packets within the capture, with packet length=900
+<img alt="Wireshark" src="../_images/Packets.JPG" />.</p></li>
+<li><p>Type the filter as ‘vlan.priority == 4’ in “Apply display filter” in Wireshark.</p></li>
+<li><p>Click on a packet and observe the vlan ID=10, Priority (PCP/PRI=4) where a packet with PCP=4 indicates it is Scheduled traffic
+<img alt="ST Packet" src="../_images/PR_4_Packets.JPG" />.</p></li>
+<li><p>Select the following from Wireshark Tab Statistics -&gt; Capture File Properties. You can see ~70% distribution for ST traffic
+<img alt="70%" src="../_images/ST_Traffic.JPG" />.</p></li>
+<li><p>Type the filter as ‘vlan.priority == 1’ in “Apply display filter” in Wireshark.</p></li>
+<li><p>Click on a packet and observe the vlan ID=4, Priority (PCP/PRI=1) where a packet with PCP=1 indicates it is Best Effort traffic
+<img alt="BE Packer" src="../_images/PR_1_Packets.JPG" />.</p></li>
+<li><p>Select the following from Wireshark Tab Statistics -&gt; Capture File Properties. You can see ~30% distribution for BE traffic
+<img alt="30%" src="../_images/BE_Traffic.JPG" />.</p></li>
+</ul>
+</li>
+<li><p>Notice frame-premption - Optional (if preemption was enabled)</p>
+<ul>
+<li><p>On CNC, set qbv configs for swp0 for Master(70% Mixed traffic and 30% Scheduled traffic)</p>
+<ul class="simple">
+<li><p>cycle_time in to be entered nS. Max cycle time is 1sec.</p></li>
+<li><p>cycle start time. Should be ‘0,’ which starts traffic as soon as the talker is running.</p></li>
+<li><p>gate list length can have MAX 256 entries. (gate list length &gt; 0).</p></li>
+<li><p>time for gate list entry to be entered in nS, should not be more the 8000000nS. Sets the time for which gate-state-value that is set will occupy (time &gt; 0).</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span># Example
+
+bash-5.2# /usr/bin/network-manager/xcnc_setup
+
+                    Hi!
+       Welcome to the TSN Network Management Engine
+Please choose one of the options below:
+Option 1: Create new node
+Option 2: Modify existing node
+Option 3: Show current nodes
+Option 4: Exit
+Please enter a number:
+2
+
+Please enter the node&#39;s MAC address
+00:0a:35:10:37:fa
+/etc/tsn-networkmanager/node_000a351037fa
+Qbv/fdb?
+qbv
+Enter the switch port whose qbv schedule needs to be modified:
+swp0
+Enter cycle time in nanoseconds, Maximum cycle time is 1 sec
+1000000
+Enter cycle start time (base time)
+0
+Enter gate list length:
+2
+Entry 1
+To open BE use state : 1
+To open ST use state : 4
+To open RES use state : 2
+Open both ST &amp; BE state: 5(1+4)
+Enter gate state value
+5
+Enter time for the gate list entry
+700000
+Entry 2
+To open BE use state : 1
+To open ST use state : 4
+To open RES use state : 2
+Open both ST &amp; BE state: 5(1+4)
+Enter gate state value
+4
+Enter time for the gate list entry
+300000
+10.0.0.106               ether   00:0a:35:10:37:fa   C                     end0
+
+Sending /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json
+
+curl -T /etc/tsn-networkmanager/node_000a351037fa/node_000a351037fa_qbv.json tftp://10.0.0.106
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                 Dload  Upload   Total   Spent    Left  Speed
+100  9374    0     0  100  9374      0   767k --:--:-- --:--:-- --:--:--  767k
+100  9374    0     0  100  9374      0   746k --:--:-- --:--:-- --:--:--  746k
+</pre></div>
+</div>
+</li>
+<li><p>Verify if the schedule is set for ep(swp0) on Board1/Master</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>qbv_sched<span class="w"> </span>-g<span class="w"> </span>ep
+List<span class="w"> </span>length:<span class="w"> </span><span class="m">2</span>
+Cycle<span class="w"> </span>time:<span class="w"> </span><span class="m">1000000</span>
+Base<span class="w"> </span>time:<span class="w"> </span>1684357652s<span class="w"> </span>0ns
+List<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>Gate<span class="w"> </span>State:<span class="w"> </span><span class="m">3</span><span class="w"> </span>Gate<span class="w"> </span>Time:<span class="w"> </span>700000ns
+List<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>Gate<span class="w"> </span>State:<span class="w"> </span><span class="m">4</span><span class="w"> </span>Gate<span class="w"> </span>Time:<span class="w"> </span>300000ns
+</pre></div>
+</div>
+</li>
+<li><p>Start listener on Board2/Slave</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>tsn_listener<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Start talker on Board1/Master</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>tsn_talker<span class="w"> </span>-n<span class="w"> </span>-1<span class="w"> </span>-l<span class="w"> </span><span class="m">900</span><span class="w"> </span>-v<span class="w"> </span><span class="m">10</span><span class="w"> </span>-p<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="p">&amp;</span>
+bash-5.2#<span class="w"> </span>tsn_talker<span class="w"> </span>-n<span class="w"> </span>-1<span class="w"> </span>-l<span class="w"> </span><span class="m">1200</span><span class="w"> </span>-v<span class="w"> </span><span class="m">10</span><span class="w"> </span>-p<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Kill listener/talker after a few seconds</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>killall<span class="w"> </span>tsn_listener<span class="w">       </span><span class="c1">#Board2</span>
+bash-5.2#<span class="w"> </span>killall<span class="w"> </span>tsn_talker<span class="w">         </span><span class="c1">#Board1</span>
+</pre></div>
+</div>
+</li>
+<li><p>Check the ethtool stats</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Board1</span>
+bash-5.2#<span class="w"> </span>ethtool<span class="w"> </span>--include-statistics<span class="w"> </span>--show-mm<span class="w"> </span>eth0
+MAC<span class="w"> </span>Merge<span class="w"> </span>layer<span class="w"> </span>state<span class="w"> </span><span class="k">for</span><span class="w"> </span>eth0:
+pMAC<span class="w"> </span>enabled:<span class="w"> </span>on
+TX<span class="w"> </span>enabled:<span class="w"> </span>on
+TX<span class="w"> </span>active:<span class="w"> </span>on
+TX<span class="w"> </span>minimum<span class="w"> </span>fragment<span class="w"> </span>size:<span class="w"> </span><span class="m">60</span>
+RX<span class="w"> </span>minimum<span class="w"> </span>fragment<span class="w"> </span>size:<span class="w"> </span><span class="m">60</span>
+Verify<span class="w"> </span>enabled:<span class="w"> </span>on
+Verify<span class="w"> </span>time:<span class="w"> </span><span class="m">127</span>
+Max<span class="w"> </span>verify<span class="w"> </span>time:<span class="w"> </span><span class="m">127</span>
+Verification<span class="w"> </span>status:<span class="w"> </span>SUCCEEDED
+Statistics:
+<span class="w">    </span>MACMergeFrameAssErrorCount:<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>MACMergeFrameSmdErrorCount:<span class="w"> </span><span class="m">3</span>
+<span class="w">    </span>MACMergeFrameAssOkCount:<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>MACMergeFragCountRx:<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>MACMergeFragCountTx:<span class="w"> </span><span class="m">13808</span>
+<span class="w">    </span>MACMergeHoldCount:<span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># Board2</span>
+bash-5.2#<span class="w"> </span>ethtool<span class="w"> </span>--include-statistics<span class="w"> </span>--show-mm<span class="w"> </span>eth0
+MAC<span class="w"> </span>Merge<span class="w"> </span>layer<span class="w"> </span>state<span class="w"> </span><span class="k">for</span><span class="w"> </span>eth0:
+pMAC<span class="w"> </span>enabled:<span class="w"> </span>on
+TX<span class="w"> </span>enabled:<span class="w"> </span>on
+TX<span class="w"> </span>active:<span class="w"> </span>on
+TX<span class="w"> </span>minimum<span class="w"> </span>fragment<span class="w"> </span>size:<span class="w"> </span><span class="m">60</span>
+RX<span class="w"> </span>minimum<span class="w"> </span>fragment<span class="w"> </span>size:<span class="w"> </span><span class="m">60</span>
+Verify<span class="w"> </span>enabled:<span class="w"> </span>on
+Verify<span class="w"> </span>time:<span class="w"> </span><span class="m">127</span>
+Max<span class="w"> </span>verify<span class="w"> </span>time:<span class="w"> </span><span class="m">127</span>
+Verification<span class="w"> </span>status:<span class="w"> </span>SUCCEEDED
+Statistics:
+<span class="w">    </span>MACMergeFrameAssErrorCount:<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>MACMergeFrameSmdErrorCount:<span class="w"> </span><span class="m">10</span>
+<span class="w">    </span>MACMergeFrameAssOkCount:<span class="w"> </span><span class="m">13488</span>
+<span class="w">    </span>MACMergeFragCountRx:<span class="w"> </span><span class="m">13808</span>
+<span class="w">    </span>MACMergeFragCountTx:<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>MACMergeHoldCount:<span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> MACMergeFragCountTx on board1/master and MACMergeFragCountRx on board2/slave should match on both sides.</p>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="enable-frame-preemption-optional">
+<h3>Enable frame Preemption - Optional<a class="headerlink" href="#enable-frame-preemption-optional" title="Permalink to this heading">¶</a></h3>
+<ol>
+<li><p>Check the current status.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>ethtool<span class="w"> </span>--include-statistics<span class="w"> </span>--show-mm<span class="w"> </span>eth0
+</pre></div>
+</div>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> Verify pMAC enabled: on. This means preemption is available. TX Enable and Active will be off at this point as boards are not communicating yet.</p>
+</div></blockquote>
+</li>
+<li><p>Restart lldpad service</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>pkill<span class="w"> </span>-x<span class="w"> </span>lldpad<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+bash-5.2#<span class="w"> </span>lldpad<span class="w"> </span>-d<span class="w"> </span>-t
+</pre></div>
+</div>
+</li>
+<li><p>Enable transmit capabilities</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>lldptool<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w"> </span>set-lldp<span class="w"> </span><span class="nv">adminStatus</span><span class="o">=</span>rxtx
+bash-5.2#<span class="w"> </span>lldptool<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w"> </span>set-tlv<span class="w"> </span>-V<span class="w"> </span>addEthCaps<span class="w"> </span><span class="nv">enableTx</span><span class="o">=</span>yes
+</pre></div>
+</div>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> Now TX Enable and Active should be ON automatically on both sides.</p>
+</div></blockquote>
+</li>
+<li><p>Check status</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>ethtool<span class="w"> </span>--include-statistics<span class="w"> </span>--show-mm<span class="w"> </span>eth0
+</pre></div>
+</div>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> Notice TX Enable and TX Active are “on” now.
+Once preemption is enabled, it remains enabled on subsequent reboot as the configuration is stored in lldpad.conf. Delete <code class="docutils literal notranslate"><span class="pre">/var/lib/lldpad/lldpad.conf</span></code> to reset the configuration.</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="network-configuration-3-kr260-kd240-and-pc-workstation">
+<h3>Network Configuration 3 : KR260/KD240 and PC Workstation<a class="headerlink" href="#network-configuration-3-kr260-kd240-and-pc-workstation" title="Permalink to this heading">¶</a></h3>
+<p>A single KR260/KD240 board communicating with a PC workstation capable of TSN networking.  The PC workstation is using an I210 Ethernet Controller interface card to demonstrate functionality and features of TSN.</p>
+<div class="section" id="kr260-kd240-and-pc-workstation-board-setup">
+<h4>KR260/KD240 and PC Workstation: Board Setup<a class="headerlink" href="#kr260-kd240-and-pc-workstation-board-setup" title="Permalink to this heading">¶</a></h4>
+<ul>
+<li><p>Insert the microSD card containing the boot image into the microSD card slot (J11) on the Starter Kit.</p></li>
+<li><p>Connect JTAG/UART port (J4) of the KR260 carrier board to the development PC.</p></li>
+<li><p>Connect the TPH2 Pmod to the PMOD2 expansion connector (J18) of the KR260 carrier board.</p></li>
+<li><p>Connect Ethernet cable from PL ETH1 (J10 top for KR260)/(J25B top for KD240) Carrier Board  to Intel I210 NIC Ethernet port of the Linux host machine.</p></li>
+<li><p>Connect Power Supply to the 12V PWR DC barrel jack (J12) on the KR260/KD240 carrier board.</p>
+<p><img alt="i210" src="../_images/i210-setup.png" /></p>
+</li>
+<li><p>Ensure to load TSN docker and accelerator/firmware (refer to <a class="reference external" href="#run-tsn-docker-image">Run Docker</a> and <a class="reference external" href="#load-tsn-firmware-and-modules">Load Firmware and Modules</a> sections) before testing example application. If the firmware is already loaded, ignore this step and proceed.</p></li>
+<li><p>Setup Ethernet port on the target KR260/KD240 board by running the following commands within the USB-UART connected serial terminal, this sets the MAC/IP/VLAN on the EP and ETH port of the TSN switch IP.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/net_setup.sh<span class="w"> </span>-b2
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="section" id="workstation-configuration">
+<h5>Workstation Configuration<a class="headerlink" href="#workstation-configuration" title="Permalink to this heading">¶</a></h5>
+<ul>
+<li><p>To find out the device name of the I210 interface on the Linux host workstation, use the <code class="docutils literal notranslate"><span class="pre">lshw</span></code> utility.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>lshw<span class="w"> </span>-class<span class="w"> </span>network<span class="w"> </span>-short
+H/W<span class="w"> </span>path<span class="w">        </span>Device<span class="w">          </span>Class<span class="w">          </span><span class="nv">Description</span>
+<span class="o">==========================================================</span>
+/0/100/1f.6<span class="w">     </span>enp0s31f6<span class="w">       </span>network<span class="w">        </span>Ethernet<span class="w"> </span>Connection<span class="w"> </span><span class="o">(</span><span class="m">3</span><span class="o">)</span><span class="w"> </span>I219-LM
+/0/101/0<span class="w">        </span>ens4<span class="w">            </span>network<span class="w">        </span>I210<span class="w"> </span>Gigabit<span class="w"> </span>Network<span class="w"> </span>Connection
+</pre></div>
+</div>
+</li>
+<li><p>The TSN networking interface (I210 interface) on the Linux host workstation must be brought up and linuxptp needs to be installed to demonstrate PTP. To do this, on the Linux workstation, use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">&lt;i210</span> <span class="pre">interface&gt;</span> <span class="pre">up</span></code> command as shown in this example usage:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ifconfig<span class="w"> </span>ens4<span class="w"> </span>up
+</pre></div>
+</div>
+</li>
+<li><p><em>Install ptpt4l on Workstation</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>linuxptp
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="network-time-synchronization-workstation-kr260-kd240-ptp-demo">
+<h4>Network Time Synchronization Workstation-KR260/KD240 (PTP Demo)<a class="headerlink" href="#network-time-synchronization-workstation-kr260-kd240-ptp-demo" title="Permalink to this heading">¶</a></h4>
+<p>In this demo, KR260/KD240 sets its clock as slave and the Linux host workstation serves as the clock master. The KR260/KD240 clock syncs with the Linux host workstation clock after a brief synchronization period.</p>
+<p>Using a text editor on the Linux TSN host workstation, create a new ptp4l configuration file with the following settings needed to launch ptp4l as the network clock master.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[global]
+
+transportSpecific       1
+priority1               248
+priority2               249
+ptp_dst_mac             01:80:C2:00:00:0E
+p2p_dst_mac             01:80:C2:00:00:0E
+logAnnounceInterval     1
+logSyncInterval         -3
+follow_up_info          1
+announceReceiptTimeout  3
+syncReceiptTimeout      3
+neighborPropDelayThresh 800
+min_neighbor_prop_delay -20000000
+network_transport       L2
+delay_mechanism         P2P
+tx_timestamp_timeout    10
+</pre></div>
+</div>
+<ul>
+<li><p><em>Start ptp4l on the Linux TSN host workstation and specify</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ptp4l<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-H<span class="w"> </span>-i<span class="w"> </span>&lt;i210<span class="w"> </span>interface&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;ptp_device&gt;<span class="w"> </span>-m<span class="w"> </span>-f<span class="w"> </span>ptp4l_master.conf<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="w"> </span>ptplog<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> In cases where there is more than one PTP device available, specify which one is to be used with the -p argument.</p>
+</div></blockquote>
+<ul>
+<li><p>To find out the correct PTP device on Linux TSN Host Workstation, use the ethtool utility <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ethtool</span> <span class="pre">-T</span> <span class="pre">&lt;i210_interface&gt;</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example</span>
+ubuntu@kria:~$<span class="w"> </span>sudo<span class="w"> </span>ethtool<span class="w"> </span>-T<span class="w"> </span>ens4
+Time<span class="w"> </span>stamping<span class="w"> </span>parameters<span class="w"> </span><span class="k">for</span><span class="w"> </span>ens4:
+Capabilities:
+<span class="w">        </span>hardware-transmit<span class="w">     </span><span class="o">(</span>SOF_TIMESTAMPING_TX_HARDWARE<span class="o">)</span>
+<span class="w">        </span>software-transmit<span class="w">     </span><span class="o">(</span>SOF_TIMESTAMPING_TX_SOFTWARE<span class="o">)</span>
+<span class="w">        </span>hardware-receive<span class="w">      </span><span class="o">(</span>SOF_TIMESTAMPING_RX_HARDWARE<span class="o">)</span>
+<span class="w">        </span>software-receive<span class="w">      </span><span class="o">(</span>SOF_TIMESTAMPING_RX_SOFTWARE<span class="o">)</span>
+<span class="w">        </span>software-system-clock<span class="w"> </span><span class="o">(</span>SOF_TIMESTAMPING_SOFTWARE<span class="o">)</span>
+<span class="w">        </span>hardware-raw-clock<span class="w">    </span><span class="o">(</span>SOF_TIMESTAMPING_RAW_HARDWARE<span class="o">)</span>
+PTP<span class="w"> </span>Hardware<span class="w"> </span>Clock:<span class="w"> </span><span class="m">0</span>
+Hardware<span class="w"> </span>Transmit<span class="w"> </span>Timestamp<span class="w"> </span>Modes:
+<span class="w">        </span>off<span class="w">                   </span><span class="o">(</span>HWTSTAMP_TX_OFF<span class="o">)</span>
+<span class="w">        </span>on<span class="w">                    </span><span class="o">(</span>HWTSTAMP_TX_ON<span class="o">)</span>
+Hardware<span class="w"> </span>Receive<span class="w"> </span>Filter<span class="w"> </span>Modes:
+<span class="w">        </span>none<span class="w">                  </span><span class="o">(</span>HWTSTAMP_FILTER_NONE<span class="o">)</span>
+<span class="w">        </span>all<span class="w">                   </span><span class="o">(</span>HWTSTAMP_FILTER_ALL<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>From the output above, the PTP device for the I210 interface is /dev/ptp0 and the example command on Linux TSN Workstation will be:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ptp4l<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-H<span class="w"> </span>-i<span class="w"> </span>ens4<span class="w"> </span>-p<span class="w"> </span>/dev/ptp0<span class="w"> </span>-m<span class="w"> </span>-f<span class="w"> </span>ptp4l_master.conf<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="w"> </span>ptplog<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+</li>
+<li><p><em>Start ptp on KR260/KD240 in slave clock mode</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/start_ptp.sh<span class="w"> </span>-s
+</pre></div>
+</div>
+</li>
+</ul>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> Ensure to run the ptp master before starting ptp slave as slave fails to sync when the grandmaster clock is not set. The sync takes about 30 seconds to complete.</p>
+</div></blockquote>
+<div class="section" id="id8">
+<h5>Observe Results<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h5>
+<ul>
+<li><p>The file ptplog contains the saved ptp4l output to the file system on KR260/KD240. The rms value starts out high and trend downward to a single-digit value showing that the clocks are now in sync.</p>
+<p><img alt="i210" src="../_images/i210-ptp.png" /></p>
+</li>
+<li><p>To see the current status of PTP, run the following command to exit log view when finished.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tail<span class="w"> </span>-f<span class="w"> </span>~/.local/log/ptplog
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="network-time-shaper-function-other-802-1qbv-demo">
+<h4>Network Time Shaper Function (other 802.1Qbv Demo)<a class="headerlink" href="#network-time-shaper-function-other-802-1qbv-demo" title="Permalink to this heading">¶</a></h4>
+<p>This demo allots a time slot for Scheduled Traffic (ST) and Best Effort (BE) traffic and it can be visualized on an oscilloscope.  For a cycle time period of 1ms, ST traffic is sent for 700us and BE traffic for 300us.  Wireshark on the Linux host workstation listens for packets.  On the KR260 board, the application sets up time slots for the traffic classes.  Packets are generated in continuous mode for both traffic types.  Wireshark monitors the incoming packets for scheduled and best-effort traffic exposed by the TSN IP.</p>
+<p>An oscilloscope or Analog Discovery 2 device can also be used to monitor Tlast Tx ST (P7) and Tlast Tx EP (P9) on KR260/KD240 board to view the distribution.
+Oscilloscope Setup (optional)</p>
+<ul>
+<li><p>Connect P7 on the Test Pmod of KR260 to Channel1 of the oscilloscope - Tlast Tx ST</p></li>
+<li><p>Connect P9 on the Test Pmod of KR260 to Channel2 of the oscilloscope - Tlast Tx EP</p></li>
+<li><p>Set up triggers on Channel1 and Channel2 with an OR condition and set the time scale interval to 1 millisecond:</p>
+<p><img alt="i210" src="../_images/i210-qbv.png" /></p>
+</li>
+<li><p>The Analog Discovery 2 can be connected to KR260 using these connections for observing the scheduled traffic:</p>
+<p><img alt="i210" src="../_images/i210-osc.png" /></p>
+</li>
+<li><p>Start Wireshark on the Linux host machine and select I210 interface to see traffic data</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wireshark<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Start transmitting packets from the KR260 board</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/bin/start_qbv_test.sh<span class="w"> </span>-tx
+</pre></div>
+</div>
+</li>
+<li><p>The talker on KR260 runs for 30 seconds and exits automatically</p></li>
+</ul>
+<div class="section" id="id9">
+<h5>Observe Results<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h5>
+<ul>
+<li><p>The scope shot shows an approximate Scheduled traffic (Channel 1 yellow) and Best Effort traffic (Channel 2 green) distribution.</p>
+<p><img alt="i210" src="../_images/i210-osc-results.png" /></p>
+</li>
+</ul>
+<blockquote>
+<div><p><em><strong>Note:</strong></em>  The distribution will not be clean because this is monitoring the data going into the TSN IP before it is scheduled to go out on the Ethernet MAC.</p>
+</div></blockquote>
+<ul>
+<li><p>Observe that there are two sets of packets within the capture, one set with packet length=900, another set with packet length=800.</p>
+<p><img alt="i210" src="../_images/i210-wireshark.png" /></p>
+</li>
+<li><p>Click on a packet with length=900 bytes and observe the vlan ID=10, Priority (PCP/PRI=4) where a packet with PCP=4 indicates it is Scheduled traffic.</p>
+<p><img alt="i210" src="../_images/i210-wsn1.png" /></p>
+</li>
+<li><p>Click on a packet with length=800 bytes and observe the vlan ID=20, Priority (PCP/PRI=1) where a packet with PCP=1 indicates it is Best Effort traffic.</p>
+<p><img alt="i210" src="../_images/i210-wsn2.png" /></p>
+<p>Wireshark trace shows a traffic distribution of 70% Scheduled traffic and 30% Best Effort traffic.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="communication-using-rs485">
+<h3>Communication using RS485<a class="headerlink" href="#communication-using-rs485" title="Permalink to this heading">¶</a></h3>
+<p>The K26 SOM has the capability to perform as an advanced and highly integrated gateway for legacy industrial networking protocols (those using RS485/Modbus) to more modern industrial networking infrastructure (such as TSN) and this application serves as an example of how to interface to a remote temperature sensor for capturing data.  This is analogous to integrating in legacy, but still functional, capital equipment to reduce total replacement costs within factory retrofits and technology upgrades.</p>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> This test is not applicable for KD240 via PMOD-RS485</p>
+</div></blockquote>
+<div class="section" id="rs485-board-setup">
+<h4>RS485: Board Setup<a class="headerlink" href="#rs485-board-setup" title="Permalink to this heading">¶</a></h4>
+<p>KR260:</p>
+<ul class="simple">
+<li><p>Connect the Pmod RS485 to the PMOD1 expansion connector (J2) of the KR260 carrier board. Be sure to connect this to the bottom row of pins (ones labeled 2,4,6,8,10, and 12) since the module is a 1x6 header connecting to a 2x6 connector on KR260.</p></li>
+</ul>
+<p><img alt="pmod" src="../_images/pmod-temp.png" /></p>
+<ul class="simple">
+<li><p>Connect the Temperature sensor and PMOD RS485 using prototyping wire (18 AWG works well) as shown in the following figure:</p></li>
+</ul>
+<p><img alt="pmod" src="../_images/pmod-temp-sch.png" /></p>
+<ul class="simple">
+<li><p>Connect a 12 VDC supply to power the RS485 temperature sensor using GND and VIN terminals.</p></li>
+</ul>
+<p><img alt="pmod" src="../_images/pmo-temp-disp.png" /></p>
+<ul class="simple">
+<li><p>Connect Power Supply to the 12V PWR DC barrel jack (J12) on the KR260 carrier board.</p></li>
+</ul>
+<p>KD240:</p>
+<ul class="simple">
+<li><p>Connect the RS485 Temperature and Humidity sensor as below on the J22 Connector on the KD240. Obtain a separate 12V power supply to connect the two loose jumpers as shown in the following image, one to GND(black wire in image) and the other to 12V Supply (white wire in image).</p></li>
+</ul>
+<p><img alt="kd240-rs485" src="../_images/KD240-RS485-Image.jpg" /></p>
+<ul class="simple">
+<li><p>Connect the Temperature and humidity sensor to the J22 euromag connector as shown below</p></li>
+</ul>
+<p><img alt="kd240-rs485-image" src="../_images/KD240-RS485-Connections.JPG" /></p>
+</div>
+</div>
+<div class="section" id="rs485-temperature-humidity-sensor-demo">
+<h3>RS485 Temperature/Humidity Sensor Demo<a class="headerlink" href="#rs485-temperature-humidity-sensor-demo" title="Permalink to this heading">¶</a></h3>
+<p>In this demo, the pmod-test application probes the temperature sensor connected and displays the captured values on the serial terminal.</p>
+<ul class="simple">
+<li><p>Ensure to load TSN docker and accelerator/firmware (refer to <a class="reference external" href="#run-tsn-docker-image">Run Docker</a> and <a class="reference external" href="#load-tsn-firmware-and-modules">Load Firmware and Modules</a> sections) before testing example application. If the firmware is already loaded, ignore this step and proceed.</p></li>
+<li><p>Probe sensor via RS485 interface.</p></li>
+<li><p>Execute binary:</p>
+<ul>
+<li><p>KR260 command - <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/pmod-rs485-test/bin/pmod-rs485-test</span></code></p></li>
+<li><p>KD240 command - <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/pmod-rs485-test/bin/pmod-rs485-test</span> <span class="pre">/dev/ttyPS0</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id10">
+<h4>Observe Results<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h4>
+<p>The output on the serial terminal should match the value displayed on the seven-segment LED display of the sensor.</p>
+<p><img alt="temp" src="../_images/temp-term.png" /></p>
+<blockquote>
+<div><p><em><strong>Note:</strong></em>  Occasionally, erroneous values (for example 3276.8) are reported for temperature/humidity sensor data and this is due to error in the sensor itself, which can be ignored and the test reruns to clear the error.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>reg<span class="o">[</span><span class="m">0</span><span class="o">]=</span><span class="m">32768</span><span class="w"> </span><span class="o">(</span>0x8000<span class="o">)</span>
+reg<span class="o">[</span><span class="m">1</span><span class="o">]=</span><span class="m">32768</span><span class="w"> </span><span class="o">(</span>0x8000<span class="o">)</span>
+Temperature:<span class="w"> </span><span class="m">3276</span>.8<span class="w"> </span>Deg<span class="w"> </span>C
+Humidity:<span class="w"> </span><span class="m">3276</span>.8<span class="w"> </span>%
+</pre></div>
+</div>
+<p>For reference, here is the register map of the sensor:
+<img alt="tmp" src="../_images/tmp-ref.png" /></p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="can-communication-setup-and-demonstration">
+<h3>CAN Communication Setup and Demonstration<a class="headerlink" href="#can-communication-setup-and-demonstration" title="Permalink to this heading">¶</a></h3>
+<p>The application extends its functionality to support CAN communication by interfacing with
+<a class="reference external" href="https://digilent.com/reference/pmod/pmodcan/start">PMOD CAN</a> devices. This additional feature
+allows seamless communication between devices through the CAN interface, enabling efficient
+data exchange for various applications.</p>
+<div class="section" id="can-board-setup">
+<h4>CAN: Board Setup<a class="headerlink" href="#can-board-setup" title="Permalink to this heading">¶</a></h4>
+<p>The configuration requires a setup involving two Kria boards, either for communication between
+two KR260 boards or between a KR260 board and a KD240 board.</p>
+<ol>
+<li><p>KR260-KR260 Setup</p>
+<p>Connect the PMOD-CAN test point headers to the J19 (PMOD 3) connector on both KR260 boards.
+Connect the PMOD-CAN devices on both boards using jumper wires as shown below:</p>
+<ul class="simple">
+<li><p>Connect GND on J19 (KR260 board 1) to GND on J19 (KR260 board 2)</p></li>
+<li><p>Connect CANH on J19 (KR260 board 1) to CANH on J19 (KR260 board 2)</p></li>
+<li><p>Connect CANL on J19 (KR260 board 1) to CANL on J19 (KR260 board 2)</p></li>
+</ul>
+<p><img alt="KR-KR-PMODCAN" src="../_images/KR-KR-PMODCAN.png" /></p>
+</li>
+<li><p>KR260-KD240 Setup</p>
+<p>Connect the PMOD-CAN test point headers to the J19 (PMOD 3) connector on KR260 board.
+Connect the PMOD-CAN device on KR260 board to the CAN 2.0 J18 connector on KD240 board
+using jumper wires as shown below:</p>
+<ul class="simple">
+<li><p>Connect GND on J19 (KR260 board 1) to GND on J18 (KD240 board 2)</p></li>
+<li><p>Connect CANH on J19 (KR260 board 1) to CANH on J18 (KD240 board 2)</p></li>
+<li><p>Connect CANL on J19 (KR260 board 1) to CANL on J18 (KD240 board 2)</p></li>
+</ul>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> PMOD CAN device is required for KR260 only. For KD240, the PS CAN port J18 is
+used.</p>
+</div></blockquote>
+<p><img alt="KR-KD-PMODCAN" src="../_images/KR-KD-PMODCAN.png" /></p>
+</li>
+</ol>
+</div>
+<div class="section" id="can-communication-demo">
+<h4>CAN Communication Demo<a class="headerlink" href="#can-communication-demo" title="Permalink to this heading">¶</a></h4>
+<p>This tutorial provides a step-by-step guide to run a demo of CAN communication between two
+Kria boards using the CAN interface. It details the necessary packages and commands
+to establish communication, send, and receive messages.</p>
+<blockquote>
+<div><p><em><strong>Note:</strong></em> This feature is an additional capability provided by the application to support CAN communication.</p>
+</div></blockquote>
+<ul>
+<li><p>Ensure to load TSN docker and accelerator/firmware (refer to <a class="reference external" href="#run-tsn-docker-image">Run Docker</a> and <a class="reference external" href="#load-tsn-firmware-and-modules">Load Firmware and Modules</a> sections) before testing example application. If the firmware is already loaded, ignore this step and proceed.</p></li>
+<li><p>Verify CAN device enumeration on both the boards:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ip<span class="w"> </span>link<span class="w"> </span>show
+</pre></div>
+</div>
+<p>Ensure that <code class="docutils literal notranslate"><span class="pre">can0</span></code> node is listed to confirm that the CAN device is recognized.
+An example output when run on KR260:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span>show
+<span class="m">1</span>:<span class="w"> </span>lo:<span class="w"> </span>&lt;LOOPBACK,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">65536</span><span class="w"> </span>qdisc<span class="w"> </span>noqueue<span class="w"> </span>state<span class="w"> </span>UNKNOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+link/loopback<span class="w"> </span><span class="m">00</span>:00:00:00:00:00<span class="w"> </span>brd<span class="w"> </span><span class="m">00</span>:00:00:00:00:00
+<span class="m">2</span>:<span class="w"> </span>sit0@NONE:<span class="w"> </span>&lt;NOARP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1480</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+link/sit<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>brd<span class="w"> </span><span class="m">0</span>.0.0.0
+<span class="m">3</span>:<span class="w"> </span>can0:<span class="w"> </span>&lt;NOARP,ECHO&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">16</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">10</span>
+link/can
+<span class="m">4</span>:<span class="w"> </span>end0:<span class="w"> </span>&lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>mq<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+link/ether<span class="w"> </span><span class="m">00</span>:0a:35:18:80:83<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+<span class="m">5</span>:<span class="w"> </span>docker0:<span class="w"> </span>&lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noqueue<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default
+link/ether<span class="w"> </span><span class="m">02</span>:42:64:fe:bb:20<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+<span class="m">8</span>:<span class="w"> </span>ep:<span class="w"> </span>&lt;BROADCAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+link/ether<span class="w"> </span><span class="m">00</span>:0a:35:00:01:05<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+<span class="m">9</span>:<span class="w"> </span>eth0:<span class="w"> </span>&lt;NO-CARRIER,BROADCAST,UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>mq<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+link/ether<span class="w"> </span><span class="m">00</span>:0a:35:00:01:0e<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+<span class="m">10</span>:<span class="w"> </span>eth1:<span class="w"> </span>&lt;NO-CARRIER,BROADCAST,UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>mq<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+link/ether<span class="w"> </span><span class="m">00</span>:0a:35:00:01:0f<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</pre></div>
+</div>
+</li>
+<li><p>Setup the CAN interface on both the boards:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span><span class="nb">type</span><span class="w"> </span>can<span class="w"> </span>bitrate<span class="w"> </span><span class="m">100000</span>
+bash-5.2#<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>txqueuelen<span class="w"> </span><span class="m">1000</span>
+bash-5.2#<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>up
+</pre></div>
+</div>
+</li>
+<li><p>Verify CAN communication:</p>
+<p>Start monitoring messages on board 2</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>candump<span class="w"> </span>can0
+</pre></div>
+</div>
+<p>Send CAN message from board 1</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>cansend<span class="w"> </span>can0<span class="w"> </span><span class="m">123</span><span class="c1">#1122334455667788</span>
+</pre></div>
+</div>
+<p>An example output on receiving the message on board 2 is shown below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>candump<span class="w"> </span>can0
+
+can0<span class="w">  </span><span class="m">123</span><span class="w">   </span><span class="o">[</span><span class="m">8</span><span class="o">]</span><span class="w">  </span><span class="m">11</span><span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="m">33</span><span class="w"> </span><span class="m">44</span><span class="w"> </span><span class="m">55</span><span class="w"> </span><span class="m">66</span><span class="w"> </span><span class="m">77</span><span class="w"> </span><span class="m">88</span>
+</pre></div>
+</div>
+<p>Similarly, repeat the above steps by sending the message on board 2 and monitoring on board 1.
+This ensures that both sending and receiving functionality is verified on both devices.</p>
+</li>
+<li><p>Bring down the CAN interfaces on both boards after testing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash-5.2#<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>down
+</pre></div>
+</div>
+</li>
+</ul>
+<p>The demo provides users with a foundation to explore and develop CAN-based applications, leveraging
+the communication capability provided by the platform. Integrating this with ROS applications allows
+for efficient and reliable real-time data exchange, enhancing performance and communication.</p>
+</div>
+</div>
+</div>
+<div class="section" id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+<p>Following known issues and their remedies that can be encountered and implemented while testing the above application.</p>
+<ul class="simple">
+<li><p>Repeated broadcast on ping</p></li>
+<li><p>PTP timeouts with heavy traffic</p></li>
+</ul>
+<p>For the above two issues, refer to the documentation provided under the <em>Known issues and troubleshooting</em> section from the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/25034864/Xilinx+TSN+Solution">AMD TSN solution wiki page</a>.</p>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="sw_arch_platform.html"><span class="doc">Software Architecture of the Platform</span></a></p></li>
+<li><p>Go back to the <a class="reference internal" href="../ros2_multinode_communication_via_tsn_landing.html"><span class="doc">KR260 design start page</span></a></p></li>
+</ul>
+<!---
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+--><p class="sphinxhide" align="center">Copyright&copy; 2023 Advanced Micro Devices, Inc.</p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="linux_boot.html" class="btn btn-neutral float-right" title="Boot Kria Starter Kit Linux on KD240" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on August 18, 2026.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

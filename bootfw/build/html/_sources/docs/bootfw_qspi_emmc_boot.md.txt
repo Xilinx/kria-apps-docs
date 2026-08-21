@@ -1,15 +1,76 @@
-# QSPI to eMMC Boot for Production SOM
+# QSPI to eMMC Boot for Production SOMs
 
 ## Introduction
 
-The production SOM has an eMMC device populated, whereas the Starter Kit SOMs does not. Therefore, instead of the Starter Kit's QSPI-> SD two stage boot process, you can do a QSPI -> eMMC two stage process on the production SOM. This page gives an example of how to boot from QSPI -> eMMC for a K26 production SOM that is mounted on a KV260 or KR260 carrier card. However, it also applies to a K24 production SOM (I grade or C grade) on a KD240 carrier card.
->**NOTE:** The removal of the SOM from an AMD produced Starter Kit voids its warranty. This workflow is only intended to provide an example for creating your own carrier card design and wanting to make use of a similar two-stage boot methodology.
+Production SOMs include an onboard eMMC device, whereas Starter Kit SOMs do not. As a result, production SOMs can use a two-stage boot flow that boots from QSPI and then eMMC, rather than the QSPI-to-SD boot flow used by Starter Kit SOMs.
 
-You can also use the traditional monolithic boot (from eMMC) for production SOMs by using the eMMC boot mode and placing the boot files in the eMMC. This method is not covered by this document and also requires you to set the BOOT_MODE pins to eMMC on your production carrier card.
+This page provides an example of a QSPI-to-eMMC boot flow for a K26/K24 Production SOM installed on a carrier card. 
+
+Production SOMs can also use a traditional monolithic boot flow by booting directly from eMMC. In this configuration, the boot files are stored on the eMMC device and the carrier card BOOT_MODE pins must be configured for eMMC boot. This boot method is not covered in this document.
+
+Beginning with the 2026.1 release, the QSPI-to-eMMC boot flow has been significantly simplified from its alignment with amd-edf. This tutorial has been updated to use the simplified workflow. The legacy workflow is archived at the end of this page and can be expanded if needed.
+
+## AMD-edf aligned XEN
+
+### Prerequisites 
+
+1. Complete the Getting Started guide for your target platform:
+   - [KV260 getting started](https://xilinx.github.io/kria-apps-docs/kv260/2022.1/build/html/docs/linux_boot.html)
+   - [KR260 getting started](https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/linux_boot.html)
+   - [KD240 getting started](https://xilinx.github.io/kria-apps-docs/kd240/build/html/docs/linux_boot.html)
+2. Review the [bootfw_overview](./bootfw_overview.md) and its associated documentation.
+3. A Linux host computer to download the [embedded platform flash update tool](https://github.com/Xilinx/embpf-bootfw-update-tool) and understand its usage.
+4. Complete the [Yocto workflow](https://xilinx.github.io/kria-apps-docs/docs/yocto_kria_support.html) on the host computer.
+
+### Update QSPI
+
+First, generate the appropriate boot firmware image for the target Kria Production SOM. Refer to the [Yocto Kria Support](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html) documentation for additional details.
+
+The BitBake recipe is ```xilinx-bootbin```.
+
+The machine name must be one of the following:
+
+- `k26-sm-sdt`
+- `k24i-sm-sdt`
+- `k24c-sm-sdt`
+
+Program the generated `BOOT.BIN` image into QSPI using the [Embedded Flash Update Tool](https://github.com/Xilinx/embpf-bootfw-update-tool). Refer to the tool's README for example QSPI programming commands.
+
+### Update eMMC
+
+Download the desired `.wic` image from the [Kria Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits#Embedded-Linux-(Yocto)).
+
+Alternatively, generate a `.wic` image for the target Kria Production SOM using the Yocto workflow. Refer to the [Yocto Kria Support](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html) documentation for additional details.
+
+Use the following command:
+
+```bash
+MACHINE=amd-cortexa53-mali-common bitbake platform-disk-image-kria
+```
+
+After obtaining the `.wic` image, compress it into a `wic.gz` file. The Embedded Flash Update Tool accepts `.gz` images only; `.xz` images are not supported.
+
+Program the resulting `wic.gz` image to eMMC using the [Embedded Flash Update Tool](https://github.com/Xilinx/embpf-bootfw-update-tool). Refer to the tool's README for example eMMC programming commands.
+
+### Reboot in QSPI Mode
+
+After programming both QSPI and eMMC, configure the board for QSPI boot and power-cycle the system.
+
+The board will boot from QSPI and present a U-Boot menu with boot options for both SD card and eMMC. Select the eMMC boot option. Linux should then boot successfully from the eMMC image.
+
+
+## Legacy method
+
+<details>
+<summary>Legacy Method (none-simplified)</summary>
 
 This tutorial is targeted for 2022.2 releases and tool chains.
 
-## Prerequisites
+This page provides an example of a QSPI-to-eMMC boot flow for a K26 Production SOM installed on a KV260 or KR260 carrier card. The same workflow also applies to K24 Production SOMs (Industrial-grade or Commercial-grade) installed on a KD240 carrier card.
+
+> **NOTE:** Removing a SOM from an AMD Starter Kit voids the product warranty. This workflow is intended only as a reference for developers designing custom carrier cards who wish to implement a similar two-stage boot methodology.
+
+### Prerequisites for Legacy Method
 
 1. Completed Getting Started with Kria SOM [KV260](https://www.xilinx.com/products/som/kria/kv260-vision-starter-kit/kv260-getting-started/getting-started.html), [KR260](https://www.xilinx.com/products/som/kria/kr260-robotics-starter-kit/kr260-getting-started/getting-started.html), or [KD240](https://www.xilinx.com/products/som/kria/kd240-drives-starter-kit/kd240-getting-started/getting-started.html)
 2. Read [Bootfw Overview](./bootfw_overview.md) and its associated contents.
@@ -17,7 +78,7 @@ This tutorial is targeted for 2022.2 releases and tool chains.
 4. Gone through the [Yocto flow](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html) on the host computer.
 5. (Optional) PetaLinux installed on the host computer.
 
-## Steps
+### Steps
 
 There are many different ways to get a production SOM to boot from QSPI to eMMC. In this doc, the following steps are suggested with Kria SOM:
 
@@ -39,27 +100,24 @@ The following figure shows a graphical representation of the flow to help you gu
 
 ![media](./media/emmc_boot_flow.PNG)
 
-### 0. Export .XSA file with Production SOM and Carrier Card Peripheral Support
+#### 0. Export .XSA file with Production SOM and Carrier Card Peripheral Support
 
 First, create a Vivado project that has both the Production SOM features (such as eMMC support for K24c/K24i and K26, and just for K24i, DDR ECC enablement) and carrier card peripheral features. This allows you to later generate QSPI boot images or .wic images with features from both, enabling access to eMMC and Ethernet at the same time. The easiest way is to start from a Starter Kit SOM, as that has all the CC peripheral support, and you just need to enable eMMC, and in the case of K24i, DDR ECC.
 
-#### Getting the Base Starter Kit Vivado Design
+##### Getting the Base Starter Kit Vivado Design
 
 The base hardware project can be obtained either through example designs, or Vivado board files.
 
-##### Method 1: Example design
+###### Method 1: Example design
 
 If the targeted tool version is 2024.2.1 and newer, follow the instructions in [Generate Vivado Project from Example Designs](https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/Generate_vivado_project_from_CED.html) to generate a base hardware project from Vivado example designs.
 
-##### Method 2: Board Files
+###### Method 2: Board Files
 
 Follow the instructions in [Generate Vivado Project from Board Files](https://xilinx.github.io/kria-apps-docs/creating_applications/generate_vivado_project_boardfile.html) to generate a base hardware project from board files.
-</details>
 
-#### Next, add Production SOM only Features
+###### Next, add Production SOM only Features
 
-<details>
-<summary>Add Production SOM only Features (click to expand instructions) </summary>
 
 Click **IP INTEGRATOR** -> **Open Block Design**, and double click **ZYNQ UltraSCALE+ PS** block to open the configuration wizard for the PS.
 
@@ -71,9 +129,7 @@ Then click **OKAY**, save the project, and click **IP_ITEGRATOR** -> **Generate 
 
 >**NOTE:** If you are using a K24i, you need to also enable the DDR ECC feature as it is not enabled on the K24 Production SOM or K24c.
 
-</details>
-
-### 1. Generate binary image for QSPI with starter kit peripherals and eMMC
+#### 1. Generate binary image for QSPI with starter kit peripherals and eMMC
 
 Unlike the Starter Kit SOM, the production SOM is shipped without QSPI prepopulated. You must first program QSPI with the appropriate boot firmware so that the SOM will boot to U-Boot via the QSPI contents and then hand off to the Linux OS image in eMMC. The full QSPI binary for Starter Kit SOM is not released; however, each components can be generated as outlined in the [Bootfw Overview](./bootfw_overview.md) and its pages.
 
@@ -92,10 +148,7 @@ There are also two recipes you can generate in this step
 If you plan to use image recovery utility to update eMMC, then kria-qspi is required. If you plan to use Linux to update eMMC, then either recipe generates a working binary.
 
 
-#### Instruction to regenerate with SDT flow
-
-<details>
-<summary> Expand for instructions </summary>
+##### Instruction to regenerate with SDT flow
 
 1. Generate SDT using SDTGEN and the .xsa generated in the [previous step].(#0-export-xsa-file-with-production-som-and-carrier-card-peripheral-support)
 2. update machine .conf to the new SDT generated artifacts and generate new boot.bin
@@ -139,12 +192,8 @@ Next, generate a bootbin binary that supports the production SOM + CC peripheral
         SDT_URI[sha256sum] = "<tarball checksum>"
 ```
 
-</details>
+##### Instruction to regenerate with none-SDT flow
 
-#### Instruction to regenerate with none-SDT flow
-
-<details>
-<summary> Expand for instructions </summary>
 1. Import the .xsa generated in the [previous step].(#0-export-xsa-file-with-production-som-and-carrier-card-peripheral-support)
 2. Use [Yocto Support on Kria](https://xilinx.github.io/kria-apps-docs/yocto.html) combined with [Importing a new .xsa to Yocto](https://xilinx.github.io/kria-apps-docs/yocto.html#importing-a-new-xsa-file)
 3. update the dtb file to include CC peripherals
@@ -184,12 +233,8 @@ To generate a QSPI binary that supports the production SOM + CC peripheral, the 
     MACHINE=<MACHINE name> bitbake kria-qspi # machine name DOES NOT end in -sdt
 ```
 
-</details>
+##### Common Instructions for both SDT flow and none SDT flow
 
-#### Common Instructions for both SDT flow and none SDT flow
-
-<details>
-<summary> Click to expand </summary>
 Next, in both flows, you need to update the dtb file to include CC peripherals, and then generate the binary image.
 
 ```bash
@@ -214,13 +259,7 @@ Next, in both flows, you need to update the dtb file to include CC peripherals, 
     MACHINE=<MACHINE name> bitbake kria-qspi # machine name needs to end in -sdt
 ```
 
-</details>
-
-#### Additional required steps in generating QSPI for the Image Recovery application on KD240 and KR260
-
-<details>
-
-<summary> (click to expand)  </summary>
+##### Additional required steps in generating QSPI for the Image Recovery application on KD240 and KR260
 
 To use the Image Recovery application to program eMMC on the next step, some extra steps are required for the KD240 and KR260. In none-SDT flow (for all tool versions), the Image Recovery application assumes a specific clock setup and does not derive that from the .xsa file. However, as of 2024.2, image recovery is not yet supported in -SDT flow(see [Yocto Issues](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html#issues)), so this needs to be done in both overall none-SDT flow and SDT flow until -SDT flow for image recovery is supported. When eMMC gets added on the KR260 and KD240, it changes the clocking structure for GEM, and Ethernet would not function without some extra patches to account for the change in clocking.
 
@@ -241,26 +280,21 @@ IOPLL, from which the gem0 clock is derived from, has changed from multiplier 60
 6. In the Yocto project before running bitbake cmd, open the `sources/meta-xilinx/meta-xilinx-standalone/classes/xlnx-embeddedsw.bbclass` file, update [this line](https://github.com/Xilinx/meta-xilinx/blob/rel-v2023.2/meta-xilinx-standalone/classes/xlnx-embeddedsw.bbclass#L4) with the forked repo URL and [this line](https://github.com/Xilinx/meta-xilinx/blob/rel-v2023.2/meta-xilinx-standalone/classes/xlnx-embeddedsw.bbclass#L11) with the commit ID noted in step 5.
 7. Rerun the bitbake command, ```MACHINE=<MACHINE name> bitbake kria-qspi```.
 
-</details>
-
-#### Artifact location
+###### Artifact location
 
 If you chose xilinx-bootbin recipe, the binary file can be found in ```build/tmp/deploy/images/<MACHINE name>/BOOT-<MACHINE name>-<timestamp>.bin```
 
 If you chose kria-qspi recipe, the binary file can be found in ```build/tmp/deploy/images/<MACHINE name>/kria-qspi-<MACHINE name>-<timestamp>.bin```
 
-### 2.Program Production SOM with QSPI binary
+#### 2.Program Production SOM with QSPI binary
 
 When you have a QSPI binary .bin file in ```$TMPDIR/deploy/images/<MACHINE name>```, it is time to program it to the board. Mount the Kria production SOM onto a carrier card, and connect it to a host computer using a micro-usb cable or an AMD Platform cable. Leave the SD card slot empty and connect to power. There are two ways to program QSPI, one with through Windows host and one through Linux host (easier).
 
-#### Programming instructions for Linux
+##### Programming instructions for Linux
 
 Follow instructions in [embpf-bootfw-update-tool](https://github.com/Xilinx/embpf-bootfw-update-tool) to program the generated .bin file into QSPI
 
-#### Programming instructions for windows
-
-<details>
-<summary> click to expand </summary>
+##### Programming instructions for windows
 
 To program the QSPI using XSDB/XSCT, download the [boot.tcl](./example_src/boot.tcl) file, and place it in a <working_folder/> along with ```<QSPI_image>.bin, bl31.elf pmufw.elf system.dtb u-boot.elf zynqmp_fsbl.elf``` found in  ```$TMPDIR/deploy/images/<MACHINE name>``` from the previous step.
 
@@ -301,19 +335,14 @@ ZynqMP> sf write 0x80000 0x0 0x3000000
 ```
 
 Close XSDB. Leaving it open/connected can interfere with the ZynqMPSoC's operation.
-</details>
 
 Now QSPI is programmed with an image that contains `boot.bin` files and the Image Recovery application. These are used in the following section.
 
-### 3. Program Production SOM eMMC with Linux Image
+#### 3. Program Production SOM eMMC with Linux Image
 
 There are two ways to program the eMMC, using an Image Recovery application or Linux.
 
-#### 3A Program Production SOM eMMC with the Image Recovery Application
-
-<details>
-
-<summary> click to expand</summary>
+##### 3A Program Production SOM eMMC with the Image Recovery Application
 
 The Image Recovery tool has an option to upload an image file to eMMC on a production SOM. For details on set up and use of the Recovery Tool, see [Boot Image Recovery Tool on the Kria SOM Wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#Boot-Image-Recovery-Tool).
 
@@ -341,22 +370,18 @@ Then, generate the .wic image with the .wks file and targeting running out of eM
 ```
 
 The .wic image can now be uploaded through the Image Recovery App.
-</details>
 
-#### 3b Program Production SOM eMMC with Linux Image using Linux
-
-<details>
-<summary> click to expand</summary>
+##### 3b Program Production SOM eMMC with Linux Image using Linux
 
 To write to eMMC from Linux, you first boot Linux so that has eMMC awareness and Ethernet capabilities. This is because the Linux images can be bigger than the DDR space. Therefore, traditional eMMC programming [through XSDB and DDR](https://support.xilinx.com/s/article/67157?language=en_US) will not work in this case. You must boot to a Linux image from the SD, then transfer the final image file directly from the host computer to eMMC on the Starter Kit through the network.
 
 The Starter Kit PetaLinux images (.wic files) and Ubuntu image (.img file) released do not have eMMC support and are targeted to boot from the SD card and not eMMC. The images targeted to eMMC must to be regenerated with the appropriate hardware (eMMC enabled). In 2023.1 and older, the .wic images also need to be generated with ```disk-name "mmcblk0"``` in petalinux-package to target it to boot out of eMMC (in 2023.2 and newer, .wks file has ```--use-label``` which allows the wic image to work out of eMMC or the SD card). The production SOM (that is, [Production K26 SOM](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages)) BSP is prebuilt with a .wic image; however, it has eMMC support and are targeted to boot out of eMMC. It can be used as an example image to program into the eMMC.
 
-##### 3b.a Boot Linux through the SD
+###### 3b.a Boot Linux through the SD
 
 You need to boot a Linux with eMMC and Ethernet support from SD card. By default, the released K26 production SOM BSP has eMMC support but no awareness of any Starter Kit peripherals including Ethernet. The Starter Kit BSPs has support for Ethernet but no eMMC support as the default Starter Kit SOM do not have eMMC. Therefore, you need to create your own Linux .wic image that has both Ethernet and eMMC support. You already created a .xsa file with support for both in [step 0](#0-export-xsa-file-with-production-som-and-carrier-card-peripheral-support),  leverage the .xsa created there to generate a new .wic image. This can be done in either Yocto or PetaLinux. Follow either[Generate with new .xsa in Yocto](#generate-with-new-xsa-in-yocto) or [Generate with the new .xsa in PetaLinux](#generate-with-the-new-xsa-in-petalinux):
 
-###### Generate with new .xsa in Yocto
+####### Generate with new .xsa in Yocto
 
 For steps to import a new .xsa file, refer to [Importing a New XSA File](../../../yocto/source/docs/yocto_kria_support.md#importing-a-new-xsa-file). You have already done most of the steps in [QSPI generation ins step 1](#1-program-production-som-with-qspi-binary), you now need the following command to also generate a new .wic image:
 
@@ -366,7 +391,7 @@ For steps to import a new .xsa file, refer to [Importing a New XSA File](../../.
 
 Now you have a .wic image in ```$yocto_project/build/tmp/deploy/images/<machine name>/``` to program into a SD card.
 
-###### Generate with the New .xsa in PetaLinux
+####### Generate with the New .xsa in PetaLinux
 
 This section discusses how to import the new hardware configuration into the PetaLinux project. For more details, review the *PetaLinux Tools Documentation: Reference Guide* ([UG1144](https://docs.amd.com/go/en-US/ug1144-petalinux-tools-reference-guide-Importing-Hardware-Configuration)).
 
@@ -393,7 +418,7 @@ Here are the example commands to import the new .xsa and regenerate the .wic ima
 
 Now you have a .wic image in ```$petalinux_project/images/linux/``` to program into the SD card.
 
-###### Boot Linux with eMMC and Peripheral Support
+####### Boot Linux with eMMC and Peripheral Support
 
 Plug the SD card into SD slot and power on.
 
@@ -433,7 +458,7 @@ For KR260, SD is behind the USB hub:
     ZynqMP> run bootcmd_usb0
 ```
 
-##### 3b.b Write to eMMC in Linux
+###### 3b.b Write to eMMC in Linux
 
 Once booted to Linux, you should see `/dev/mmcblk0`, the eMMC partition. On the KV260 Starter Kit, SD is mapped to SD1, while on KR260, SD is mapped to USB. So on KV260 there is also `/dev/mmcblk1`, the SD partition. To double check, use this command:
 
@@ -478,13 +503,15 @@ using nfsroot:
     dd if=/nfsroot/<image> of=/dev/mmcblk0
     ``` 
 
-</details>
 
-### 4. Reboot in QSPI Mode
+
+#### 4. Reboot in QSPI Mode
 
 Next, boot the board in QSPI. Simply power cycle, and it will boot from QSPI to eMMC.
 
 Refer to [U-Boot Handoff](./bootfw_uboot_handoff.md) "Prioritized Boot Order" section, on 2022.1 or later. If images are available, U-Boot prioritizes handing off from QSPI to eMMC on the production SOM.
+
+</details>
 
 <hr class="sphinxhide"></hr>
 

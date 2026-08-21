@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -90,7 +89,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="kria_starterkit_linux_boot.html">Linux Boot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_boot.html">Linux Boot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_the_design.html">Building the Design Components</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Building the Hardware Design Using Vivado</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
@@ -115,7 +114,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Repository</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/ros-tsn-pubsub">Software Repository</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/xilinx/ros-tsn-pubsub/tree/v0.2">Software Repository</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other KR260 Applications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/10gige_vision_camera.html">10GigE Machine Vision Camera</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/ros2_perception_node.html">ROS 2 Perception Node</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/precision_time_management.html">Precision Time Management</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260/bist.html">Built-In Self Test (BIST)</a></li>
 </ul>
 
         </div>
@@ -150,13 +156,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  <tr>
  <td align="center"><h1>Using Vivado to Build the Hardware Design</h1> </td>
  </tr>
-</table><section id="using-vivado-to-build-the-hardware-design">
+</table><div class="section" id="using-vivado-to-build-the-hardware-design">
 <h1>Using Vivado to Build the Hardware Design<a class="headerlink" href="#using-vivado-to-build-the-hardware-design" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>This tutorial shows how to build the hardware design for applications running on KR260 Robotics AI Starter Kit.</p>
-</section>
-<section id="prerequisites">
+</div>
+<div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>AMD Vivado Design Suite™ of the appropiate version</p></li>
@@ -165,7 +171,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div><p><strong>Info</strong>: To request TSN Subsystem IP evaluation license, send an email to <a class="reference external" href="1gtsn_eval_request&#64;amd.com">1gtsn_eval_request&#64;amd.com</a>.</p>
 </div></blockquote>
-<section id="accessing-the-tutorial-reference-files">
+<div class="section" id="accessing-the-tutorial-reference-files">
 <h3>Accessing the Tutorial Reference Files<a class="headerlink" href="#accessing-the-tutorial-reference-files" title="Permalink to this heading">¶</a></h3>
 <blockquote>
 <div><p><em><strong>Note</strong></em>: Skip the following steps if the design files have already been cloned and extracted to a working repository.</p>
@@ -178,9 +184,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">kria-vitis-platforms/kr260</span></code>, which is the working directory.</p></li>
 </ol>
-</section>
-</section>
-<section id="generating-an-extensible-xsa">
+</div>
+</div>
+<div class="section" id="generating-an-extensible-xsa">
 <h2>Generating an Extensible XSA<a class="headerlink" href="#generating-an-extensible-xsa" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Go to the platform directory specific to the application.</p>
@@ -222,8 +228,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <blockquote>
 <div><p><em><strong>Note</strong></em>: The steps under <em>Modifying the Vivado design and creating a new XSA</em> are optional and are required only if you need to change the platform design.</p>
 </div></blockquote>
-</section>
-<section id="modifying-the-vivado-design-and-creating-a-new-xsa">
+</div>
+<div class="section" id="modifying-the-vivado-design-and-creating-a-new-xsa">
 <h2>Modifying the Vivado design and creating a new XSA<a class="headerlink" href="#modifying-the-vivado-design-and-creating-a-new-xsa" title="Permalink to this heading">¶</a></h2>
 <ol>
 <li><p>Go to the directory specific to the platform design.</p>
@@ -253,18 +259,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ol>
 <p>The generated XSA or the modified XSA file can now be used to create a Vitis Platform.</p>
-</section>
-<section id="next-steps">
+</div>
+<div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="build_vitis_platform.html"><span class="doc">Creating a Vitis Platform</span></a></p></li>
 </ul>
-</section>
-<section id="references">
+</div>
+<div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <p>For more information on how to setup Platform Interfaces, refer to Xilinx Vitis Unified Software Platform Documentation <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Adding-Hardware-Interfaces">UG1393</a>.</p>
-<p class="sphinxhide" align="center">Copyright&copy; 2023-2024 Advanced Micro Devices, Inc.</p></section>
-</section>
+<p class="sphinxhide" align="center">Copyright&copy; 2023-2024 Advanced Micro Devices, Inc.</p></div>
+</div>
 
 
            </div>
@@ -279,8 +285,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023-2024, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 19, 2024.
+    <p>&#169; Copyright 2023-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on August 14, 2026.
       </span></p>
   </div>
 

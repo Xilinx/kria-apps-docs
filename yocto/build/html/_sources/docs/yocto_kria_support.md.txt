@@ -17,7 +17,7 @@ Machine names and recipes for QSPI/boot image generation are listed the followin
 
 - Note that various support starts in different versions, so make sure to align Yocto release versions to the MACHINE + recipe desired.For supports in older tool version, refer to [older tool machine names and recipe section](#older-tool-machine-names-and-recipe).
 - in the latest tool set, XSCT flow is depreciated, only [SDT flow](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2743468485/Porting+embeddedsw+components+to+system+device+tree+SDT+based+flow) is used. 
-- in the latest tool set, Petalinux Distribution is depreciated, only [EDF distribution](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/3250585601/AMD+Embedded+Development+Framework+EDF) is used. 
+- in the latest tool set, Petalinux Distribution is depreciated, only [EDF distribution](https://edf.docs.amd.com/) is used. 
 
 The 2026.1 release introduces several key updates: :
 - deprecation of the k26-smk-sdt and k24-smk-sdt machines and addition of Kria-QSPI support for flat KV, KR, and KD machines. 
@@ -41,49 +41,9 @@ Below two tables list out Machine name + bitbake recipes for the latest tool ver
 | amd-cortexa53-mali-common | platform-disk-image-kria  | 2026.1 and newer |  multidomain wic image (including Linux, OpenAMP, Xen) that dynamically support all Kria starter kits and production SOMs |
 
 
-## Build Host Requirements
+## Build Host Requirements and Build Environment setup
 
-Before starting, make sure the build host PC meets [these requirements](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#compatible-linux-distribution).
-
-Besides installing the packages/tools specified by the requirement page, refer to the [Issues](#issues) section for possible additional requirements.
-
->**NOTE:** Building using a NFS mount is not supported; use a local or scratch disk.
-
-Besides installing the packages/tools specified by the requirement page, refer to the [Issues](#issues) section for possible additional requirements.
-
-## Prepare the Build Environment
-
-Install the [repo](https://gerrit.googlesource.com/git-repo).
-
-```shell
-#download the Repo script:
-curl https://storage.googleapis.com/git-repo-downloads/repo > repo
-#Make it executable:
-chmod a+x repo
-#Move it on to your system path:
-mv repo ~/bin/
-#Add it to your path
-PATH=$PATH:~/bin
-#If it is correctly installed, you should see a Usage message when invoked with the help flag.
-repo --help
-```
-
-Fetch all sources. Note that in 2026.1 and newer, all images are generated with EDF distribution. 
-
-To setup for EDF distribution:
-```shell
-# repo init to the Xilinx yocto project
-repo init -u https://github.com/Xilinx/yocto-manifests.git -b <release-branch> -m default-edf.xml 
-# Example: repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2026.1 -m default-edf.xml
-# repo sync to get all sources
-repo sync
-# repo start a branch
-repo start <release-branch> --all
-# example:  repo start rel-v2026.1 --all
-unset TEMPLATECONF
-source edf-init-build-env 
-```
-
+For detailed steps on setting up the EDF Yocto environment, including host requirements, layer configuration, and build instructions, refer to the [AMD EDF Documentation](https://edf.docs.amd.com/).
 
 ## Build the Artifacts
 
@@ -131,75 +91,6 @@ During the build process, a QEMU configuration file is created in the output dir
 In 2023.1, the combined starterkit k26-smk supports QEMU, and the default hardware which it emulates is KV260. To change it to KR260, update ```sources/meta-kria/conf/machine/k26-smk.conf``` according to the comment in the file.
 
 
-## Variables, Overrides, and the Environment
-
-Most of the Yocto recipes and configuration files assign values to [variables](https://docs.yoctoproject.org/dev/dev-manual/new-recipe.html) to influence the build. Machine specific overrides can be used to replace default or previously defined values with ones that are specific to the machine you are building for. Each machine will have a series of overrides which defines, in order of priority, which overrides will be considered when parsing all of the recipes and config files. It is possible to get a list of the MACHINEOVERRIDEs that are used for a given recipe as well as the log of how the system came to the final value of a variable by using the "-e" flag on a build:
-
-```shell
-MACHINE=k26-smk bitbake kria-image-full-cmdline -e 
-```
-
-You can see if you redirect the output of bitbake -e to a file how each of the variables in the build got to its final value; for example, here is how SERIAL_CONSOLES was set for a recipe:
-
-```text
-# $SERIAL_CONSOLES [5 operations]
-#   set? /scratch/jtoomey/2023/sources/poky/../meta-xilinx/meta-xilinx-core/conf/machine/zynqmp-generic.conf:46
-#     "115200;ttyPS0"
-#   set /scratch/jtoomey/2023/sources/poky/../meta-kria/conf/machine/include/kria-common.inc:14
-#     "115200;ttyPS1"
-#   set /scratch/jtoomey/2023/sources/poky/meta/conf/documentation.conf:380
-#     [doc] "Defines the serial consoles (TTYs) to enable using getty."
-#   set /scratch/jtoomey/2023/sources/poky/meta/conf/bitbake.conf:918
-#     [_defaultval] "${@d.getVar('SERIAL_CONSOLE').replace(' ', ';')}"
-#   override[qemuarm64]:set? /scratch/jtoomey/2023/sources/poky/../meta-virtualization/conf/distro/include/meta-virt-xen.inc:15
-#     "115200;ttyAMA0"
-# pre-expansion value:
-#   "115200;ttyPS1"
-SERIAL_CONSOLES="115200;ttyPS1"
-```
-
-## Working with Libraries
-
-If some libraries have specific [version dependencies](./library_dependency.md), they can be specified in recipes (.bb files). For details, refer to the [Yocto documentation](https://docs.yoctoproject.org/singleindex.html#term-PREFERRED_VERSION).
-
-## Working with Recipes
-
-It is possible to work with individual components (such as recipes in [github meta-kria](https://github.com/Xilinx/meta-kria)) for the purpose of integration, debugging, or updates. For example, if you want to build the xmutil utility, you can bitbake that recipe:
-
-```text
-MACHINE=k26-smk bitbake xmutil
-```
-
-This downloads and builds the xmutil sources, as well as any other recipes it depends on. For the purpose of development or debugging, it might be necessary to point the recipe to a different repo, branch, or commit by updating the SRC_URI or SRCREV (an example of the local repo commented out the following):
-
-```shell
-diff --git a/recipes-utils/xmutil/xmutil.inc b/recipes-utils/xmutil/xmutil.inc
-index f83bcb3..2839b62 100644
---- a/recipes-utils/xmutil/xmutil.inc
-+++ b/recipes-utils/xmutil/xmutil.inc
-@@ -1,5 +1,5 @@
--REPO = "git://github.com/Xilinx/xmutil.git;protocol=https"
--SRCREV = "b5b1ad13bcc48d4cbd20476c97d05589bdfc7772"
-+REPO = "git://gitenterprise.xilinx.com/jtoomey/xmutil.git;protocol=https"
-+#REPO = "file:///path/to/xmutil;protocol=file"
-+SRCREV = "0000000000000000000000000000000000000000"
- BRANCH = "master"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-```
-
-Once this has been updated, the package can be rebuilt, and bitbake picks up the new code.
-
-```shell
-MACHINE=k26-smk bitbake xmutil
-```
-
-It is also possible to clean in between builds to force a clean build:
-
-```shell
-MACHINE=k26-smk bitbake xmutil -c clean
-```
-
 
 
 ## Older tool machine names and recipe
@@ -207,7 +98,7 @@ MACHINE=k26-smk bitbake xmutil -c clean
 This table list Machine names and corresponding recipe for older tool versions for QSPI/boot.bin generation.
 - Note that in 2024.2, some artifacts are generated either using XSCT flow, or SDT flow. Refer to [this](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2743468485/Porting+embeddedsw+components+to+system+device+tree+SDT+based+flow) page for more details on the new SDT flow.
 - in 2025.1 and onward, XSCT flow is depreciated
-- Note that in 2024.2 and older, all images are generated with PetaLinux distribution. In 2025.1, the wic images are generated with [EDF](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/3250585601/AMD+Embedded+Development+Framework+EDF) distribution, while the bootbin and QSPI images are still generated with PetaLinux distribution. In 2025.2 and newer, both the wic images and the bootbin/QSPI images are generated with EDF distribution. The repo init command below selects between the two distributions with the presence of a -m option.This changes Yocto repo commands. 
+- Note that in 2024.2 and older, all images are generated with PetaLinux distribution. In 2025.1, the wic images are generated with [EDF](https://edf.docs.amd.com/) distribution, while the bootbin and QSPI images are still generated with PetaLinux distribution. In 2025.2 and newer, both the wic images and the bootbin/QSPI images are generated with EDF distribution. The repo init command below selects between the two distributions with the presence of a -m option.This changes Yocto repo commands. 
 
 
 To setup for EDF distribution:
@@ -311,6 +202,30 @@ In 2024.2 , you can generate a common wic image that dynamically supports all th
 
 > **NOTE:** In kria-zynqmp-generic generated wic image in 2024.2, the SD card is “locked in” to the started kit when first booted. That is, once you have booted the common image on a KV260, you are not be able to reuse the same SD card with the shared common Linux image on a KR260 or a KD240. This is because on initial boot, the default bitstream is locked in based on the EEPROM reading on first boot, and this is not updated on subsequent boots.
 
+
+### Importing a New XSA File (Aka SDT) in SDT Flow
+
+In SDT flow, the system device tree that was generated from .xsa file is imported yocto flow, instead of directly use .xsa file.
+
+To generate a system device tree from .xsa file, use these commands in sdtgen:
+
+```
+# Set output directory
+set_dt_param -dir ./<new SDT directory>
+# Configure XSA files (static and reconfigurable modules)
+sdtgen set_dt_param -xsa <path to .xsa file> 
+# Set board device tree
+set_dt_param -board_dts <board dts>
+# Generate the system device tree
+generate_sdt
+# Exit SDTGEN
+exit
+```
+
+in Yocto, regenerate the conf file:
+gen-machineconf --template ../sources/meta-amd-adaptive-socs/meta-amd-adaptive-socs-bsp/conf/machineyaml/<machine name>.yaml --hw-description <SDT path>
+
+The <machine name> is now updated with the custom xsa file/SDT. 
 
 
 ### Importing a New XSA File
