@@ -54,7 +54,7 @@ Features
 
 
 .. important::
-   Review the `FAQ <https://pages.gitenterprise.xilinx.com/techdocs/SOM/faq.html>`_ for commonly encountered issues across Kria SOM applications.
+   Review the `FAQ <https://xilinx.github.io/kria-apps-docs/faq.html>`_ for commonly encountered issues across Kria SOM applications.
 
 
 .. toctree::
@@ -65,28 +65,17 @@ Features
    Hardware Architecture - Platform <docs/hw_arch_platform>
 
 
-
-
 .. toctree::
    :maxdepth: 1
    :caption: Repository
   
-   Software Repository <https://github.com/xilinx/ros-tsn-pubsub/tree/v0.2>
+   Software Repository <https://github.com/Xilinx/ros-tsn-pubsub>
 
 
-.. important:: Other Releases
+.. important::
+   Previous releases:
 
-   * `TSN v0.1 <../../../0_1/build/html/ros2_multinode_communication_via_tsn_landing.html>`_
-   * `TSN v0.3 <../../../0_3/build/html/ros2_multinode_communication_via_tsn_landing.html>`_
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Other KD240 Applications
-   :hidden:
-
-   BIST <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/bist.html>
-   FOC Motor Control <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/foc_motor_ctrl.html>
+   * `TSN 0.1 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/ros2_multinode_communication_via_tsn/0_1/build/html/ros2_multinode_communication_via_tsn_landing.html>`_
 
 
 

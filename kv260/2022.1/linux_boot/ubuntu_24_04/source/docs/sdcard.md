@@ -15,7 +15,9 @@ Looking for OS specific tools to write the image to the SD card?
 <details>
 <summary>Instructions for Raspberry Pi Imager (any OS) </summary>
 
-For any OS users, visit the [this page](https://documentation.ubuntu.com/core/how-to-guides/deploy-an-image/install-on-amd/#write-the-ubuntu-core-image-to-the-microsd-card) for instructions to copy the image to the SD card.
+For any OS users, visit the page below for instructions to copy the image to the SD card:
+
+https://documentation.ubuntu.com/core/how-to-guides/deploy-an-image/install-on-amd/#write-the-ubuntu-core-image-to-the-microsd-card 
 
 </details>
 

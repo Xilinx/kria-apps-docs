@@ -1,6 +1,6 @@
 # Xen Kria SOM Starter Kits Support
 
-[Xen](https://xenproject.org/) is a free and open-source hypervisor, providing services that allow multiple computer operating systems to execute on the same computer hardware concurrently. Starting from 2023.2 -  Kria Starter Kit Petalinux BSP, as well as Yocto, contains support for Xen. AMD specific details about XEN hypervisor can be found on this [Wiki page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842530/XEN+Hypervisor).
+[Xen](https://xenproject.org/) is a free and open-source hypervisor, providing services that allow multiple computer operating systems to execute on the same computer hardware concurrently. The 2023.2 Kria Starter Kit Petalinux BSP, as well as Yocto, contains support for Xen. AMD specific details about XEN hypervisor can be found on this [Wiki page](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842530/XEN+Hypervisor).
 
 This page documents how to generate Xen artifacts (based on Kria Starter Kit embedded Linux) for Kria and provides an example on how to boot Ubuntu as a guest OS (that is, a DOMU) on a Xen DOM0. This particular combination requires about 4 GB of memory, which K26 has. Therefore, this can be done on either the KV260 or KR260. The K24 only has 2 GB of memory, so Xen is not supported.
 
@@ -10,114 +10,17 @@ This page documents how to generate Xen artifacts (based on Kria Starter Kit emb
 2. A Linux Desktop to create and program partitions
 3. Yocto (preferred) or PetaLinux tool
 
-## Xen in 2026.1 and newer
-
-### Generating Xen Artifacts
-
-In 2026.1 and newer, the platform-disk-image-kria recipe for amd-cortexa53-mali-common generates a platform wic image that supports both Xen and Open AMP. Therefore no other steps are required. 
-
-### Prepare the SD Card
-
-Flash the embedded Linux .wic image (either generated from Yocto or use [released prebuilt image](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits#Embedded-Linux-(Yocto))) using Balena Etcher. This sets up the SD card to contain three partitions: 
-- partition 1 fat32 partition with boot images (accessible by Windows and Linux) 
-- partition 2 fat32 partition that is mounted as /storage on target (accessible by Windows and Linux) 
-- partition 3 (ext4) with the Kria Starter Kit embedded Linux rootfs that has been expanded to full disk space.
-
-
-### Boot Xen On Target
-
-Plug the SD card into the Starter Kit and turn on the power. Select XEN at boot menu.
-
-![alt text](image.png)
-
-Next, copy over the Ubuntu image that you want to boot as DOMU. Download the [iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz](https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz?_ga=2.93916574.2043050383.1684286640-1062417632.1681766747) file from the [Kria Ubuntu download site](https://ubuntu.com/download/amd-xilinx),uncompress it, and copy the ```image.fit``` file into target file system and extract the Ubuntu kernel image:
-
-```bash
-dumpimage -T flat_dt -p 0 <path to image.fit> -o /home/amd-edf/ubuntu_Image  
-```
-
-DOM guests needs a location to keep its rootfs. There are options on where to put this. User could re-generate the wic image with P3 expansion disabled, and then create a P4 dedicated to domU rootfs. Or User could keep domU rootfs on file-backed virtual disk for the guest. The Ubuntu .ext4 rootfs image is already a complete filesystem image, so it can be used directly as a disk file referenced by the Xen guest config. In this example for 2026.1, we put domU rootfs on a file-backed virtual disk. Refer to instructions for [2025.2 and older XEN boot](#xen-in-20252-and-older) for examples of running from a disk partition. 
-
-Download the Ubuntu rootfs for DomU. Download the Ubuntu image from [Kria Ubuntu download site](https://ubuntu.com/download/amd-xilinx). For this example, the  [iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4.xz](https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4.xz) file is used.
-
-Move the file to target and unzip the to .ext4 using the following:
-
-```bash
-xz -d iot-limerick-kria-classic-desktop-2204-x07-20230302-63-rootfs.ext4.xz
-```
-
-### Boot Ubuntu as DOMU
-
-First, change to root:
-
-```bash
-sudo -s
-```
-
-Move the .ext4 image file to a location on dom0's own filesystem :
-
-```bash
-mkdir -p /var/lib/xen/images
-mv iot-limerick-...-rootfs.ext4 /var/lib/xen/images/ubuntu-guest.ext4
-```
-
-
-Next, check how much memory is dom0 consuming and the available memory using ```xl info```. In this example, there should be a little more than 1.9G left to use for DOMU. Therefore, you can allocate 1900 MB for DOMU in the next step.
-
-Create a ```guest0.cfg``` file with the following content:
-
-
-```bash
-name = "guest0"
-kernel = "/home/amd-edf/ubuntu_Image" # Ubuntu Kernel extracted
-# disk = ['/dev/mmcblk1p4,,xvda'] # Ubuntu Rootfs in partition 4 - if domU is in partition 4 on KV260
-# disk = ['/dev/sda4,,xvda']      # Ubuntu Rootfs in partition 4 - if domU is in partition 4 on KR260
-disk = ['file:/var/lib/xen/images/ubuntu-guest.ext4,xvda,w']  
-extra = "console=hvc0 root=/dev/xvda"
-memory = 1900 # This can be increased if there is more free memory.
-vcpus = 2
-```
-
-Start guest0/DOMU using:
-
-```bash
-xl create -c guest0.cfg
-```
-
-This boots to ```root@ubuntu```.
-
-To get out of DOMU, press ```ctrl-]```.
-
-After getting out of DOMU, in XEN DOM0 prompt, rnter ```xl list``` to see a list of operating systems running similar to the following:
-
-``` bash
-xilinx-kv260-starterkit-20231:/home/petalinux# xl list
-Name                                        ID   Mem VCPUs      State   Time(s)
-Domain-0                                     0  2048     1     r-----   17916.8
-guest0                                       1  1899     2     r-----   28894.7
-```
-
-To access the guest0 DOMU again, do ```xl console <ID>```
-
-To kill the guest0 DOMU, identify the <ID> from the prints, and then to kill the session, execute ```xl destroy <ID>```.
-
-Another DOMU session can be started without having to reboot Xen.
-
-## Kria Starter Kit Embedded Linux as DOMU
-
-To run Kria Starter Kit embedded Linux instead of Ubuntu as DOMU, the steps are similar to that of Ubuntu OS as DOMU, except for the kernel image and rootfs artifacts for the perspective OS and the config file. There only two artifacts required in this example. In the image folder from Yocto generate, copy the ```Image``` file  as kernel image and ```rootfs.cpio.gz``` file as disk image. The rest of the instructions are the same as that for Ubuntu as domU.
-
-
-
-## Xen in 2025.2 and older
-<details>
-  <summary>Expand for Xen in 2025.2 and older</summary>
-
-### Generating Xen Artifacts
+## Generating Xen Artifacts
 
 Xen artifacts can be generated by native Yocto tool flow or found in the PetaLinux BSP. You can choose to use one of the tools to create Xen artifacts.
 
-#### Generating Xen Artifacts in the Native Yocto Tool Flow
+### Generating Xen Artifacts in the Native Yocto Tool Flow
+
+#### 2026.1 and newer
+
+In 2026.1 and newer, the platform-disk-image-kria recipe for amd-cortexa53-mali-common generates a platform wic image that supports both Xen and Open AMP. Therefore no other steps are required. 
+
+#### 2025.2 and older
 
 First, set up a Yocto project on a host with Yocto support using the instructions [here](https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html), stop after the ```source setupsdk``` step.
 
@@ -165,7 +68,10 @@ There is no Xen support for the combined MACHINE name ```k26-smk```.
 
 In the Yocto project, the Yocto generated .wic that contains Xen support is found in ```<yocto_project>/build/tmp/deploy/images/<machine name>/kria-image-full-cmdline-<machine name>*.wic```.
 
-#### Xen Artifacts in PetaLinux Tool Flow
+<details>
+  <summary>Expand for Xen Artifact generation in the PetaLinux tool flow</summary>
+
+### Xen Artifacts in PetaLinux Tool Flow
 
 Use the Yocto flow because the flow is verified and steps are simpler in the [Prepare the SD Card](#prepare-the-sd-card) stage. If you must use PetaLinux, download a 2023.2 version or later [Kria SOM Starter Kit BSP](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM#PetaLinux-Board-Support-Packages). Extract the PetaLinux project:
 
@@ -176,25 +82,30 @@ cd xilinx-<hardware>-<version>
 
 The .wic image required is in ```pre-built/linux/images/petalinux-sdimage.wic.xz```, and the Xen artifacts required are found in ```pre-built/linux/xen```.
 
-### Prepare the SD Card
+</details>
+
+## Prepare the SD Card
 
 Flash the embedded Linux .wic image from either [Yocto](#generating-xen-artifacts-in-the-native-yocto-tool-flow) or [PetaLinux flow](#xen-artifacts-in-the-petalinux-tool-flow) to an SD card using Balena Etcher. This sets up the SD card to contain two partitions: partition 1 with boot images (accessible by Windows and Linux) and partition 2 with the Kria Starter Kit embedded Linux rootfs (not accessible by Windows) that is also used for XEN DOM0. A third partition is created to house the DOMU rootfs.
 
-#### Partition 1
+### Partition 1
 
 If you are using a Yocto generated .wic image, partition 1 already contain Xen artifacts because the .wic is generated with Xen support.
 
+<details>
+  <summary>Expand for Partition 1 setup for the PetaLinux Flow only</summary>
+
 PetaLinux tool flow only: Open the SD card on a host computer (can be Windows or Linux), go to partition 1, remove the boot images on that partition, and copy all the Xen artifacts in ```pre-built/linux/xen``` into partition 1.
+</details>
+<br/>
 
 Next, copy over the Ubuntu image that you want to boot as DOMU. Download the [iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz](https://people.canonical.com/~platform/images/xilinx/kria-ubuntu-22.04/iot-limerick-kria-classic-desktop-2204-x07-20230302-63-system-boot.tar.gz?_ga=2.93916574.2043050383.1684286640-1062417632.1681766747) file from the [Kria Ubuntu download site](https://ubuntu.com/download/amd-xilinx), uncompress it, and copy the ```image.fit``` file into partition 1 for DOMU later. This file is not being used in Xen booting but is place in partition 1 as a way to transfer the file onto target.
 
-#### Partition 2
+### Partition 2
 
 Partition 2 was programmed with a Kria Starter Kit embedded Linux rootfs from setting the SD card image with the Kria Starter Kit embedded Linux .wic image. This can be reused for Xen.
 
-#### Additional Partition
-
-In this step, an additional partition is created to host the DomU root filesystem (rootfs). In this example, the rootfs is placed on partition 3. However, depending on the partition layout generated by the WIC image, the rootfs partition may instead be assigned to partition 4, 5, or another subsequent partition number.
+### Partition 3
 
 This step needs to be done on a Linux host.
 
@@ -265,9 +176,12 @@ sudo fdisk /dev/sda # enter "D" and then "3" to delete partition 3
 
 Now partition 3 is also ready.
 
-### Boot Xen On Target
+## Boot Xen On Target
 
 Plug the SD card into the Starter Kit and turn on the power. If you used Yocto to generate the Xen artifact, Xen is automatically booted; you can move to the next section.
+
+<details>
+  <summary>Boot XEN with PetaLinux tool flow</summary>
 
 If you use PetaLinux to generate Xen artifacts, you automatically get to the U-Boot command prompt. Enter this to load `xen_boot_sd.scr` to 0xc00000 and source the script to boot Xen:
 
@@ -287,7 +201,9 @@ source 0xc00000
 
 This boots the Kria Starter Kit embedded Linux XEN (DOM0).
 
-#### Boot Ubuntu as DOMU
+</details>
+
+### Boot Ubuntu as DOMU
 
 First, change to root:
 
@@ -361,9 +277,9 @@ To kill the guest0 DOMU, identify the <ID> from the prints, and then to kill the
 
 Another DOMU session can be started without having to reboot Xen.
 
-### Kria Starter Kit Embedded Linux as DOMU
+## Kria Starter Kit Embedded Linux as DOMU
 
-To run Kria Starter Kit embedded Linux instead of Ubuntu as DOMU, the steps are similar to that of Ubuntu OS as DOMU, except for the kernel image and rootfs artifacts for the perspective OS and the config file. There only two artifacts required in this example. In the image folder from yocto generation, copy the ```Image``` file and ```rootfs.cpio.gz``` file into boot partition 1. For partition 3, skip the dd command and leave the partition empty.
+To run Kria Starter Kit embedded Linux instead of Ubuntu as DOMU, the steps are similar to that of Ubuntu OS as DOMU, except for the kernel image and rootfs artifacts for the perspective OS and the config file. There only two artifacts required in this example. In the image folder, copy the ```Image``` file and ```rootfs.cpio.gz``` file into boot partition 1. For partition 3, skip the dd command and leave the partition empty.
 
 Once booted up and in root, copy the two artifacts to partition 3. To find out where the partitions are mapped to, use the ```df -h``` command:
 
@@ -401,8 +317,6 @@ extra ="console=hvc0 init=/bin/sh root=/dev/ram0"
 memory = 1801
 vcpus = 1
 ```
-
-</details>
 
 ## Known Limitations
 

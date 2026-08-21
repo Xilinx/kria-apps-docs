@@ -24,20 +24,19 @@ Kria Starter Kits also support Starter Kit on embedded Linux (generated with Pet
        - `ROS 2 Multi-Node Communications Via TSN V0.1 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/ros2_multinode_communication_via_tsn/0_1/build/html/ros2_multinode_communication_via_tsn_landing.html>`_
        - `ROS 2 Perception Node <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/ros2_perception_node.html>`_
        - `Precision Time Management <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/precision_time_management.html>`_
-       - `Built-In Self Test 1.1 (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/bist/1_1/build/html/bist_landing.html>`_
+       - `Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/bist/1_1/build/html/bist_landing.html>`_
        - `Dynamic Function eXchange (DFX) <https://xilinx.github.io/kria-apps-docs/dfx.html>`_
    * - Kria Ubuntu 24.04
      - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/linux_boot/ubuntu_24_04/build/html/docs/intro.html>`_
      - 
        - `ROS 2 Multi-Node Communications Via TSN V0.2 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/ros2_multinode_communication_via_tsn/0_2/build/html/ros2_multinode_communication_via_tsn_landing.html>`_
-       - `Built-In Self Test 1.2 (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/bist/1_2/build/html/bist_landing.html>`_
+       - `Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/bist.html>`_
    * - Embedded Linux 2022.1 through 2025.2
      - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/linux_boot/embedded_linux/build/html/docs/intro.html>`_
      - 
        - There are no example applications for embedded Linux 2022.1 through 2025.2.
-   * - Embedded Linux 2026.1
+   * - Embedded Linux 2026.1 and newer
      - `Boot Linux Instructions <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/linux_boot/embedded_linux/build/html/docs/intro.html>`_
      - 
-       - `Built-In Self Test 1.3 (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/bist/1_3/build/html/bist_landing.html>`_
-       - `ROS 2 Multi-Node Communications Via TSN V0.3 <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/ros2_multinode_communication_via_tsn/0_3/build/html/ros2_multinode_communication_via_tsn_landing.html>`_
+       - `Built-In Self Test (BIST) <https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/bist.html>`_
 
