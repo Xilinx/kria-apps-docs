@@ -37,19 +37,13 @@ Features
    Setting Up the Board and Application deployment <docs/app_deployment.md>
 
 
-
 .. toctree::
    :maxdepth: 1
    :caption: Tutorials
 
    Linux Boot <docs/linux_boot>
-   Building the Design Components <docs/building_the_design>
-   Building the Hardware Design Using Vivado <docs/build_vivado_design>
-   Creating a Vitis Platform <docs/build_vitis_platform>
-   Generate Custom Firmware <docs/generating_custom_firmware>
+   Hardware Design and Firmware Build Instructions <docs/build_hw_firmware>
    Software Build Instructions <docs/sw_build_instructions>
-
-
 
 
 

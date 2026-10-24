@@ -1,12 +1,16 @@
-<table class="sphinxhide">
- <tr>
-   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1> Kria&trade; KR260 Robotics Starter Kit <br>ROS 2 Multi-Node Communications via TSN Tutorial</h1>
-   </td>
+<table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-logo.png?raw=true" width="30%"/><h1>ROS 2 Multi-Node Communications via TSN Tutorial</h1>
+    </td>
  </tr>
- <tr>
- <td align="center"><h1>Setting up the Board and Application Deployment</h1>
-
- </td>
+</table><table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-logo.png?raw=true" width="30%"/><h1>AMD Kria™ KR260 Robotics Starter Kit</h1>
+    </td>
+ </tr>
+ <tr width="100%">
+    <td align="center"><h2>ROS 2 Multi-Node Communications via TSN Tutorial</h2>
+    </td>
  </tr>
 </table>
 
@@ -22,7 +26,7 @@ This document shows how to set up the board and run the TSN ROS application.
 
 Refreshed app for AMD EDF 26.06 compatibility with updates across apps and documentation
 
-#### Change Log
+#### Version v0.3 Changes
 
 Apps:
 
@@ -44,7 +48,7 @@ Documentation:
 
 Refreshed app for Ubuntu 24.04 compatibility with updates across the documentation.
 
-#### Change Log
+#### Version v0.2 Changes
 
 Documentation:
 
@@ -55,7 +59,7 @@ Documentation:
 
 Added support for CAN Communication between board to board.
 
-#### Change Log
+#### Version v0.1.1 Changes
 
 Apps:
 
@@ -127,19 +131,19 @@ Testing was performed with the following artifacts:
 
 #### Repositories Information
 
-| Component           | Repository                                    | Tag/Commit                                                                                                    |
-|---------------------|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| TSN Utils           | https://github.com/Xilinx/tsn-utils           | [main:1db91b0](https://github.com/Xilinx/tsn-utils/commit/1db91b04d98927a05f868e6365899b13657e76d5)           |
-| TSN Talker Listener | https://github.com/Xilinx/tsn-talker-listener | [main:b55887e](https://github.com/Xilinx/tsn-talker-listener/commit/b55887eaf939399868c17a2e7f1fb7684a6be980) |
-| ROS TSN PubSub      | https://github.com/Xilinx/ros-tsn-pubsub      | [v0.3](https://github.com/Xilinx/ros-tsn-pubsub/releases/tag/v0.3)                                            |
-| PMOD RS485 Test     | https://github.com/Xilinx/pmod-rs485-test     | [v0.2](https://github.com/Xilinx/pmod-rs485-test/releases/tag/v0.2)                                           |
-| Container Recipe    | https://github.com/Xilinx/meta-kria-apps      | [rel-v2026.1](https://github.com/Xilinx/meta-kria-apps/tree/rel-v2026.1)                                                                                           |
+| Component | Repository | Tag/Commit |
+| --- | --- | --- |
+| TSN Utils | [TSN utilities](https://github.com/Xilinx/tsn-utils) | [main:1db91b0](https://github.com/Xilinx/tsn-utils/commit/1db91b04d98927a05f868e6365899b13657e76d5) |
+| TSN Talker Listener | [TSN talker/listener examples](https://github.com/Xilinx/tsn-talker-listener) | [main:b55887e](https://github.com/Xilinx/tsn-talker-listener/commit/b55887eaf939399868c17a2e7f1fb7684a6be980) |
+| ROS TSN PubSub | [ROS TSN publisher/subscriber](https://github.com/Xilinx/ros-tsn-pubsub) | [v0.3](https://github.com/Xilinx/ros-tsn-pubsub/releases/tag/v0.3) |
+| PMOD RS485 Test | [Pmod RS485 test application](https://github.com/Xilinx/pmod-rs485-test) | [v0.2](https://github.com/Xilinx/pmod-rs485-test/releases/tag/v0.2) |
+| Container Recipe | [Kria application recipes](https://github.com/Xilinx/meta-kria-apps) | [rel-v2026.1](https://github.com/Xilinx/meta-kria-apps/tree/rel-v2026.1) |
 
 ### Initial Setup
 
 1. Go through the minimum setup required to boot Linux before continuing with instructions in this page:
-    * [Kria Starter Kit Linux Boot on KR260](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/linux_boot.html)
-    * [Kria Starter Kit Linux Boot on KD240](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/linux_boot.html)
+    * [Kria Starter Kit Linux Boot on KR260](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kr260/build/html/docs/linux_boot.html)
+    * [Kria Starter Kit Linux Boot on KD240](https://pages.gitenterprise.xilinx.com/techdocs/SOM/kd240/build/html/docs/linux_boot.html)
 
 2. Download TSN Docker Image
 
@@ -208,7 +212,7 @@ Two different configurations are shown below for deterministic communication. Af
 
 ### Network Configuration 1 : Two KR260/KD240 boards
 
-> _**Note:**_ This turotial can be run with one KD240 and one KR260 configuration as well.
+> _**Note:**_ This tutorial can be run with one KD240 and one KR260 configuration as well.
 
 This configuration requires two KR260/KD240 units; TSN subsystem is connected to form a network where one of the units is configured to be master and the other one as slave. The following figure represents this configuration:
 
@@ -307,7 +311,7 @@ executed from within the running TSN container.
     > _**Note:**_ The firmware consists of bitstream, device tree overlay (dtbo) file. The firmware is
     loaded dynamically on user request once Linux is fully booted.
 
-### Run TSN-ROS Out of Box Applications
+### Run Two-Board TSN-ROS Applications
 
 * Setup Ethernet ports by running the following commands on the serial terminal. This sets the MAC/IP/VLAN on the EP and ETH ports of the TSN switch IP.
 
@@ -388,7 +392,7 @@ Oscilloscope or Analog Discovery 2 Setup (optional)
   source /opt/xilinx/ros-tsn-example/bin/start_ros_test.sh -t
   ```
 
-###### Observe Results
+###### ROS Publisher and Subscriber Results
 
 * The xlnx-pubsub talker generates a packet of schedule traffic type every second.
 * The xlnx-pubsub listener prints a message when it receives a packet.
@@ -399,7 +403,7 @@ Oscilloscope or Analog Discovery 2 Setup (optional)
 
 To measure latency, an oscilloscope or Analog Discovery 2 device is required. This demo measures the latency between packet transmitted from Board1 and received on Board2. It includes the latency of the software stack as well.
 
-#### Oscilloscope or Analog Discovery 2 Setup
+#### Latency Measurement Oscilloscope Setup
 
 * Connect P7 on the Test PMOD of Board1 to Channel1 of the oscilloscope - Monitors TX packet from Publisher1. Publisher1 can transmit a Scheduled Traffic (ST) packet or a Best effort (BE) packet.
 
@@ -433,7 +437,7 @@ The talker application generates a packet, which triggers the Publisher1 pin in 
 
 * To exit the Listener mode, on Board2, press **Enter**.
 
-##### Observe Results
+##### Latency Measurement Results
 
 * The next steps measure the time difference between Channel1 and Channel2 of the scope to find out the latency. It is ideally found to be between 80us to 160us. The latency numbers are similar between Best Effort and Scheduled Traffic. If you set the Qbv priority, the latency might increase depending on the order of the slot (BE first or ST first) and Time allotted for each slot.
 
@@ -445,7 +449,7 @@ The talker application generates a packet, which triggers the Publisher1 pin in 
 
 This demo allots a time slot for scheduled traffic and best effort and it can be visualized on an oscilloscope. For a cycle time period of 1ms, ST traffic is sent for 700us and BE traffic for 300us.
 
-##### Oscilloscope or Analog Discovery 2 Setup
+##### Two-Board Qbv Oscilloscope Setup
 
 * Connect P8 on the Test PMOD of **Board2** to Channel1 of the oscilloscope - ST packet Rx
 * Connect P10 on the Test PMOD of **Board2** to Channel2 of the oscilloscope - BE packet Rx
@@ -469,7 +473,7 @@ This demo allots a time slot for scheduled traffic and best effort and it can be
 
     The talker on Board1 runs for 30 seconds and exits.
 
-###### Observe Results
+###### Two-Board Qbv Oscilloscope Results
 
 The scope shot shows a 70% Scheduled traffic 30 % Best Effort traffic distribution.
 
@@ -500,7 +504,7 @@ The scope shot shows a 70% Scheduled traffic 30 % Best Effort traffic distributi
 * Move the qbv.pcap capture file to the SD card located under the /boot directory.
 * Move the qbv.pcap file from the SD card to the host PC to analyze the packet distribution within Wireshark.
 
-##### Observe Results
+##### Two-Board Qbv Wireshark Results
 
 Wireshark trace shows a 70% Scheduled traffic 30 % Best Effort traffic distribution.
 
@@ -540,7 +544,7 @@ This configuration requires either two KR260/KD240 units and one KV260/KR260/KD2
 
 > _**Note:**_ For KD240 J24 is PS Eth, J25B top is PL Eth. For KR260 J10D is PS Eth, J10B top is PL Eth
 
-#### Run TSN-ROS Out of Box Applications
+#### Run CNC-Managed TSN-ROS Applications
 
 * Ensure to load TSN docker and accelerator/firmware (refer to [Run Docker](#run-tsn-docker-image) and [Load Firmware and Modules](#load-tsn-firmware-and-modules) sections) before testing example application. If the firmware is already loaded, ignore this step and proceed.
 
@@ -881,7 +885,7 @@ This configuration requires either two KR260/KD240 units and one KV260/KR260/KD2
     * Select the following from Wireshark Tab Statistics -> Capture File Properties. You can see ~30% distribution for BE traffic
     ![30%](media/BE_Traffic.JPG).
 
-5. Notice frame-premption - Optional (if preemption was enabled)
+5. Notice frame-preemption - Optional (if preemption was enabled)
 
     * On CNC, set qbv configs for swp0 for Master(70% Mixed traffic and 30% Scheduled traffic)
         * cycle_time in to be entered nS. Max cycle time is 1sec.
@@ -1173,7 +1177,7 @@ tx_timestamp_timeout    10
 
 > _**Note:**_ Ensure to run the ptp master before starting ptp slave as slave fails to sync when the grandmaster clock is not set. The sync takes about 30 seconds to complete.
 
-##### Observe Results
+##### Workstation PTP Synchronization Results
 
 * The file ptplog contains the saved ptp4l output to the file system on KR260/KD240. The rms value starts out high and trend downward to a single-digit value showing that the clocks are now in sync.
 
@@ -1215,7 +1219,7 @@ Oscilloscope Setup (optional)
 
 * The talker on KR260 runs for 30 seconds and exits automatically
 
-##### Observe Results
+##### Workstation Qbv Traffic Results
 
 * The scope shot shows an approximate Scheduled traffic (Channel 1 yellow) and Best Effort traffic (Channel 2 green) distribution.
 
@@ -1283,7 +1287,7 @@ In this demo, the pmod-test application probes the temperature sensor connected 
   * KR260 command - `/opt/xilinx/pmod-rs485-test/bin/pmod-rs485-test`
   * KD240 command - `/opt/xilinx/pmod-rs485-test/bin/pmod-rs485-test /dev/ttyPS0`
 
-#### Observe Results
+#### RS485 Sensor Results
 
 The output on the serial terminal should match the value displayed on the seven-segment LED display of the sensor.
 

@@ -1,4 +1,11 @@
-﻿# Hardware Architecture of the Platform
+﻿<table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-logo.png?raw=true" width="30%"/><h1>ROS 2 Multi-Node Communications via TSN Tutorial</h1>
+    </td>
+ </tr>
+</table>
+
+# Hardware Architecture of the Platform
 
 ## Introduction
 
@@ -12,13 +19,13 @@
 
  The following figures show the top-level hardware architecture of the reference design:
 
- * KR260
+* KR260
 
-    ![Hardware Architecture block diagram](media/hw_arch_tsn.png)
+  ![Hardware Architecture block diagram](media/hw_arch_tsn.png)
 
 * KD240
 
-    ![Hardware Architecture Block](media/hw_arch_tsn_kd240.png)
+  ![Hardware Architecture Block](media/hw_arch_tsn_kd240.png)
 
 ## TSN IP
 
@@ -37,7 +44,6 @@ For more information on the IP, refer to [PG275](https://www.xilinx.com/content/
 
 ***Note***: You will need access to [1GTSN Documentation Lounge](https://www.xilinx.com/member/1gtsn_doc.html) to view the above document.
 
-
 ## Time Aware DMA (TADMA)
 
 TADMA is aware of the QBV schedule cycles and stream time slots. By using PTP
@@ -51,13 +57,13 @@ For more information on the IP, refer to [PG316](https://www.xilinx.com/content/
 
 The AXI MCDMA provides high-bandwidth direct memory access between memory (AXI Memory Mapped) and stream (AXI Stream) target peripherals. It supports both Memory Mapped to Stream (MM2S) and Stream to Memory Mapped (S2MM) transfers. The AXI MCDMA core provides Scatter Gather (SG) interface with multiple channel support with independent configuration. In this design, the MCDMA is responsible to fetch the Best Effort traffic for transmission by TSN IP. It reads frames from the DDR memory and passes data to the TSN IP on the AXI Stream interface. It is also responsible for writing the Schedule traffic and Best Effort traffic frames received from the TSN IP to the memory. The IP uses the S_AXI_HP0_FPD on the AMD Zynq&trade; UltraScale+&trade; MPSoC Processing System (PS) IP to read/write from/to the DDR memory.
 
-For more information on the IP, refer to [PG288](https://docs.xilinx.com/v/u/en-US/pg288-axi-mcdma).
+For more information on the IP, refer to [PG288](https://docs.amd.com/access/sources/dita/map?Doc_Version=1.2%20English&url=pg288-axi-mcdma).
 
 ## AXI Stream Switch
 
 The AXI4-Stream Switch provides configurable routing between masters and slaves. In this design, it is configured with two slaves and one master. The switch arbitrates when an end of a frame (tlast) is received, either on the received scheduled traffic (rx_st) stream or received best effort traffic (rx_be) stream.
 
-For more information on the IP, refer to [PG085](https://docs.xilinx.com/v/u/en-US/pg085-axi4stream-infrastructure).
+For more information on the IP, refer to [PG085](https://docs.amd.com/access/sources/dita/map?Doc_Version=3.0%20English&url=pg085-axi4stream-infrastructure).
 
 ## Test PMOD controller
 
@@ -72,7 +78,6 @@ The Test PMOD controller is a user IP that drives the [Digilent Test PMOD](https
 | 0x10            | slv_reg4      | KR260,KD240 | 8-bit signature when subscriber 2 receives a TSN frame                                                          |
 | 0x14            | slv_reg5      | KR260       | 8-bit signature when publisher 3 transmits a TSN frame                                                          |
 | 0x18            | slv_reg6      | KR260       | 8-bit signature when subscriber 3 receives a TSN frame                                                          |
-
 
 The TSN application can support multiple publishers and subscribers. When the publisher queues up a packet for transmission, it writes a unique 8-bit word to slv_reg*, which is then transmitted on the PMOD pins. Similarly, when the subscriber receives a packet, it writes a unique 8-bit word to slv_reg*, which is then transmitted on the PMOD pins. The PMOD pins of the publisher and the subscriber are hooked up to a scope and are used to measure an end-to-end application latency. The TSN pub sub application sets the MUX (slv_reg0) to 0 before writing the signature value. The figure below shows the mapping on the PMOD pins when MUX is set to 0 and 1.
 
@@ -90,7 +95,7 @@ For more information on how to use PMOD signals to check clock synchronization, 
 
     The LogiCORE IP AXI UART Lite core converts AXI4 Lite register transactions to RS232 signaling. To support RS485, signaling a patch needs to be applied to the IP core. The AXI Uartlite IP patch is located at the following location and adds a Drive Enable signal to the IP.
 
-    ```$working_dir/kr260/platforms/kr260_tsn_rs485pmod/ip```, or [here](https://github.com/Xilinx/kria-vitis-platforms/tree/v1.2/kr260/platforms/kr260_tsn_rs485pmod/ip), and the patch is also available at the support website [here](https://support.xilinx.com/s/question/0D52E00006hpaVU/feature-request-uartlite-with-rs485-driver-enable-output-signal?language=en_US).
+    `$working_dir/kr260/platforms/kr260_tsn_rs485pmod/ip`, or the [KR260 RS485 IP directory](https://github.com/Xilinx/kria-vitis-platforms/tree/v1.2/kr260/platforms/kr260_tsn_rs485pmod/ip), and the patch is also available in the [UART Lite RS485 driver-enable support discussion](https://support.xilinx.com/s/question/0D52E00006hpaVU/feature-request-uartlite-with-rs485-driver-enable-output-signal?language=en_US).
 
     The Makefile copies the AXI Uartlite IP from the AMD Vivado&trade; install area and applies the patch.
 
@@ -110,9 +115,8 @@ For more information on how to use PMOD signals to check clock synchronization, 
 ## CAN
 
 * KR260:
-    
-    The LogiCORE IP [AXI Quad Serial Peripheral Interface (SPI)](https://www.amd.com/content/dam/xilinx/support/documents/ip_documentation/axi_quad_spi/v3_2/pg153-axi-quad-spi.pdf) core connects the AXI4 interface to SPI slave devices that support the Standard, Dual, or Quad SPI protocol instruction set. The [Digilent PMOD CAN](https://digilent.com/reference/pmod/pmodcan/start) is controlled by AXI Quad SPI through the 12-bit PMOD interface. The Digilent PMOD also has an embedded  Microchip MCP25625  that allows for communication with external CAN devices.
 
+    The LogiCORE IP [AXI Quad Serial Peripheral Interface (SPI)](https://www.amd.com/content/dam/xilinx/support/documents/ip_documentation/axi_quad_spi/v3_2/pg153-axi-quad-spi.pdf) core connects the AXI4 interface to SPI slave devices that support the Standard, Dual, or Quad SPI protocol instruction set. The [Digilent PMOD CAN](https://digilent.com/reference/pmod/pmodcan/start) is controlled by AXI Quad SPI through the 12-bit PMOD interface. The Digilent PMOD also has an embedded  Microchip MCP25625  that allows for communication with external CAN devices.
 
 ## Clocks, Resets and Interrupts
 
@@ -120,13 +124,13 @@ For more information on how to use PMOD signals to check clock synchronization, 
 
 The following table identifies the main clocks of the PL design, their source, clock frequency, and function.
 
-| Clock      | Clock Source  | Clock Frequency     | Funtion |
-| :---       |    :----:     |         :---:       | :-----  |
+| Clock | Clock Source | Clock Frequency | Function |
+| :--- | :---: | :---: | :--- |
 | CLK_IN_gem | External | 25 MHz | Clock source for clocking wizard (clk_wiz_0) generating clocks |
-| clk_out1* |Clocking wizard |200 MHz| TSN IP fifo clock, TADMA IP and MCDMA IP data transactions clock |
-| clk_out2* |Clocking wizard| 125 MHz | TSN IP and TADMA IP Real Time clock (RTC) for internal timers for time sensitivity |
-| clk_out3* |Clocking wizard |300 MHz | reference clock for IDELAY control block for PHY operation on TSN IP|
-| clk_out4* |Clocking wizard |100 MHz | AXI-Lite clock to configure TSN IP, MCDMA IP, AXI Uartlite IP, AXI Quad SPI IP, Register interface IP |
+| clk_out1* | Clocking wizard | 200 MHz | TSN IP fifo clock, TADMA IP and MCDMA IP data transactions clock |
+| clk_out2* | Clocking wizard | 125 MHz | TSN IP and TADMA IP Real Time clock (RTC) for internal timers for time sensitivity |
+| clk_out3* | Clocking wizard | 300 MHz | reference clock for IDELAY control block for PHY operation on TSN IP |
+| clk_out4* | Clocking wizard | 100 MHz | AXI-Lite clock to configure TSN IP, MCDMA IP, AXI Uartlite IP, AXI Quad SPI IP, Register interface IP |
 
 \*Clocks exposed as a Platform interface and can be used by an accelerator.
 
@@ -159,38 +163,37 @@ The following table lists the PL-to-PS interrupts used in this design. The [AXI 
 | intr[17]     | KR260       | AXI Quad SPI IP                                                   |
 | pl_ps_irq1   | KR260       | Exposed as a Platform interface and can be used by an accelerator |
 
-
 ## Resource Utilization
 
 Resource numbers are tool-version dependent. The build version is cited with each table below, and the tables must be regenerated whenever rebuilding on a different release.
 
-* KR260 (AMD Vivado&trade; 2026.1):
+**KR260 (AMD Vivado&trade; 2026.1):**
 
-    | Resource | Utilization | Available | Utilization % |
-    |----------|-------------|-----------|---------------|
-    | LUT      | 50894       | 117120    | 43.45         |
-    | LUTRAM   | 4122        | 57600     | 7.16          |
-    | FF       | 77231       | 234240    | 32.97         |
-    | BRAM     | 117.5       | 144       | 81.60         |
-    | URAM     | 0           | 64        | 0.00          |
-    | DSP      | 39          | 1248      | 3.13          |
-    | IO       | 49          | 189       | 25.93         |
-    | BUFGCE   | 13          | 112       | 11.61         |
-    | MMCM     | 1           | 4         | 25.00         |
+| Resource | Utilization | Available | Utilization % |
+|----------|-------------|-----------|---------------|
+| LUT      | 50894       | 117120    | 43.45         |
+| LUTRAM   | 4122        | 57600     | 7.16          |
+| FF       | 77231       | 234240    | 32.97         |
+| BRAM     | 117.5       | 144       | 81.60         |
+| URAM     | 0           | 64        | 0.00          |
+| DSP      | 39          | 1248      | 3.13          |
+| IO       | 49          | 189       | 25.93         |
+| BUFGCE   | 13          | 112       | 11.61         |
+| MMCM     | 1           | 4         | 25.00         |
 
-* KD240 (AMD Vivado&trade; 2026.1):
+**KD240 (AMD Vivado&trade; 2026.1):**
 
-    | Resource | Utilization | Available | Utilization % |
-    |----------|-------------|-----------|---------------|
-    | LUT      | 59192       | 70560     | 83.89         |
-    | LUTRAM   | 3414        | 28800     | 11.85         |
-    | FF       | 81894       | 141120    | 58.03         |
-    | BRAM     | 105         | 216       | 48.61         |
-    | DSP      | 111         | 360       | 30.83         |
-    | IO       | 64          | 81        | 79.01         |
-    | BUFGCE   | 12          | 88        | 13.64         |
-    | MMCM     | 2           | 3         | 66.67         |
-    | BUFG_PS  | 1           | 72        | 1.39          |
+| Resource | Utilization | Available | Utilization % |
+|----------|-------------|-----------|---------------|
+| LUT      | 59192       | 70560     | 83.89         |
+| LUTRAM   | 3414        | 28800     | 11.85         |
+| FF       | 81894       | 141120    | 58.03         |
+| BRAM     | 105         | 216       | 48.61         |
+| DSP      | 111         | 360       | 30.83         |
+| IO       | 64          | 81        | 79.01         |
+| BUFGCE   | 12          | 88        | 13.64         |
+| MMCM     | 2           | 3         | 66.67         |
+| BUFG_PS  | 1           | 72        | 1.39          |
 
 ## Next Steps
 

@@ -1,13 +1,7 @@
-﻿<table class="sphinxhide">
- <tr>
-   <td align="center"><img src="../../media/xilinx-logo.png" width="30%"/><h1>Kria&trade; KR260 Robotics Starter Kit <br>ROS 2 Multi-Node Communications via TSN Tutorial</h1>
-   </td>
-   </td>
- </tr>
- <tr>
- <td align="center"><h1> Introduction </h1>
-
- </td>
+﻿<table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-logo.png?raw=true" width="30%"/><h1>ROS 2 Multi-Node Communications via TSN Tutorial</h1>
+    </td>
  </tr>
 </table>
 
@@ -31,7 +25,7 @@ The following figure shows the top-level overview of the design implemented on K
 
 ![overview diagram](media/intro_overview_kd240.png)
 
-In this application, the transmitter/publisher and receiver/subscriber functions are on two separate boards and communicate over Ethernet PHY. The TSN IP in the hardware platform supports time synchronization between devices. It also allows traffic shaping based on traffic classes. 
+In this application, the transmitter/publisher and receiver/subscriber functions are on two separate boards and communicate over Ethernet PHY. The TSN IP in the hardware platform supports time synchronization between devices. It also allows traffic shaping based on traffic classes.
 On the KR260, the AXI Uartlite IP enables communication with RS485 devices over MODBUS RTU protocol.
 On the KD240, PS Uart in the kernel enables communication with RS485 devices over MODBUS RTU protocol.
 
@@ -70,7 +64,6 @@ Some extensions of this application are:
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
-
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
