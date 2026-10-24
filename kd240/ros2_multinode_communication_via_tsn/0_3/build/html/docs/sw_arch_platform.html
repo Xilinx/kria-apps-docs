@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Hardware Architecture of the Platform" href="hw_arch_platform.html" />
-    <link rel="prev" title="Overview" href="sw_build_instructions.html" /> 
+    <link rel="prev" title="Software Build Instructions" href="sw_build_instructions.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,20 +90,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="linux_boot.html">Linux Boot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_the_design.html">Building the Design Components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generating_custom_firmware.html">Generate Custom Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html#building-the-container">Building the container</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html#bundled-components">Bundled components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_hw_firmware.html">Hardware Design and Firmware Build Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html">Software Build Instructions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Architecture</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Software Architecture - Platform</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tsn">TSN</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#driver">Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tsn-drivers">TSN Drivers</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ros2">ROS2</a><ul>
@@ -121,7 +116,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#can-interface-and-demonstration">CAN Interface and Demonstration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-drivers">CAN Drivers</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a><ul>
@@ -166,7 +161,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="software-architecture-of-the-platform">
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-logo.png?raw=true" width="30%"/><h1>ROS 2 Multi-Node Communications via TSN Tutorial</h1>
+    </td>
+ </tr>
+</table><div class="section" id="software-architecture-of-the-platform">
 <h1>Software Architecture of the Platform<a class="headerlink" href="#software-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
@@ -216,8 +216,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="tsn">
 <h2>TSN<a class="headerlink" href="#tsn" title="Permalink to this heading">¶</a></h2>
 <p>Time-Sensitive Networking (TSN) is a set of standards under development by the Time-Sensitive Networking task group of the IEEE 802.1 working group. This standards allows low latency transmission and time-guaranteed packet delivery.</p>
-<div class="section" id="driver">
-<h3>Driver<a class="headerlink" href="#driver" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="tsn-drivers">
+<h3>TSN Drivers<a class="headerlink" href="#tsn-drivers" title="Permalink to this heading">¶</a></h3>
 <p>Set of drivers used for the TSN solution is enabled in the staging area under <code class="docutils literal notranslate"><span class="pre">linux-xlnx/drivers/staging/xilinx-tsn</span></code>. These set of drivers provides TSN capability such as vlan,scheduled traffic, best effort traffic, ptp, QBV shaper, and so on using standard ethernet framework and IP route tools.</p>
 <p>The details of the device tree for the driver can be found in the kernel documentation at <code class="docutils literal notranslate"><span class="pre">linux-xlnx/Documentation/devicetree/bindings/net/xilinx*tsn*.txt</span></code>.</p>
 <p>Refer to <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/25034864/Xilinx+TSN+Solution">Xilinx TSN Solution</a> for details of various features supported by Xilinx TSN drivers.</p>
@@ -228,9 +228,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Robot Operating System (ROS) is a set of open source algorithms, hardware driver, software, and tools for developing robot control software. Contrary to its name, ROS is not an operating system but a library.</p>
 <p>In a full-fledged ROS environment sensors in robots, motion controllers, detection, and navigation algorithms, and so on are all components of this distributed ROS architecture. Each individual component is referred as <strong>Node</strong>. ROS nodes (and applications) typically communicate through interfaces of one of three types: messages, services, and actions. ROS 2 uses a simplified description language, the interface definition language (IDL), to describe these interfaces. This description makes it easy for ROS tools to automatically generate the source code for the interface type in several target languages.</p>
 <p>Topics are the elements of ROS2 that act as bus for nodes to exchange messages. In the simplest use case, the message is published by a node on a given topic. Anyone subscribed to that topic can receive the message.</p>
-<p><img alt="TopicSingleNode" src="../_images/Topic-SinglePublisherandSingleSubscriber.gif" /></p>
+<p><img alt="TopicSingleNode" src="../_images/ros-topic-single-pubsub.svg" /></p>
 <p>A node may publish data to any number of topics and simultaneously have subscriptions to any number of topics.</p>
-<p><img alt="TopicMultiNodes" src="../_images/Topic-MultiplePublisherandMultipleSubscriber.gif" /></p>
+<p><img alt="TopicMultiNodes" src="../_images/ros-topic-multi-pubsub.svg" /></p>
 <p>These nodes can be on the same system or distributed across systems. The biggest improvement ROS2 provides over ROS1 is how the communication is handled across various systems. ROS2 adopts the decentralized (as opposed to centralized in ROS1) DDS middleware. Instead of implementing its own DDS layer, ROS2 provides a middleware abstraction layer (rmw), which can be plugged on any standard DDS implementation.</p>
 <div class="section" id="dds">
 <h3>DDS<a class="headerlink" href="#dds" title="Permalink to this heading">¶</a></h3>
@@ -320,7 +320,7 @@ ip<span class="w"> </span>addr<span class="w"> </span>add<span class="w"> </span
 <li><p>In KR260, uartlite IP in PL is patched to support RS485, by enabling/connect the DE line. To support this, there is a <strong>uartlite-rs485</strong> driver in the staging area. This driver is copy of original uartlite driver with additional advertised capability of RS485 support. No additional changes are required for the given IP patch.</p>
 <p>This new driver requires different compatibility string and hence, the original device tree node’s compatible string needs to be overwritten as below.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&amp;axi_uartlite_0 {
-        compatible = &quot;xlnx,axi-uartlite-rs485&quot;;
+        compatible = "xlnx,axi-uartlite-rs485";
 };
 </pre></div>
 </div>
@@ -328,7 +328,7 @@ ip<span class="w"> </span>addr<span class="w"> </span>add<span class="w"> </span
 <li><p>In KD240, uart-RS485 enablement is through the PS Uart and needs below device tree entries.
 These entries are present in the device tree by default, so no overriding is required.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&amp;uart0 {
-     status = &quot;okay&quot;;
+     status = "okay";
      xlnx,phy-ctrl-gpios = &lt;0x0f 0x48 0x00&gt;;
      linux,rs485-enabled-at-boot-time;
 };
@@ -361,8 +361,8 @@ robust communication protocol designed to allow devices to communicate with each
 widely used in industrial applications due to its reliability and efficiency in data transmission.
 Integrating CAN with ROS environment enhances the ability to manage real-time data exchange in
 robotics and automation systems.</p>
-<div class="section" id="id1">
-<h3>Driver<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="can-drivers">
+<h3>CAN Drivers<a class="headerlink" href="#can-drivers" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>The AXI QSPI driver facilitates high-speed communication with the Quad SPI interface, which is used
 to initialize and configure the mcp25625 CAN controller.</p></li>
@@ -373,11 +373,11 @@ the CAN controller by specifying the required SPI settings and CAN parameters:</
 </li>
 </ul>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span> &amp;axi_quad_spi_CAN {
-               compatible = &quot;xlnx,axi-quad-spi-3.2&quot;, &quot;xlnx,xps-spi-2.00.a&quot;;
+               compatible = "xlnx,axi-quad-spi-3.2", "xlnx,xps-spi-2.00.a";
                xlnx,num-ss-bits = &lt;0x1&gt;;
                xlnx,spi-mode = &lt;0&gt;;
                can@0 {
-                       compatible = &quot;microchip,mcp25625&quot;;
+                       compatible = "microchip,mcp25625";
                        spi-max-frequency = &lt;10000000&gt;;
                };
  };        
@@ -397,8 +397,8 @@ receiving CAN messages.</p>
 <li><p><a class="reference external" href="https://www.xilinx.com">Xilinx TSN UserGuide</a></p></li>
 <li><p><a class="reference external" href="https://docs.ros.org/en/jazzy/">ROS2 Jazzy</a></p></li>
 <li><p><a class="reference external" href="https://fast-dds.docs.eprosima.com/en/latest/index.html">eProsima fast DDS</a></p></li>
-<li><p><a class="reference external" href="https://www.libmodbus.org/documentation/">Modbus</a></p></li>
-<li><p><a class="reference external" href="https://www.modbus.org/specs.php">Modbus Protocol</a></p></li>
+<li><p><a class="reference external" href="https://www.libmodbus.org">Modbus</a></p></li>
+<li><p><a class="reference external" href="https://www.modbus.org">Modbus Protocol</a></p></li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/RS-485">RS485</a></p></li>
 <li><p><a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842249/Uartlite+Driver">Uartlite Driver</a> (Original driver)</p></li>
 <li><p><a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/575209708/Axi-Quad+SPI">Axi-Quad SPI</a></p></li>
@@ -427,7 +427,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="sw_build_instructions.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sw_build_instructions.html" class="btn btn-neutral float-left" title="Software Build Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="hw_arch_platform.html" class="btn btn-neutral float-right" title="Hardware Architecture of the Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -435,7 +435,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 18, 2026.
+      <span class="lastupdated">Last updated on October 23, 2026.
       </span></p>
   </div>
 

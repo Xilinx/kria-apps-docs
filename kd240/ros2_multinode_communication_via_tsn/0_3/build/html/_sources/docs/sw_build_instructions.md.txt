@@ -1,3 +1,17 @@
+<!--
+Copyright (C) 2022-2026 Advanced Micro Devices, Inc. All rights reserved.
+SPDX-License-Identifier: MIT
+-->
+
+<table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-logo.png?raw=true" width="30%"/><h1>ROS 2 Multi-Node Communications via TSN Tutorial</h1>
+    </td>
+ </tr>
+</table>
+
+# Software Build Instructions
+
 ## Overview
 
 For the AMD EDF release the TSN application ships as a prebuilt OCI (Docker)
@@ -17,12 +31,14 @@ source with Yocto/BitBake.
    [meta-kria-apps](https://github.com/Xilinx/meta-kria-apps)
    layer, which provides the TSN container recipe
    ([recipes-containers/container-tsn/container-tsn-rs485pmod.bb](https://github.com/Xilinx/meta-kria-apps/blob/rel-v2026.1/recipes-containers/container-tsn/container-tsn-rs485pmod.bb)):
-   ```
+
+   ```bash
    bitbake-layers add-layer /path/to/meta-kria-apps
    ```
 
 3. Build the container image:
-   ```
+
+   ```bash
    MACHINE=amd-cortexa53-mali-common bitbake container-tsn-rs485pmod
    ```
 
@@ -40,7 +56,7 @@ components individually - each component builds via the recipe listed here (and
 is documented in its own repository).
 
 | Component | Built by recipe | Source repository |
-|-----------|-----------------|-------------------|
+| --- | --- | --- |
 | ROS TSN PubSub | [meta-kria-apps: recipes-apps/ros-tsn-pubsub](https://github.com/Xilinx/meta-kria-apps/tree/rel-v2026.1/recipes-apps/ros-tsn-pubsub) | [Xilinx/ros-tsn-pubsub](https://github.com/Xilinx/ros-tsn-pubsub) |
 | PMOD RS485 Test | [meta-kria-apps: recipes-apps/pmod-rs485-test](https://github.com/Xilinx/meta-kria-apps/tree/rel-v2026.1/recipes-apps/pmod-rs485-test) | [Xilinx/pmod-rs485-test](https://github.com/Xilinx/pmod-rs485-test) |
 | TSN Utilities | [meta-xilinx-tsn: recipes-apps/tsn-utils](https://github.com/Xilinx/meta-xilinx-tsn/tree/rel-v2026.1/recipes-apps/tsn-utils) | [Xilinx/tsn-utils](https://github.com/Xilinx/tsn-utils) |

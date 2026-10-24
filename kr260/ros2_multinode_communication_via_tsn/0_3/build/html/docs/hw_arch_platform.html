@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
-<script type="text/javascript">
-function OptanonWrapper() { }
-</script>
-<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- OneTrust Cookies Consent Notice start
+  <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+          data-document-language="true" type="text/javascript" charset="UTF-8"
+          data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7"></script>
+  <script type="text/javascript">function OptanonWrapper() { }</script>
+  
+OneTrust Cookies Consent Notice end -->
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -89,13 +89,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="linux_boot.html">Linux Boot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_the_design.html">Building the Design Components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="build_vivado_design.html">Building the Hardware Design Using Vivado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="build_vitis_platform.html">Creating a Vitis Platform</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generating_custom_firmware.html">Generate Custom Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html#building-the-container">Building the container</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html#bundled-components">Bundled components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_hw_firmware.html">Hardware Design and Firmware Build Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sw_build_instructions.html">Software Build Instructions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Architecture</span></p>
 <ul class="current">
@@ -156,7 +151,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="hardware-architecture-of-the-platform">
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-logo.png?raw=true" width="30%"/><h1>ROS 2 Multi-Node Communications via TSN Tutorial</h1>
+    </td>
+ </tr>
+</table><div class="section" id="hardware-architecture-of-the-platform">
 <h1>Hardware Architecture of the Platform<a class="headerlink" href="#hardware-architecture-of-the-platform" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
@@ -201,12 +201,12 @@ generated time, it is capable of fetching frames for different streams/traffic c
 <div class="section" id="axi-multichannel-dma-mcdma">
 <h2>AXI Multichannel DMA (MCDMA)<a class="headerlink" href="#axi-multichannel-dma-mcdma" title="Permalink to this heading">¶</a></h2>
 <p>The AXI MCDMA provides high-bandwidth direct memory access between memory (AXI Memory Mapped) and stream (AXI Stream) target peripherals. It supports both Memory Mapped to Stream (MM2S) and Stream to Memory Mapped (S2MM) transfers. The AXI MCDMA core provides Scatter Gather (SG) interface with multiple channel support with independent configuration. In this design, the MCDMA is responsible to fetch the Best Effort traffic for transmission by TSN IP. It reads frames from the DDR memory and passes data to the TSN IP on the AXI Stream interface. It is also responsible for writing the Schedule traffic and Best Effort traffic frames received from the TSN IP to the memory. The IP uses the S_AXI_HP0_FPD on the AMD Zynq™ UltraScale+™ MPSoC Processing System (PS) IP to read/write from/to the DDR memory.</p>
-<p>For more information on the IP, refer to <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/pg288-axi-mcdma">PG288</a>.</p>
+<p>For more information on the IP, refer to <a class="reference external" href="https://docs.amd.com/access/sources/dita/map?Doc_Version=1.2%20English&amp;url=pg288-axi-mcdma">PG288</a>.</p>
 </div>
 <div class="section" id="axi-stream-switch">
 <h2>AXI Stream Switch<a class="headerlink" href="#axi-stream-switch" title="Permalink to this heading">¶</a></h2>
 <p>The AXI4-Stream Switch provides configurable routing between masters and slaves. In this design, it is configured with two slaves and one master. The switch arbitrates when an end of a frame (tlast) is received, either on the received scheduled traffic (rx_st) stream or received best effort traffic (rx_be) stream.</p>
-<p>For more information on the IP, refer to <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/pg085-axi4stream-infrastructure">PG085</a>.</p>
+<p>For more information on the IP, refer to <a class="reference external" href="https://docs.amd.com/access/sources/dita/map?Doc_Version=3.0%20English&amp;url=pg085-axi4stream-infrastructure">PG085</a>.</p>
 </div>
 <div class="section" id="test-pmod-controller">
 <h2>Test PMOD controller<a class="headerlink" href="#test-pmod-controller" title="Permalink to this heading">¶</a></h2>
@@ -275,7 +275,7 @@ generated time, it is capable of fetching frames for different streams/traffic c
 <ul>
 <li><p>KR260:</p>
 <p>The LogiCORE IP AXI UART Lite core converts AXI4 Lite register transactions to RS232 signaling. To support RS485, signaling a patch needs to be applied to the IP core. The AXI Uartlite IP patch is located at the following location and adds a Drive Enable signal to the IP.</p>
-<p><code class="docutils literal notranslate"><span class="pre">$working_dir/kr260/platforms/kr260_tsn_rs485pmod/ip</span></code>, or <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms/tree/v1.2/kr260/platforms/kr260_tsn_rs485pmod/ip">here</a>, and the patch is also available at the support website <a class="reference external" href="https://support.xilinx.com/s/question/0D52E00006hpaVU/feature-request-uartlite-with-rs485-driver-enable-output-signal?language=en_US">here</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$working_dir/kr260/platforms/kr260_tsn_rs485pmod/ip</span></code>, or the <a class="reference external" href="https://github.com/Xilinx/kria-vitis-platforms/tree/v1.2/kr260/platforms/kr260_tsn_rs485pmod/ip">KR260 RS485 IP directory</a>, and the patch is also available in the <a class="reference external" href="https://support.xilinx.com/s/question/0D52E00006hpaVU/feature-request-uartlite-with-rs485-driver-enable-output-signal?language=en_US">UART Lite RS485 driver-enable support discussion</a>.</p>
 <p>The Makefile copies the AXI Uartlite IP from the AMD Vivado™ install area and applies the patch.</p>
 <p>To test an RS485 interface, the signals are connected to a <a class="reference external" href="https://reference.digilentinc.com/pmod/pmodrs485/reference-manual">Digilent PMOD R485</a> and a <a class="reference external" href="https://www.aliexpress.com/item/33054683552.html">temperature sensor</a>. The application running on the PS reads and writes to the AXI Uartlite registers and communicates with the temperature sensor using the MODBUS protocol.</p>
 <p>For an overview on RS485 and MODBUS, refer to this <a class="reference external" href="https://www.yoctopuce.com/EN/article/a-quick-tutorial-on-rs485-and-modbus">article</a>.</p>
@@ -307,7 +307,7 @@ with the temperature sensor using MODBUS protocol.</p>
 <th style="text-align: left;">Clock</th>
 <th style="text-align: center;">Clock Source</th>
 <th style="text-align: center;">Clock Frequency</th>
-<th style="text-align: left;">Funtion</th>
+<th style="text-align: left;">Function</th>
 </tr>
 </thead>
 <tbody>
@@ -442,35 +442,139 @@ with the temperature sensor using MODBUS protocol.</p>
 <div class="section" id="resource-utilization">
 <h2>Resource Utilization<a class="headerlink" href="#resource-utilization" title="Permalink to this heading">¶</a></h2>
 <p>Resource numbers are tool-version dependent. The build version is cited with each table below, and the tables must be regenerated whenever rebuilding on a different release.</p>
-<ul class="simple">
-<li><p>KR260 (AMD Vivado™ 2026.1):</p></li>
-</ul>
-<pre><code>| Resource | Utilization | Available | Utilization % |
-|----------|-------------|-----------|---------------|
-| LUT      | 50894       | 117120    | 43.45         |
-| LUTRAM   | 4122        | 57600     | 7.16          |
-| FF       | 77231       | 234240    | 32.97         |
-| BRAM     | 117.5       | 144       | 81.60         |
-| URAM     | 0           | 64        | 0.00          |
-| DSP      | 39          | 1248      | 3.13          |
-| IO       | 49          | 189       | 25.93         |
-| BUFGCE   | 13          | 112       | 11.61         |
-| MMCM     | 1           | 4         | 25.00         |
-</code></pre><ul class="simple">
-<li><p>KD240 (AMD Vivado™ 2026.1):</p></li>
-</ul>
-<pre><code>| Resource | Utilization | Available | Utilization % |
-|----------|-------------|-----------|---------------|
-| LUT      | 59192       | 70560     | 83.89         |
-| LUTRAM   | 3414        | 28800     | 11.85         |
-| FF       | 81894       | 141120    | 58.03         |
-| BRAM     | 105         | 216       | 48.61         |
-| DSP      | 111         | 360       | 30.83         |
-| IO       | 64          | 81        | 79.01         |
-| BUFGCE   | 12          | 88        | 13.64         |
-| MMCM     | 2           | 3         | 66.67         |
-| BUFG_PS  | 1           | 72        | 1.39          |
-</code></pre></div>
+<p><strong>KR260 (AMD Vivado™ 2026.1):</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Resource</th>
+<th>Utilization</th>
+<th>Available</th>
+<th>Utilization %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LUT</td>
+<td>50894</td>
+<td>117120</td>
+<td>43.45</td>
+</tr>
+<tr>
+<td>LUTRAM</td>
+<td>4122</td>
+<td>57600</td>
+<td>7.16</td>
+</tr>
+<tr>
+<td>FF</td>
+<td>77231</td>
+<td>234240</td>
+<td>32.97</td>
+</tr>
+<tr>
+<td>BRAM</td>
+<td>117.5</td>
+<td>144</td>
+<td>81.60</td>
+</tr>
+<tr>
+<td>URAM</td>
+<td>0</td>
+<td>64</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>DSP</td>
+<td>39</td>
+<td>1248</td>
+<td>3.13</td>
+</tr>
+<tr>
+<td>IO</td>
+<td>49</td>
+<td>189</td>
+<td>25.93</td>
+</tr>
+<tr>
+<td>BUFGCE</td>
+<td>13</td>
+<td>112</td>
+<td>11.61</td>
+</tr>
+<tr>
+<td>MMCM</td>
+<td>1</td>
+<td>4</td>
+<td>25.00</td>
+</tr>
+</tbody>
+</table><p><strong>KD240 (AMD Vivado™ 2026.1):</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Resource</th>
+<th>Utilization</th>
+<th>Available</th>
+<th>Utilization %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LUT</td>
+<td>59192</td>
+<td>70560</td>
+<td>83.89</td>
+</tr>
+<tr>
+<td>LUTRAM</td>
+<td>3414</td>
+<td>28800</td>
+<td>11.85</td>
+</tr>
+<tr>
+<td>FF</td>
+<td>81894</td>
+<td>141120</td>
+<td>58.03</td>
+</tr>
+<tr>
+<td>BRAM</td>
+<td>105</td>
+<td>216</td>
+<td>48.61</td>
+</tr>
+<tr>
+<td>DSP</td>
+<td>111</td>
+<td>360</td>
+<td>30.83</td>
+</tr>
+<tr>
+<td>IO</td>
+<td>64</td>
+<td>81</td>
+<td>79.01</td>
+</tr>
+<tr>
+<td>BUFGCE</td>
+<td>12</td>
+<td>88</td>
+<td>13.64</td>
+</tr>
+<tr>
+<td>MMCM</td>
+<td>2</td>
+<td>3</td>
+<td>66.67</td>
+</tr>
+<tr>
+<td>BUFG_PS</td>
+<td>1</td>
+<td>72</td>
+<td>1.39</td>
+</tr>
+</tbody>
+</table></div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
@@ -500,7 +604,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2023-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 18, 2026.
+      <span class="lastupdated">Last updated on October 23, 2026.
       </span></p>
   </div>
 

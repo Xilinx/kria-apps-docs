@@ -1,4 +1,11 @@
-﻿# Software Architecture of the Platform
+﻿<table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-logo.png?raw=true" width="30%"/><h1>ROS 2 Multi-Node Communications via TSN Tutorial</h1>
+    </td>
+ </tr>
+</table>
+
+# Software Architecture of the Platform
 
 ## Introduction
 
@@ -39,7 +46,7 @@ The following list describes the top-level application functions:
 
 Time-Sensitive Networking (TSN) is a set of standards under development by the Time-Sensitive Networking task group of the IEEE 802.1 working group. This standards allows low latency transmission and time-guaranteed packet delivery.
 
-### Driver
+### TSN Drivers
 
 Set of drivers used for the TSN solution is enabled in the staging area under `linux-xlnx/drivers/staging/xilinx-tsn`. These set of drivers provides TSN capability such as vlan,scheduled traffic, best effort traffic, ptp, QBV shaper, and so on using standard ethernet framework and IP route tools.
 
@@ -55,11 +62,11 @@ In a full-fledged ROS environment sensors in robots, motion controllers, detecti
 
 Topics are the elements of ROS2 that act as bus for nodes to exchange messages. In the simplest use case, the message is published by a node on a given topic. Anyone subscribed to that topic can receive the message.
 
-![TopicSingleNode](media/Topic-SinglePublisherandSingleSubscriber.gif)
+![TopicSingleNode](media/ros-topic-single-pubsub.svg)
 
 A node may publish data to any number of topics and simultaneously have subscriptions to any number of topics.
 
-![TopicMultiNodes](media/Topic-MultiplePublisherandMultipleSubscriber.gif)
+![TopicMultiNodes](media/ros-topic-multi-pubsub.svg)
 
 These nodes can be on the same system or distributed across systems. The biggest improvement ROS2 provides over ROS1 is how the communication is handled across various systems. ROS2 adopts the decentralized (as opposed to centralized in ROS1) DDS middleware. Instead of implementing its own DDS layer, ROS2 provides a middleware abstraction layer (rmw), which can be plugged on any standard DDS implementation.
 
@@ -113,18 +120,18 @@ Modbus data can be carried over serial ports or ethernet interface.
 
 ### Modbus RTU frame format
 
-| Name     | Length (bits) | Function                                                                            |
-|----------|---------------|-------------------------------------------------------------------------------------|
-| Start    | 3.5 x 8       | At least 3+1⁄2 character times (28 bits) of silence (mark condition)                |
-| Address  | 8             | Station address                                                                     |
-| Function | 8             | Indicates the function code. For example, "read coils"                                       |
-| Data     | n × 8         | Data + length will be filled depending on the message type                          |
-| CRC      | 16            | Cyclic redundancy check                                                             |
-| End      | 3.5 x 8       | At least 3+1⁄2 character times (28 bits) of silence (mark condition) between frames |
+| Name | Length (bits) | Function |
+| --- | --- | --- |
+| Start | 3.5 x 8 | At least 3+1⁄2 character times (28 bits) of silence (mark condition) |
+| Address | 8 | Station address |
+| Function | 8 | Indicates the function code. For example, "read coils" |
+| Data | n × 8 | Data + length will be filled depending on the message type |
+| CRC | 16 | Cyclic redundancy check |
+| End | 3.5 x 8 | At least 3+1⁄2 character times (28 bits) of silence (mark condition) between frames |
 
 ### Linux driver
 
-* In KR260, uartlite IP in PL is patched to support RS485, by enabling/connect the DE line. To support this, there is a **uartlite-rs485** driver in the staging area. This driver is copy of original uartlite driver with additional advertised capability of RS485 support. No additional changes are required for the given IP patch.
+- In KR260, uartlite IP in PL is patched to support RS485, by enabling/connect the DE line. To support this, there is a **uartlite-rs485** driver in the staging area. This driver is copy of original uartlite driver with additional advertised capability of RS485 support. No additional changes are required for the given IP patch.
 
   This new driver requires different compatibility string and hence, the original device tree node's compatible string needs to be overwritten as below.
 
@@ -134,7 +141,7 @@ Modbus data can be carried over serial ports or ethernet interface.
   };
   ```
 
-* In KD240, uart-RS485 enablement is through the PS Uart and needs below device tree entries.
+- In KD240, uart-RS485 enablement is through the PS Uart and needs below device tree entries.
   These entries are present in the device tree by default, so no overriding is required.
 
   ```text
@@ -170,11 +177,11 @@ widely used in industrial applications due to its reliability and efficiency in 
 Integrating CAN with ROS environment enhances the ability to manage real-time data exchange in
 robotics and automation systems.  
 
-### Driver
+### CAN Drivers
 
-* The AXI QSPI driver facilitates high-speed communication with the Quad SPI interface, which is used
+- The AXI QSPI driver facilitates high-speed communication with the Quad SPI interface, which is used
 to initialize and configure the mcp25625 CAN controller.
-* The MCP251x CAN driver is utilized to interface with the Digilent PMOD CAN device. This driver
+- The MCP251x CAN driver is utilized to interface with the Digilent PMOD CAN device. This driver
 supports standard protocols and ensures reliable data transmission across the CAN network.
 
   The necessary device tree entry that configures the AXI QSPI interface to initialize
@@ -192,8 +199,8 @@ supports standard protocols and ensures reliable data transmission across the CA
   };        
   ```
 
-For the communication, can-utils package is used to interact with the CAN bus via SocketCAN framework, 
-which provides a standardized API for CAN communication on Linux systems. 
+For the communication, can-utils package is used to interact with the CAN bus via SocketCAN framework,
+which provides a standardized API for CAN communication on Linux systems.
 The [CAN demonstration](app_deployment.md#can-communication-setup-and-demonstration) section includes
 instructions to initialize the CAN interface, establish communication, basic examples of sending and
 receiving CAN messages.
@@ -204,8 +211,8 @@ receiving CAN messages.
 - [Xilinx TSN UserGuide](https://www.xilinx.com)
 - [ROS2 Jazzy](https://docs.ros.org/en/jazzy/)
 - [eProsima fast DDS](https://fast-dds.docs.eprosima.com/en/latest/index.html)
-- [Modbus](https://www.libmodbus.org/documentation/)
-- [Modbus Protocol](https://www.modbus.org/specs.php)
+- [Modbus](https://www.libmodbus.org)
+- [Modbus Protocol](https://www.modbus.org)
 - [RS485](https://en.wikipedia.org/wiki/RS-485)
 - [Uartlite Driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842249/Uartlite+Driver) (Original driver)
 - [Axi-Quad SPI](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/575209708/Axi-Quad+SPI)
