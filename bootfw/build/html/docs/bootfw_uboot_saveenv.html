@@ -130,10 +130,10 @@ $<span class="w"> </span>petalinux-config<span class="w"> </span>–c<span class
 $<span class="w"> </span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot<span class="w"> </span><span class="c1">#---&gt; Environment ---&gt; [0x20000] Environment Sector-Size (enter and change to 0x20000)</span>
 $<span class="w"> </span>petalinux-config<span class="w"> </span>–c<span class="w"> </span>u-boot<span class="w"> </span><span class="c1">#---&gt; Command line interface ---&gt; Environment commands ---&gt; [*] saveenv (press Y to select )</span>
 $<span class="w"> </span>vim<span class="w"> </span>project-spec/meta-user/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend<span class="w">  </span><span class="c1"># workaround, currently new config file is not added correctly, fix in the file from:</span>
-<span class="c1"># SRC_URI += &quot;file://user_&lt;timestamp&gt;.cfg \</span>
+<span class="c1"># SRC_URI += "file://user_&lt;timestamp&gt;.cfg \</span>
 <span class="c1"># to:</span>
-<span class="c1"># SRC_URI:append = &quot; file://user_&lt;timestamp&gt;.cfg \&quot;</span>
-<span class="c1">#note :there is a space between the double quote and &quot;file://&quot;</span>
+<span class="c1"># SRC_URI:append = " file://user_&lt;timestamp&gt;.cfg \"</span>
+<span class="c1">#note :there is a space between the double quote and "file://"</span>
 
 $<span class="w"> </span>petalinux-build<span class="w"> </span>-c<span class="w"> </span>u-boot<span class="w"> </span>-x<span class="w"> </span>cleanall
 $<span class="w"> </span>petalinux-build<span class="w"> </span>-c<span class="w"> </span>u-boot
@@ -155,7 +155,7 @@ repo<span class="w"> </span>sync
 <span class="nb">source</span><span class="w"> </span>setupsdk
 <span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>virtual/bootloader<span class="w"> </span>-c<span class="w"> </span>menuconfig<span class="w"> </span>
 <span class="c1"># Environment ---&gt; [ ] Environment is not stored (press N to deselect )</span>
-<span class="c1"># Environment ---&gt; [*] Environment is in SPI flash (press Y to select ), and make sure any other &quot;Environment is in&quot; except for SPI is deselected *press N to deselect)</span>
+<span class="c1"># Environment ---&gt; [*] Environment is in SPI flash (press Y to select ), and make sure any other "Environment is in" except for SPI is deselected *press N to deselect)</span>
 <span class="c1">#---&gt; Command line interface ---&gt; Environment commands ---&gt; [*] saveenv (press Y to select )</span>
 <span class="c1">#exit and save</span>
 <span class="nv">MACHINE</span><span class="o">=</span>k26-smk<span class="w"> </span>bitbake<span class="w"> </span>kria-qspi
@@ -184,7 +184,7 @@ saveenv
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 14, 2026.
+      <span class="lastupdated">Last updated on October 22, 2026.
       </span></p>
   </div>
 

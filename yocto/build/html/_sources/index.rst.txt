@@ -1,11 +1,9 @@
-############################################
+###############################
 Yocto Support
-############################################
+###############################
 
 
 .. include:: ../../shared/somtoctree.txt
-
-
 
 
 
@@ -21,4 +19,4 @@ Yocto Support
 
 .. Copyright © 2021–2026 Advanced Micro Devices, Inc
 
-.. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.
+.. `Terms and Conditions <https://www.amd.com/en/legal/copyright.html>`_.

@@ -181,7 +181,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Download the desired <code class="docutils literal notranslate"><span class="pre">.wic</span></code> image from the <a class="reference external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+SOMs+Starter+Kits#Embedded-Linux-(Yocto)">Kria Wiki</a>.</p>
 <p>Alternatively, generate a <code class="docutils literal notranslate"><span class="pre">.wic</span></code> image for the target Kria Production SOM using the Yocto workflow. Refer to the <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html">Yocto Kria Support</a> documentation for additional details.</p>
 <p>Use the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>amd-cortexa53-mali-common<span class="w"> </span>bitbake<span class="w"> </span>platform-disk-image-kria
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>amd-cortexa53-mali-common<span class="w"> </span>bitbake<span class="w"> </span>edf-platform-disk-image-kria
 </pre></div>
 </div>
 <p>After obtaining the <code class="docutils literal notranslate"><span class="pre">.wic</span></code> image, compress it into a <code class="docutils literal notranslate"><span class="pre">wic.gz</span></code> file. The Embedded Flash Update Tool accepts <code class="docutils literal notranslate"><span class="pre">.gz</span></code> images only; <code class="docutils literal notranslate"><span class="pre">.xz</span></code> images are not supported.</p>
@@ -304,13 +304,13 @@ tar<span class="w"> </span>-czvf<span class="w"> </span>&lt;tarballname&gt;.tar.
 <span class="w">    </span><span class="nb">source</span><span class="w"> </span>setupsdk
 <span class="w">    </span><span class="c1">#modify sources/meta-kria/conf/machine/&lt;MACHINE name&gt;.conf:</span>
 <span class="w">    </span><span class="c1"># replace the following line:</span>
-<span class="w">        </span><span class="c1">#SDT_URI = &quot;https://petalinux.xilinx.com/sswreleases/rel-v2025.1/sdt/2025.1/2025.1_0407_1_04081029/external/k26-sm-sdt/k26-sm-sdt_2025.1_0407_1.tar.gz&quot;</span>
-<span class="w">        </span><span class="c1">#SDT_URI[sha256sum] = &quot;38cd47525be3526cf3766d82a318283bcac3f6205070bbb080ce0ab69d895fd2&quot;</span>
-<span class="w">        </span><span class="c1">#SDT_URI[S] = &quot;${WORKDIR}/k26-sm-sdt_2025.1_0407_1&quot;</span>
+<span class="w">        </span><span class="c1">#SDT_URI = "https://petalinux.xilinx.com/sswreleases/rel-v2025.1/sdt/2025.1/2025.1_0407_1_04081029/external/k26-sm-sdt/k26-sm-sdt_2025.1_0407_1.tar.gz"</span>
+<span class="w">        </span><span class="c1">#SDT_URI[sha256sum] = "38cd47525be3526cf3766d82a318283bcac3f6205070bbb080ce0ab69d895fd2"</span>
+<span class="w">        </span><span class="c1">#SDT_URI[S] = "${WORKDIR}/k26-sm-sdt_2025.1_0407_1"</span>
 <span class="w">    </span><span class="c1"># with the following line:</span>
-<span class="w">        </span><span class="nv">SDT_URI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;file://&lt;path to tarball folder&gt;/&lt;tarballname.tar.gz&gt;&quot;</span>
-<span class="w">        </span>SDT_URI<span class="o">[</span>S<span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">WORKDIR</span><span class="si">}</span><span class="s2">/&lt;tarballname&gt;&quot;</span>
-<span class="w">        </span>SDT_URI<span class="o">[</span>sha256sum<span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;tarball checksum&gt;&quot;</span>
+<span class="w">        </span><span class="nv">SDT_URI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"file://&lt;path to tarball folder&gt;/&lt;tarballname.tar.gz&gt;"</span>
+<span class="w">        </span>SDT_URI<span class="o">[</span>S<span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">WORKDIR</span><span class="si">}</span><span class="s2">/&lt;tarballname&gt;"</span>
+<span class="w">        </span>SDT_URI<span class="o">[</span>sha256sum<span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"&lt;tarball checksum&gt;"</span>
 </pre></div>
 </div>
 </div>
@@ -328,9 +328,9 @@ tar<span class="w"> </span>-czvf<span class="w"> </span>&lt;tarballname&gt;.tar.
 <span class="w">    </span>repo<span class="w"> </span>start<span class="w"> </span>rel-v2024.1<span class="w"> </span>--all
 <span class="w">    </span><span class="nb">source</span><span class="w"> </span>setupsdk
 <span class="w">    </span><span class="c1">#modify sources/meta-kria/conf/machine/&lt;MACHINE name&gt;.conf with the following:</span>
-<span class="w">                </span><span class="nv">HDF_BASE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;file://&quot;</span>
-<span class="w">                </span><span class="nv">HDF_PATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/path/to/XSA/file.xsa&quot;</span>
-<span class="w">    </span><span class="c1"># make sure to remove &quot;HDF_URL&quot; lines, you do not need SHA256SUM for local .xsa files</span>
+<span class="w">                </span><span class="nv">HDF_BASE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"file://"</span>
+<span class="w">                </span><span class="nv">HDF_PATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/path/to/XSA/file.xsa"</span>
+<span class="w">    </span><span class="c1"># make sure to remove "HDF_URL" lines, you do not need SHA256SUM for local .xsa files</span>
 
 <span class="w">    </span><span class="c1">#modify sources/meta-kria/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend so that we can map a device tree for production som + device tree for a CC for this production SOM + CC combo</span>
 <span class="w">        </span><span class="c1"># in IMPORT_CC_DTBS for K24 or K26, add:</span>
@@ -343,8 +343,8 @@ tar<span class="w"> </span>-czvf<span class="w"> </span>&lt;tarballname&gt;.tar.
 <span class="w">                </span>zynqmp-sm-&lt;k24<span class="w"> </span>or<span class="w"> </span>k26&gt;-xcl2g&lt;grade:<span class="w"> </span>c<span class="w"> </span>or<span class="w"> </span>i&gt;-revA-sck-&lt;cc&gt;-g-revA:zynqmp-sm-&lt;k24<span class="w"> </span>or<span class="w"> </span>k26&gt;-xcl2g&lt;grade:<span class="w"> </span>c<span class="w"> </span>or<span class="w"> </span>i&gt;-rev&lt;rev<span class="w"> </span>of<span class="w"> </span>som<span class="w"> </span>targeted&gt;-sck-&lt;cc&gt;-g-rev&lt;rev<span class="w"> </span>of<span class="w"> </span>cc<span class="w"> </span>targeted&gt;<span class="w"> </span><span class="se">\</span>
 <span class="w">                </span><span class="c1">#for an example, for a rev 1 K24 i grade on a rev 1 KD240, add this line:</span>
 <span class="w">                    </span><span class="c1">#           zynqmp-sm-k24-xcl2gi-revA-sck-kd-g-revA:zynqmp-sm-k24-xcl2gi-rev1-sck-kd-g-rev1 \</span>
-<span class="w">                    </span><span class="c1">#           note that the &quot;zynqmp-sm-k24-xcl2gi-rev1-sck-kd-g-rev1&quot; string from example above should match the &quot;Detected name:&quot; print out from u-boot</span>
-<span class="w">                    </span><span class="c1">#           note that the first string &quot;zynqmp-sm-k24-xcl2gi-revA-sck-kd-g-revA&quot; matches the combined name from the line added in IMPORT_CC_DTBS</span>
+<span class="w">                    </span><span class="c1">#           note that the "zynqmp-sm-k24-xcl2gi-rev1-sck-kd-g-rev1" string from example above should match the "Detected name:" print out from u-boot</span>
+<span class="w">                    </span><span class="c1">#           note that the first string "zynqmp-sm-k24-xcl2gi-revA-sck-kd-g-revA" matches the combined name from the line added in IMPORT_CC_DTBS</span>
 <span class="w">                    </span><span class="c1">#           this line basically maps  different revisioned hardware to use the same device tree as that for SOM rev A and CC A as there had been no changes to DT</span>
 
 <span class="w">    </span><span class="c1"># Then build boot.bin or qspi binary:</span>
@@ -369,8 +369,8 @@ tar<span class="w"> </span>-czvf<span class="w"> </span>&lt;tarballname&gt;.tar.
 <span class="w">                </span>zynqmp-sm-&lt;k24<span class="w"> </span>or<span class="w"> </span>k26&gt;-xcl2g&lt;grade:<span class="w"> </span>c<span class="w"> </span>or<span class="w"> </span>i&gt;-revA-sck-&lt;cc&gt;-g-revA:zynqmp-sm-&lt;k24<span class="w"> </span>or<span class="w"> </span>k26&gt;-xcl2g&lt;grade:<span class="w"> </span>c<span class="w"> </span>or<span class="w"> </span>i&gt;-rev&lt;rev<span class="w"> </span>of<span class="w"> </span>som<span class="w"> </span>targeted&gt;-sck-&lt;cc&gt;-g-rev&lt;rev<span class="w"> </span>of<span class="w"> </span>cc<span class="w"> </span>targeted&gt;<span class="w"> </span><span class="se">\</span>
 <span class="w">                </span><span class="c1">#for an example, for a rev 1 K24 i grade on a rev 1 KD240, add this line:</span>
 <span class="w">                    </span><span class="c1">#           zynqmp-sm-k24-xcl2gi-revA-sck-kd-g-revA:zynqmp-sm-k24-xcl2gi-rev1-sck-kd-g-rev1 \</span>
-<span class="w">                    </span><span class="c1">#           note that the &quot;zynqmp-sm-k24-xcl2gi-rev1-sck-kd-g-rev1&quot; string from example above should match the &quot;Detected name:&quot; print out from u-boot</span>
-<span class="w">                    </span><span class="c1">#           note that the first string &quot;zynqmp-sm-k24-xcl2gi-revA-sck-kd-g-revA&quot; matches the combined name from the line added in IMPORT_CC_DTBS</span>
+<span class="w">                    </span><span class="c1">#           note that the "zynqmp-sm-k24-xcl2gi-rev1-sck-kd-g-rev1" string from example above should match the "Detected name:" print out from u-boot</span>
+<span class="w">                    </span><span class="c1">#           note that the first string "zynqmp-sm-k24-xcl2gi-revA-sck-kd-g-revA" matches the combined name from the line added in IMPORT_CC_DTBS</span>
 <span class="w">                    </span><span class="c1">#           this line basically maps  different revisioned hardware to use the same device tree as that for SOM rev A and CC A as there had been no changes to DT</span>
 
 <span class="w">    </span><span class="c1">#build boot.bin only</span>
@@ -468,7 +468,7 @@ ZynqMP&gt;<span class="w"> </span>sf<span class="w"> </span>write<span class="w"
 <div><p><strong>NOTE:</strong> After booting, use <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications/2022.1/build/html/docs/target.html#resize-part">resize</a> tool to expand rootfs.</p>
 </div></blockquote>
 <p>Then, generate the .wic image with the .wks file and targeting running out of eMMC (mmcblk0):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">&quot;ramdisk.cpio.gz.u-boot boot.scr Image system.dtb&quot;</span><span class="w"> </span>--wks<span class="w"> </span>build/rootfs.wks
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">"ramdisk.cpio.gz.u-boot boot.scr Image system.dtb"</span><span class="w"> </span>--wks<span class="w"> </span>build/rootfs.wks
 </pre></div>
 </div>
 <p>The .wic image can now be uploaded through the Image Recovery App.</p>
@@ -494,17 +494,17 @@ ZynqMP&gt;<span class="w"> </span>sf<span class="w"> </span>write<span class="w"
 <span class="w">    </span>petalinux-package<span class="w"> </span>--boot<span class="w"> </span>--u-boot<span class="w"> </span>--force
 
 <span class="w">    </span><span class="c1">#for KV260 on 2023.1 and earlier, package to SD on mmcblk1:</span>
-<span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--images-dir<span class="w"> </span>images/linux/<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">&quot;ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kv-g-revB.dtb&quot;</span><span class="w"> </span>--disk-name<span class="w"> </span><span class="s2">&quot;mmcblk1&quot;</span>
+<span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--images-dir<span class="w"> </span>images/linux/<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">"ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kv-g-revB.dtb"</span><span class="w"> </span>--disk-name<span class="w"> </span><span class="s2">"mmcblk1"</span>
 <span class="w">    </span><span class="c1">#for KV260 on 2023.2 and later, --disk-name is not supported, and .wks file has --use-label to allow booting out of eMMC or SD</span>
-<span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--images-dir<span class="w"> </span>images/linux/<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">&quot;ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kv-g-revB.dtb&quot;</span>
+<span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--images-dir<span class="w"> </span>images/linux/<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">"ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kv-g-revB.dtb"</span>
 
 <span class="w">    </span><span class="c1">#for KR260 on 2023.1 and earlier, package to SD on sda/usb:</span>
-<span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--images-dir<span class="w"> </span>images/linux/<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">&quot;ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kr-g-revB.dtb&quot;</span><span class="w"> </span>--disk-name<span class="w"> </span><span class="s2">&quot;sda&quot;</span>
+<span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--images-dir<span class="w"> </span>images/linux/<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">"ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kr-g-revB.dtb"</span><span class="w"> </span>--disk-name<span class="w"> </span><span class="s2">"sda"</span>
 <span class="w">    </span><span class="c1">#for KR260 on 2023.2 and later, --disk-name is not supported, and .wks file has --use-label to allow booting out of eMMC or SD</span>
-<span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--images-dir<span class="w"> </span>images/linux/<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">&quot;ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kr-g-revB.dtb&quot;</span>
+<span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--images-dir<span class="w"> </span>images/linux/<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">"ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kr-g-revB.dtb"</span>
 
 <span class="w">    </span><span class="c1">#for KD240, supports starts on 2023.2, .wks file has --use-label to allow booting out of eMMC or SD</span>
-<span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--images-dir<span class="w"> </span>images/linux/<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">&quot;ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kd-g-revA.dtb&quot;</span><span class="w"> </span>
+<span class="w">    </span>petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--images-dir<span class="w"> </span>images/linux/<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">"ramdisk.cpio.gz.u-boot,boot.scr,Image,system.dtb,system-zynqmp-sck-kd-g-revA.dtb"</span><span class="w"> </span>
 </pre></div>
 </div>
 <p>Now you have a .wic image in <code class="docutils literal notranslate"><span class="pre">$petalinux_project/images/linux/</span></code> to program into the SD card.</p>
@@ -606,7 +606,7 @@ dd if=/nfsroot/&lt;image&gt; of=/dev/mmcblk0
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 14, 2026.
+      <span class="lastupdated">Last updated on October 22, 2026.
       </span></p>
   </div>
 

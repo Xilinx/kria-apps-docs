@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
-<script type="text/javascript">
-function OptanonWrapper() { }
-</script>
-<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- OneTrust Cookies Consent Notice start
+  <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+          data-document-language="true" type="text/javascript" charset="UTF-8"
+          data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7"></script>
+  <script type="text/javascript">function OptanonWrapper() { }</script>
+  
+OneTrust Cookies Consent Notice end -->
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -222,7 +222,7 @@ sudo<span class="w"> </span>/opt/xilinx/kv260-smartcam/bin/smartcam<span class="
 </pre></div>
 </div>
 <p>The eSDK can be used to update the PetaLinux tool for creating new images or SDKs. The eSDK updates are published <a class="reference external" href="http://petalinux.xilinx.com/sswreleases/rel-v2022/sdkupdate/2022.1_update3/">here</a>. Upgrade the tool with the new eSDK for the ‘2022.1 update3’ release and source the tool’s settings script.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-upgrade<span class="w"> </span>-u<span class="w"> </span><span class="s1">&#39;http://petalinux.xilinx.com/sswreleases/rel-v2022/sdkupdate/2022.1_update3/&#39;</span><span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;aarch64&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>petalinux-upgrade<span class="w"> </span>-u<span class="w"> </span><span class="s1">'http://petalinux.xilinx.com/sswreleases/rel-v2022/sdkupdate/2022.1_update3/'</span><span class="w"> </span>-p<span class="w"> </span><span class="s1">'aarch64'</span>
 <span class="nb">source</span><span class="w"> </span>settings.sh
 </pre></div>
 </div>
@@ -246,28 +246,28 @@ sudo<span class="w"> </span>/opt/xilinx/kv260-smartcam/bin/smartcam<span class="
 </div>
 <p>The following is the content for <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/recipes-firmware/example_firmware/kv260-smartcam.bb</span></code>. The latest commit ID corresponds to the xlnx-rel-v2022.1_update4 tag when creating the recipe.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="n">SUMMARY</span> <span class="o">=</span> <span class="s2">&quot;Firmware for Example design&quot;</span>
+<span class="n">SUMMARY</span> <span class="o">=</span> <span class="s2">"Firmware for Example design"</span>
 
-<span class="n">LICENSE</span> <span class="o">=</span> <span class="s2">&quot;Proprietary &amp; GPL-2.0&quot;</span>
-<span class="n">LIC_FILES_CHKSUM</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="se">\</span>
+<span class="n">LICENSE</span> <span class="o">=</span> <span class="s2">"Proprietary &amp; GPL-2.0"</span>
+<span class="n">LIC_FILES_CHKSUM</span> <span class="o">=</span> <span class="s2">" </span><span class="se">\</span>
 <span class="s2">        file://$</span><span class="si">{WORKDIR}</span><span class="s2">/git/LICENSE-BINARIES;md5=fa9b03ada9ffccf51dd60899bf28c702 </span><span class="se">\</span>
 <span class="s2">        file://$</span><span class="si">{WORKDIR}</span><span class="s2">/git/LICENSE-GPLv2;md5=9afdcd1be3f71bd3791fa5961075d776 </span><span class="se">\</span>
-<span class="s2">        &quot;</span>
+<span class="s2">        "</span>
 
 <span class="c1"># Specify the source of firmware</span>
-<span class="n">BRANCH</span> <span class="o">=</span> <span class="s2">&quot;xlnx_rel_v2022.1&quot;</span>
-<span class="n">SRC_URI</span> <span class="o">=</span> <span class="s2">&quot;git://github.com/Xilinx/kria-apps-firmware.git;protocol=https;branch=$</span><span class="si">{BRANCH}</span><span class="s2">&quot;</span>
+<span class="n">BRANCH</span> <span class="o">=</span> <span class="s2">"xlnx_rel_v2022.1"</span>
+<span class="n">SRC_URI</span> <span class="o">=</span> <span class="s2">"git://github.com/Xilinx/kria-apps-firmware.git;protocol=https;branch=$</span><span class="si">{BRANCH}</span><span class="s2">"</span>
 <span class="c1"># the following specifies the commit ID of the version of repo to use</span>
-<span class="n">SRCREV</span> <span class="o">=</span> <span class="s2">&quot;9d7d92d8a89f911ae8c1b0a25316c924c1a4ff3f&quot;</span> 
+<span class="n">SRCREV</span> <span class="o">=</span> <span class="s2">"9d7d92d8a89f911ae8c1b0a25316c924c1a4ff3f"</span> 
 
 
 <span class="n">inherit</span> <span class="n">fpgamanager_custom</span>
 
-<span class="n">PACKAGE_ARCH</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{MACHINE_ARCH}</span><span class="s2">&quot;</span>
+<span class="n">PACKAGE_ARCH</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{MACHINE_ARCH}</span><span class="s2">"</span>
 
-<span class="n">FW_DIR</span> <span class="o">=</span> <span class="s2">&quot;boards/kv260/smartcam&quot;</span> <span class="c1">#specifies which folder of the repo to use</span>
+<span class="n">FW_DIR</span> <span class="o">=</span> <span class="s2">"boards/kv260/smartcam"</span> <span class="c1">#specifies which folder of the repo to use</span>
 
-<span class="n">COMPATIBLE_MACHINE</span><span class="p">:</span><span class="n">k26</span><span class="o">-</span><span class="n">kv</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{MACHINE}</span><span class="s2">&quot;</span>
+<span class="n">COMPATIBLE_MACHINE</span><span class="p">:</span><span class="n">k26</span><span class="o">-</span><span class="n">kv</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{MACHINE}</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
@@ -278,27 +278,27 @@ sudo<span class="w"> </span>/opt/xilinx/kv260-smartcam/bin/smartcam<span class="
 </pre></div>
 </div>
 <p>The following is the content for <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-ar1335-single-firmware.bb</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SUMMARY</span> <span class="o">=</span> <span class="s2">&quot;ap1302 ar1335-single firmware binary&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SUMMARY</span> <span class="o">=</span> <span class="s2">"ap1302 ar1335-single firmware binary"</span>
 
 <span class="n">include</span> <span class="n">ap1302</span><span class="o">-</span><span class="n">firmware</span><span class="o">.</span><span class="n">inc</span>
 
-<span class="n">FW_NAME</span> <span class="o">=</span> <span class="s2">&quot;ap1302_ar1335_single_fw.bin&quot;</span>
+<span class="n">FW_NAME</span> <span class="o">=</span> <span class="s2">"ap1302_ar1335_single_fw.bin"</span>
 </pre></div>
 </div>
 <p>The following is the content for <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/recipes-firmware/ap1302-firmware/ap1302-firmware.inc</span></code>, which the above recipe included:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>LICENSE = &quot;Proprietary&quot;
-LIC_FILES_CHKSUM = &quot;file://LICENSE.txt;md5=9c13aad1aab42f76326f1beceafc40c4&quot;
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>LICENSE = "Proprietary"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=9c13aad1aab42f76326f1beceafc40c4"
 
-BRANCH ?= &quot;xlnx_rel_v2022.1&quot;
-SRC_URI = &quot;git://github.com/Xilinx/ap1302-firmware.git;protocol=https;branch=${BRANCH}&quot;
-SRCREV ?= &quot;63e20752dc8b1e91fc6d6d518ebeb76f65e9f738&quot;
+BRANCH ?= "xlnx_rel_v2022.1"
+SRC_URI = "git://github.com/Xilinx/ap1302-firmware.git;protocol=https;branch=${BRANCH}"
+SRCREV ?= "63e20752dc8b1e91fc6d6d518ebeb76f65e9f738"
 
-S = &quot;${WORKDIR}/git&quot;
+S = "${WORKDIR}/git"
 
-FW_NAME ?= &quot;&quot;
+FW_NAME ?= ""
 
-do_configure[noexec] = &quot;1&quot;
-do_compile[noexec] = &quot;1&quot;
+do_configure[noexec] = "1"
+do_compile[noexec] = "1"
 
 do_install() {
 	# create /lib/firmware
@@ -307,7 +307,7 @@ do_install() {
 	install -m 0644 ${FW_NAME} ${D}/lib/firmware/${FW_NAME}
 }
 
-FILES:${PN} = &quot;/lib/firmware/${FW_NAME}&quot;
+FILES:${PN} = "/lib/firmware/${FW_NAME}"
 </pre></div>
 </div>
 </div>
@@ -318,21 +318,21 @@ FILES:${PN} = &quot;/lib/firmware/${FW_NAME}&quot;
 </pre></div>
 </div>
 <p>Then, create the following content in the <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/recipes-apps/smartcam/smartcam.bb</span></code> file. Note the commit ID, and move it to the latest commit ID if needed.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>SUMMARY = &quot;Example Smartcam application&quot;
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>SUMMARY = "Example Smartcam application"
 
-LICENSE = &quot;Apache-2.0&quot;
-LIC_FILES_CHKSUM = &quot;file://LICENSE;md5=a9c5ded2ac97b4ce01aa0ace8f3a1755&quot;
+LICENSE = "Apache-2.0"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=a9c5ded2ac97b4ce01aa0ace8f3a1755"
 
-BRANCH = &quot;xlnx_rel_v2022.1&quot;
-SRC_URI = &quot;git://github.com/Xilinx/smartcam.git;protocol=https;branch=${BRANCH}&quot;
-SRCREV = &quot;ad9523ee5f002141334698eb6ddc9a14679ac8d2&quot;
+BRANCH = "xlnx_rel_v2022.1"
+SRC_URI = "git://github.com/Xilinx/smartcam.git;protocol=https;branch=${BRANCH}"
+SRCREV = "ad9523ee5f002141334698eb6ddc9a14679ac8d2"
 
 inherit cmake
 
 # DEPENDS specifies runtime dependencies
-DEPENDS = &quot;vvas-accel-libs glog gstreamer1.0-rtsp-server opencv&quot;
+DEPENDS = "vvas-accel-libs glog gstreamer1.0-rtsp-server opencv"
 #RDEPENDS specifies build-time dependencies
-RDEPENDS:${PN} = &quot; \
+RDEPENDS:${PN} = " \
     gst-perf \
     gstreamer1.0-omx \
     gstreamer1.0-plugins-bad-faac \
@@ -352,16 +352,16 @@ RDEPENDS:${PN} = &quot; \
     v4l-utils \
     alsa-utils \
     python3-core \
-    &quot;
+    "
 
-SOMAPP_INSTALL_PATH = &quot;/&quot;
-EXTRA_OECMAKE += &quot;-DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSROOT=${STAGING_DIR_HOST} -DCMAKE_INSTALL_PREFIX=${SOMAPP_INSTALL_PATH} &quot;
+SOMAPP_INSTALL_PATH = "/"
+EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSROOT=${STAGING_DIR_HOST} -DCMAKE_INSTALL_PREFIX=${SOMAPP_INSTALL_PATH} "
 
-S = &quot;${WORKDIR}/git&quot;
+S = "${WORKDIR}/git"
 
-FILES:${PN} += &quot; \
+FILES:${PN} += " \
     /opt/xilinx \
-    &quot;
+    "
 </pre></div>
 </div>
 </div>
@@ -372,21 +372,21 @@ FILES:${PN} += &quot; \
 </pre></div>
 </div>
 <p>Then create <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/recipes-core/packagegroups/packagegroup-kv260-smartcam.bb</span></code> with the following content:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>DESCRIPTION = &quot;Example Smartcam related Packages&quot;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>DESCRIPTION = "Example Smartcam related Packages"
 
 inherit packagegroup
 
-EXAMPLE_PACKAGES = &quot; \
+EXAMPLE_PACKAGES = " \
     ap1302-ar1335-single-firmware \
     kv260-smartcam \
     smartcam \
-    &quot;
+    "
 
-RDEPENDS:${PN} = &quot;${EXAMPLE_PACKAGES}&quot;
+RDEPENDS:${PN} = "${EXAMPLE_PACKAGES}"
 
-COMPATIBLE_MACHINE = &quot;^$&quot;
-COMPATIBLE_MACHINE:k26-kv = &quot;${MACHINE}&quot;
-PACKAGE_ARCH = &quot;${MACHINE_ARCH}&quot;
+COMPATIBLE_MACHINE = "^$"
+COMPATIBLE_MACHINE:k26-kv = "${MACHINE}"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 </pre></div>
 </div>
 <p>Add the following line to <code class="docutils literal notranslate"><span class="pre">project-spec/meta-user/conf/user-rootfsconfig</span></code>:</p>
@@ -405,7 +405,7 @@ PACKAGE_ARCH = &quot;${MACHINE_ARCH}&quot;
 <h4>Option 1 - Baking into the WIC Image<a class="headerlink" href="#option-1-baking-into-the-wic-image" title="Permalink to this heading">¶</a></h4>
 <p>Now that all the meta layers are in place, build the image:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>petalinux-build
-petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">&quot;ramdisk.cpio.gz.u-boot boot.scr Image system.dtb&quot;</span>
+petalinux-package<span class="w"> </span>--wic<span class="w"> </span>--bootfiles<span class="w"> </span><span class="s2">"ramdisk.cpio.gz.u-boot boot.scr Image system.dtb"</span>
 </pre></div>
 </div>
 <p>Flash the generated image in <code class="docutils literal notranslate"><span class="pre">images/linux/petalinux-sdimage.wic</span></code> onto the SD card and boot it on a KV260.</p>
@@ -462,7 +462,7 @@ sudo<span class="w"> </span>/opt/xilinx/kv260-smartcam/bin/smartcam<span class="
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 12, 2026.
+      <span class="lastupdated">Last updated on November 09, 2026.
       </span></p>
   </div>
 
