@@ -14,7 +14,7 @@ This page documents how to generate Xen artifacts (based on Kria Starter Kit emb
 
 ### Generating Xen Artifacts
 
-In 2026.1 and newer, the platform-disk-image-kria recipe for amd-cortexa53-mali-common generates a platform wic image that supports both Xen and Open AMP. Therefore no other steps are required. 
+In 2026.1 and newer, the edf-platform-disk-image-kria recipe for amd-cortexa53-mali-common generates a platform wic image that supports both Xen and Open AMP. Therefore no other steps are required. 
 
 ### Prepare the SD Card
 
