@@ -1,12 +1,11 @@
-﻿#####################
+﻿******************
 OpenAMP on Kria SOM
-﻿#####################
-
+******************
 
 .. include:: ../../shared/somtoctree.txt
 
 
-`OpenAMP <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP>`_ support is available for the AMD Kria™ SOM prebuilt images starting from 2022.1 releases. OpenAMP is an open-source standard infrastructure for applications to make use of heterogeneous coprocessors and in Kria, allows the APU to offload tasks to the MPSoC dual-core RPUs.
+Starting from 2022.1, `OpenAMP <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP>`_ support is available for the AMD Kria™ SOM prebuilt images. OpenAMP is an open-source standard infrastructure for applications to make use of heterogeneous coprocessors and in Kria, allows the APU to offload tasks to the MPSoC dual-core RPUs.
 
 The Kria Starter Kit OpenAMP PetaLinux implementation uses the Linux kernel implementation of RPMsg for leveraging the MPSoC RPUs as coprocessors. The out-of-box Kria Linux OpenAMP only implements a Linux based master on the APU with the RPU as a client processor with corresponding prebuilt RPU examples.
 
@@ -26,102 +25,33 @@ The OpenAMP community supports `two models for RPMsg <https://docs.xilinx.com/r/
    * Linux rpmsg is implemented using the libmetal library with a userspace implementation of virtio
    * OpenAMP library can also be used in a Linux userspace. In this configuration, the remote processor can run independently to the Linux host processor.
 
-The Kria Starter Kit Linux OpenAMP solution uses a Linux kernel implementation (item #1). Details are shown in the following block diagram from the *Libmetal and OpenAMP User Guide* (`UG1186 <https://docs.amd.com/go/en-US/ug1186-zynq-openamp-gsg>`_).
+The Kria Starter Kit Linux OpenAMP solution uses a Linux kernel implementation (item #1). Details are shown in the following block diagram from the *Libmetal and OpenAMP User Guide* ([UG1186])https://docs.amd.com/go/en-US/ug1186-zynq-openamp-gsg.
 
 .. image:: ./docs/media/ug1186_ch3_1.png
    :alt: openamp implementation
 
 ********************************************************
-OpenAMP Demos
-********************************************************
-
-2026.2 and newer
-----------------------
-
-In 2026.2 and newer, the Kria OpenAMP demo runs a `Zephyr application <https://docs.amd.com/r/en-US/ug1186-zynq-openamp-gsg/Running-the-Demo>`_ on the RPU and communicates with Linux on the APU over RPMsg. The Echo Test, Matrix Multiplication and Proxy demos described in `2026.1 and older`_ are deprecated and are not validated in 2026.2.
-
-To run the Zephyr demo, the following are required:
-
-* The prebuilt platform wic image (``edf-platform-disk-image-kria`` for the ``amd-cortexa53-mali-common`` machine), used as is. The image already includes the Zephyr RPU firmware and the ``zephyr_rpmsg_test`` application.
-* Linux boot. Boot the default Linux boot entry, not the Xen entry.
-* The corresponding 2026.2 Kria boot firmware. With older boot firmware, the RPU firmware starts but ``/dev/ttyRPMSG0`` is never created and ``zephyr_rpmsg_test`` fails.
-
-After booting Linux, run the following on the target. The commands below use the KV260 Starter Kit firmware. The `echo start` and `echo stop` commands are required for each execution of the example application::
-
-   sudo -s                                                                                # This is required so that the ELF loading can occur.
-   dmesg | grep remoteproc                                                                # Confirm the RPU remoteproc node is available.
-   export BASE_ADDR=ffe00000                                                              # Base address of the RPU core 0 remoteproc node.
-   export FW_NAME=xilinx/kv260/rpu/0/kv260-r5-0-rpmsg_multi_services.elf                  # Zephyr firmware, relative to /lib/firmware.
-   NODE=$(grep -l "$BASE_ADDR" /sys/class/remoteproc/*/name | sed "s|/name||")            # Find the remoteproc node for that address.
-   echo "Found node: $NODE"
-   echo $FW_NAME > $NODE/firmware                                                         # Specify the Zephyr firmware to be loaded.
-   echo start > $NODE/state                                                               # Load and start the firmware on the RPU.
-   zephyr_rpmsg_test                                                                      # Run the Zephyr RPMsg test application.
-   echo stop > $NODE/state                                                                # Stop the firmware.
-
-Output of the Zephyr RPMsg test should look like this::
-
-   amd-edf:/home/amd-edf# dmesg | grep remoteproc
-   [    0.871843] remoteproc remoteproc0: ffe00000.r5f is available
-   amd-edf:/home/amd-edf# export BASE_ADDR=ffe00000
-   amd-edf:/home/amd-edf# export FW_NAME=xilinx/kv260/rpu/0/kv260-r5-0-rpmsg_multi_services.elf
-   amd-edf:/home/amd-edf# NODE=$(grep -l "$BASE_ADDR" /sys/class/remoteproc/*/name | sed "s|/name||")
-   amd-edf:/home/amd-edf# echo "Found node: $NODE"
-   Found node: /sys/class/remoteproc/remoteproc0
-   amd-edf:/home/amd-edf# echo $FW_NAME > $NODE/firmware
-   amd-edf:/home/amd-edf# echo start > $NODE/state
-   amd-edf:/home/amd-edf# zephyr_rpmsg_test
-   =========================================
-   Zephyr OpenAMP RPMsg Test
-   =========================================
-   Configuration:
-     Device:   /dev/ttyRPMSG0
-     String:   Hello Zephyr
-     Timeout:  10s
-   =========================================
-
-   Waiting for /dev/ttyRPMSG0...
-   Device /dev/ttyRPMSG0 found
-
-   Running RPMsg communication tests...
-
-   Sending: "Hello Zephyr"
-   Sending: "Goodbye Zephyr"
-
-   Received: "TTY 0: Hello Zephyr"
-   Received: "TTY 0: Goodbye Zephyr"
-
-   =========================================
-   Result: PASSED
-   =========================================
-   amd-edf:/home/amd-edf# echo stop > $NODE/state
-
-
-2026.1 and older
-----------------------
-
 OpenAMP Device Tree
-^^^^^^^^^^^^^^^^^^^^^^
+********************************************************
 
 The Kria Starter Kit Linux includes the following device tree placeholders for OpenAMP coprocessing applications:
 
 * remoteproc node
 * rpmsg shared memory
 
-Note that PetaLinux based BSP and prebuilt images folder include the necessary device tree nodes and memory reservations. These can be found in the `openamp.dtb` of the 2022.1 release BSP `prebuilt` folder. To run the OpenAMP example, program the SD card with the prebuilt .wic image, and replace `system.dtb` in the SD card's boot folder with `openamp.dtb` (which should be renamed to `system.dtb`), and boot as usual.
+The Kria 2022.1 PetaLinux BSP and prebuilt images folder include the necessary device tree nodes and memory reservations. These can be found in the `openamp.dtb` of the 2022.1 release BSP `prebuilt` folder. To run the OpenAMP example, program the SD card with the prebuilt .wic image, and replace `system.dtb` in the SD card's boot folder with `openamp.dtb` (which should be renamed to `system.dtb`), and boot as usual.
 
-AMD-EDF based wic images can be used as is without modification.
+********************************************************
+OpenAMP Demos
+********************************************************
 
-Running the Demos
-^^^^^^^^^^^^^^^^^^^^^^
-
-From 2022.1 onward, the Kria Starter Kit Linux BSP contains support for the existing OpenAMP community demos, summarized as follows:
+The 2022.1 (and onward) the based Kria Starter Kit Linux BSP contains support for the existing OpenAMP community demos summarized as follows. 
 
 * openamp-echo-test: Linux to RPU baremetal communication echo test using rpsmsg.
 * openamp-matrix-mul: Linux produces two matrices and sends them to the RPU for multiplication.
 * openamp-rpc-demo: Shows the proxy behavior of the RPU as a coprocessor to the APU.
 
-Details about each example applications can be found in the *Libmetal and OpenAMP User Guide* (`UG1186 <https://docs.amd.com/go/en-US/ug1186-zynq-openamp-gsg/OpenAMP-Demos>`_).
+Details about each example applications can be found in the *Libmetal and OpenAMP User Guide* ([UG1186])<https://docs.amd.com/go/en-US/ug1186-zynq-openamp-gsg/OpenAMP-Demos>.
 
 In 2022.1 and 2022.2, the PetaLinux BSPs with OpenAMP support require `system.dtb` to be replaced with `openamp.dtb` on the SD boot partition. The required .wic image and `openamp.dtb` are included in `BSPs <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513#PetaLinux-Board-Support-Packages>`_.
 
@@ -135,7 +65,7 @@ In 2023.1 and newer, both Yocto built PetaLinux and BSP based PetaLinux has Open
 
 A reboot is required to pick up the OpenAMP device tree.
 
-To run the OpenAMP applications, reference the following commands. The `echo start` and `echo stop` commands are required for each execution of the example application.
+To run the OpenAMP applications, reference the following commands. The `echo start` and `end stop` commands are required for each execution of the example application.
 
 Echo Test application::
 
@@ -187,10 +117,11 @@ Output of Echo Test should look like this::
 Matrix Multiplication::
 
    sudo -s                                                                  # This is required so that the ELF loading can occur.
-   echo image_matrix_multiply > /sys/class/remoteproc/remoteproc0/firmware  # Specify Matrix multiplication to get Firmware onto remote processor.
+   echo image_matrix_multiply > /sys/class/remoteproc/remoteproc0/firmware  # Specify Matrix multiplication to get Firmare onto remote processor.
    echo start > /sys/class/remoteproc/remoteproc0/state                     # Load and start target Firmware onto remote processor.
    mat_mul_demo                                                             # Run Matrix multiplication test linux application.
    echo stop > /sys/class/remoteproc/remoteproc0/state                      # Stop target firmware.
+   Proxy RPC application:
 
 Output of Matrix Multiplication should look like this::
 
@@ -229,7 +160,7 @@ Output of Matrix Multiplication should look like this::
 Proxy Application::
 
    sudo -s                                                             # This is required so that the ELF loading can occur.
-   echo image_rpc_demo > /sys/class/remoteproc/remoteproc0/firmware    # Specify proxy application to get Firmware onto remote processor.
+   echo image_rpc_demo > /sys/class/remoteproc/remoteproc0/firmware    # Specify proxy application to get Firmare onto remote processor.
    echo start > /sys/class/remoteproc/remoteproc0/state                # Load and start target Firmware onto remote processor.
    proxy_app                                                           # Run proxy application.
    echo stop > /sys/class/remoteproc/remoteproc0/state                 # Stop target firmware
@@ -276,6 +207,6 @@ Resources
 * `OpenAMP Wiki <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841718/OpenAMP>`_
 * `*Libmetal and OpenAMP User Guide* (UG1186) <https://docs.amd.com/go/en-US/ug1186-zynq-openamp-gsg>`_
 
-.. Copyright © 2023–2026 Advanced Micro Devices, Inc
+.. Copyright © 2023–2025 Advanced Micro Devices, Inc
 
-.. `Terms and Conditions <https://www.amd.com/en/legal/copyright.html>`_.
+.. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.
