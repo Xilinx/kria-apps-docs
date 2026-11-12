@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-<!-- OneTrust Cookies Consent Notice start
-  <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
-          data-document-language="true" type="text/javascript" charset="UTF-8"
-          data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7"></script>
-  <script type="text/javascript">function OptanonWrapper() { }</script>
-  
-OneTrust Cookies Consent Notice end -->
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -154,7 +154,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Xen in 2026.1 and newer<a class="headerlink" href="#xen-in-2026-1-and-newer" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="generating-xen-artifacts">
 <h3>Generating Xen Artifacts<a class="headerlink" href="#generating-xen-artifacts" title="Permalink to this heading">¶</a></h3>
-<p>In 2026.1 and newer, the edf-platform-disk-image-kria recipe for amd-cortexa53-mali-common generates a platform wic image that supports both Xen and Open AMP. Therefore no other steps are required.</p>
+<p>In 2026.1 and newer, the platform-disk-image-kria recipe for amd-cortexa53-mali-common generates a platform wic image that supports both Xen and Open AMP. Therefore no other steps are required.</p>
 </div>
 <div class="section" id="prepare-the-sd-card">
 <h3>Prepare the SD Card<a class="headerlink" href="#prepare-the-sd-card" title="Permalink to this heading">¶</a></h3>
@@ -193,12 +193,12 @@ mv<span class="w"> </span>iot-limerick-...-rootfs.ext4<span class="w"> </span>/v
 </div>
 <p>Next, check how much memory is dom0 consuming and the available memory using <code class="docutils literal notranslate"><span class="pre">xl</span> <span class="pre">info</span></code>. In this example, there should be a little more than 1.9G left to use for DOMU. Therefore, you can allocate 1900 MB for DOMU in the next step.</p>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">guest0.cfg</span></code> file with the following content:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"guest0"</span>
-<span class="nv">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/home/amd-edf/ubuntu_Image"</span><span class="w"> </span><span class="c1"># Ubuntu Kernel extracted</span>
-<span class="c1"># disk = ['/dev/mmcblk1p4,,xvda'] # Ubuntu Rootfs in partition 4 - if domU is in partition 4 on KV260</span>
-<span class="c1"># disk = ['/dev/sda4,,xvda']      # Ubuntu Rootfs in partition 4 - if domU is in partition 4 on KR260</span>
-<span class="nv">disk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">'file:/var/lib/xen/images/ubuntu-guest.ext4,xvda,w'</span><span class="o">]</span><span class="w">  </span>
-<span class="nv">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"console=hvc0 root=/dev/xvda"</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;guest0&quot;</span>
+<span class="nv">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/home/amd-edf/ubuntu_Image&quot;</span><span class="w"> </span><span class="c1"># Ubuntu Kernel extracted</span>
+<span class="c1"># disk = [&#39;/dev/mmcblk1p4,,xvda&#39;] # Ubuntu Rootfs in partition 4 - if domU is in partition 4 on KV260</span>
+<span class="c1"># disk = [&#39;/dev/sda4,,xvda&#39;]      # Ubuntu Rootfs in partition 4 - if domU is in partition 4 on KR260</span>
+<span class="nv">disk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;file:/var/lib/xen/images/ubuntu-guest.ext4,xvda,w&#39;</span><span class="o">]</span><span class="w">  </span>
+<span class="nv">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;console=hvc0 root=/dev/xvda&quot;</span>
 <span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1900</span><span class="w"> </span><span class="c1"># This can be increased if there is more free memory.</span>
 <span class="nv">vcpus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
 </pre></div>
@@ -236,21 +236,21 @@ guest0<span class="w">                                       </span><span class=
 <p>First, set up a Yocto project on a host with Yocto support using the instructions <a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto/build/html/docs/yocto_kria_support.html">here</a>, stop after the <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">setupsdk</span></code> step.</p>
 <p>Then, to enable Xen, append the following to the end of <code class="docutils literal notranslate"><span class="pre">build/conf/local.conf</span></code>:</p>
 <p>for 2024.1 and older, append the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">BOOTMODE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"xen"</span>
-IMAGE_INSTALL:append<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"packagegroup-petalinux-xen"</span>
-<span class="nv">ENABLE_XEN_DTSI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1"</span>
-<span class="nv">ENABLE_XEN_QEMU_DTSI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1"</span>
-<span class="nv">ENABLE_XEN_UBOOT_SCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1"</span>
-<span class="nv">XEN_SERIAL_CONSOLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"serial1"</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">BOOTMODE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;xen&quot;</span>
+IMAGE_INSTALL:append<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;packagegroup-petalinux-xen&quot;</span>
+<span class="nv">ENABLE_XEN_DTSI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="nv">ENABLE_XEN_QEMU_DTSI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="nv">ENABLE_XEN_UBOOT_SCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="nv">XEN_SERIAL_CONSOLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;serial1&quot;</span>
 </pre></div>
 </div>
 <p>from 24.2 and onward package group name was changed, append the following instead:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">BOOTMODE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"xen"</span>
-IMAGE_INSTALL:append<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"packagegroup-xen"</span>
-<span class="nv">ENABLE_XEN_DTSI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1"</span>
-<span class="nv">ENABLE_XEN_QEMU_DTSI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1"</span>
-<span class="nv">ENABLE_XEN_UBOOT_SCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1"</span>
-<span class="nv">XEN_SERIAL_CONSOLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"serial1"</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">BOOTMODE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;xen&quot;</span>
+IMAGE_INSTALL:append<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;packagegroup-xen&quot;</span>
+<span class="nv">ENABLE_XEN_DTSI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="nv">ENABLE_XEN_QEMU_DTSI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="nv">ENABLE_XEN_UBOOT_SCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="nv">XEN_SERIAL_CONSOLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;serial1&quot;</span>
 </pre></div>
 </div>
 <p>Then, build the image the usual way:</p>
@@ -319,7 +319,7 @@ Partition<span class="w"> </span>number<span class="w"> </span><span class="o">(
 First<span class="w"> </span>sector<span class="w"> </span><span class="o">(</span><span class="m">12582920</span>-31116287,<span class="w"> </span>default<span class="w"> </span><span class="m">12584960</span><span class="o">)</span>:
 Last<span class="w"> </span>sector,<span class="w"> </span>+sectors<span class="w"> </span>or<span class="w"> </span>+size<span class="o">{</span>K,M,G,T,P<span class="o">}</span><span class="w"> </span><span class="o">(</span><span class="m">12584960</span>-31116287,<span class="w"> </span>default<span class="w"> </span><span class="m">31116287</span><span class="o">)</span>:
 <span class="w"> </span>
-Created<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>partition<span class="w"> </span><span class="m">3</span><span class="w"> </span>of<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s1">'Linux'</span><span class="w"> </span>and<span class="w"> </span>of<span class="w"> </span>size<span class="w"> </span><span class="m">8</span>.9<span class="w"> </span>GiB.
+Created<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>partition<span class="w"> </span><span class="m">3</span><span class="w"> </span>of<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s1">&#39;Linux&#39;</span><span class="w"> </span>and<span class="w"> </span>of<span class="w"> </span>size<span class="w"> </span><span class="m">8</span>.9<span class="w"> </span>GiB.
 </pre></div>
 </div>
 <p>Next, enter <code class="docutils literal notranslate"><span class="pre">w</span></code> to write the partition table and exit.</p>
@@ -342,7 +342,7 @@ Created<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </sp
 <div><p><strong>TIP:</strong> If dd gives produces the “No space left on device” error but the file is smaller than the space allocated, do the following:</p>
 </div></blockquote>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>rm<span class="w"> </span>/dev/sda3
-sudo<span class="w"> </span>fdisk<span class="w"> </span>/dev/sda<span class="w"> </span><span class="c1"># enter "D" and then "3" to delete partition 3</span>
+sudo<span class="w"> </span>fdisk<span class="w"> </span>/dev/sda<span class="w"> </span><span class="c1"># enter &quot;D&quot; and then &quot;3&quot; to delete partition 3</span>
 <span class="c1">#then remove the SD card and reinsert and go back to the beginning of this section to start from creating partition 3 again.</span>
 </pre></div>
 </div>
@@ -378,19 +378,19 @@ sudo<span class="w"> </span>fdisk<span class="w"> </span>/dev/sda<span class="w"
 <p>Next, check how much memory is dom0 consuming and the available memory using <code class="docutils literal notranslate"><span class="pre">xl</span> <span class="pre">info</span></code>. In this example, there should be a little more than 1.9G left to use for DOMU. Therefore, you can allocate 1900 MB for DOMU in the next step.</p>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">guest0.cfg</span></code> file with the following content:</p>
 <p>If running Xen on KV260:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"guest0"</span>
-<span class="nv">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/home/&lt;distro&gt;/ubuntu_Image"</span><span class="w"> </span><span class="c1"># Ubuntu Kernel extracted</span>
-<span class="nv">disk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">'/dev/mmcblk1p3,,xvda'</span><span class="o">]</span><span class="w"> </span><span class="c1"># Ubuntu Rootfs in partition 3</span>
-<span class="nv">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"console=hvc0 root=/dev/xvda"</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;guest0&quot;</span>
+<span class="nv">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/home/&lt;distro&gt;/ubuntu_Image&quot;</span><span class="w"> </span><span class="c1"># Ubuntu Kernel extracted</span>
+<span class="nv">disk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;/dev/mmcblk1p3,,xvda&#39;</span><span class="o">]</span><span class="w"> </span><span class="c1"># Ubuntu Rootfs in partition 3</span>
+<span class="nv">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;console=hvc0 root=/dev/xvda&quot;</span>
 <span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1900</span><span class="w"> </span><span class="c1"># This can be increased if there is more free memory.</span>
 <span class="nv">vcpus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
 </pre></div>
 </div>
 <p>If running Xen on KR260:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"guest0"</span>
-<span class="nv">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/home/&lt;distro&gt;/ubuntu_Image"</span><span class="w"> </span><span class="c1"># Ubuntu Kernel extracted</span>
-<span class="nv">disk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">'/dev/sda3,,xvda'</span><span class="o">]</span><span class="w"> </span><span class="c1"># Ubuntu Rootfs in partition 3</span>
-<span class="nv">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"console=hvc0 root=/dev/xvda"</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;guest0&quot;</span>
+<span class="nv">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/home/&lt;distro&gt;/ubuntu_Image&quot;</span><span class="w"> </span><span class="c1"># Ubuntu Kernel extracted</span>
+<span class="nv">disk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;/dev/sda3,,xvda&#39;</span><span class="o">]</span><span class="w"> </span><span class="c1"># Ubuntu Rootfs in partition 3</span>
+<span class="nv">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;console=hvc0 root=/dev/xvda&quot;</span>
 <span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1900</span><span class="w"> </span><span class="c1"># This can be increased if there is more free memory.</span>
 <span class="nv">vcpus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
 </pre></div>
@@ -443,10 +443,10 @@ cp /boot/rootfs.cpio.gz /run/media/writable-mmcblk1p3
 </pre></div>
 </div>
 <p>Use the following as <code class="docutils literal notranslate"><span class="pre">guest0.cfg</span></code> (adjusting kernel and ramdisk path accordingly):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>name = "guest0"
-kernel = "/run/media/writable-mmcblk1p3/Image"
-ramdisk = "/run/media/writable-mmcblk1p3/rootfs.cpio.gz"
-extra ="console=hvc0 init=/bin/sh root=/dev/ram0"
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>name = &quot;guest0&quot;
+kernel = &quot;/run/media/writable-mmcblk1p3/Image&quot;
+ramdisk = &quot;/run/media/writable-mmcblk1p3/rootfs.cpio.gz&quot;
+extra =&quot;console=hvc0 init=/bin/sh root=/dev/ram0&quot;
 memory = 1801
 vcpus = 1
 </pre></div>
@@ -476,7 +476,7 @@ vcpus = 1
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 09, 2026.
+      <span class="lastupdated">Last updated on August 13, 2026.
       </span></p>
   </div>
 
