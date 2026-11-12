@@ -206,35 +206,35 @@ ramdisk_name=ramdisk.cpio.gz.u-boot
 rootfs_name=rootfs.cpio.gz.u-boot
 
 
-# Close pmufw node so that linux can&#39;t send small fragments to pmufw
+# Close pmufw node so that linux can't send small fragments to pmufw
 zynqmp pmufw node close
 
 # Starter Kit default boot args
-setenv bootargs &#39;earlycon console=ttyPS1,115200 clk_ignore_unused init_fatal_sh=1 cma=900M &#39;;
+setenv bootargs 'earlycon console=ttyPS1,115200 clk_ignore_unused init_fatal_sh=1 cma=900M ';
 
 #Set boot parameters based on CC type
-if test &quot;${card1_name}&quot; = &quot;SCK-KV-G&quot;; then
+if test "${card1_name}" = "SCK-KV-G"; then
         setenv card_name sck-kv-g &amp;&amp; setenv bootargs ext4=/dev/mmcblk1p2:/rootfs $bootargs;
-elif test &quot;${card1_name}&quot; = &quot;SCK-KR-G&quot;; then
+elif test "${card1_name}" = "SCK-KR-G"; then
         setenv card_name sck-kr-g &amp;&amp; setenv bootargs ext4=/dev/sda2:/rootfs $bootargs;
 else #Assume Kria USB secondary boot device
         setenv card_name unknown &amp;&amp; setenv bootargs ext4=/dev/sda2:/rootfs $bootargs;
 fi
 
 #Set DT selection
-if test &quot;${card1_name}&quot; = &quot;SCK-KV-G&quot;; then
-        if test &quot;${card1_rev}&quot; = &quot;Z&quot; || test &quot;${card1_rev}&quot; = &quot;A&quot;; then
+if test "${card1_name}" = "SCK-KV-G"; then
+        if test "${card1_rev}" = "Z" || test "${card1_rev}" = "A"; then
                 #revA dtb also supports revZ boards
                 dtb_name=SMK-zynqmp-${card_name}-revA
-        elif test &quot;${card1_rev}&quot; = &quot;B&quot; || test &quot;${card1_rev}&quot; = &quot;1&quot;; then
+        elif test "${card1_rev}" = "B" || test "${card1_rev}" = "1"; then
                 #revB dtb also supports rev1 boards
                 dtb_name=SMK-zynqmp-${card_name}-revB
         fi
-elif test &quot;${card1_name}&quot; = &quot;SCK-KR-G&quot;; then
-        if test &quot;${card1_rev}&quot; = &quot;B&quot; || test &quot;${card1_rev}&quot; = &quot;1&quot;; then
+elif test "${card1_name}" = "SCK-KR-G"; then
+        if test "${card1_rev}" = "B" || test "${card1_rev}" = "1"; then
                 #revB dtb also supports rev1 dtb
                 dtb_name=SMK-zynqmp-${card_name}-revB
-        elif test &quot;${card1_rev}&quot; = &quot;A&quot;; then
+        elif test "${card1_rev}" = "A"; then
                 dtb_name=SMK-zynqmp-${card_name}-revA
         fi
 else
@@ -243,8 +243,8 @@ fi
 
 for boot_target in ${boot_targets};
 do
-echo &quot;Trying to load boot images from ${boot_target}&quot;
-if test &quot;${boot_target}&quot; = &quot;mmc0&quot; || test &quot;${boot_target}&quot; = &quot;mmc1&quot; || test &quot;${boot_target}&quot; = &quot;usb0&quot; || test &quot;${boot_target}&quot; = &quot;usb1&quot;; then
+echo "Trying to load boot images from ${boot_target}"
+if test "${boot_target}" = "mmc0" || test "${boot_target}" = "mmc1" || test "${boot_target}" = "usb0" || test "${boot_target}" = "usb1"; then
         if test -e ${devtype} ${devnum}:${distro_bootpart} /${fitimage_name}; then
                 fatload ${devtype} ${devnum}:${distro_bootpart} 0x10000000 ${fitimage_name};
                 bootm 0x10000000;
@@ -255,13 +255,13 @@ if test &quot;${boot_target}&quot; = &quot;mmc0&quot; || test &quot;${boot_targe
         if test -e ${devtype} ${devnum}:${distro_bootpart} /${dtb_name}.dtb; then
                 fatload ${devtype} ${devnum}:${distro_bootpart} 0x00100000 ${dtb_name}.dtb;
         else
-		echo &quot;Expected ${dtb_name} Not Found in FAT Partition, Booting with SOM only DTB&quot;
+		echo "Expected ${dtb_name} Not Found in FAT Partition, Booting with SOM only DTB"
 	fi
-        if test -e ${devtype} ${devnum}:${distro_bootpart} /${ramdisk_name} &amp;&amp; test &quot;${skip_tinyramdisk}&quot; != &quot;yes&quot;; then
+        if test -e ${devtype} ${devnum}:${distro_bootpart} /${ramdisk_name} &amp;&amp; test "${skip_tinyramdisk}" != "yes"; then
                 fatload ${devtype} ${devnum}:${distro_bootpart} 0x04000000 ${ramdisk_name};
                 booti 0x00200000 0x04000000 0x00100000
         fi
-        if test -e ${devtype} ${devnum}:${distro_bootpart} /${rootfs_name} &amp;&amp; test &quot;${skip_ramdisk}&quot; != &quot;yes&quot;; then
+        if test -e ${devtype} ${devnum}:${distro_bootpart} /${rootfs_name} &amp;&amp; test "${skip_ramdisk}" != "yes"; then
                 fatload ${devtype} ${devnum}:${distro_bootpart} 0x04000000 ${rootfs_name};
                 booti 0x00200000 0x04000000 0x00100000
         fi
@@ -294,7 +294,7 @@ done
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 14, 2026.
+      <span class="lastupdated">Last updated on October 22, 2026.
       </span></p>
   </div>
 
