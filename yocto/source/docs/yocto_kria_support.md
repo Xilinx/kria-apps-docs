@@ -38,12 +38,12 @@ Below two tables list out Machine name + bitbake recipes for the latest tool ver
 | k24i-sm-sdt    | xilinx-bootbin | 2026.1 and newer   | boot.bin supporting K24i production SOM                      |
 | k24c-sm-sdt    | xilinx-bootbin | 2026.1 and newer   | boot.bin supporting K24c production SOM                      |
 | amd-cortexa53-mali-common | edf-linux-disk-image-kria | 2026.1 and newer | Linux wic image that dynamically support all Kria starter kits and production SOMs |
-| amd-cortexa53-mali-common | platform-disk-image-kria  | 2026.1 and newer |  multidomain wic image (including Linux, OpenAMP, Xen) that dynamically support all Kria starter kits and production SOMs |
+| amd-cortexa53-mali-common | edf-platform-disk-image-kria  | 2026.1 and newer |  multidomain wic image (including Linux, OpenAMP, Xen) that dynamically support all Kria starter kits and production SOMs |
 
 
 ## Build Host Requirements and Build Environment setup
 
-For detailed steps on setting up the EDF Yocto environment, including host requirements, layer configuration, and build instructions, refer to the [AMD EDF Documentation](https://edf.docs.amd.com/).
+For detailed steps on setting up the EDF Yocto environment, including host requirements, layer configuration, and build instructions, refer to the [AMD EDF Documentation](https://edf.docs.amd.com/). [Yocto Project Build Setup Instructions for EDF](https://edf.docs.amd.com/en/latest/osdev/operating-system-integration-and-development.html#osintegrationanddevelopment-yoctoprojectbuildsetupinstructionsforedf) is the shortcut for Yocto project setup.
 
 ## Build the Artifacts
 
@@ -53,11 +53,11 @@ To build the artifacts, use the following command:
 MACHINE=<machine name> bitbake <bitbake recipe> 
 ```
 
-For example, to build the QSPI image and wic image for the K26 starter kits, use the following command for 2023.1:
+For example, to build the QSPI image and wic image for the KV260 starter kits, use the following command for 2026.1:
 
 ```shell
-MACHINE=k26-smk-kv-sdt bitbake kria-qspi
-MACHINE=amd-cortexa53-mali-common bitbake platform-disk-image-kria 
+MACHINE=k26-smk-kv-sdt-multidomain bitbake kria-qspi
+MACHINE=amd-cortexa53-mali-common bitbake edf-platform-disk-image-kria 
 ```
 
 The resulting QSPI image (`<recipe name><machine name>.bin`), .wic image (`<recipe name>-<machine name>.wic.xz`), and their artifacts are found in ```$TMPDIR/deploy/images/<machine name>```, and $TMPDIR is defined in ```build/conf/local.conf```, by default in ```tmp/```.
@@ -94,6 +94,9 @@ In 2023.1, the combined starterkit k26-smk supports QEMU, and the default hardwa
 
 
 ## Older tool machine names and recipe
+
+<details>
+<summary>Show older tool versions (2025.2 and earlier)</summary>
 
 This table list Machine names and corresponding recipe for older tool versions for QSPI/boot.bin generation.
 - Note that in 2024.2, some artifacts are generated either using XSCT flow, or SDT flow. Refer to [this](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2743468485/Porting+embeddedsw+components+to+system+device+tree+SDT+based+flow) page for more details on the new SDT flow.
@@ -175,7 +178,8 @@ For .wic image generation, there are two groups of machines names: .wic images w
 >**NOTE:** The username for the Yocto generated image is ```petalinux``` for 2024,2 and older, ```amd-edf``` for 2025.1 and newer, and you are immediately prompted to update the password.
 
 
-### Build wic image for kria-zynqmp-generic
+<details>
+<summary id="build-wic-image-for-kria-zynqmp-generic">Build wic image for kria-zynqmp-generic</summary>
 
 From 2025.1 onward, you can generate a common wic image that dynamically supports all three Kria SOM starter kits with a single steo:
 
@@ -203,7 +207,11 @@ In 2024.2 , you can generate a common wic image that dynamically supports all th
 > **NOTE:** In kria-zynqmp-generic generated wic image in 2024.2, the SD card is “locked in” to the started kit when first booted. That is, once you have booted the common image on a KV260, you are not be able to reuse the same SD card with the shared common Linux image on a KR260 or a KD240. This is because on initial boot, the default bitstream is locked in based on the EEPROM reading on first boot, and this is not updated on subsequent boots.
 
 
-### Importing a New XSA File (Aka SDT) in SDT Flow
+</details>
+
+</details>
+
+## Importing a New XSA File (Aka SDT) in SDT Flow
 
 In SDT flow, the system device tree that was generated from .xsa file is imported yocto flow, instead of directly use .xsa file.
 
@@ -228,7 +236,7 @@ gen-machineconf --template ../sources/meta-amd-adaptive-socs/meta-amd-adaptive-s
 The <machine name> is now updated with the custom xsa file/SDT. 
 
 
-### Importing a New XSA File
+### Importing a New XSA File in none-SDT flow
 
 Note: this is applicable for none-SDT flow (XSCT)  only. 
 
@@ -244,8 +252,6 @@ sha256sum is not needed for local files.
 The default values for the .conf files come from ```sources/meta-xilinx-tools/recipes-bsp/hdf/hdf-repository.inc```.
 
 ## Updating Default Bitstream
-
-Note: this is for none-SDT flow (XSCT) only
 
 In the Kria Starter Kits boot flow, the PL portion of the Zynq MPSoC is not programmed until during the Linux boot, DFX_manager loads the default bitstream in `/lib/firmware/xilinx/k26-starter-kits/ or /lib/firmware/xilinx/k24-starter-kits/`. If you need to change the PL design that is loaded by default, update the firmware folder, which is managed by the recipe located in `$yocto_project_folder/sources/meta-kria/recipes-firmware/kria-base-firmware/`. In that folder, the recipes can be updated to take the firmware from a local folder instead of from GitHub.
 

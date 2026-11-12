@@ -1,8 +1,10 @@
-###################
+#################
 XEN Kria Support
-###################
+#################
+
 
 .. include:: ../../shared/somtoctree.txt
+
 
 .. toctree::
    :maxdepth: 3
@@ -13,4 +15,4 @@ XEN Kria Support
 
 .. Copyright © 2023–2026 Advanced Micro Devices, Inc
 
-.. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.
+.. `Terms and Conditions <https://www.amd.com/en/legal/copyright.html>`_.

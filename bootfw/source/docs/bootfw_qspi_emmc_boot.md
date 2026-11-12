@@ -45,7 +45,7 @@ Alternatively, generate a `.wic` image for the target Kria Production SOM using 
 Use the following command:
 
 ```bash
-MACHINE=amd-cortexa53-mali-common bitbake platform-disk-image-kria
+MACHINE=amd-cortexa53-mali-common bitbake edf-platform-disk-image-kria
 ```
 
 After obtaining the `.wic` image, compress it into a `wic.gz` file. The Embedded Flash Update Tool accepts `.gz` images only; `.xz` images are not supported.

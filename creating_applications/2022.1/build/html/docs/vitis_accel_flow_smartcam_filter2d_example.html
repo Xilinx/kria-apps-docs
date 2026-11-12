@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
-<script type="text/javascript">
-function OptanonWrapper() { }
-</script>
-<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- OneTrust Cookies Consent Notice start
+  <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+          data-document-language="true" type="text/javascript" charset="UTF-8"
+          data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7"></script>
+  <script type="text/javascript">function OptanonWrapper() { }</script>
+  
+OneTrust Cookies Consent Notice end -->
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -61,25 +61,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Flows</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Flows</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Development Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vitis_accel_flow.html">Vitis Accelerator Flow</a></li>
@@ -229,7 +211,7 @@ binary_container_1/dpu.xo: $(dpu_HDLSRCS)
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>KERNEL = pp_pipeline_accel
 KERNEL_XO = $(KERNEL)/$(KERNEL).xo
 
-KERNEL_XO_FLAGS = -k $(KERNEL) -I$(XFOPENCV_INCDIR) -D__SDSVHLS__ -DHLS_NO_XIL_FPO_LIB --advanced.prop kernel.pp_pipeline_accel.kernel_flags=&quot;-std=c++0x&quot;
+KERNEL_XO_FLAGS = -k $(KERNEL) -I$(XFOPENCV_INCDIR) -D__SDSVHLS__ -DHLS_NO_XIL_FPO_LIB --advanced.prop kernel.pp_pipeline_accel.kernel_flags="-std=c++0x"
 
 $(KERNEL_XO): xf_pp_pipeline_accel.cpp
 	@mkdir -p $(@D)
@@ -318,7 +300,7 @@ make<span class="w"> </span>overlay<span class="w"> </span><span class="nv">OVER
 <li><p>Rename the .xclbin file to <code class="docutils literal notranslate"><span class="pre">filter2d.xclbin</span></code></p></li>
 <li><p>Now you need to convert <code class="docutils literal notranslate"><span class="pre">system.bit</span></code> to a <code class="docutils literal notranslate"><span class="pre">.bit.bin</span></code> file:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>overlays/examples/smartcam/binary_container_1/link/int/
-<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;all:{system.bit}&#39;</span>&gt;bootgen.bif
+<span class="nb">echo</span><span class="w"> </span><span class="s1">'all:{system.bit}'</span>&gt;bootgen.bif
 bootgen<span class="w"> </span>-w<span class="w"> </span>-arch<span class="w"> </span>zynqmp<span class="w"> </span>-process_bitstream<span class="w"> </span>bin<span class="w"> </span>-image<span class="w"> </span>bootgen.bif
 mv<span class="w"> </span>system.bit.bin<span class="w"> </span>filter2d.bit.bin
 </pre></div>
@@ -349,12 +331,12 @@ mv<span class="w"> </span>system.bit.bin<span class="w"> </span>filter2d.bit.bin
 </li>
 <li><p>Then load docker container:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
--h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span><span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">"DISPLAY"</span><span class="w"> </span><span class="se">\</span>
+-h<span class="w"> </span><span class="s2">"xlnx-docker"</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">"XDG_SESSION_TYPE"</span><span class="w"> </span><span class="se">\</span>
 --net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
 --privileged<span class="w"> </span><span class="se">\</span>
---volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span><span class="se">\</span>
+--volume<span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw"</span><span class="w"> </span><span class="se">\</span>
 -v<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
 -v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
 -v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
@@ -412,12 +394,12 @@ sudo<span class="w"> </span>xmutil<span class="w"> </span>unloadapp
 sudo<span class="w"> </span>xmutil<span class="w"> </span>loadapp<span class="w"> </span>filter2d
 
 docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;DISPLAY&quot;</span><span class="w"> </span><span class="se">\</span>
--h<span class="w"> </span><span class="s2">&quot;xlnx-docker&quot;</span><span class="w"> </span><span class="se">\</span>
---env<span class="o">=</span><span class="s2">&quot;XDG_SESSION_TYPE&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">"DISPLAY"</span><span class="w"> </span><span class="se">\</span>
+-h<span class="w"> </span><span class="s2">"xlnx-docker"</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">=</span><span class="s2">"XDG_SESSION_TYPE"</span><span class="w"> </span><span class="se">\</span>
 --net<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
 --privileged<span class="w"> </span><span class="se">\</span>
---volume<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw&quot;</span><span class="w"> </span><span class="se">\</span>
+--volume<span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:rw"</span><span class="w"> </span><span class="se">\</span>
 -v<span class="w"> </span>/tmp:/tmp<span class="w"> </span><span class="se">\</span>
 -v<span class="w"> </span>/dev:/dev<span class="w"> </span><span class="se">\</span>
 -v<span class="w"> </span>/sys:/sys<span class="w"> </span><span class="se">\</span>
@@ -429,7 +411,7 @@ docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</spa
 </div>
 </li>
 <li><p>First, try running gstreamer with the accelerator bypassed to make sure things work correctly. Expect to see the monitor displaying what it captured in MIPI. This command assumes that you use a MIPI camera mapped to media0, and that the monitor supports 1920x1080p:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0<span class="w"> </span>mediasrcbin<span class="w"> </span>media-device<span class="o">=</span>/dev/media0<span class="w"> </span>v4l2src0::io-mode<span class="o">=</span>mmap<span class="w"> </span>!<span class="w"> </span><span class="s2">&quot;video/x-raw, width=1920, height=1080, format=NV12, framerate=30/1&quot;</span><span class="w"> </span>!<span class="w"> </span>perf<span class="w"> </span>!<span class="w"> </span>kmssink<span class="w"> </span>plane-id<span class="o">=</span><span class="m">39</span><span class="w"> </span>fullscreen-overlay<span class="o">=</span><span class="nb">true</span><span class="w"> </span>-v
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0<span class="w"> </span>mediasrcbin<span class="w"> </span>media-device<span class="o">=</span>/dev/media0<span class="w"> </span>v4l2src0::io-mode<span class="o">=</span>mmap<span class="w"> </span>!<span class="w"> </span><span class="s2">"video/x-raw, width=1920, height=1080, format=NV12, framerate=30/1"</span><span class="w"> </span>!<span class="w"> </span>perf<span class="w"> </span>!<span class="w"> </span>kmssink<span class="w"> </span>plane-id<span class="o">=</span><span class="m">39</span><span class="w"> </span>fullscreen-overlay<span class="o">=</span><span class="nb">true</span><span class="w"> </span>-v
 </pre></div>
 </div>
 <p>This confirms that the monitor is working as expected.</p>
@@ -438,7 +420,7 @@ docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</spa
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>/usr/lib/vvas/
 cp<span class="w"> </span>/tmp/libvvas_xfilter2d_pl.so<span class="w"> </span>/usr/lib/vvas/
 
-gst-launch-1.0<span class="w"> </span>filesrc<span class="w"> </span><span class="nv">location</span><span class="o">=</span><span class="s2">&quot;/tmp/bbb_sunflower_1080p_30fps_normal.mp4&quot;</span><span class="w"> </span>!<span class="w"> </span>decodebin<span class="w"> </span>!<span class="w"> </span>videoconvert<span class="w"> </span>!<span class="w"> </span>video/x-raw,<span class="w"> </span><span class="nv">width</span><span class="o">=</span><span class="m">1920</span>,<span class="w"> </span><span class="nv">height</span><span class="o">=</span><span class="m">1080</span>,<span class="w"> </span><span class="nv">format</span><span class="o">=</span>YUY2,<span class="w"> </span><span class="nv">framerate</span><span class="o">=</span><span class="m">30</span>/1<span class="w"> </span>!<span class="w"> </span>vvas_xfilter<span class="w"> </span>kernels-config<span class="o">=</span>/tmp/kernel_xfilter2d_pl.json<span class="w"> </span>dynamic-config<span class="o">=</span><span class="s1">&#39;{ &quot;filter_preset&quot; : &quot;edge&quot; }&#39;</span><span class="w"> </span>!<span class="w"> </span>perf<span class="w"> </span>!<span class="w"> </span>kmssink<span class="w"> </span>driver-name<span class="o">=</span>xlnx<span class="w"> </span>plane-id<span class="o">=</span><span class="m">39</span><span class="w"> </span>fullscreen-overlay<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="nv">sync</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span>-v
+gst-launch-1.0<span class="w"> </span>filesrc<span class="w"> </span><span class="nv">location</span><span class="o">=</span><span class="s2">"/tmp/bbb_sunflower_1080p_30fps_normal.mp4"</span><span class="w"> </span>!<span class="w"> </span>decodebin<span class="w"> </span>!<span class="w"> </span>videoconvert<span class="w"> </span>!<span class="w"> </span>video/x-raw,<span class="w"> </span><span class="nv">width</span><span class="o">=</span><span class="m">1920</span>,<span class="w"> </span><span class="nv">height</span><span class="o">=</span><span class="m">1080</span>,<span class="w"> </span><span class="nv">format</span><span class="o">=</span>YUY2,<span class="w"> </span><span class="nv">framerate</span><span class="o">=</span><span class="m">30</span>/1<span class="w"> </span>!<span class="w"> </span>vvas_xfilter<span class="w"> </span>kernels-config<span class="o">=</span>/tmp/kernel_xfilter2d_pl.json<span class="w"> </span>dynamic-config<span class="o">=</span><span class="s1">'{ "filter_preset" : "edge" }'</span><span class="w"> </span>!<span class="w"> </span>perf<span class="w"> </span>!<span class="w"> </span>kmssink<span class="w"> </span>driver-name<span class="o">=</span>xlnx<span class="w"> </span>plane-id<span class="o">=</span><span class="m">39</span><span class="w"> </span>fullscreen-overlay<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="nv">sync</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span>-v
 </pre></div>
 </div>
 </li>
@@ -460,8 +442,8 @@ gst-launch-1.0<span class="w"> </span>filesrc<span class="w"> </span><span class
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on April 10, 2025.
+    <p>&#169; Copyright 2021-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on November 09, 2026.
       </span></p>
   </div>
 

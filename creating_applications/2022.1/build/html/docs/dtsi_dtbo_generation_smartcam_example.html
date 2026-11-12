@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
-<script type="text/javascript">
-function OptanonWrapper() { }
-</script>
-<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- OneTrust Cookies Consent Notice start
+  <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+          data-document-language="true" type="text/javascript" charset="UTF-8"
+          data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7"></script>
+  <script type="text/javascript">function OptanonWrapper() { }</script>
+  
+OneTrust Cookies Consent Notice end -->
 <!-- Google Tag Manager -->
 <script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -61,25 +61,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">SOM</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/">Landing Page</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/Kria_doc_map/map.htm">Kria Adventure Map</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/creating_applications.html">Application Development</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/ubuntu_support.html">Ubuntu Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/bootfw.html">Boot Firmware</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/openamp.html">OpenAMP</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/dfx.html">Dynamic Function eXchange</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/yocto.html">Yocto Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/xen.html">XEN Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/freertos.html">FreeRTOS Support</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/faq.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kd240-docs.html">Kria KD240</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kv260-docs.html">Kria KV260</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/kria-apps-docs/kr260-docs.html">Kria KR260</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/KRS/">Kria Robotics Stack</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Flows</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Flows</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Development Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vitis_accel_flow.html">Vitis Accelerator Flow</a></li>
@@ -200,27 +182,27 @@ hsi<span class="w"> </span>close_hw_design<span class="w"> </span>kv260_ispMipiR
 <h3>Add the AP1302 Node<a class="headerlink" href="#add-the-ap1302-node" title="Permalink to this heading">¶</a></h3>
 <p>The AP1302 sensor is on the carrier card and not something the .XSA platform is aware of as the FPGA/PL design only can infer the generic MIPI and I2C interfaces. For the AP1302 clock and regulators, add the following required information to overlay2:</p>
 <div class="highlight-dtsi notranslate"><div class="highlight"><pre><span></span>ap1302_clk: sensor_clk {
-   compatible = &quot;fixed-clock&quot;;
+   compatible = "fixed-clock";
    clock-frequency = &lt;0x48000000&gt;;
 };
 ap1302_vdd: fixedregulator@0 {
-   compatible = &quot;regulator-fixed&quot;;
-   regulator-name = &quot;ap1302_vdd&quot;;
+   compatible = "regulator-fixed";
+   regulator-name = "ap1302_vdd";
    regulator-min-microvolt = &lt;2800000&gt;;
    regulator-max-microvolt = &lt;2800000&gt;;
    enable-active-high;
 };
 
 ap1302_vaa: fixedregulator@1 {
-   compatible = &quot;regulator-fixed&quot;;
-   regulator-name = &quot;ap1302_vaa&quot;;
+   compatible = "regulator-fixed";
+   regulator-name = "ap1302_vaa";
    regulator-min-microvolt = &lt;1800000&gt;;
    regulator-max-microvolt = &lt;1800000&gt;;
 };
 
 ap1302_vddio: fixedregulator@2 {
-   compatible = &quot;regulator-fixed&quot;;
-   regulator-name = &quot;ap1302_vddio&quot;;
+   compatible = "regulator-fixed";
+   regulator-name = "ap1302_vddio";
    regulator-min-microvolt = &lt;1200000&gt;;
    regulator-max-microvolt = &lt;1200000&gt;;
 };
@@ -234,17 +216,17 @@ ap1302_vddio: fixedregulator@2 {
 <div><p><strong>NOTE:</strong> The port connection to <code class="docutils literal notranslate"><span class="pre">mipi_csi_incapture_pipeline_mipi_csi2_rx_subsyst_0</span></code> on <code class="docutils literal notranslate"><span class="pre">mipi_csi_portscapture_pipeline_mipi_csi2_rx_subsyst_0</span></code> (both names are autogenerated by DTG) corresponds to the <code class="docutils literal notranslate"><span class="pre">mipi_phy_if</span></code> in the platform Vivado design.</p>
 </div></blockquote>
 <div class="highlight-dtsi notranslate"><div class="highlight"><pre><span></span>i2c_mux: i2c-mux@74 {
-   compatible = &quot;nxp,pca9546&quot;;
+   compatible = "nxp,pca9546";
    reg = &lt;0x74&gt;;
    i2c@0 {
       reg = &lt;0&gt;;
       ap1302: isp@3c {
-         compatible = &quot;onnn,ap1302&quot;;
+         compatible = "onnn,ap1302";
          reg = &lt;0x3c&gt;;
          reset-gpios = &lt;&amp;gpio 79 1&gt;;
          clocks = &lt;&amp;ap1302_clk&gt;;
          sensors {
-            onnn,model = &quot;onnn,ar1335&quot;;
+            onnn,model = "onnn,ar1335";
             sensor@0 {
                reg = &lt;0&gt;;
                vdd-supply = &lt;&amp;ap1302_vdd&gt;;
@@ -292,8 +274,8 @@ xlnx,en-active-lanes;
 <h3>ZOCL Node<a class="headerlink" href="#zocl-node" title="Permalink to this heading">¶</a></h3>
 <p>Finally, in 2022.1 through 2023.1, the ZOCL node needs to specify the interrupts reserved for the platform (as seen in platform setting tab in Vivado) if interrupts are directly connected to GIC (instead of through a <code class="docutils literal notranslate"><span class="pre">axi_intc)</span></code>.</p>
 <div class="highlight-dtsi notranslate"><div class="highlight"><pre><span></span>zyxclmm_drm {
-   compatible = &quot;xlnx,zocl&quot;;
-   status = &quot;okay&quot;;
+   compatible = "xlnx,zocl";
+   status = "okay";
    interrupt-parent = &lt;&amp;gic&gt;;
    interrupts = &lt;0 89  4&gt;, &lt;0 90  4&gt;, &lt;0 91  4&gt;, &lt;0 92  4&gt;,
                &lt;0 93  4&gt;, &lt;0 94  4&gt;, &lt;0 95  4&gt;, &lt;0 96  4&gt;;
@@ -329,8 +311,8 @@ xlnx,en-active-lanes;
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2025, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on April 10, 2025.
+    <p>&#169; Copyright 2021-2026, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on November 09, 2026.
       </span></p>
   </div>
 
