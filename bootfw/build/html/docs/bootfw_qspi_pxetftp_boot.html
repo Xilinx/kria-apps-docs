@@ -242,18 +242,18 @@ ls<span class="w"> </span>-l<span class="w"> </span>/usr/share/flash-kernel/its/
 </pre></div>
 </div>
 <p>In <code class="docutils literal notranslate"><span class="pre">/usr/share/flash-kernel/its/image-kria.its</span></code>, rev 1 does not have its own specific configuration. To find the configuration that rev 1 KR260 uses, look at the <code class="docutils literal notranslate"><span class="pre">/boot/firmware/boot.scr.uimg</span></code> file on target, and observe the following:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                        elif test &quot;${card1_name}&quot; = &quot;SCK-KR-G&quot;; then
-                                if test &quot;${card1_rev}&quot; = &quot;B&quot; || test &quot;${card1_rev}&quot; = &quot;1&quot;; then
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                        elif test "${card1_name}" = "SCK-KR-G"; then
+                                if test "${card1_rev}" = "B" || test "${card1_rev}" = "1"; then
                                         # revB dtb also supports rev1 dtb
                                         boot_conf=#conf-smk-k26-revA-sck-kr-g-revB
 </pre></div>
 </div>
 <p>This means the boot_conf <code class="docutils literal notranslate"><span class="pre">conf-smk-k26-revA-sck-kr-g-revB</span></code> supports rev1 KR260. Therefore, update <code class="docutils literal notranslate"><span class="pre">/usr/share/flash-kernel/its/image-kria.its</span></code> from:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nv">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;conf-zynqmp-smk-k26-revA&quot;</span><span class="p">;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nv">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"conf-zynqmp-smk-k26-revA"</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>to:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nv">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;conf-smk-k26-revA-sck-kr-g-revB&quot;</span><span class="p">;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nv">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"conf-smk-k26-revA-sck-kr-g-revB"</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Save and regenerate <code class="docutils literal notranslate"><span class="pre">image.fit</span></code> with the right configuration using the <code class="docutils literal notranslate"><span class="pre">flash-kernel</span></code> command:</p>
@@ -314,7 +314,7 @@ ping<span class="w"> </span><span class="nv">$serverip</span><span class="w"> </
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 14, 2026.
+      <span class="lastupdated">Last updated on October 22, 2026.
       </span></p>
   </div>
 
