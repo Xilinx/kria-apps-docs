@@ -78,20 +78,99 @@ MACHINE=amd-cortexa53-mali-common bitbake core-image-full-cmdline
 
 ## QEMU
 
-Yocto can boot each of the various MACHINEs using QEMU once a build completes using the following command:
+You can boot a Kria image in QEMU without hardware. QEMU boots the Linux disk image using the boot and PMU artifacts of the board you select, so you need to build both.
+
+| Board | Machine name |
+| ----- | ------------ |
+| KV260 | k26-smk-kv-sdt-multidomain |
+| KR260 | k26-smk-kr-sdt-multidomain |
+| KD240 | k24-smk-kd-sdt-multidomain |
+
+### Build the images for QEMU
+
+Build the board's QSPI/boot artifacts and the common Linux disk image, as described in [Build the Artifacts](#build-the-artifacts):
 
 ```shell
-MACHINE=<machine name> runqemu nographic slirp
+MACHINE=<machine name> bitbake kria-qspi
+MACHINE=amd-cortexa53-mali-common bitbake edf-platform-disk-image-kria
 ```
 
-Exit from QEMU with ```ctrl-a,x```.
+### Prepare a working directory
 
-During the build process, a QEMU configuration file is created in the output directory containing all of the configuration options set for the machine and used by the runqemu command. For example, for k26-smk, this file is found in ```$TMPDIR/deploy/images/k26-smk/kria-image-full-cmdline-k26-smk.qemuboot.conf```.
+On the host, set the path to your Yocto build directory and the machine name for your board, then copy the artifacts of both builds into one directory:
 
-In 2023.1, the combined starterkit k26-smk supports QEMU, and the default hardware which it emulates is KV260. To change it to KR260, update ```sources/meta-kria/conf/machine/k26-smk.conf``` according to the comment in the file.
+```shell
+BUILD=<path to your Yocto build directory>
+MACH=k26-smk-kv-sdt-multidomain
+WORK=$HOME/kria_qemu/$MACH
 
+mkdir -p "$WORK"
+cp -rL "$BUILD/tmp/deploy/images/amd-cortexa53-mali-common/." "$WORK/"
+cp -rL "$BUILD/tmp/deploy/images/$MACH/." "$WORK/"
+cd "$WORK"
+```
 
+Check that the required files are present. The command should not print any `No such file or directory` errors:
 
+```shell
+ls -l \
+ "BOOT-$MACH.qemuboot.conf" \
+ edf-platform-disk-image-kria-amd-cortexa53-mali-common.rootfs.qemuboot.conf \
+ pmu-rom.elf \
+ pmu-conf.bin \
+ *eeprom.bin \
+ *.wic.qemu-sd \
+ qemu-hw-devicetrees/multiarch/zynqmp-pmu.dtb
+```
+
+The `*eeprom.bin` pattern matches several EEPROM files. Make sure the artifacts, EEPROM file and device-tree files correspond to the board you selected.
+
+### Set up the build environment
+
+Set up the EDF Yocto build environment as described in [Build Host Requirements and Build Environment setup](#build-host-requirements-and-build-environment-setup), then confirm that `runqemu` is available:
+
+```shell
+command -v runqemu
+```
+
+The `qemuboot-tool` script is provided by the `meta-xilinx-core` layer of your Yocto sources. Point to it with:
+
+```shell
+QEMUBOOT_TOOL=<path to your Yocto sources>/meta-xilinx/meta-xilinx-core/scripts/qemuboot-tool
+test -x "$QEMUBOOT_TOOL" && echo "qemuboot-tool found"
+```
+
+### Combine the QEMU configurations
+
+The board and the disk image each have their own QEMU configuration file. Merge them into one:
+
+```shell
+"$QEMUBOOT_TOOL" load "BOOT-$MACH.qemuboot.conf" \
+ remove image_link_name \
+ remove image_name \
+ merge edf-platform-disk-image-kria-amd-cortexa53-mali-common.rootfs.qemuboot.conf \
+ remove staging_bindir_native \
+ remove staging_dir_host \
+ remove staging_dir_native \
+ remove uninative_loader \
+ > combined.qemuboot.conf
+```
+
+### Boot QEMU
+
+```shell
+runqemu combined.qemuboot.conf slirp nographic
+```
+
+QEMU boots until the login prompt:
+
+```
+amd-edf login:
+```
+
+Log in as `amd-edf`. On first login you are prompted to set a new password. Exit QEMU with ```ctrl-a,x```.
+
+> **NOTE:** This procedure replaces running `MACHINE=<machine name> runqemu nographic slirp` for the 2026.1 and newer machines. For releases up to 2025.2, machines marked "QEMU Support: yes" in the [older tool machine names table](#older-tool-machine-names-and-recipe) boot directly with `MACHINE=<machine name> runqemu nographic slirp`.
 
 ## Older tool machine names and recipe
 
