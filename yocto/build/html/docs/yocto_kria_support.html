@@ -87,7 +87,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="#build-host-requirements-and-build-environment-setup">Build Host Requirements and Build Environment setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#build-the-artifacts">Build the Artifacts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#minimum-linux-image">Minimum Linux Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#qemu">QEMU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qemu">QEMU</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-the-images-for-qemu">Build the images for QEMU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-a-working-directory">Prepare a working directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-up-the-build-environment">Set up the build environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combine-the-qemu-configurations">Combine the QEMU configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boot-qemu">Boot QEMU</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#older-tool-machine-names-and-recipe">Older tool machine names and recipe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#importing-a-new-xsa-file-aka-sdt-in-sdt-flow">Importing a New XSA File (Aka SDT) in SDT Flow</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#importing-a-new-xsa-file-in-none-sdt-flow">Importing a New XSA File in none-SDT flow</a></li>
@@ -261,13 +268,103 @@ The recipes supports includes Linux-only and platform categories. The platform r
 </div>
 <div class="section" id="qemu">
 <h2>QEMU<a class="headerlink" href="#qemu" title="Permalink to this heading">¶</a></h2>
-<p>Yocto can boot each of the various MACHINEs using QEMU once a build completes using the following command:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>&lt;machine<span class="w"> </span>name&gt;<span class="w"> </span>runqemu<span class="w"> </span>nographic<span class="w"> </span>slirp
+<p>You can boot a Kria image in QEMU without hardware. QEMU boots the Linux disk image using the boot and PMU artifacts of the board you select, so you need to build both.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Board</th>
+<th>Machine name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KV260</td>
+<td>k26-smk-kv-sdt-multidomain</td>
+</tr>
+<tr>
+<td>KR260</td>
+<td>k26-smk-kr-sdt-multidomain</td>
+</tr>
+<tr>
+<td>KD240</td>
+<td>k24-smk-kd-sdt-multidomain</td>
+</tr>
+</tbody>
+</table><div class="section" id="build-the-images-for-qemu">
+<h3>Build the images for QEMU<a class="headerlink" href="#build-the-images-for-qemu" title="Permalink to this heading">¶</a></h3>
+<p>Build the board’s QSPI/boot artifacts and the common Linux disk image, as described in <a class="reference external" href="#build-the-artifacts">Build the Artifacts</a>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">MACHINE</span><span class="o">=</span>&lt;machine<span class="w"> </span>name&gt;<span class="w"> </span>bitbake<span class="w"> </span>kria-qspi
+<span class="nv">MACHINE</span><span class="o">=</span>amd-cortexa53-mali-common<span class="w"> </span>bitbake<span class="w"> </span>edf-platform-disk-image-kria
 </pre></div>
 </div>
-<p>Exit from QEMU with <code class="docutils literal notranslate"><span class="pre">ctrl-a,x</span></code>.</p>
-<p>During the build process, a QEMU configuration file is created in the output directory containing all of the configuration options set for the machine and used by the runqemu command. For example, for k26-smk, this file is found in <code class="docutils literal notranslate"><span class="pre">$TMPDIR/deploy/images/k26-smk/kria-image-full-cmdline-k26-smk.qemuboot.conf</span></code>.</p>
-<p>In 2023.1, the combined starterkit k26-smk supports QEMU, and the default hardware which it emulates is KV260. To change it to KR260, update <code class="docutils literal notranslate"><span class="pre">sources/meta-kria/conf/machine/k26-smk.conf</span></code> according to the comment in the file.</p>
+</div>
+<div class="section" id="prepare-a-working-directory">
+<h3>Prepare a working directory<a class="headerlink" href="#prepare-a-working-directory" title="Permalink to this heading">¶</a></h3>
+<p>On the host, set the path to your Yocto build directory and the machine name for your board, then copy the artifacts of both builds into one directory:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">BUILD</span><span class="o">=</span>&lt;path<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>Yocto<span class="w"> </span>build<span class="w"> </span>directory&gt;
+<span class="nv">MACH</span><span class="o">=</span>k26-smk-kv-sdt-multidomain
+<span class="nv">WORK</span><span class="o">=</span><span class="nv">$HOME</span>/kria_qemu/<span class="nv">$MACH</span>
+
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="nv">$WORK</span><span class="s2">"</span>
+cp<span class="w"> </span>-rL<span class="w"> </span><span class="s2">"</span><span class="nv">$BUILD</span><span class="s2">/tmp/deploy/images/amd-cortexa53-mali-common/."</span><span class="w"> </span><span class="s2">"</span><span class="nv">$WORK</span><span class="s2">/"</span>
+cp<span class="w"> </span>-rL<span class="w"> </span><span class="s2">"</span><span class="nv">$BUILD</span><span class="s2">/tmp/deploy/images/</span><span class="nv">$MACH</span><span class="s2">/."</span><span class="w"> </span><span class="s2">"</span><span class="nv">$WORK</span><span class="s2">/"</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">"</span><span class="nv">$WORK</span><span class="s2">"</span>
+</pre></div>
+</div>
+<p>Check that the required files are present. The command should not print any <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code> errors:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-l<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span><span class="s2">"BOOT-</span><span class="nv">$MACH</span><span class="s2">.qemuboot.conf"</span><span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>edf-platform-disk-image-kria-amd-cortexa53-mali-common.rootfs.qemuboot.conf<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>pmu-rom.elf<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>pmu-conf.bin<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>*eeprom.bin<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>*.wic.qemu-sd<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>qemu-hw-devicetrees/multiarch/zynqmp-pmu.dtb
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">*eeprom.bin</span></code> pattern matches several EEPROM files. Make sure the artifacts, EEPROM file and device-tree files correspond to the board you selected.</p>
+</div>
+<div class="section" id="set-up-the-build-environment">
+<h3>Set up the build environment<a class="headerlink" href="#set-up-the-build-environment" title="Permalink to this heading">¶</a></h3>
+<p>Set up the EDF Yocto build environment as described in <a class="reference external" href="#build-host-requirements-and-build-environment-setup">Build Host Requirements and Build Environment setup</a>, then confirm that <code class="docutils literal notranslate"><span class="pre">runqemu</span></code> is available:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>runqemu
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">qemuboot-tool</span></code> script is provided by the <code class="docutils literal notranslate"><span class="pre">meta-xilinx-core</span></code> layer of your Yocto sources. Point to it with:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">QEMUBOOT_TOOL</span><span class="o">=</span>&lt;path<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>Yocto<span class="w"> </span>sources&gt;/meta-xilinx/meta-xilinx-core/scripts/qemuboot-tool
+<span class="nb">test</span><span class="w"> </span>-x<span class="w"> </span><span class="s2">"</span><span class="nv">$QEMUBOOT_TOOL</span><span class="s2">"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"qemuboot-tool found"</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="combine-the-qemu-configurations">
+<h3>Combine the QEMU configurations<a class="headerlink" href="#combine-the-qemu-configurations" title="Permalink to this heading">¶</a></h3>
+<p>The board and the disk image each have their own QEMU configuration file. Merge them into one:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="s2">"</span><span class="nv">$QEMUBOOT_TOOL</span><span class="s2">"</span><span class="w"> </span>load<span class="w"> </span><span class="s2">"BOOT-</span><span class="nv">$MACH</span><span class="s2">.qemuboot.conf"</span><span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>remove<span class="w"> </span>image_link_name<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>remove<span class="w"> </span>image_name<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>merge<span class="w"> </span>edf-platform-disk-image-kria-amd-cortexa53-mali-common.rootfs.qemuboot.conf<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>remove<span class="w"> </span>staging_bindir_native<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>remove<span class="w"> </span>staging_dir_host<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>remove<span class="w"> </span>staging_dir_native<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>remove<span class="w"> </span>uninative_loader<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>&gt;<span class="w"> </span>combined.qemuboot.conf
+</pre></div>
+</div>
+</div>
+<div class="section" id="boot-qemu">
+<h3>Boot QEMU<a class="headerlink" href="#boot-qemu" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>runqemu<span class="w"> </span>combined.qemuboot.conf<span class="w"> </span>slirp<span class="w"> </span>nographic
+</pre></div>
+</div>
+<p>QEMU boots until the login prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">amd</span><span class="o">-</span><span class="n">edf</span> <span class="n">login</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Log in as <code class="docutils literal notranslate"><span class="pre">amd-edf</span></code>. On first login you are prompted to set a new password. Exit QEMU with <code class="docutils literal notranslate"><span class="pre">ctrl-a,x</span></code>.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong> This procedure replaces running <code class="docutils literal notranslate"><span class="pre">MACHINE=&lt;machine</span> <span class="pre">name&gt;</span> <span class="pre">runqemu</span> <span class="pre">nographic</span> <span class="pre">slirp</span></code> for the 2026.1 and newer machines. For releases up to 2025.2, machines marked “QEMU Support: yes” in the <a class="reference external" href="#older-tool-machine-names-and-recipe">older tool machine names table</a> boot directly with <code class="docutils literal notranslate"><span class="pre">MACHINE=&lt;machine</span> <span class="pre">name&gt;</span> <span class="pre">runqemu</span> <span class="pre">nographic</span> <span class="pre">slirp</span></code>.</p>
+</div></blockquote>
+</div>
 </div>
 <div class="section" id="older-tool-machine-names-and-recipe">
 <h2>Older tool machine names and recipe<a class="headerlink" href="#older-tool-machine-names-and-recipe" title="Permalink to this heading">¶</a></h2>
@@ -622,7 +719,7 @@ k26_starter_kits.bit<span class="w">  </span>k26_starter_kits.dtsi<span class="w
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022-2026, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on November 09, 2026.
+      <span class="lastupdated">Last updated on November 17, 2026.
       </span></p>
   </div>
 
